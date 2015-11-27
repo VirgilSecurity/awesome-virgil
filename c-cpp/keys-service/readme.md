@@ -1,3 +1,4 @@
+
 # C++ Keys Service
 
 - [Obtaining an Application Token](#obtaining-an-application-token)
@@ -181,7 +182,7 @@ int main(int argc, char **argv) {
 ```
 
 
-##  Search public key associated with a given user identifier.
+##  Search Public Key Data within Virgil's Keys Service
 
 ``` {.cpp}
 
@@ -259,7 +260,7 @@ std::string uuid () {
 ```
 
 
-## Search public key associated with a given user's credentials.
+## Search Public Key Signed Data from the Keys Service
 
 ``` {.cpp}
 #include <chrono>
@@ -1265,4 +1266,3 @@ std::string uuid () {
 </div>
 </div>
 </section>
-</div>
