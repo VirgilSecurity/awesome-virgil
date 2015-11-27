@@ -1,3 +1,4 @@
+
 # Vigil Keys Service - iOS SDK
 
 - [Obtaining an Application Token](#obtaining-an-application-token)
@@ -22,7 +23,7 @@ The app token provides access to Virgil’s Services and is passed with each API
 2. [Sign in](https://api.virgilsecurity.com/signin) and generate a token for your application.
 3. Use your app token to access Virgil Services using our iOS frameworks.
 
-## Register a New User on Virgil's Public Keys Service
+## Register a New User
 
 :information_source:
 
@@ -786,4 +787,3 @@ self.keysClient.resendConfirmationUserDataId(userDataId, publicKeyId:publicKeyId
 </div>
 </div>
 </section>
-</div>
