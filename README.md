@@ -13,15 +13,17 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 
 # <a name="head3"></a>Developers Docs
 
-[Library] (https://github.com/VirgilSecurity/virgil)
+[C/C++] (https://github.com/VirgilSecurity/virgil/tree/master/c-cpp)
 
-[.NET/C#] (https://github.com/VirgilSecurity/virgil-net)
+[.NET/C#] (https://github.com/VirgilSecurity/virgil/tree/master/dot-net-csharp)
 
-[C/C++] (https://github.com/VirgilSecurity/virgil-cpp)
+[Javascript] (https://github.com/VirgilSecurity/virgil/tree/master/javascript)
 
-[PHP] (https://github.com/VirgilSecurity/virgil-php)
+[Node.js] (https://github.com/VirgilSecurity/virgil/tree/master/node)
 
-[Node.js] (https://github.com/VirgilSecurity/node-virgil-public-keys)
+[PHP] (https://github.com/VirgilSecurity/virgil/tree/master/php)
+
+[Objective-C/Swift] (https://github.com/VirgilSecurity/virgil/tree/master/objective-c-swift)
 
 # <a name="head4"></a>Use cases
 1. [Passwordless authentication](https://github.com/TempOrganization/wiki/wiki/Passwordless-authentication)
