@@ -1,3 +1,4 @@
+
 ## Native Virgil Crypto Library Bindings
 
 - [Requirements](#requirements)
@@ -149,4 +150,3 @@ echo $isVerified;
 </div>
 </div>
 </section>
-</div>
