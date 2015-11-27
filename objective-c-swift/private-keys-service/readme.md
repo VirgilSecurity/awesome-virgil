@@ -1,3 +1,4 @@
+
 # Virgil Private Keys Service iOS SDK
 
 - [Obtaining an Application Token](#obtaining-an-application-token)
@@ -594,4 +595,3 @@ self.privateKeysClient.deletePrivateKeyPublicKeyId(publicKeyId, privateKey: priv
 </div>
 </div>
 </section>
-</div>
