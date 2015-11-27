@@ -3,7 +3,7 @@
 
 - [Introduction](#introduction)
 - [Build](#build)
-- [Obtaining an Application Token](#obtaining-an-app-token)
+- [Obtaining an Application Token](#obtaining-an-application-token)
 - [Usage examples](#usage-examples)
     - [General statements](#general-statements)
     - [Example 1: Generate keys](#example-1)
