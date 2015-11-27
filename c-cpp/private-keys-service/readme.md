@@ -1,3 +1,4 @@
+
 # С++ Private Keys Service
 
 - [Obtaining an Application Token](#obtaining-an-application-token)
@@ -815,4 +816,3 @@ std::string uuid () {
 </div>
 </div>
 </section>
-</div>
