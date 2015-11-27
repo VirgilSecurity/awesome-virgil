@@ -1,3 +1,4 @@
+
 # Virgil Crypto iOS SDK
 
 - [Generate Keys](#generate-keys)
@@ -352,4 +353,3 @@ if sign = signature {
 </div>
 </div>
 </section>
-</div>
