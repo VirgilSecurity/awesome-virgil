@@ -1,3 +1,4 @@
+
 # Virgil Security JavaScript SDK - Quick Start
 
 - [Introduction](#introduction)
@@ -419,4 +420,3 @@ console.log('Decrypted data: ' + decryptedData);
 </div>
 </div>
 </section>
-</div>
