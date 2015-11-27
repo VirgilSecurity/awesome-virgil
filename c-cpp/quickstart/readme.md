@@ -1,3 +1,4 @@
+
 # Virgil Security C++ SDK - Quick Start
 
 - [Introduction](#introduction)
@@ -13,9 +14,6 @@
     - [Example 6: Sign data](#example-6)
     - [Example 7: Verify data](#example-7)
     - [Example 8: Decrypt data](#example-8)
-- [See also](#see-also)
-- [License](#license)
-- [Contacts](#contacts)
 
 ## Introduction
 This guide will help you get started using the Crypto Library and Virgil Keys Service, for the most popular platforms and languages.
@@ -190,14 +188,6 @@ The following example illustrates the decryption of encrypted data by public key
 VirgilByteArray decryptedData = cipher.decrypt(encryptedData, publicKey.publicKeyId(), privateKey);
 ```
 
-## See also
-* [Virgil Security SDKs API](http://virgilsecurity.github.io/virgil-cpp/)
-
-## License
-BSD 3-Clause. See [LICENSE](https://github.com/VirgilSecurity/virgil/blob/master/LICENSE) for details.
-
-## Contacts
-Email: <support@virgilsecurity.com>
 </div>
 </div>
 
@@ -211,4 +201,3 @@ Email: <support@virgilsecurity.com>
 </div>
 </div>
 </section>
-</div>
