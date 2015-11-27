@@ -34,3 +34,9 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 1. [Virgil Mail] (https://github.com/VirgilSecurity/virgil-mail)
 - [Virgil Pass] (https://github.com/VirgilSecurity/express-virgil-passwordless)
 - Virgil Sync
+
+# License
+BSD 3-Clause. See [LICENSE](https://github.com/VirgilSecurity/virgil/blob/master/LICENSE) for details.
+
+# Contacts
+Email: support@virgilsecurity.com
