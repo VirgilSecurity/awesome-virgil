@@ -1,3 +1,4 @@
+
 ## Quickstart
 
 - [Introduction](#introduction)
@@ -376,4 +377,3 @@ $isValid = $virgilSigner->verify(
 </div>
 </div>
 </section>
-</div>
