@@ -1,7 +1,8 @@
+
 # Node.js Quick Start
 
 - [Introduction](#introduction)
-- [Obtaining an Application Token](#Obtaining-an-Application-Token)
+- [Obtaining an Application Token](#obtaining-an-application-token)
 - [Installation](#installation)
 - [Workflow](#workflow)
     - [Generate keys](#generate-keys)
@@ -23,7 +24,7 @@ First you must create a free Virgil Security developer account by signing up [he
 
 The app token provides authenticated secure access to Virgil’s Keys Service and is passed with each API call. The app token also allows the API to associate your app’s requests with your Virgil Security developer account.
 
-## Install
+## Installation
 
 **Virgil Security** supports most of popular package management systems. You can easily add the Crypto Library dependency to your project, just follow the examples below.
 
@@ -241,4 +242,3 @@ var isValid = signer.verify(encryptedData, sign, publicKey);
 </div>
 </div>
 </section>
-</div>
