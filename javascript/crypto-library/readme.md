@@ -1,3 +1,4 @@
+
 # JavaScript Crypto Library
 
 - [Generate Keys](#generate-keys)
@@ -362,4 +363,3 @@ virgilCrypto.generateKeysAsync()
 </div>
 </div>
 </section>
-</div>
