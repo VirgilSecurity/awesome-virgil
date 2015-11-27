@@ -1,3 +1,4 @@
+
 #Virgil Security iOS SDK 
 
 - [Introduction](#introduction)
@@ -14,15 +15,12 @@
     - [Sign Data](#sign-data)
     - [Verify Data](#verify-data)
     - [Decrypt Data](#decrypt-data)
-- [See also](#see-also)    
-- [License](#license)
-- [Contacts](#contacts)
 
 ##Introduction
 
 This guide will help you get started using the Crypto Library and Virgil Services for the Apple iOS platform. To be able to use Virgil iOS frameworks you should have a MacOS X (10.10+), Xcode (6.4+) and iOS devices (iOS 8.0+).
 
-## Prerequisite
+## Prerequisites
 
 - [Mac OS X El Capitan](https://itunes.apple.com/ua/app/os-x-el-capitan/id1018109117?mt=12) 
 - [Xcode 7](https://itunes.apple.com/ua/app/xcode/id497799835?mt=12)
@@ -533,4 +531,3 @@ if let plainData = decryptor.decryptData(senderData, publicKeyId: self.publicKey
 </div>
 </div>
 </section>
-</div>
