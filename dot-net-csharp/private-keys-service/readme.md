@@ -100,13 +100,12 @@ The example below shows how to delete **Private Key** from existing **Container*
 await keyringClient.PrivateKeys.Remove(publicKey.PublicKeyId, privateKey.Key);
 ```
 
-See full example [here...](https://github.com/VirgilSecurity/virgil-net/blob/master/Examples/SDK/ResendUserDataConfirmation.cs)
+See full example [here...](https://github.com/VirgilSecurity/virgil-sdk-net/blob/master/Examples/SDK/DeletePrivateKey.cs)
 </div>
 </div>
 
 <div class="col-md-12 col-md-offset-2 hidden-md hidden-xs hidden-sm">
 <div class="docs-menu" data-ui="affix-docs">
-<div class="title">Quick Navigation</div>
 
 <div class="menu-items-wrapper" data-ui="menu-items-wrapper"></div>
 </div>
