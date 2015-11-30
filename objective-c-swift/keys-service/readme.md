@@ -779,7 +779,6 @@ self.keysClient.resendConfirmationUserDataId(userDataId, publicKeyId:publicKeyId
 
 <div class="col-md-12 col-md-offset-2 hidden-md hidden-xs hidden-sm">
 <div class="docs-menu" data-ui="affix-docs">
-<div class="title">Quick Navigation</div>
 
 <div class="menu-items-wrapper" data-ui="menu-items-wrapper"></div>
 </div>
