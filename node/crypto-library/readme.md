@@ -5,7 +5,6 @@
 - [Keys generation](#keys-generation)
     - [Generate keypair](#generate-keypair)
     - [Generate keypair with encrypted private key](#generate-keypair-with-encrypted-private-key)
-    - [Example 3: Get public key by id](#get-public-key-by-id)
 - [Encryption](#encryption)
     - [Encrypt and decrypt](#encrypt-and-decrypt)
     - [Decrypt with encrypted private key](#decrypt-with-encrypted-private-key)
