@@ -21,8 +21,6 @@ Promises provided by [bluebird](http://github.com).
     - [Confirm public key reset](#confirm-public-key-reset)
     - [Create user data](#create-user-data)
     - [Delete user data](#delete-user-data)
-- [License](#license)
-- [Contacts](#contacts)
 
 ## Installation
 
@@ -299,7 +297,6 @@ If operation completed successfully returns empty response otherwise appropriate
 
 <div class="col-md-12 col-md-offset-2 hidden-md hidden-xs hidden-sm">
 <div class="docs-menu" data-ui="affix-docs">
-<div class="title">Quick Navigation</div>
 
 <div class="menu-items-wrapper" data-ui="menu-items-wrapper"></div>
 </div>
