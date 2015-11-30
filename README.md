@@ -25,6 +25,8 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 
 [Objective-C/Swift] (https://github.com/VirgilSecurity/virgil/tree/master/objective-c-swift)
 
+[Virgil Android] (https://github.com/VirgilSecurity/virgil-android)
+
 # <a name="head4"></a>Use cases
 1. [Passwordless authentication](https://github.com/TempOrganization/wiki/wiki/Passwordless-authentication)
 - [Verification](https://github.com/TempOrganization/wiki/wiki/Verify-data)
