@@ -10,8 +10,6 @@
     - [Decrypt with encrypted private key](#decrypt-with-encrypted-private-key)
     - [Encrypt data for multiple number of recipients](#encrypt-data-for-multiple-number-of-recipients)
 - [Sign and verify data](#sign-and-verify-data)
-- [License](#license)
-- [Contacts](#contacts)
 
 ## Installation
 
@@ -164,7 +162,6 @@ Is verified =  true
 
 <div class="col-md-12 col-md-offset-2 hidden-md hidden-xs hidden-sm">
 <div class="docs-menu" data-ui="affix-docs">
-<div class="title">Quick Navigation</div>
 
 <div class="menu-items-wrapper" data-ui="menu-items-wrapper"></div>
 </div>
