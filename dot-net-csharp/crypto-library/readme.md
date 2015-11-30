@@ -1,7 +1,6 @@
 
 # Tutorial C#/.NET Crypto Library
 
-- [Introduction](#introduction)
 - [Install](#install)
     - [Generate Keys](#generate-keys)
     - [Encrypt Data](#encrypt-data)
