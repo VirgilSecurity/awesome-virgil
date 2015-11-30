@@ -4,15 +4,14 @@
 - [Introduction](#introduction)
 - [Obtaining an Application Token](#obtaining-an-application-token)
 - [Installation](#installation)
-- [Workflow](#workflow)
-    - [Generate keys](#generate-keys)
-    - [Register User](#register-user)
-    - [Store Private Key](#store-private-key)
-    - [Get a Public Key](#get-a-public-key)
-    - [Encrypt Data](#encrypt-data)
-    - [Decrypt Data](#decrypt-data)
-    - [Sign Data](#sign-data)
-    - [Verify Data](#verify-data)
+- [Generate keys](#generate-keys)
+- [Register User](#register-user)
+- [Store Private Key](#store-private-key)
+- [Get a Public Key](#get-a-public-key)
+- [Encrypt Data](#encrypt-data)
+- [Decrypt Data](#decrypt-data)
+- [Sign Data](#sign-data)
+- [Verify Data](#verify-data)
 
 ## Introduction
 
@@ -234,7 +233,6 @@ var isValid = signer.verify(encryptedData, sign, publicKey);
 
 <div class="col-md-12 col-md-offset-2 hidden-md hidden-xs hidden-sm">
 <div class="docs-menu" data-ui="affix-docs">
-<div class="title">Quick Navigation</div>
 
 <div class="menu-items-wrapper" data-ui="menu-items-wrapper"></div>
 </div>
