@@ -28,11 +28,11 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 [Virgil Android] (https://github.com/VirgilSecurity/virgil-android)
 
 # <a name="head4"></a>Use cases
-1. [Passwordless authentication](https://github.com/VirgilSecurity/virgil/blob/use-cases/use-cases/passless-auth.md)
-- [Verification](https://github.com/VirgilSecurity/virgil/blob/use-cases/use-cases/verify-data.md)
-- [Secure data at transport](https://github.com/VirgilSecurity/virgil/blob/use-cases/use-cases/secure-transport.md)
-- [Secure data at storage](https://github.com/VirgilSecurity/virgil/blob/use-cases/use-cases/secure-storage.md)
-- [IP messaging](https://github.com/VirgilSecurity/virgil/blob/use-cases/use-cases/IP-messaging.md)
+1. [Passwordless authentication](https://github.com/VirgilSecurity/virgil/wiki/Passwordless-authentication)
+- [Verification](https://github.com/VirgilSecurity/virgil/wiki/Verify-data)
+- [Secure data at transport](https://github.com/VirgilSecurity/virgil/wiki/Secure-data-at-transport)
+- [Secure data at storage](https://github.com/VirgilSecurity/virgil/wiki/Editing-Secure-data-at-storage)
+- [IP messaging](https://github.com/VirgilSecurity/virgil/wiki/IP-messaging)
 
 # <a name="head2"></a>Virgil Apps
 1. [Virgil Mail] (https://github.com/VirgilSecurity/virgil-mail)
