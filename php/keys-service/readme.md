@@ -47,7 +47,7 @@ Virgil Security's Crypto Stack Library can be found [here](https://github.com/Vi
 ## Build
 
 1. Open your terminal.
-2. Clone the Virgil Security project. ``` git clone https://github.com/VirgilSecurity/virgil.git ```
+2. Clone the Virgil Security project. ``` git clone https://github.com/VirgilSecurity/virgil-crypto ```
 4. Navigate to the project's folder.
 5. ``` cd virgil_lib ```
 6. Create a folder for the build. ``` mkdir build ```
