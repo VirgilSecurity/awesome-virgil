@@ -2,9 +2,9 @@
 # C++ Crypto Library
 
 - [Generate Keys](#generate-keys)
-- [Encrypt and Decrypt data using keys](#encrypt-and-decrypt-using-keys)
-- [Encrypt and Decrypt data using password](#encrypt-and-decrypt-using-password)
-- [Encrypt data for multiple recipients](#encrypt-using-multiple-recipients)
+- [Encrypt and Decrypt data using keys](#encrypt-and-decrypt-data-using-keys)
+- [Encrypt and Decrypt data using password](#encrypt-and-decrypt-data-using-password)
+- [Encrypt data for multiple recipients](#encrypt-data-for-multiple-recipients)
 - [Sign and Verify data](#sign-and-verify-data)
 
 ## Generate Keys \[[src](https://github.com/VirgilSecurity/virgil-sdk-cpp/blob/release/examples/src/keygen.cxx)\]
