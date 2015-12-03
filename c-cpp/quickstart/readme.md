@@ -15,9 +15,6 @@
     - [Example 9: Decrypt data](#example-9)
 - [More examples](#more-examples)
 - [Build](#build)
-- [See also](#see-also)
-- [License](#license)
-- [Contacts](#contacts)
 
 ## Introduction
 
