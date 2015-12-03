@@ -2,7 +2,7 @@
 # C++ Keys Service SDK
 
 - [Obtain Application Token](#obtain-application-token)
-- [Register a New User](#register-a-new-user)
+- [Register New User](#register-new-user)
 - [Get User's Public Key](#get-user-public-key)
 - [Search Public Key](#search-public-key)
 - [Search Public Key With Data](#search-public-key-with-data)
