@@ -13,7 +13,6 @@
     - [Example 7: Sign data](#example-7)
     - [Example 8: Verify data](#example-8)
     - [Example 9: Decrypt data](#example-9)
-- [More examples](#more-examples)
 - [Build](#build)
 
 ## Introduction
