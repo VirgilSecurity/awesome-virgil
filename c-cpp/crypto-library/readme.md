@@ -7,7 +7,8 @@
 - [Encrypt data for multiple recipients](#encrypt-data-for-multiple-recipients)
 - [Sign and Verify data](#sign-and-verify-data)
 
-## Generate Keys \[[src](https://github.com/VirgilSecurity/virgil-sdk-cpp/blob/release/examples/src/keygen.cxx)\]
+## Generate Keys 
+\[[src](https://github.com/VirgilSecurity/virgil-sdk-cpp/blob/release/examples/src/keygen.cxx)\]
 
 ```cpp
 // Specify password in the constructor to store private key encrypted.
