@@ -29,7 +29,7 @@ Simply add your app token to the HTTP header for each request:
 X-VIRGIL-APPLICATION-TOKEN: <YOUR_APPLICATION_TOKEN>
 ```
 
-## Register New User \[[src](https://github.com/VirgilSecurity/virgil-sdk-cpp/blob/release/examples/src/public_key_add.cxx)\]
+## Register New User ## \[[src](https://github.com/VirgilSecurity/virgil-sdk-cpp/blob/release/examples/src/public_key_add.cxx)\]
 
 A Virgil Account will be created when the first Public Key is uploaded. An application can only get information about Public Keys created for the current application. When the application uploads a new Public Key and there is an Account created for another application with the same UDID, the Public Key will be implicitly attached it to the existing Account instance.
 
