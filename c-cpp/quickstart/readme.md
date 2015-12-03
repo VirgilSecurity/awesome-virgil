@@ -1,4 +1,10 @@
 
+[![Build Status](https://travis-ci.org/VirgilSecurity/virgil-sdk-cpp.svg?branch=master)](https://travis-ci.org/VirgilSecurity/virgil-sdk-cpp)
+[![GitHub license](https://img.shields.io/badge/license-BSD%203--Clause-blue.svg)](https://raw.githubusercontent.com/VirgilSecurity/virgil-sdk-cpp/release/LICENSE)
+[![Documentation Developers](https://img.shields.io/badge/docs-developers-green.svg)](https://virgilsecurity.com/documents/cpp/quickstart)
+[![Documentation Doxygen](https://img.shields.io/badge/docs-doxygen-blue.svg)](http://VirgilSecurity.github.io/virgil-sdk-cpp)
+[![Coverity Scan Build Status](https://scan.coverity.com/projects/7135/badge.svg)](https://scan.coverity.com/projects/virgilsecurity-virgil-sdk-cpp)
+
 # Virgil Security C++ SDKs
 
 - [Introduction](#introduction)
@@ -13,7 +19,7 @@
     - [Example 7: Sign data](#example-7)
     - [Example 8: Verify data](#example-8)
     - [Example 9: Decrypt data](#example-9)
-- [Build](#build)
+- [More examples](#more-examples)
 
 ## Introduction
 
@@ -40,12 +46,12 @@ X-VIRGIL-APPLICATION-TOKEN: <YOUR_APPLICATION_TOKEN>
 This section describes common case library usage scenarios.
 Full source code examples are available on [GitHub](https://github.com/VirgilSecurity/virgil-sdk-cpp/tree/release/examples/src) in public access, also see section [More examples](#more-examples).
 
-### <a name="example-1"></a> Example 1: Generate keys
+### Example 1: Generate keys
 
 To use Virgil Security Services it is required to create public key and a private key. The public key can be made public to anyone using the [Virgil Public Keys Service] while the private key must be known only to the party or parties who will decrypt the data encrypted with the public key.
 
-> Private keys should never be stored verbatim or in plain text on the local computer. <br>
-> If you need to store a private key, you should use a secure key container depending on your platform. You also can use Virgil Security Services. This will allows you to easily synchronize private keys between clients devices and applications. Please read more about [Virgil Private Keys Service](https://virgilsecurity.com/documents/cpp/keys-private-service).
+> **Private keys should never be stored verbatim or in plain text on the local computer.**<br>
+> \- If you need to store a private key, you should use a secure key container depending on your platform. You also can use Virgil Security Services. This will allows you to easily synchronize private keys between clients devices and applications. Please read more about [Virgil Private Keys Service](https://virgilsecurity.com/documents/cpp/keys-private-service).
 
 The following code example creates a new public/private key pair.
 ``` {.cpp}
@@ -54,7 +60,7 @@ VirgilKeyPair newKeyPair;
 VirgilByteArray publicKey = newKeyPair.publicKey();
 VirgilByteArray privateKey = newKeyPair.privateKey();
 ```
-### <a name="example-2"></a> Example 2: Register user
+### Example 2: Register user
 
 Once you've created a public key you may push it to Virgil’s Keys Service. This will allow other users to send you encrypted data using your public key.
 
@@ -208,6 +214,10 @@ Run one of the following commands in the project's root folder.
 
             mkdir build && cd build && cmake -DVIRGIL_EXAMPLES=ON .. && nmake
 
+
+## More examples
+
+* [Examples list](https://github.com/VirgilSecurity/virgil-sdk-cpp/tree/release/examples)
 
 </div>
 </div>
