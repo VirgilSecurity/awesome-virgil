@@ -1,5 +1,5 @@
 # virgil
-Secure the Future https://virgilsecurity.com/
+Secure the Future https://VirgilSecurity.com/
 
 ![Logo](https://raw.githubusercontent.com/VirgilSecurity/virgil-net/master/logo.png)
 
