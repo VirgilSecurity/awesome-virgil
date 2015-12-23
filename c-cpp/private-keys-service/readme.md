@@ -1,20 +1,22 @@
 
-# С++ Private Keys Service
+# С++ Private Keys Service SDK
 
-- [Obtaining an Application Token](#obtaining-an-application-token)
-- [Create a New Container Object](#create-a-new-container-object)
-- [Get Container Object](#get-container-object)
-- [Delete Container Object](#delete-container-object)
-- [Update Container Object](#update-container-object)
-- [Reset the Container Password](#reset-the-container-password)
-- [Persist Container Object](#persist-container-object)
-- [Create a Private Key inside the Container Object](#create-a-private-key-inside-the-container-object)
-- [Get Private Key Object](#get-private-key-object)
-- [Delete Private Key Object](#delete-private-key-object)
+- [Obtain Application Token](#obtain-application-token)
+- [Prerequisite](#prerequisite)
+- [Create Container](#create-container)
+- [Authenticate Session](#authenticate-session)
+- [Get Container](#get-container)
+- [Delete Container](#delete-container)
+- [Update Container](#update-container)
+- [Reset Container Password](#reset-container-password)
+- [Persist Container](#persist-container)
+- [Push Private Key to the Container](#push-private-key-to-the-container)
+- [Get Private Key](#get-private-key)
+- [Delete Private Key](#delete-private-key)
 
-## Obtaining an Application Token
+## Obtain Application Token
 
-First you must create a free Virgil Security developer account by signing up [here](https://virgilsecurity.com/signup). Once you have your account you can [sign in](https://virgilsecurity.com/signin) and generate an app token for your application.
+First you must create a free Virgil Security developer account by [sign up](https://virgilsecurity.com/account/signup). Once you have your account you can [sign in](https://virgilsecurity.com/account/signin) and generate an app token for your application.
 
 The app token provides authenticated secure access to Virgil’s Keys Service and is passed with each API call. The app token also allows the API to associate your app’s requests with your Virgil Security developer account.
 
@@ -24,785 +26,210 @@ Simply add your app token to the HTTP header for each request:
 X-VIRGIL-APPLICATION-TOKEN: <YOUR_APPLICATION_TOKEN>
 ```
 
-> Create an Application under [Virgil Security, Inc](https://virgilsecurity.com/dashboard).
+## Prerequisite
 
-> Obtain the Virgil Security Application Token, please follow the [Obtaining an Application Token](#obtaining-an-application-token) section above.
-
-> Create Private and Public Keys on your local machine.
-
-> Create and confirm your account in the Public Keys service.
-
-> Load a Public Key to the Public Key service.
-
-> Use the same email that you used for the Public Key service.
-
-## Create a New Container Object
+1. Obtain the Virgil Security Application Token, please follow the [Obtain Application Token](#obtain-application-token) section above.
+1. Create an Application under [Virgil Security, Inc](https://virgilsecurity.com/dashboard).
+1. Create Private and Public Keys on your local machine.
+1. Create and confirm your account in the Public Keys service.
+1. Load a Public Key to the Public Key service.
+1. Use the same email that you used for the Public Key service.
 
 
-``` {.cpp}
-#include <chrono>
-#include <cstddef>
-#include <fstream>
-#include <iostream>
-#include <iterator>
-#include <random>
-#include <stdexcept>
-#include <string>
+## Create Container
 
-#include <virgil/crypto/VirgilByteArray.h>
+Create container for storing Private Keys on the Virgil Private Keys Service.
 
-#include <virgil/sdk/keys/io/Marshaller.h>
-#include <virgil/sdk/keys/model/PublicKey.h>
+Container type:
 
-#include <virgil/sdk/privatekeys/client/Credentials.h>
-#include <virgil/sdk/privatekeys/client/PrivateKeysClient.h>
-#include <virgil/sdk/privatekeys/model/ContainerType.h>
+  * `easy` - instructs Private Keys Service to use container's password for Private Keys encryption, so it can be reset if user forget it.
+  * `normal` - instructs Private Keys Service not to use container's password for Private Keys encryption, so user is responsible for Private Key password, and it can not be reset within Virgil Private Keys Service.
 
-using virgil::crypto::VirgilByteArray;
+\[[Full source code](https://github.com/VirgilSecurity/virgil-sdk-cpp/blob/release/examples/src/container_create.cxx)\]
 
-using virgil::sdk::keys::io::Marshaller;
-using virgil::sdk::keys::model::PublicKey;
-
-using virgil::sdk::privatekeys::client::Credentials;
-using virgil::sdk::privatekeys::client::PrivateKeysClient;
-using virgil::sdk::privatekeys::model::ContainerType;
-
-const std::string VIRGIL_PK_URL_BASE = "https://keys-private.virgilsecurity.com";
-const std::string VIRGIL_APP_TOKEN = "45fd8a505f50243fa8400594ba0b2b29";
-const ContainerType CONTAINER_TYPE = ContainerType::Normal;
-const std::string CONTAINER_PASSWORD = "123456789";
-
-/**
- * @brief Generate new UUID
- */
-std::string uuid();
-
-int main() {
-    try {
-        std::cout << "Read virgil public key..." << std::endl;
-        std::ifstream publicKeyFile("virgil_public.key", std::ios::in | std::ios::binary);
-        if (!publicKeyFile.good()) {
-            throw std::runtime_error("can not read virgil public key: virgil_public.key");
-        }
-        std::string publicKeyData((std::istreambuf_iterator<char>(publicKeyFile)),
-                std::istreambuf_iterator<char>());
-
-        PublicKey publicKey = Marshaller<PublicKey>::fromJson(publicKeyData);
-
-        std::cout << "Read private key..." << std::endl;
-        std::ifstream keyFile("private.key", std::ios::in | std::ios::binary);
-        if (!keyFile.good()) {
-            throw std::runtime_error("can not read private key: private.key");
-        }
-
-        VirgilByteArray privateKey((std::istreambuf_iterator<char>(keyFile)),
-                std::istreambuf_iterator<char>());
-
-        Credentials credentials(publicKey.publicKeyId(), privateKey);
-
-        std::cout << "Create Private Keys Service HTTP Client." << std::endl;
-        PrivateKeysClient privateKeysClient(VIRGIL_APP_TOKEN, VIRGIL_PK_URL_BASE);
-
-        std::cout << "Call the Private Key service to create a Container instance." << std::endl;
-        privateKeysClient.container().create(credentials, CONTAINER_TYPE, CONTAINER_PASSWORD, uuid());
-        std::cout << "Container instance successfully created in the Private Keys service." << std::endl;
-    } catch (std::exception& exception) {
-        std::cerr << "Error: " << exception.what() << std::endl;
-    }
-
-    return 0;
-}
-
-std::string uuid () {
-    auto seed = std::chrono::system_clock::now().time_since_epoch().count();
-    std::default_random_engine generator(seed);
-
-    uint32_t time_low = ((generator() << 16) & 0xffff0000) | (generator() & 0xffff);
-    uint16_t time_mid = generator() & 0xffff;
-    uint16_t time_high_and_version = (generator() & 0x0fff) | 0x4000;
-    uint16_t clock_seq = (generator() & 0x3fff) | 0x8000;
-    uint8_t node [6];
-    for (size_t i = 0; i < 6; ++i) {
-        node[i] = generator() & 0xff;
-    }
-
-    char buffer[37] = {0x0};
-    sprintf(buffer, "%08x-%04x-%04x-%02x%02x-%02x%02x%02x%02x%02x%02x",
-        time_low, time_mid, time_high_and_version, clock_seq >> 8, clock_seq & 0xff,
-        node[0], node[1], node[2], node[3], node[4], node[5]);
-
-    return std::string(buffer);
-}
-
+```cpp
+PrivateKeysClient privateKeysClient("{Application Token}");
+CredentialsExt credentialsExt(publicKeyId, privateKey);
+ContainerType CONTAINER_TYPE = ContainerType::Easy;
+std::string CONTAINER_PASSWORD = "123456789";
+privateKeysClient.container().create(credentialsExt, CONTAINER_TYPE, CONTAINER_PASSWORD);
 ```
 
 
-## Get Container Object
+## Authenticate Session
 
+Service will create **Authentication token** that will be available during the 60 minutes after creation. During this time service will automatically prolong life time of the token in case if **Authentication token** widely used so don't need to prolong it manually. In case when **Authentication token** is used after 60 minutes of life time, service will throw the appropriate error.
 
-``` {.cpp}
-#include <fstream>
-#include <iostream>
-#include <iterator>
-#include <stdexcept>
-#include <string>
+> **Note:**
+Before login make sure that you have already [Created Container](#create-container) under Private Key service. Use for user_data.value parameter the same value as you have registered under Public Keys service. This account has to be confirmed under Public Key service.
 
-#include <virgil/sdk/keys/io/Marshaller.h>
-#include <virgil/sdk/keys/model/PublicKey.h>
+**Authentication token** is used in the following endpoints:
 
-#include <virgil/sdk/privatekeys/client/PrivateKeysClient.h>
-#include <virgil/sdk/privatekeys/model/ContainerType.h>
-#include <virgil/sdk/privatekeys/model/UserData.h>
+1. [Get Container](#get-container)
+1. [Delete Container](#delete-container)
+1. [Update Container](#update-container)
+1. [Push Private Key to the Container](#push-private-key-to-the-container)
+1. [Get Private Key](#get-private-key)
+1. [Delete Private Key](#delete-private-key)
 
-using virgil::sdk::keys::io::Marshaller;
-using virgil::sdk::keys::model::PublicKey;
+\[[Full source code](https://github.com/VirgilSecurity/virgil-sdk-cpp/blob/release/examples/src/authenticate.cxx)\]
 
-using virgil::sdk::privatekeys::client::PrivateKeysClient;
-using virgil::sdk::privatekeys::model::ContainerType;
-using virgil::sdk::privatekeys::model::UserData;
-
-const std::string VIRGIL_PK_URL_BASE = "https://keys-private.virgilsecurity.com";
-const std::string VIRGIL_APP_TOKEN = "45fd8a505f50243fa8400594ba0b2b29";
-const std::string USER_EMAIL = "test.virgilsecurity@mailinator.com";
-const std::string CONTAINER_PASSWORD = "123456789";
-
-int main() {
-    try {
-        std::cout << "Read virgil public key..." << std::endl;
-        std::ifstream publicKeyFile("virgil_public.key", std::ios::in | std::ios::binary);
-        if (!publicKeyFile.good()) {
-            throw std::runtime_error("can not read virgil public key: virgil_public.key");
-        }
-        std::string publicKeyData((std::istreambuf_iterator<char>(publicKeyFile)),
-                std::istreambuf_iterator<char>());
-
-        PublicKey publicKey = Marshaller<PublicKey>::fromJson(publicKeyData);
-
-        std::cout << "Create Private Keys Service HTTP Client." << std::endl;
-        PrivateKeysClient privateKeysClient(VIRGIL_APP_TOKEN, VIRGIL_PK_URL_BASE);
-
-        std::cout << "Authenticate session." << std::endl;
-        UserData userData = UserData::email(USER_EMAIL);
-        privateKeysClient.authenticate(userData, CONTAINER_PASSWORD);
-
-        std::cout << "Call Private Key service to get Container Details instance." << std::endl;
-        ContainerType containerType = privateKeysClient.container().getDetails(publicKey.publicKeyId());
-        std::cout << "Container instance successfully fetched from Private Keys service." << std::endl;
-        std::cout << "container_type: " << virgil::sdk::privatekeys::model::toString(containerType) << std::endl;
-    } catch (std::exception& exception) {
-        std::cerr << "Error: " << exception.what() << std::endl;
-    }
-
-    return 0;
-}
-
+```cpp
+PrivateKeysClient privateKeysClient("{Application Token}");
+UserData userData = UserData::email(USER_EMAIL);
+std::string authenticationToken = privateKeysClient.auth().getAuthToken(userData, CONTAINER_PASSWORD);
 ```
 
 
-## Delete Container Object
+## Get Container
 
+Return container type. It can be `easy` or `normal`.
 
-``` {.cpp}
-#include <chrono>
-#include <fstream>
-#include <iostream>
-#include <iterator>
-#include <random>
-#include <stdexcept>
-#include <string>
+\[[Full source code](https://github.com/VirgilSecurity/virgil-sdk-cpp/blob/release/examples/src/container_info_get.cxx)\]
 
-#include <virgil/crypto/VirgilByteArray.h>
+```cpp
+PrivateKeysClient privateKeysClient("{Application Token}");
+UserData userData = UserData::email(USER_EMAIL);
+privateKeysClient.authenticate(userData, CONTAINER_PASSWORD);
 
-#include <virgil/sdk/keys/io/Marshaller.h>
-#include <virgil/sdk/keys/model/PublicKey.h>
+// if the token has been received
+// std::string authenticationToken = "";
+// privateKeysClient.authenticate(authenticationToken);
 
-#include <virgil/sdk/privatekeys/client/Credentials.h>
-#include <virgil/sdk/privatekeys/client/PrivateKeysClient.h>
-#include <virgil/sdk/privatekeys/model/UserData.h>
+ContainerType containerType = privateKeysClient.container().getDetails(publicKeyId);
+```
 
-using virgil::crypto::VirgilByteArray;
+## Delete Container
 
-using virgil::sdk::keys::io::Marshaller;
-using virgil::sdk::keys::model::PublicKey;
+Delete existing container from the Virgil Private Key service.
 
-using virgil::sdk::privatekeys::client::Credentials;
-using virgil::sdk::privatekeys::client::PrivateKeysClient;
-using virgil::sdk::privatekeys::model::UserData;
+\[[Full source code](https://github.com/VirgilSecurity/virgil-sdk-cpp/blob/release/examples/src/container_delete.cxx)\]
 
-const std::string VIRGIL_PK_URL_BASE = "https://keys-private.virgilsecurity.com";
-const std::string VIRGIL_APP_TOKEN = "45fd8a505f50243fa8400594ba0b2b29";
-const std::string USER_EMAIL = "test.virgilsecurity@mailinator.com";
-const std::string CONTAINER_PASSWORD = "123456789";
+```cpp
+PrivateKeysClient privateKeysClient("{Application Token}");
+UserData userData = UserData::email(USER_EMAIL);
+privateKeysClient.authenticate(userData, CONTAINER_PASSWORD);
 
-/**
- * @brief Generate new UUID
- */
-std::string uuid();
+// if the token has been received
+// std::string authenticationToken = "";
+// privateKeysClient.authenticate(authenticationToken);
 
-int main() {
-    try {
-        std::cout << "Read virgil public key..." << std::endl;
-        std::ifstream publicKeyFile("virgil_public.key", std::ios::in | std::ios::binary);
-        if (!publicKeyFile.good()) {
-            throw std::runtime_error("can not read virgil public key: virgil_public.key");
-        }
-        std::string publicKeyData((std::istreambuf_iterator<char>(publicKeyFile)),
-                std::istreambuf_iterator<char>());
-
-        PublicKey publicKey = Marshaller<PublicKey>::fromJson(publicKeyData);
-
-        std::cout << "Read private key..." << std::endl;
-        std::ifstream keyFile("private.key", std::ios::in | std::ios::binary);
-        if (!keyFile.good()) {
-            throw std::runtime_error("can not read private key: private.key");
-        }
-
-        VirgilByteArray privateKey((std::istreambuf_iterator<char>(keyFile)),
-                std::istreambuf_iterator<char>());
-
-        Credentials credentials(publicKey.publicKeyId(), privateKey);
-
-        std::cout << "Create Private Keys Service HTTP Client." << std::endl;
-        PrivateKeysClient privateKeysClient(VIRGIL_APP_TOKEN, VIRGIL_PK_URL_BASE);
-
-        std::cout << "Authenticate session..." << std::endl;
-        UserData userData = UserData::email(USER_EMAIL);
-        privateKeysClient.authenticate(userData, CONTAINER_PASSWORD);
-
-        std::cout << "Call Private Key service to delete Container instance." << std::endl;
-        privateKeysClient.container().del(credentials, uuid());
-        std::cout << "Container instance successfully deleted from Private Keys service." << std::endl;
-    } catch (std::exception& exception) {
-        std::cerr << "Error: " << exception.what() << std::endl;
-    }
-
-    return 0;
-}
-
-std::string uuid () {
-    auto seed = std::chrono::system_clock::now().time_since_epoch().count();
-    std::default_random_engine generator(seed);
-
-    uint32_t time_low = ((generator() << 16) & 0xffff0000) | (generator() & 0xffff);
-    uint16_t time_mid = generator() & 0xffff;
-    uint16_t time_high_and_version = (generator() & 0x0fff) | 0x4000;
-    uint16_t clock_seq = (generator() & 0x3fff) | 0x8000;
-    uint8_t node [6];
-    for (size_t i = 0; i < 6; ++i) {
-        node[i] = generator() & 0xff;
-    }
-
-    char buffer[37] = {0x0};
-    sprintf(buffer, "%08x-%04x-%04x-%02x%02x-%02x%02x%02x%02x%02x%02x",
-        time_low, time_mid, time_high_and_version, clock_seq >> 8, clock_seq & 0xff,
-        node[0], node[1], node[2], node[3], node[4], node[5]);
-
-    return std::string(buffer);
-}
-
+CredentialsExt credentialsExt(publicKeyId, privateKey);
+privateKeysClient.container().del(credentialsExt);
 ```
 
 
-## Update Container Object
+## Update Container
 
-> By invoking this method you can change the Container Type or|and Container Password
+By invoking this method you can change the Container Password
 
+\[[Full source code](https://github.com/VirgilSecurity/virgil-sdk-cpp/blob/release/examples/src/container_update.cxx)\]
 
-``` {.cpp}
-#include <chrono>
-#include <fstream>
-#include <iostream>
-#include <iterator>
-#include <random>
-#include <stdexcept>
-#include <string>
+```cpp
+PrivateKeysClient privateKeysClient("{Application Token}");
+UserData userData = UserData::email(USER_EMAIL);
+privateKeysClient.authenticate(userData, CONTAINER_PASSWORD);
 
-#include <virgil/crypto/VirgilByteArray.h>
+// if the token has been received
+// std::string authenticationToken = "";
+// privateKeysClient.authenticate(authenticationToken);
 
-#include <virgil/sdk/keys/io/Marshaller.h>
-#include <virgil/sdk/keys/model/PublicKey.h>
+CredentialsExt credentialsExt(publicKey.publicKeyId(), privateKey);
+privateKeysClient.container().update(credentials, CONTAINER_NEW_PASSWORD);
+```
 
-#include <virgil/sdk/privatekeys/client/Credentials.h>
-#include <virgil/sdk/privatekeys/client/PrivateKeysClient.h>
-#include <virgil/sdk/privatekeys/model/ContainerType.h>
-#include <virgil/sdk/privatekeys/model/UserData.h>
+## Reset Container Password
 
-using virgil::crypto::VirgilByteArray;
+A user can reset their Private Key password if the Container Type equals `easy`.
+If the Container Type equals `normal`, the Private Key will be stored in its original form.
 
-using virgil::sdk::keys::io::Marshaller;
-using virgil::sdk::keys::model::PublicKey;
+\[[Full source code](https://github.com/VirgilSecurity/virgil-sdk-cpp/blob/release/examples/src/container_reset_password.cxx)\]
 
-using virgil::sdk::privatekeys::client::Credentials;
-using virgil::sdk::privatekeys::client::PrivateKeysClient;
-using virgil::sdk::privatekeys::model::ContainerType;
-using virgil::sdk::privatekeys::model::UserData;
-
-const std::string VIRGIL_PK_URL_BASE = "https://keys-private.virgilsecurity.com";
-const std::string VIRGIL_APP_TOKEN = "45fd8a505f50243fa8400594ba0b2b29";
-const std::string USER_EMAIL = "test.virgilsecurity@mailinator.com";
-const std::string CONTAINER_PASSWORD = "987654321";
-
-const ContainerType CONTAINER_NEW_TYPE = ContainerType::Normal;
-const std::string CONTAINER_NEW_PASSWORD = "123456789";
-
-/**
- * @brief Generate new UUID
- */
-std::string uuid();
-
-int main() {
-    try {
-        std::cout << "Read virgil public key..." << std::endl;
-        std::ifstream publicKeyFile("virgil_public.key", std::ios::in | std::ios::binary);
-        if (!publicKeyFile.good()) {
-            throw std::runtime_error("can not read virgil public key: virgil_public.key");
-        }
-        std::string publicKeyData((std::istreambuf_iterator<char>(publicKeyFile)),
-                std::istreambuf_iterator<char>());
-
-        PublicKey publicKey = Marshaller<PublicKey>::fromJson(publicKeyData);
-
-        std::cout << "Read private key..." << std::endl;
-        std::ifstream keyFile("private.key", std::ios::in | std::ios::binary);
-        if (!keyFile.good()) {
-            throw std::runtime_error("can not read private key: private.key");
-        }
-
-        VirgilByteArray privateKey((std::istreambuf_iterator<char>(keyFile)),
-                std::istreambuf_iterator<char>());
-
-        Credentials credentials(publicKey.publicKeyId(), privateKey);
-
-        std::cout << "Create Private Keys Service HTTP Client." << std::endl;
-        PrivateKeysClient privateKeysClient(VIRGIL_APP_TOKEN, VIRGIL_PK_URL_BASE);
-
-        std::cout << "Authenticate session..." << std::endl;
-        UserData userData = UserData::email(USER_EMAIL);
-        privateKeysClient.authenticate(userData, CONTAINER_PASSWORD);
-
-        std::cout << "Call the Private Key service to update Container instance." << std::endl;
-        privateKeysClient.container().update(credentials, CONTAINER_NEW_TYPE, CONTAINER_NEW_PASSWORD, uuid());
-        std::cout << "Container instance successfully update in the Private Keys service." << std::endl;
-    } catch (std::exception& exception) {
-        std::cerr << "Error: " << exception.what() << std::endl;
-    }
-
-    return 0;
-}
-
-std::string uuid () {
-    auto seed = std::chrono::system_clock::now().time_since_epoch().count();
-    std::default_random_engine generator(seed);
-
-    uint32_t time_low = ((generator() << 16) & 0xffff0000) | (generator() & 0xffff);
-    uint16_t time_mid = generator() & 0xffff;
-    uint16_t time_high_and_version = (generator() & 0x0fff) | 0x4000;
-    uint16_t clock_seq = (generator() & 0x3fff) | 0x8000;
-    uint8_t node [6];
-    for (size_t i = 0; i < 6; ++i) {
-        node[i] = generator() & 0xff;
-    }
-
-    char buffer[37] = {0x0};
-    sprintf(buffer, "%08x-%04x-%04x-%02x%02x-%02x%02x%02x%02x%02x%02x",
-        time_low, time_mid, time_high_and_version, clock_seq >> 8, clock_seq & 0xff,
-        node[0], node[1], node[2], node[3], node[4], node[5]);
-
-    return std::string(buffer);
-}
-
+```cpp
+PrivateKeysClient privateKeysClient("{Application Token}");
+UserData userData = UserData::email(USER_EMAIL);
+privateKeysClient.container().resetPassword(userData, CONTAINER_NEW_PASSWORD);
 ```
 
 
-## Reset the Container Password
+## Persist Container
 
-> A user can reset their Private Key object password if the Container Type equals 'easy'. 
-> If the Container Type equals 'normal', the Private Key object will be stored in its original form.
+Confirm password reset action and re-encrypt Private Key data with the new password if
+container type is `easy`.
 
+The token generated during the container reset invocation only lives for 60 minutes.
 
-``` {.cpp}
-#include <iostream>
-#include <stdexcept>
-#include <string>
+\[[Full source code](https://github.com/VirgilSecurity/virgil-sdk-cpp/blob/release/examples/src/container_confirm.cxx)\]
 
-#include <virgil/sdk/privatekeys/client/PrivateKeysClient.h>
-#include <virgil/sdk/privatekeys/model/UserData.h>
-
-using virgil::sdk::privatekeys::client::PrivateKeysClient;
-using virgil::sdk::privatekeys::model::UserData;
-
-const std::string VIRGIL_PK_URL_BASE = "https://keys-private.virgilsecurity.com";
-const std::string VIRGIL_APP_TOKEN = "45fd8a505f50243fa8400594ba0b2b29";
-const std::string USER_EMAIL = "test.virgilsecurity@mailinator.com";
-
-int main(int argc, char **argv) {
-    if (argc < 2) {
-        std::cerr << std::string("USAGE: ") + argv[0] + " <new_container_password>" << std::endl;
-        return 0;
-    }
-
-    try {
-        const std::string kNewContainerPassword = argv[1];
-
-        std::cout << "Create Private Keys Service HTTP Client." << std::endl;
-        PrivateKeysClient privateKeysClient(VIRGIL_APP_TOKEN, VIRGIL_PK_URL_BASE);
-
-        std::cout << "Call the Private Key service to reset a Container password." << std::endl;
-        privateKeysClient.container().resetPassword(UserData::email(USER_EMAIL), kNewContainerPassword);
-        std::cout << "Container password successfully reset." << std::endl;
-    } catch (std::exception& exception) {
-        std::cerr << "Error: " << exception.what() << std::endl;
-    }
-
-    return 0;
-}
-
+```cpp
+PrivateKeysClient privateKeysClient("{Application Token}");
+privateKeysClient.container().confirm(<confirmation_token>);
 ```
 
 
-## Persist Container Object
+## Push Private Key to the Container
 
-> The token generated during the container reset invocation only lives for 60 minutes.
+Load an existing Private Key into the Private Keys service and associate it with the existing Container.
 
-``` {.cpp}
-#include <chrono>
-#include <iostream>
-#include <random>
-#include <stdexcept>
-#include <string>
+Prerequisite:
 
-#include <virgil/sdk/privatekeys/client/PrivateKeysClient.h>
+1. Create container, see [Create Container](#create-container).
+1. Get authentication token, see [Authenticate Session](#authenticate-session).
 
-using virgil::sdk::privatekeys::client::PrivateKeysClient;
+\[[Full source code](https://github.com/VirgilSecurity/virgil-sdk-cpp/blob/release/examples/src/private_key_add.cxx)\]
 
-const std::string VIRGIL_PK_URL_BASE = "https://keys-private.virgilsecurity.com";
-const std::string VIRGIL_APP_TOKEN = "45fd8a505f50243fa8400594ba0b2b29";
+```cpp
+PrivateKeysClient privateKeysClient("{Application Token}");
+UserData userData = UserData::email(USER_EMAIL);
+privateKeysClient.authenticate(userData, CONTAINER_PASSWORD);
 
-/**
- * @brief Generate new UUID
- */
-std::string uuid();
+// if the token has been received
+// std::string authenticationToken = "";
+// privateKeysClient.authenticate(authenticationToken);
 
-int main(int argc, char **argv) {
-    if (argc < 2) {
-        std::cerr << std::string("USAGE: ") + argv[0] + " <confirmation_code>" << std::endl;
-        return 0;
-    }
-
-    try {
-        const std::string kConfirmationToken = argv[1];
-        std::cout << "Create Private Keys Service HTTP Client." << std::endl;
-        PrivateKeysClient privateKeysClient(VIRGIL_APP_TOKEN, VIRGIL_PK_URL_BASE);
-
-        std::cout << "Call the Private Key service to persist the container." << std::endl;
-        privateKeysClient.container().confirm(kConfirmationToken, uuid());
-        std::cout << "Container successfully persisted." << std::endl;
-    } catch (std::exception& exception) {
-        std::cerr << "Error: " << exception.what() << std::endl;
-    }
-
-    return 0;
-}
-
-std::string uuid() {
-    auto seed = std::chrono::system_clock::now().time_since_epoch().count();
-    std::default_random_engine generator(seed);
-
-    uint32_t time_low = ((generator() << 16) & 0xffff0000) | (generator() & 0xffff);
-    uint16_t time_mid = generator() & 0xffff;
-    uint16_t time_high_and_version = (generator() & 0x0fff) | 0x4000;
-    uint16_t clock_seq = (generator() & 0x3fff) | 0x8000;
-    uint8_t node [6];
-    for (size_t i = 0; i < 6; ++i) {
-        node[i] = generator() & 0xff;
-    }
-
-    char buffer[37] = {0x0};
-    sprintf(buffer, "%08x-%04x-%04x-%02x%02x-%02x%02x%02x%02x%02x%02x",
-        time_low, time_mid, time_high_and_version, clock_seq >> 8, clock_seq & 0xff,
-        node[0], node[1], node[2], node[3], node[4], node[5]);
-
-    return std::string(buffer);
-}
-
-```
-
-## Create a Private Key inside the Container Object
-
-> Load an existing Private Key into the Private Keys service and associate it with the existing Container object.
-
-``` {.cpp}
-#include <chrono>
-#include <fstream>
-#include <iostream>
-#include <iterator>
-#include <random>
-#include <stdexcept>
-#include <string>
-
-#include <virgil/crypto/VirgilByteArray.h>
-
-#include <virgil/sdk/keys/io/Marshaller.h>
-#include <virgil/sdk/keys/model/PublicKey.h>
-
-#include <virgil/sdk/privatekeys/client/Credentials.h>
-#include <virgil/sdk/privatekeys/client/PrivateKeysClient.h>
-#include <virgil/sdk/privatekeys/model/UserData.h>
-
-using virgil::crypto::VirgilByteArray;
-
-using virgil::sdk::keys::io::Marshaller;
-using virgil::sdk::keys::model::PublicKey;
-
-using virgil::sdk::privatekeys::client::Credentials;
-using virgil::sdk::privatekeys::client::PrivateKeysClient;
-using virgil::sdk::privatekeys::model::UserData;
-
-const std::string VIRGIL_PK_URL_BASE = "https://keys-private.virgilsecurity.com";
-const std::string VIRGIL_APP_TOKEN = "45fd8a505f50243fa8400594ba0b2b29";
-const std::string USER_EMAIL = "test.virgilsecurity@mailinator.com";
-const std::string CONTAINER_PASSWORD = "123456789";
-
-/**
- * @brief Generate new UUID
- */
-std::string uuid();
-
-int main() {
-    try {
-        std::cout << "Read virgil public key..." << std::endl;
-        std::ifstream publicKeyFile("virgil_public.key", std::ios::in | std::ios::binary);
-        if (!publicKeyFile.good()) {
-            throw std::runtime_error("can not read virgil public key: virgil_public.key");
-        }
-        std::string publicKeyData((std::istreambuf_iterator<char>(publicKeyFile)),
-                std::istreambuf_iterator<char>());
-
-        PublicKey publicKey = Marshaller<PublicKey>::fromJson(publicKeyData);
-
-        std::cout << "Read private key..." << std::endl;
-        std::ifstream keyFile("private.key", std::ios::in | std::ios::binary);
-        if (!keyFile.good()) {
-            throw std::runtime_error("can not read private key: private.key");
-        }
-
-        VirgilByteArray privateKey((std::istreambuf_iterator<char>(keyFile)),
-                std::istreambuf_iterator<char>());
-
-        Credentials credentials(publicKey.publicKeyId(), privateKey);
-
-        std::cout << "Create Private Keys Service HTTP Client." << std::endl;
-        PrivateKeysClient privateKeysClient(VIRGIL_APP_TOKEN, VIRGIL_PK_URL_BASE);
-
-        std::cout << "Authenticate session..." << std::endl;
-        UserData userData = UserData::email(USER_EMAIL);
-        privateKeysClient.authenticate(userData, CONTAINER_PASSWORD);
-
-        std::cout << "Call the Private Key service to add a Private Key instance." << std::endl;
-        privateKeysClient.privateKey().add(credentials, uuid());
-        std::cout << "Private Key instance successfully added in the Private Keys service." << std::endl;
-    } catch (std::exception& exception) {
-        std::cerr << "Error: " << exception.what() << std::endl;
-    }
-
-    return 0;
-}
-
-std::string uuid () {
-    auto seed = std::chrono::system_clock::now().time_since_epoch().count();
-    std::default_random_engine generator(seed);
-
-    uint32_t time_low = ((generator() << 16) & 0xffff0000) | (generator() & 0xffff);
-    uint16_t time_mid = generator() & 0xffff;
-    uint16_t time_high_and_version = (generator() & 0x0fff) | 0x4000;
-    uint16_t clock_seq = (generator() & 0x3fff) | 0x8000;
-    uint8_t node [6];
-    for (size_t i = 0; i < 6; ++i) {
-        node[i] = generator() & 0xff;
-    }
-
-    char buffer[37] = {0x0};
-    sprintf(buffer, "%08x-%04x-%04x-%02x%02x-%02x%02x%02x%02x%02x%02x",
-        time_low, time_mid, time_high_and_version, clock_seq >> 8, clock_seq & 0xff,
-        node[0], node[1], node[2], node[3], node[4], node[5]);
-
-    return std::string(buffer);
-}
+CredentialsExt credentials(publicKeyId, privateKey);
+privateKeysClient.privateKey().add(credentials, CONTAINER_PASSWORD);
 ```
 
 
-## Get Private Key Object
+## Get Private Key
 
+Get user's Private Key from the Virgil Private Keys service.
 
-``` {.cpp}
-#include <algorithm>
-#include <fstream>
-#include <iostream>
-#include <iterator>
-#include <stdexcept>
-#include <string>
+\[[Full source code](https://github.com/VirgilSecurity/virgil-sdk-cpp/blob/release/examples/src/private_key_get.cxx)\]
 
-#include <virgil/sdk/keys/io/Marshaller.h>
-#include <virgil/sdk/keys/model/PublicKey.h>
+```cpp
+PrivateKeysClient privateKeysClient("{Application Token}");
+UserData userData = UserData::email(USER_EMAIL);
+privateKeysClient.authenticate(userData, CONTAINER_PASSWORD);
 
-#include <virgil/sdk/privatekeys/client/PrivateKeysClient.h>
-#include <virgil/sdk/privatekeys/model/PrivateKey.h>
-#include <virgil/sdk/privatekeys/model/UserData.h>
+// if the token has been received
+// std::string authenticationToken = "";
+// privateKeysClient.authenticate(authenticationToken);
 
-using virgil::sdk::keys::io::Marshaller;
-using virgil::sdk::keys::model::PublicKey;
-
-using virgil::sdk::privatekeys::model::PrivateKey;
-using virgil::sdk::privatekeys::client::PrivateKeysClient;
-using virgil::sdk::privatekeys::model::UserData;
-
-const std::string VIRGIL_PK_URL_BASE = "https://keys-private.virgilsecurity.com";
-const std::string VIRGIL_APP_TOKEN = "45fd8a505f50243fa8400594ba0b2b29";
-const std::string USER_EMAIL = "test.virgilsecurity@mailinator.com";
-const std::string CONTAINER_PASSWORD = "123456789";
-
-int main() {
-    try {
-        std::cout << "Read virgil public key..." << std::endl;
-        std::ifstream publicKeyFile("virgil_public.key", std::ios::in | std::ios::binary);
-        if (!publicKeyFile.good()) {
-            throw std::runtime_error("can not read virgil public key: virgil_public.key");
-        }
-        std::string publicKeyData;
-        std::copy(std::istreambuf_iterator<char>(publicKeyFile), std::istreambuf_iterator<char>(),
-            std::back_inserter(publicKeyData));
-
-        PublicKey publicKey = Marshaller<PublicKey>::fromJson(publicKeyData);
-
-        std::cout << "Create Private Keys Service HTTP Client." << std::endl;
-        PrivateKeysClient privateKeysClient(VIRGIL_APP_TOKEN, VIRGIL_PK_URL_BASE);
-
-        std::cout << "Authenticate session..." << std::endl;
-        UserData userData = UserData::email(USER_EMAIL);
-        privateKeysClient.authenticate(userData, CONTAINER_PASSWORD);
-
-        std::cout << "Call the Private Key service to get a Private Key instance." << std::endl;
-        PrivateKey privateKey = privateKeysClient.privateKey().get(publicKey.publicKeyId());
-
-        std::cout << "Private Key instance successfully fetched from the Private Keys service." << std::endl;
-        std::cout << "Public key id: " << privateKey.publicKeyId() << std::endl;
-        std::cout << "Private key: " << std::endl;
-        std::vector<unsigned char> key = privateKey.key();
-        std::copy(key.begin(), key.end(), std::ostreambuf_iterator<char>(std::cout));
-    } catch (std::exception& exception) {
-        std::cerr << "Error: " << exception.what() << std::endl;
-    }
-
-    return 0;
-}
-
+PrivateKey privateKey = privateKeysClient.privateKey().get(publicKeyId, CONTAINER_PASSWORD);
 ```
 
 
-## Delete Private Key Object
+## Delete Private Key
 
-> Delete a Private Key object. A Private Key object will be disconnected from the Container Object and then deleted from the Private Key service.
+Delete a Private Key. First it will be disconnected from the Container and then deleted from the Private Key Service.
 
-``` {.cpp}
-#include <chrono>
-#include <fstream>
-#include <iostream>
-#include <iterator>
-#include <random>
-#include <stdexcept>
-#include <string>
+\[[Full source code](https://github.com/VirgilSecurity/virgil-sdk-cpp/blob/release/examples/src/private_key_delete.cxx)\]
 
-#include <virgil/crypto/VirgilByteArray.h>
+```cpp
+PrivateKeysClient privateKeysClient("{Application Token}");
+UserData userData = UserData::email(USER_EMAIL);
+privateKeysClient.authenticate(userData, CONTAINER_PASSWORD);
 
-#include <virgil/sdk/keys/io/Marshaller.h>
-#include <virgil/sdk/keys/model/PublicKey.h>
+// if the token has been received
+// std::string authenticationToken = "";
+// privateKeysClient.authenticate(authenticationToken);
 
-#include <virgil/sdk/privatekeys/client/Credentials.h>
-#include <virgil/sdk/privatekeys/client/PrivateKeysClient.h>
-#include <virgil/sdk/privatekeys/model/UserData.h>
-
-using virgil::crypto::VirgilByteArray;
-
-using virgil::sdk::keys::io::Marshaller;
-using virgil::sdk::keys::model::PublicKey;
-
-using virgil::sdk::privatekeys::client::Credentials;
-using virgil::sdk::privatekeys::client::PrivateKeysClient;
-using virgil::sdk::privatekeys::model::ContainerType;
-using virgil::sdk::privatekeys::model::UserData;
-
-const std::string VIRGIL_PK_URL_BASE = "https://keys-private.virgilsecurity.com";
-const std::string VIRGIL_APP_TOKEN = "45fd8a505f50243fa8400594ba0b2b29";
-const std::string USER_EMAIL = "test.virgilsecurity@mailinator.com";
-const std::string CONTAINER_PASSWORD = "123456789";
-
-/**
- * @brief Generate new UUID
- */
-std::string uuid();
-
-int main() {
-    try {
-        std::cout << "Read virgil public key..." << std::endl;
-        std::ifstream publicKeyFile("virgil_public.key", std::ios::in | std::ios::binary);
-        if (!publicKeyFile.good()) {
-            throw std::runtime_error("can not read virgil public key: virgil_public.key");
-        }
-        std::string publicKeyData((std::istreambuf_iterator<char>(publicKeyFile)),
-                std::istreambuf_iterator<char>());
-
-        PublicKey publicKey = Marshaller<PublicKey>::fromJson(publicKeyData);
-
-        std::cout << "Read private key..." << std::endl;
-        std::ifstream keyFile("private.key", std::ios::in | std::ios::binary);
-        if (!keyFile.good()) {
-            throw std::runtime_error("can not read private key: private.key");
-        }
-
-        VirgilByteArray privateKey((std::istreambuf_iterator<char>(keyFile)),
-                std::istreambuf_iterator<char>());
-
-        Credentials credentials(publicKey.publicKeyId(), privateKey);
-
-        std::cout << "Create Private Keys Service HTTP Client." << std::endl;
-        PrivateKeysClient privateKeysClient(VIRGIL_APP_TOKEN, VIRGIL_PK_URL_BASE);
-
-        std::cout << "Authenticate session..." << std::endl;
-        UserData userData = UserData::email(USER_EMAIL);
-        privateKeysClient.authenticate(userData, CONTAINER_PASSWORD);
-
-        std::cout << "Call Private Key service to delete Private Key instance." << std::endl;
-        privateKeysClient.privateKey().del(credentials, uuid());
-        std::cout << "The Private Key instance was successfully deleted from the Private Keys service." << std::endl;
-    } catch (std::exception& exception) {
-        std::cerr << "Error: " << exception.what() << std::endl;
-    }
-
-    return 0;
-}
-
-std::string uuid () {
-    auto seed = std::chrono::system_clock::now().time_since_epoch().count();
-    std::default_random_engine generator(seed);
-
-    uint32_t time_low = ((generator() << 16) & 0xffff0000) | (generator() & 0xffff);
-    uint16_t time_mid = generator() & 0xffff;
-    uint16_t time_high_and_version = (generator() & 0x0fff) | 0x4000;
-    uint16_t clock_seq = (generator() & 0x3fff) | 0x8000;
-    uint8_t node [6];
-    for (size_t i = 0; i < 6; ++i) {
-        node[i] = generator() & 0xff;
-    }
-
-    char buffer[37] = {0x0};
-    sprintf(buffer, "%08x-%04x-%04x-%02x%02x-%02x%02x%02x%02x%02x%02x",
-        time_low, time_mid, time_high_and_version, clock_seq >> 8, clock_seq & 0xff,
-        node[0], node[1], node[2], node[3], node[4], node[5]);
-
-    return std::string(buffer);
-}
-
+CredentialsExt credentialsExt(publicKey.publicKeyId(), privateKey);
+privateKeysClient.container().del(credentialsExt);
 ```
+
 </div>
 </div>
 

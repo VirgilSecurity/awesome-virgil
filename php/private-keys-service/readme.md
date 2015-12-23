@@ -43,7 +43,7 @@ Virgil Security's Crypto Library can be found [here](https://github.com/VirgilSe
 ## Build
 
 1. Open terminal.
-2. Clone the project. ``` git clone https://github.com/VirgilSecurity/virgil.git ```
+2. Clone the project. ``` git clone https://github.com/VirgilSecurity/virgil-crypto ```
 4. Navigate to the project's folder.
 5. ``` cd virgil_lib ```
 6. Create a folder for the build. ``` mkdir build ```

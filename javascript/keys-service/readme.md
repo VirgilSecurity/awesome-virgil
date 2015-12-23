@@ -34,7 +34,7 @@ X-VIRGIL-APPLICATION-TOKEN: <YOUR_APPLICATION_TOKEN>
 > A Virgil Account will be created when the first Public Key is uploaded. An application can only get information about Public Keys created for the current application. When the application uploads a new Public Key and there is an Account created for another application with the same UDID, the Public Key will be implicitly attached it to the existing Account instance.
 
 ```javascript
-var VirgilSDK = window.VirgilSDK;
+var Virgil = window.Virgil;
 
 var APP_TOKEN = '77ce6c9c9e2254dbf4c71513ac74dced';
 var USER_DATA_ITEMS = [
@@ -46,12 +46,12 @@ var USER_DATA_ITEMS = [
 ];
 var KEY_PASSWORD = 'password';
 
-var virgilCrypto = new VirgilSDK.Crypto();
+var virgilCrypto = Virgil.Crypto;
 // application token must be passed into the service's constructor
-var publicKeysService = new VirgilSDK.PublicKeysService(APP_TOKEN);
+var publicKeysService = new Virgil.PublicKeysService(APP_TOKEN);
 var keys = virgilCrypto.generateKeys(KEY_PASSWORD);
-var virgilPublicKey = new VirgilSDK.PublicKey(keys.publicKey, USER_DATA_ITEMS);
-var virgilPrivateKey = new VirgilSDK.PrivateKey(keys.privateKey);
+var virgilPublicKey = new Virgil.PublicKey(keys.publicKey, USER_DATA_ITEMS);
+var virgilPrivateKey = new Virgil.PrivateKey(keys.privateKey);
 
 publicKeysService.addKey(virgilPublicKey, virgilPrivateKey.KeyBase64, KEY_PASSWORD).then(
   function(resData) {
@@ -66,17 +66,17 @@ publicKeysService.addKey(virgilPublicKey, virgilPrivateKey.KeyBase64, KEY_PASSWO
 ## Get a User's Public Key from Virgil's Keys Service
 
 ```javascript
-var VirgilSDK = window.VirgilSDK;
+var Virgil = window.Virgil;
 
 var APP_TOKEN = '77ce6c9c9e2254dbf4c71513ac74dced';
 var PUBLIC_KEY_ID = '5d3a8909-5fe5-2abb-232c-3cf9c277b111';
 
 // application token must be passed into the service's constructor
-var publicKeysService = new VirgilSDK.PublicKeysService(APP_TOKEN);
+var publicKeysService = new Virgil.PublicKeysService(APP_TOKEN);
 
 publicKeysService.getKey(PUBLIC_KEY_ID).then(
   function(resData) {
-    console.log(new VirgilSDK.PublicKey.fromJS(resData));
+    console.log(new Virgil.PublicKey.fromJS(resData));
   },
   function(error) {
     console.error(error);
@@ -87,13 +87,13 @@ publicKeysService.getKey(PUBLIC_KEY_ID).then(
 ## Search Public Key Data within Virgil's Keys Service
 
 ```javascript
-var VirgilSDK = window.VirgilSDK;
+var Virgil = window.Virgil;
 
 var APP_TOKEN = '77ce6c9c9e2254dbf4c71513ac74dced';
 var USER_DATA_VALUE = 'example@domain.com';
 
 // application token must be passed into the service's constructor
-var publicKeysService = new VirgilSDK.PublicKeysService(APP_TOKEN);
+var publicKeysService = new Virgil.PublicKeysService(APP_TOKEN);
 
 publicKeysService.searchKey(USER_DATA_VALUE).then(
   function(resData) {
@@ -114,7 +114,7 @@ publicKeysService.searchKey(USER_DATA_VALUE).then(
 > signed version: ```.searchKey(<USER_DATA_VALUE>, <VIRGIL_PUBLIC_KEY>, <VIRGIL_PRIVATE_KEY>, <VIRGIL_PRIVATE_KEY_PASSWORD>)```
 
 ```javascript
-var VirgilSDK = window.VirgilSDK;
+var Virgil = window.Virgil;
 
 var APP_TOKEN = '77ce6c9c9e2254dbf4c71513ac74dced';
 var USER_DATA_VALUE = 'example@domain.com';
@@ -122,9 +122,9 @@ var PUBLIC_KEY_ID = '00ab82f3-56e5-0fd6-c608-f4da9ebc791c';
 var PRIVATE_KEY = '<PRIVATE_KEY_CONTENT>';
 var KEY_PASSWORD = 'password';
 
-var virgilPrivateKey = new VirgilSDK.PrivateKey(PRIVATE_KEY);
+var virgilPrivateKey = new Virgil.PrivateKey(PRIVATE_KEY);
 // application token must be passed into the service's constructor
-var publicKeysService = new VirgilSDK.PublicKeysService(APP_TOKEN);
+var publicKeysService = new Virgil.PublicKeysService(APP_TOKEN);
 
 // KEY_PASSWORD an optional argument,
 // it's needed only if your keys was generated using the appropriate passwords
@@ -143,7 +143,7 @@ publicKeysService.searchKey(USER_DATA_VALUE, PUBLIC_KEY_ID, virgilPrivateKey.Key
 > Public Key modification takes place immediately after action invocation.
 
 ```javascript
-var VirgilSDK = window.VirgilSDK;
+var Virgil = window.Virgil;
 
 var APP_TOKEN = '77ce6c9c9e2254dbf4c71513ac74dced';
 var PUBLIC_KEY_ID = '47a44580-f501-ea17-3581-7524d46e1af5';
@@ -151,12 +151,12 @@ var CURRENT_PRIVATE_KEY = '<PRIVATE_KEY_CONTENT>';
 var KEY_PASSWORD_CURRENT = 'password';
 var KEY_PASSWORD_NEW = 'password_new';
 
-var virgilCrypto = new VirgilSDK.Crypto();
+var virgilCrypto = Virgil.Crypto;
 var keysNew = virgilCrypto.generateKeys(KEY_PASSWORD_NEW);
-var virgilPrivateKeyCurrent = new VirgilSDK.PrivateKey(CURRENT_PRIVATE_KEY);
-var virgilPrivateKeyNew = new VirgilSDK.PrivateKey(keysNew.privateKey);
+var virgilPrivateKeyCurrent = new Virgil.PrivateKey(CURRENT_PRIVATE_KEY);
+var virgilPrivateKeyNew = new Virgil.PrivateKey(keysNew.privateKey);
 // application token must be passed into the service's constructor
-var publicKeysService = new VirgilSDK.PublicKeysService(APP_TOKEN);
+var publicKeysService = new Virgil.PublicKeysService(APP_TOKEN);
 
 // KEY_PASSWORD_CURRENT, KEY_PASSWORD_NEW an optional argument,
 // it's needed only if your keys was generated using the appropriate passwords
@@ -185,17 +185,17 @@ publicKeysService.updateKey(
 > To commit a Public Key remove call persistKey() action with action_token value and the list of confirmation codes.
 
 ```javascript
-var VirgilSDK = window.VirgilSDK;
+var Virgil = window.Virgil;
 
 var APP_TOKEN = '77ce6c9c9e2254dbf4c71513ac74dced';
 var PUBLIC_KEY_ID = '423ee230-3b5d-ffb3-b661-349923d8a509';
 var PRIVATE_KEY = '<PRIVATE_KEY_CONTENT>';
 var KEY_PASSWORD = 'password';
 
-var virgilCrypto = new VirgilSDK.Crypto();
-var virgilPrivateKey = new VirgilSDK.PrivateKey(PRIVATE_KEY);
+var virgilCrypto = Virgil.Crypto;
+var virgilPrivateKey = new Virgil.PrivateKey(PRIVATE_KEY);
 // application token must be passed into the service's constructor
-var publicKeysService = new VirgilSDK.PublicKeysService(APP_TOKEN);
+var publicKeysService = new Virgil.PublicKeysService(APP_TOKEN);
 
 // KEY_PASSWORD an optional argument,
 // it's needed only if your key was generated using the appropriate password
@@ -216,16 +216,16 @@ publicKeysService.deleteKey(PUBLIC_KEY_ID, virgilPrivateKey.KeyBase64, KEY_PASSW
 > The list of UDIDs used as confirmation tokens recipients will be listed as user_ids response parameters.
 
 ```javascript
-var VirgilSDK = window.VirgilSDK;
+var Virgil = window.Virgil;
 
 var APP_TOKEN = '77ce6c9c9e2254dbf4c71513ac74dced';
 var PUBLIC_KEY_ID = '2f1eb567-a137-fc88-8268-d9ad208f8227';
 var KEY_PASSWORD_NEW = 'password';
 
-var virgilCrypto = new VirgilSDK.Crypto();
+var virgilCrypto = Virgil.Crypto;
 var keysNew = virgilCrypto.generateKeys(KEY_PASSWORD_NEW);
 // application token must be passed into the service's constructor
-var publicKeysService = new VirgilSDK.PublicKeysService(APP_TOKEN);
+var publicKeysService = new Virgil.PublicKeysService(APP_TOKEN);
 
 // KEY_PASSWORD_CURRENT an optional argument,
 // it's needed only if your keys was generated using the appropriate passwords
@@ -251,7 +251,7 @@ publicKeysService.resetKey(
 > The confirmation code will be sent to the email/phone etc. Usually the client application should provide opportunities for input appropriate confirmation code.
 
 ```javascript
-var VirgilSDK = window.VirgilSDK;
+var Virgil = window.Virgil;
 
 var APP_TOKEN = '77ce6c9c9e2254dbf4c71513ac74dced';
 var PUBLIC_KEY_ID = '9fdca3db-f412-9ce4-4dce-cd7c8ebe8cbb';
@@ -259,7 +259,7 @@ var ACTION_TOKEN = '31b4be12-9021-76bc-246d-5ecbd7a22350';
 var CONFIRMATION_CODES = ['Y4A6D9'];
 
 // application token must be passed into the service's constructor
-var publicKeysService = new VirgilSDK.PublicKeysService(APP_TOKEN);
+var publicKeysService = new Virgil.PublicKeysService(APP_TOKEN);
 
 publicKeysService.persistKey(PUBLIC_KEY_ID, ACTION_TOKEN, CONFIRMATION_CODES).then(
   function(resData) {
@@ -276,20 +276,20 @@ publicKeysService.persistKey(PUBLIC_KEY_ID, ACTION_TOKEN, CONFIRMATION_CODES).th
 > Append UDIDs and UDINFOs to Public Keys for the current application.
 
 ```javascript
-var VirgilSDK = window.VirgilSDK;
+var Virgil = window.Virgil;
 
 var APP_TOKEN = '77ce6c9c9e2254dbf4c71513ac74dced';
 var PUBLIC_KEY_ID = '17177252-58c0-1cd1-afae-1a435275f85c';
-var USER_DATA_TYPE = VirgilSDK.UserDataTypeEnum.Email;
-var USER_DATA_CLASS = VirgilSDK.UserDataClassEnum.UserId;
+var USER_DATA_TYPE = Virgil.UserDataTypeEnum.Email;
+var USER_DATA_CLASS = Virgil.UserDataClassEnum.UserId;
 var USER_DATA_VALUE = 'example@domain.com';
 var PRIVATE_KEY = '<PRIVATE_KEY_CONTENT>';
 var KEY_PASSWORD = 'password';
 
 // application token must be passed into the service's constructor
-var publicKeysService = new VirgilSDK.PublicKeysService(APP_TOKEN);
-var userData = new VirgilSDK.UserData(USER_DATA_TYPE, USER_DATA_CLASS, USER_DATA_VALUE);
-var virgilPrivateKey = new VirgilSDK.PrivateKey(PRIVATE_KEY);
+var publicKeysService = new Virgil.PublicKeysService(APP_TOKEN);
+var userData = new Virgil.UserData(USER_DATA_TYPE, USER_DATA_CLASS, USER_DATA_VALUE);
+var virgilPrivateKey = new Virgil.PrivateKey(PRIVATE_KEY);
 
 // KEY_PASSWORD an optional argument,
 // it's needed only if your keys was generated using the appropriate passwords
@@ -306,7 +306,7 @@ publicKeysService.addUserData(userData, PUBLIC_KEY_ID, virgilPrivateKey.KeyBase6
 ## Delete User Data from the Public Key
 
 ```javascript
-var VirgilSDK = window.VirgilSDK;
+var Virgil = window.Virgil;
 
 var APP_TOKEN = '77ce6c9c9e2254dbf4c71513ac74dced';
 var PUBLIC_KEY_ID = '9fdca3db-f412-9ce4-4dce-cd7c8ebe8cbb';
@@ -315,8 +315,8 @@ var PRIVATE_KEY = '<PRIVATE_KEY_CONTENT>';
 var KEY_PASSWORD = 'password';
 
 // application token must be passed into the service's constructor
-var publicKeysService = new VirgilSDK.PublicKeysService(APP_TOKEN);
-var virgilPrivateKey = new VirgilSDK.PrivateKey(PRIVATE_KEY);
+var publicKeysService = new Virgil.PublicKeysService(APP_TOKEN);
+var virgilPrivateKey = new Virgil.PrivateKey(PRIVATE_KEY);
 
 // KEY_PASSWORD an optional argument,
 // it's needed only if your keys was generated using the appropriate passwords
@@ -333,14 +333,14 @@ publicKeysService.deleteUserData(USER_DATA_ID, PUBLIC_KEY_ID, virgilPrivateKey, 
 ## Confirm User Data
 
 ```javascript
-var VirgilSDK = window.VirgilSDK;
+var Virgil = window.Virgil;
 
 var APP_TOKEN = '77ce6c9c9e2254dbf4c71513ac74dced';
 var USER_DATA_ID = '3f8cb770-1869-b3d7-ff8f-a4a9266828e5';
 var CONFIRMATION_CODE = 'Y4A6D9';
 
 // application token must be passed into the service's constructor
-var publicKeysService = new VirgilSDK.PublicKeysService(APP_TOKEN);
+var publicKeysService = new Virgil.PublicKeysService(APP_TOKEN);
 
 publicKeysService.persistUserData(USER_DATA_ID, CONFIRMATION_CODE).then(
   function(resData) {
@@ -355,7 +355,7 @@ publicKeysService.persistUserData(USER_DATA_ID, CONFIRMATION_CODE).then(
 ## Resend a User's Confirmation Code
 
 ```javascript
-var VirgilSDK = window.VirgilSDK;
+var Virgil = window.Virgil;
 
 var APP_TOKEN = '77ce6c9c9e2254dbf4c71513ac74dced';
 var PUBLIC_KEY_ID = '9fdca3db-f412-9ce4-4dce-cd7c8ebe8cbb';
@@ -364,8 +364,8 @@ var PRIVATE_KEY = '<PRIVATE_KEY_CONTENT>';
 var KEY_PASSWORD = 'password';
 
 // application token must be passed into the service's constructor
-var publicKeysService = new VirgilSDK.PublicKeysService(APP_TOKEN);
-var virgilPrivateKey = new VirgilSDK.PrivateKey(PRIVATE_KEY);
+var publicKeysService = new Virgil.PublicKeysService(APP_TOKEN);
+var virgilPrivateKey = new Virgil.PrivateKey(PRIVATE_KEY);
 
 // KEY_PASSWORD an optional argument,
 // it's needed only if your keys was generated using the appropriate passwords

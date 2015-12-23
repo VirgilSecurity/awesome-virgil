@@ -20,9 +20,9 @@
 ## Generate Keys
 
 ```javascript
-var VirgilSDK = window.VirgilSDK;
+var Virgil = window.Virgil;
 
-var virgilCrypto = new VirgilSDK.Crypto();
+var virgilCrypto = Virgil.Crypto;
 
 var keys = virgilCrypto.generateKeys();
 
@@ -41,15 +41,15 @@ console.log('Keys with password: ', keysWithPassword);
 > Encrypted data also will be returned in [Base64](https://en.wikipedia.org/wiki/Base64) format.
 
 ```javascript
-var VirgilSDK = window.VirgilSDK;
+var Virgil = window.Virgil;
 
 var INITIAL_DATA = 'data to be encrypted';
 var INITIAL_DATA_BASE64 = btoa(INITIAL_DATA);
 var PASSWORD = 'password';
 
-var virgilCrypto = new VirgilSDK.Crypto();
-var encryptedData = virgilCrypto.encryptWithPassword(INITIAL_DATA_BASE64, PASSWORD);
-var decryptedData = virgilCrypto.decryptWithPassword(encryptedData, PASSWORD);
+var virgilCrypto = Virgil.Crypto;
+var encryptedData = virgilCrypto.encrypt(INITIAL_DATA_BASE64, PASSWORD);
+var decryptedData = virgilCrypto.decrypt(encryptedData, PASSWORD);
 
 console.log('Encrypted data: ' + encryptedData);
 console.log('Decrypted data: ' + decryptedData);
@@ -58,19 +58,19 @@ console.log('Decrypted data: ' + decryptedData);
 ## Async (using web workers) Encrypt and Decrypt data using password
 
 ```javascript
-var VirgilSDK = window.VirgilSDK;
+var Virgil = window.Virgil;
 
 var INITIAL_DATA = 'data to be encrypted';
 var INITIAL_DATA_BASE64 = btoa(INITIAL_DATA);
 var PASSWORD = 'password';
 
-var virgilCrypto = new VirgilSDK.Crypto();
+var virgilCrypto = Virgil.Crypto;
 
-virgilCrypto.encryptWithPasswordAsync(INITIAL_DATA_BASE64, PASSWORD)
+virgilCrypto.encryptAsync(INITIAL_DATA_BASE64, PASSWORD)
   .then(function(encryptedData) {
     console.log('Encrypted data: ' + encryptedData);
 
-    virgilCrypto.decryptWithPassword(encryptedData, PASSWORD)
+    virgilCrypto.decryptAsync(encryptedData, PASSWORD)
       .then(function(decryptedData) {
         console.log('Decrypted data: ' + decryptedData);
       });
@@ -86,9 +86,9 @@ virgilCrypto.encryptWithPasswordAsync(INITIAL_DATA_BASE64, PASSWORD)
 ### Encrypt and Decrypt data using Key with password
 
 ```javascript
-var VirgilSDK = window.VirgilSDK;
+var Virgil = window.Virgil;
 
-var utils = VirgilSDK.Utils;
+var utils = Virgil.Utils;
 
 var KEY_PASSWORD = 'password';
 
@@ -96,10 +96,10 @@ var INITIAL_DATA = 'data to be encrypted';
 var INITIAL_DATA_BASE64 = btoa(INITIAL_DATA);
 var RECIPIENT_ID = utils.uuid();
 
-var virgilCrypto = new VirgilSDK.Crypto();
+var virgilCrypto = Virgil.Crypto;
 var keys = virgilCrypto.generateKeys(KEY_PASSWORD);
-var encryptedData = virgilCrypto.encryptWithKey(INITIAL_DATA_BASE64, RECIPIENT_ID, keys.publicKey);
-var decryptedData = virgilCrypto.decryptWithKey(encryptedData, RECIPIENT_ID, btoa(keys.privateKey), KEY_PASSWORD);
+var encryptedData = virgilCrypto.encrypt(INITIAL_DATA_BASE64, RECIPIENT_ID, keys.publicKey);
+var decryptedData = virgilCrypto.decrypt(encryptedData, RECIPIENT_ID, btoa(keys.privateKey), KEY_PASSWORD);
 
 console.log('Encrypted data: ' + encryptedData);
 console.log('Decrypted data: ' + decryptedData);
@@ -108,9 +108,9 @@ console.log('Decrypted data: ' + decryptedData);
 ### Encrypt and Decrypt data using Key with password for multiple recipients
 
 ```javascript
-var VirgilSDK = window.VirgilSDK;
+var Virgil = window.Virgil;
 
-var utils = VirgilSDK.Utils;
+var utils = Virgil.Utils;
 
 var KEY_PASSWORD = 'password';
 
@@ -118,11 +118,11 @@ var INITIAL_DATA = 'data to be encrypted';
 var INITIAL_DATA_BASE64 = btoa(INITIAL_DATA);
 var RECIPIENT_ID = utils.uuid();
 
-var virgilCrypto = new VirgilSDK.Crypto();
+var virgilCrypto = Virgil.Crypto;
 var keys = virgilCrypto.generateKeys(KEY_PASSWORD);
 var recipientsList = [{ recipientId: RECIPIENT_ID, publicKey: keys.publicKey }];
-var encryptedData = virgilCrypto.encryptWithKeyMultiRecipients(INITIAL_DATA_BASE64, recipientsList);
-var decryptedData = virgilCrypto.decryptWithKey(encryptedData, RECIPIENT_ID, btoa(keys.privateKey), KEY_PASSWORD);
+var encryptedData = virgilCrypto.encrypt(INITIAL_DATA_BASE64, recipientsList);
+var decryptedData = virgilCrypto.decrypt(encryptedData, RECIPIENT_ID, btoa(keys.privateKey), KEY_PASSWORD);
 
 console.log('Encrypted data: ' + encryptedData);
 console.log('Decrypted data: ' + decryptedData);
@@ -131,9 +131,9 @@ console.log('Decrypted data: ' + decryptedData);
 ## Async (using web workers) Encrypt and Decrypt data using Key with password
 
 ```javascript
-var VirgilSDK = window.VirgilSDK;
+var Virgil = window.Virgil;
 
-var utils = VirgilSDK.Utils;
+var utils = Virgil.Utils;
 
 var KEY_PASSWORD = 'password';
 
@@ -141,15 +141,15 @@ var INITIAL_DATA = 'data to be encrypted';
 var INITIAL_DATA_BASE64 = btoa(INITIAL_DATA);
 var RECIPIENT_ID = utils.uuid();
 
-var virgilCrypto = new VirgilSDK.Crypto();
+var virgilCrypto = new Virgil.Crypto();
 
 virgilCrypto.generateKeysAsync(KEY_PASSWORD)
   .then(function(keys) {
-    virgilCrypto.encryptWithKeyAsync(INITIAL_DATA_BASE64, RECIPIENT_ID, keys.publicKey)
+    virgilCrypto.encryptAsync(INITIAL_DATA_BASE64, RECIPIENT_ID, keys.publicKey)
       .then(function(encryptedData) {
         console.log('Encrypted data: ' + encryptedData);
 
-        virgilCrypto.decryptWithKeyAsync(encryptedData, RECIPIENT_ID, btoa(keys.privateKey), KEY_PASSWORD)
+        virgilCrypto.decryptAsync(encryptedData, RECIPIENT_ID, btoa(keys.privateKey), KEY_PASSWORD)
           .then(function(decryptedData) {
             console.log('Decrypted data: ' + decryptedData);
           });
@@ -160,9 +160,9 @@ virgilCrypto.generateKeysAsync(KEY_PASSWORD)
 ## Async (using web workers) Encrypt and Decrypt data using Key with password for multiple recipients
 
 ```javascript
-var VirgilSDK = window.VirgilSDK;
+var Virgil = window.Virgil;
 
-var utils = VirgilSDK.Utils;
+var utils = Virgil.Utils;
 
 var KEY_PASSWORD = 'password';
 
@@ -170,17 +170,17 @@ var INITIAL_DATA = 'data to be encrypted';
 var INITIAL_DATA_BASE64 = btoa(INITIAL_DATA);
 var RECIPIENT_ID = utils.uuid();
 
-var virgilCrypto = new VirgilSDK.Crypto();
+var virgilCrypto = new Virgil.Crypto();
 
 virgilCrypto.generateKeysAsync(KEY_PASSWORD)
   .then(function(keys) {
     var recipientsList = [{ recipientId: RECIPIENT_ID, publicKey: keys.publicKey }];
     
-    virgilCrypto.encryptWithKeyMultiRecipientsAsync(INITIAL_DATA_BASE64, recipientsList)
+    virgilCrypto.encryptAsync(INITIAL_DATA_BASE64, recipientsList)
       .then(function(encryptedData) {
         console.log('Encrypted data: ' + encryptedData);
 
-        virgilCrypto.decryptWithKeyAsync(encryptedData, RECIPIENT_ID, btoa(keys.privateKey), KEY_PASSWORD)
+        virgilCrypto.decryptAsync(encryptedData, RECIPIENT_ID, btoa(keys.privateKey), KEY_PASSWORD)
           .then(function(decryptedData) {
             console.log('Decrypted data: ' + decryptedData);
           });
@@ -191,18 +191,18 @@ virgilCrypto.generateKeysAsync(KEY_PASSWORD)
 ### Encrypt and Decrypt data using Key without password
 
 ```javascript
-var VirgilSDK = window.VirgilSDK;
+var Virgil = window.Virgil;
 
-var utils = VirgilSDK.Utils;
+var utils = Virgil.Utils;
 
 var INITIAL_DATA = 'data to be encrypted';
 var INITIAL_DATA_BASE64 = btoa(INITIAL_DATA);
 var RECIPIENT_ID = utils.uuid();
 
-var virgilCrypto = new VirgilSDK.Crypto();
+var virgilCrypto = new Virgil.Crypto();
 var keys = virgilCrypto.generateKeys();
-var encryptedData = virgilCrypto.encryptWithKey(INITIAL_DATA_BASE64, RECIPIENT_ID, keys.publicKey);
-var decryptedData = virgilCrypto.decryptWithKey(encryptedData, RECIPIENT_ID, btoa(keys.privateKey));
+var encryptedData = virgilCrypto.encrypt(INITIAL_DATA_BASE64, RECIPIENT_ID, keys.publicKey);
+var decryptedData = virgilCrypto.decrypt(encryptedData, RECIPIENT_ID, btoa(keys.privateKey));
 
 console.log('Encrypted data: ' + encryptedData);
 console.log('Decrypted data: ' + decryptedData);
@@ -211,23 +211,23 @@ console.log('Decrypted data: ' + decryptedData);
 ## Async (using web workers) Encrypt and Decrypt data using Key without password
 
 ```javascript
-var VirgilSDK = window.VirgilSDK;
+var Virgil = window.Virgil;
 
-var utils = VirgilSDK.Utils;
+var utils = Virgil.Utils;
 
 var INITIAL_DATA = 'data to be encrypted';
 var INITIAL_DATA_BASE64 = btoa(INITIAL_DATA);
 var RECIPIENT_ID = utils.uuid();
 
-var virgilCrypto = new VirgilSDK.Crypto();
+var virgilCrypto = new Virgil.Crypto();
 
 virgilCrypto.generateKeysAsync()
   .then(function(keys) {
-    virgilCrypto.encryptWithKeyAsync(INITIAL_DATA_BASE64, RECIPIENT_ID, keys.publicKey)
+    virgilCrypto.encryptAsync(INITIAL_DATA_BASE64, RECIPIENT_ID, keys.publicKey)
       .then(function(encryptedData) {
         console.log('Encrypted data: ' + encryptedData);
 
-        virgilCrypto.decryptWithKeyAsync(encryptedData, RECIPIENT_ID, btoa(keys.privateKey))
+        virgilCrypto.decryptAsync(encryptedData, RECIPIENT_ID, btoa(keys.privateKey))
           .then(function(decryptedData) {
             console.log('Decrypted data: ' + decryptedData);
           });
@@ -244,18 +244,18 @@ virgilCrypto.generateKeysAsync()
 ### Sign and Verify data using Key with password
 
 ```javascript
-var VirgilSDK = window.VirgilSDK;
+var Virgil = window.Virgil;
 
-var utils = VirgilSDK.Utils;
+var utils = Virgil.Utils;
 
 var KEY_PASSWORD = 'password';
 var INITIAL_DATA = 'data to be encrypted';
 var INITIAL_DATA_BASE64 = btoa(INITIAL_DATA);
 var RECIPIENT_ID = utils.uuid();
 
-var virgilCrypto = new VirgilSDK.Crypto();
+var virgilCrypto = new Virgil.Crypto();
 var keys = virgilCrypto.generateKeys(KEY_PASSWORD);
-var encryptedData = virgilCrypto.encryptWithKey(INITIAL_DATA_BASE64, RECIPIENT_ID, keys.publicKey);
+var encryptedData = virgilCrypto.encrypt(INITIAL_DATA_BASE64, RECIPIENT_ID, keys.publicKey);
 var sign = virgilCrypto.sign(encryptedData, btoa(keys.privateKey), KEY_PASSWORD);
 var isDataVerified = virgilCrypto.verify(encryptedData, keys.publicKey, sign);
 
@@ -267,20 +267,20 @@ console.log('Is data verified: ' + isDataVerified);
 ## Async (using web workers) Sign and Verify data using Key with password
 
 ```javascript
-var VirgilSDK = window.VirgilSDK;
+var Virgil = window.Virgil;
 
-var utils = VirgilSDK.Utils;
+var utils = Virgil.Utils;
 
 var KEY_PASSWORD = 'password';
 var INITIAL_DATA = 'data to be encrypted';
 var INITIAL_DATA_BASE64 = btoa(INITIAL_DATA);
 var RECIPIENT_ID = utils.uuid();
 
-var virgilCrypto = new VirgilSDK.Crypto();
+var virgilCrypto = new Virgil.Crypto();
 
 virgilCrypto.generateKeysAsync(KEY_PASSWORD)
   .then(function(keys) {
-    virgilCrypto.encryptWithKeyAsync(INITIAL_DATA_BASE64, RECIPIENT_ID, keys.publicKey)
+    virgilCrypto.encryptAsync(INITIAL_DATA_BASE64, RECIPIENT_ID, keys.publicKey)
       .then(function(encryptedData) {
         console.log('Encrypted data: ' + encryptedData);
 
@@ -300,17 +300,17 @@ virgilCrypto.generateKeysAsync(KEY_PASSWORD)
 ### Sign and Verify data using Key without password
 
 ```javascript
-var VirgilSDK = window.VirgilSDK;
+var Virgil = window.Virgil;
 
-var utils = VirgilSDK.Utils;
+var utils = Virgil.Utils;
 
 var INITIAL_DATA = 'data to be encrypted';
 var INITIAL_DATA_BASE64 = btoa(INITIAL_DATA);
 var RECIPIENT_ID = utils.uuid();
 
-var virgilCrypto = new VirgilSDK.Crypto();
+var virgilCrypto = new Virgil.Crypto();
 var keys = virgilCrypto.generateKeys();
-var encryptedData = virgilCrypto.encryptWithKey(INITIAL_DATA_BASE64, RECIPIENT_ID, keys.publicKey);
+var encryptedData = virgilCrypto.encrypt(INITIAL_DATA_BASE64, RECIPIENT_ID, keys.publicKey);
 var sign = virgilCrypto.sign(encryptedData, btoa(keys.privateKey));
 var isDataVerified = virgilCrypto.verify(encryptedData, keys.publicKey, sign);
 
@@ -322,19 +322,19 @@ console.log('Is data verified: ' + isDataVerified);
 ## Async (using web workers) Sign and Verify data using Key without password
 
 ```javascript
-var VirgilSDK = window.VirgilSDK;
+var Virgil = window.Virgil;
 
-var utils = VirgilSDK.Utils;
+var utils = Virgil.Utils;
 
 var INITIAL_DATA = 'data to be encrypted';
 var INITIAL_DATA_BASE64 = btoa(INITIAL_DATA);
 var RECIPIENT_ID = utils.uuid();
 
-var virgilCrypto = new VirgilSDK.Crypto();
+var virgilCrypto = new Virgil.Crypto();
 
 virgilCrypto.generateKeysAsync()
   .then(function(keys) {
-    virgilCrypto.encryptWithKey(INITIAL_DATA_BASE64, RECIPIENT_ID, keys.publicKey)
+    virgilCrypto.encryptAsync(INITIAL_DATA_BASE64, RECIPIENT_ID, keys.publicKey)
       .then(function(encryptedData) {
         console.log('Encrypted data: ' + encryptedData);
         
