@@ -26,7 +26,7 @@ Promises provided by [bluebird](http://github.com).
 npm install virgil-private-keys
 ```
 
-## Before you start
+### Before you start
 
 1. Make sure that you have registered and confirmed account under Public Key service.
 2. Make sure that you have Public Private Key pair and you have already uploaded Public Key to the Public Key service.
