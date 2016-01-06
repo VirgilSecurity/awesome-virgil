@@ -5,7 +5,7 @@ SDK for working with Virgil Security private keys service API.
 
 You can use both promise or callback style for async function calls callbacks.
 
-Promises provided by [bluebird](http://github.com).
+Promises provided by [bluebird](https://github.com/petkaantonov/bluebird).
 
 - [Installation](#installation)
 - [Usage](#usage)
