@@ -63,7 +63,7 @@ php composer.phar install
 ### General statements
 
 1. You are ready to work with the PHP Library if you:
-  1. Created an Application under [Virgil Security, Inc](https://virgilsecurity.com/dashboard).
+  1. Created an Application under [Virgil Security, Inc](https://developer.virgilsecurity.com).
   2. Created Private and Public Keys on your local machine.
   3. Created and confirmed your account in the Public Keys service.
   4. Loaded a Public Key to the Public Key service.
