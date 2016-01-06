@@ -4,31 +4,27 @@
 - [Introduction](#introduction)
 - [Prerequisite](#prerequisite)
 - [Installation](#installation)
-  - [Installation using bower](#installation-using-bower)
-  - [Installation using npm](#installation-using-npm)
-  - [Direct download](#direct-download)
-- [Virgil namespace](#virgil-namespace)
-  - [Global Virgil](#global-virgil)
-  - [AMD module](#amd-module)
-  - [CommonJS module](#commonjs-module)
-  - [ES6 module](#es6-module)
+    - [Installation using bower](#installation-using-bower)
+    - [Installation using npm](#installation-using-npm)
+    - [Direct download](#direct-download)
+- [VirgilSDK namespace](#virgilsdk-namespace)
+    - [Global VirgilSDK](#global-virgilsdk)
+    - [AMD module](#amd-module)
+    - [CommonJS module](#commonjs-module)
+    - [ES6 module](#es6-module)
 - [Additional builds of Virgil JavaScript libraries](#additional-builds-of-virgil-javascript-libraries)
-  - [Crypto library standalone](#crypto-library-standalone)
-    - [Global](#global)
-    - [AMD module](#amd-module-1)
-    - [CommonJS module](#commonjs-module-1)
-    - [ES6 module](#es6-module-1)
-- [Private/Public keys services standalone](#privatepublic-keys-services-standalone)
-- [Virgil Services](#virgil-services)
-  - [Obtaining an Application Token](#obtaining-an-application-token)
-  - [Generate Keys](#generate-keys)
-  - [Register User](#register-user)
-  - [Store a Private Key](#store-a-private-key)
-  - [Get a Public Key](#get-a-public-key)
-  - [Encrypt Data](#encrypt-data)
-  - [Sign Data](#sign-data)
-  - [Verify Data](#verify-data)
-  - [Decrypt Data](#decrypt-data)
+    - [Crypto library standalone](#crypto-library-standalone)
+    - [Private/Public keys services standalone](#privatepublic-keys-services-standalone)
+- [VirgilSDK Services](#virgilsdk-services)
+    - [Obtaining an Application Token](#obtaining-an-application-token)
+    - [Generate Keys](#generate-keys)
+    - [Register User](#register-user)
+    - [Store a Private Key](#store-a-private-key)
+    - [Get a Public Key](#get-a-public-key)
+    - [Encrypt Data](#encrypt-data)
+    - [Sign Data](#sign-data)
+    - [Verify Data](#verify-data)
+    - [Decrypt Data](#decrypt-data)
 
 ## Introduction
 
@@ -40,7 +36,7 @@ This repository focuses on the JavaScript ([asm.js](http://asmjs.org/faq.html) s
 
 1. [nodejs](https://nodejs.org/) with [npm](https://www.npmjs.com/) or [bower](http://bower.io/)
 2. Modern browser which supports the [asm.js](http://asmjs.org/faq.html) subset of JavaScript
-  - [Google Chrome](http://www.google.by/chrome/) - tested in [Chrome 45.0](http://www.google.by/chrome/) 
+  - [Google Chrome](http://www.google.com/chrome/) - tested in [Chrome 45.0](http://www.google.com/chrome/) 
   - [Mozilla Firefox](https://www.mozilla.org/en-US/firefox/new/) - tested in [Firefox 40.0.3](https://www.mozilla.org/en-US/firefox/new/) 
   - [Apple Safari](https://support.apple.com/downloads/safari) - tested in [Safari 7+](https://support.apple.com/downloads/safari)
   - [Microsoft Edge](https://www.microsoft.com/en-us/windows/microsoft-edge), for more information about [asm.js](http://asmjs.org/faq.html) support, please check the next link [https://blogs.windows.com/msedgedev/2015/05/07/bringing-asm-js-to-chakra-microsoft-edge/](https://blogs.windows.com/msedgedev/2015/05/07/bringing-asm-js-to-chakra-microsoft-edge/). Tested in Microsoft Internet Explorer 11 and latest version of [Microsoft Edge](https://www.microsoft.com/en-us/windows/microsoft-edge)  
@@ -69,11 +65,11 @@ npm install virgil-browsers
 
 Latest version of library can be downloaded [here](https://github.com/VirgilSecurity/virgil-browsers/archive/master.zip)
 
-## Virgil namespace
+## VirgilSDK namespace
 
 The Virgil SDK can be included into your project in several ways: 
 
-###### Global Virgil
+###### Global VirgilSDK
  
 Add the ```script``` tag into your HTML file as below:
 
@@ -81,19 +77,19 @@ Add the ```script``` tag into your HTML file as below:
 <script charset="utf-8" src="<path_to_target_folder>/virgil-sdk-full.min.js"></script>
 ```
 
-and the Virgil's SDK will be available in global scope by ```window.Virgil```:
+and the Virgil's SDK will be available in global scope by ```window.VirgilSDK```:
 
 ```javascript 
-var virgil = window.Virgil;
+var virgilSDK = window.VirgilSDK;
 
-console.log(virgil);
+console.log(virgilSDK);
 ```
 
 ###### AMD module 
 
 ```javascript 
-define(['<path_to_target_folder>/virgil-browsers'], function(Virgil) {
-  console.log(Virgil);
+define(['<path_to_target_folder>/virgil-browsers'], function(VirgilSDK) {
+  console.log(VirgilSDK);
 });
 ```
 
@@ -101,26 +97,26 @@ or
 
 ```javascript 
 define(function() {
-  var Virgil = require('<path_to_target_folder>/virgil-browsers');
+  var VirgilSDK = require('<path_to_target_folder>/virgil-browsers');
   
-  console.log(Virgil);
+  console.log(VirgilSDK);
 });
 ```
 
 ###### CommonJS module
 
 ```javascript 
-var Virgil = require('<path_to_target_folder>/virgil-browsers');
+var VirgilSDK = require('<path_to_target_folder>/virgil-browsers');
 
-console.log(Virgil);
+console.log(VirgilSDK);
 ```
 
 ###### ES6 module
 
 ```javascript 
-import Virgil from '<path_to_target_folder>/virgil-browsers';
+import VirgilSDK from '<path_to_target_folder>/virgil-browsers';
 
-console.log(Virgil);
+console.log(VirgilSDK);
 ```
 
 ## Additional builds of Virgil JavaScript libraries
@@ -183,7 +179,7 @@ console.log(VirgilCrypto);
 
 Use the same steps as described above in the section [Crypto library standalone](#crypto-library-standalone) but include the next files: ```virgil-sdk-keys-private.min.js``` and ```virgil-sdk-keys-public.min.js```
 
-## Virgil Services
+## VirgilSDK Services
 
 ### Obtaining an Application Token
 
@@ -203,14 +199,14 @@ Working with Virgil Security Services it is requires the creation of both a publ
 
 > Private keys should never be stored verbatim or in plain text on a local computer.
 
-> If you need to store a private key, you should use a secure key container depending on your platform. You also can use Virgil Keys Service to store and synchronize private keys. This will allows you to easily synchronize private keys between clients’ devices and their applications. Please read more about [Virgil Private Keys Service](/documents/javascript/keys-private-service).
+> If you need to store a private key, you should use a secure key container depending on your platform. You also can use Virgil Keys Service to store and synchronize private keys. This will allows you to easily synchronize private keys between clients’ devices and their applications. Please read more about [Virgil Private Keys Service](/documents/javascript/private-keys-service).
 
 The following code example creates a new public/private key pair.
 
 ```javascript
-var Virgil = window.Virgil;
-var virgilCrypto = Virgil.Crypto;
-var _ = Virgil.Utils;
+var VirgilSDK = window.VirgilSDK;
+var virgilCrypto = new VirgilSDK.Crypto();
+var _ = VirgilSDK.Utils;
 var PRIVATE_KEY_PASSWORD = '<PRIVATE_KEY_PASSWORD_HERE>';
 var keys = virgilCrypto.generateKeys(PRIVATE_KEY_PASSWORD);
 
@@ -227,23 +223,23 @@ This example shows how to upload a public key and register a new account on Virg
 var APP_TOKEN = '77ce6c9c9e2254dbf4c71513ac74dced';
 var USER_DATA_ITEMS = [
   {
-    'class': Virgil.UserDataClassEnum.UserId,
-    type: Virgil.UserDataTypeEnum.Email,
+    'class': VirgilSDK.UserDataClassEnum.UserId,
+    type: VirgilSDK.UserDataTypeEnum.Email,
     value: 'example@domain.com'
   }
 ];
 
 // application token must be passed into the service's constructor
-var publicKeysService = new Virgil.PublicKeysService(APP_TOKEN);
-var virgilPublicKey = new Virgil.PublicKey(keys.publicKey, USER_DATA_ITEMS);
-var virgilPrivateKey = new Virgil.PrivateKey(keys.privateKey);
+var publicKeysService = new VirgilSDK.PublicKeysService(APP_TOKEN);
+var virgilPublicKey = new VirgilSDK.PublicKey(keys.publicKey, USER_DATA_ITEMS);
+var virgilPrivateKey = new VirgilSDK.PrivateKey(keys.privateKey);
 
 publicKeysService.addKey(virgilPublicKey, virgilPrivateKey.KeyBase64, PRIVATE_KEY_PASSWORD).then(
   function(resData) {
     console.log(resData);
 
     // update the Virgil public key using response from server
-    virgilPublicKey = Virgil.PublicKey.fromJS(resData);
+    virgilPublicKey = VirgilSDK.PublicKey.fromJS(resData);
   },
   function(error) {
     console.error(error);
@@ -282,12 +278,12 @@ var CONTAINER_PASSWORD = '<CONTAINER_PASSWORD_HERE>';
 // Normal - Storage of the private keys is your responsibility and security
 //          of those passwords and data will be at your own risk.
 
-var CONTAINER_TYPE = Virgil.PrivateKeysContainerTypeEnum.Easy; // Virgil.PrivateKeysContainerTypeEnum.Normal
+var CONTAINER_TYPE = VirgilSDK.PrivateKeysContainerTypeEnum.Easy; // VirgilSDK.PrivateKeysContainerTypeEnum.Normal
 
-var container = new Virgil.PrivateKeysContainer(CONTAINER_TYPE, CONTAINER_PASSWORD);
+var container = new VirgilSDK.PrivateKeysContainer(CONTAINER_TYPE, CONTAINER_PASSWORD);
 
 // application token must be passed into the service's constructor
-var privateKeysService = new Virgil.PrivateKeysService(APP_TOKEN);
+var privateKeysService = new VirgilSDK.PrivateKeysService(APP_TOKEN);
 
 // PRIVATE_KEY_PASSWORD an optional argument,
 // it's needed only if your keys was generated using the appropriate passwords
@@ -314,17 +310,17 @@ privateKeysService.setKeyCipherStrategy(function(pKey, contType, keysPassword, c
   // return the not encrypted version by default
   var resultKey = base64PrivateKey;
   // the shorthand for container types enum
-  var contTypes = Virgil.PrivateKeysContainerTypeEnum;
+  var contTypes = VirgilSDK.PrivateKeysContainerTypeEnum;
 
   // if the container has the `Easy` type, then we have to use the container password here,
   // because the privateKeys will be encrypted using that password
   if (contTypes.Easy === contType) {
-    resultKey = virgilCrypto.encrypt(base64PrivateKey, contPassword);
+    resultKey = virgilCrypto.encryptWithPassword(base64PrivateKey, contPassword);
   }
   // for the `Normal` container type, the private keys will be encrypted using the special password,
   // which was provided by owner of the private key
   else if (contTypes.Normal === contType) {
-    resultKey = virgilCrypto.encrypt(base64PrivateKey, keysPassword);
+    resultKey = virgilCrypto.encryptWithPassword(base64PrivateKey, keysPassword);
   }
 
   return resultKey;
@@ -353,7 +349,7 @@ publicKeysService.searchKey(virgilUserData.Value).then(
   function(resData) {
     console.log(resData);
 
-    recipientPublicKey = new Virgil.PublicKey.fromJS(resData);
+    recipientPublicKey = new VirgilSDK.PublicKey.fromJS(resData);
   },
   function(error) {
     console.error(error);
@@ -373,7 +369,7 @@ In the example below, we encrypt data using a public key from Virgil’s Public 
 var INITIAL_DATA = 'Some data to be encrypted';
 var INITIAL_DATA_BASE64 = btoa(INITIAL_DATA);
 
-var encryptedData = virgilCrypto.encrypt(INITIAL_DATA_BASE64, recipientPublicKey.Id, recipientPublicKey.Key);
+var encryptedData = virgilCrypto.encryptWithKey(INITIAL_DATA_BASE64, recipientPublicKey.Id, recipientPublicKey.Key);
 ```
 
 ### Sign Data
@@ -407,7 +403,7 @@ console.log('Is data verified: ' + isDataVerified);
 ### Decrypt Data
 
 ```javascript
-var decryptedData = virgilCrypto.decrypt(encryptedData, recipientPublicKey.Id, virgilPrivateKey.KeyBase64, PRIVATE_KEY_PASSWORD);
+var decryptedData = virgilCrypto.decryptWithKey(encryptedData, recipientPublicKey.Id, virgilPrivateKey.KeyBase64, PRIVATE_KEY_PASSWORD);
 
 console.log('Decrypted data: ' + decryptedData);
 ```
