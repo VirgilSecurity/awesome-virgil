@@ -8,6 +8,8 @@
 - [Search Public Key With Data](#search-public-key-with-data)
 - [Update Public Key Data](#update-public-key-data)
 - [Delete Public Key Data](#delete-public-key-data)
+ - [Unsigned version](#unsigned-version)
+ - [Signed version](#signed-version)
 - [Reset Public Key](#reset-public-key)
 - [Confirm Delete Public Key operation](#confirm-delete-public-key-operation)
 - [Confirm Reset Public Key operation](#confirm-reset-public-key-operation)
