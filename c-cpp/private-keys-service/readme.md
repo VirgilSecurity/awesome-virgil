@@ -16,7 +16,7 @@
 
 ## Obtain Application Token
 
-First you must create a free Virgil Security developer account by [sign up](https://virgilsecurity.com/account/signup). Once you have your account you can [sign in](https://virgilsecurity.com/account/signin) and generate an app token for your application.
+First you must create a free Virgil Security developer account by [sign up](https://developer.virgilsecurity.com/account/signup). Once you have your account you can [sign in](https://developer.virgilsecurity.com/account/signin) and generate an app token for your application.
 
 The app token provides authenticated secure access to Virgil’s Keys Service and is passed with each API call. The app token also allows the API to associate your app’s requests with your Virgil Security developer account.
 
@@ -29,7 +29,7 @@ X-VIRGIL-APPLICATION-TOKEN: <YOUR_APPLICATION_TOKEN>
 ## Prerequisite
 
 1. Obtain the Virgil Security Application Token, please follow the [Obtain Application Token](#obtain-application-token) section above.
-1. Create an Application under [Virgil Security, Inc](https://virgilsecurity.com/dashboard).
+1. Create an Application under [Virgil Security, Inc](https://developer.virgilsecurity.com/account/signin).
 1. Create Private and Public Keys on your local machine.
 1. Create and confirm your account in the Public Keys service.
 1. Load a Public Key to the Public Key service.
