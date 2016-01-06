@@ -3,7 +3,7 @@
 
 - [Introduction](#introduction)
 - [Build prerequisite](#build-prerequisite)
-- [Build](#user-content-build)
+- [Build](#build)
 - [Installation](#installation)
 - [General statements](#general-statements)
 - [Examples](#examples)
