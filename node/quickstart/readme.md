@@ -48,7 +48,7 @@ npm install virgil-private-keys
 Working with Virgil Security Services it is requires the creation of both a public key and a private key. The public key can be made public to anyone using the Virgil Public Keys Service while the private key must be known only to the party or parties who will decrypt the data encrypted with the public key.
 
 > Private keys should never be stored verbatim or in plain text on a local computer.
-> If you need to store a private key, you should use a secure key container depending on your platform. You also can use Virgil Private Keys Service to store and synchronize private keys. This will allows you to easily synchronize private keys between clients’ devices and their applications. Please read more about [Virgil Private Keys Service](/documents/csharp/private-keys-service).
+> If you need to store a private key, you should use a secure key container depending on your platform. You also can use Virgil Private Keys Service to store and synchronize private keys. This will allows you to easily synchronize private keys between clients’ devices and their applications. Please read more about [Virgil Private Keys Service](https://github.com/VirgilSecurity/virgil/wiki/Virgil-Private-Keys-Service).
 
 The following code example creates a new public/private key pair.
 
