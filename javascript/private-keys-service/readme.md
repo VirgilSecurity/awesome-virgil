@@ -24,7 +24,7 @@ Simply add your app token to the HTTP header for each request:
 X-VIRGIL-APPLICATION-TOKEN: <YOUR_APPLICATION_TOKEN>
 ```
 
-> Create an Application under [Virgil Security, Inc](https://virgilsecurity.com/dashboard).
+> Create an Application under [Virgil Security, Inc](https://developer.virgilsecurity.com).
 
 > Obtain the Virgil Security Application Token, please follow the [Obtaining an Application Token](#obtaining-an-application-token) section above.
 
@@ -39,18 +39,18 @@ X-VIRGIL-APPLICATION-TOKEN: <YOUR_APPLICATION_TOKEN>
 ## Create a New Container Object
 
 ```javascript
-var Virgil = window.Virgil;
+var VirgilSDK = window.VirgilSDK;
 
 var APP_TOKEN = '77ce6c9c9e2254dbf4c71513ac74dced';
 var PUBLIC_KEY_ID = 'd8e387bd-b8d9-593f-518f-47ef44eab151';
 var PRIVATE_KEY_BASE64 = '<PRIVATE_KEY_IN_BASE64>';
 var KEY_PASSWORD = 'password';
-var CONTAINER_TYPE = Virgil.PrivateKeysContainerTypeEnum.Easy;
+var CONTAINER_TYPE = VirgilSDK.PrivateKeysContainerTypeEnum.Easy;
 var CONTAINER_PASSWORD = 'password';
 
-var container = new Virgil.PrivateKeysContainer(CONTAINER_TYPE, CONTAINER_PASSWORD);
+var container = new VirgilSDK.PrivateKeysContainer(CONTAINER_TYPE, CONTAINER_PASSWORD);
 // application token must be passed into the service's constructor
-var privateKeysService = new Virgil.PrivateKeysService(APP_TOKEN);
+var privateKeysService = new VirgilSDK.PrivateKeysService(APP_TOKEN);
 
 // KEY_PASSWORD an optional argument,
 // it's needed only if your keys was generated using the appropriate passwords
@@ -67,18 +67,18 @@ privateKeysService.addContainer(container, PUBLIC_KEY_ID, PRIVATE_KEY_BASE64, KE
 ## Get Container Object
 
 ```javascript
-var Virgil = window.Virgil;
+var VirgilSDK = window.VirgilSDK;
 
 var APP_TOKEN = '77ce6c9c9e2254dbf4c71513ac74dced';
 var PUBLIC_KEY_ID = 'd8e387bd-b8d9-593f-518f-47ef44eab151';
-var USER_DATA_TYPE = Virgil.UserDataTypeEnum.Email;
-var USER_DATA_CLASS = Virgil.UserDataClassEnum.UserId;
+var USER_DATA_TYPE = VirgilSDK.UserDataTypeEnum.Email;
+var USER_DATA_CLASS = VirgilSDK.UserDataClassEnum.UserId;
 var USER_DATA_VALUE = 'example@domain.com';
 var CONTAINER_PASSWORD = 'password';
 
 // application token must be passed into the service's constructor
-var privateKeysService = new Virgil.PrivateKeysService(APP_TOKEN);
-var virgilUserData = new Virgil.UserData(USER_DATA_TYPE, USER_DATA_CLASS, USER_DATA_VALUE);
+var privateKeysService = new VirgilSDK.PrivateKeysService(APP_TOKEN);
+var virgilUserData = new VirgilSDK.UserData(USER_DATA_TYPE, USER_DATA_CLASS, USER_DATA_VALUE);
 privateKeysService.setAuthCredentials(virgilUserData, CONTAINER_PASSWORD);
 
 privateKeysService.getContainer(PUBLIC_KEY_ID).then(
@@ -94,20 +94,20 @@ privateKeysService.getContainer(PUBLIC_KEY_ID).then(
 ## Delete Container Object
 
 ```javascript
-var Virgil = window.Virgil;
+var VirgilSDK = window.VirgilSDK;
 
 var APP_TOKEN = '77ce6c9c9e2254dbf4c71513ac74dced';
 var PUBLIC_KEY_ID = '9fdca3db-f412-9ce4-4dce-cd7c8ebe8cbb';
 var PRIVATE_KEY_BASE64 = '<PRIVATE_KEY_IN_BASE64>';
 var KEY_PASSWORD = 'password';
-var USER_DATA_TYPE = Virgil.UserDataTypeEnum.Email;
-var USER_DATA_CLASS = Virgil.UserDataClassEnum.UserId;
+var USER_DATA_TYPE = VirgilSDK.UserDataTypeEnum.Email;
+var USER_DATA_CLASS = VirgilSDK.UserDataClassEnum.UserId;
 var USER_DATA_VALUE = 'example@domain.com';
 var CONTAINER_PASSWORD = 'password';
 
 // application token must be passed into the service's constructor
-var privateKeysService = new Virgil.PrivateKeysService(APP_TOKEN);
-var virgilUserData = new Virgil.UserData(USER_DATA_TYPE, USER_DATA_CLASS, USER_DATA_VALUE);
+var privateKeysService = new VirgilSDK.PrivateKeysService(APP_TOKEN);
+var virgilUserData = new VirgilSDK.UserData(USER_DATA_TYPE, USER_DATA_CLASS, USER_DATA_VALUE);
 privateKeysService.setAuthCredentials(virgilUserData, CONTAINER_PASSWORD);
 
 // KEY_PASSWORD an optional argument,
@@ -127,30 +127,30 @@ privateKeysService.deleteContainer(PUBLIC_KEY_ID, PRIVATE_KEY_BASE64, KEY_PASSWO
 > By invoking this method you can change the Container Type or|and Container Password
 
 ```javascript
-var Virgil = window.Virgil;
+var VirgilSDK = window.VirgilSDK;
 
 var APP_TOKEN = '77ce6c9c9e2254dbf4c71513ac74dced';
 var PUBLIC_KEY_ID = '9fdca3db-f412-9ce4-4dce-cd7c8ebe8cbb';
 var PRIVATE_KEY_BASE64 = '<PRIVATE_KEY_IN_BASE64>';
 var KEY_PASSWORD = 'password';
-var USER_DATA_TYPE = Virgil.UserDataTypeEnum.Email;
-var USER_DATA_CLASS = Virgil.UserDataClassEnum.UserId;
+var USER_DATA_TYPE = VirgilSDK.UserDataTypeEnum.Email;
+var USER_DATA_CLASS = VirgilSDK.UserDataClassEnum.UserId;
 var USER_DATA_VALUE = 'example@domain.com';
 var CONTAINER_PASSWORD = 'password';
 var EXISTING_CONTAINER_JSON_FROM_SERVER = {
   container_type: 'easy',
   password: 'password'
 };
-var CONTAINER_TYPE_NEW = Virgil.PrivateKeysContainerTypeEnum.Normal;
+var CONTAINER_TYPE_NEW = VirgilSDK.PrivateKeysContainerTypeEnum.Normal;
 
 // initialize container instance based on the JSON representation from server
-var container = new Virgil.PrivateKeysContainer.fromJS(EXISTING_CONTAINER_JSON_FROM_SERVER);
+var container = new VirgilSDK.PrivateKeysContainer.fromJS(EXISTING_CONTAINER_JSON_FROM_SERVER);
 // update container type
 container.Type = CONTAINER_TYPE_NEW;
 
 // application token must be passed into the service's constructor
-var privateKeysService = new Virgil.PrivateKeysService(APP_TOKEN);
-var virgilUserData = new Virgil.UserData(USER_DATA_TYPE, USER_DATA_CLASS, USER_DATA_VALUE);
+var privateKeysService = new VirgilSDK.PrivateKeysService(APP_TOKEN);
+var virgilUserData = new VirgilSDK.UserData(USER_DATA_TYPE, USER_DATA_CLASS, USER_DATA_VALUE);
 privateKeysService.setAuthCredentials(virgilUserData, CONTAINER_PASSWORD);
 
 // KEY_PASSWORD an optional argument,
@@ -171,17 +171,17 @@ privateKeysService.updateContainer(container, PUBLIC_KEY_ID, PRIVATE_KEY_BASE64,
 > If the Container Type equals 'normal', the Private Key object will be stored in its original form.
 
 ```javascript
-var Virgil = window.Virgil;
+var VirgilSDK = window.VirgilSDK;
 
 var APP_TOKEN = '77ce6c9c9e2254dbf4c71513ac74dced';
-var USER_DATA_TYPE = Virgil.UserDataTypeEnum.Email;
-var USER_DATA_CLASS = Virgil.UserDataClassEnum.UserId;
+var USER_DATA_TYPE = VirgilSDK.UserDataTypeEnum.Email;
+var USER_DATA_CLASS = VirgilSDK.UserDataClassEnum.UserId;
 var USER_DATA_VALUE = 'example@domain.com';
 var CONTAINER_PASSWORD_NEW = 'password_new';
 
 // application token must be passed into the service's constructor
-var privateKeysService = new Virgil.PrivateKeysService(APP_TOKEN);
-var virgilUserData = new Virgil.UserData(USER_DATA_TYPE, USER_DATA_CLASS, USER_DATA_VALUE);
+var privateKeysService = new VirgilSDK.PrivateKeysService(APP_TOKEN);
+var virgilUserData = new VirgilSDK.UserData(USER_DATA_TYPE, USER_DATA_CLASS, USER_DATA_VALUE);
 
 privateKeysService.resetContainerPassword(virgilUserData, CONTAINER_PASSWORD_NEW).then(
   function(resData) {
@@ -198,13 +198,13 @@ privateKeysService.resetContainerPassword(virgilUserData, CONTAINER_PASSWORD_NEW
 > The token generated during the container reset invocation only lives for 60 minutes.
 
 ```javascript
-var Virgil = window.Virgil;
+var VirgilSDK = window.VirgilSDK;
 
 var APP_TOKEN = '77ce6c9c9e2254dbf4c71513ac74dced';
 var PERSIST_CONFIRMATION_TOKEN = 'I9Y6Y0';
 
 // application token must be passed into the service's constructor
-var privateKeysService = new Virgil.PrivateKeysService(APP_TOKEN);
+var privateKeysService = new VirgilSDK.PrivateKeysService(APP_TOKEN);
 
 privateKeysService.persistContainerChanges(PERSIST_CONFIRMATION_TOKEN).then(
   function(resData) {
@@ -221,15 +221,15 @@ privateKeysService.persistContainerChanges(PERSIST_CONFIRMATION_TOKEN).then(
 > Load an existing Private Key into the Private Keys service and associate it with the existing Container object.
 
 ```javascript
-var Virgil = window.Virgil;
-var virgilCrypto = Virgil.Crypto;
+var VirgilSDK = window.VirgilSDK;
+var virgilCrypto = new VirgilSDK.Crypto();
 
 var APP_TOKEN = '77ce6c9c9e2254dbf4c71513ac74dced';
 var PUBLIC_KEY_ID = '9fdca3db-f412-9ce4-4dce-cd7c8ebe8cbb';
 var PRIVATE_KEY_BASE64 = '<PRIVATE_KEY_IN_BASE64>';
 var KEY_PASSWORD = 'password';
-var USER_DATA_TYPE = Virgil.UserDataTypeEnum.Email;
-var USER_DATA_CLASS = Virgil.UserDataClassEnum.UserId;
+var USER_DATA_TYPE = VirgilSDK.UserDataTypeEnum.Email;
+var USER_DATA_CLASS = VirgilSDK.UserDataClassEnum.UserId;
 var USER_DATA_VALUE = 'example@domain.com';
 var CONTAINER_PASSWORD = 'password';
 var EXISTING_CONTAINER_JSON_FROM_SERVER = {
@@ -238,10 +238,10 @@ var EXISTING_CONTAINER_JSON_FROM_SERVER = {
 };
 
 // initialize container instance based on the JSON representation from server
-var container = new Virgil.PrivateKeysContainer.fromJS(EXISTING_CONTAINER_JSON_FROM_SERVER);
+var container = new VirgilSDK.PrivateKeysContainer.fromJS(EXISTING_CONTAINER_JSON_FROM_SERVER);
 // application token must be passed into the service's constructor
-var privateKeysService = new Virgil.PrivateKeysService(APP_TOKEN);
-var virgilUserData = new Virgil.UserData(USER_DATA_TYPE, USER_DATA_CLASS, USER_DATA_VALUE);
+var privateKeysService = new VirgilSDK.PrivateKeysService(APP_TOKEN);
+var virgilUserData = new VirgilSDK.UserData(USER_DATA_TYPE, USER_DATA_CLASS, USER_DATA_VALUE);
 privateKeysService.setAuthCredentials(virgilUserData, CONTAINER_PASSWORD);
 
 // Set the cipher strategy for the private keys service.
@@ -255,17 +255,17 @@ privateKeysService.setKeyCipherStrategy(function(pKey, contType, keysPassword, c
   // return the not encrypted version by default
   var resultKey = base64PrivateKey;
   // the shorthand for container types enum
-  var contTypes = Virgil.PrivateKeysContainerTypeEnum;
+  var contTypes = VirgilSDK.PrivateKeysContainerTypeEnum;
 
   // if the container has the `Easy` type, then we have to use the container password here,
   // because the privateKeys will be encrypted using that password
   if (contTypes.Easy === contType) {
-    resultKey = virgilCrypto.encrypt(base64PrivateKey, contPassword);
+    resultKey = virgilCrypto.encryptWithPassword(base64PrivateKey, contPassword);
   }
   // for the `Normal` container type, the private keys will be encrypted using the special password,
   // which was provided by owner of the private key
   else if (contTypes.Normal === contType) {
-    resultKey = virgilCrypto.encrypt(base64PrivateKey, keysPassword);
+    resultKey = virgilCrypto.encryptWithPassword(base64PrivateKey, keysPassword);
   }
 
   return resultKey;
@@ -287,18 +287,18 @@ privateKeysService.addKey(PUBLIC_KEY_ID, PRIVATE_KEY_BASE64, KEY_PASSWORD).then(
 ## Get Private Key Object
 
 ```javascript
-var Virgil = window.Virgil;
+var VirgilSDK = window.VirgilSDK;
 
 var APP_TOKEN = '77ce6c9c9e2254dbf4c71513ac74dced';
 var PUBLIC_KEY_ID = '5d3a8909-5fe5-2abb-232c-3cf9c277b111';
-var USER_DATA_TYPE = Virgil.UserDataTypeEnum.Email;
-var USER_DATA_CLASS = Virgil.UserDataClassEnum.UserId;
+var USER_DATA_TYPE = VirgilSDK.UserDataTypeEnum.Email;
+var USER_DATA_CLASS = VirgilSDK.UserDataClassEnum.UserId;
 var USER_DATA_VALUE = 'example@domain.com';
 var CONTAINER_PASSWORD = 'password';
 
 // application token must be passed into the service's constructor
-var privateKeysService = new Virgil.PrivateKeysService(APP_TOKEN);
-var virgilUserData = new Virgil.UserData(USER_DATA_TYPE, USER_DATA_CLASS, USER_DATA_VALUE);
+var privateKeysService = new VirgilSDK.PrivateKeysService(APP_TOKEN);
+var virgilUserData = new VirgilSDK.UserData(USER_DATA_TYPE, USER_DATA_CLASS, USER_DATA_VALUE);
 privateKeysService.setAuthCredentials(virgilUserData, CONTAINER_PASSWORD);
 
 privateKeysService.getKey(PUBLIC_KEY_ID).then(
@@ -316,20 +316,20 @@ privateKeysService.getKey(PUBLIC_KEY_ID).then(
 > Delete a Private Key object. A Private Key object will be disconnected from the Container Object and then deleted from the Private Key service.
 
 ```javascript
-var Virgil = window.Virgil;
+var VirgilSDK = window.VirgilSDK;
 
 var APP_TOKEN = '77ce6c9c9e2254dbf4c71513ac74dced';
 var PUBLIC_KEY_ID = '5d3a8909-5fe5-2abb-232c-3cf9c277b111';
 var PRIVATE_KEY_BASE64 = '<PRIVATE_KEY_IN_BASE64>';
 var KEY_PASSWORD = 'password';
-var USER_DATA_TYPE = Virgil.UserDataTypeEnum.Email;
-var USER_DATA_CLASS = Virgil.UserDataClassEnum.UserId;
+var USER_DATA_TYPE = VirgilSDK.UserDataTypeEnum.Email;
+var USER_DATA_CLASS = VirgilSDK.UserDataClassEnum.UserId;
 var USER_DATA_VALUE = 'example@domain.com';
 var CONTAINER_PASSWORD = 'password';
 
 // application token must be passed into the service's constructor
-var privateKeysService = new Virgil.PrivateKeysService(APP_TOKEN);
-var virgilUserData = new Virgil.UserData(USER_DATA_TYPE, USER_DATA_CLASS, USER_DATA_VALUE);
+var privateKeysService = new VirgilSDK.PrivateKeysService(APP_TOKEN);
+var virgilUserData = new VirgilSDK.UserData(USER_DATA_TYPE, USER_DATA_CLASS, USER_DATA_VALUE);
 privateKeysService.setAuthCredentials(virgilUserData, CONTAINER_PASSWORD);
 
 // KEY_PASSWORD an optional argument,
@@ -342,6 +342,7 @@ privateKeysService.delKey(PUBLIC_KEY_ID, PRIVATE_KEY_BASE64, KEY_PASSWORD).then(
     console.error(error);
   }
 );
+
 ```
 </div>
 </div>
