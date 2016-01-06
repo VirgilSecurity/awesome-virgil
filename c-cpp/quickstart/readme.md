@@ -22,8 +22,8 @@
 This is quickstart guide that helps to start using C++ implementation of:
 
   * [Virgil Crypto Library](https://github.com/VirgilSecurity/virgil-crypto.git)
-  * [Virgil Public Keys Service](https://virgilsecurity.com/documents/cpp/keys-service) and it's [SDK](https://github.com/VirgilSecurity/virgil-sdk-cpp/tree/release/virgil.sdk.keys)
-  * [Virgil Private Keys Service](https://virgilsecurity.com/documents/cpp/keys-private-service) and it's [SDK](https://github.com/VirgilSecurity/virgil-sdk-cpp/tree/release/virgil.sdk.private-keys).
+  * [Virgil Public Keys Service](https://virgilsecurity.com/documents/с-cpp/keys-service) and it's [SDK](https://github.com/VirgilSecurity/virgil-sdk-cpp/tree/release/virgil.sdk.keys)
+  * [Virgil Private Keys Service](https://virgilsecurity.com/documents/с-cpp/keys-private-service) and it's [SDK](https://github.com/VirgilSecurity/virgil-sdk-cpp/tree/release/virgil.sdk.private-keys).
 
 ## Obtain Application Token
 
@@ -47,7 +47,7 @@ Full source code examples are available on [GitHub](https://github.com/VirgilSec
 To use Virgil Security Services it is required to create public key and a private key. The public key can be made public to anyone using the [Virgil Public Keys Service] while the private key must be known only to the party or parties who will decrypt the data encrypted with the public key.
 
 > **Private keys should never be stored verbatim or in plain text on the local computer.**<br>
-> \- If you need to store a private key, you should use a secure key container depending on your platform. You also can use Virgil Security Services. This will allows you to easily synchronize private keys between clients devices and applications. Please read more about [Virgil Private Keys Service](https://virgilsecurity.com/documents/cpp/keys-private-service).
+> \- If you need to store a private key, you should use a secure key container depending on your platform. You also can use Virgil Security Services. This will allows you to easily synchronize private keys between clients devices and applications. Please read more about [Virgil Private Keys Service](https://virgilsecurity.com/documents/с-cpp/keys-private-service).
 
 The following code example creates a new public/private key pair.
 ``` {.cpp}
