@@ -44,7 +44,7 @@ Full source code examples are available on [GitHub](https://github.com/VirgilSec
 
 ### Generate keys
 
-To use Virgil Security Services it is required to create public key and a private key. The public key can be made public to anyone using the [Virgil Public Keys Service] while the private key must be known only to the party or parties who will decrypt the data encrypted with the public key.
+To use Virgil Security Services it is required to create public key and a private key. The public key can be made public to anyone using the Virgil Public Keys Service while the private key must be known only to the party or parties who will decrypt the data encrypted with the public key.
 
 > **Private keys should never be stored verbatim or in plain text on the local computer.**<br>
 > \- If you need to store a private key, you should use a secure key container depending on your platform. You also can use Virgil Security Services. This will allows you to easily synchronize private keys between clients devices and applications. Please read more about [Virgil Private Keys Service](https://virgilsecurity.com/developers/c-cpp/private-keys-service).
