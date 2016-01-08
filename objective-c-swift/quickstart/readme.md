@@ -28,7 +28,7 @@ This guide will help you get started using the Crypto Library and Virgil Service
 
 ## Installation
 
-The most simple and recommended way to use Viril iOS frameworks is to install them via the CocoaPods. First of all you need to install the CocoaPods if you don't have it yet. This is very simple, just open your terminal and execute the following line:
+The most simple and recommended way to use Virgil iOS frameworks is to install them via the CocoaPods. First of all you need to install the CocoaPods if you don't have it yet. This is very simple, just open your terminal and execute the following line:
 ```sh
 $ sudo gem install cocoapods
 ```
