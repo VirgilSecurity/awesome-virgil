@@ -187,8 +187,8 @@ virgil.cards.search({
 
 ## See Also
 
-* [Tutorial Crypto Library](https://github.com/VirgilSecurity/virgil-crypto-javascript)
-* [Tutorial Keys SDK](keys.md)
+* [Tutorial Crypto Library](https://virgilsecurity.com/developers/javascript/crypto-library)
+* [Tutorial Keys SDK](https://virgilsecurity.com/developers/javascript/keys-sdk)
 
 </div>
 </div>
