@@ -1,412 +1,195 @@
 
-# Virgil Security JavaScript SDK - Quick Start
+# Quickstart JavaScript
 
 - [Introduction](#introduction)
-- [Prerequisite](#prerequisite)
-- [Installation](#installation)
-    - [Installation using bower](#installation-using-bower)
-    - [Installation using npm](#installation-using-npm)
-    - [Direct download](#direct-download)
-- [VirgilSDK namespace](#virgilsdk-namespace)
-    - [Global VirgilSDK](#global-virgilsdk)
-    - [AMD module](#amd-module)
-    - [CommonJS module](#commonjs-module)
-    - [ES6 module](#es6-module)
-- [Additional builds of Virgil JavaScript libraries](#additional-builds-of-virgil-javascript-libraries)
-    - [Crypto library standalone](#crypto-library-standalone)
-    - [Private/Public keys services standalone](#privatepublic-keys-services-standalone)
-- [VirgilSDK Services](#virgilsdk-services)
-    - [Obtaining an Application Token](#obtaining-an-application-token)
-    - [Generate Keys](#generate-keys)
-    - [Register User](#register-user)
-    - [Store a Private Key](#store-a-private-key)
-    - [Get a Public Key](#get-a-public-key)
-    - [Encrypt Data](#encrypt-data)
-    - [Sign Data](#sign-data)
-    - [Verify Data](#verify-data)
-    - [Decrypt Data](#decrypt-data)
+- [Obtaining an Access Token](#obtaining-an-access-token)
+- [Install](#install)
+- [Use Case](#use-case)
+ - [Initialization](#initialization)
+ - [Step 1. Create and Publish the Keys](#step-1-create-and-publish-the-keys)
+ - [Step 2. Encrypt and Sign](#step-2-encrypt-and-sign)
+ - [Step 3. Send an Email](#step-3-send-an-email)
+ - [Step 4. Receive an Email](#step-4-receive-an-email)
+ - [Step 5. Get Sender's Card](#step-5-get-senders-card)
+ - [Step 6. Verify and Decrypt](#step-6-verify-and-decrypt)
+- [See Also](#see-also)
 
 ## Introduction
 
-This guide will help you get started using the Crypto Library and Virgil Keys Services in the modern browsers.
+This guide will help you get started using the Crypto Library and Virgil Keys Services.
+Let's build an encrypted mail exchange system as one of the possible [use cases](#use-case) of Virgil Security Services. ![Use case mail](https://raw.githubusercontent.com/VirgilSecurity/virgil/master/images/Email-diagram.jpg)
 
-This repository focuses on the JavaScript ([asm.js](http://asmjs.org/faq.html) subset of JavaScript) library implementation for a modern browsers and covers it's usage.
+## Obtaining an Access Token
 
-## Prerequisite
+First you must create a free Virgil Security developer's account by signing up [here](https://developer.virgilsecurity.com/account/signup). Once you have your account you can [sign in](https://developer.virgilsecurity.com/account/signin) and generate an access token for your application.
 
-1. [nodejs](https://nodejs.org/) with [npm](https://www.npmjs.com/) or [bower](http://bower.io/)
-2. Modern browser which supports the [asm.js](http://asmjs.org/faq.html) subset of JavaScript
-  - [Google Chrome](http://www.google.com/chrome/) - tested in [Chrome 45.0](http://www.google.com/chrome/) 
-  - [Mozilla Firefox](https://www.mozilla.org/en-US/firefox/new/) - tested in [Firefox 40.0.3](https://www.mozilla.org/en-US/firefox/new/) 
-  - [Apple Safari](https://support.apple.com/downloads/safari) - tested in [Safari 7+](https://support.apple.com/downloads/safari)
-  - [Microsoft Edge](https://www.microsoft.com/en-us/windows/microsoft-edge), for more information about [asm.js](http://asmjs.org/faq.html) support, please check the next link [https://blogs.windows.com/msedgedev/2015/05/07/bringing-asm-js-to-chakra-microsoft-edge/](https://blogs.windows.com/msedgedev/2015/05/07/bringing-asm-js-to-chakra-microsoft-edge/). Tested in Microsoft Internet Explorer 11 and latest version of [Microsoft Edge](https://www.microsoft.com/en-us/windows/microsoft-edge)  
+The access token provides authenticated secure access to Virgil Keys Services and is passed with each API call. The access token also allows the API to associate your app’s requests with your Virgil Security developer's account.
 
-## Installation
+Use this token to initialize the SDK client [here](#initialization).
 
-There are several ways to install and use the Crypto Library and Virgil’s SDK in your environment.
+## Install
 
-1. Installation using [bower](http://bower.io/)
-2. Installation using [npm](https://www.npmjs.com/)
-3. Direct download of the latest version as [zipped package](https://github.com/VirgilSecurity/virgil-browsers/archive/master.zip)
-
-### Installation using bower
+### NPM
 
 ```sh
-bower install virgil-browsers
+npm install virgil-sdk
 ```
 
-### Installation using npm
-
+### Bower
 ```sh
-npm install virgil-browsers
+bower install virgil-sdk
 ```
 
-### Direct download
-
-Latest version of library can be downloaded [here](https://github.com/VirgilSecurity/virgil-browsers/archive/master.zip)
-
-## VirgilSDK namespace
-
-The Virgil SDK can be included into your project in several ways: 
-
-###### Global VirgilSDK
- 
-Add the ```script``` tag into your HTML file as below:
-
+### CDN
 ```html
-<script charset="utf-8" src="<path_to_target_folder>/virgil-sdk-full.min.js"></script>
+<script src="https://cdn.virgilsecurity.com/packages/javascript/sdk/latest/virgil-sdk.min.js"></script>
 ```
 
-and the Virgil's SDK will be available in global scope by ```window.VirgilSDK```:
+## Use Case
+**Secure any data end to end**: users need to securely exchange information (text messages, files, audio, video etc) while enabling both in transit and at rest protection.
 
-```javascript 
-var virgilSDK = window.VirgilSDK;
+- Application generates public and private key pairs using Virgil Crypto library and use Virgil Keys service to enable secure end to end communications:
+ - public key on Virgil Public Keys Service;
+ - private key on Virgil Private Keys Service or locally.
+- Sender's information is encrypted in Virgil Crypto Library with the recipient’s public key.
+- Sender's encrypted information is signed with his private key in Virgil Crypto Library.
+- Application securely transfers the encrypted data, sender's digital signature and UDID to the recipient without any risk to be revealed.
+- Application on the recipient's side verifies that the signature of transferred data is valid using the signature and sender’s public key in Virgil Crypto Library.
+- Received information is decrypted with the recepient's private key using Virgil Crypto Library.
+- Decrypted data is provided to the recipient.
 
-console.log(virgilSDK);
+## Initialization
+
+### Node
+
+```javascript
+var Virgil = require('virgil-sdk');
+var virgil = new Virgil("%ACCESS_TOKEN%");
 ```
 
-###### AMD module 
+### Browsers
 
-```javascript 
-define(['<path_to_target_folder>/virgil-browsers'], function(VirgilSDK) {
-  console.log(VirgilSDK);
-});
+```javascript
+var Virgil = window.VirgilSDK;
+var virgil = new Virgil("%ACCESS_TOKEN%");
 ```
 
-or
-
-```javascript 
-define(function() {
-  var VirgilSDK = require('<path_to_target_folder>/virgil-browsers');
-  
-  console.log(VirgilSDK);
-});
-```
-
-###### CommonJS module
-
-```javascript 
-var VirgilSDK = require('<path_to_target_folder>/virgil-browsers');
-
-console.log(VirgilSDK);
-```
-
-###### ES6 module
-
-```javascript 
-import VirgilSDK from '<path_to_target_folder>/virgil-browsers';
-
-console.log(VirgilSDK);
-```
-
-## Additional builds of Virgil JavaScript libraries
-
-Additional builds you may find in the ```dist``` folder. After installation the ```virgil-javascript``` package using the any methods described above, you will be able to include needed library into your project. 
-
-### Crypto library standalone
-
-###### Global
- 
-Add the ```script``` tag into your HTML file as below:
-
-```html
-<script charset="utf-8" src="<path_to_target_folder>/virgil-crypto.min.js"></script>
-```
-
-and the Virgil's Crypto library will be available in global scope by ```window.VirgilCrypto```:
-
-```javascript 
-var VirgilCrypto = window.VirgilCrypto;
-
-console.log(VirgilCrypto);
-```
-
-###### AMD module 
-
-```javascript 
-define(['<path_to_target_folder>/virgil-browsers/dist/virgil-crypto.min'], function(VirgilCrypto) {
-  console.log(VirgilCrypto);
-});
-```
-
-or
-
-```javascript 
-define(function() {
-  var VirgilCrypto = require('<path_to_target_folder>/virgil-browsers/dist/virgil-crypto.min');
-  
-  console.log(VirgilCrypto);
-});
-```
-
-###### CommonJS module
-
-```javascript 
-var VirgilCrypto = require('<path_to_target_folder>/virgil-browsers/dist/virgil-crypto.min');
-
-console.log(VirgilCrypto);
-```
-
-###### ES6 module
-
-```javascript 
-import VirgilCrypto from '<path_to_target_folder>/virgil-browsers/dist/virgil-crypto.min';
-
-console.log(VirgilCrypto);
-```
-
-## Private/Public keys services standalone
-
-Use the same steps as described above in the section [Crypto library standalone](#crypto-library-standalone) but include the next files: ```virgil-sdk-keys-private.min.js``` and ```virgil-sdk-keys-public.min.js```
-
-## VirgilSDK Services
-
-### Obtaining an Application Token
-
-First you must create a free Virgil Security developer account by signing up [here](https://virgilsecurity.com/signup). Once you have your account you can [sign in](https://virgilsecurity.com/signin) and generate an app token for your application.
-
-The app token provides authenticated secure access to Virgil’s Keys Service and is passed with each API call. The app token also allows the API to associate your app’s requests with your Virgil Security developer account.
-
-Simply add your app token to the HTTP header for each request:
-
-```
-X-VIRGIL-APPLICATION-TOKEN: <YOUR_APPLICATION_TOKEN>
-```
-
-### Generate Keys
-
-Working with Virgil Security Services it is requires the creation of both a public key and a private key. The public key can be made public to anyone using the Virgil Public Keys Service while the private key must be known only to the party or parties who will decrypt the data encrypted with the public key.
-
-> Private keys should never be stored verbatim or in plain text on a local computer.
-
-> If you need to store a private key, you should use a secure key container depending on your platform. You also can use Virgil Keys Service to store and synchronize private keys. This will allows you to easily synchronize private keys between clients’ devices and their applications. Please read more about [Virgil Private Keys Service](https://github.com/VirgilSecurity/virgil/wiki/Virgil-Private-Keys-Service).
+## Step 1. Create and Publish the Keys
+First a mail exchange application is generating the keys and publishing them to the Public Keys Service where they are available in an open access for other users (e.g. recipient) to verify and encrypt the data for the key owner.
 
 The following code example creates a new public/private key pair.
 
 ```javascript
-var VirgilSDK = window.VirgilSDK;
-var virgilCrypto = new VirgilSDK.Crypto();
-var _ = VirgilSDK.Utils;
-var PRIVATE_KEY_PASSWORD = '<PRIVATE_KEY_PASSWORD_HERE>';
-var keys = virgilCrypto.generateKeys(PRIVATE_KEY_PASSWORD);
-
-console.log('Keys with password: ', keys);
+var password = "jUfreBR7";
+// the private key's password is optional 
+var keyPair = virgil.crypto.generateKeyPair(password); 
 ```
 
-### Register User
-
-Once you've created a public key you may push it to Virgil’s Keys Service. This will allow other users to send you encrypted data using your public key.
-
-This example shows how to upload a public key and register a new account on Virgil’s Keys Service.
+The app is verifying whether the user really owns the provided email address and getting a temporary token for public key registration on the Public Keys Service.
 
 ```javascript
-var APP_TOKEN = '77ce6c9c9e2254dbf4c71513ac74dced';
-var USER_DATA_ITEMS = [
-  {
-    'class': VirgilSDK.UserDataClassEnum.UserId,
-    type: VirgilSDK.UserDataTypeEnum.Email,
-    value: 'example@domain.com'
-  }
-];
-
-// application token must be passed into the service's constructor
-var publicKeysService = new VirgilSDK.PublicKeysService(APP_TOKEN);
-var virgilPublicKey = new VirgilSDK.PublicKey(keys.publicKey, USER_DATA_ITEMS);
-var virgilPrivateKey = new VirgilSDK.PrivateKey(keys.privateKey);
-
-publicKeysService.addKey(virgilPublicKey, virgilPrivateKey.KeyBase64, PRIVATE_KEY_PASSWORD).then(
-  function(resData) {
-    console.log(resData);
-
-    // update the Virgil public key using response from server
-    virgilPublicKey = VirgilSDK.PublicKey.fromJS(resData);
-  },
-  function(error) {
-    console.error(error);
-  }
-);
+virgil.identity.verify({
+	type: 'email',
+	value: 'user@virgilsecurity.com'
+}).then(function confirmIdentity (verifyResult) {
+	// use confirmation code that has been sent to you email box.
+	return virgil.identity.confirm({
+		action_id: verifyResult.action_id,
+		confirmation_code: '%CONFIRMATION_CODE%'
+	});
+});
 ```
-
-Confirm **User Data** using your user data type (Currently supported only Email)
+The app is registering a Virgil Card which includes a public key and an email address identifier. The card will be used for the public key identification and searching for it in the Public Keys Service.
 
 ```javascript
-var virgilUserData = _.first(virgilPublicKey.UserDataItems);
-var CONFIRMATION_CODE = '<YOUR_CONFIRMATION_CODE_HERE>';
-
-publicKeysService.persistUserData(virgilUserData.Id, CONFIRMATION_CODE).then(
-  function(resData) {
-    console.log(resData);
-  },
-  function(error) {
-    console.error(error);
-  }
-);
+virgil.cards.create({
+	public_key: keyPair.publicKey,
+	private_key: keyPair.privateKey,
+	identity: {
+		type: 'email',
+		value: 'user@virgilsecurity.com',
+		validation_token: 'token from identity.confirm'
+	}
+});
 ```
 
-### Store a Private Key
-
-This example shows how to store private keys on Virgil Private Keys service using SDK, this step is optional and you can use your own secure storage.
+## Step 2. Encrypt and Sign
+The app is searching for the recipient's public key on the Public Keys Service to encrypt a message for him. The app is signing the encrypted message with sender's private key so that the recipient can make sure the message had been sent from the declared sender.
 
 ```javascript
-var CONTAINER_PASSWORD = '<CONTAINER_PASSWORD_HERE>';
+var message = "Encrypt me, Please!!!";
 
-// You can choose between two types of container. Easy and Normal.
+virgil.cards.search({ value: 'recipient-test@virgilsecurity.com', type: 'email' })
+	.then(function (recipientCards) {
+		var cards = recipientCards.map(function (card) {
+			return {
+				recipientId: card.identity.id,
+				publicKey: card.public_key.public_key
+			};
+		});
 
-// Easy   - Virgil’s Keys Service will keep your private keys encrypted with
-//          a container password. All keys should be sent to the service
-//          encrypted with this container password.
-// Normal - Storage of the private keys is your responsibility and security
-//          of those passwords and data will be at your own risk.
+		var encryptedMessage = virgil.cards.encrypt(message, cards);
+		var sign = virgil.crypto.sign(encryptedMessage, keyPair.privateKey);
 
-var CONTAINER_TYPE = VirgilSDK.PrivateKeysContainerTypeEnum.Easy; // VirgilSDK.PrivateKeysContainerTypeEnum.Normal
-
-var container = new VirgilSDK.PrivateKeysContainer(CONTAINER_TYPE, CONTAINER_PASSWORD);
-
-// application token must be passed into the service's constructor
-var privateKeysService = new VirgilSDK.PrivateKeysService(APP_TOKEN);
-
-// PRIVATE_KEY_PASSWORD an optional argument,
-// it's needed only if your keys was generated using the appropriate passwords
-privateKeysService.addContainer(container, virgilPublicKey.Id, virgilPrivateKey.KeyBase64, PRIVATE_KEY_PASSWORD).then(
-  function(resData) {
-    console.log(resData);
-  },
-  function(error) {
-    console.error(error);
-  }
-);
-
-// Authenticate requests to Virgil’s Private Keys service
-privateKeysService.setAuthCredentials(virgilUserData, CONTAINER_PASSWORD);
-
-// Set the cipher strategy for the private keys service.
-// This strategy function will be used for getting the encrypted or not encrypted version of key.
-// In this function you are able to describe specific serializer algorithm for private key,
-// which will be applied before pushing to server.
-// Always will be called with the private key as the first argument
-// and all other given arguments will be passed into `strategy` function as additional arguments
-privateKeysService.setKeyCipherStrategy(function(pKey, contType, keysPassword, contPassword) {
-  var base64PrivateKey = pKey.Key;
-  // return the not encrypted version by default
-  var resultKey = base64PrivateKey;
-  // the shorthand for container types enum
-  var contTypes = VirgilSDK.PrivateKeysContainerTypeEnum;
-
-  // if the container has the `Easy` type, then we have to use the container password here,
-  // because the privateKeys will be encrypted using that password
-  if (contTypes.Easy === contType) {
-    resultKey = virgilCrypto.encryptWithPassword(base64PrivateKey, contPassword);
-  }
-  // for the `Normal` container type, the private keys will be encrypted using the special password,
-  // which was provided by owner of the private key
-  else if (contTypes.Normal === contType) {
-    resultKey = virgilCrypto.encryptWithPassword(base64PrivateKey, keysPassword);
-  }
-
-  return resultKey;
-}, container.Type, privateKeysService.authPassword, CONTAINER_PASSWORD);
-
-// PRIVATE_KEY_PASSWORD an optional argument,
-// it's needed only if your keys was generated using the appropriate passwords
-privateKeysService.addKey(virgilPublicKey.Id, virgilPrivateKey.KeyBase64, PRIVATE_KEY_PASSWORD).then(
-  function(resData) {
-    console.log(resData);
-  },
-  function(error) {
-    console.error(error);
-  }
-);
+		// ...
+	});
 ```
 
-### Get a Public Key
-
-Get public key from Public Keys Service.
+## Step 3. Send an Email
+The app is merging the message and the signature into one structure and sending the letter to the recipient using a simple mail client.
 
 ```javascript
-var recipientPublicKey;
+var body = JSON.stringify({
+	content: encryptedMessage.toString('base64'),
+	sign: sign.toString('base64')
+});
 
-publicKeysService.searchKey(virgilUserData.Value).then(
-  function(resData) {
-    console.log(resData);
-
-    recipientPublicKey = new VirgilSDK.PublicKey.fromJS(resData);
-  },
-  function(error) {
-    console.error(error);
-  }
-);
+mailClient.send({
+	to: "recipient-test@virgilsecurity.com",
+	subject: "Secure the Future",
+	body: body
+});
 ```
 
-### Encrypt Data
-
-The procedure for encrypting and decrypting documents is simple. For example:
-
-If you want to encrypt the data to Bob, you encrypt it using Bobs's public key (which you can get from Public Keys Service), and Bob decrypts it with his private key. If Bob wants to encrypt data to you, he encrypts it using your public key, and you decrypt it with your private key.
-
-In the example below, we encrypt data using a public key from Virgil’s Public Keys Service.
+## Step 4. Receive an Email
+An encrypted letter is received on the recipient's side using a simple mail client.
 
 ```javascript
-var INITIAL_DATA = 'Some data to be encrypted';
-var INITIAL_DATA_BASE64 = btoa(INITIAL_DATA);
-
-var encryptedData = virgilCrypto.encryptWithKey(INITIAL_DATA_BASE64, recipientPublicKey.Id, recipientPublicKey.Key);
+// get first email with specified subject using simple mail client
+var email = mailClient.getByEmailAndSubject('recipient-test@virgilsecurity.com', 'Secure the Future');
+var body = JSON.parse(email.body);
 ```
 
-### Sign Data
+## Step 5. Get Sender's Card
 
-Cryptographic digital signatures use public key algorithms to provide data integrity. When you sign data with a digital signature, someone else can verify the signature, and can prove that the data originated from you and was not altered after you signed it.
+In order to decrypt the received data the app on recipient's side needs to get sender's Virgil Card from the Public Keys Service.
 
-The following example applies a digital signature to a public key identifier.
+## Step 6. Verify and Decrypt
+The app is making sure the letter came from the declared sender by getting his card on Public Keys Service. In case of success the app is decrypting the letter using the recipient's private key.
 
 ```javascript
-var sign = virgilCrypto.sign(encryptedData, virgilPrivateKey.KeyBase64, PRIVATE_KEY_PASSWORD);
+virgil.cards.search({
+	value: email.from,
+	type: 'email'
+}).then(function (cards) {
+	var senderPublicKey = cards[0].public_key.public_key;
+	var contentBuffer = new Buffer(encryptedBody.content, 'base64');
+	var signBuffer = new Buffer(encryptedBody.sign, 'base64');
 
-console.log('Sign: ' + sign);
+	var isValid = virgil.crypto.verify(contentBuffer, senderPublicKey, signBuffer);
+	if (!isValid) {
+		throw new Error('Signature is not valid');
+	}
+
+	var originalMessage = virgil.crypto.decrypt(contentBuffer, recipientKeyPair.privateKey);
+});
 ```
 
-### Verify Data
+## See Also
 
-To verify that data was signed by a particular party, you must have the following information:
+* [Tutorial Crypto Library](https://github.com/VirgilSecurity/virgil-crypto-javascript)
+* [Tutorial Keys SDK](keys.md)
 
-*   The public key of the party that signed the data.
-*   The digital signature.
-*   The data that was signed.
-
-The following example verifies a digital signature which was signed by the sender.
-
-```javascript
-var isDataVerified = virgilCrypto.verify(encryptedData, recipientPublicKey.Key, sign);
-
-console.log('Is data verified: ' + isDataVerified);
-```
-
-### Decrypt Data
-
-```javascript
-var decryptedData = virgilCrypto.decryptWithKey(encryptedData, recipientPublicKey.Id, virgilPrivateKey.KeyBase64, PRIVATE_KEY_PASSWORD);
-
-console.log('Decrypted data: ' + decryptedData);
-```
 </div>
 </div>
 
