@@ -47,7 +47,7 @@ PM> Install-Package Virgil.SDK.Keys
 - Sender's encrypted information is signed with his private key in Virgil Crypto Library.
 - Application securely transfers the encrypted data, sender's digital signature and UDID to the recipient without any risk to be revealed.
 - Application on the recipient's side verifies that the signature of transferred data is valid using the signature and sender’s public key in Virgil Crypto Library.
-- Received information is decrypted with the recepient's private key using Virgil Crypto Library.
+- Received information is decrypted with the recipient's private key using Virgil Crypto Library.
 - Decrypted data is provided to the recipient.
 
 ## Initialization
