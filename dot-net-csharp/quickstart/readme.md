@@ -138,8 +138,8 @@ var originalMessage = CryptoHelper.Decrypt(encryptedBody.Content, recipientKeyPa
 
 ## See Also
 
-* [Tutorial Crypto Library](crypto.md)
-* [Tutorial Keys SDK](public-keys.md)
+* [Tutorial Crypto Library](https://virgilsecurity.com/developers/dot-net-csharp/crypto-library)
+* [Tutorial Keys SDK](https://virgilsecurity.com/developers/dot-net-csharp/keys-sdk)
 </div>
 </div>
 
