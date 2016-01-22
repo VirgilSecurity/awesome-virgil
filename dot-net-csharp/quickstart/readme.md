@@ -2,237 +2,144 @@
 # Quickstart C#/.NET
 
 - [Introduction](#introduction)
-- [Obtaining an Application Token](#obtaining-an-application-token)
+- [Obtaining an Access Token](#obtaining-an-access-token)
 - [Install](#install)
-    - [Generate Keys](#generate-keys)
-    - [Register User](#register-user)
-    - [Store Private Key](#store-private-key)
-    - [Get a Public Key](#get-a-public-key)
-    - [Encrypt Data](#encrypt-data)
-    - [Sign Data](#sign-data)
-    - [Verify Data](#verify-data)
-    - [Decrypt Data](#decrypt-data)
+- [Use case](#use-case)
+    - [Initialization](#initialization)
+    - [Step 1. Create and Publish the Keys](#step-1-create-and-publish-the-keys)
+    - [Step 2. Encrypt and Sign](#step-2-encrypt-and-sign)
+    - [Step 3. Send an Email](#step-3-send-an-email)
+    - [Step 4. Receive an Email](#step-4-receive-an-email)
+    - [Step 5. Get Sender's Card](#step-5-get-senders-card)
+    - [Step 6. Verify and Decrypt](#step-6-verify-and-decrypt)
+- [See also](#see-also)
 
 ## Introduction
 
-This guide will help you get started using the Crypto Library and Virgil Keys Service, for the most popular platforms and languages.
-
+This guide will help you get started using the Crypto Library and Virgil Keys Services for the most popular platforms and languages.
 This branch focuses on the C#/.NET library implementation and covers it's usage.
 
-## Obtaining an Application Token
+Let's build an encrypted mail exchange system as one of the possible [use cases](#use-case) of Virgil Security Services. ![Use case mail](https://raw.githubusercontent.com/VirgilSecurity/virgil/master/images/Email-diagram.jpg)
 
-First you must create a free Virgil Security developer account by signing up [here](https://virgilsecurity.com/signup). Once you have your account you can [sign in](https://virgilsecurity.com/signin) and generate an app token for your application.
+## Obtaining an Access Token
 
-The app token provides authenticated secure access to Virgil’s Keys Service and is passed with each API call. The app token also allows the API to associate your app’s requests with your Virgil Security developer account.
+First you must create a free Virgil Security developer's account by signing up [here](https://developer.virgilsecurity.com/account/signup). Once you have your account you can [sign in](https://developer.virgilsecurity.com/account/signin) and generate an access token for your application.
 
-Simply add your app token to the HTTP header for each request:
+The access token provides authenticated secure access to Virgil Keys Services and is passed with each API call. The access token also allows the API to associate your app’s requests with your Virgil Security developer's account.
 
-```
-X-VIRGIL-APPLICATION-TOKEN: { YOUR_APPLICATION_TOKEN }
-```
+Use this token to initialize the SDK client [here](#initialization).
 
 ## Install
 
-You can easily add the Crypto Library or SDK dependency to your project, just follow the examples below.
-
-```
-PM> Install-Package Virgil.Crypto
-```
-
-Virgil Public Keys SDK:
+You can easily add SDK dependency to your project, just follow the examples below:
 
 ```
 PM> Install-Package Virgil.SDK.Keys
 ```
 
-Virgil Private Keys SDK:
+## Use Case
+**Secure any data end to end**: users need to securely exchange information (text messages, files, audio, video etc) while enabling both in transit and at rest protection. 
 
+- Application generates public and private key pairs using Virgil Crypto library and use Virgil Keys service to enable secure end to end communications:
+    - public key on Virgil Public Keys Service;
+    - private key on Virgil Private Keys Service or locally.
+- Sender's information is encrypted in Virgil Crypto Library with the recipient’s public key.
+- Sender's encrypted information is signed with his private key in Virgil Crypto Library.
+- Application securely transfers the encrypted data, sender's digital signature and UDID to the recipient without any risk to be revealed.
+- Application on the recipient's side verifies that the signature of transferred data is valid using the signature and sender’s public key in Virgil Crypto Library.
+- Received information is decrypted with the recepient's private key using Virgil Crypto Library.
+- Decrypted data is provided to the recipient.
+
+## Initialization
+
+```csharp
+var virgilHub = VirgilHub.Create("%ACCESS_TOKEN%");
 ```
-PM> Install-Package Virgil.SDK.PrivateKeys
-```
 
-## Generate Keys
-
-Working with Virgil Security Services it is requires the creation of both a public key and a private key. The public key can be made public to anyone using the Virgil Public Keys Service while the private key must be known only to the party or parties who will decrypt the data encrypted with the public key.
-
-> Private keys should never be stored verbatim or in plain text on a local computer.
-> If you need to store a private key, you should use a secure key container depending on your platform. You also can use Virgil Keys Service to store and synchronize private keys. This will allows you to easily synchronize private keys between clients’ devices and their applications. Please read more about [Virgil Private Keys Service](/documents/csharp/private-keys-service).
+## Step 1. Create and Publish the Keys
+First a mail exchange application is generating the keys and publishing them to the Public Keys Service where they are available in an open access for other users (e.g. recipient) to verify and encrypt the data for the key owner.
 
 The following code example creates a new public/private key pair.
 
+```csharp
+var password = "jUfreBR7";
+// the private key's password is optional 
+var keyPair = CryptoHelper.GenerateKeyPair(password); 
 ```
-using Virgil.Crypto;
-using Virgil.SDK.Keys
-using Virgil.SDK.PrivateKeys                 
-...
 
-byte[] publicKey;
-byte[] privateKey;
+The app is verifying whether the user really owns the provided email address and getting a temporary token for public key registration on the Public Keys Service.
 
-using (var keyPair = new VirgilKeyPair())
+```csharp
+var identityRequest = await virgilHub.Identity.Verify("sender-test@virgilsecurity.com", IdentityType.Email);
+
+// use confirmation code sent to your email box.
+var identityToken = await virgilHub.Identity.Confirm(identityRequest.ActionId, "%CONFIRMATION_CODE%");
+```
+The app is registering a Virgil Card which includes a public key and an email address identifier. The card will be used for the public key identification and searching for it in the Public Keys Service.
+
+```csharp
+var senderCard = await virgilHub.Cards.Create(identityToken, keyPair.PublicKey(), keyPair.PrivateKey());
+```
+
+## Step 2. Encrypt and Sign
+The app is searching for the recipient's public key on the Public Keys Service to encrypt a message for him. The app is signing the encrypted message with sender's private key so that the recipient can make sure the message had been sent from the declared sender.
+
+```csharp
+var message = "Encrypt me, Please!!!";
+
+var recipientCards = await virgilHub.Cards.Search("recipient-test@virgilsecurity.com", IdentityType.Email);
+var recipients = recipientCards.ToDictionary(it => it.Id, it => it.PublicKey);
+
+var encryptedMessage = CryptoHelper.Encrypt(message, recipients);
+var signature = CryptoHelper.Sign(cipherText, keyPair.PrivateKey());
+```
+
+## Step 3. Send an Email
+The app is merging the message and the signature into one structure and sending the letter to the recipient using a simple mail client.
+
+```csharp
+var encryptedBody = new EncryptedBody
 {
-    publicKey = keyPair.PublicKey();
-    privateKey = keyPair.PrivateKey();
-}
-
-```
-
-## Register User
-
-Once you've created a public key you may push it to Virgil’s Keys Service. This will allow other users to send you encrypted data using your public key.
-
-This example shows how to upload a public key and register a new account on Virgil’s Keys Service.
-
-```
-var keysService = new PkiClient(new SDK.Keys.Http.Connection(Constants.ApplicationToken, 
-    new Uri(Constants.KeysServiceUrl)));
-
-var userData = new UserData
-{
-    Class = UserDataClass.UserId,
-    Type = UserDataType.EmailId,
-    Value = "your.email@server.hz"
+    Content = encryptedMessage,
+    Signature = signature
 };
 
-var vPublicKey = await keysService.PublicKeys.Create(publicKey, publicKey, userData);
+var encryptedBodyJson = JsonConvert.SerializeObject(encryptedBody);
+await mailClient.SendAsync("recipient-test@virgilsecurity.com", "Secure the Future", encryptedBodyJson);
 ```
 
-Confirm **User Data** using your user data type (Currently supported only Email).
+## Step 4. Receive an Email
+An encrypted letter is received on the recipient's side using a simple mail client.
 
+```csharp
+// get first email with specified subject using simple mail client
+var email = await mailClient.GetBySubjectAsync("recipient-test@virgilsecurity.com", "Secure the Future");
+
+var encryptedBody = JsonConvert.Deserialize<EncryptedBody>(email.Body);
 ```
-var vUserData = vPublicKey.UserData.First();
-var confirmCode = "{YOUR_CODE}"; // Confirmation code you received on your email box.
 
-await keysService.UserData.Confirm(vUserData.UserDataId, 
-    confirmCode, vPublicKey.PublicKeyId, privateKey);
-```
+## Step 5. Get Sender's Card
+In order to decrypt the received data the app on recipient's side needs to get sender's Virgil Card from the Public Keys Service.
 
-## Store Private Key
+## Step 6. Verify and Decrypt
+The app is making sure the letter came from the declared sender by getting his card on Public Keys Service. In case of success the app is decrypting the letter using the recipient's private key.
 
-This example shows how to store private keys on Virgil Private Keys service using SDK, this step is optional and you can use your own secure storage.
+```csharp
+var senderCard = await virgilHub.Cards.Search(email.From, IdentityType.Email);
 
-```
-var privateKeysClient = new KeyringClient(new SDK.PrivateKeys.Http.Connection(
-    Constants.ApplicationToken, new Uri(Constants.PrivateKeysServiceUrl)));
-
-var containerPassword = "12345678";
-
-// You can choose between two types of container. Easy and Normal.
-
-// Easy   - Virgil’s Keys Service will keep your private keys encrypted with 
-//          a container password. All keys should be sent to the service 
-//          encrypted with this container password.
-// Normal - Storage of the private keys is your responsibility and security 
-//          of those passwords and data will be at your own risk.
-
-var containerType = ContainerType.Easy; // ContainerType.Normal
-
-// Initializes an container for private keys storage. 
-
-await privateKeysClient.Container.Initialize(containerType, vPublicKey.PublicKeyId, 
-    privateKey, containerPassword);
-
-// Authenticate requests to Virgil’s Private Keys service.
-
-privateKeysClient.Connection.SetCredentials(vUserData.Value, containerPassword);
-
-// Add your private key to Virgil's Private Keys service.
-
-if (containerType == ContainerType.Easy)
+var isValid = CryptoHelper.Verify(encryptedBody.Content, encryptedBody.Sign, senderCard.PublicKey);
+if (isValid)
 {
-    // The private key will be encrypted with a container password, 
-    // provided upon authentication.
-    await privateKeysClient.PrivateKeys.Add(vPublicKey.PublicKeyId, privateKey);
+    throw new Exception("Signature is not valid.");
 }
-else
-{
-    // use your own password to encrypt the private key.
-    var privateKeyPassword = "47N6JwTGUmFvn4Eh";
-    await privateKeysClient.PrivateKeys.Add(vPublicKey.PublicKeyId, 
-        privateKey, privateKeyPassword);
-}
+    
+var originalMessage = CryptoHelper.Decrypt(encryptedBody.Content, recipientKeyPair.PrivateKey());
 ```
 
-## Get a Public Key
+## See Also
 
-Get public key from Public Keys Service.
-
-```
-var recepientPublicKey = await keysService.PublicKeys.Search("recepient.email@server.hz");
-```
-
-## Encrypt Data
-
-The procedure for encrypting and decrypting documents is simple. For example:
-
-If you want to encrypt the data to Bob, you encrypt it using Bobs's public key (which you can get from Public Keys Service), and Bob decrypts it with his private key. If Bob wants to encrypt data to you, he encrypts it using your public key, and you decrypt it with your private key.
-
-In the example below, we encrypt data using a public key from Virgil’s Public Keys Service.
-
-```
-byte[] encryptedData;
-
-using (var cipher = new VirgilCipher())
-{
-    byte[] recepientId = Encoding.UTF8.GetBytes(recepientPublicKey.PublicKeyId.ToString());
-    byte[] data = Encoding.UTF8.GetBytes("Some data to be encrypted");
-
-    cipher.AddKeyRecipient(recepientId, data);
-    encryptedData = cipher.Encrypt(data, true);
-}
-```
-
-## Sign Data
-
-Cryptographic digital signatures use public key algorithms to provide data integrity. When you sign data with a digital signature, someone else can verify the signature, and can prove that the data originated from you and was not altered after you signed it.
-
-The following example applies a digital signature to a public key identifier.
-
-```
-byte[] sign;
-using (var signer = new VirgilSigner())
-{
-    sign = signer.Sign(encryptedData, privateKey);
-}
-```
-
-## Verify Data
-
-To verify that data was signed by a particular party, you must have the following information:
-
-*   The public key of the party that signed the data.
-*   The digital signature.
-*   The data that was signed.
-
-The following example verifies a digital signature which was signed by the sender.
-
-```
-bool isValid;
-using (var signer = new VirgilSigner())
-{
-    isValid = signer.Verify(encryptedData, sign, publicKey);
-}
-```
-
-## Decrypt Data
-
-The following example illustrates the decryption of encrypted data.
-
-```
-var recepientContainerPassword = "UhFC36DAtrpKjPCE";
-
-var recepientPrivateKeysClient = new KeyringClient(new Connection(Constants.ApplicationToken));
-recepientPrivateKeysClient.Connection.SetCredentials(
-    new Credentials("recepient.email@server.hz", recepientContainerPassword));
-
-var recepientPrivateKey = await recepientPrivateKeysClient.PrivateKeys.Get(recepientPublicKey.PublicKeyId);
-
-byte[] decryptedDate;
-using (var cipher = new VirgilCipher())
-{
-    decryptedDate = cipher.DecryptWithKey(encryptedData, recepientId, recepientPrivateKey.Key);
-}
-```
+* [Tutorial Crypto Library](crypto.md)
+* [Tutorial Keys SDK](public-keys.md)
 </div>
 </div>
 
