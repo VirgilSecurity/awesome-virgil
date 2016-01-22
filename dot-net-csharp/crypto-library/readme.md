@@ -157,8 +157,8 @@ See a working example [here...](https://github.com/VirgilSecurity/virgil-net/blo
 
 ## See Also
 
-* [Quickstart](quickstart.md)
-* [Tutorial Keys SDK](public-keys.md)
+* [Quickstart](https://virgilsecurity.com/developers/dot-net-csharp/quickstart)
+* [Tutorial Keys SDK](https://virgilsecurity.com/developers/dot-net-csharp/keys-sdk)
 </div>
 </div>
 
