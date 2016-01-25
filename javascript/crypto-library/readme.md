@@ -46,7 +46,8 @@ console.log('Key pair without password: ', keyPair);
 ```
 
 You can also generate a key pair with an encrypted private key just using one of the overloaded constructors.
-In table below you can see all types.
+
+In the table below you can see all types.
 
 | Key Type          | Description                    |
 |-------------------|--------------------------------|
@@ -73,6 +74,8 @@ In table below you can see all types.
 | EC_SECP192K1 | 192-bits "Koblitz" curve       |
 | EC_SECP224K1 | 224-bits "Koblitz" curve       |
 | EC_SECP256K1 | 256-bits "Koblitz" curve       |
+
+
 
 ```javascript
 var keyPairRsa2048 = virgilCrypto.generateKeyPair(virgilCrypto.KeysTypesEnum.rsa2048);
