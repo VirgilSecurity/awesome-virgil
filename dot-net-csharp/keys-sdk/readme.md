@@ -99,9 +99,6 @@ var foundAppCards = await keysClient.Cards.SearchAppAsync("com.virgil.*");
 Any Virgil Card user can act as a certification center within the Virgil Security ecosystem. Every user can certify another's Virgil Card and build a net of trust based on it.
 
 The example below demonstrates how to certify a user's Virgil Card by signing its hash attribute. 
-
-<!--В рамках экосистемы Virgil Security любой пользователь карты может выступать в качестве центра сертификации. Каждый пользователь может заверить карту другого, и построить на основе этого сеть доверия. 
-В приведенном примере ниже показанно как заверить карту пользователя, путем подписи ее hash атирибута.  -->
  
 ```csharp
 var trustedCard = foundCards.First();
