@@ -96,8 +96,6 @@ In the table below you can see all types.
 | Type_EC_SECP192K1 | 192-bits "Koblitz" curve       |
 | Type_EC_SECP224K1 | 224-bits "Koblitz" curve       |
 | Type_EC_SECP256K1 | 256-bits "Koblitz" curve       |
-|-------------------|--------------------------------|
-
 
 See a working example [here...](https://github.com/VirgilSecurity/virgil-net/blob/master/Examples/Crypto/GenerateKeyPair.cs)
 
