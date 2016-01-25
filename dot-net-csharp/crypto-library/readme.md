@@ -69,7 +69,7 @@ Generate keys with specific type
 var keyPair = VirgilKeyPair.Generate(VirgilKeyPair.Type.EC_SECP256K1);
 ```
 
-In table below you can see all types.
+In the table below you can see all types.
 
 | Key Type          | Description                    |
 |-------------------|--------------------------------|
