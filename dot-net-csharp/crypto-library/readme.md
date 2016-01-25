@@ -1,7 +1,6 @@
 
 # Tutorial C#/.NET Crypto Library
 
-
 - [Install](#install)
 - [Generate Keys](#generate-keys)
 - [Encrypt Data](#encrypt-data)
@@ -159,6 +158,7 @@ See a working example [here...](https://github.com/VirgilSecurity/virgil-net/blo
 
 * [Quickstart](https://virgilsecurity.com/developers/dot-net-csharp/quickstart)
 * [Tutorial Keys SDK](https://virgilsecurity.com/developers/dot-net-csharp/keys-sdk)
+
 </div>
 </div>
 
