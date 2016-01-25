@@ -2,7 +2,7 @@
 # Tutorial JavaScript Virgil Services SDK 
 
 - [Introduction](#introduction)
-- [Install](#installation)
+- [Install](#install)
 - [Obtaining an Access Token](#obtaining-an-access-token)
 - [Identity Check](#identity-check)
       - [Request Verification](#request-verification)
@@ -25,7 +25,7 @@
 
 This tutorial explains how to use the Public Keys Service with SDK library in JavaScript applications. 
 
-## Installation
+## Install
 
 ### NPM
 
