@@ -19,7 +19,7 @@
 This guide will help you get started using the Crypto Library and Virgil Keys Services for the most popular platforms and languages.
 This branch focuses on the C#/.NET library implementation and covers it's usage.
 
-Let's build an encrypted mail exchange system as one of the possible [use cases](#use-case) of Virgil Security Services. ![Use case mail](https://raw.githubusercontent.com/VirgilSecurity/virgil/master/images/Email-diagram.jpg | width=100)
+Let's build an encrypted mail exchange system as one of the possible [use cases](#use-case) of Virgil Security Services. ![Use case mail]![alt text](https://raw.githubusercontent.com/VirgilSecurity/virgil/master/images/Email-diagram.jpg)
 
 ## Obtaining an Access Token
 
