@@ -17,7 +17,9 @@
 ## Introduction
 
 This guide will help you get started using the Crypto Library and Virgil Keys Services.
-Let's build an encrypted mail exchange system as one of the possible [use cases](#use-case) of Virgil Security Services. ![Use case mail](https://github.com/VirgilSecurity/virgil/blob/master/images/Email-diagram.jpg)
+
+Let's build an encrypted mail exchange system as one of the possible [use cases](#use-case) of Virgil Security Services.
+<img src="https://raw.githubusercontent.com/VirgilSecurity/virgil/master/images/Email-diagram.jpg" alt="Use case mail" width="700" height="500">
 
 ## Obtaining an Access Token
 
