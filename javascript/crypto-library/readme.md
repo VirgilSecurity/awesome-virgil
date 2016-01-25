@@ -51,7 +51,7 @@ In the table below you can see all types.
 
 | Key Type          | Description                    |
 |-------------------|--------------------------------|
-| Default      | recommended most safe type     |
+| Default      | recommended safest type     |
 | RSA_256      | RSA 1024 bit (not recommended) |
 | RSA_512      | RSA 1024 bit (not recommended) |
 | RSA_1024     | RSA 1024 bit (not recommended) |
