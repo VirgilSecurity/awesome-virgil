@@ -154,6 +154,7 @@ virgil.cards.untrust({
 	virgil_card_id: 'your virgil_card_id'
 });
 ```
+
 #### Revoke a Virgil Card
 
 This operation is used to delete the Virgil Card from the search and mark it as deleted. 
