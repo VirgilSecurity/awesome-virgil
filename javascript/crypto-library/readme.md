@@ -46,6 +46,33 @@ console.log('Key pair without password: ', keyPair);
 ```
 
 You can also generate a key pair with an encrypted private key just using one of the overloaded constructors.
+In table below you can see all types.
+
+| Key Type          | Description                    |
+|-------------------|--------------------------------|
+| Default      | recommended most safe type     |
+| RSA_256      | RSA 1024 bit (not recommended) |
+| RSA_512      | RSA 1024 bit (not recommended) |
+| RSA_1024     | RSA 1024 bit (not recommended) |
+| RSA_2048     | RSA 2048 bit (not recommended) |
+| RSA_3072     | RSA 3072 bit                   |
+| RSA_4096     | RSA 4096 bit                   |
+| RSA_8192     | RSA 8192 bit                   |
+| EC_SECP192R1 | 192-bits NIST curve            |
+| EC_SECP224R1 | 224-bits NIST curve            |
+| EC_SECP256R1 | 256-bits NIST curve            |
+| EC_SECP384R1 | 384-bits NIST curve            |
+| EC_SECP521R1 | 521-bits NIST curve            |
+| EC_BP256R1   | 256-bits Brainpool curve       |
+| EC_BP384R1   | 384-bits Brainpool curve       |
+| EC_BP512R1   | 512-bits Brainpool curve       |
+| EC_M221      | (not implemented yet)          |
+| EC_M255      | Curve25519                     |
+| EC_M383      | (not implemented yet)          |
+| EC_M511      | (not implemented yet)          |
+| EC_SECP192K1 | 192-bits "Koblitz" curve       |
+| EC_SECP224K1 | 224-bits "Koblitz" curve       |
+| EC_SECP256K1 | 256-bits "Koblitz" curve       |
 
 ```javascript
 var keyPairRsa2048 = virgilCrypto.generateKeyPair(virgilCrypto.KeysTypesEnum.rsa2048);
