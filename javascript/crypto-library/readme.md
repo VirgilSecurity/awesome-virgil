@@ -1,10 +1,9 @@
 
-
 # Tutorial JavaScript Crypto Library 
 
-- [Install](#install)
+- [Install](#installation)
 - [Generate Keys](#generate-keys)
-- [Encrypt/Decrypt Data](#encrypt-decrypt-data)
+- [Encrypt/Decrypt Data](#encryptdecrypt-data)
     - [Using Password](#using-password)
     - [Async (using web workers) Using Password](#async-using-web-workers-using-password)
     - [Using Key](#using-key)
@@ -17,7 +16,6 @@
 - [Sign and Verify Data Using Key](#sign-and-verify-data-using-key)
     - [With Password](#with-password)
     - [Async (using web workers) with Password](#async-using-web-workers-with-password)
-- [See Also](#see-also)
   
 ## Install
 
@@ -77,10 +75,9 @@ In the table below you can see all types.
 | EC_SECP256K1 | 256-bits "Koblitz" curve       |
 
 
-
 ```javascript
-var keyPairRsa2048 = virgilCrypto.generateKeyPair(virgilCrypto.KeysTypesEnum.rsa2048);
-console.log('Key pair rsa2048 without password: ', keyPairRsa2048);
+var keyPairRsa2048 = virgilCrypto.generateKeyPair(virgilCrypto.KeysTypesEnum.RSA_2048);
+console.log('Key pair RSA_2048 without password: ', keyPairRsa2048);
 
 var KEY_PASSWORD = 'password';
 var keyPairWithPassword = virgilCrypto.generateKeyPair(KEY_PASSWORD);
@@ -88,8 +85,8 @@ console.log('Key pair with password: ', keyPairWithPassword);
 
 
 var KEY_PASSWORD = 'password';
-var keyPairWithPasswordAndSpecificType = virgilCrypto.generateKeyPair(KEY_PASSWORD, virgilCrypto.KeysTypesEnum.rsa2048);
-console.log('Key pair rsa2048 with password: ', keyPairWithPasswordAndSpecificType);
+var keyPairWithPasswordAndSpecificType = virgilCrypto.generateKeyPair(KEY_PASSWORD, virgilCrypto.KeysTypesEnum.RSA_2048);
+console.log('Key pair RSA_2048 with password: ', keyPairWithPasswordAndSpecificType);
 ```
 
 In the example below you can see a simply generated public/private keypair without a password.
@@ -139,7 +136,7 @@ Crypto Library allows to encrypt the data for several types of recipient's user 
 
 > Encrypted data will be returned as a [Buffer](https://github.com/feross/buffer).
 
-> The [Buffer](https://github.com/feross/buffer) constructor is available by ```virgilCrypto.Buffer```
+> The [Buffer](https://github.com/feross/buffer) constructor is available by ```virgilCrypto.Buffer```.
 
 ```javascript
 var INITIAL_DATA = 'data to be encrypted';
@@ -177,7 +174,7 @@ virgilCrypto.encryptAsync(INITIAL_DATA, PASSWORD)
 
 > Encrypted data will be returned as a [Buffer](https://github.com/feross/buffer).
 
-> The [Buffer](https://github.com/feross/buffer) constructor is available by ```virgilCrypto.Buffer```
+> The [Buffer](https://github.com/feross/buffer) constructor is available by ```virgilCrypto.Buffer```.
 
 ### Using Key with Password
 
@@ -304,7 +301,7 @@ The following example applies a digital signature to a public key identifier.
 
 > Encrypted data will be returned as a [Buffer](https://github.com/feross/buffer).
 
-> The [Buffer](https://github.com/feross/buffer) constructor is available by ```virgilCrypto.Buffer```
+> The [Buffer](https://github.com/feross/buffer) constructor is available by ```virgilCrypto.Buffer```.
 
 ### With Password
 
@@ -363,7 +360,7 @@ virgilCrypto.generateKeyPairAsync(KEY_PASSWORD)
 ```
 ## See Also
 
-* [Tutorial Crypto Library](https://virgilsecurity.com/developers/javascript/quickstart)
+* [Quickstart](https://virgilsecurity.com/developers/javascript/quickstart)
 * [Tutorial Keys SDK](https://virgilsecurity.com/developers/javascript/keys-sdk)
 </div>
 </div>
