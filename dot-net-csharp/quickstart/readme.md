@@ -119,7 +119,7 @@ var email = await mailClient.GetBySubjectAsync("recipient-test@virgilsecurity.co
 var encryptedBody = JsonConvert.Deserialize<EncryptedBody>(email.Body);
 ```
 
-## Step 5. Get sender's Public Key
+## Step 5. Get Sender's Public Key
 In order to decrypt the received data the app on recipient’s side needs to get sender’s Virgil Card from the Public Keys Service.
 
 ```csharp
