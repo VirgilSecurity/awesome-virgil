@@ -1,7 +1,7 @@
 
 # Tutorial JavaScript Crypto Library 
 
-- [Install](#installation)
+- [Install](#install)
 - [Generate Keys](#generate-keys)
 - [Encrypt/Decrypt Data](#encrypt-decrypt-data)
     - [Using Password](#using-password)
