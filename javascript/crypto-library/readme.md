@@ -137,7 +137,7 @@ Crypto Library allows to encrypt the data for several types of recipient's user 
 
 > Encrypted data will be returned as a [Buffer](https://github.com/feross/buffer).
 
-> The [Buffer](https://github.com/feross/buffer) constructor is available by ```virgilCrypto.Buffer```.
+> The [Buffer](https://github.com/feross/buffer) constructor is available by ```virgilCrypto.Buffer```
 
 ```javascript
 var INITIAL_DATA = 'data to be encrypted';
@@ -175,7 +175,7 @@ virgilCrypto.encryptAsync(INITIAL_DATA, PASSWORD)
 
 > Encrypted data will be returned as a [Buffer](https://github.com/feross/buffer).
 
-> The [Buffer](https://github.com/feross/buffer) constructor is available by ```virgilCrypto.Buffer```.
+> The [Buffer](https://github.com/feross/buffer) constructor is available by ```virgilCrypto.Buffer```
 
 ### Using Key with Password
 
@@ -302,7 +302,7 @@ The following example applies a digital signature to a public key identifier.
 
 > Encrypted data will be returned as a [Buffer](https://github.com/feross/buffer).
 
-> The [Buffer](https://github.com/feross/buffer) constructor is available by ```virgilCrypto.Buffer```.
+> The [Buffer](https://github.com/feross/buffer) constructor is available by ```virgilCrypto.Buffer```
 
 ### With Password
 
