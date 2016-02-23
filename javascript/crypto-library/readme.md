@@ -1,5 +1,4 @@
 
-
 # Tutorial JavaScript Crypto Library 
 
 - [Install](#install)
@@ -77,10 +76,9 @@ In the table below you can see all types.
 | EC_SECP256K1 | 256-bits "Koblitz" curve       |
 
 
-
 ```javascript
-var keyPairRsa2048 = virgilCrypto.generateKeyPair(virgilCrypto.KeysTypesEnum.rsa2048);
-console.log('Key pair rsa2048 without password: ', keyPairRsa2048);
+var keyPairRsa2048 = virgilCrypto.generateKeyPair(virgilCrypto.KeysTypesEnum.RSA_2048);
+console.log('Key pair RSA_2048 without password: ', keyPairRsa2048);
 
 var KEY_PASSWORD = 'password';
 var keyPairWithPassword = virgilCrypto.generateKeyPair(KEY_PASSWORD);
@@ -88,8 +86,8 @@ console.log('Key pair with password: ', keyPairWithPassword);
 
 
 var KEY_PASSWORD = 'password';
-var keyPairWithPasswordAndSpecificType = virgilCrypto.generateKeyPair(KEY_PASSWORD, virgilCrypto.KeysTypesEnum.rsa2048);
-console.log('Key pair rsa2048 with password: ', keyPairWithPasswordAndSpecificType);
+var keyPairWithPasswordAndSpecificType = virgilCrypto.generateKeyPair(KEY_PASSWORD, virgilCrypto.KeysTypesEnum.RSA_2048);
+console.log('Key pair RSA_2048 with password: ', keyPairWithPasswordAndSpecificType);
 ```
 
 In the example below you can see a simply generated public/private keypair without a password.
@@ -363,7 +361,7 @@ virgilCrypto.generateKeyPairAsync(KEY_PASSWORD)
 ```
 ## See Also
 
-* [Tutorial Crypto Library](https://virgilsecurity.com/developers/javascript/quickstart)
+* [Quickstart](https://virgilsecurity.com/developers/javascript/quickstart)
 * [Tutorial Keys SDK](https://virgilsecurity.com/developers/javascript/keys-sdk)
 </div>
 </div>

@@ -9,14 +9,13 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 ***
 
 # <a name="head3"></a>Developers Docs
-
-[C/C++] (https://github.com/VirgilSecurity/virgil/tree/master/c-cpp)
+[Virgil Entities](https://github.com/VirgilSecurity/virgil/wiki/Virgil-Entities)
 
 [.NET/C#] (https://github.com/VirgilSecurity/virgil/tree/master/dot-net-csharp)
 
-[Javascript] (https://github.com/VirgilSecurity/virgil/tree/master/javascript)
+[Javascript/Node.js] (https://github.com/VirgilSecurity/virgil/tree/master/javascript)
 
-[Node.js] (https://github.com/VirgilSecurity/virgil/tree/master/node)
+[C/C++] (https://github.com/VirgilSecurity/virgil/tree/master/c-cpp)
 
 [PHP] (https://github.com/VirgilSecurity/virgil/tree/master/php)
 
@@ -27,6 +26,7 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 # <a name="head7"></a>Virgil Services
 - [Private Keys Service](https://github.com/VirgilSecurity/virgil/wiki/Virgil-Private-Keys-API)
 - [Public Keys Service](https://github.com/VirgilSecurity/virgil/wiki/Virgil-Keys-API)
+- [Identity Service](https://github.com/VirgilSecurity/virgil/wiki/Identity-Service)
 
 # <a name="head4"></a>Use cases
 1. [Passwordless authentication](https://github.com/VirgilSecurity/virgil/wiki/Passwordless-authentication)
