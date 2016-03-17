@@ -123,7 +123,7 @@ SFMQ8705Y2W1uTexqw==
 -----END ENCRYPTED PRIVATE KEY-----
 ```
 
-## Encrypt/Decrypt data
+## Encrypt/Decrypt Data
 
 The procedure for encrypting and decrypting the data is simple. For example:
 
@@ -361,8 +361,8 @@ virgilCrypto.generateKeyPairAsync(KEY_PASSWORD)
 ```
 ## See Also
 
-* [Quickstart](https://virgilsecurity.com/developers/javascript/quickstart)
-* [Tutorial Keys SDK](https://virgilsecurity.com/developers/javascript/keys-sdk)
+* [Quickstart](https://virgilsecurity.com/api-docs/javascript/quickstart)
+* [Tutorial Keys SDK](https://virgilsecurity.com/api-docs/javascript/keys-sdk)
 </div>
 </div>
 
