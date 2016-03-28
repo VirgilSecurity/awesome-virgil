@@ -1,6 +1,3 @@
-
-# Tutorial JavaScript Crypto Library 
-
 - [Install](#install)
 - [Generate Keys](#generate-keys)
 - [Encrypt/Decrypt Data](#encrypt-decrypt-data)
@@ -77,7 +74,8 @@ In the table below you can see all types.
 
 
 ```javascript
-var keyPairRsa2048 = virgilCrypto.generateKeyPair(virgilCrypto.KeysTypesEnum.RSA_2048);
+var keyPairRsa2048 = virgilCrypto.generateKeyPair(
+                    virgilCrypto.KeysTypesEnum.RSA_2048);
 console.log('Key pair RSA_2048 without password: ', keyPairRsa2048);
 
 var KEY_PASSWORD = 'password';
@@ -86,8 +84,11 @@ console.log('Key pair with password: ', keyPairWithPassword);
 
 
 var KEY_PASSWORD = 'password';
-var keyPairWithPasswordAndSpecificType = virgilCrypto.generateKeyPair(KEY_PASSWORD, virgilCrypto.KeysTypesEnum.RSA_2048);
-console.log('Key pair RSA_2048 with password: ', keyPairWithPasswordAndSpecificType);
+var keyPairWithPasswordAndSpecificType = virgilCrypto.generateKeyPair(
+                            KEY_PASSWORD, 
+                            virgilCrypto.KeysTypesEnum.RSA_2048);
+console.log('Key pair RSA_2048 with password: ', 
+        keyPairWithPasswordAndSpecificType);
 ```
 
 In the example below you can see a simply generated public/private keypair without a password.
@@ -123,7 +124,7 @@ SFMQ8705Y2W1uTexqw==
 -----END ENCRYPTED PRIVATE KEY-----
 ```
 
-## Encrypt/Decrypt Data
+## Encrypt/Decrypt data
 
 The procedure for encrypting and decrypting the data is simple. For example:
 
@@ -185,8 +186,15 @@ var INITIAL_DATA = 'data to be encrypted';
 var RECIPIENT_ID = '<SOME_RECIPIENT_ID>';
 
 var keyPair = virgilCrypto.generateKeyPair(KEY_PASSWORD);
-var encryptedData = virgilCrypto.encrypt(INITIAL_DATA, RECIPIENT_ID, keyPair.publicKey);
-var decryptedData = virgilCrypto.decrypt(encryptedData, RECIPIENT_ID, keyPair.privateKey, KEY_PASSWORD);
+var encryptedData = virgilCrypto.encrypt(
+                                     INITIAL_DATA, 
+                                     RECIPIENT_ID, 
+                                     keyPair.publicKey);
+var decryptedData = virgilCrypto.decrypt(
+                                    encryptedData, 
+                                    RECIPIENT_ID, 
+                                    keyPair.privateKey, 
+                                    KEY_PASSWORD);
 
 console.log('Encrypted data: ' + encryptedData);
 console.log('Decrypted data: ' + decryptedData.toString());
@@ -200,9 +208,14 @@ var INITIAL_DATA = 'data to be encrypted';
 var RECIPIENT_ID = '<SOME_RECIPIENT_ID>';
 
 var keyPair = virgilCrypto.generateKeyPair(KEY_PASSWORD);
-var recipientsList = [{ recipientId: RECIPIENT_ID, publicKey: keyPair.publicKey }];
+var recipientsList = [{ recipientId: RECIPIENT_ID, 
+                 publicKey: keyPair.publicKey }];
 var encryptedData = virgilCrypto.encrypt(INITIAL_DATA, recipientsList);
-var decryptedData = virgilCrypto.decrypt(encryptedData, RECIPIENT_ID, keyPair.privateKey, KEY_PASSWORD);
+var decryptedData = virgilCrypto.decrypt(
+                                 encryptedData, 
+                                 RECIPIENT_ID, 
+                                 keyPair.privateKey, 
+                                 KEY_PASSWORD);
 
 console.log('Encrypted data: ' + encryptedData);
 console.log('Decrypted data: ' + decryptedData.toString());
@@ -223,7 +236,11 @@ virgilCrypto.generateKeyPairAsync(KEY_PASSWORD)
       .then(function(encryptedData) {
         console.log('Encrypted data: ' + encryptedData);
 
-        virgilCrypto.decryptAsync(encryptedData, RECIPIENT_ID, keyPair.privateKey, KEY_PASSWORD)
+        virgilCrypto.decryptAsync(
+                    encryptedData, 
+                    RECIPIENT_ID, 
+                    keyPair.privateKey, 
+                    KEY_PASSWORD)
           .then(function(decryptedData) {
             console.log('Decrypted data: ' + decryptedData.toString());
           });
@@ -242,13 +259,18 @@ var RECIPIENT_ID = '<SOME_RECIPIENT_ID>';
 
 virgilCrypto.generateKeyPairAsync(KEY_PASSWORD)
   .then(function(keyPair) {
-    var recipientsList = [{ recipientId: RECIPIENT_ID, publicKey: keyPair.publicKey }];
-    
+    var recipientsList = [{ recipientId: RECIPIENT_ID, 
+                            publicKey: keyPair.publicKey }];
+
     virgilCrypto.encryptAsync(INITIAL_DATA, recipientsList)
       .then(function(encryptedData) {
         console.log('Encrypted data: ' + encryptedData);
 
-        virgilCrypto.decryptAsync(encryptedData, RECIPIENT_ID, keyPair.privateKey, KEY_PASSWORD)
+        virgilCrypto.decryptAsync(
+                    encryptedData, 
+                    RECIPIENT_ID, 
+                    keyPair.privateKey, 
+                    KEY_PASSWORD)
           .then(function(decryptedData) {
             console.log('Decrypted data: ' + decryptedData.toString());
           });
@@ -263,8 +285,14 @@ var INITIAL_DATA = 'data to be encrypted';
 var RECIPIENT_ID = '<SOME_RECIPIENT_ID>';
 
 var keyPair = virgilCrypto.generateKeyPair();
-var encryptedData = virgilCrypto.encrypt(INITIAL_DATA, RECIPIENT_ID, keyPair.publicKey);
-var decryptedData = virgilCrypto.decrypt(encryptedData, RECIPIENT_ID, keyPair.privateKey);
+var encryptedData = virgilCrypto.encrypt(
+                                 INITIAL_DATA, 
+                                 RECIPIENT_ID, 
+                                 keyPair.publicKey);
+var decryptedData = virgilCrypto.decrypt(
+                                 encryptedData, 
+                                 RECIPIENT_ID, 
+                                 keyPair.privateKey);
 
 console.log('Encrypted data: ' + encryptedData);
 console.log('Decrypted data: ' + decryptedData.toString());
@@ -284,7 +312,10 @@ virgilCrypto.generateKeyPairAsync()
       .then(function(encryptedData) {
         console.log('Encrypted data: ' + encryptedData);
 
-        virgilCrypto.decryptAsync(encryptedData, RECIPIENT_ID, keyPair.privateKey)
+        virgilCrypto.decryptAsync(
+                   encryptedData, 
+                   RECIPIENT_ID, 
+                   keyPair.privateKey)
           .then(function(decryptedData) {
             console.log('Decrypted data: ' + decryptedData.toString());
           });
@@ -312,8 +343,14 @@ var INITIAL_DATA = 'data to be encrypted';
 var RECIPIENT_ID = '<SOME_RECIPIENT_ID>';
 
 var keyPair = virgilCrypto.generateKeyPair(KEY_PASSWORD);
-var encryptedData = virgilCrypto.encrypt(INITIAL_DATA, RECIPIENT_ID, keyPair.publicKey);
-var sign = virgilCrypto.sign(encryptedData, keyPair.privateKey, KEY_PASSWORD);
+var encryptedData = virgilCrypto.encrypt(
+                                 INITIAL_DATA, 
+                                 RECIPIENT_ID, 
+                                 keyPair.publicKey);
+var sign = virgilCrypto.sign(
+               encryptedData, 
+               keyPair.privateKey, 
+               KEY_PASSWORD);
 ```
 
 To verify that the data was signed by a particular party, you need the following information:
@@ -325,7 +362,10 @@ To verify that the data was signed by a particular party, you need the following
 The following example verifies a digital signature which was signed by the sender.
 
 ```javascript
-var isDataVerified = virgilCrypto.verify(encryptedData, keyPair.publicKey, sign);
+var isDataVerified = virgilCrypto.verify(
+                               encryptedData, 
+                               keyPair.publicKey, 
+                               sign);
 
 console.log('Encrypted data: ' + encryptedData);
 console.log('Sign: ' + sign.toString('base64'));
@@ -347,7 +387,10 @@ virgilCrypto.generateKeyPairAsync(KEY_PASSWORD)
       .then(function(encryptedData) {
         console.log('Encrypted data: ' + encryptedData);
 
-        virgilCrypto.signAsync(encryptedData, keyPair.privateKey, KEY_PASSWORD)
+        virgilCrypto.signAsync(
+                   encryptedData, 
+                   keyPair.privateKey, 
+                   KEY_PASSWORD)
           .then(function(sign) {
             console.log('Sign: ' + sign.toString('base64'));
 
@@ -361,17 +404,5 @@ virgilCrypto.generateKeyPairAsync(KEY_PASSWORD)
 ```
 ## See Also
 
-* [Quickstart](https://virgilsecurity.com/api-docs/javascript/quickstart)
-* [Tutorial Keys SDK](https://virgilsecurity.com/api-docs/javascript/keys-sdk)
-</div>
-</div>
-
-<div class="col-md-12 col-md-offset-2 hidden-md hidden-xs hidden-sm">
-<div class="docs-menu" data-ui="affix-docs">
-
-<div class="menu-items-wrapper" data-ui="menu-items-wrapper"></div>
-</div>
-</div>
-</div>
-</div>
-</section>
+* [Quickstart](/api-docs/javascript/quickstart)
+* [Tutorial Keys SDK](/api-docs/javascript/keys-sdk)
