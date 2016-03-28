@@ -1,8 +1,3 @@
-
-
-# Tutorial C#/.NET Crypto Library
-
-
 - [Install](#install)
 - [Generate Keys](#generate-keys)
 - [Encrypt Data](#encrypt-data)
@@ -121,7 +116,9 @@ Encrypt the text with a public key:
 
 ```csharp
 var keyPair = CryptoHelper.GenerateKeyPair();
-var cipherText = CryptoHelper.Encrypt(textToEncrypt, "RecipientID" ,password);
+var cipherText = CryptoHelper.Encrypt(textToEncrypt, 
+                              "RecipientID",
+                              password);
 ```
 
 And of course you can mix these types as well, see how it works in the example below:
@@ -135,7 +132,8 @@ using (var cipher = new VirgilCipher())
     cipher.AddPasswordRecipient(password);
     cipher.AddKeyRecipient(keyRecepinet.Id, keyRecepinet.PublicKey);
 
-    cipherData = cipher.Encrypt(Encoding.UTF8.GetBytes(textToEncrypt), true);
+    cipherData = cipher.Encrypt(Encoding.UTF8.GetBytes(textToEncrypt), 
+                            true);
 }
 ```
 
@@ -167,7 +165,9 @@ To verify that the data was signed by a particular party, you need the following
 The following example verifies a digital signature which was signed by the sender.
 
 ```csharp
-var isValid = CryptoHelper.Verify(originalText, signature, keyPair.PublicKey());
+var isValid = CryptoHelper.Verify(originalText, 
+                       signature, 
+                       keyPair.PublicKey());
 ```
 
 See a working example [here...](https://github.com/VirgilSecurity/virgil-net/blob/master/Examples/Crypto/SingAndVerify.cs)
@@ -177,7 +177,9 @@ See a working example [here...](https://github.com/VirgilSecurity/virgil-net/blo
 The following example illustrates decryption of the encrypted data with a recipient's private key.
 
 ```csharp
-var decryptedText = CryptoHelper.Decrypt(cipherText, "RecipientId", keyPair.PrivateKey());
+var decryptedText = CryptoHelper.Decrypt(cipherText, 
+                                    "RecipientId", 
+                                    keyPair.PrivateKey());
 ```
 
 Use a password to decrypt the data.
@@ -190,18 +192,5 @@ See a working example [here...](https://github.com/VirgilSecurity/virgil-net/blo
 
 ## See Also
 
-* [Quickstart](https://virgilsecurity.com/developers/dot-net-csharp/quickstart)
-* [Tutorial Keys SDK](https://virgilsecurity.com/developers/dot-net-csharp/keys-sdk)
-
-</div>
-</div>
-
-<div class="col-md-12 col-md-offset-2 hidden-md hidden-xs hidden-sm">
-<div class="docs-menu" data-ui="affix-docs">
-
-<div class="menu-items-wrapper" data-ui="menu-items-wrapper"></div>
-</div>
-</div>
-</div>
-</div>
-</section>
+* [Quickstart](/api-docs/dot-net-csharp/quickstart)
+* [Tutorial Keys SDK](/api-docs/dot-net-csharp/keys-sdk)
