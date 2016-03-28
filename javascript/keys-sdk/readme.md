@@ -1,6 +1,3 @@
-
-# Tutorial JavaScript Virgil Services SDK 
-
 - [Introduction](#introduction)
 - [Install](#install)
 - [Obtaining an Access Token](#obtaining-an-access-token)
@@ -240,17 +237,5 @@ virgil.privateKeys.destroy({
 
 ## See Also
 
-* [Quickstart](https://virgilsecurity.com/developers/javascript/quickstart)
-* [Tutorial Crypto Library](https://virgilsecurity.com/developers/javascript/crypto-library)
-</div>
-</div>
-
-<div class="col-md-12 col-md-offset-2 hidden-md hidden-xs hidden-sm">
-<div class="docs-menu" data-ui="affix-docs">
-
-<div class="menu-items-wrapper" data-ui="menu-items-wrapper"></div>
-</div>
-</div>
-</div>
-</div>
-</section>
+* [Quickstart](/api-docs/javascript/quickstart)
+* [Tutorial Crypto Library](/api-docs/javascript/crypto-library)
