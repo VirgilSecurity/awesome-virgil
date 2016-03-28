@@ -1,532 +1,538 @@
 
-#Virgil Security iOS SDK 
-
 - [Introduction](#introduction)
-- [Prerequisites](#prerequisites)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Virgil SDK API](#virgil-sdk-api)
-    - [Obtaining an Application Token](#obtaining-an-application-token)
-    - [Generate Keys](#generate-keys)
-    - [Register User](#register-user)
-    - [Store a Private Key](#store-a-private-key)
-    - [Get a Public Key](#get-a-public-key)
-    - [Encrypt Data](#encrypt-data)
-    - [Sign Data](#sign-data)
-    - [Verify Data](#verify-data)
-    - [Decrypt Data](#decrypt-data)
+- [Obtaining an Access Token](#obtaining-an-access-token)
+- [Install](#install)
+- [Swift note](#swift-note)
+- [Use case](#use-case)
+    - [Initialization](#initialization)
+    - [Step 1. Create and Publish the Keys](#step-1-create-and-publish-the-keys)
+    - [Step 2. Encrypt and Sign](#step-2-encrypt-and-sign)
+    - [Step 3. Get sender's Public Key](#step-3-get-senders-public-key)
+    - [Step 4. Verify and Decrypt](#step-4-verify-and-decrypt)
+- [See also](#see-also)
 
-##Introduction
+## Introduction
 
-This guide will help you get started using the Crypto Library and Virgil Services for the Apple iOS platform. To be able to use Virgil iOS frameworks you should have a MacOS X (10.10+), Xcode (6.4+) and iOS devices (iOS 8.0+).
+This guide will help you get started using the Crypto Library and Virgil Security Services for the most popular platforms and languages.
+This branch focuses on the Objective-C/Swift library implementation and covers its usage.
 
-## Prerequisites
+Let's go through an encrypted message exchange steps as one of the possible [use cases](#use-case) of Virgil Security Services. ![Use case mail](https://raw.githubusercontent.com/VirgilSecurity/virgil/master/images/Email-diagram-short.jpg)
 
-- [Mac OS X El Capitan](https://itunes.apple.com/ua/app/os-x-el-capitan/id1018109117?mt=12) 
-- [Xcode 7](https://itunes.apple.com/ua/app/xcode/id497799835?mt=12)
-- [Cocoapods](https://cocoapods.org/)
+## Obtaining an Access Token
 
-## Installation
+First you must create a free Virgil Security developer's account by signing up [here](https://developer.virgilsecurity.com/account/signup). Once you have your account you can [sign in](https://developer.virgilsecurity.com/account/signin) and generate an access token for your application.
 
-The most simple and recommended way to use Virgil iOS frameworks is to install them via the CocoaPods. First of all you need to install the CocoaPods if you don't have it yet. This is very simple, just open your terminal and execute the following line:
-```sh
+The access token provides authenticated secure access to Virgil Security Services and is passed with each API call. The access token also allows the API to associate your app’s requests with your Virgil Security developer's account.
+
+Use this token to initialize the SDK client [here](#initialization).
+
+## Install
+
+You can easily add SDK dependency to your project using CocoaPods. So, if you are not familiar with this dependency manager, it is time to install CocoaPods. Open your terminal window and execute the following line:
+```
 $ sudo gem install cocoapods
-```
-It will ask you about the password and then will install latest release version of CocoaPods. CocoaPods is built with Ruby and it will be installable with the default Ruby available on OS X.
+``` 
+It will ask you about the password and then will install latest release version of CocoaPods. CocoaPods is built with Ruby and it will be installed with the default Ruby available in OS X.
+If you encounter any issues during this installation, please take a look at [cocoapods.org](https://guides.cocoapods.org/using/getting-started.html) for more information.
 
-To simplify any efforts for work with Virgil Keys and Virgil Private Keys service there are two iOS frameworks *VirgilKeysiOS* and *VirgilPrivateKeysiOS* available as pods. To integrate them into the Xcode project you should create a file in the Xcode project's folder and name it *Podfile* (capital *P* and without any extension). This file contains instructions for CocoaPods about which pods you want to use. In the simplest case you probably want to use both VirgilKeys and VirgilPrivateKeys iOS frameworks, so your Podfile should contain the following 4 lines of code:
-```
-source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '8.0'
-pod 'VirgilKeysiOS'
-pod 'VirgilPrivateKeysiOS'
-```
-If you need to use only *VirgilKeysiOS* framework then just remove the last line from the podfile, so your podfile might look as following:
-```
-source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '8.0'
-pod 'VirgilKeysiOS'
-```
+Now it is possible to add VirgilSDK to the particular application. So:
 
-Both *VirgilKeysiOS* and *VirgilPrivateKeysiOS* have dependencies on *VirgilCryptoiOS* lower-level framework. These dependencies are managed by cocoapods for you, because of that you don't need to include any direct references to *VirgilCryptoiOS* in your podfile. But in case when you need only low-level cryptographic functionality without any Virgil Services interactions then you can use only *VirgilCryptoiOS* framework. Just compose your podfile as following:
-```
-source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '8.0'
-pod 'VirgilCryptoiOS'
-```
+- Open Xcode and create a new project (in the Xcode menu: File->New->Project), or navigate to existing Xcode project using:
 
-After you decided which functionality you want to use it is time to get back to the Terminal. Navigate to the Xcode project's folder:
-```sh
+```
 $ cd <Path to Xcode project folder>
 ```
-Install the Virgil pods:
-```sh
+
+- In the Xcode project's folder create a new file, give it a name *Podfile* (with a capital *P* and without any extension). The following example shows how to compose the Podfile for an iOS application. If you are planning to use another platform, the process will be quite similar. You only need to change a platform to the correspondent value. [Here](https://guides.cocoapods.org/syntax/podfile.html#platform) you can find more information about the platform values.
+
+```
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '8.0'
+use_frameworks!
+
+target '<Put your Xcode target name here>' do
+	pod 'VirgilSDK'
+end
+```
+
+- Get back to your terminal window and execute the following line:
+
+```
 $ pod install
 ```
-This will automatically get and install latest available versions of Virgil pods. Also, after this command finishes its execution Xcode workspace will be created in the project's folder. Now for all development purposes you will need to open .xcworkspace file instead of .xcodeproj.
+ 
+- Close Xcode project (if it is still opened). For any further development purposes you should use Xcode *.xcworkspace* file created for you by CocoaPods.
+ 
+At this point you should be able to use VirgilSDK pod in your code. If you encountered any issues with CocoaPods installations try to find more information at [cocoapods.org](https://guides.cocoapods.org/using/getting-started.html).
 
-If you encountered any issues during the installation process or if you want to know more about the CocoaPods, Podfile and so on then you can find a lot of information at the [cocoapods.org](https://cocoapods.org/).
+## Swift note
 
-## Usage
+Although VirgilSDK pod is using Objective-C as its primary language it might be quite easily used in a Swift application.
+After pod is installed as described above it is necessary to perform the following:
 
-The Virgil iOS frameworks (or Virgil pods) are written in Objective-C. It is absolutely OK to use them in any particular application written in Objective-C as well. However if your target application is written in Swift it is very easy to make Virgil pods be available in Swift code.
+- Create a new header file in the Swift project.
+- Name it something like *BridgingHeader.h*
+- Put there the following lines:
 
-For developing in Swift you still need to install the Virgil pods as described in [Installation](#installation) section of this guide. After that perform the following actions:
-
-- Create a new header file in your project at any convenient for you location within project's folder.
-- Name this new header as something like *BridgingHeader.h*.
-- Put the follwing lines inside *BridgingHeader.h*.
-
-```objective-c
-#import <VirgilKeysiOS/VirgilKeysiOS.h>
-#import <VirgilPrivateKeysiOS/VirgilPrivateKeysiOS.h>
+###### Objective-C
+``` objective-c
+@import VirgilFoundation;
+@import VirgilSDK;
 ```
 
-- Open Xcode build setting for this project. 
-- Find the setting called *Objective-C Bridging Header* and set the path to your *BridgingHeader.h* file. Be aware that this path is relative to your Xcode project's folder.
+- In the Xcode build settings find the setting called *Objective-C Bridging Header* and set the path to your *BridgingHeader.h* file. Be aware that this path is relative to your Xcode project's folder. After adding bridging header setting you should be able to use the SDK.
 
-You can find more information about mixing the Objective-C and Swift code in the same project in this [Apple guide](https://developer.apple.com/library/ios/documentation/Swift/Conceptual/BuildingCocoaApps/MixandMatch.html).
+You can find more information about using Objective-C and Swift in the same project [here](https://developer.apple.com/library/ios/documentation/Swift/Conceptual/BuildingCocoaApps/MixandMatch.html).
 
-## Virgil SDK API
+## Use Case
+**Secure any data end to end**: users need to securely exchange information (text messages, files, audio, video etc) while enabling both in transit and at rest protection. 
 
-### Obtaining an Application Token
+- Application generates public and private key pairs using Virgil Crypto library and use Virgil Keys service to enable secure end to end communications:
+    - public key on Virgil Public Keys Service;
+    - private key on Virgil Private Keys Service or locally.
+- Sender’s information is encrypted in Virgil Crypto Library with the recipient’s public key.
+- Sender’s encrypted information is signed with his private key in Virgil Crypto Library.
+- Application securely transfers the encrypted data, sender’s digital signature and UDID to the recipient without any risk to be revealed.
+- Application on the recipient’s side verifies that the signature of transferred data is valid using the signature and sender’s public key in Virgil Crypto Library.
+- Received information is decrypted with the recipient’s private key using Virgil Crypto Library.
+- Decrypted data is provided to the recipient.
 
-The app token provides access to Virgil’s Services and is passed with each API call. The app token also allows the API to associate your app’s requests with your Virgil Security developer account.
+## Initialization
 
-1. [Create](https://api.virgilsecurity.com/signup) a free **Virgil Security** account.
-2. [Sign in](https://api.virgilsecurity.com/signin) and generate a token for your application.
-3. Use your app token to access Virgil Services using our iOS frameworks.
-
-### Generate keys
-
-Working with the Virgil Security Services requires the creation of both a public key and a private key. The public key can be made available to anyone using the Virgil Keys Service. The private key must be available only to the owner who will decrypt the data encrypted with the public key and compose the signature using this private key to make other participants sure about the identity of this particular person.
-
-:warning:
-Private keys should never be stored verbatim or in plain text on a local computer, phone or other device. If you need to store a private key, you should use a secure storage offered by the platform installed on your particular device (e.g. iOS/MacOS X offers the Keychain as a secure storage for any kind of secure data such as certificates, private keys, passwords). You also can use the Virgil Private Keys Service to store and synchronize all of yours private keys. This allows you to easily synchronize all the private keys between any clients’ devices and particular applications. Please read more about the [Virgil Private Keys Service](https://github.com/VirgilSecurity/virgil/wiki/Virgil-Private-Keys-Service).
-
-The following code example creates a new key pair. If you need to maximize the security level of your private keys then it is possible to set a password for the private key of the generated key pair. In this case private key will be already encrypted with a password given as a parameter to the VSSKeyPair initializer. The advantage of this is obviously higher security, but the disadvantage is that you always need to pass this password for any operation that involves using this private key (e.g. composing a signature, decrypting some received data, etc.).
-
-##### Objective-C:
+###### Objective-C
 ```objective-c
-//...
-#import <VirgilCryptoiOS/VirgilCryptoiOS.h>
-//...
-VSSKeyPair *keyPair = [[VSSKeyPair alloc] initWithPassword:<#Password or nil#>];
-//...
-```
-
-##### Swift:
-```swift
-//...
-let keyPair = VSSKeyPair(password: <#Password or nil#>)
-//...
-```
-
-### Register User
-
-Once you've created a public key you may push it to Virgil’s Keys Service. This will allow other users to send you encrypted data using your public key.
-
-This example shows how to upload a public key and register a new account on Virgil’s Keys Service.
-
-##### Objective-C:
-```objective-c
-//...
-#import <VirgilKeysiOS/VirgilKeysiOS.h>
-//...
-@property (nonatomic, strong) VSSKeysClient *keysClient;
-@property (nonatomic, strong) VSSPublicKey *publicKey;
-@property (nonatomic, strong) VSSPrivateKey *privateKey;
-//...
+@import VirgilFoundation;
+@import VirgilSDK;
 
 //...
-/// Create a user data instance
-VSSUserData *userData = [[VSSUserData alloc] initWithDataClass:UDCUserId dataType:UDTEmail value:<#Email address#>];
-/// Create a public key model container
-VSSPublicKey *candidateKey = [[VSSPublicKey alloc] initWithKey:keyPair.publicKey userDataList:@[ userData ]];
-/// Create a private key model container
-self.privateKey = [[VSSPrivateKey alloc] initWithKey:keyPair.privateKey password:<#Password for this key or nil#>];
-/// Create network client instance
-self.keysClient = [[VSSKeysClient alloc] initWithApplicationToken:<#Virgil Application Token#>];
-/// Make the request
-[self.keysClient createPublicKey:candidateKey privateKey:self.privateKey completionHandler:^(VSSPublicKey *pubKey, NSError *error) {
+@property (nonatomic, strong) VSSClient * __nonnull client;
+//...
+self.client = 
+	[[VSSClient alloc] initWithApplicationToken:<# Virgil App Token#> 
+	serviceConfig:nil];
+[self.client setupClientWithCompletionHandler:^(NSError * _Nullable error) {
     if (error != nil) {
-        NSLog(@"Error creating public key instance at the Virgil Keys Service: %@", [error localizedDescription]);
+        NSLog(@"Failed to setup VSSClient properly: %@", 
+        	[error localizedDescription]);
         return;
     }
     
-    /// Public key instance created at the Virgil Keys Service and model object returned as pubKey in the callback.
-    self.publicKey = pubKey;
+    NSLog(@"VSSClient has been set up and ready to work.");
+    //...
 }];
-```
-
-Confirm the **User Data**:
-
-```objective-c
 //...
-/// We have user data confirmation token code
-NSString *code = <#Confirmation code#>;
-/// Get the user data Id:
-VSSUserDataExtended *udEx = [self.publicKey.userDataList objectAtIndex:0];
-/// Make the request
-[self.keysClient persistUserDataId:udEx.idb.userDataId confirmationCode:code completionHandler:^(NSError *error) {
-    if (error != nil) {
-        NSLog(@"Error confirmation the user data: %@", [error localizedDescription]);
-        return;
-    }
-    
-    /// User data is now confirmed and can be used for any activities.
-}];
-
 ```
 
-##### Swift:
+###### Swift
 ```swift
 //...
-private var keysClient: VSSKeysClient! = nil
-private var publicKey: VSSPublicKey! = nil
-private var publicKey: VSSPrivateKey! = nil
-//...
-/// We have a key pair:
-let keyPair = VSSKeyPair()
-//...
-/// Create a user data instance 
-let userData = VSSUserData(dataClass: .UDCUserId, dataType: .UDTEmail, value: <#Email address#>)
-/// Create a public key model container
-let candidateKey = VSSPublicKey(key: keyPair.publicKey(), userDataList: [userData])
-/// Create a private key model container
-self.privateKey = VSSPrivateKey(key: keyPair.privateKey(), password: nil)
-/// Create network client instance for Virgil Keys Service
-self.keysClient = VSSKeysClient(applicationToken: <#Virgil Application Token#>)
-/// Make the request
-self.keysClient.createPublicKey(candidateKey, privateKey: self.privateKey) { pubKey, error in
+private var client: VSSClient! = nil
+//..
+self.client = VSSClient(applicationToken:<# Virgil App token#>,
+	 serviceConfig: nil)
+self.client.setupClientWithCompletionHandler { (error) -> Void in
     if error != nil {
-        print("Error creating public key at the Virgil Keys Service: \(error!.localizedDescription)")
+        print("Failed to setup VSSClient properly: 
+        	\(error!.localizedDescription)")
         return
-    }
-
-    /// Public key instance created at the Virgil Keys Service and model object returned as pubKey in the callback.
-    self.publicKey = pubKey
+    }    
+    
+    print("VSSClient has been set up and ready to work.")
+    //...
 }
 //...
 ```
 
-Confirm the **User Data**:
+## Step 1. Create and Publish the Keys
+First a mail exchange application is generating the keys and publishing them to the Public Keys Service where they are available in an open access for other users (e.g. recipient) to verify and encrypt the data for the key owner.
 
+The following code example creates a new public/private key pair.
+
+###### Objective-C
+```objective-c
+//...
+// The private key's password is optiona here.
+VSSKeyPair *keyPair = 
+	[[VSSKeyPair alloc] initWithPassword:<#Private key password or nil#>];
+//...
+```
+
+###### Swift
 ```swift
 //...
-/// We have user data confirmation token code
-let code = <#Confirmation code#>
-/// Get the user data Id:
-let udEx = self.publicKey.userDataList[0] as! VSSUserDataExtended
-/// Make the request
-self.keysClient.persistUserDataId(udEx.idb.userDataId!, confirmationCode: code) { error in
+// The private key's password is optiona here.
+let keyPair = VSSKeyPair(password:<#Private key password or nil#>)
+//...
+```
+The app is verifying whether the user really owns the provided email address and getting a temporary token for public key registration on the Public Keys Service.
+
+###### Objective-C
+```objective-c
+//...
+[self.client verifyIdentityWithType:VSSIdentityTypeEmail 
+	value:<# Email address #> 
+	completionHandler:^(GUID * _Nullable actionId, NSError * _Nullable error) 
+	{
+    if (error != nil) {
+        NSLog(@"Error verifying identity: %@", [error localizedDescription]);
+        return;
+    }
+    
+    // Store actionId somewhere. It will be necessary to confirm 
+    // the email address.
+    //...
+}];
+//...
+// Get the confirmation code from email box given in 
+// verifyIdentityWithType:value:completionHandler call
+// Use this code for email confirmation
+[self.client confirmIdentityWithActionId:<# Action Id #> 
+	code:<# Confirmation code from email #> 
+	ttl:nil 
+	ctl:nil 
+	completionHandler:^(VSSIdentityType type, 
+		NSString * _Nullable value, 
+		NSString * _Nullable validationToken, 
+		NSError * _Nullable error) {
+    		if (error != nil) {
+        		NSLog(@"Error identity confirmation: %@", 
+        		[error localizedDescription]);
+        return;
+    }
+    
+    // Store validationToken. It will be used for creating 
+    // Virgil Card object later.
+    //...
+}];
+//...
+```
+
+###### Swift
+```swift
+//...
+self.client.verifyIdentityWithType(.Email, value: <# Email address #>) 
+{ (actionId, error) -> Void in
     if error != nil {
-        print("Error confirmation the user data: \(error!.localizedDescription)")
+        print("Error verifying identity: \(error!.localizedDescription)")
         return
     }
     
-    /// User data is now confirmed and can be used for any activities.
+    // Store actionId somewhere. It will be necessary to confirm 
+    // the email address.
+    //...
+}
+//...
+// Get the confirmation code from email box given in 
+// verifyIdentityWithType:value:completionHandler call
+// Use this code for email confirmation
+self.client.confirmIdentityWithActionId(<# Action Id #>, 
+	code: <# Confirmation code from email #>, 
+	ttl: nil, 
+	ctl: nil) { (type, value, validationToken, error) -> Void in
+    if error != nil {
+        print("Error identity confirmation: \(error!.localizedDescription)")
+        return
+    }
+    
+    // Store validationToken. It will be used for creating 
+    // Virgil Card object later.
+    //...
 }
 //...
 ```
 
-### Store a Private Key
+The app is registering a Virgil Card which includes a public key and an email address identifier. The card will be used for the public key identification and searching for it in the Public Keys Service.
 
-This example shows how to store private keys on Virgil Private Keys service using SDK, this step is optional and you can use your own secure storage.
-
-##### Objective-C:
+###### Objective-C
 ```objective-c
 //...
-#import <VirgilPrivateKeysiOS/VirgilPrivateKeysiOS.h>
-//...
-@property (nonatomic, strong) VSSPrivateKeysClient* privateKeysClient;
-//...
-
-/// Compose credentials for the Virgil Private Keys Service
-VSSCredentials *credentials = [[VSSCredentials alloc] initWithUserData:userData password:<#User password#>];
-/// Create a client
-self.privateKeysClient = [[VSSPrivateKeysClient alloc] initWithApplicationToken:<#Virgil Application Token#> credentials:credentials];
-/// Compose the container object
-/// It is possible to choose between two options
-/// CTEasy   - Virgil Private Keys Service will keep your private keys encrypted with
-///          a password used for credentials object (user password). All keys should be sent to the service
-///          encrypted with this password. Also, this type of container allows to change the password with Virgil Private Keys Serivce.
-/// CTNormal - Virgil Private Keys Service will as is. Storage of the private keys is your responsibility and security
-///          of your data will be at your own risk.
-VSSContainer *container = [[VSSContainer alloc] initWithContainerType:CTEasy];
-/// Create the container
-[self.pKeysClient initializeContainer:container publicKeyId:self.publicKey.idb.publicKeyId privateKey:self.privateKey completionHandler:^(NSError *error) {
+NSDictionary *identity = @{ 
+	kVSSModelType: [VSSIdentity stringFromIdentityType:VSSIdentityTypeEmail],
+	kVSSModelValue: <# Email address #>,
+	kVSSModelValidationToken: <# Validation token #> };
+VSSPrivateKey *privateKey = [[VSSPrivateKey alloc] 
+	initWithKey:[<# VSSKeyPair #> privateKey] 
+	password:<# Private key password or nil #>];
+[self.client createCardWithPublicKey:[<# VSSKeyPair #> publicKey] 
+	identity:identity 
+	data:nil 
+	signs:nil 
+	privateKey:privateKey 
+	completionHandler:^(VSSCard * _Nullable card, NSError * _Nullable error)
+	 {
     if (error != nil) {
-        NSLog(@"Error Private Keys container initialization: %@", [error localizedDescription]);
+        NSLog(@"Error creating Virgil Card: %@", [error localizedDescription]);
         return;
     }
     
-    /// In case when container has been initialized successfully just push private key there.
-    /// In case of CTNormal container type 'password' parameter should contain the password 
-    /// which should be used to encrypt the keys before sending them to the service. 
-    [self.pKeysClient pushPrivateKeyPublicKeyId:self.publicKey.idb.publicKeyId privateKey:self.privateKey password:nil completionHandler:^(NSError *pushError) {
-        if (pushError != nil) {
-            NSLog(@"Error pushing the key to the container: %@", [pushError localizedDescription]);
-            return;
+    // VSSCard instance represents Virgil Card. It will be used later.
+    //...
+}];
+//...
+```
+
+###### Swift
+```swift
+//...
+let identity = [
+    kVSSModelType: VSSIdentity.stringFromIdentityType(.Email),
+    kVSSModelValue: <# Email address #>,
+    kVSSModelValidationToken: <# Validation token #>
+]
+let privateKey = VSSPrivateKey(key: <# VSSKeyPair #>.privateKey(), 
+	password: <# Private key password or nil #)
+self.client.createCardWithPublicKey(<# VSSKeyPair #>.publicKey(), 
+	identity: identity, 
+	data: nil, 
+	signs: nil, 
+	privateKey: privateKey) { (card, error) -> Void in
+    if error != nil {
+        print("Error creating Virgil Card: \(error!.localiedDescription)")
+        return
+    }
+    
+    // VSSCard card represents Virgil Card. It will be used later.
+    //...
+}
+//...
+```
+
+## Step 2. Encrypt and Sign
+The app is searching for the recipient’s public key on the Public Keys Service to encrypt a message for him. The app is signing the encrypted message with sender’s private key so that the recipient can make sure the message had been sent from the declared sender.
+
+###### Objective-C
+```objective-c
+//...
+NSString *message = <# Secret message which should be encryped #>;
+[self.client 
+	searchCardWithIdentityValue:<# Recepient email address #> 
+	type:VSSIdentityTypeEmail 
+	relations:nil 
+	unconfirmed:nil 
+	completionHandler:^(NSArray<VSSCard *> * _Nullable cards, 
+		NSError * _Nullable error) {
+    if (error != nil) {
+        NSLog(@"Error searching for Virgil Card: %@", 
+        	[error localizedDescription]);
+        return;
+    }
+    
+    if (cards.count > 0) {
+        VSSCryptor *cryptor = [[VSSCryptor alloc] init];
+        for (VSSCard *card in cards) {
+            [cryptor addKeyRecepient:card.Id publicKey:card.publicKey.key];
         }
+        NSData *encryptedMessage = 
+        [cryptor encryptData:[message dataUsingEncoding:NSUTF8StringEncoding 
+        allowLossyConversion:NO] 
+        embedContentInfo:@YES];
         
-        /// Private key has been stored at Virgil Private Keys Service.
-    }];
+        VSSSigner *signer = [[VSSSigner alloc] init];
+        NSData *signature = 
+	        [signer signData:encryptedMessage 
+	        privateKey:[<# Sender VSSKeyPair #> privateKey] 
+	        keyPassword:nil];
+        // Now encryptedMessage contains encrypted data of initial 
+        // secret message which can only be decrypted
+        // using private key of recipient's key pair.
+        // And signature contains actual signature of sender 
+        // composed using sender's private key and it
+        // can be easily verified only using sender's public key 
+        // which is available on Virgil Keys Service.
+        // So, encryptedMessage and signature can now be sent to 
+        // recipient using any desirable way (e.g. email).
+        //...
+    }
+    else {
+        // No recipient's cards found. 
+    }
 }];
 //...
 ```
 
-##### Swift:
+###### Swift
 ```swift
 //...
-private var privateKeysClient: VSSPrivateKeysClient! = nil
-//...
-
-/// Compose credentials for the Virgil Private Keys Service
-let credentials = VSSCredentials(userData: userData, password: <#User password#>)
-/// Create a client
-self.privateKeysClient = VSSPrivateKeysClient(applicationToken: <#Virgil Application Token#>, credentials: credentials)
-/// Compose the container object
-/// It is possible to choose between two options
-/// CTEasy   - Virgil Private Keys Service will keep your private keys encrypted with
-///          a password used for credentials object (user password). All keys should be sent to the service
-///          encrypted with this password. Also, this type of container allows to change the password with Virgil Private Keys Serivce.
-/// CTNormal - Virgil Private Keys Service will as is. Storage of the private keys is your responsibility and security
-///          of your data will be at your own risk.
-let container = VSSContainer(containerType: .CTEasy)
-/// Create the container
-self.pKeysClient.initializeContainer(container, publicKeyId: self.publicKey.idb.publicKeyId!, privateKey: self.privateKey) { error in
+let message: NSString = <# Secret message which should be encryped #>
+self.client.searchCardWithIdentityValue(<# Recepient email address #>, 
+	type: .Email, 
+	relations: nil, 
+	unconfirmed: nil) { (cards, error) -> Void in
     if error != nil {
-        print("Error Private Keys Container initialization: \(error!.localizedDescription)")
+        print("Error searching for Virgil Card: 
+        	\(error!.localizedDescription)")
         return
     }
     
-    /// In case when container has been initialized successfully just push private key there.
-    /// In case of .CTNormal container type 'password' parameter should contain the password 
-    /// which should be used to encrypt the keys before sending them to the service.
-    self.pKeysClient.pushPrivateKeyPublicKeyId(self.publicKey.idb.publicKeyId!, privateKey: self.privateKey, password: nil) { pushError in
-        if pushError != nil {
-            print("Error saving private key in the Private Keys container: \(pushError!.localizedDescription)")
-            return
+    if cards?.count > 0 {
+        let cryptor = VSSCryptor()
+        for card: VSSCard in cards {
+            cryptor.addKeyRecepient(card.Id, publicKey: card.publicKey.key)
         }
+        let encryptedMessage = 	
+	   	   cryptor.encryptData(message.dataUsingEncoding(NSUTF8StringEncoding, 
+	        allowLossyConversion: false), 
+	        embedContentInfo: true)
         
-        /// Private key has been stored at Virgil Private Keys Service.
+        let signer = VSSSigner()
+        let signature = signer.signData(encryptedMessage, 
+        	privateKey: <# Sender VSSKeyPair #>.privateKey(), 
+        	keyPassword: nil)
+        // Now encryptedMessage contains encrypted data of initial 
+        // secret message which can only be decrypted
+        // using private key of recipient's key pair.
+        // And signature contains actual signature of sender composed 
+        // using sender's private key and it
+        // can be easily verified only using sender's public key 
+        // which is available on Virgil Keys Service.
+        // So, encryptedMessage and signature can now be sent to recipient using any desirable way (e.g. email).
+        //...
+    }
+    else {
+        // No recipient's cards found.
     }
 }
+//...
 ```
 
-### Get a Public Key
+## Step 3. Get sender's Public Key
+In order to decrypt the received data the app on recipient’s side needs to get sender’s Virgil Card from the Public Keys Service.
 
-Get some user's public key from the Virgil Keys Service. This allows you to encrypt a data for this user using his public key later.
-
-##### Objective-C:
+###### Objective-C
 ```objective-c
 //...
-#import <VirgilKeysiOS/VirgilKeysiOS.h>
-//...
-@property (nonatomic, strong) VSSKeysClient *keysClient;
-@property (nonatomic, strong) VSSPublicKey *recipientPublicKey;
-//...
-
-//...
-/// We have some user data value
-NSString* userDataValue = <#User data value#>; // E.g. user's email address.
-/// Create network client instance
-self.keysClient = [[VSSKeysClient alloc] initWithApplicationToken:<#Virgil Application Token#>];
-/// Make the request
-[self.keysClient searchPublicKeyUserIdValue:userDataValue completionHandler:^(VSSPublicKey *pubKey, NSError *error) {
+[self.client searchCardWithIdentityValue:<# Sender email address #> 
+type:VSSIdentityTypeEmail 
+relations:nil 
+unconfirmed:nil 
+completionHandler:^(NSArray<VSSCard *> 
+ * _Nullable cards, 
+ * NSError * _Nullable error) {
     if (error != nil) {
-        NSLog(@"Error searching the public key: %@", [error localizedDescription]);
+        NSLog(@"Error searching for Virgil Card: %@", 
+        	[error localizedDescription]);
         return;
     }
     
-    /// Use VSSPublicKey returned from the service.
-    self.recipientPublicKey = pubKey;
+    // NSArray cards contains Vrigil Card objects which fit given 
+    // search parameters.
+    // Most likely this array will contain only one Virgil Card, 
+    // which we are interested in.
+    if (cards.count > 0) {
+        // Take first card:
+        VSSCard *senderCard = [cards[0] as:[VSSCard class]];
+        // Use the card for further operations.
+        // ...
+    else {
+        // No sender's cards found. 
+    }
 }];
 //...
 ```
 
-##### Swift:
+###### Swift
 ```swift
 //...
-private var keysClient: VSSKeysClient! = nil
-private var recipientPublicKey: VSSPublicKey! = nil
-//...
-/// We have some user data value
-let userDataValue =  <#User data value#>; // E.g. user's email address
-/// Create network client instance for Virgil Keys Service
-self.keysClient = VSSKeysClient(applicationToken: <#Virgil Application Token#>)
-/// Make the request
-self.keysClient.searchPublicKeyUserIdValue(userDataValue) { pubKey, error in
+self.client.searchCardWithIdentityValue(<# Sender email address #>, 
+	type: .Email, 
+	relations: nil, 
+	unconfirmed: nil) { (cards, error) -> Void in
     if error != nil {
-        print("Error searching the public key: \(error!.localizedDescription)")
+        print("Error searching for Virgil Card: 
+        	\(error!.localizedDescription)")
         return
     }
     
-    /// Use VSSPublicKey returned from the service.
-    self.recipientPublicKey = pubKey
+    // NSArray cards contains Vrigil Card objects which fit given 
+    // search parameters.
+    // Most likely this array will contain only one Virgil Card, 
+    // which we are interested in.
+    if cards?.count > 0 {
+        // Take first card:
+        let senderCard = cards![0]
+        // Use the card for further operations.
+        // ...
+    else {
+        // No sender's cards found.
+    }
 }
 //...
 ```
 
-### Encrypt Data
+## Step 4. Verify and Decrypt 
+We are making sure the data came from the declared sender by verifying his signature using his Virgil Card from Public Keys Service. In case of success we are decrypting the letter using the recipient's private key.
 
-To encrypt a data for other user you should use this user's public key. Then he/she will be able to decrypt this data using hes/her private key.
-
-##### Objective-C
+###### Objective-C
 ```objective-c
 //...
-#import <VirgilCryptoiOS/VirgilCryptoiOS.h>
+NSData *encryptedMessage = <# Encrypted message received from sender user #>;
+NSData *signature = <# Composed signature of sender user #>;
 //...
-
-NSData *toEncrypt = <#Plain NSData which should be encrypted#>;
-/// Create a new VSSCryptor instance
-VSSCryptor *cryptor = [[VSSCryptor alloc] init];
-/// Now we should add a key recepient
-[cryptor addKeyRecepient:self.recipientPublicKey.idb.publicKeyId publicKey:self.recepientPublicKey.key];
-/// And now we can easily encrypt the plain data
-NSData *encryptedData = [cryptor encryptData:toEncrypt embedContentInfo:@YES];
-if (encryptedData.length > 0) {
-    /// Data has been encrypted successfully.
-}
-//...
-```
-
-##### Swift
-```swift
-//...
-
-let toEncrypt = <#Plain NSData which should be encrypted#>
-/// Create a new VSSCryptor instance
-let cryptor = VSSCryptor()
-/// Now we should add a key recepient
-cryptor.addKeyRecepient(self.recipientPublicKey.idb.publicKeyId!, publicKey:self.recipientPublicKey.key)
-/// And now we can easily encrypt the plain data
-if let encryptedData = cryptor.encryptData(toEncrypt, embedContentInfo: true) {
-    /// Data has been encrypted successfully.    
-}
-//...
-```
-
-### Sign Data
-
-Although it is possible to send an encrypted message to some particular recipient, it is still important to make the recepient sure that this encrypted message is sent exactly by you and the message has not been changed after you signed it. This can be achieved with a concept of a signatures. 
-
-Signature is basically a piece of data which is composed using a particular user's private key and it can be validated (or verified) later using this user's public key.
-
-##### Objective-C:
-```objective-c
-//...
-/// Create a new VSSSigner instance
-VSSSigner *signer = [[VSSSigner alloc] init];
-/// Sign the encrypted data
-NSData *signature = [signer signData:encryptedData privateKey:self.privateKey.key keyPassword:self.privateKey.password];
-if (signature.length > 0) {
-    /// Signature composed.
-}
-//...
-```
-
-##### Swift:
-```swift
-//...
-/// Create a new VSSSigner instance
-let signer = VSSSigner()
-/// Sign the encrypted data
-if let signature = signer.signData(encryptedData, privateKey: privateKey.key, keyPassword: privateKey.password) {
-    /// Signature composed.
-}
-//...
-```
-
-### Verify Data
-
-To verify that data was signed by a particular user, you must have the following information:
-
-- The public key of the user that signed the data.
-- The digital signature.
-- The data that was signed.
-
-The following example verifies a digital signature which was signed by the sender.
-
-##### Objective-C
-```objective-c
-//...
-/// We have got the public key of the sender
-VSSPublicKey *senderKey = <#Some sender's VSSPublicKey#>;
-/// We have sender's data
-NSData *senderData = <#NSData object, most likely encrypted#>;
-/// We have sender's signature.
-NSData *senderSignature = <#NSData object with sender's signature#>;
-/// Create a VSSSigner instance for verification
 VSSSigner *verifier = [[VSSSigner alloc] init];
-/// Verify the signature.
-BOOL verified = [verifier verifySignature:senderSignature data:senderData publicKey:senderKey.key];
-if (verified) {
-	/// Signature seems OK.
-    /// This means that data came to us unchanged and exactly from the user we expect. 
+// Try to verify sender's signature
+BOOL verified = [verifier verifySignature:signature 
+	data:encryptedMessage 
+	publicKey:<# VSSCard: sender card from previous step #>.publicKey.key];
+if (!verified) {
+    NSLog(@"Error verification sender's signature.");
+    return;
 }
-```
 
-##### Swift
-```swift
-//...
-/// We have got the public key of the sender
-let senderKey = <#Some sender's VSSPublicKey#>
-/// We have sender's data
-let senderData = <#NSData object, most likely encrypted#>
-/// We have sender's signature.
-let senderSignature = <#NSData object with sender's signature#>
-/// Create a VSSSigner instance for verification
-let verifier = VSSSigner()
-/// Verify the signature.
-let verified = verifier.verifySignature(senderSignature, data: senderData, publicKey:senderKey.key)
-if verified {
-    /// Signature seems OK.
-    /// This means that data came to us unchanged and exactly from the user we expect.
-}
-//...
-```
-
-### Decrypt Data
-
-When it is confirmed that data has been sent by the user you expect it is time to decrypt the data and use it.
-
-To decrypt the data you should use your private key.
-
-##### Objective-C
-```objective-c
-//...
-/// Create a decryptor VSSCryptor instance
 VSSCryptor *decryptor = [[VSSCryptor alloc] init];
-/// Decrypt data
-NSData *plainData = [decryptor decryptData:senderData publicKeyId:self.publicKey.idb.publicKeyId privateKey:self.privateKey.key keyPassword:self.privateKey.password];
-if (plainData.length > 0) {
-    /// Data has been decrypted and may be used.
+// Try to decrypt encrypted message
+NSData *decryptedMessage = [decryptor decryptData:encryptedMessage 
+	publicKeyId:<# Recepient VSSCard #>.Id 
+	privateKey:[<# Recepient VSSKeyPair #> privateKey] 
+	keyPassword:<# Private key password or nil #>];
+if (decryptedMessage.length == 0) {
+    NSLog(@"Error decrypting sender's message");
+    return;
 }
-///...
+
+NSString *message = [[NSString alloc] 
+	initWithData:decryptedMessage 
+	encoding:NSUTF8StringEncoding];
+// message contains readable decrypted message which was sent 
+// by another user referred as sender.
+//...
 ```
 
-##### Swift
+###### Swift
 ```swift
 //...
-/// Create a new VSSCryptor instance
+let encryptedMessage = <# NSData: Encrypted message received from sender user #>
+let signature = <# NSData: Composed signature of sender user #>
+//...
+let verifier = VSSSigner()
+// Try to verify signature
+let verified = verifier.verifySignature(signature, 
+	data: encryptedMessage, 
+	publicKey: <# VSSCard: sender card from previous step #>.publicKey.key)
+if !verified {
+    print("Error verification sender's signature.")
+    return;
+}
+
 let decryptor = VSSCryptor()
-/// Decrypt data
-if let plainData = decryptor.decryptData(senderData, publicKeyId: self.publicKey.idb.publicKeyId!, privateKey: self.privateKey.key, keyPassword: self.privateKey.password) {
-    /// Data has been decrypted and may be used.
+let decryptedMessage = decryptor.decryptData(encryptedMessage, 
+	publicKeyId: <# Recepient VSSCard #>.Id, 
+	privateKey: <# Recepient VSSKeyPair #>.privateKey(), 
+	keyPassword: <# Private key password or nil #>)
+if let messageData = decryptedMessage, 
+	message = NSString(data: messageData, 
+	encoding: NSUTF8StringEncoding) {
+    // message contains readable decrypted message which was sent 
+    // by another user referred as sender.
+    //...
+}
+else {
+    print("Error decrypting sender's message.")
+    return
 }
 //...
 ```
-</div>
-</div>
 
-<div class="col-md-12 col-md-offset-2 hidden-md hidden-xs hidden-sm">
-<div class="docs-menu" data-ui="affix-docs">
+## See Also
 
-<div class="menu-items-wrapper" data-ui="menu-items-wrapper"></div>
-</div>
-</div>
-</div>
-</div>
-</section>
+* [Tutorial Keys SDK](/api-docs/objective-c-swift/keys-sdk)
+* [Tutorial Crypto Library](/api-docs/objective-c-swift/crypto-library)
