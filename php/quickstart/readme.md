@@ -1,6 +1,3 @@
-
-## Quickstart
-
 - [Introduction](#introduction)
 - [Obtaining an Application Token](#obtaining-an-application-token)
 - [Installation](#installation)
@@ -73,7 +70,7 @@ php composer.phar update
 
 Working with Virgil Security Services it is requires the creation of both a public key and a private key. The public key can be made public to anyone using the Virgil Public Keys Service while the private key must be known only to the party or parties who will decrypt the data encrypted with the public key.
 > Private keys should never be stored verbatim or in plain text on a local computer.
-> If you need to store a private key, you should use a secure key container depending on your platform. You also can use Virgil Keys Service to store and synchronize private keys. This will allows you to easily synchronize private keys between clients’ devices and their applications. Please read more about [Virgil Private Keys Service](https://virgilsecurity.com/documents/php/keys-private-service).
+> If you need to store a private key, you should use a secure key container depending on your platform. You also can use Virgil Keys Service to store and synchronize private keys. This will allows you to easily synchronize private keys between clients’ devices and their applications. Please read more about [Virgil Private Keys Service](https://virgilsecurity.com/developers/php/private-keys-service).
 
 The following code example creates a new public/private key pair.
 
@@ -364,15 +361,3 @@ $isValid = $virgilSigner->verify(
     $publicKey
 );
 ```
-</div>
-</div>
-
-<div class="col-md-12 col-md-offset-2 hidden-md hidden-xs hidden-sm">
-<div class="docs-menu" data-ui="affix-docs">
-
-<div class="menu-items-wrapper" data-ui="menu-items-wrapper"></div>
-</div>
-</div>
-</div>
-</div>
-</section>
