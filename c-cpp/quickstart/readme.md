@@ -1,233 +1,156 @@
 
-# Virgil Security C++ SDKs
-
 - [Introduction](#introduction)
-- [Obtain Application Token](#obtain-application-token)
-- [Usage examples](#usage-examples)
-  - [Generate keys](#generate-keys)
-  - [Register user](#register-user)
-  - [Get public key](#get-public-key)
-  - [Store private key](#store-private-key)
-  - [Get private key](#get-private-key)
-  - [Encrypt data](#encrypt-data)
-  - [Sign data](#sign-data)
-  - [Verify data](#verify-data)
-  - [Decrypt data](#decrypt-data)
+- [Obtaining an Access Token](#obtaining-an-access-token)
+- [Use case](#use-case)
+    - [Initialization](#initialization)
+    - [Step 1. Create and Publish the Keys](#step-1-create-and-publish-the-keys)
+    - [Step 2. Encrypt and Sign](#step-2-encrypt-and-sign)
+    - [Step 3. Get Sender's Card](#step-3-get-senders-card)
+    - [Step 4. Verify and Decrypt](#step-4-verify-and-decrypt)
 - [Build](#build)
-- [More examples](#more-examples)
 - [See also](#see-also)
 
 ## Introduction
 
-This is quickstart guide that helps to start using C++ implementation of:
+This guide will help you get started using the Crypto Library and Virgil Keys Services for the most popular platforms and languages.
+This branch focuses on the C++ library implementation and covers its usage.
 
-  * [Virgil Crypto Library](https://github.com/VirgilSecurity/virgil-crypto.git)
-  * [Virgil Public Keys Service](https://virgilsecurity.com/developers/c-cpp/keys-service) and it's [SDK](https://github.com/VirgilSecurity/virgil-sdk-cpp/tree/release/virgil.sdk.keys)
-  * [Virgil Private Keys Service](https://virgilsecurity.com/developers/c-cpp/private-keys-service) and it's [SDK](https://github.com/VirgilSecurity/virgil-sdk-cpp/tree/release/virgil.sdk.private-keys).
+Let's go through an encrypted message exchange steps as one of the possible [use cases](#use-case) of Virgil Security Services. ![Use case mail](https://raw.githubusercontent.com/VirgilSecurity/virgil/master/images/Email-diagram-short.jpg)
 
-## Obtain Application Token
 
-First you must create a free Virgil Security developer account by [sign up](https://developer.virgilsecurity.com/account/signup). Once you have your account you can [sign in](https://developer.virgilsecurity.com/account/signin) and generate an app token for your application.
+## Obtaining an Access Token
 
-The app token provides authenticated secure access to Virgil’s Keys Service and is passed with each API call. The app token also allows the API to associate your app’s requests with your Virgil Security developer account.
+First you must create a free Virgil Security developer's account by signing up [here](https://developer.virgilsecurity.com/account/signup). Once you have your account you can [sign in](https://developer.virgilsecurity.com/account/signin) and generate an access token for your application.
 
-Simply add your app token to the HTTP header for each request:
+The access token provides authenticated secure access to Virgil Keys Services and is passed with each API call. The access token also allows the API to associate your app’s requests with your Virgil Security developer's account.
 
+Use this token to initialize the SDK client [here](#initialization).
+
+## Use Case
+**Secure any data end to end**: users need to securely exchange information (text messages, files, audio, video etc) while enabling both in transit and at rest protection.
+
+- Application generates public and private key pairs using Virgil Crypto library and use Virgil Keys service to enable secure end to end communications:
+    - public key on Virgil Public Keys Service;
+    - private key on Virgil Private Keys Service or locally.
+- Sender’s information is encrypted in Virgil Crypto Library with the recipient’s public key.
+- Sender’s encrypted information is signed with his private key in Virgil Crypto Library.
+- Application securely transfers the encrypted data, sender’s digital signature and UDID to the recipient without any risk to be revealed.
+- Application on the recipient’s side verifies that the signature of transferred data is valid using the signature and sender’s public key in Virgil Crypto Library.
+- Received information is decrypted with the recipient’s private key using Virgil Crypto Library.
+- Decrypted data is provided to the recipient.
+
+## Initialization
+
+``` {.cpp}
+ServicesHub servicesHub(%ACCESS_TOKEN%);
 ```
-X-VIRGIL-APPLICATION-TOKEN: <YOUR_APPLICATION_TOKEN>
-```
 
-## Usage examples
-
-This section describes common case library usage scenarios.
-Full source code examples are available on [GitHub](https://github.com/VirgilSecurity/virgil-sdk-cpp/tree/release/examples/src) in public access, also see section [More examples](#more-examples).
-
-### Generate keys
-
-To use Virgil Security Services it is required to create public key and a private key. The public key can be made public to anyone using the Virgil Public Keys Service while the private key must be known only to the party or parties who will decrypt the data encrypted with the public key.
-
-> **Private keys should never be stored verbatim or in plain text on the local computer.**<br>
-> \- If you need to store a private key, you should use a secure key container depending on your platform. You also can use Virgil Security Services. This will allows you to easily synchronize private keys between clients devices and applications. Please read more about [Virgil Private Keys Service](https://virgilsecurity.com/developers/c-cpp/private-keys-service).
+## Step 1. Create and Publish the Keys
+First a mail exchange application is generating the keys and publishing them to the Public Keys Service where they are available in an open access for other users (e.g. recipient) to verify and encrypt the data for the key owner.
 
 The following code example creates a new public/private key pair.
+
 ``` {.cpp}
 // Specify password in the constructor to store private key encrypted.
-VirgilKeyPair newKeyPair;
-VirgilByteArray publicKey = newKeyPair.publicKey();
-VirgilByteArray privateKey = newKeyPair.privateKey();
+VirgilByteArray senderPrivateKeyPassword = str2bytes("PRIVATE_KEY_PASS")
+VirgilKeyPair newKeyPair(senderPrivateKeyPassword);
+VirgilByteArray senderPublicKey = newKeyPair.publicKey();
+VirgilByteArray senderPrivateKey = newKeyPair.privateKey();
 ```
-### Register user
 
-Once you've created a public key you may push it to Virgil’s Keys Service. This will allow other users to send you encrypted data using your public key.
-
-This example shows how to upload a public key and register a new account on Virgil’s Keys Service.
+The app is verifying whether the user really owns the provided email address and getting a temporary token for public key registration on the Public Keys Service.
 
 ``` {.cpp}
-UserData userData = UserData::email("mail@server.com");
-Credentials credentials(privateKey);
-KeysClient keysClient("{Application Token}");
-PublicKey virgilPublicKey = keysClient.publicKey().add(publicKey, {userData}, credentials);
+Identity identity(%SENDER_EMAIL%, IdentityType::Email);
+std::string actionId = servicesHub.identity().verify(identity);
+
+// use confirmation code sent to your email box.
+ValidatedIdentity validatedIdentity =
+        servicesHub.identity().confirm(actionId, "%CONFIRMATION_CODE%);
 ```
 
-Then Confirm User Data using your user data type (Currently supported only Email).
+The app is registering a Virgil Card which includes a public key and an email address identifier. The card will be used for the public key identification and searching for it in the Public Keys Service.
 
 ``` {.cpp}
-auto userDataId = virgilPublicKey.userData().front().userDataId();
-// Confirmation code you received on your email box.
-auto confirmationCode = "";
-KeysClient keysClient("{Application Token}");
-keysClient.userData().confirm(userDataId, confirmationCode);
+Credentials credentials(senderPrivateKey, senderPrivateKeyPassword);
+Card senderCard = 
+	servicesHub.card().create(validatedIdentity, senderPublicKey, credentials);
 ```
 
-### Get public key
-
-Get public key from Public Keys Service.
+## Step 2. Encrypt and Sign
+The app is searching for the recipient’s public key on the Public Keys Service to encrypt a message for him. The app is signing the encrypted message with sender’s private key so that the recipient can make sure the message had been sent from the declared sender.
 
 ``` {.cpp}
-KeysClient keysClient("{Application Token}");
-PublicKey publicKey = keysClient.publicKey().grab("mail@server.com");
-```
+auto message = "Encrypt me, Please!!!";
 
+Identity identity(%RECIPIENT_EMAIL%, IdentityType::Email);
+std::vector<Card> recipientCards = servicesHub.card().search(identity);
+Card recipientCard = recipientCards.at(0);
 
-### Store private key
-
-This example shows how to store private keys on Virgil Private Keys service using SDK, this step is optional and you can use your own secure storage.
-
-``` {.cpp}
-// Create client
-PrivateKeysClient privateKeysClient("{Application Token}");
-
-// Prepare parameters
-CredentialsExt credentialsExt(publicKey.publicKeyId(), privateKey);
-// ContainerType::Easy or ContainerType::Normal
-auto containerType = ContainerType::Easy;
-auto containerPassword = "123456789";
-
-// Create container for private keys storage.
-privateKeysClient.container().create(credentialsExt, containerType, containerPassword);
-
-// Authenticate user with email and password
-UserData userData = UserData::email("{User's email}");
-privateKeysClient.auth().authenticate(userData, containerPassword);
-
-// Push private key to the container.
-privateKeysClient.privateKey().add(credentialsExt, containerPassword);
-```
-
-### Get private key
-
-Get user's Private Key from the Virgil Private Keys service.
-
-```cpp
-PrivateKeysClient privateKeysClient("{Application Token}");
-UserData userData = UserData::email("mail@server.com");
-privateKeysClient.authenticate(userData, containerPassword);
-
-// if the token has been received
-// std::string authenticationToken = "";
-// privateKeysClient.authenticate(authenticationToken);
-
-PrivateKey privateKey = privateKeysClient.privateKey().get(publicKeyId, containerPassword);
-```
-
-
-### Encrypt data
-
-The procedure for encrypting and decrypting documents is straightforward with this mental model. For example: if you want to encrypt the data to Bob, you encrypt it using Bobs's public key which you can get from Public Keys Service, and he decrypts it with his private key. If Bob wants to encrypt data to you, he encrypts it using your public key, and you decrypt it with your private key.
-
-In code example below data encrypted with public key previously loaded from Virgil's Public Keys Service.
-
-``` {.cpp}
 VirgilCipher cipher;
-cipher.addKeyRecipient(virgil::crypto::str2bytes(publicKey.publicKeyId()), publicKey.key());
-VirgilByteArray encryptedData = cipher.encrypt(virgil::crypto::str2bytes("Data to be encrypted."), true);
-```
+cipher.addKeyRecipient(str2bytes(recipientCard.getId()),
+        recipientCard.getPublicKey().getKey());
+VirgilByteArray encryptedMessage = cipher.encrypt(str2bytes(message), true);
 
-### Sign data
-
-Cryptographic digital signatures use public key algorithms to provide data integrity. When you sign data with a digital signature, someone else can verify the signature, and can prove that the data originated from you and was not altered after you signed it.
-
-The following example applies a digital signature to public key identifier.
-
-``` {.cpp}
 VirgilSigner signer;
-VirgilByteArray data = virgil::crypto::str2bytes("some data");
-VirgilByteArray sign = signer.sign(data, privateKey);
+VirgilByteArray signedEncryptedMessage = 
+	signer.sign(encryptedMessage, senderPrivateKey, senderPrivateKeyPassword);
 ```
 
-### Verify data
-
-To verify that data was signed by a particular party, you must have the following information:
-
-* The public key of the party that signed the data.
-* The digital signature.
-* The data that was signed.
-
-The following example verifies a digital signature which was signed by sender.
+## Step 3. Get Sender's Card
+In order to decrypt the received data the app on recipient’s side needs to get sender’s Virgil Card from the Public Keys Service.
 
 ``` {.cpp}
-bool verified = signer.verify(data, sign, publicKey.key());
+Identity identity(%SENDER_EMAIL%, IdentityType::Email);
+std::vector<Card> senderCards = servicesHub.card().search(identity);
+Card senderCard = senderCards.at(0);
 ```
 
-### Decrypt data
-
-The following example illustrates the decryption of encrypted data by public key.
+## Step 4. Verify and Decrypt
+We are making sure the letter came from the declared sender by getting his card on Public Keys Service. In case of success we are decrypting the letter using the recipient's private key.
 
 ``` {.cpp}
-VirgilByteArray decryptedData = cipher.decrypt(encryptedData, publicKey.publicKeyId(), privateKey);
+bool verified = signer.verify(encryptedMessage, signedEncryptedMessage,
+        senderCard.getPublicKey().getKey());
+if (!verified) {
+    throw std::runtime_error("Signature is not valid.");
+}
+
+VirgilByteArray originalMessage = cipher.decryptWithKey(encryptedMessage, 
+	recipientCard.getId(),
+	recipientPrivateKey, 
+	recipientPrivateKeyPassword
+);
 ```
+
+
 ## Build
 
 Run one of the following commands in the project's root folder.
 
-  * Build Public Keys SDK
+  * Build SDK
 
     * Unix:
 
-            mkdir build && cd build && cmake -DVIRGIL_SDK_KEYS=ON .. && make -j4
+            mkdir build && cd build && cmake .. && make -j4
 
     * Windows:
 
-            mkdir build && cd build && cmake -DVIRGIL_SDK_KEYS=ON .. && nmake
+            mkdir build && cd build && cmake .. && nmake
 
-  * Build Private Keys SDK
-
-    * Unix:
-
-            mkdir build && cd build && cmake -DVIRGIL_SDK_PRIVATE_KEYS=ON .. && make -j4
-
-    * Windows:
-
-            mkdir build && cd build && cmake -DVIRGIL_SDK_PRIVATE_KEYS=ON .. && nmake
 
   * Build Examples
 
     * Unix:
 
-            mkdir build && cd build && cmake -DVIRGIL_EXAMPLES=ON .. && make -j4
+            mkdir build && cd build && cmake -DENABLE_EXAMPLES=ON .. && make -j4
 
     * Windows:
 
-            mkdir build && cd build && cmake -DVIRGIL_EXAMPLES=ON .. && nmake
+            mkdir build && cd build && cmake -DENABLE_EXAMPLES=ON .. && nmake
 
 
-## More examples
+## See Also
 
-* [Examples list](https://github.com/VirgilSecurity/virgil-sdk-cpp/tree/release/examples)
-
-## See also
-
-* [Virgil Security SDKs API](http://virgilsecurity.github.io/virgil-sdk-cpp)
-
-</div>
-</div>
-
-<div class="col-md-12 col-md-offset-2 hidden-md hidden-xs hidden-sm">
-<div class="docs-menu" data-ui="affix-docs">
-
-<div class="menu-items-wrapper" data-ui="menu-items-wrapper"></div>
-</div>
-</div>
-</div>
-</div>
-</section>
+* [Tutorial Crypto Library](/api-docs/c-cpp/crypto-library)
+* [Tutorial Keys SDK](/api-docs/c-cpp/keys-sdk)
