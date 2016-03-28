@@ -1,6 +1,4 @@
-
-# Tutorial C#/.NET Keys SDK 
-
+ 
 - [Introduction](#introduction)
 - [Install](#install)
 - [Obtaining an Access Token](#obtaining-an-access-token)
@@ -19,6 +17,7 @@
   - [Stash a Private Key](#stash-a-private-key)
   - [Get a Private Key](#get-a-private-key)
   - [Destroy a Private Key](#destroy-a-private-key)
+- [See also](#see-also)
 
 ##Introduction
 
@@ -53,7 +52,9 @@ All the Virgil Security services are strongly interconnected with the Identity S
 Initialize the identity verification process.
 
 ```csharp
-var identityRequest = await virgilHub.Identity.Verify("test1@virgilsecurity.com", IdentityType.Email);
+var identityRequest = await virgilHub.Identity.Verify
+                                       ("test1@virgilsecurity.com", 
+                                        IdentityType.Email);
 ```
 
 #### Confirm and Get an Identity Token
@@ -61,7 +62,9 @@ var identityRequest = await virgilHub.Identity.Verify("test1@virgilsecurity.com"
 Confirm the identity and get a temporary token.
 
 ```csharp
-var identityToken = await virgilHub.Identity.Confirm(identityRequest.Id, "%CONFIRMATION_CODE%");
+var identityToken = await virgilHub.Identity.Confirm
+                                   (identityRequest.Id, 
+                                    "%CONFIRMATION_CODE%");
 ```
 
 ## Cards and Public Keys
@@ -74,7 +77,9 @@ An identity token which can be received [here](#identity-check) is used during t
 
 ```csharp
 var keyPair = CryptoHelper.GenerateKeyPair();
-var myCard = await virgilHub.Cards.Create(identityToken, keyPair.PublicKey(), keyPair.PrivateKey());
+var myCard = await virgilHub.Cards.Create(identityToken, 
+                         keyPair.PublicKey(), 
+                         keyPair.PrivateKey());
 ```
 
 #### Search for Cards
@@ -82,7 +87,8 @@ var myCard = await virgilHub.Cards.Create(identityToken, keyPair.PublicKey(), ke
 Search for the Virgil Card by provided parameters.
 
 ```csharp
-var foundCards = await virgilHub.Cards.Search("test2@virgilsecurity.com", IdentityType.Email);
+var foundCards = await virgilHub.Cards.Search("test2@virgilsecurity.com", 
+                                IdentityType.Email);
 ```
 
 #### Search for Application Cards
@@ -104,7 +110,10 @@ The example below demonstrates how to certify a user's Virgil Card by signing it
  
 ```csharp
 var trustedCard = foundCards.First();
-await virgilHub.Cards.Trust(trustedCard.Id, trustedCard.Hash, myCard.Id, keyPair.PrivateKey());
+await virgilHub.Cards.Trust(trustedCard.Id, 
+          trustedCard.Hash,
+          myCard.Id, 
+          keyPair.PrivateKey());
 ```
 
 #### Untrust a Virgil Card
@@ -112,7 +121,9 @@ await virgilHub.Cards.Trust(trustedCard.Id, trustedCard.Hash, myCard.Id, keyPair
 Naturally it is possible to stop trusting the Virgil Card owner as in all relations. This is not an exception in Virgil Security system.
 
 ```csharp
-await virgilHub.Cards.Untrust(trustedCard.Id, myCard.Id, keyPair.PrivateKey());
+await virgilHub.Cards.Untrust(trustedCard.Id, 
+           myCard.Id, 
+           keyPair.PrivateKey());
 ```
 #### Revoke a Virgil Card
 
@@ -155,9 +166,13 @@ await virgilHub.PrivateKeys.Stash(myCard.Id, keyPair.PrivateKey());
 To get a private key you need to pass a prior verification of the Virgil Card where your public key is used.
   
 ```csharp
-var identityRequest = await virgilHub.Identity.Verify("test1@virgilsecurity.com", IdentityType.Email);
+var identityRequest = await virgilHub.Identity.Verify(
+                                       "test1@virgilsecurity.com", 
+                                         IdentityType.Email);
 // use confirmation code that has been sent to you email box.
-var identityToken = await virgilHub.Identity.Confirm(identityRequest.Id, "%CONFIRMATION_CODE%");
+var identityToken = await virgilHub.Identity.Confirm(
+                                    identityRequest.Id, 
+                                    "%CONFIRMATION_CODE%");
 
 var privateKey = await virgilHub.PrivateKeys.Get(myCard.Id, identityToken);
 ```
@@ -172,18 +187,5 @@ await virgilHub.PrivateKeys.Destroy(myCard.Id, keyPair.PrivateKey());
 
 ## See Also
 
-* [Quickstart](https://virgilsecurity.com/developers/dot-net-csharp/quickstart)
-* [Crypto Library](https://virgilsecurity.com/developers/dot-net-csharp/crypto-library)
-
-</div>
-</div>
-
-<div class="col-md-12 col-md-offset-2 hidden-md hidden-xs hidden-sm">
-<div class="docs-menu" data-ui="affix-docs">
-
-<div class="menu-items-wrapper" data-ui="menu-items-wrapper"></div>
-</div>
-</div>
-</div>
-</div>
-</section>
+* [Quickstart](/api-docs/dot-net-csharp/quickstart)
+* [Crypto Library](/api-docs/dot-net-csharp/crypto-library)
