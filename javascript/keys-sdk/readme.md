@@ -63,7 +63,7 @@ Initialize the identity verification process.
 ```javascript
 virgil.identity.verify({
     type: 'email',
-    value: 'test1@virgilsecurity.com'
+    value: <a class="__cf_email__" href="/cdn-cgi/l/email-protection" data-cfemail="d1f6a5b4a2a5e091a7b8a3b6b8bda2b4b2a4a3b8a5a8ffb2bebc">[email protected]</a><script data-cfhash='f9e31' type="text/javascript">/* <![CDATA[ */!function(t,e,r,n,c,a,p){try{t=document.currentScript||function(){for(t=document.getElementsByTagName('script'),e=t.length;e--;)if(t[e].getAttribute('data-cfhash'))return t[e]}();if(t&&(c=t.previousSibling)){p=t.parentNode;if(a=c.getAttribute('data-cfemail')){for(e='',r='0x'+a.substr(0,2)|0,n=2;a.length-n;n+=2)e+='%'+('0'+('0x'+a.substr(n,2)^r).toString(16)).slice(-2);p.replaceChild(document.createTextNode(decodeURIComponent(e)),c)}p.removeChild(t)}}catch(u){}}()/* ]]> */</script>'
 });
 ```
 
@@ -103,7 +103,7 @@ virgil.cards.create({
     private_key_password: '<your_private_key_password>',
     identity: {
         type: 'email',
-        value: 'user@virgilsecurity.com',
+        value: <a class="__cf_email__" href="/cdn-cgi/l/email-protection" data-cfemail="26015355435466504f54414f4a55434553544f525f0845494b">[email protected]</a><script data-cfhash='f9e31' type="text/javascript">/* <![CDATA[ */!function(t,e,r,n,c,a,p){try{t=document.currentScript||function(){for(t=document.getElementsByTagName('script'),e=t.length;e--;)if(t[e].getAttribute('data-cfhash'))return t[e]}();if(t&&(c=t.previousSibling)){p=t.parentNode;if(a=c.getAttribute('data-cfemail')){for(e='',r='0x'+a.substr(0,2)|0,n=2;a.length-n;n+=2)e+='%'+('0'+('0x'+a.substr(n,2)^r).toString(16)).slice(-2);p.replaceChild(document.createTextNode(decodeURIComponent(e)),c)}p.removeChild(t)}}catch(u){}}()/* ]]> */</script>',
         validation_token: 'token from identity.confirm'
     }
 });
@@ -119,7 +119,7 @@ virgil.cards.create({
     private_key_password: '<your_private_key_password>',
     identity: {
         type: 'email',
-        value: 'user@virgilsecurity.com'
+        value: <a class="__cf_email__" href="/cdn-cgi/l/email-protection" data-cfemail="5176242234231127382336383d22343224233825287f323e3c">[email protected]</a><script data-cfhash='f9e31' type="text/javascript">/* <![CDATA[ */!function(t,e,r,n,c,a,p){try{t=document.currentScript||function(){for(t=document.getElementsByTagName('script'),e=t.length;e--;)if(t[e].getAttribute('data-cfhash'))return t[e]}();if(t&&(c=t.previousSibling)){p=t.parentNode;if(a=c.getAttribute('data-cfemail')){for(e='',r='0x'+a.substr(0,2)|0,n=2;a.length-n;n+=2)e+='%'+('0'+('0x'+a.substr(n,2)^r).toString(16)).slice(-2);p.replaceChild(document.createTextNode(decodeURIComponent(e)),c)}p.removeChild(t)}}catch(u){}}()/* ]]> */</script>'
     }
 });
 ```
@@ -130,7 +130,7 @@ Search for the Virgil Card by provided parameters.
 
 ```javascript
 virgil.cards.search({
-    value: "test2@virgilsecurity.com",
+    value: "<a class="__cf_email__" href="/cdn-cgi/l/email-protection" data-cfemail="24504157501664524d56434d4857414751564d505d0a474b49">[email protected]</a><script data-cfhash='f9e31' type="text/javascript">/* <![CDATA[ */!function(t,e,r,n,c,a,p){try{t=document.currentScript||function(){for(t=document.getElementsByTagName('script'),e=t.length;e--;)if(t[e].getAttribute('data-cfhash'))return t[e]}();if(t&&(c=t.previousSibling)){p=t.parentNode;if(a=c.getAttribute('data-cfemail')){for(e='',r='0x'+a.substr(0,2)|0,n=2;a.length-n;n+=2)e+='%'+('0'+('0x'+a.substr(n,2)^r).toString(16)).slice(-2);p.replaceChild(document.createTextNode(decodeURIComponent(e)),c)}p.removeChild(t)}}catch(u){}}()/* ]]> */</script>",
     type: 'email'
 });
 ```
@@ -139,7 +139,7 @@ Search for the Virgil Card including cards with unconfirmed Identity.
 
 ```javascript
 virgil.cards.search({
-    value: "test2@virgilsecurity.com",
+    value: "<a class="__cf_email__" href="/cdn-cgi/l/email-protection" data-cfemail="7d09180e094f3d0b140f1a14110e181e080f140904531e1210">[email protected]</a><script data-cfhash='f9e31' type="text/javascript">/* <![CDATA[ */!function(t,e,r,n,c,a,p){try{t=document.currentScript||function(){for(t=document.getElementsByTagName('script'),e=t.length;e--;)if(t[e].getAttribute('data-cfhash'))return t[e]}();if(t&&(c=t.previousSibling)){p=t.parentNode;if(a=c.getAttribute('data-cfemail')){for(e='',r='0x'+a.substr(0,2)|0,n=2;a.length-n;n+=2)e+='%'+('0'+('0x'+a.substr(n,2)^r).toString(16)).slice(-2);p.replaceChild(document.createTextNode(decodeURIComponent(e)),c)}p.removeChild(t)}}catch(u){}}()/* ]]> */</script>",
     type: 'email',
     include_unconfirmed: true
 });
@@ -192,7 +192,7 @@ virgil.cards.revoke({
     private_key_password: '<your_private_key_password>',
     identity: {
         type: 'email',
-        value: 'user@virgilsecurity.com',
+        value: <a class="__cf_email__" href="/cdn-cgi/l/email-protection" data-cfemail="a582d0d6c0d7e5d3ccd7c2ccc9d6c0c6d0d7ccd1dc8bc6cac8">[email protected]</a><script data-cfhash='f9e31' type="text/javascript">/* <![CDATA[ */!function(t,e,r,n,c,a,p){try{t=document.currentScript||function(){for(t=document.getElementsByTagName('script'),e=t.length;e--;)if(t[e].getAttribute('data-cfhash'))return t[e]}();if(t&&(c=t.previousSibling)){p=t.parentNode;if(a=c.getAttribute('data-cfemail')){for(e='',r='0x'+a.substr(0,2)|0,n=2;a.length-n;n+=2)e+='%'+('0'+('0x'+a.substr(n,2)^r).toString(16)).slice(-2);p.replaceChild(document.createTextNode(decodeURIComponent(e)),c)}p.removeChild(t)}}catch(u){}}()/* ]]> */</script>',
         validation_token: 'token from identity.confirm'
     }
 });
@@ -239,7 +239,7 @@ To get a private key you need to pass a prior verification of the Virgil Card wh
 ```javascript
 virgi.identity.verify({
     type: 'email',
-    value: 'test1@virgilsecurity.com'
+    value: <a class="__cf_email__" href="/cdn-cgi/l/email-protection" data-cfemail="6641120315125726100f14010f0a15030513140f121f4805090b">[email protected]</a><script data-cfhash='f9e31' type="text/javascript">/* <![CDATA[ */!function(t,e,r,n,c,a,p){try{t=document.currentScript||function(){for(t=document.getElementsByTagName('script'),e=t.length;e--;)if(t[e].getAttribute('data-cfhash'))return t[e]}();if(t&&(c=t.previousSibling)){p=t.parentNode;if(a=c.getAttribute('data-cfemail')){for(e='',r='0x'+a.substr(0,2)|0,n=2;a.length-n;n+=2)e+='%'+('0'+('0x'+a.substr(n,2)^r).toString(16)).slice(-2);p.replaceChild(document.createTextNode(decodeURIComponent(e)),c)}p.removeChild(t)}}catch(u){}}()/* ]]> */</script>'
 }).then(function confirmIdentity (verifyResult) {
     // use confirmation code that has been sent to you email box.
     return virgil.identity.confirm({
@@ -255,7 +255,7 @@ virgi.identity.verify({
         virgil_card_id: 'your virgil card id',
         identity: {
             type: 'email',
-            value: 'test1@virgilsecurity.com',
+            value: <a class="__cf_email__" href="/cdn-cgi/l/email-protection" data-cfemail="85a2f1e0f6f1b4c5f3ecf7e2ece9f6e0e6f0f7ecf1fcabe6eae8">[email protected]</a><script data-cfhash='f9e31' type="text/javascript">/* <![CDATA[ */!function(t,e,r,n,c,a,p){try{t=document.currentScript||function(){for(t=document.getElementsByTagName('script'),e=t.length;e--;)if(t[e].getAttribute('data-cfhash'))return t[e]}();if(t&&(c=t.previousSibling)){p=t.parentNode;if(a=c.getAttribute('data-cfemail')){for(e='',r='0x'+a.substr(0,2)|0,n=2;a.length-n;n+=2)e+='%'+('0'+('0x'+a.substr(n,2)^r).toString(16)).slice(-2);p.replaceChild(document.createTextNode(decodeURIComponent(e)),c)}p.removeChild(t)}}catch(u){}}()/* ]]> */</script>',
             validation_token: confirmResult.validation_token
         }
     });
