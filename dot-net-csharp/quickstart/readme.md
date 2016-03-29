@@ -1,5 +1,3 @@
-# Quickstart C#/.NET
-
 - [Introduction](#introduction)
 - [Prerequisites](#prerequisites)
     - [Obtaining an Access Token](#obtaining-an-access-token)
@@ -11,7 +9,7 @@
     - [Step 3. Send a Message](#step-3-send-a-message)
     - [Step 4. Receive a Message](#step-4-receive-a-message)
     - [Step 5. Verify and Decrypt](#step-5-verify-and-decrypt)
-- [Source Code](#source-code)
+- [Source code](#source-code)
 - [See also](#see-also)
 
 ## Introduction
