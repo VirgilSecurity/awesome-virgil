@@ -1,4 +1,3 @@
- 
 - [Introduction](#introduction)
 - [Install](#install)
 - [Obtaining an Access Token](#obtaining-an-access-token)
@@ -33,11 +32,11 @@ PM> Install-Package Virgil.SDK
 
 ##Obtaining an Access Token
 
-First you must create a free Virgil Security developer's account by signing up [here](https://developer.virgilsecurity.com/account/signup). Once you have your account you can [sign in](https://developer.virgilsecurity.com/account/signin) and generate an access token for your application.
+First you must create a free Virgil Security developer's account by signing up [here](https://virgilsecurity.com/account/signup). Once you have your account you can [sign in](https://virgilsecurity.com/account/signin) and generate an access token for your application.
 
 The access token provides an authenticated secure access to the Public Keys Service and is passed with each API call. The access token also allows the API to associate your app’s requests with your Virgil Security developer's account.
 
-Simply add your access token to the client constuctor.
+Simply add your access token to the client constructor.
 
 ```csharp
 var virgilHub = VirgilHub.Create("%ACCESS_TOKEN%");
@@ -45,50 +44,58 @@ var virgilHub = VirgilHub.Create("%ACCESS_TOKEN%");
 
 ## Identity Check
 
-All the Virgil Security services are strongly interconnected with the Identity Service. It determines the ownership of the identity being checked using particular mechanisms and as a result it generates a temporary token to be used for the operations which require an identity verification. 
+All the Virgil Security services are strongly interconnected with the Identity Service. It determines the ownership of the Identity being checked using particular mechanisms and as a result it generates a temporary token to be used for the operations which require an Identity verification. 
 
 #### Request Verification
 
-Initialize the identity verification process.
+Initialize the Identity verification process.
 
 ```csharp
-var identityRequest = await virgilHub.Identity.Verify
-                                       ("test1@virgilsecurity.com", 
-                                        IdentityType.Email);
+var identityRequest = await virgilHub.Identity.Verify("test1@virgilsecurity.com", IdentityType.Email);
 ```
 
 #### Confirm and Get an Identity Token
 
-Confirm the identity and get a temporary token.
+Confirm the Identity and get a temporary token.
 
 ```csharp
-var identityToken = await virgilHub.Identity.Confirm
-                                   (identityRequest.Id, 
-                                    "%CONFIRMATION_CODE%");
+var identityToken = await virgilHub.Identity.Confirm(identityRequest.Id, "%CONFIRMATION_CODE%");
 ```
 
 ## Cards and Public Keys
 
 A Virgil Card is the main entity of the Public Keys Service, it includes the information about the user and his public key. The Virgil Card identifies the user by one of his available types, such as an email, a phone number, etc.
 
+The Virgil Card might be created with a confirmed or unconfirmed Identity. The difference is whether Virgil Services take part in [the Identity verification](#identity-check). With confirmed Cards you can be sure that the account with a particular email has been verified and the email owner is really the Identity owner. Be careful using unconfirmed Cards because they could have been created by any user.   
+
 #### Publish a Virgil Card
 
-An identity token which can be received [here](#identity-check) is used during the registration.
+An Identity token which can be received [here](#identity-check) is used during the confirmation.
 
 ```csharp
 var keyPair = CryptoHelper.GenerateKeyPair();
-var myCard = await virgilHub.Cards.Create(identityToken, 
-                         keyPair.PublicKey(), 
-                         keyPair.PrivateKey());
+var myCard = await virgilHub.Cards.Create(identityToken, keyPair.PublicKey(), keyPair.PrivateKey());
+```
+
+Creating a Card without an Identity verification. Pay attention that you will have to set an additional attribute to include the Cards with unconfirmed Identities into your search, see an [example](#search-for-cards).
+
+```csharp
+var myCard = await virgilHub.Cards.Create("test@virgilsecurity.com", IdentityType.Email, 
+  keyPair.PublicKey(), keyPair.PrivateKey());
 ```
 
 #### Search for Cards
 
-Search for the Virgil Card by provided parameters.
+Search for the Virgil Cards by provided parameters.
 
 ```csharp
-var foundCards = await virgilHub.Cards.Search("test2@virgilsecurity.com", 
-                                IdentityType.Email);
+var foundCards = await virgilHub.Cards.Search("test2@virgilsecurity.com", IdentityType.Email);
+```
+
+Search for the Virgil Cards including the cards with unconfirmed Identities.
+
+```csharp
+var foundCards = await virgilHub.Cards.Search("test2@virgilsecurity.com", includeUnconfirmed: true);
 ```
 
 #### Search for Application Cards
@@ -96,7 +103,7 @@ var foundCards = await virgilHub.Cards.Search("test2@virgilsecurity.com",
 Search for the Virgil Cards by a defined pattern. The example below returns a list of applications for Virgil Security company.
 
 ```csharp
-var foundAppCards = await virgilHub.Cards.SearchAppAsync("com.virgil.*");
+var foundAppCards = await virgilHub.Cards.SearchAppAsync("com.virgilsecurity.*");
 ```
 
 #### Trust a Virgil Card
@@ -105,15 +112,10 @@ Any Virgil Card user can act as a certification center within the Virgil Securit
 
 The example below demonstrates how to certify a user's Virgil Card by signing its hash attribute. 
 
-<!--В рамках экосистемы Virgil Security любой пользователь карты может выступать в качестве центра сертификации. Каждый пользователь может заверить карту другого, и построить на основе этого сеть доверия. 
-В приведенном примере ниже показанно как заверить карту пользователя, путем подписи ее hash атирибута.  -->
  
 ```csharp
 var trustedCard = foundCards.First();
-await virgilHub.Cards.Trust(trustedCard.Id, 
-          trustedCard.Hash,
-          myCard.Id, 
-          keyPair.PrivateKey());
+await virgilHub.Cards.Trust(trustedCard.Id, trustedCard.Hash, myCard.Id, keyPair.PrivateKey());
 ```
 
 #### Untrust a Virgil Card
@@ -121,9 +123,7 @@ await virgilHub.Cards.Trust(trustedCard.Id,
 Naturally it is possible to stop trusting the Virgil Card owner as in all relations. This is not an exception in Virgil Security system.
 
 ```csharp
-await virgilHub.Cards.Untrust(trustedCard.Id, 
-           myCard.Id, 
-           keyPair.PrivateKey());
+await virgilHub.Cards.Untrust(trustedCard.Id, myCard.Id, keyPair.PrivateKey());
 ```
 #### Revoke a Virgil Card
 
@@ -155,7 +155,7 @@ Private key can be added for storage only in case you have already registered a 
 
 Use the public key identifier on the Public Keys Service to save the private keys. 
 
-The Private Keys Service stores private keys the original way as they were transferred. That's why we strongly recommend to trasfer the keys which were generated with a password.
+The Private Keys Service stores private keys the original way as they were transferred. That's why we strongly recommend transferring the keys which were generated with a password.
 
 ```csharp
 await virgilHub.PrivateKeys.Stash(myCard.Id, keyPair.PrivateKey());
@@ -166,13 +166,9 @@ await virgilHub.PrivateKeys.Stash(myCard.Id, keyPair.PrivateKey());
 To get a private key you need to pass a prior verification of the Virgil Card where your public key is used.
   
 ```csharp
-var identityRequest = await virgilHub.Identity.Verify(
-                                       "test1@virgilsecurity.com", 
-                                         IdentityType.Email);
+var identityRequest = await virgilHub.Identity.Verify("test1@virgilsecurity.com", IdentityType.Email);
 // use confirmation code that has been sent to you email box.
-var identityToken = await virgilHub.Identity.Confirm(
-                                    identityRequest.Id, 
-                                    "%CONFIRMATION_CODE%");
+var identityToken = await virgilHub.Identity.Confirm(identityRequest.Id, "%CONFIRMATION_CODE%");
 
 var privateKey = await virgilHub.PrivateKeys.Get(myCard.Id, identityToken);
 ```
