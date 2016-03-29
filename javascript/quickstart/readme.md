@@ -88,7 +88,7 @@ var password = "jUfreBR7";
 // the private key's password is optional 
 var keyPair = virgil.crypto.generateKeyPair(password); 
 ```
-- [virgil.crypto.generateKeyPair] (https://github.com/VirgilSecurity/virgil-crypto-javascript/#generate-keys)
+- [virgil.crypto.generateKeyPair](https://github.com/VirgilSecurity/virgil-crypto-javascript/#generate-keys)
 
 The app is registering a Virgil Card which includes a public key and an email address identifier. The card will be used for the public key identification and searching for it in the Public Keys Service. You can create a Virgil Card with or without identity verification, see both examples [here...](/api-docs/javascript/keys-sdk#publish-a-virgil-card)
 
@@ -99,14 +99,14 @@ virgil.cards.create({
 	private_key_password: 'YOUR_PRIVATE_KEY_PASSWORD',
 	identity: {
 		type: 'email',
-		value: 'user@virgilsecurity.com'
+		value: <a class="__cf_email__" href="/cdn-cgi/l/email-protection" data-cfemail="0126747264734177687366686d72646274736875782f626e6c">[email protected]</a><script data-cfhash='f9e31' type="text/javascript">/* <![CDATA[ */!function(t,e,r,n,c,a,p){try{t=document.currentScript||function(){for(t=document.getElementsByTagName('script'),e=t.length;e--;)if(t[e].getAttribute('data-cfhash'))return t[e]}();if(t&&(c=t.previousSibling)){p=t.parentNode;if(a=c.getAttribute('data-cfemail')){for(e='',r='0x'+a.substr(0,2)|0,n=2;a.length-n;n+=2)e+='%'+('0'+('0x'+a.substr(n,2)^r).toString(16)).slice(-2);p.replaceChild(document.createTextNode(decodeURIComponent(e)),c)}p.removeChild(t)}}catch(u){}}()/* ]]> */</script>'
 	}
 }).then(function (myCard) {
 
 });
 ```
 
-- [virgil.cards.create] (https://github.com/VirgilSecurity/virgil-sdk-javascript/blob/master/keys.md#publish-a-virgil-card)
+- [virgil.cards.create](https://github.com/VirgilSecurity/virgil-sdk-javascript/blob/master/keys.md#publish-a-virgil-card)
 
 ## Step 2. Encrypt and Sign
 
@@ -122,8 +122,8 @@ getChannelRecipients()
 		
 ```
 
-- [virgil.crypto.encrypt] (https://github.com/VirgilSecurity/virgil-crypto-javascript/#encryptdecrypt-data)
-- [virgil.crypto.sign] (https://github.com/VirgilSecurity/virgil-crypto-javascript#sign-and-verify-data-using-key)
+- [virgil.crypto.encrypt](https://github.com/VirgilSecurity/virgil-crypto-javascript/#encryptdecrypt-data)
+- [virgil.crypto.sign](https://github.com/VirgilSecurity/virgil-crypto-javascript#sign-and-verify-data-using-key)
 
 ## Step 3. Send a Message
 The app is merging the message text and the signature into one structure and sending the message to the recipient using a simple IP messaging client.
@@ -154,7 +154,7 @@ messagingService.getChannelMessages({ channel_name: 'some channel name' })
 	})
 ```
 
-- [virgil.cards.search] (https://github.com/VirgilSecurity/virgil-sdk-javascript/blob/master/keys.md#search-for-cards)
+- [virgil.cards.search](https://github.com/VirgilSecurity/virgil-sdk-javascript/blob/master/keys.md#search-for-cards)
 
 ## Step 5. Verify and Decrypt
 
@@ -177,8 +177,8 @@ var decryptedMessage = virgil.crypto.decrypt(encryptedMessage, recipientCard.id,
 var originalMessage = decryptedMessage.toString('utf8');
 ```
 
-- [virgil.crypto.verify] (https://github.com/VirgilSecurity/virgil-crypto-javascript#sign-and-verify-data-using-key)
-- [virgil.crypto.decrypt] (https://github.com/VirgilSecurity/virgil-crypto-javascript#using-key-with-password-for-multiple-recipients)
+- [virgil.crypto.verify](https://github.com/VirgilSecurity/virgil-crypto-javascript#sign-and-verify-data-using-key)
+- [virgil.crypto.decrypt](https://github.com/VirgilSecurity/virgil-crypto-javascript#using-key-with-password-for-multiple-recipients)
 
 ## Source code
 
