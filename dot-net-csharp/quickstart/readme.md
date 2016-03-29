@@ -1,3 +1,4 @@
+# Quickstart C#/.NET
 
 - [Introduction](#introduction)
 - [Prerequisites](#prerequisites)
@@ -70,21 +71,13 @@ The following code example generates a new public/private key pair.
 var keyPair = VirgilKeyPair.Generate();
 ```
 
-The app is verifying whether the user really owns the provided email address and getting a temporary token for a public key registration on the Public Keys Service.
+The app is registering a Virgil Card which includes a public key and an email address identifier. The Card will be used for the public key identification and searching for it in the Public Keys Service. You can create a Virgil Card with or without identity verification, see both examples [here...](/api-docs/dot-net-csharp/keys-sdk#publish-a-virgil-card)  
 
 ```csharp
-var identityResponce = await virgilHub.Identity
-	.Verify("chat-member@virgilsecurity.com", IdentityType.Email);
+var senderEmailAddress = 'sender@virgilsecurity.com';
 
-// use confirmation code sent to your email
-var identityToken = await virgilHub.Identity
-	.Confirm(identityResponce.ActionId, "%CONFIRMATION_CODE%");
-```
-The app is registering a Virgil Card which includes a public key and an email address identifier. The card will be used for the public key identification and searching for it in the Public Keys Service.
-
-```csharp
-var card = await ServiceHub.Cards
-	.Create(identityToken, keyPair.PublicKey(), keyPair.PrivateKey());
+var card = await ServiceHub.Cards.Create(senderEmailAddress, IdentityType.Email, 
+	keyPair.PublicKey(), keyPair.PrivateKey());
 ```
 
 ### Step 2. Encrypt and Sign
@@ -100,7 +93,7 @@ var sign = CryptoHelper.Sign(encryptedMessage, this.currentMember.PrivateKey);
 ```
 
 ### Step 3. Send a Message
-The app merges the message text and the signature into one [structure](https://github.com/VirgilSecurity/virgil-sdk-net/blob/master/Examples/Virgil.Examples.IPMessaging/EncryptedMessageModel.cs) then serializes it to json string and sends the message to the channel using a simple IP messaging client.
+The app merges the message text and the signature into one [structure](../Examples/Virgil.Examples.IPMessaging/EncryptedMessageModel.cs) then serializes it to json string and sends the message to the channel using a simple IP messaging client.
 
 > We will be using our custom IP Messaging Server in our examples, you may need to adjust the code for your favorite IP Messaging Server.
 
@@ -151,7 +144,6 @@ var decryptedMessage = CryptoHelper.Decrypt(encryptedModel.EncryptedMessage,
 
 * [Use Case Example](https://github.com/VirgilSecurity/virgil-sdk-net/tree/master/Examples/Virgil.Examples.IPMessaging)
 * [IP-Messaging Simple Server](https://github.com/VirgilSecurity/virgil-sdk-javascript/tree/master/examples/ip-messaging/server)
-
 
 ## See Also
 
