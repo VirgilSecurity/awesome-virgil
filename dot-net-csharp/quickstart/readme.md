@@ -9,7 +9,7 @@
     - [Step 3. Send a Message](#step-3-send-a-message)
     - [Step 4. Receive a Message](#step-4-receive-a-message)
     - [Step 5. Verify and Decrypt](#step-5-verify-and-decrypt)
-- [Source Code](#source-code)
+- [Source code](#source-code)
 - [See also](#see-also)
 
 ## Introduction
@@ -69,7 +69,7 @@ The following code example generates a new public/private key pair.
 var keyPair = VirgilKeyPair.Generate();
 ```
 
-The app is registering a Virgil Card which includes a public key and an email address identifier. The Card will be used for the public key identification and searching for it in the Public Keys Service. You can create a Virgil Card with or without identity verification, see both examples [here...](https://github.com/VirgilSecurity/virgil-sdk-net/blob/master/Docs/public-keys.md#publish-a-virgil-card)  
+The app is registering a Virgil Card which includes a public key and an email address identifier. The Card will be used for the public key identification and searching for it in the Public Keys Service. You can create a Virgil Card with or without identity verification, see both examples [here...](/api-docs/dot-net-csharp/keys-sdk#publish-a-virgil-card)  
 
 ```csharp
 var senderEmailAddress = 'sender@virgilsecurity.com';
@@ -91,7 +91,7 @@ var sign = CryptoHelper.Sign(encryptedMessage, this.currentMember.PrivateKey);
 ```
 
 ### Step 3. Send a Message
-The app merges the message text and the signature into one [structure](../Examples/Virgil.Examples.IPMessaging/EncryptedMessageModel.cs) then serializes it to json string and sends the message to the channel using a simple IP messaging client.
+The app merges the message text and the signature into one [structure](https://github.com/VirgilSecurity/virgil-sdk-net/blob/master/Examples/Virgil.Examples.IPMessaging/EncryptedMessageModel.cs) then serializes it to json string and sends the message to the channel using a simple IP messaging client.
 
 > We will be using our custom IP Messaging Server in our examples, you may need to adjust the code for your favorite IP Messaging Server.
 
@@ -145,5 +145,5 @@ var decryptedMessage = CryptoHelper.Decrypt(encryptedModel.EncryptedMessage,
 
 ## See Also
 
-* [Tutorial Crypto Library](crypto.md)
-* [Tutorial SDK](public-keys.md)
+* [Tutorial Crypto Library](/api-docs/dot-net-csharp/crypto-library)
+* [Tutorial Keys SDK](/api-docs/dot-net-csharp/keys-sdk)
