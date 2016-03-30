@@ -1,3 +1,4 @@
+
 - [Introduction](#introduction)
 - [Prerequisites](#prerequisites)
 	- [Obtaining an Access Token](#obtaining-an-access-token)
@@ -90,7 +91,7 @@ var keyPair = virgil.crypto.generateKeyPair(password);
 ```
 - [virgil.crypto.generateKeyPair](https://github.com/VirgilSecurity/virgil-crypto-javascript/#generate-keys)
 
-The app is registering a Virgil Card which includes a public key and an email address identifier. The card will be used for the public key identification and searching for it in the Public Keys Service. You can create a Virgil Card with or without identity verification, see both examples [here...](/api-docs/javascript/keys-sdk#publish-a-virgil-card)
+The app is registering a Virgil Card which includes a public key and an email address identifier. The card will be used for the public key identification and searching for it in the Public Keys Service. You can create a Virgil Card with or without identity verification, see both examples [here...](https://github.com/VirgilSecurity/virgil-sdk-javascript/blob/master/keys.md#publish-a-virgil-card)
 
 ```javascript
 virgil.cards.create({
@@ -99,9 +100,9 @@ virgil.cards.create({
 	private_key_password: 'YOUR_PRIVATE_KEY_PASSWORD',
 	identity: {
 		type: 'email',
-		value: <a class="__cf_email__" href="/cdn-cgi/l/email-protection" data-cfemail="0126747264734177687366686d72646274736875782f626e6c">[email protected]</a><script data-cfhash='f9e31' type="text/javascript">/* <![CDATA[ */!function(t,e,r,n,c,a,p){try{t=document.currentScript||function(){for(t=document.getElementsByTagName('script'),e=t.length;e--;)if(t[e].getAttribute('data-cfhash'))return t[e]}();if(t&&(c=t.previousSibling)){p=t.parentNode;if(a=c.getAttribute('data-cfemail')){for(e='',r='0x'+a.substr(0,2)|0,n=2;a.length-n;n+=2)e+='%'+('0'+('0x'+a.substr(n,2)^r).toString(16)).slice(-2);p.replaceChild(document.createTextNode(decodeURIComponent(e)),c)}p.removeChild(t)}}catch(u){}}()/* ]]> */</script>'
+		value: 'user@virgilsecurity.com'
 	}
-}).then(function (myCard) {
+}).then(function (myCard) {a
 
 });
 ```
@@ -185,7 +186,7 @@ var originalMessage = decryptedMessage.toString('utf8');
 * [Use Case Example](https://github.com/VirgilSecurity/virgil-sdk-javascript/tree/master/examples/ip-messaging/client)
 * [IP-Messaging Simple Server](https://github.com/VirgilSecurity/virgil-sdk-javascript/tree/master/examples/ip-messaging/server)
 
-## See Also
+## See also
 
-* [Tutorial Crypto Library](/api-docs/javascript/crypto-library)
-* [Tutorial Keys SDK](/api-docs/javascript/keys-sdk)
+* [Tutorial Crypto Library](https://github.com/VirgilSecurity/virgil-crypto-javascript)
+* [Tutorial Keys SDK](keys.md)
