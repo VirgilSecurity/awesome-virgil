@@ -1,5 +1,5 @@
 - [Introduction](#introduction)
-- - [Prerequisites](#prerequisites)
+- [Prerequisites](#prerequisites)
     - [Obtaining an Access Token](#obtaining-an-access-token)
     - [Install](#install)
 - [Use case](#use-case)
