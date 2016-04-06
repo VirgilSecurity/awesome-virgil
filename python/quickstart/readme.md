@@ -10,7 +10,6 @@
     - [Step 4. Receive a Message](#step-4-receive-a-message)
     - [Step 5. Verify and Decrypt](#step-5-verify-and-decrypt)
 - [Source code](#source-code)
-- [See also](#see-also)
 
 ## Introduction
 
@@ -19,7 +18,9 @@ In this guide we will get you up and running quickly with a simple IP messaging 
 On the diagram below you can see a full picture of how these things interact with each other.
 ![Use case messaging](https://raw.githubusercontent.com/VirgilSecurity/virgil/master/images/IPMessaging.jpg)
 
-## Obtaining an Access Token
+## Prerequisites
+
+### Obtaining an Access Token
 
 First you must create a free Virgil Security developer's account by signing up [here](https://developer.virgilsecurity.com/account/signup). Once you have your account you can [sign in](https://developer.virgilsecurity.com/account/signin) and generate an access token for your application.
 
@@ -27,7 +28,7 @@ The access token provides authenticated secure access to Virgil Keys Services an
 
 Use this token to initialize the SDK client [here](#step-0-initialization).
 
-## Install
+### Install
 
 To install package use the command below:
 
@@ -160,8 +161,3 @@ data = cryptolib.CryptoWrapper.decrypt(encryptedBody['Content'],
 
 * [Use Case Example](https://github.com/VirgilSecurity/virgil-sdk-python/tree/master/Examples/IPMessaging)
 * [IP-Messaging Simple Server](https://github.com/VirgilSecurity/virgil-sdk-javascript/tree/master/examples/ip-messaging/server)
-
-## See Also
-
-* [Tutorial Keys SDK](/api-docs/python/keys-sdk)
-* [Tutorial Crypto Library](/api-docs/python/crypto-library)
