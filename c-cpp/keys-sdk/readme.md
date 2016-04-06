@@ -18,7 +18,6 @@
   - [Get a Private Key](#get-a-private-key)
   - [Delete a Private Key](#delete-a-private-key)
 - [Build](#build)
-- [See also](#see-also)
 
 ## Introduction
 
@@ -90,7 +89,6 @@ Card myCard =
   servicesHub.card().create(identity, publicKey, credentials);
 ```
 See a working example [here...](https://github.com/VirgilSecurity/virgil-sdk-cpp/blob/master/examples/src/card_create_not_valid.cxx)
-
 
 
 #### Search for Cards
@@ -234,9 +232,3 @@ Run one of the following commands in the project's root folder.
     * Windows:
 
             mkdir build && cd build && cmake -DENABLE_EXAMPLES=ON .. && nmake
-
-
-## See Also
-
-* [Quickstart](https://github.com/VirgilSecurity/virgil-sdk-cpp/blob/master/tutorial/quickstart.md)
-* [Reference API for SDK](http://virgilsecurity.github.io/virgil-sdk-cpp/)
