@@ -12,7 +12,6 @@
     - [Compose and verify a signature](#compose-and-verify-a-signature)
         - [Compose a signature](#compose-a-signature)
         - [Verify a signature](#verify-a-signature)
-- [See also](#see-also)
 
 ## Introduction
 
@@ -351,8 +350,3 @@ if verified {
 }
 //...
 ```
-
-## See also
-
-* [Quickstart](/api-docs/objective-c-swift/quickstart)
-* [Tutorial Keys SDK](/api-docs/objective-c-swift/keys-sdk)
