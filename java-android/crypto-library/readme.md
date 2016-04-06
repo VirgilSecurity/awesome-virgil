@@ -1,5 +1,3 @@
-# Tutorial Java Crypto Library
-
 
 - [Install](#install)
 - [Generate Keys](#generate-keys)
@@ -7,7 +5,6 @@
 - [Sign Data](#sign-data)
 - [Verify Data](#verify-data)
 - [Decrypt Data](#decrypt-data)
-- [See Also](#see-also)
 
 ##Install
 
@@ -242,8 +239,3 @@ String decryptedText = CryptoHelper.decrypt(encryptedText, password);
 ```
 
 See a working example [here...](https://github.com/VirgilSecurity/virgil-sdk-java-android/blob/master/samples/crypto/src/main/java/EncryptionWithPassword.java)
-
-## See Also
-
-* [Quickstart](quickstart.md)
-* [Tutorial SDK](public-keys.md)
