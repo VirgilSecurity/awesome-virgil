@@ -16,7 +16,6 @@
       - [Stash a Private Key](#stash-a-private-key)
       - [Get a Private Key](#get-a-private-key)
       - [Destroy a Private Key](#destroy-a-private-key)
-- [See also](#see-also)
 
 ## Introduction
 
@@ -255,8 +254,3 @@ virgil_hub.privatekey.delete_private_key
 									"%SIGNER_CARD_ID%", 
 									"%PASSWORD%")
 ```
-
-## See Also
-
-* [Quickstart](/api-docs/python/quickstart)
-* [Tutorial Crypto Library](/api-docs/python/crypto-library)
