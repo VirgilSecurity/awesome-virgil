@@ -11,7 +11,6 @@
     - [Step 4. Receive a Message](#step-4-receive-a-message)
 	- [Step 5. Verify and Decrypt](#step-5-verify-and-decrypt)
 - [Source code](#source-code)
-- [See also](#see-also)
 
 ## Introduction
 
@@ -185,8 +184,3 @@ var originalMessage = decryptedMessage.toString('utf8');
 
 * [Use Case Example](https://github.com/VirgilSecurity/virgil-sdk-javascript/tree/master/examples/ip-messaging/client)
 * [IP-Messaging Simple Server](https://github.com/VirgilSecurity/virgil-sdk-javascript/tree/master/examples/ip-messaging/server)
-
-## See also
-
-* [Tutorial Crypto Library](https://github.com/VirgilSecurity/virgil-crypto-javascript)
-* [Tutorial Keys SDK](keys.md)
