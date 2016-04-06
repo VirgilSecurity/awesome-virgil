@@ -1,5 +1,3 @@
-# Quickstart Java
-
 - [Introduction](#introduction)
 - [Prerequisites](#prerequisites)
     - [Obtaining an Access Token](#obtaining-an-access-token)
@@ -11,8 +9,7 @@
     - [Step 3. Send a Message](#step-3-send-a-message)
     - [Step 4. Receive a Message](#step-4-receive-a-message)
     - [Step 5. Verify and Decrypt](#step-5-verify-and-decrypt)
-- [Source Code](#source-code)
-- [See also](#see-also)
+- [Source code](#source-code)
 
 ## Introduction
 
@@ -87,7 +84,7 @@ The following code example generates a new public/private key pair.
 KeyPair keyPair = KeyPairGenerator.generate();
 ```
 
-The app is registering a Virgil Card which includes a public key and an email address identifier. The Card will be used for the public key identification and searching for it in the Public Keys Service. You can create a Virgil Card with or without identity verification, see both examples [here...](https://github.com/VirgilSecurity/virgil-sdk-java-android/blob/master/docs/keys-java.md#publish-a-virgil-card)
+The app is registering a Virgil Card which includes a public key and an email address identifier. The Card will be used for the public key identification and searching for it in the Public Keys Service. You can create a Virgil Card with or without identity verification, see both examples [here...](/api-docs/java-android/keys-sdk#publish-a-virgil-card)
 
 ```java
 ValidatedIdentity identity = new ValidatedIdentity(IdentityType.EMAIL, "{EMAIL}");
@@ -116,7 +113,7 @@ String sign = CryptoHelper.signBase64(encryptedMessage, me.getPrivateKey());
 ```
 
 ### Step 3. Send a Message
-The app merges the message text and the signature into one [structure](../samples/IPMessagingClient/app/src/main/java/com/virgilsecurity/ipmessaginglient/model/EncryptedMessage.java) then serializes it to json string and sends the message to the channel using a simple IP messaging client.
+The app merges the message text and the signature into one [structure](https://github.com/VirgilSecurity/virgil-sdk-java-android/blob/master/samples/IPMessagingClient/app/src/main/java/com/virgilsecurity/ipmessaginglient/model/EncryptedMessage.java) then serializes it to json string and sends the message to the channel using a simple IP messaging client.
 
 > We will be using our custom IP Messaging Server in our examples, you may need to adjust the code for your favorite IP Messaging Server.
 
@@ -160,9 +157,3 @@ if (isValid) {
 
 * [Use Case Example](https://github.com/VirgilSecurity/virgil-sdk-java-android/tree/master/samples/IPMessagingClient)
 * [IP-Messaging Simple Server](https://github.com/VirgilSecurity/virgil-sdk-javascript/tree/master/examples/ip-messaging/server)
-
-## See Also
-
-* [Tutorial Crypto Library](crypto.md)
-* [Tutorial SDK](keys-java.md)
-* [Android tutorial](keys-android.md)
