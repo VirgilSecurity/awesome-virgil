@@ -1,5 +1,3 @@
-# Tutorial Java Keys SDK 
-
 - [Introduction](#introduction)
 - [Install](#install)
 - [Obtaining an Access Token](#obtaining-an-access-token)
@@ -46,7 +44,7 @@ compile 'com.virgilsecurity.sdk:client:3.0.1'
 
 ##Obtaining an Access Token
 
-First you must create a free Virgil Security developer's account by signing up [here](https://virgilsecurity.com/account/signup). Once you have your account you can [sign in](https://virgilsecurity.com/account/signin) and generate an access token for your application.
+First you must create a free Virgil Security developer's account by signing up [here](https://developer.virgilsecurity.com/account/signup). Once you have your account you can [sign in](https://developer.virgilsecurity.com/account/signin) and generate an access token for your application.
 
 The access token provides an authenticated secure access to the Public Keys Service and is passed with each API call. The access token also allows the API to associate your app’s requests with your Virgil Security developer's account.
 
@@ -225,8 +223,3 @@ This operation deletes the private key from the service without a possibility to
 factory.getPrivateKeyClient(serviceCard)
     .destroy(cardInfo.getId(), keyPair.getPrivate());
 ```
-
-## See Also
-
-* [Quickstart](quickstart.md)
-* [Android tutorial](keys-android.md)
