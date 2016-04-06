@@ -145,5 +145,5 @@ var decryptedMessage = CryptoHelper.Decrypt(encryptedModel.EncryptedMessage,
 
 ## See Also
 
-* [Tutorial Crypto Library](/api-docs/dot-net-csharp/crypto-library)
-* [Tutorial Keys SDK](/api-docs/dot-net-csharp/keys-sdk)
+* [Tutorial Crypto Library](https://github.com/VirgilSecurity/virgil/blob/master/dot-net-csharp/crypto-library/readme.md)
+* [Tutorial Keys SDK](https://github.com/VirgilSecurity/virgil/tree/master/dot-net-csharp/keys-sdk)
