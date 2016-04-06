@@ -10,7 +10,6 @@
     - [Step 4. Receive a Message](#step-4-receive-a-message)
     - [Step 5. Verify and Decrypt](#step-5-verify-and-decrypt)
 - [Source code](#source-code)
-- [See also](#see-also)
 
 ## Introduction
 
@@ -142,8 +141,3 @@ var decryptedMessage = CryptoHelper.Decrypt(encryptedModel.EncryptedMessage,
 
 * [Use Case Example](https://github.com/VirgilSecurity/virgil-sdk-net/tree/master/Examples/Virgil.Examples.IPMessaging)
 * [IP-Messaging Simple Server](https://github.com/VirgilSecurity/virgil-sdk-javascript/tree/master/examples/ip-messaging/server)
-
-## See Also
-
-* [Tutorial Crypto Library](https://github.com/VirgilSecurity/virgil/blob/master/dot-net-csharp/crypto-library/readme.md)
-* [Tutorial Keys SDK](https://github.com/VirgilSecurity/virgil/tree/master/dot-net-csharp/keys-sdk)
