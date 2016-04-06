@@ -5,7 +5,6 @@
 - [Sign Data](#sign-data)
 - [Verify Data](#verify-data)
 - [Decrypt Data](#decrypt-data)
-- [See Also](#see-also)
 
 ##Install
 Use command line to install Virgil crypto package:
@@ -144,8 +143,3 @@ data = cryptolib.CryptoWrapper.decrypt_with_password
 											('%ENCRYPTED_DATA%', 
 											'%PASSWORD%')
 ```
-
-## See Also
-
-* [Quickstart](/api-docs/python/quickstart)
-* [Tutorial Keys SDK](/api-docs/python/keys-sdk) 
