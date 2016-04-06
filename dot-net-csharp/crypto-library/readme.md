@@ -4,7 +4,6 @@
 - [Sign Data](#sign-data)
 - [Verify Data](#verify-data)
 - [Decrypt Data](#decrypt-data)
-- [See Also](#see-also)
 
 ##Install
 Use NuGet Package Manager (Tools -> Library Package Manager -> Package Manager Console) to install Virgil.SDK.Keys package, running the command:
@@ -93,7 +92,7 @@ In the table below you can see all types.
 | Type_EC_SECP224K1 | 224-bits "Koblitz" curve       |
 | Type_EC_SECP256K1 | 256-bits "Koblitz" curve       |
 
-See a working example [here...](https://github.com/VirgilSecurity/virgil-net/blob/master/Examples/Crypto/GenerateKeyPair.cs)
+See a working example [here...](https://github.com/VirgilSecurity/virgil-sdk-net/blob/master/Examples/Virgil.Examples/Crypto/GenerateKeyPair.cs)
 
 ## Encrypt Data
 
@@ -137,7 +136,7 @@ using (var cipher = new VirgilCipher())
 }
 ```
 
-See a working example [here...](https://github.com/VirgilSecurity/virgil-net/blob/master/Examples/Crypto/Encryption.cs)
+See a working example [here...](https://github.com/VirgilSecurity/virgil-sdk-net/blob/master/Examples/Virgil.Examples/Crypto/EncryptWithPublicKey.cs)
 
 ## Sign Data
 
@@ -152,7 +151,7 @@ var keyPair = CryptoHelper.GenerateKeyPair();
 var signature = CryptoHelper.Sign(originalText, keyPair.PrivateKey());
 ```
 
-See a working example [here...](https://github.com/VirgilSecurity/virgil-net/blob/master/Examples/Crypto/SingAndVerify.cs)
+See a working example [here...](https://github.com/VirgilSecurity/virgil-sdk-net/blob/master/Examples/Virgil.Examples/Crypto/SingAndVerify.cs)
 
 ## Verify Data
 
@@ -170,7 +169,7 @@ var isValid = CryptoHelper.Verify(originalText,
                        keyPair.PublicKey());
 ```
 
-See a working example [here...](https://github.com/VirgilSecurity/virgil-net/blob/master/Examples/Crypto/SingAndVerify.cs)
+See a working example [here...](https://github.com/VirgilSecurity/virgil-sdk-net/blob/master/Examples/Virgil.Examples/Crypto/SingAndVerify.cs)
 
 ## Decrypt Data
 
@@ -188,9 +187,4 @@ Use a password to decrypt the data.
 var decryptedText = CryptoHelper.Decrypt(cipherText, password);
 ```
 
-See a working example [here...](https://github.com/VirgilSecurity/virgil-net/blob/master/Examples/Crypto/Encryption.cs)
-
-## See Also
-
-* [Quickstart](/api-docs/dot-net-csharp/quickstart)
-* [Tutorial Keys SDK](/api-docs/dot-net-csharp/keys-sdk)
+See a working example [here...](https://github.com/VirgilSecurity/virgil-sdk-net/blob/master/Examples/Virgil.Examples/Crypto/DecryptWithPrivateKey.cs)
