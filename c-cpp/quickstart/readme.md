@@ -11,7 +11,6 @@
     - [Step 5. Verify and Decrypt](#step-5-verify-and-decrypt)
 - [Build](#build)
 - [Source code](#source-code)
-- [See also](#see-also)
 
 
 ## Introduction
@@ -184,8 +183,3 @@ Run one of the following commands in the project's root folder.
 
 * [Use Case Example](https://github.com/VirgilSecurity/virgil-sdk-cpp/tree/master/examples/IPMessaging)
 * [IP-Messaging Simple Server](https://github.com/VirgilSecurity/virgil-sdk-javascript/tree/master/examples/ip-messaging/server)
-
-## See Also
-
-* [Tutorial Crypto Library](/api-docs/c-cpp/crypto-library)
-* [Tutorial Keys SDK](/api-docs/c-cpp/keys-sdk)
