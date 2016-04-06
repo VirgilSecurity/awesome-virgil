@@ -4,7 +4,6 @@
 - [Sign Data](#sign-data)
 - [Verify Data](#verify-data)
 - [Decrypt Data](#decrypt-data)
-- [See Also](#see-also)
 
 
 ## Generate Keys
@@ -174,9 +173,3 @@ cipher.decryptWithKey(dataSource, dataSink, str2bytes(recipientCard.getId()),
 		 privateKey, privateKeyPassword);
 ```
 See a working example [here...](https://github.com/VirgilSecurity/virgil-sdk-cpp/blob/v3/examples/src/decrypt_with_key.cxx)
-
-
-## See Also
-
-* [Quickstart](/api-docs/c-cpp/quickstart)
-* [Tutorial Keys SDK](/api-docs/c-cpp/keys-sdk)
