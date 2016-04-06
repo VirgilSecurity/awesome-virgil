@@ -9,7 +9,6 @@
     - [Step 2. Encrypt and Sign](#step-2-encrypt-and-sign)
     - [Step 3. Get sender's Public Key](#step-3-get-senders-public-key)
     - [Step 4. Verify and Decrypt](#step-4-verify-and-decrypt)
-- [See also](#see-also)
 
 ## Introduction
 
@@ -531,8 +530,3 @@ else {
 }
 //...
 ```
-
-## See Also
-
-* [Tutorial Keys SDK](/api-docs/objective-c-swift/keys-sdk)
-* [Tutorial Crypto Library](/api-docs/objective-c-swift/crypto-library)
