@@ -16,7 +16,6 @@
   - [Stash a Private Key](#stash-a-private-key)
   - [Get a Private Key](#get-a-private-key)
   - [Destroy a Private Key](#destroy-a-private-key)
-- [See also](#see-also)
 
 ##Introduction
 
@@ -180,8 +179,3 @@ This operation deletes the private key from the service without a possibility to
 ```csharp
 await virgilHub.PrivateKeys.Destroy(myCard.Id, keyPair.PrivateKey());
 ```
-
-## See Also
-
-* [Quickstart](/api-docs/dot-net-csharp/quickstart)
-* [Crypto Library](/api-docs/dot-net-csharp/crypto-library)
