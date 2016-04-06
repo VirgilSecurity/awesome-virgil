@@ -1,5 +1,3 @@
-# Tutorial JavaScript Virgil Services SDK 
-
 - [Introduction](#introduction)
 - [Install](#installation)
 - [Obtaining an Access Token](#obtaining-an-access-token)
@@ -18,7 +16,6 @@
       - [Stash a Private Key](#stash-a-private-key)
       - [Get a Private Key](#get-a-private-key)
       - [Destroy a Private Key](#destroy-a-private-key)
-- [See Also](#see-also)
 
 ## Introduction
 
@@ -132,7 +129,7 @@ Search for the Virgil Card by provided parameters.
 
 ```javascript
 virgil.cards.search({
-    value: "test2@virgilsecurity.com",
+    value: 'test2@virgilsecurity.com',
     type: 'email'
 });
 ```
@@ -141,7 +138,7 @@ Search for the Virgil Card including cards with unconfirmed Identity.
 
 ```javascript
 virgil.cards.search({
-    value: "test2@virgilsecurity.com",
+    value: 'test2@virgilsecurity.com',
     type: 'email',
     include_unconfirmed: true
 });
@@ -224,7 +221,7 @@ Private key can be added for storage only in case you have already registered a 
 
 Use the public key identifier on the Public Keys Service to save the private keys. 
 
-The Private Keys Service stores private keys the original way as they were transferred. That's why we strongly recommend  transferring the keys which were generated with a password.
+The Private Keys Service stores private keys the original way as they were transferred. That's why we strongly recommend transferring the keys which were generated with a password.
 
 ```javascript
 virgil.privateKeys.stash({
@@ -275,8 +272,3 @@ virgil.privateKeys.destroy({
     private_key_password: '<your_private_key_password>'
 });
 ```
-
-## See Also
-
-* [Quickstart](quickstart.md)
-* [Tutorial Crypto Library](https://github.com/VirgilSecurity/virgil-crypto-javascript)
