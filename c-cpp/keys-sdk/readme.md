@@ -78,7 +78,7 @@ Credentials credentials(privateKey, str2bytes(PRIVATE_KEY_PASSWORD));
 Card myCard =
   servicesHub.card().create(validatedIdentity, keyPair.publicKey(), credentials);
 ```
-See a working example [here...](https://github.com/VirgilSecurity/virgil-sdk-cpp/blob/master/examples/src/card_create.cxx)
+See a working example [here...](https://github.com/VirgilSecurity/virgil-sdk-cpp/blob/master/examples/src/card_create_valid.cxx)
 
 Creating a Card without an Identity verification. Pay attention that you will have to set an additional attribute to include the Cards with unconfirmed Identities into your search, see an [example](#search-for-cards).
 
