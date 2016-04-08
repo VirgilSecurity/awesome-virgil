@@ -41,7 +41,7 @@ Following dependencies are used for work with IPMessaging:
 1. [restless](https://github.com/VirgilSecurity/restless)
 
 They are automatically downloaded by [CMake](https://cmake.org/), [ExternalProject](https://cmake.org/cmake/help/v3.2/module/ExternalProject.html?highlight=externalproject_add#command:externalproject_add) command.
-Scripts can be viewed [here](../examples/IPMessaging/cmake).
+Scripts can be viewed [here](https://github.com/VirgilSecurity/virgil-sdk-cpp/tree/master/examples/IPMessaging/cmake).
 Move to this step to [build](#build) an application.
 
 
