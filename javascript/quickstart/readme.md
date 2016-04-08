@@ -90,7 +90,7 @@ var keyPair = virgil.crypto.generateKeyPair(password);
 ```
 - [virgil.crypto.generateKeyPair](https://github.com/VirgilSecurity/virgil-crypto-javascript/#generate-keys)
 
-The app is registering a Virgil Card which includes a public key and an email address identifier. The card will be used for the public key identification and searching for it in the Public Keys Service. You can create a Virgil Card with or without identity verification, see both examples [here...](https://github.com/VirgilSecurity/virgil-sdk-javascript/blob/master/keys.md#publish-a-virgil-card)
+The app is registering a Virgil Card which includes a public key and an email address identifier. The card will be used for the public key identification and searching for it in the Public Keys Service. You can create a Virgil Card with or without identity verification, see both examples [here...](https://github.com/VirgilSecurity/virgil/tree/master/javascript/keys-sdk#publish-a-virgil-card)
 
 ```javascript
 virgil.cards.create({
@@ -106,7 +106,7 @@ virgil.cards.create({
 });
 ```
 
-- [virgil.cards.create](https://github.com/VirgilSecurity/virgil-sdk-javascript/blob/master/keys.md#publish-a-virgil-card)
+- [virgil.cards.create](https://github.com/VirgilSecurity/virgil/tree/master/javascript/keys-sdk#publish-a-virgil-card)
 
 ## Step 2. Encrypt and Sign
 
@@ -154,7 +154,7 @@ messagingService.getChannelMessages({ channel_name: 'some channel name' })
 	})
 ```
 
-- [virgil.cards.search](https://github.com/VirgilSecurity/virgil-sdk-javascript/blob/master/keys.md#search-for-cards)
+- [virgil.cards.search](https://github.com/VirgilSecurity/virgil/tree/master/javascript/keys-sdk#search-for-cards)
 
 ## Step 5. Verify and Decrypt
 
