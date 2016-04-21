@@ -24,7 +24,7 @@ First you must create a free Virgil Security developer's account by signing up [
 
 The access token provides authenticated secure access to Virgil Security Services and is passed with each API call. The access token also allows the API to associate your app’s requests with your Virgil Security developer's account.
 
-Use this token to initialize the SDK client [here](#initialization).
+Use this token to initialize the SDK client [here](#step-0-initialization).
 
 ## Install
 
