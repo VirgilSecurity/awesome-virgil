@@ -64,7 +64,8 @@ var countToLive = 1;
 // parameter is used to limit the lifetime of the token in seconds.
 var timeToLive = 3600; 
 
-var confirmedIdentity = await emailVerifier.Confirm("%CONFIRMATION_CODE%", timeToLive, countToLive);
+var confirmedIdentity = await emailVerifier
+    .Confirm("%CONFIRMATION_CODE%", timeToLive, countToLive);
 ```
 
 ## Cards and Public Keys
