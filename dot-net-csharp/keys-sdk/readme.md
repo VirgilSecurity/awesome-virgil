@@ -38,7 +38,7 @@ The access token provides an authenticated secure access to the Public Keys Serv
 Simply add your access token to the client constructor.
 
 ```csharp
-var virgilHub = VirgilHub.Create("%ACCESS_TOKEN%");
+var serviceHub = ServiceHub.Create("%ACCESS_TOKEN%");
 ``` 
 
 ## Identity Check
@@ -50,15 +50,21 @@ All the Virgil Security services are strongly interconnected with the Identity S
 Initialize the Identity verification process.
 
 ```csharp
-var identityRequest = await virgilHub.Identity.Verify("test1@virgilsecurity.com", IdentityType.Email);
+var emailVerifier = await virgilHub.Identity.VerifyEmail("test1@virgilsecurity.com");
 ```
 
-#### Confirm and Get an Identity Token
+#### Confirm and Get an Validation Token
 
-Confirm the Identity and get a temporary token.
+Confirm the Identity and get a temporary validation token.
 
 ```csharp
-var identityToken = await virgilHub.Identity.Confirm(identityRequest.Id, "%CONFIRMATION_CODE%");
+// parameter is used to restrict the number of token 
+var countToLive = 1;
+
+// parameter is used to limit the lifetime of the token in seconds.
+var timeToLive = 3600; 
+
+var confirmedIdentity = await emailVerifier.Confirm("%CONFIRMATION_CODE%", timeToLive, countToLive);
 ```
 
 ## Cards and Public Keys
