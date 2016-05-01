@@ -87,7 +87,8 @@ VSSKeyPair instance should be used to generate a pair of keys. It is possible to
 ###### Objective-C
 ```objective-c
 //...
-VSSKeyPair *keyPair = [[VSSKeyPair alloc] initWithPassword:<#Password or nil#>];
+VSSKeyPair *keyPair = [[VSSKeyPair alloc] 
+        initWithPassword:<#Password or nil#>];
 NSString *publicKey = [[NSString alloc] 
 	initWithData:keyPair.publicKey encoding:NSUTF8StringEncoding];
 NSLog(@"%@", publicKey);
@@ -130,7 +131,8 @@ VSSCryptor *cryptor = [[VSSCryptor alloc] init];
 [cryptor addKeyRecepient:<#Public Key ID (e.g. UUID)#> 
 	publicKey:<#keyPair.publicKey#>];
 // And now we can easily encrypt the plain data
-NSData *encryptedData = [cryptor encryptData:toEncrypt embedContentInfo:@YES];
+NSData *encryptedData = [cryptor encryptData:toEncrypt 
+        embedContentInfo:@YES];
 //...
 ```
 
@@ -209,7 +211,8 @@ VSSCryptor *cryptor = [[VSSCryptor alloc] init];
 // Now we should add a password recepient
 [cryptor addPasswordRecipient:<#Password to encrypt data with#>];
 // And now we can encrypt the plain data
-NSData *encryptedData = [cryptor encryptData:toEncrypt embedContentInfo:@YES];
+NSData *encryptedData = [cryptor encryptData:toEncrypt 
+              embedContentInfo:@YES];
 //...
 ```
 
