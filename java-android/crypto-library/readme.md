@@ -219,7 +219,8 @@ To verify that the data was signed by a particular party, you need the following
 The following example verifies a digital signature which was signed by the sender.
 
 ```java
-var isValid = CryptoHelper.Verify(originalText, signature, keyPair.PublicKey());
+var isValid = CryptoHelper.Verify(originalText, signature, 
+       keyPair.PublicKey());
 ```
 
 See a working example [here...](https://github.com/VirgilSecurity/virgil-sdk-java-android/blob/master/samples/crypto/src/main/java/SignAndVerifyText.java)
