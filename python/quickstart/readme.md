@@ -146,8 +146,8 @@ The application is making sure the message came from the declared sender by gett
 
 ```python
 is_valid = cryptolib.CryptoWrapper.verify(encryptedBody['Content'],
-										encryptedBody['Signature'],
-										senderCard[0]['public_key']['public_key'])
+								encryptedBody['Signature'],
+								senderCard[0]['public_key']['public_key'])
 if not is_valid:
     raise ValueError("Signature is not valid.")
 
