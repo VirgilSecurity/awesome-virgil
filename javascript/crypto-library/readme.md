@@ -29,7 +29,8 @@ bower install virgil-crypto
 
 ### CDN
 ```html
-<script src="https://cdn.virgilsecurity.com/packages/javascript/crypto/latest/virgil-crypto.min.js"></script>
+<script src="https://cdn.virgilsecurity.com/packages
+/javascript/sdk/1.3.1/virgil-sdk.min.js"></script>
 ```
 
 ## Generate Keys
