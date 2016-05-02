@@ -87,7 +87,8 @@ KeyPair keyPair = KeyPairGenerator.generate();
 The app is registering a Virgil Card which includes a public key and an email address identifier. The Card will be used for the public key identification and searching for it in the Public Keys Service. You can create a Virgil Card with or without identity verification, see both examples [here...](/api-docs/java-android/keys-sdk#publish-a-virgil-card)
 
 ```java
-ValidatedIdentity identity = new ValidatedIdentity(IdentityType.EMAIL, "{EMAIL}");
+ValidatedIdentity identity = new ValidatedIdentity(IdentityType.EMAIL,
+                               "{EMAIL}");
 
 VirgilCardTemplate.Builder vcBuilder = 
 	new VirgilCardTemplate.Builder().setIdentity(identity).setPublicKey
