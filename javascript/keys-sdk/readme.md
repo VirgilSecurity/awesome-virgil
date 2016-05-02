@@ -46,7 +46,7 @@ The access token provides an authenticated secure access to the Public Keys Serv
 Simply add your access token to the class builder.
 
 ```javascript
-var virgil = new Virgil("%ACCESS_TOKEN%");
+var virgil = new VirgilSDK("%ACCESS_TOKEN%");
 ``` 
 
 ## Cards and Public Keys
@@ -65,7 +65,7 @@ Creating a *private* Virgil Card with a newly generated key pair and **Validatio
 
 
 ```javascript
-var keyPair = new virgil.crypto.generateKeyPair();
+var keyPair = virgil.crypto.generateKeyPair();
 
 virgil.cards.create({
     public_key: keyPair.publicKey,
@@ -81,7 +81,7 @@ virgil.cards.create({
 Creating an unauthorized *private* Virgil Card without **ValidationToken**. Pay attention that you will have to set an additional attribute to include the private Cards without verification into your search, see an [example](#search-for-cards).
 
 ```javascript
-var keyPair = new virgil.crypto.generateKeyPair();
+var keyPair = virgil.crypto.generateKeyPair();
 virgil.cards.create({
     public_key: keyPair.publicKey,
     private_key: keyPair.privateKey,
@@ -95,7 +95,7 @@ virgil.cards.create({
 Creating a *global* Virgil Card. See how to obtain a **ValidationToken** [here...](#obtaining-a-global-validationtoken)
 
 ```javascript
-var keyPair = new virgil.crypto.generateKeyPair();
+var keyPair = virgil.crypto.generateKeyPair();
 
 virgil.identity.verify({
     type: 'email',
@@ -134,14 +134,14 @@ Search for a *global* Virgil Card.
 
 virgil.cards.searchGlobal({
     value: 'demo@virgilsecurity.com',
-    type: virgil.IdentityTypes.email
+    type: VirgilSDK.IdentityTypes.email
 });
 
 // search for application card.
 
 virgil.cards.searchGlobal({
     value: 'demo@virgilsecurity.com',
-    type: virgil.IdentityTypes.application
+    type: VirgilSDK.IdentityTypes.application
 });
 ```
 
