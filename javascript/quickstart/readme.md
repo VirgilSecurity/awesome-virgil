@@ -46,7 +46,8 @@ bower install virgil-sdk
 
 ### CDN
 ```html
-<script src="https://cdn.virgilsecurity.com/packages/javascript/sdk/latest/virgil-sdk.min.js"></script>
+<script src="https://cdn.virgilsecurity.com/packages
+/javascript/sdk/1.3.1/virgil-sdk.min.js"></script>
 ```
 
 ## Use Case
@@ -146,7 +147,8 @@ An encrypted message is received on the recipient’s side using an IP messaging
 ```javascript
 messagingService.getChannelMessages({ channel_name: 'some channel name' })
 	.map(function (messagePayload) {
-		return virgil.cards.search({ value: messagePayload.sender_identifier, type: 'email' })
+		return virgil.cards.search({ value: messagePayload.sender_identifier, 
+                                     type: 'email' })
 			.then(function (cards) {
 				var senderCard = cards[0];
 				// ...
@@ -165,14 +167,17 @@ var payload = JSON.parse(message.message);
 var encryptedMessage = new virgil.crypto.Buffer(payload.message, 'base64');
 var sign = new virgil.crypto.Buffer(payload.sign, 'base64');
 
-var isVerified = virgil.crypto.verify(encryptedMessage, senderCard.public_key.public_key, sign);
+var isVerified = virgil.crypto.verify(encryptedMessage, 
+       senderCard.public_key.public_key, sign);
 
 if (!isVerified) {
 	throw new Error('The message signature is not valid');
 }
 
-var decryptedMessage = virgil.crypto.decrypt(encryptedMessage, recipientCard.id, privateKey);
-// Decrypt returns decrypted content as buffer in order to get original text content
+var decryptedMessage = virgil.crypto.decrypt(encryptedMessage, 
+       recipientCard.id, privateKey);
+// Decrypt returns decrypted content as buffer in order to get 
+// original text content
 // toString method should be used
 var originalMessage = decryptedMessage.toString('utf8');
 ```
