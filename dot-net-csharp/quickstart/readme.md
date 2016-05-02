@@ -56,7 +56,7 @@ PM> Install-Package Virgil.SDK
 Initialize the service Hub instance using access token obtained [here...](#obtaining-an-access-token)
 
 ```csharp
-ServiceHub = ServiceHub.Create("%ACCESS_TOKEN%");
+serviceHub = ServiceHub.Create("%ACCESS_TOKEN%");
 ```
 
 ### Step 1. Generate and Publish the Keys
