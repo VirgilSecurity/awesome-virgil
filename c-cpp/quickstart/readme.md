@@ -100,10 +100,12 @@ for (const auto& channelRecipient : channelRecipients) {
     cipher.addKeyRecipient(recipientCardId, recipientPublicKey);
 }
 
-vcrypto::VirgilByteArray encryptedMessage = cipher.encrypt(messageBytes, true);
+vcrypto::VirgilByteArray encryptedMessage = cipher.
+                encrypt(messageBytes, true);
 
 vcrypto::VirgilSigner signer;
-vcrypto::VirgilByteArray signature = signer.sign(encryptedMessage, currentMember_.getPrivateKey());
+vcrypto::VirgilByteArray signature = signer.
+                sign(encryptedMessage, currentMember_.getPrivateKey());
 ```
 
 
@@ -124,14 +126,18 @@ An encrypted message is received on the recipient’s side using an IP messaging
 In order to decrypt and verify the received data, the app on recipient’s side needs to get sender’s Virgil Card from the Keys Service.
 
 ``` {.cpp}
-void vipm::SimpleChat::onMessageRecived(const std::string& sender, const std::string& message) {
-    vipm::models::EncryptedMessageModel encryptedModel = vipm::models::fromJson(message);
+void vipm::SimpleChat::onMessageRecived(const std::string& sender, 
+         const std::string& message) {
+                    vipm::models::EncryptedMessageModel 
+                             encryptedModel = vipm::models::fromJson(message);
 
-    bool includeUnconfirmed = false;
-    vsdk::dto::Identity senderIdentity(sender, vsdk::models::IdentityModel::Type::Email);
-    auto foundCards = servicesHub_.card().search(senderIdentity, includeUnconfirmed);
+                    bool includeUnconfirmed = false;
+                    vsdk::dto::Identity senderIdentity(sender, 
+                             vsdk::models::IdentityModel::Type::Email);
+                    auto foundCards = servicesHub_.card().search(senderIdentity, 
+                             includeUnconfirmed);
 
-    auto senderCard = foundCards.at(0);
+                    auto senderCard = foundCards.at(0);
     ...
 }
 ```
@@ -142,7 +148,8 @@ The application is making sure the message came from the declared sender by gett
 
 ``` {.cpp}
 bool isValid =
-    signer.verify(encryptedModel.getMessage(), encryptedModel.getSignature(), senderCard.getPublicKey().getKey());
+    signer.verify(encryptedModel.getMessage(), encryptedModel.getSignature(),
+    senderCard.getPublicKey().getKey());
 if (!isValid) {
     std::cout << "The message signature is not valid." << std::endl;
     return;
@@ -150,8 +157,10 @@ if (!isValid) {
 
 vcrypto::VirgilCipher cipher;
 vcrypto::VirgilByteArray decryptedMessage =
-    cipher.decryptWithKey(encryptedModel.getMessage(), currentMember_.getCardId(),
-                          currentMember_.getPrivateKey(), vcrypto::VirgilByteArray());
+    cipher.decryptWithKey(encryptedModel.getMessage(), 
+                          currentMember_.getCardId(),
+                          currentMember_.getPrivateKey(), 
+                          vcrypto::VirgilByteArray());
 ```
 
 
