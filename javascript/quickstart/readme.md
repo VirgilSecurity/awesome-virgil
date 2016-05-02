@@ -1,38 +1,38 @@
- - [Introduction](#introduction)
- - [Prerequisites](#prerequisites)
+- [Introduction](#introduction)
+- [Prerequisites](#prerequisites)
  	- [Obtaining an Access Token](#obtaining-an-access-token)
  	- [Install](#install)
- - [Use case](#use-case)
+- [Use case](#use-case)
      - [Step 0. Initialization](#step-0-initialization)
      - [Step 1. Generate and Publish the Keys](#step-1-generate-and-publish-the-keys)
      - [Step 2. Encrypt and Sign](#step-2-encrypt-and-sign)
      - [Step 3. Send a Message](#step-3-send-a-message)
      - [Step 4. Receive a Message](#step-4-receive-a-message)
      - [Step 5. Verify and Decrypt](#step-5-verify-and-decrypt)
- - [Source code](#source-code)
+- [Source code](#source-code)
  
- ## Introduction
+## Introduction
  
- In this guide we will get you up and running quickly with a simple IP messaging chat application you can build as you learn more about Virgil Crypto Library and Virgil Keys Services. Sounds like a plan? Then let's get cracking!
+In this guide we will get you up and running quickly with a simple IP messaging chat application you can build as you learn more about Virgil Crypto Library and Virgil Keys Services. Sounds like a plan? Then let's get cracking!
  
- On the diagram below you can see a full picture of how these things interact with each other.
- ![Use case mail](https://raw.githubusercontent.com/VirgilSecurity/virgil/master/images/IPMessaging.jpg)
+On the diagram below you can see a full picture of how these things interact with each other.
+![Use case mail](https://raw.githubusercontent.com/VirgilSecurity/virgil/master/images/IPMessaging.jpg)
  
- ##Prerequisites
+##Prerequisites
  
- ### Obtaining an Access Token
+### Obtaining an Access Token
  
- First you must create a free Virgil Security developer's account by signing up [here](https://developer.virgilsecurity.com/account/signup). Once you have your account you can [sign in](https://developer.virgilsecurity.com/account/signin) and generate an access token for your application.
+First you must create a free Virgil Security developer's account by signing up [here](https://developer.virgilsecurity.com/account/signup). Once you have your account you can [sign in](https://developer.virgilsecurity.com/account/signin) and generate an access token for your application.
  
- The access token provides authenticated secure access to Virgil Keys Services and is passed with each API call. The access token also allows the API to associate your app’s requests with your Virgil Security developer's account.
+The access token provides authenticated secure access to Virgil Keys Services and is passed with each API call. The access token also allows the API to associate your app’s requests with your Virgil Security developer's account.
  
- Use this token to initialize the SDK client [here](#step-0-initialization).
+Use this token to initialize the SDK client [here](#step-0-initialization).
  
- ### Install
+### Install
  
- You can easily add SDK dependency to your project, just follow the examples below:
+You can easily add SDK dependency to your project, just follow the examples below:
  
- ### NPM
+### NPM
  
  ```sh
  npm install virgil-sdk
