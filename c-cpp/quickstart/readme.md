@@ -128,14 +128,14 @@ In order to decrypt and verify the received data, the app on recipient’s side 
 ``` {.cpp}
 void vipm::SimpleChat::onMessageRecived(const std::string& sender, 
          const std::string& message) {
-                    vipm::models::EncryptedMessageModel 
-                             encryptedModel = vipm::models::fromJson(message);
+               vipm::models::EncryptedMessageModel 
+                        encryptedModel = vipm::models::fromJson(message);
 
-                    bool includeUnconfirmed = false;
+               bool includeUnconfirmed = false;
                     vsdk::dto::Identity senderIdentity(sender, 
-                             vsdk::models::IdentityModel::Type::Email);
-                    auto foundCards = servicesHub_.card().search(senderIdentity, 
-                             includeUnconfirmed);
+                        vsdk::models::IdentityModel::Type::Email);
+               auto foundCards = servicesHub_.card().search(senderIdentity, 
+                        includeUnconfirmed);
 
                     auto senderCard = foundCards.at(0);
     ...
