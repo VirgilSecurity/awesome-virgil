@@ -73,8 +73,8 @@ The app is registering a Virgil Card which includes a public key and an email ad
 ```csharp
 var senderEmailAddress = 'sender@virgilsecurity.com';
 
-var card = await ServiceHub.Cards.Create(senderEmailAddress, IdentityType.Email, 
-	keyPair.PublicKey(), keyPair.PrivateKey());
+var card = await ServiceHub.Cards.Create(senderEmailAddress, 
+        IdentityType.Email, keyPair.PublicKey(), keyPair.PrivateKey());
 ```
 
 ### Step 2. Encrypt and Sign
@@ -86,7 +86,8 @@ var messageBytes = Encoding.UTF8.GetBytes(message);
 var channelRecipients = await this.GetChannelRecipients();
  
 var encryptedMessage = CryptoHelper.Encrypt(messageBytes, channelRecipients);
-var sign = CryptoHelper.Sign(encryptedMessage, this.currentMember.PrivateKey);
+var sign = CryptoHelper.Sign(encryptedMessage, 
+             this.currentMember.PrivateKey);
 ```
 
 ### Step 3. Send a Message
