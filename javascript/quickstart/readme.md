@@ -8,7 +8,7 @@
      - [Step 2. Encrypt and Sign](#step-2-encrypt-and-sign)
      - [Step 3. Send a Message](#step-3-send-a-message)
      - [Step 4. Receive a Message](#step-4-receive-a-message)
- 	- [Step 5. Verify and Decrypt](#step-5-verify-and-decrypt)
+     - [Step 5. Verify and Decrypt](#step-5-verify-and-decrypt)
  - [Source code](#source-code)
  
  ## Introduction
