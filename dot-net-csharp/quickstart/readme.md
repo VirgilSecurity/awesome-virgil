@@ -56,7 +56,7 @@ PM> Install-Package Virgil.SDK
 Initialize the service Hub instance using access token obtained [here...](#obtaining-an-access-token)
 
 ```csharp
-ServiceHub = VirgilHub.Create("%ACCESS_TOKEN%");
+ServiceHub = ServiceHub.Create("%ACCESS_TOKEN%");
 ```
 
 ### Step 1. Generate and Publish the Keys
@@ -72,9 +72,15 @@ The app is registering a Virgil Card which includes a public key and an email ad
 
 ```csharp
 var senderEmailAddress = 'sender@virgilsecurity.com';
+var emailVerifier = await serviceHub.Identity.
+VerifyEmail(senderEmailAddress);
 
-var card = await ServiceHub.Cards.Create(senderEmailAddress, 
-        IdentityType.Email, keyPair.PublicKey(), keyPair.PrivateKey());
+// Confirm an identity using code received to email box.
+
+var authorizedIdentity = emailVerifier.Confirm("%CONFIRMATION_CODE%")
+
+var card = await serviceHub.Cards.Create(authorizedIdentity, 
+keyPair.PublicKey(), keyPair.PrivateKey());
 ```
 
 ### Step 2. Encrypt and Sign
@@ -85,7 +91,8 @@ var messageBytes = Encoding.UTF8.GetBytes(message);
 
 var channelRecipients = await this.GetChannelRecipients();
  
-var encryptedMessage = CryptoHelper.Encrypt(messageBytes, channelRecipients);
+var encryptedMessage = CryptoHelper.Encrypt(messageBytes, 
+channelRecipients);
 var sign = CryptoHelper.Sign(encryptedMessage, 
              this.currentMember.PrivateKey);
 ```
@@ -113,12 +120,13 @@ In order to decrypt and verify the received data, the app on recipient’s side 
 ```csharp
 private async Task OnMessageRecived(string sender, string message)
 {
-	var encryptedModel = JsonConvert
-		.DeserializeObject<EncryptedMessageModel>(message);
-	
-	var foundCards = await ServiceHub.Cards.Search(sender);
-	var senderCard = foundCards.Single();
-	...
+    var encryptedModel = JsonConvert
+        .DeserializeObject<EncryptedMessageModel>(message);
+    
+    var foundCards = await serviceHub.Cards.Search(sender, 
+IdentityType.Email);
+    var senderCard = foundCards.Single();
+    ...
 }
 ```
 
@@ -127,14 +135,14 @@ The application is making sure the message came from the declared sender by gett
 
 ```csharp
 var isValid = CryptoHelper.Verify(encryptedModel.EncryptedMessage, 
-    encryptedModel.Signature, senderCard.PublicKey.PublicKey);
+    encryptedModel.Signature, senderCard.PublicKey.Value);
 
 if (!isValid)
 {
     throw new Exception("The message signature is not valid");
 }
 
-var decryptedMessage = CryptoHelper.Decrypt(encryptedModel.EncryptedMessage, 
+var decryptedMessage =CryptoHelper.Decrypt(encryptedModel.EncryptedMessage, 
     this.currentMember.CardId.ToString(), this.currentMember.PrivateKey);
 ```
 
