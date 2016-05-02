@@ -169,7 +169,8 @@ The app is registering a Virgil Card which includes a public key and an email ad
 ###### Objective-C
 ```objective-c
 //...
-// For 'confirmed' Virgil Card you should compose identity dictionary with kVSSModelValidationToken parameter. 
+// For 'confirmed' Virgil Card you should compose identity dictionary 
+// with kVSSModelValidationToken parameter. 
 NSDictionary *identity = @{ 
     kVSSModelType: [VSSIdentity stringFromIdentityType:VSSIdentityTypeEmail],
     kVSSModelValue: <# Email address #>,
@@ -198,7 +199,8 @@ VSSPrivateKey *privateKey = [[VSSPrivateKey alloc]
 ###### Swift
 ```swift
 //...
-// For 'confirmed' Virgil Card you should compose identity dictionary with kVSSModelValidationToken parameter.
+// For 'confirmed' Virgil Card you should compose identity dictionary 
+// with kVSSModelValidationToken parameter.
 let identity = [
     kVSSModelType: VSSIdentity.stringFromIdentityType(.Email),
     kVSSModelValue: <# Email address #>,
@@ -227,7 +229,8 @@ The following code snippets show how to create a new Virgil Card without identit
 ###### Objective-C
 ```objective-c
 //...
-// For 'unconfirmed' Virgil Card identity dictionary contains only 'identity type' and 'value'. 
+// For 'unconfirmed' Virgil Card identity dictionary contains only
+// 'identity type' and 'value'. 
 NSDictionary *identity = @{ 
     kVSSModelType: [VSSIdentity stringFromIdentityType:VSSIdentityTypeEmail],
     kVSSModelValue: <# Email address #> };
@@ -255,7 +258,8 @@ VSSPrivateKey *privateKey = [[VSSPrivateKey alloc]
 ###### Swift
 ```swift
 //...
-// For 'unconfirmed' Virgil Card identity dictionary contains only 'identity type' and 'value'.
+// For 'unconfirmed' Virgil Card identity dictionary contains only
+// 'identity type' and 'value'.
 let identity = [
     kVSSModelType: VSSIdentity.stringFromIdentityType(.Email),
     kVSSModelValue: <# Email address #>
@@ -286,39 +290,46 @@ The example app we are discussing here uses IPMSecurityManager helper class ([IP
 ###### Objective-C
 ```objective-c
 //...
-// IPMSecurityManager is a custom helper class which wraps all the security related activities
-// for this particular example application.
+// IPMSecurityManager is a custom helper class which wraps all the security 
+// related activities for this particular example application.
 @property (nonatomic, strong) IPMSecurityManager *ipmSecurity;
 //...
 // Get all channel's participants
-NSObject *result = [XAsync awaitResult:[self.ipmClient.channel getParticipants]];
+NSObject *result = [XAsync awaitResult:[self.ipmClient.channel 
+         getParticipants]];
 if ([result as:[NSError class]] != nil) {
     // Error getting participants.
     return;
 }
 NSArray *participants = [result as:[NSArray class]];
 //...
-NSData *encrypted = [self.ipmSecurity encryptData:[<#NSString: Message which needs to be secured#> dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:NO] identities:participants];
+NSData *encrypted = [self.ipmSecurity encryptData:[<#NSString: 
+            Message which needs to be secured#> 
+            dataUsingEncoding:NSUTF8StringEncoding 
+            allowLossyConversion:NO] identities:participants];
 if (encrypted.length == 0) {
     // Message encryption error.
     return;
 }
 //...
-// Now we have the encrypted message. Let's compose a signature on it, to make recipient sure about the sender.
+// Now we have the encrypted message. Let's compose a signature on it,
+// to make recipient sure about the sender.
 NSData *signature = [self.ipmSecurity composeSignatureOnData:encrypted];
 if (signature.length == 0) {
     // Error composing the signature.
     return;
 }
-// At this point we have NSData *encrypted with encrypted message and NSData *signature with sender's signature. These two NSData objects now can be sent to the channel.
+// At this point we have NSData *encrypted with encrypted message and
+// NSData *signature with sender's signature. These two NSData objects
+// now can be sent to the channel.
 //...
 ```
 
 ###### Swift
 ```swift
 //...
-// IPMSecurityManager is a custom helper class which wraps all the security related activities
-// for this particular example application.
+// IPMSecurityManager is a custom helper class which wraps all the security 
+// related activities for this particular example application.
 private var ipmSecurity: IPMSecurityManager! = nil
 //...
 let result = XAsync.awaitResult(self.ipmClient.channel.getParticipants())
@@ -328,10 +339,16 @@ if let error = result as? NSError {
 }
 
 if let participants = result as? Array<String> where participants.count > 0 {
-    if let plainData = <#NSString: Message which needs to be secured#>.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) {
-        if let encryptedData = self.ipmSecurity.encryptData(plainData, identities: participants) {
-            if let signature = self.ipmSecurity.composeSignatureOnData(encryptedData) { 
-                // At this point we have encrypted: NSData with encrypted message and signature: NSData with sender's signature. These two NSData objects now can be sent to the channel. 
+    if let plainData = <#NSString: Message which needs to be secured#>.
+             dataUsingEncoding(NSUTF8StringEncoding, 
+                      allowLossyConversion: false) {
+        if let encryptedData = self.ipmSecurity.encryptData(plainData, 
+                 identities: participants) {
+            if let signature = self.ipmSecurity.
+                     composeSignatureOnData(encryptedData) { 
+                // At this point we have encrypted: NSData with encrypted 
+               // message and signature: NSData with sender's signature. 
+              // These two NSData objects now can be sent to the channel. 
             }
         }
     }
@@ -348,11 +365,14 @@ The application uses IPMSecureMessage class ([IPMSecureMessage.m](https://github
 ###### Objective-C
 ```objective-c
 //...
-// IPMClient object contains handling of the IP Messaging channel for the app.
+// IPMClient object contains handling of the IP Messaging channel
+// for the app.
 @property (nonatomic, strong) IPMChannelClient *ipmClient;
 //...
-IPMSecureMessage *sm = [[IPMSecureMessage alloc] initWithMessage:encrypted signature:signature];
-NSError *error = [XAsync awaitResult:[self.ipmClient.channel sendMessage:sm]];
+IPMSecureMessage *sm = [[IPMSecureMessage alloc] 
+            initWithMessage:encrypted signature:signature];
+NSError *error = [XAsync awaitResult:[self.ipmClient.
+            channel sendMessage:sm]];
 if (error != nil) {
     // Error sending the message to the channel.
     return;
@@ -363,11 +383,13 @@ if (error != nil) {
 ####### Swift
 ```swift
 //...
-// IPMClient object contains handling of the IP Messaging channel for the app.
+// IPMClient object contains handling of the IP Messaging channel
+// for the app.
 private var ipmClient: IPMChannelClient! = nil
 //...
 let ipm = IPMSecureMessage(message: encryptedData, signature: signature)
-if let error = XAsync.awaitResult(self.ipmClient.channel.sendMessage(ipm)) as? NSError {
+if let error = XAsync.awaitResult(self.ipmClient.channel.sendMessage(ipm)) 
+          as? NSError {
     // Error sending the message to the channel.
     return
 }
@@ -380,9 +402,10 @@ An encrypted message is received on the recipient’s side using the IPMDataSour
 ###### Objective-C
 ```objective-c
 //...
-IPMDataSourceListener listener = ^(IPMSecureMessage * _Nonnull content, NSString * _Nonnull sender) {
-    // Handler receives two parameters: container with encrypted data and sender's signature 
-    // and sender's email address (identity value).
+IPMDataSourceListener listener = ^(IPMSecureMessage * _Nonnull content,
+    NSString * _Nonnull sender) {
+    // Handler receives two parameters: container with encrypted data and 
+    // sender's signature and sender's email address (identity value).
 };
 //...
 ```
@@ -391,8 +414,8 @@ IPMDataSourceListener listener = ^(IPMSecureMessage * _Nonnull content, NSString
 ```swift
 //...
 let listener: IPMDataSourceListener = { secureMessage, sender in
-    // Handler receives two parameters: container with encrypted data and sender's signature 
-    // and sender's email address (identity value).
+    // Handler receives two parameters: container with encrypted data and
+    // sender's signature and sender's email address (identity value).
 }
 //...
 ```
@@ -403,7 +426,8 @@ We are making sure the data came from the declared sender by verifying his signa
 ###### Objective-C
 ```objective-c
 //...
-BOOL ok = [self.ipmSecurity checkSignature:content.signature data:content.message identity:sender];
+BOOL ok = [self.ipmSecurity checkSignature:content.signature 
+     data:content.message identity:sender];
 if (!ok) {
     // Error validating the sender's signature.
     return;
@@ -415,7 +439,8 @@ if (plainData.length == 0) {
     return;
 }
 // Compose plain text from the decrypted message
-NSString *text = [[NSString alloc] initWithData:plainData encoding:NSUTF8StringEncoding];
+NSString *text = [[NSString alloc] initWithData:plainData 
+      encoding:NSUTF8StringEncoding];
 // Handle the plain message, e.g. show it on the screen, etc.
 // Warning: This code is likely called on the background thread.
 //...
@@ -424,13 +449,16 @@ NSString *text = [[NSString alloc] initWithData:plainData encoding:NSUTF8StringE
 ###### Swift
 ```swift
 //...
-if !self.ipmSecurity.checkSignature(secureMessage.signature, data: secureMessage.message, identity: sender) {
+if !self.ipmSecurity.checkSignature(secureMessage.signature, 
+    data: secureMessage.message, identity: sender) {
     // Error validating the sender's signature.
     return
 }
 
-// Here we are trying to decrypt received message and right after that - compose plain text from the decrypted data.
-if let plainData = self.ipmSecurity.decryptData(secureMessage.message), text = NSString(data: plainData, encoding: NSUTF8StringEncoding) {
+// Here we are trying to decrypt received message and right after that
+// - compose plain text from the decrypted data.
+if let plainData = self.ipmSecurity.decryptData(secureMessage.message), 
+    text = NSString(data: plainData, encoding: NSUTF8StringEncoding) {
     // Handle the plain message, e.g. show it on the screen, etc.
     // Warning: This code is likely called on the background thread.
     return
