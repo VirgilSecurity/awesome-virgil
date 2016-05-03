@@ -30,9 +30,8 @@ bower install virgil-crypto
 ### CDN
 ```html
 <script 
-src="https://cdn.virgilsecurity.com/packages/javascript
-/sdk/1.4.1/virgil-sdk.min.js" 
-integrity="sha256-oa5PdJUfmpmSk0q08WejIusp7epaht49i8NKSf6uoJo="
+src="https://cdn.virgilsecurity.com/packages/javascript/crypto/1.5.5/virgil-crypto.min.js" 
+integrity="sha256-3W5xboDke1qIoYdoIGh3alQWUBMElS+lIyGL2JAjYhE=" 
 crossorigin="anonymous"></script>
 ```
 
