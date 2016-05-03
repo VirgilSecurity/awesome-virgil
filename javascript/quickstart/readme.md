@@ -46,8 +46,7 @@ bower install virgil-sdk
 ### CDN
 ```html
 <script 
-src="https://cdn.virgilsecurity.com/packages/javascript
-/sdk/1.4.1/virgil-sdk.min.js" 
+src="https://cdn.virgilsecurity.com/packages/javascript/sdk/1.4.1/virgil-sdk.min.js" 
 integrity="sha256-oa5PdJUfmpmSk0q08WejIusp7epaht49i8NKSf6uoJo="
 crossorigin="anonymous"></script>
 ```
@@ -70,15 +69,15 @@ crossorigin="anonymous"></script>
 ### Node
  
 ```javascript
-var Virgil = require('virgil-sdk');
-var virgil = new Virgil("%ACCESS_TOKEN%");
+var VirgilSDK = require('virgil-sdk');
+var virgil = new VirgilSDK("%ACCESS_TOKEN%");
 ```
  
 ### Browsers
  
 ```javascript
-var Virgil = window.VirgilSDK;
-var virgil = new Virgil("%ACCESS_TOKEN%");
+var VirgilSDK = window.VirgilSDK;
+var virgil = new VirgilSDK("%ACCESS_TOKEN%");
 ```
  
 ## Step 1. Generate and Publish the Keys
@@ -101,7 +100,7 @@ virgil.cards.create({
  	private_key: keyPair.privateKey,
  	private_key_password: 'YOUR_PRIVATE_KEY_PASSWORD',
  	identity: {
- 		type: 'email',
+ 		type: VirgilSDK.IdentityTypes.email,
  		value: 'user@virgilsecurity.com'
  	}
 }).then(function (myCard) {a
@@ -149,12 +148,13 @@ An encrypted message is received on the recipient’s side using an IP messaging
 ```javascript
 messagingService.getChannelMessages({ channel_name: 'some channel name' })
 	.map(function (messagePayload) {
-	return virgil.cards.search({ value: messagePayload.sender_identifier, 
-                                    type: 'email' })
- 			.then(function (cards) {
- 				var senderCard = cards[0];
- 				// ...
-			});
+		return virgil.cards.search({
+			value: messagePayload.sender_identifier, 
+			type: VirgilSDK.IdentityTypes.email
+		}).then(function (cards) {
+			var senderCard = cards[0];
+			// ...
+		});
 	})
 ```
  
