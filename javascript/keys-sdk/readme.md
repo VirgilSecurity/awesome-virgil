@@ -33,8 +33,11 @@ bower install virgil-sdk
 
 ### CDN
 ```html
-<script src="https://cdn.virgilsecurity.com/packages
-/javascript/sdk/1.3.1/virgil-sdk.min.js"></script>
+<script 
+src="https://cdn.virgilsecurity.com/packages/javascript
+/sdk/1.4.1/virgil-sdk.min.js" 
+integrity="sha256-oa5PdJUfmpmSk0q08WejIusp7epaht49i8NKSf6uoJo="
+crossorigin="anonymous"></script>
 ```
 
 ##Obtaining an Access Token
