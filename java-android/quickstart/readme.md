@@ -20,7 +20,7 @@ On the diagram below you can see a full picture of how these things interact wit
 ## Prerequisites
 
 1. To begin with, you'll need a Virgil Access Token, which you can obtain by passing a few steps described [here](#obtaining-an-access-token).
-2. You will also need to [install a Gradle package](#install).
+2. You will also need to [add java libraries](#install).
 
 ### Obtaining an Access Token
 
@@ -34,22 +34,22 @@ Use this token to initialize the SDK client [here](#step-0-initialization).
 
 You can easily add SDK dependency to your project, just follow the examples below:
 
-#### Maven
+###Maven
 
-```xml
+```
 <dependencies>
   <dependency>
     <groupId>com.virgilsecurity.sdk</groupId>
     <artifactId>client</artifactId>
-    <version>3.0.1</version>
+    <version>3.2.0</version>
   </dependency>
 </dependencies>
 ```
 
-#### Gradle
+###Gradle
 
 ```
-compile 'com.virgilsecurity.sdk:android:3.0.1@aar'
+compile 'com.virgilsecurity.sdk:android:3.2.0@aar'
 compile 'com.squareup.retrofit2:retrofit:2.0.0'
 compile 'com.squareup.retrofit2:converter-gson:2.0.0'
 ```
@@ -69,11 +69,11 @@ compile 'com.squareup.retrofit2:converter-gson:2.0.0'
 
 ### Step 0. Initialization
 
-Initialize the ClientFactory instance using access token obtained [here...](#obtaining-an-access-token)
+Initialize the service Hub instance using access token obtained [here...](#obtaining-an-access-token)
 
 ```java
-ClientFactory factory = new ClientFactory("{ACCESS_TOKEN}");
-``` 
+ClientFactory factory = new ClientFactory(accesToken);
+```
 
 ### Step 1. Generate and Publish the Keys
 First a simple IP messaging chat application is generating the keys and publishing them to the Public Keys Service where they are available in open access for other users (e.g. recipient) to verify and encrypt the data for the key owner.
@@ -84,17 +84,18 @@ The following code example generates a new public/private key pair.
 KeyPair keyPair = KeyPairGenerator.generate();
 ```
 
-The app is registering a Virgil Card which includes a public key and an email address identifier. The Card will be used for the public key identification and searching for it in the Public Keys Service. You can create a Virgil Card with or without identity verification, see both examples [here...](/api-docs/java-android/keys-sdk#publish-a-virgil-card)
+The app is registering a Virgil Card which includes a public key and an email address identifier. The Card will be used for the public key identification and searching for it in the Public Keys Service. You can create a Virgil Card with or without identity verification, see both examples [here...](/api-docs/dot-net-csharp/keys-sdk#publish-a-virgil-card)  
 
 ```java
-ValidatedIdentity identity = new ValidatedIdentity(IdentityType.EMAIL,
-                               "{EMAIL}");
+String senderEmail = "sender-test@virgilsecurity.com";
 
-VirgilCardTemplate.Builder vcBuilder = 
-	new VirgilCardTemplate.Builder().setIdentity(identity).setPublicKey
-		(keyPair.getPublic());
-VirgilCard senderCard = factory.getPublicKeyClient().createCard
-	(vcBuilder.build(), keyPair.getPrivate());
+Identity identity = new ValidatedIdentity(IdentityType.EMAIL, senderEmail);
+
+VirgilCardTemplate.Builder vcBuilder = new VirgilCardTemplate.Builder()
+    .setIdentity(identity)
+    .setPublicKey(keyPair.getPublic());
+VirgilCard card = factory.getPublicKeyClient()
+.createCard(vcBuilder.build(), keyPair.getPrivate());
 ```
 
 ### Step 2. Encrypt and Sign
@@ -103,58 +104,60 @@ The app is searching for all channel members' public keys on the Keys Service to
 ```java
 String message = "Encrypt me, Please!!!";
 
+Builder criteriaBuilder = new Builder()
+.setValue("recipient-test@virgilsecurity.com");
+List<VirgilCard> recipientCards = factory.getPublicKeyClient()
+.search(criteriaBuilder.build());
+
 Map<String, PublicKey> recipients = new HashMap<>();
-for (ChatMember recipient : MessagingClient.getInstance()
-		.getChannelMembers(channelName, identityToken)) {
-	recipients.put(recipient.getCardId(), recipient.getPublicKey());
+for (VirgilCard recipientCard : recipientCards) {
+    recipients.put(recipientCard.getId(), 
+    new PublicKey(recipientCard.getPublicKey().getKey()));
 }
 
 String encryptedMessage = CryptoHelper.encrypt(message, recipients);
-String sign = CryptoHelper.signBase64(encryptedMessage, me.getPrivateKey());
+String signature = CryptoHelper
+.sign(encryptedMessage, keyPair.getPrivate());
 ```
 
 ### Step 3. Send a Message
-The app merges the message text and the signature into one [structure](https://github.com/VirgilSecurity/virgil-sdk-java-android/blob/master/samples/IPMessagingClient/app/src/main/java/com/virgilsecurity/ipmessaginglient/model/EncryptedMessage.java) then serializes it to json string and sends the message to the channel using a simple IP messaging client.
+The app merges the message text and the signature into one [structure](https://github.com/VirgilSecurity/virgil-sdk-net/blob/master/Examples/Virgil.Examples.IPMessaging/EncryptedMessageModel.cs) then serializes it to json string and sends the message to the channel using a simple IP messaging client.
 
 > We will be using our custom IP Messaging Server in our examples, you may need to adjust the code for your favorite IP Messaging Server.
 
 ```java
-EncryptedMessage encryptedModel = new EncryptedMessage();
-encryptedModel.setMessage(em);
-encryptedModel.setSign(sign);
-
-String encryptedModelJson = new Gson().toJson(encryptedModel);
-MessagingClient.getInstance().sendMessage(me, channelName, token, encryptedModelJson);
+JsonObject encryptedBody = new JsonObject();
+encryptedBody.addProperty("Content", encryptedMessage);
+encryptedBody.addProperty("Signature", signature);
 ```
 
 ### Step 4. Receive a Message
 An encrypted message is received on the recipient’s side using an IP messaging client. 
 In order to decrypt and verify the received data, the app on recipient’s side needs to get sender’s Virgil Card from the Keys Service.
 
-```java
-EncryptedMessage encryptedMessage = new Gson().fromJson(message.getMessage(),
-		EncryptedMessage.class);
-ChatMember sender = cache.getMember(message.getSenderIdentifier());
-```
-
 ### Step 5. Verify and Decrypt
 The application is making sure the message came from the declared sender by getting his card on Virgil Public Keys Service. In case of success, the message is decrypted using the recipient's private key.
 
 ```java
-boolean isValid = CryptoHelper.verifyBase64(encryptedMessage.getMessage(), 
-		encryptedMessage.getSign(), sender.getPublicKey());
+PrivateKey recipientPrivateKey = new PrivateKey("{RECIPIENT_KEY}");
 
-String decryptedMessage = null;
-if (isValid) {
-	decryptedMessage = CryptoHelper.decrypt(encryptedMessage.getMessage(),
-		me.getCardId(), me.getPrivateKey());
-} else {
-	// Log signature validation error
-	...
+String encryptedContent = encryptedBody.get("Content").getAsString();
+String encryptedContentSignature = encryptedBody.get("Signature")
+.getAsString();
+
+boolean isValid = CryptoHelper.verify(encryptedContent, 
+    encryptedContentSignature,
+    new PublicKey(card.getPublicKey().getKey()));
+    
+if (!isValid) {
+    throw new Exception("Signature is not valid.");
 }
+
+String originalMessage = CryptoHelper.decrypt(encryptedContent, 
+"{RECIPIENT_CARD_ID}", recipientPrivateKey);
 ```
 
 ## Source Code
 
-* [Use Case Example](https://github.com/VirgilSecurity/virgil-sdk-java-android/tree/master/samples/IPMessagingClient)
+* [Use Case Example](https://github.com/VirgilSecurity/virgil-sdk-net/tree/master/Examples/Virgil.Examples.IPMessaging)
 * [IP-Messaging Simple Server](https://github.com/VirgilSecurity/virgil-sdk-javascript/tree/master/examples/ip-messaging/server)
