@@ -100,7 +100,7 @@ Creating a *global* Virgil Card. See how to obtain a **ValidationToken** [here..
 var keyPair = virgil.crypto.generateKeyPair();
 
 virgil.identity.verify({
-    type: 'email',
+    type: VirgilSDK.IdentityTypes.email,
     value: 'demo@virgilsecurity.com'
 }).then(function (result) {
     return virgil.identity.confirm({
@@ -119,7 +119,7 @@ virgil.identity.verify({
         public_key: keyPair.publicKey,
         private_key: keyPair.privateKey,
         identity: {
-            type: 'email',
+            type: VirgilSDK.IdentityTypes.email,
             value: 'demo@virgilsecurity.com',
             validation_token: confirmResult.validation_token
         }
@@ -169,7 +169,7 @@ virgil.cards.revoke({
     virgil_card_id: 'your virgil card id',
     private_key: 'your private key',
     identity: {
-        type: 'email',
+        type: VirgilSDK.IdentityTypes.email,
         value: 'demo@virgilsecurity.com',
         validation_token: 'token from identity.confirm'
     }
@@ -213,7 +213,7 @@ This operation is used to get a private key. You must pass a prior verification 
   
 ```javascript
 virgi.identity.verify({
-    type: 'email',
+    type: VirgilSDK.IdentityTypes.email,
     value: 'demo@virgilsecurity.com'
 }).then(function confirmIdentity (verifyResult) {
     // use confirmation code that has been sent to you email.
@@ -229,7 +229,7 @@ virgi.identity.verify({
     return virgil.privateKeys.get({
         virgil_card_id: 'your virgil card id',
         identity: {
-            type: 'email',
+            type: VirgilSDK.IdentityTypes.email,
             value: 'demo@virgilsecurity.com',
             validation_token: confirmResult.validation_token
         }
@@ -259,7 +259,7 @@ In the example below you can see how to obtain a **ValidationToken** for creatin
 
 ```javascript
 virgil.identity.verify({
-    type: 'email',
+    type: VirgilSDK.IdentityTypes.email,
     value: 'demo@virgilsecurity.com'
 }).then(function (verifyResult) {
     return virgil.identity.confirm({
@@ -283,6 +283,9 @@ The *private* **ValidationToken** is used for creating *Private Cards*. The *pri
 In the example below you can see, how to generate a **ValidationToken** using the SDK library.
 
 ```javascript
-VirgilSDK.utils.generateValidationToken('demo_virgil', 
-     'username', applicationPrivateKey);
+VirgilSDK.utils.generateValidationToken(
+	'demo_virgil', // value
+	'username',    // type (any string)
+	applicationPrivateKey
+);
 ```
