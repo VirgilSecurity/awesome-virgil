@@ -151,7 +151,7 @@ The app is registering a Virgil Card which includes a public key and an email ad
 ###### Objective-C
 ```objective-c
 //...
-// For 'confirmed' Virgil Card you should compose identity information 
+// For 'confirmed' Virgil Card you should compose identity information
 // object with correct validation token parameter.
 VSSIdentityInfo *identity = 
     [[VSSIdentityInfo alloc] initWithType:kVSSIdentityTypeEmail 
@@ -327,8 +327,8 @@ allowLossyConversion: false) {
 identities: participants) {
             if let signature = self.ipmSecurity.
 composeSignatureOnData(encryptedData) { 
-                // At this point we have encrypted: NSData with encrypted message 
-               // and signature: NSData with sender's signature. 
+                // At this point we have encrypted: NSData with encrypted 
+               //  message and signature: NSData with sender's signature. 
               // These two NSData objects now can be sent to the channel. 
             }
         }
