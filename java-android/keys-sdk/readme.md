@@ -11,8 +11,8 @@
   - [Get a Private Key](#get-a-private-key)
   - [Destroy a Private Key](#destroy-a-private-key)
 - [Identities](#identities)
-  - [Obtaining a *global* ValidationToken](#obtaining-a-global-validationtoken)
-  - [Obtaining a *private* ValidationToken](#obtaining-a-private-validationtoken)
+  - [Obtaining a global ValidationToken](#obtaining-a-global-validationtoken)
+  - [Obtaining a private ValidationToken](#obtaining-a-private-validationtoken)
 
 ##Introduction
 
@@ -221,7 +221,7 @@ factory.getPrivateKeyClient(serviceCard)
 
 ## Identities
 
-#### Obtaining a *global* ValidationToken
+#### Obtaining a global ValidationToken
 
 The *global* **ValidationToken** is used for creating *global Cards*. The *global* **ValidationToken** can be obtained only by checking the ownership of the Identity on Virgil Identity Service.
 
@@ -239,7 +239,7 @@ ValidatedIdentity identity = factory.getIdentityClient()
 .confirm(actionId, confirmationCode);
 ```
 
-#### Obtaining a *private* ValidationToken
+#### Obtaining a private ValidationToken
 
 The *private* **ValidationToken** is used for creating *Private Cards*. The *private* **ValidationToken** can be generated on developer's side using his own service for verification instead of Virgil Identity Service or avoids verification at all. In this case validation token is generated using app's Private Key created on our [Developer portal](https://developer.virgilsecurity.com/dashboard/).
 
