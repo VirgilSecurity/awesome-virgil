@@ -284,6 +284,6 @@ The *private* **ValidationToken** is used for creating *Private Cards*. The *pri
 In the example below you can see, how to generate a **ValidationToken** using the SDK library.
 
 ```javascript
-virgil.utils.generateValidationToken('demo_virgil', 
+VirgilSDK.utils.generateValidationToken('demo_virgil', 
      'username', applicationPrivateKey);
 ```
