@@ -161,7 +161,7 @@ await serviceHub.PrivateKeys.Stash(myCard.Id, keyPair.PrivateKey());
 
 #### Get a Private Key
 
-This operation is used to get a private key you need to pass a prior verification of the Virgil Card where your public key is used. And to obtain a **ValidationToken** depending on your Virgil Card ([global](#obtaining-a-global-validationtoken) or [private](#obtaining-a-private-validationtoken)).
+This operation is used to get a private key. You must pass a prior verification of the Virgil Card in which your public key is used. And then you must obtain a **ValidationToken** depending on your Virgil Card ([global](#obtaining-a-global-validationtoken) or [private](#obtaining-a-private-validationtoken)).
   
 ```csharp
 var identityInfo = new IdentityInfo {
