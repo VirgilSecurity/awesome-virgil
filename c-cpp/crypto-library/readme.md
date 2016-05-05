@@ -1,5 +1,6 @@
 
 - [Generate Keys](#generate-keys)
+- [Demos](#demos)
 - [Encrypt Data](#encrypt-data)
 - [Sign Data](#sign-data)
 - [Verify Data](#verify-data)
@@ -91,6 +92,14 @@ In the table below you can see all types.
 | Type_EC_SECP256K1 | 256-bits "Koblitz" curve       |
 
 See a working example [here...](https://github.com/VirgilSecurity/virgil-sdk-cpp/blob/master/examples/src/keygen.cxx)
+
+## Demos
+
+[Virgil and Twilio IP Messaging Demo Code](https://github.com/VirgilSecurity/virgil-demo-twilio) and check out working demo:
+
+[End to End Encrypted IP Messaging with Twilio API + Virgil](http://virgil-twilio-demo.azurewebsites.net/)
+
+Quickstart guide for making your own E2E encrypted IP Messaging is: [here](https://github.com/VirgilSecurity/virgil-demo-twilio/blob/master/Quick%20start%20guide.md)
 
 ## Encrypt Data
 
