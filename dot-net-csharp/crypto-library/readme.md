@@ -20,8 +20,10 @@ PM> Install-Package Virgil.SDK
 
 ### Demos
 
-[Virgil & Twilio IP Messaging Demo Code](https://github.com/VirgilSecurity/virgil-demo-twilio) and check out working demo:
+[Virgil &#38; Twilio IP Messaging Demo Code](https://github.com/VirgilSecurity/virgil-demo-twilio) and check out working demo:
+
 [End to End Encrypted IP Messaging with Twilio API + Virgil](http://virgil-twilio-demo.azurewebsites.net/)
+
 Quickstart guide for making your own E2E encrypted IP Messaging is: [here](https://github.com/VirgilSecurity/virgil-demo-twilio/blob/master/Quick%20start%20guide.md)
 
 ## Generate Keys
