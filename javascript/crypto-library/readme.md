@@ -22,9 +22,21 @@
 npm install virgil-crypto
 ```
 
+Or install Virgil SDK with Virgil Crypto (recommended):
+
+```sh
+npm install virgil-sdk
+```
+
 ### Bower
 ```sh
 bower install virgil-crypto
+```
+
+Or install Virgil SDK with Virgil Crypto (recommended):
+
+```sh
+bower install virgil-sdk
 ```
 
 ### CDN
@@ -34,6 +46,24 @@ src="https://cdn.virgilsecurity.com/packages/javascript/crypto/1.5.5/virgil-cryp
 integrity="sha256-3W5xboDke1qIoYdoIGh3alQWUBMElS+lIyGL2JAjYhE=" 
 crossorigin="anonymous"></script>
 ```
+
+Or install Virgil SDK with Virgil Crypto (recommended):
+
+```html
+<script 
+src="https://cdn.virgilsecurity.com/packages/javascript/sdk/1.4.1/virgil-sdk.min.js" 
+integrity="sha256-oa5PdJUfmpmSk0q08WejIusp7epaht49i8NKSf6uoJo="
+crossorigin="anonymous"></script>
+```
+
+### Demos
+
+[Virgil and Twilio IP Messaging Demo Code](https://github.com/VirgilSecurity/virgil-demo-twilio) and check out working demo:
+
+[End to End Encrypted IP Messaging with Twilio API + Virgil](http://virgil-twilio-demo.azurewebsites.net/)
+
+Quickstart guide for making your own E2E encrypted IP Messaging is: [here](https://github.com/VirgilSecurity/virgil-demo-twilio/blob/master/Quick%20start%20guide.md)
+
 
 ## Generate Keys
 
