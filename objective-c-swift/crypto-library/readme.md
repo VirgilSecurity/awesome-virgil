@@ -49,6 +49,18 @@ target '<Put your Xcode target name here>' do
 end
 ```
 
+Or use Virgil SDK with Virgil Crypto (recommended):
+
+```
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '8.0'
+use_frameworks!
+
+target '<Put your Xcode target name here>' do
+    pod 'VirgilSDK'
+end
+```
+
 - Get back to your terminal window and execute the following line:
 
 ```
@@ -60,6 +72,15 @@ $ pod install
 At this point you should be able to use Virgil cryptographic functionality in your code. See examples for most common tasks below.
 If you encounter any issues with CocoaPods installation try to find more information at [cocoapods.org](https://guides.cocoapods.org/using/getting-started.html).
 
+### Demos
+
+[Virgil and Twilio IP Messaging Demo Code](https://github.com/VirgilSecurity/virgil-demo-twilio) and check out working demo:
+
+[End to End Encrypted IP Messaging with Twilio API + Virgil](http://virgil-twilio-demo.azurewebsites.net/)
+
+Quickstart guide for making your own E2E encrypted IP Messaging is: [here](https://github.com/VirgilSecurity/virgil-demo-twilio/blob/master/Quick%20start%20guide.md)
+
+
 ## Swift note
 
 Although VirgilFoundation is using Objective-C as its primary language it might be quite easily used in a Swift application. After VirgilFoundation is installed as described in the *Getting started* section it is necessary to perform the following:
@@ -70,6 +91,13 @@ Although VirgilFoundation is using Objective-C as its primary language it might 
 
 ``` objective-c
 @import VirgilFoundation;
+```
+
+Or use Virgil SDK with Virgil Crypto (recommended):
+
+```
+@import VirgilFoundation;
+@import VirgilSDK;
 ```
 
 - In the Xcode build settings find the setting called *Objective-C Bridging Header* and set the path to your BridgingHeader.h file. Be aware that this path is relative to your Xcode project's folder.
