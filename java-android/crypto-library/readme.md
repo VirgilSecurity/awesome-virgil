@@ -13,6 +13,29 @@
 compile 'com.virgilsecurity.sdk:crypto:3.0'
 ```
 
+Or install Virgil SDK with Virgil Crypto (recommended):
+
+```
+compile 'com.virgilsecurity.sdk:client:3.2.0'
+compile 'com.squareup.retrofit2:retrofit:2.0.0'
+compile 'com.squareup.retrofit2:converter-gson:2.0.0'
+```
+
+### Android
+```
+compile 'com.virgilsecurity.sdk:android:3.2.0@aar'
+compile 'com.squareup.retrofit2:retrofit:2.0.0'
+compile 'com.squareup.retrofit2:converter-gson:2.0.0'
+```
+
+### Demos
+
+[Virgil and Twilio IP Messaging Demo Code](https://github.com/VirgilSecurity/virgil-demo-twilio) and check out working demo:
+
+[End to End Encrypted IP Messaging with Twilio API + Virgil](http://virgil-twilio-demo.azurewebsites.net/)
+
+Quickstart guide for making your own E2E encrypted IP Messaging is: [here](https://github.com/VirgilSecurity/virgil-demo-twilio/blob/master/Quick%20start%20guide.md)
+
 ## Generate Keys
 
 The following code example creates a new public/private key pair.
