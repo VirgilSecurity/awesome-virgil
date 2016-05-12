@@ -60,7 +60,8 @@ Move to this step to [build](#build) an application.
 Initialize the service Hub instance using access token obtained [here...](#obtaining-an-access-token)
 
 ``` {.cpp}
-    virgil::sdk::ServicesHub servicesHub_ = virgil::sdk::ServicesHub(virgil::IPMessaging::VIRGIL_ACCESS_TOKEN);
+    virgil::sdk::ServicesHub servicesHub_ = 
+     virgil::sdk::ServicesHub(virgil::IPMessaging::VIRGIL_ACCESS_TOKEN);
 ```
 
 ### Step 1. Generate and Publish the Keys
