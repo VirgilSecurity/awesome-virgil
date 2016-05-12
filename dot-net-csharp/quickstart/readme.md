@@ -70,7 +70,7 @@ var keyPair = VirgilKeyPair.Generate();
 
 The app is registering a Virgil Card which includes a public key and an email address identifier. The Card will be used for the public key identification and searching for it in the Public Keys Service. You can create a Virgil Card with or without identity verification, see both examples [here...](/api-docs/dot-net-csharp/keys-sdk#publish-a-virgil-card)  
 
-'''
+```
 var senderEmailAddress = 'sender@virgilsecurity.com';
 var emailVerifier = await serviceHub.Identity.
 VerifyEmail(senderEmailAddress);
@@ -81,7 +81,7 @@ var authorizedIdentity = await emailVerifier.Confirm("%CONFIRMATION_CODE%");
 
 var card = await serviceHub.Cards.Create(authorizedIdentity, 
 keyPair.PublicKey(), keyPair.PrivateKey());
-'''
+```
 
 ### Step 2. Encrypt and Sign
 The app is searching for all channel members' public keys on the Keys Service to encrypt a message for them. The app is signing the encrypted message with sender’s private key so that the recipient can make sure the message had been sent by the declared sender.
