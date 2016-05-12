@@ -32,7 +32,7 @@ The access token provides authenticated secure access to Virgil Keys Services an
 ### Install
 Following dependencies are used for work with IPMessaging:
 
-1. [virgil-sdk-cpp](https://github.com/VirgilSecurity/virgil-sdk-cpp/tree/master)
+1. [virgil-sdk-cpp](https://github.com/VirgilSecurity/virgil-sdk-cpp)
 1. [virgil-crypto](https://github.com/VirgilSecurity/virgil-crypto)
 1. [nlohmann/json](https://github.com/nlohmann/json)
 1. [restless](https://github.com/VirgilSecurity/restless)
@@ -59,7 +59,7 @@ Move to this step to [build](#build) an application.
 
 Initialize the service Hub instance using access token obtained [here...](#obtaining-an-access-token)
 
-``` {.cpp}
+``` cpp
     virgil::sdk::ServicesHub servicesHub_ = 
      virgil::sdk::ServicesHub(virgil::IPMessaging::VIRGIL_ACCESS_TOKEN);
 ```
@@ -69,13 +69,13 @@ First a simple IP messaging chat application is generating the keys and publishi
 
 The following code example generates a new public/private key pair.
 
-``` {.cpp}
+``` cpp
     vcrypto::VirgilKeyPair newKeyPair;
 ```
 
 The app is registering a Virgil Card which includes a public key and an email address identifier. The Card will be used for the public key identification and searching for it in the Public Keys Service.
 
-```  {.cpp}
+```  cpp
     std::string actionId = servicesHub_.identity().
 verify(email, vsdk::dto::VerifiableIdentityType::Email);
 
@@ -89,7 +89,7 @@ create(validatedIdentity, newKeyPair.publicKey(), credentials);
 ### Step 2. Encrypt and Sign
 The app is searching for all channel members' public keys on the Keys Service to encrypt a message for them. The app is signing the encrypted message with sender’s private key so that the recipient can make sure the message had been sent by the declared sender.
 
-```  {.cpp}
+```  cpp
     MapCardIdPublicKey channelRecipients = this->getChannelRecipients();
     vcrypto::VirgilCipher cipher;
     for (const auto& channelRecipient : channelRecipients) {
@@ -109,7 +109,7 @@ The app merges the message text and the signature into one [structure](https://g
 
 > We will be using our custom IP Messaging Server in our examples, you may need to adjust the code for your favorite IP Messaging Server.
 
-```  {.cpp}
+```  cpp
     vipm::models::EncryptedMessageModel 
 encryptedModel(encryptedMessage, signature);
     std::string encryptedModelJson = vipm::models::toJson(encryptedModel);
@@ -121,7 +121,7 @@ encryptedModel(encryptedMessage, signature);
 An encrypted message is received on the recipient’s side using an IP messaging client.
 In order to decrypt and verify the received data, the app on recipient’s side needs to get sender’s Virgil Card from the Keys Service.
 
-```  {.cpp}
+```  cpp
 void vipm::SimpleChat::
 onMessageRecived(const std::string& sender, const std::string& message) {
     vipm::models::EncryptedMessageModel encryptedModel = vipm::models::
@@ -144,7 +144,7 @@ searchGlobal(sender, vsdk::dto::IdentityType::Email);
 ### Step 5. Verify and Decrypt
 The application is making sure the message came from the declared sender by getting his card on Virgil Public Keys Service. In case of success, the message is decrypted using the recipient's private key.
 
-```  {.cpp}
+```  cpp
     vcrypto::VirgilSigner signer;
     bool isValid =
         signer.verify(encryptedModel.getMessage(), 
@@ -160,7 +160,7 @@ senderCard.getPublicKey().getKey());
     try {
         vcrypto::VirgilCipher cipher;
         vcrypto::VirgilByteArray decryptedMessage =
-            cipher.decryptWithKey(encryptedModel.getMessage(), 
+        	cipher.decryptWithKey(encryptedModel.getMessage(), 
 currentMember_.getCardId(),
                   currentMember_.getPrivateKey(), 
 vcrypto::VirgilByteArray());
