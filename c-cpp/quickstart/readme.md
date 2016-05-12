@@ -3,7 +3,6 @@
     - [Obtaining an Access Token](#obtaining-an-access-token)
     - [Install](#install)
 - [Use case](#use-case)
-    - [Step 0. Initialization](#step-0-initialization)
     - [Step 1. Generate and Publish the Keys](#step-1-generate-and-publish-the-keys)
     - [Step 2. Encrypt and Sign](#step-2-encrypt-and-sign)
     - [Step 3. Send a Message](#step-3-send-a-message)
@@ -11,7 +10,6 @@
     - [Step 5. Verify and Decrypt](#step-5-verify-and-decrypt)
 - [Build](#build)
 - [Source code](#source-code)
-
 
 ## Introduction
 
@@ -30,7 +28,6 @@ First you must create a free Virgil Security developer's account by signing up [
 
 The access token provides authenticated secure access to Virgil Keys Services and is passed with every API call. The access token also allows the API to associate your app’s requests with your Virgil Security developer's account.
 
-Use this token to initialize the SDK client [here](#step-0-initialization).
 
 ### Install
 Following dependencies are used for work with IPMessaging:
@@ -41,7 +38,7 @@ Following dependencies are used for work with IPMessaging:
 1. [restless](https://github.com/VirgilSecurity/restless)
 
 They are automatically downloaded by [CMake](https://cmake.org/), [ExternalProject](https://cmake.org/cmake/help/v3.2/module/ExternalProject.html?highlight=externalproject_add#command:externalproject_add) command.
-Scripts can be viewed [here](https://github.com/VirgilSecurity/virgil-sdk-cpp/tree/master/examples/IPMessaging/cmake).
+Script can be viewed [here](https://github.com/VirgilSecurity/virgil-sdk-cpp/tree/master/examples/IPMessaging/ext/virgil_sdk).
 Move to this step to [build](#build) an application.
 
 
@@ -63,7 +60,7 @@ Move to this step to [build](#build) an application.
 Initialize the service Hub instance using access token obtained [here...](#obtaining-an-access-token)
 
 ``` {.cpp}
-ServicesHub servicesHub(%ACCESS_TOKEN%);
+    virgil::sdk::ServicesHub servicesHub_ = virgil::sdk::ServicesHub(virgil::IPMessaging::VIRGIL_ACCESS_TOKEN);
 ```
 
 ### Step 1. Generate and Publish the Keys
@@ -72,97 +69,111 @@ First a simple IP messaging chat application is generating the keys and publishi
 The following code example generates a new public/private key pair.
 
 ``` {.cpp}
-VirgilKeyPair keyPair;
+    vcrypto::VirgilKeyPair newKeyPair;
 ```
 
-The app is registering a Virgil Card which includes a public key and an email address identifier. The Card will be used for the public key identification and searching for it in the Public Keys Service. You can create a Virgil Card with or without identity verification, see both examples [here...](/api-docs/c-cpp/keys-sdk#publish-a-virgil-card)
+The app is registering a Virgil Card which includes a public key and an email address identifier. The Card will be used for the public key identification and searching for it in the Public Keys Service.
 
-``` {.cpp}
-std::string senderEmailAddress = "sender@virgilsecurity.com";
-Identity identity(senderEmailAddress, IdentityModel::Type::Email);
-Credentials credentials(keyPair.privateKey());
-CardModel card;
-card = servicesHub.card().create(identity, keyPair.publicKey(), credentials);
+```  {.cpp}
+    std::string actionId = servicesHub_.identity().
+verify(email, vsdk::dto::VerifiableIdentityType::Email);
+
+    // Confirm an identity using code received to email box.
+    servicesHub_.identity().confirm(actionId, confirmationCode);
+
+    vsdk::models::CardModel card = servicesHub_.card().
+create(validatedIdentity, newKeyPair.publicKey(), credentials);
 ```
 
 ### Step 2. Encrypt and Sign
 The app is searching for all channel members' public keys on the Keys Service to encrypt a message for them. The app is signing the encrypted message with sender’s private key so that the recipient can make sure the message had been sent by the declared sender.
 
-``` {.cpp}
-auto messageBytes = str2bytes("Encrypt me, Please!!!");
+```  {.cpp}
+    MapCardIdPublicKey channelRecipients = this->getChannelRecipients();
+    vcrypto::VirgilCipher cipher;
+    for (const auto& channelRecipient : channelRecipients) {
+        auto recipientCardId = channelRecipient.first;
+        auto recipientPublicKey = channelRecipient.second;
+        cipher.addKeyRecipient(recipientCardId, recipientPublicKey);
+    }
 
-auto channelRecipients = this->getChannelRecipients();
-
-vcrypto::VirgilCipher cipher;
-for (const auto& channelRecipient : channelRecipients) {
-    auto recipientCardId = channelRecipient.first;
-    auto recipientPublicKey = channelRecipient.second;
-    cipher.addKeyRecipient(recipientCardId, recipientPublicKey);
-}
-
-vcrypto::VirgilByteArray encryptedMessage = cipher.
-                encrypt(messageBytes, true);
-
-vcrypto::VirgilSigner signer;
-vcrypto::VirgilByteArray signature = signer.
-                sign(encryptedMessage, currentMember_.getPrivateKey());
+    vcrypto::VirgilByteArray encryptedMessage = cipher.
+encrypt(vcrypto::str2bytes(message), true);
+    vcrypto::VirgilByteArray signature = signer.
+sign(encryptedMessage, currentMember_.getPrivateKey());
 ```
 
-
 ### Step 3. Send a Message
-The app merges the message text and the signature into one [structure](https://github.com/VirgilSecurity/virgil-sdk-cpp/blob/master/examples/IPMessaging/include/models/EncryptedMessageModel.h) then serializes it to json string and sends the message to the channel using a simple IP messaging client.
+The app merges the message text and the signature into one [structure](https://github.com/VirgilSecurity/virgil-sdk-cpp/blob/master/examples/IPMessaging/include/virgil/IPMessaging/models/EncryptedMessageModel.h) then serializes it to json string and sends the message to the channel using a simple IP messaging client.
 
 > We will be using our custom IP Messaging Server in our examples, you may need to adjust the code for your favorite IP Messaging Server.
 
-``` {.cpp}
-EncryptedMessageModel encryptedModel(encryptedMessage, signature);
-std::string encryptedModelJson = vipm::models::toJson(encryptedModel);
+```  {.cpp}
+    vipm::models::EncryptedMessageModel 
+encryptedModel(encryptedMessage, signature);
+    std::string encryptedModelJson = vipm::models::toJson(encryptedModel);
 
-channel_.sendMessage(encryptedModelJson);
+    channel_.sendMessage(encryptedModelJson);
 ```
 
 ### Step 4. Receive a Message
 An encrypted message is received on the recipient’s side using an IP messaging client.
 In order to decrypt and verify the received data, the app on recipient’s side needs to get sender’s Virgil Card from the Keys Service.
 
-``` {.cpp}
-void vipm::SimpleChat::onMessageRecived(const std::string& sender, 
-         const std::string& message) {
-               vipm::models::EncryptedMessageModel 
-                        encryptedModel = vipm::models::fromJson(message);
+```  {.cpp}
+void vipm::SimpleChat::
+onMessageRecived(const std::string& sender, const std::string& message) {
+    vipm::models::EncryptedMessageModel encryptedModel = vipm::models::
+fromJson(message);
+    if (encryptedModel.isEmpty()) {
+        return;
+    }
 
-               bool includeUnconfirmed = false;
-                    vsdk::dto::Identity senderIdentity(sender, 
-                        vsdk::models::IdentityModel::Type::Email);
-               auto foundCards = servicesHub_.card().search(senderIdentity, 
-                        includeUnconfirmed);
+    auto foundCards = servicesHub_.card().
+searchGlobal(sender, vsdk::dto::IdentityType::Email);
+    if (foundCards.empty()) {
+        return;
+    }
 
-                    auto senderCard = foundCards.at(0);
+    auto senderCard = foundCards.at(0);
     ...
 }
 ```
 
-
 ### Step 5. Verify and Decrypt
 The application is making sure the message came from the declared sender by getting his card on Virgil Public Keys Service. In case of success, the message is decrypted using the recipient's private key.
 
-``` {.cpp}
-bool isValid =
-    signer.verify(encryptedModel.getMessage(), encryptedModel.getSignature(),
-    senderCard.getPublicKey().getKey());
-if (!isValid) {
-    std::cout << "The message signature is not valid." << std::endl;
-    return;
-}
+```  {.cpp}
+    vcrypto::VirgilSigner signer;
+    bool isValid =
+        signer.verify(encryptedModel.getMessage(), 
+encryptedModel.getSignature(), 
+senderCard.getPublicKey().getKey());
+    if (!isValid) {
+        std::cout << "The message signature is not valid." << std::endl;
+        logFile_ += sender + " .The message signature is not valid.";
+        std::cout << std::endl;
+        return;
+    }
 
-vcrypto::VirgilCipher cipher;
-vcrypto::VirgilByteArray decryptedMessage =
-    cipher.decryptWithKey(encryptedModel.getMessage(), 
-                          currentMember_.getCardId(),
-                          currentMember_.getPrivateKey(), 
-                          vcrypto::VirgilByteArray());
+    try {
+        vcrypto::VirgilCipher cipher;
+        vcrypto::VirgilByteArray decryptedMessage =
+            cipher.decryptWithKey(encryptedModel.getMessage(), 
+currentMember_.getCardId(),
+                  currentMember_.getPrivateKey(), 
+vcrypto::VirgilByteArray());
+
+        std::cout << vcrypto::bytes2str(decryptedMessage) << std::endl;
+        std::cout << std::endl;
+
+    } catch (std::exception& exception) {
+        std::cout << std::string("Can't decrypt message.") << std::endl;
+        logFile_ += std::string("Can't decrypt message. Error: ") + 
+exception.what() + "\n";
+        std::cout << std::endl;
+    }
 ```
-
 
 ## Build
 
@@ -187,6 +198,8 @@ Run one of the following commands in the project's root folder.
     * Windows:
 
             mkdir build && cd build && cmake -DENABLE_EXAMPLES=ON .. && nmake
+
+
 
 ## Source Code
 
