@@ -230,4 +230,4 @@ See full examples:
 
 1. [A Global Virgil Card](https://github.com/VirgilSecurity/virgil-sdk-cpp/blob/master/examples/src/card_create_global.cxx)
 1. [A Private Virgil Card](https://github.com/VirgilSecurity/virgil-sdk-cpp/blob/master/examples/src/card_create_private.cxx)
-1. [A unauthorized Private Virgil Card](https://github.com/VirgilSecurity/virgil-sdk-cpp/blob/master/examples/src/card_create_private_unauthorized.cxx)
+1. [An unauthorized Private Virgil Card](https://github.com/VirgilSecurity/virgil-sdk-cpp/blob/master/examples/src/card_create_private_unauthorized.cxx)
