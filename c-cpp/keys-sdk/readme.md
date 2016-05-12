@@ -1,150 +1,114 @@
-# Tutorial C++ Keys SDK
-
 - [Introduction](#introduction)
 - [Obtaining an Access Token](#obtaining-an-access-token)
-- [Identity Check](#identity-check)
-  - [Identity Verification](#identity-verification)
-  - [Confirm and Get a Validated Identity](#confirm-and-get-a-validated-identity)
 - [Cards and Public Keys](#cards-and-public-keys)
-  - [Publish a Card](#publish-a-virgil-card)
+  - [Publish a Virgil Card](#publish-a-virgil-card)
   - [Search for Cards](#search-for-cards)
-  - [Search for Application Cards](#search-for-application-cards)
-  - [Sign a Virgil Card](#sign-a-virgil-card)
-  - [Unsign a Virgil Card](#unsign-a-virgil-card)
   - [Revoke a Virgil Card](#revoke-a-virgil-card)
   - [Get a Public Key](#get-a-public-key)
 - [Private Keys](#private-keys)
-  - [Add a Private Key](#add-a-private-key)
+  - [Stash a Private Key](#stash-a-private-key)
   - [Get a Private Key](#get-a-private-key)
-  - [Delete a Private Key](#delete-a-private-key)
-- [Build](#build)
+  - [Destroy a Private Key](#destroy-a-private-key)
+- [Identities](#identities)
+  - [Obtaining a global ValidationToken](#obtaining-a-global-validationtoken)
+  - [Obtaining a private ValidationToken](#obtaining-a-private-validationtoken)
+
 
 ## Introduction
 
-This tutorial explains how to use the Identity, Virgil Public Keys, Virgil Private Keys Services with SDK library in C++ applications.
+This tutorial explains how to use the Public Keys Service with SDK library in CPP applications.
 
-## Obtaining an Access Token
+##Obtaining an Access Token
 
-First you must create a free Virgil Security developer's account by signing up [here](https://developer.virgilsecurity.com/account/signup). Once you have your account you can [sign in](https://developer.virgilsecurity.com/account/signin) and generate an access token for your application.
+First you must create a Virgil Security developer's account by signing up [here](https://developer.virgilsecurity.com/account/signup). Once you have your account you can [sign in](https://developer.virgilsecurity.com/account/signin) and generate an access token for your application.
 
 The access token provides an authenticated secure access to the Public Keys Service and is passed with each API call. The access token also allows the API to associate your app’s requests with your Virgil Security developer's account.
 
-Simply add your access token to the client constructor.
+Simply add your access token to the class builder.
 
 ``` {.cpp}
-ServicesHub servicesHub(%ACCESS_TOKEN%);
+    vsdk::ServicesHub servicesHub("<ACCESS_TOKEN>")
 ```
-
-## Identity Check
-
-All the Virgil Security services are strongly interconnected with the Identity Service. It determines the ownership of the Identity being checked using particular mechanisms and as a result it generates a temporary token to be used for the operations which require an Identity verification.
-
-#### Request Verification
-
-Initialize the Identity verification process.
-
-``` {.cpp}
-Identity identity(%YOUR_EMAIL%, IdentityModel::Type::Email);
-std::string actionId = servicesHub.identity().verify(identity);
-```
-
-See a working example [here...](https://github.com/VirgilSecurity/virgil-sdk-cpp/blob/master/examples/src/identity_verify.cxx)
-
-
-#### Confirm and Get a Validated Identity
-
-Confirm the Identity and get a temporary token.
-
-``` {.cpp}
-// use confirmation code sent to your email box.
-ValidatedIdentity validatedIdentity =
-        servicesHub.identity().confirm(actionId, %CONFIRMATION_CODE%);
-```
-See a working example [here...](https://github.com/VirgilSecurity/virgil-sdk-cpp/blob/master/examples/src/identity_confirm.cxx)
 
 ## Cards and Public Keys
 
 A Virgil Card is the main entity of the Public Keys Service, it includes the information about the user and his public key. The Virgil Card identifies the user by one of his available types, such as an email, a phone number, etc.
 
-The Virgil Card might be created with a confirmed or unconfirmed Identity. The difference is whether Virgil Services take part in [the Identity verfification](#identity-check). With confirmed Cards you can be sure that the account with a particular email has been verified and the email owner is really the Identity owner. Be careful using unconfirmed Cards because they could have been created by any user.
+The Virgil Card might be *global* and *private*. The difference is whether Virgil Services take part in [the Identity verification](#identities).
+
+*Global Cards* are created with the validation token received after verification in Virgil Identity Service. Any developer with Virgil account can create a global Virgil Card and you can be sure that the account with a particular email has been verified and the email owner is really the Identity owner.
+
+*Private Cards* are created when a developer is using his own service for verification instead of Virgil Identity Service or avoids verification at all. In this case validation token is generated using app's Private Key created on our [Developer portal](https://developer.virgilsecurity.com/dashboard/).
 
 #### Publish a Virgil Card
 
-An Identity token which can be received [here](#identity-check) is used during the confirmation.
-
-
-``` {.cpp}
-Credentials credentials(privateKey, str2bytes(PRIVATE_KEY_PASSWORD));
-Card myCard =
-  servicesHub.card().create(validatedIdentity, keyPair.publicKey(), credentials);
-```
-See a working example [here...](https://github.com/VirgilSecurity/virgil-sdk-cpp/blob/master/examples/src/card_create_valid.cxx)
-
-Creating a Card without an Identity verification. Pay attention that you will have to set an additional attribute to include the Cards with unconfirmed Identities into your search, see an [example](#search-for-cards).
+Creating a *private* Virgil Card with a newly generated key pair and **ValidationToken**. See how to obtain a **ValidationToken** [here...](#obtaining-a-private-validationtoken)
 
 ``` {.cpp}
-Identity identity(%YOUR_EMAIL%, IdentityModel::Type::Email);
-Credentials credentials(privateKey, str2bytes(PRIVATE_KEY_PASSWORD));
-Card myCard =
-  servicesHub.card().create(identity, publicKey, credentials);
-```
-See a working example [here...](https://github.com/VirgilSecurity/virgil-sdk-cpp/blob/master/examples/src/card_create_not_valid.cxx)
+std::string userEmail = "bob@mailinator.com";
+std::string obfuscatorIdentityValue = vsdk::util::
+    obfuscate(userEmail, "salt");
+std::string obfuscatorIdentityType = "obfuscated-email";
+vsdk::dto::Identity obfuscatedIdentity(
+     obfuscatorIdentityValue, obfuscatorIdentityType);
 
+std::string kPrivateKeyPassword = "J,gh&UpY\\6AJm(6{'aJQa:q,BY[I.rA";
+vcrypto::VirgilKeyPair keyPair(vcrypto::str2bytes(kPrivateKeyPassword));
+vcrypto::VirgilByteArray userPublicKey = keyPair.publicKey();
+vcrypto::VirgilByteArray userPrivateKey = keyPair.privateKey();
+vsdk::Credentials userCredentials(userPrivateKey, 
+     virgil::crypto::str2bytes(kPrivateKeyPassword));
+
+    vsdk::models::CardModel privateCard = servicesHub.card().create(
+            generateValidatedIdentity(obfuscatedIdentity, appCredentials), 
+            userPublicKey, userCredentials);
+```
+​
+Creating an unauthorized *private* Virgil Card without **ValidationToken**. Pay attention that you will have to set an additional attribute to include the private Cards without verification into your search, see an [example](#search-for-cards).
+
+``` {.cpp}
+vsdk::models::CardModel unauthorizedPrivateCard = servicesHub.card()
+.create(obfuscatedIdentity, userPublicKey, userCredentials);
+```
+
+Creating a *global* Virgil Card. See how to obtain a **ValidationToken** [here...](#obtaining-a-global-validationtoken)
+
+``` {.cpp}
+vsdk::models::CardModel globalCard = servicesHub.card()
+.create(validatedIdentity, userPublicKey, userCredentials);
+```
 
 #### Search for Cards
 
-Search for the Virgil Card by provided parameters.
+Search for a *global* Virgil Card.
 
 ``` {.cpp}
-Identity identity(%USER_EMAIL%, IdentityModel::Type::Email);
-bool includeUnconfirmed = false;
-std::vector<CardModel> foundCards = servicesHub.card().search(identity, includeUnconfirmed);
+// search for email card.
+std::vector<vsdk::models::CardModel> foundGlobalCard = 
+     servicesHub.card().searchGlobal(userEmail, 
+vsdk::dto::IdentityType::Email);
+
+// search for application card.
+std::vector<vsdk::models::CardModel> foundAppCard = 
+     servicesHub.card().searchGlobal("com.virgilsecurity.mail", 
+vsdk::dto::IdentityType::Application);
 ```
 
-Search for the Virgil Cards including the cards with unconfirmed Identities.
+
+Search for a *private* Virgil Card.
 
 ``` {.cpp}
-Identity identity(%USER_EMAIL%, IdentityModel::Type::Email);
-bool includeUnconfirmed = true;
-std::vector<CardModel> foundCards = servicesHub.card().search(identity, includeUnconfirmed);
+std::vector<vsdk::models::CardModel> foundPrivateCard = 
+servicesHub.card().search(obfuscatedIdentity.getValue(),
+obfuscatedIdentity.getType());
+
+// or search for Virgil Cards including unauthorized ones.
+bool includeUnauthorized = true;
+std::vector<vsdk::models::CardModel> foundUnauthorizedPrivateCard = 
+servicesHub.card().search(obfuscatedIdentity.getValue(), 
+obfuscatedIdentity.getType(), includeUnauthorized);
 ```
 
-See a working example [here...](https://github.com/VirgilSecurity/virgil-sdk-cpp/blob/master/examples/src/card_search.cxx)
-
-
-#### Search for Application Cards
-
-Search for the Virgil Cards by a defined pattern. The example below returns a list of applications for Virgil Security company.
-
-``` {.cpp}
-std::vector<CardModel> allAppCards = servicesHub.card().searchApp("com.virgil.*");
-```
-See a working example [here...](https://github.com/VirgilSecurity/virgil-sdk-cpp/blob/master/examples/src/card_search_app.cxx)
-
-
-#### Sign a Virgil Card
-
-Any Virgil Card user can act as a certification center within the Virgil Security ecosystem. Every user can certify another's Virgil Card and build a net of sign based on it.
-
-The example below demonstrates how to certify a user's Virgil Card by signing its hash attribute.
-
-``` {.cpp}
-Credentials signerCredentials
-        (signerPrivateKey, str2bytes(SIGNER_PRIVATE_KEY_PASSWORD));
-SignModel cardSign = servicesHub.card().sign(toBeSignedCardId, toBeSignedCardHash, signerCardId,
-        signerCredentials);
-```
-See a working example [here...](https://github.com/VirgilSecurity/virgil-sdk-cpp/blob/master/examples/src/card_sign.cxx)
-
-
-#### Unsign a Virgil Card
-
-Naturally it is possible to stop signing the Virgil Card owner as in all relations. This is not an exception in Virgil Security system.
-
-``` {.cpp}
-servicesHub.card().unsign(signedCardId, signerCardId, signerCredentials);
-```
-See a working example [here...](https://github.com/VirgilSecurity/virgil-sdk-cpp/blob/master/examples/src/card_unsign.cxx)
 
 
 #### Revoke a Virgil Card
@@ -152,20 +116,28 @@ See a working example [here...](https://github.com/VirgilSecurity/virgil-sdk-cpp
 This operation is used to delete the Virgil Card from the search and mark it as deleted.
 
 ``` {.cpp}
-servicesHub.card().revoke(ownerCardId, ownerValidatedIdentity, ownerCredentials);
+// Revoke a Global Virgil Card
+servicesHub.card().
+revoke(globalCard.getId(), validatedIdentity, userCredentials);
+
+// Revoke a Private Virgil Card
+servicesHub.card().revoke(privateCard.getId(), generateValidatedIdentity(
+            obfuscatedIdentity, appCredentials), userCredentials);
+
+// Revoke a unauthorized Private Virgil Card
+servicesHub.card().revoke(unauthorizedPrivateCard.getId(), 
+obfuscatedIdentity, userCredentials);
 ```
-See a working example [here...](https://github.com/VirgilSecurity/virgil-sdk-cpp/blob/master/examples/src/card_revoke.cxx)
 
 
 #### Get a Public Key
 
-Gets a public key from the Public Keys Service by the specified ID.
+This operation gets a public key from the Public Keys Service by the specified ID.
 
 ``` {.cpp}
-PublicKeyModel publicKey = servicesHub.publicKey().get(publicKeyId);
+    vsdk::models::PublicKeyModel foundPublicKey = 
+servicesHub.publicKey().get(publicKeyId);
 ```
-See a working example [here...](https://github.com/VirgilSecurity/virgil-sdk-cpp/blob/master/examples/src/public_key_get.cxx)
-
 
 ## Private Keys
 
@@ -175,7 +147,7 @@ Virgil Security provides a set of tools and services for storing private keys in
 
 Usage of this service is optional.
 
-#### Add a Private Key
+#### Stash a Private Key
 
 Private key can be added for storage only in case you have already registered a public key on the Public Keys Service.
 
@@ -184,51 +156,78 @@ Use the public key identifier on the Public Keys Service to save the private key
 The Private Keys Service stores private keys the original way as they were transferred. That's why we strongly recommend transferring the keys which were generated with a password.
 
 ``` {.cpp}
-servicesHub.privateKey().add(cardId, credentials);
-```
-See a working example [here...](https://github.com/VirgilSecurity/virgil-sdk-cpp/blob/master/examples/src/private_key_add.cxx)
+// a Global Virgil Card
+servicesHub.privateKey().add(globalCard.getId(), userCredentials);
 
+// a Private Virgil Card
+servicesHub.privateKey().add(privateCard.getId(), userCredentials);
+```
 
 #### Get a Private Key
 
-To get a private key you need to pass a prior verification of the Virgil Card where your public key is used.
+This operation is used to get a private key. You must pass a prior verification of the Virgil Card in which your public key is used. And then you must obtain a **ValidationToken** depending on your Virgil Card ([global](#obtaining-a-global-validationtoken) or [private](#obtaining-a-private-validationtoken)).
 
 ``` {.cpp}
-PrivateKey privateKey = servicesHub.privateKey().get(cardId, validatedIdentity);
+// a Global Virgil Card
+vsdk::models::PrivateKeyModel privateKey = servicesHub.privateKey().get(
+            globalCard.getId(), validatedIdentity);
+
+// a Private Virgil Card
+vsdk::models::PrivateKeyModel privateKey = 
+servicesHub.privateKey().get(privateCard.getId(),
+generateValidatedIdentity(obfuscatedIdentity,appCredentials));
 ```
-See a working example [here...](https://github.com/VirgilSecurity/virgil-sdk-cpp/blob/master/examples/src/private_key_get.cxx)
 
-
-#### Delete a Private Key
+#### Destroy a Private Key
 
 This operation deletes the private key from the service without a possibility to be restored.
 
 ``` {.cpp}
-servicesHub.privateKey().del(cardId, credentials);
+// a Global Virgil Card
+servicesHub.privateKey().del(globalCard.getId(), userCredentials);
+
+// a Private Virgil Card
+servicesHub.privateKey().del(privateCard.getId(), userCredentials);
 ```
-See a working example [here...](https://github.com/VirgilSecurity/virgil-sdk-cpp/blob/master/examples/src/private_key_delete.cxx)
 
+## Identities
 
-## Build
+#### Obtaining a global ValidationToken
 
-Run one of the following commands in the project's root folder.
-  * Build SDK
+The *global* **ValidationToken** is used for creating *global Cards*. The *global* **ValidationToken** can be obtained only by checking the ownership of the Identity on Virgil Identity Service.
 
-    * Unix:
+In the example below you can see how to obtain a **ValidationToken** for creating a *global* Virgil Card.
 
-            mkdir build && cd build && cmake .. && make -j4
+``` {.cpp}
+// send a verification request for specified identity type.
+std::string actionId = servicesHub.identity().
+verify(userEmail, vsdk::dto::VerifiableIdentityType::Email);
 
-    * Windows:
+// confirm an identity using code received on email address.
+vsdk::dto::ValidatedIdentity validatedIdentity = servicesHub.identity().
+confirm(actionId, "<CONFIRMATION_CODE>");
+```
 
-            mkdir build && cd build && cmake .. && nmake
+#### Obtaining a private ValidationToken
 
+The *private* **ValidationToken** is used for creating *Private Cards*. The *private* **ValidationToken** can be generated on developer's side using his own service for verification instead of Virgil Identity Service or avoids verification at all. In this case validation token is generated using app's Private Key created on our [Developer portal](https://developer.virgilsecurity.com/dashboard/).
 
-  * Build Examples
+In the example below you can see, how to generate a **ValidationToken** using the SDK library.
 
-    * Unix:
+``` {.cpp}
+vsdk::dto::ValidatedIdentity generateValidatedIdentity(
+const vsdk::dto::Identity& obfuscatedIdentity, 
+const vsdk::Credentials& appCredentials) {
+    std::string validationToken = vsdk::util::generate_validation_token(
+            obfuscatedIdentity.getValue(), obfuscatedIdentity.getType(),
+ appCredentials);
+    return vsdk::dto::ValidatedIdentity(obfuscatedIdentity, 
+validationToken);
+}
+```
 
-            mkdir build && cd build && cmake -DENABLE_EXAMPLES=ON .. && make -j4
+See full examples:
 
-    * Windows:
-
-            mkdir build && cd build && cmake -DENABLE_EXAMPLES=ON .. && nmake
+1. [A Global Virgil Card](https://github.com/VirgilSecurity/virgil-sdk-cpp/blob/master/examples/src/card_create_global.cxx)
+1. [A Private Virgil Card](https://github.com/VirgilSecurity/virgil-sdk-cpp/blob/master/examples/src/card_create_private.cxx)
+1. [A unauthorized Private Virgil Card](https://github.com/VirgilSecurity/virgil-sdk-cpp/blob/master/examples/src/card_create_private_unauthorized.cxx)
