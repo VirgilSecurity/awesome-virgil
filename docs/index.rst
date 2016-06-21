@@ -48,3 +48,17 @@ BSD 3-Clause. See [LICENSE](https://github.com/VirgilSecurity/virgil/blob/master
 
 # <a name="head6"></a>Contacts
 Email: support@virgilsecurity.com
+
+.. _dev-docs:
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Developers Documentation
+
+   virgil_glossary
+   .net/c#
+   builds
+   features
+   support
+   faq
+   yaml-config
