@@ -13,13 +13,7 @@ Developers Docs
 .. toctree::
    
    Virgil-Entities
-   dot-net-csharp-quickstart
-   javascript-quickstart
-   c-cpp-quickstart
-   objective-c-swift-quickstart
-   java-android-quickstart
-   python-quickstart
-
+   quickstart
 
 Virgil Services
 ---------------------
