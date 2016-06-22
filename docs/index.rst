@@ -10,9 +10,9 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 Developers Docs
 ---------------------
 
-`Virgil Glossary <https://github.com/VirgilSecurity/virgil/wiki/Virgil-Glossary>`_
+:ref:`Virgil Glossary <Virgil-Entities>`
 
-`.NET/C# <https://github.com/VirgilSecurity/virgil/tree/master/dot-net-csharp>`_
+:ref:`.NET/C# <dot-net-csharp-quickstart>`
 
 `Javascript/Node.js <https://github.com/VirgilSecurity/virgil/tree/master/javascript>`_
 
