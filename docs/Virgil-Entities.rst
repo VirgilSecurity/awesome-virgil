@@ -2,7 +2,7 @@
 Virgil Entities
 =========
 
-- [Action id](#action-id)
+- `Action id`_
 - [Card id](#card-id)
 - [Confirmation code](#confirmation-code)
 - [Confirmed Identity](#confirmed-identity)
@@ -26,7 +26,8 @@ Virgil Entities
 
 .. glossary::
 
-  Action id	
+  .. _Action id:
+  .. _`Action id`:
     Is used to compare confirmation code and validation action.	
 
   Card id	
