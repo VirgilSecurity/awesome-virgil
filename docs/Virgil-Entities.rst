@@ -2,31 +2,9 @@
 Virgil Entities
 =========
 
-- `Action id`_
-- [Card id](#card-id)
-- [Confirmation code](#confirmation-code)
-- [Confirmed Identity](#confirmed-identity)
-- [Count to live](#count-to-live)
-- [Custom Identity](#custom-identity)
-- [Global Virgil Card](#global-virgil-card)
-- [Hash](#hash)
-- [PBKDF function](#pbkdf-function)
-- [Private key](#private-key)
-- [Private key password](#private-key-password)
-- [Private Virgil Card](#private-virgil-card)
-- [Public Key](#public-key)
-- [Public key id](#public-key-id)
-- [Recipient's identifier](#recipients-identifier)
-- [Salt](#salt)
-- [Signature](#signature)
-- [Time to live](#time-to-live)
-- [Unconfirmed Identity](#unconfirmed-identity)
-- [Validation token](#validation-token)
-- [Virgil Card](#virgil-card)
-
 .. glossary::
 
-  .. _Action id:
+  Action id
     Is used to compare confirmation code and validation action.	
 
   Card id	
