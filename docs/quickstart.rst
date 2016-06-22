@@ -2,9 +2,13 @@
 Quickstart
 ======
 
-* `.NET/C# <dot-net-csharp-quickstart>`_
-* `C/C++ <c-cpp-quickstart>`_
-* `Javascript/Node.js <javascript-quickstart>`_
-* `Objective C/Swift <objective-c-swift-quickstart>`_
-* `Java/Android <java-android-quickstart>`_
-* `Python <python-quickstart>`_
+.. toctree::
+  :maxdepth: 1
+   
+   dot-net-csharp-quickstart
+   c-cpp-quickstart
+   javascript-quickstart
+   objective-c-swift-quickstart
+   java-android-quickstart
+   python-quickstart
+
