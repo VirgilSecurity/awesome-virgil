@@ -1,4 +1,4 @@
-.. image:: VirgilSecurity/virgil/blob/master/images/VirgilLogo.png
+.. image:: VirgilLogo.png
 
 :ref:`Developers-Docs` | :ref:`Virgil-Services` | :ref:`Use-cases`  | :ref:`Virgil-Demos`
 
@@ -70,19 +70,3 @@ Contacts
 -------------------
 
 Email: support@virgilsecurity.com
-
-:ref:`Developers-Docs` | :ref:`Virgil-Services` | :ref:`Use-cases`  | :ref:`Virgil-Demos`
-
-.. _dev-docs:
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Developers Documentation
-
-   virgil_glossary
-   .net/c#
-   builds
-   features
-   support
-   faq
-   yaml-config
