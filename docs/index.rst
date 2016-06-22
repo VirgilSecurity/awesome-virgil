@@ -10,21 +10,17 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 Developers Docs
 ---------------------
 
-:ref:`Virgil Glossary <Virgil-Entities>`
+.. toctree::
+   :maxdepth: 2
+   
+   Virgil-Entities
+   dot-net-csharp-quickstart
+   javascript-quickstart
+   c-cpp-quickstart
+   objective-c-swift-quickstart
+   java-android-quickstart
+   python-quickstart
 
-:ref:`.NET/C# <dot-net-csharp-quickstart>`
-
-`Javascript/Node.js <https://github.com/VirgilSecurity/virgil/tree/master/javascript>`_
-
-`C/C++ <https://github.com/VirgilSecurity/virgil/tree/master/c-cpp>`_
-
-`PHP <https://github.com/VirgilSecurity/virgil/tree/master/php>`_
-
-`Objective-C/Swift <https://github.com/VirgilSecurity/virgil/tree/master/objective-c-swift>`_
-
-`Java/Android <https://github.com/VirgilSecurity/virgil/tree/master/java-android>`_
-
-`Python <https://github.com/VirgilSecurity/virgil/tree/master/python>`_
 
 Virgil Services
 ---------------------
