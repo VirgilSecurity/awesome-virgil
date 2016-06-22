@@ -27,7 +27,6 @@ Virgil Entities
 .. glossary::
 
   .. _Action id:
-  .. _`Action id`:
     Is used to compare confirmation code and validation action.	
 
   Card id	
