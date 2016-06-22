@@ -1,4 +1,4 @@
-.. image:: VirgilLogo.png
+.. image:: Images/VirgilLogo.png
 
 `Developers Docs`_ | `Virgil Services`_ | `Use cases`_  | `Virgil Demos`_
 
