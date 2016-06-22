@@ -1,52 +1,68 @@
-![Logo](https://github.com/VirgilSecurity/virgil/blob/master/images/VirgilLogo.png)
+.. image:: https://github.com/VirgilSecurity/virgil/blob/master/images/VirgilLogo.png
 
-### [Developers Docs](#head3) | [Virgil Services](#head7) | [Use cases](#head4)  | [Virgil Demos](#head2)
+### :ref:`Developers-Docs` | :ref:`Virgil Services` | :ref:`Use cases`  | :ref:`Virgil Demos`
 
 
 Virgil is a stack of security libraries (ECIES with Crypto Agility wrapped in Virgil Cryptogram) and all the necessary infrastructure to enable seamless, end-to-end encryption for any application, platform or device. See below for currently available languages and platforms. Get in touch with us to get preview access to our key infrastructure.
 
 Virgil Security, Inc. guides software developers into the forthcoming security world in which everything will be encrypted (and passwords will be eliminated). In this world, the days of developers having to raise millions of dollars to build a secure chat, secure email, secure file-sharing, or a secure anything have come to an end. Now developers can instead focus on building features that give them a competitive market advantage while end-users can enjoy the privacy and security they increasingly demand.
-***
 
-# <a name="head3"></a>Developers Docs
+# .. _Developers-Docs:
+Developers Docs
+---------------------
 
-[Virgil Glossary](https://github.com/VirgilSecurity/virgil/wiki/Virgil-Glossary)
+`Virgil Glossary <https://github.com/VirgilSecurity/virgil/wiki/Virgil-Glossary>`_
 
-[.NET/C#] (https://github.com/VirgilSecurity/virgil/tree/master/dot-net-csharp)
+`.NET/C# <https://github.com/VirgilSecurity/virgil/tree/master/dot-net-csharp>`_
 
-[Javascript/Node.js] (https://github.com/VirgilSecurity/virgil/tree/master/javascript)
+`Javascript/Node.js <https://github.com/VirgilSecurity/virgil/tree/master/javascript>`_
 
-[C/C++](https://github.com/VirgilSecurity/virgil/tree/master/c-cpp)
+`C/C++ <https://github.com/VirgilSecurity/virgil/tree/master/c-cpp>`_
 
-[PHP] (https://github.com/VirgilSecurity/virgil/tree/master/php)
+`PHP <https://github.com/VirgilSecurity/virgil/tree/master/php>`_
 
-[Objective-C/Swift] (https://github.com/VirgilSecurity/virgil/tree/master/objective-c-swift)
+`Objective-C/Swift <https://github.com/VirgilSecurity/virgil/tree/master/objective-c-swift>`_
 
-[Java/Android] (https://github.com/VirgilSecurity/virgil/tree/master/java-android)
+`Java/Android <https://github.com/VirgilSecurity/virgil/tree/master/java-android>`_
 
-[Python] (https://github.com/VirgilSecurity/virgil/tree/master/python)
+`Python <https://github.com/VirgilSecurity/virgil/tree/master/python>`_
 
-# <a name="head7"></a>Virgil Services
-- [Private Keys Service](https://github.com/VirgilSecurity/virgil/wiki/Virgil-Private-Keys-API)
-- [Public Keys Service](https://github.com/VirgilSecurity/virgil/wiki/Virgil-Keys-API)
-- [Identity Service](https://github.com/VirgilSecurity/virgil/wiki/Identity-Service)
+# .. _Virgil-Services:
+Virgil Services
+---------------------
 
-# <a name="head4"></a>Use cases
-- [Passwordless authentication](https://github.com/VirgilSecurity/virgil/wiki/Passwordless-authentication)
-- [Verification](https://github.com/VirgilSecurity/virgil/wiki/Verify-data)
-- [Secure data at transport](https://github.com/VirgilSecurity/virgil/wiki/Secure-data-at-transport)
-- [Secure data at storage](https://github.com/VirgilSecurity/virgil/wiki/Secure-data-at-storage)
-- [IP messaging](https://github.com/VirgilSecurity/virgil/wiki/IP-messaging)
+* `Private Keys Service <https://github.com/VirgilSecurity/virgil/wiki/Virgil-Private-Keys-API>`_
+* `Public Keys Service <https://github.com/VirgilSecurity/virgil/wiki/Virgil-Keys-API>`_
+* `Identity Service <https://github.com/VirgilSecurity/virgil/wiki/Identity-Service>`_
 
-# <a name="head2"></a>Virgil Demos
-- [Virgil Mail] (https://github.com/VirgilSecurity/virgil-mail)
-- [Virgil Pass] (https://github.com/VirgilSecurity/express-virgil-passwordless)
-- [Virgil Sync] (https://github.com/VirgilSecurity/virgil-sync)
+# .. _Use-cases:
+Use cases
+---------------------
 
-# <a name="head5"></a>License
-BSD 3-Clause. See [LICENSE](https://github.com/VirgilSecurity/virgil/blob/master/LICENSE) for details.
+* `Passwordless authentication <https://github.com/VirgilSecurity/virgil/wiki/Passwordless-authentication>`_
+* `Verification <https://github.com/VirgilSecurity/virgil/wiki/Verify-data>`_
+* `Secure data at transport <https://github.com/VirgilSecurity/virgil/wiki/Secure-data-at-transport>`_
+* `Secure data at storage <https://github.com/VirgilSecurity/virgil/wiki/Secure-data-at-storage>`_
+* `IP messaging <https://github.com/VirgilSecurity/virgil/wiki/IP-messaging>`_
 
-# <a name="head6"></a>Contacts
+# .. _Virgil-Demos:
+Virgil Demos
+-------------------
+
+* `Virgil Mail <https://github.com/VirgilSecurity/virgil-mail>`_
+* `Virgil Pass <https://github.com/VirgilSecurity/express-virgil-passwordless>`_
+* `Virgil Sync <https://github.com/VirgilSecurity/virgil-sync>`_
+
+# .. _License:
+License
+--------------------
+
+BSD 3-Clause. See `LICENSE <https://github.com/VirgilSecurity/virgil/blob/master/LICENSE>`_ for details.
+
+# .. _Contacts:
+Contacts
+-------------------
+
 Email: support@virgilsecurity.com
 
 .. _dev-docs:
