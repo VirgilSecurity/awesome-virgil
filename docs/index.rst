@@ -11,7 +11,6 @@ Developers Docs
 ---------------------
 
 .. toctree::
-   :maxdepth: 2
    
    Virgil-Entities
    dot-net-csharp-quickstart
