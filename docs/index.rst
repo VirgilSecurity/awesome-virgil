@@ -19,6 +19,7 @@ Developers Docs
    
    Virgil-Entities
    quickstart
+   keys-sdk
 
 Virgil Services
 ---------------------
