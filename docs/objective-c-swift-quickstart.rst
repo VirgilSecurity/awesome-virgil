@@ -125,8 +125,9 @@ Use Case
 - Received information is decrypted with the recipient’s private key using Virgil Crypto Library.
 - Decrypted data is provided to the recipient.
 
+*********
 Step 0. Initialization
-=========
+*********
 
 Objective-C
 ---------
@@ -153,8 +154,9 @@ Swift
     self.client = VSSClient(applicationToken:<# Virgil App token#>)
     //...
 
+*********
 Step 1. Create and Publish the Keys
-=========
+*********
 First a mail exchange application is generating the keys and publishing them to the Public Keys Service where they are available in an open access for other users (e.g. recipient) to verify and encrypt the data for the key owner.
 
 The following code example creates a new public/private key pair.
@@ -295,8 +297,9 @@ Swift
     }
     //...
 
+*********
 Step 2. Encrypt and Sign
-=========
+*********
 
 The app is searching for all channel members' public keys on the Keys Service to encrypt a message for them. The app is signing the encrypted message with sender’s private key so that the recipient can make sure the message had been sent by the declared sender.
 The example app we are discussing here uses IPMSecurityManager helper class (`IPMSecurityManager.m <https://github.com/VirgilSecurity/virgil-sdk-x/blob/v3/Docs/IPMExample-objc/IPMExample-objc/IPM/IPMSecurityManager.m>`_ or `IPMSecurityManager.swift <https://github.com/VirgilSecurity/virgil-sdk-x/blob/v3/Docs/IPMExample-swift/IPMExample-swift/IPM/IPMSecurityManager.swift>`_) which manages all security related activities. Also you can find calls to `XAsync <https://github.com/p-orbitum/XAsync>`_, which helps to manage asynchronous calls.
@@ -376,8 +379,9 @@ Swift
     // Handle errors, etc.        
     //...
 
+*********
 Step 3. Send a Message
-=========
+*********
 
 The application uses IPMSecureMessage class (`IPMSecureMessage.m <https://github.com/VirgilSecurity/virgil-sdk-x/blob/v3/Docs/IPMExample-objc/IPMExample-objc/IPM/IPMSecureMessage.m>`_ or `IPMSecureMessage.swift <https://github.com/VirgilSecurity/virgil-sdk-x/blob/v3/Docs/IPMExample-swift/IPMExample-swift/IPM/IPMSecureMessage.swift>`_) as a convenient container for encrypted message data and sender's signature data. Objects of this class also have a functionality to serialize them to proper JSON data, which then can be sent to the channel. 
 
@@ -422,8 +426,9 @@ Swift
     }
     //... 
 
+*********
 Step 4. Receive a Message
-=========
+*********
 An encrypted message is received on the recipient’s side using the IPMDataSourceListener handler. This handler is registered during the channel creation and get called every time the channel discovers a new message. You can see its declaration in `IPMDataSource.h <https://github.com/VirgilSecurity/virgil-sdk-x/blob/v3/Docs/IPMExample-objc/IPMExample-objc/IPM/IPMDataSource.h>`_ or `IPMDataSource.swift <https://github.com/VirgilSecurity/virgil-sdk-x/blob/v3/Docs/IPMExample-swift/IPMExample-swift/IPM/IPMDataSource.swift>`_
 
 Objective-C
@@ -449,8 +454,9 @@ Swift
     }
     //...
 
+*********
 Step 5. Verify and Decrypt 
-=========
+*********
 We are making sure the data came from the declared sender by verifying his signature using his Virgil Card from Public Keys Service. In case of success we are decrypting the message using the recipient's private key.
 
 Objective-C
