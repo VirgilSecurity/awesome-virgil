@@ -46,13 +46,13 @@ Install
 Following dependencies are used for work with IPMessaging:
 
 1. `virgil-sdk-cpp <https://github.com/VirgilSecurity/virgil-sdk-cpp>`_
-1. `virgil-crypto <https://github.com/VirgilSecurity/virgil-crypto>`_
-1. `nlohmann/json <https://github.com/nlohmann/json>`_
-1. `restless <https://github.com/VirgilSecurity/restless>`_
+2. `virgil-crypto <https://github.com/VirgilSecurity/virgil-crypto>`_
+3. `nlohmann/json <https://github.com/nlohmann/json>`_
+4. `restless <https://github.com/VirgilSecurity/restless>`_
 
-They are automatically downloaded by `CMake <https://cmake.org/>`_, `ExternalProject <https://cmake.org/cmake/help/v3.2/module/ExternalProject.html?highlight=externalproject_add#command:externalproject_add>`_ command.
+They are automatically downloaded by `CMake <https://cmake.org/>`_, `External Project <https://cmake.org/cmake/help/v3.2/module/ExternalProject.html?highlight=externalproject_add#command:externalproject_add>`_ command.
 Script can be viewed `here <https://github.com/VirgilSecurity/virgil-sdk-cpp/tree/master/examples/IPMessaging/ext/virgil_sdk>`_.
-Move to this step to [build](#build) an application.
+Move to this step to Build_ an application.
 
 *********
 Use Case
@@ -93,14 +93,11 @@ The app is registering a Virgil Card which includes a public key and an email ad
 
 .. code-block:: cpp
 
-    std::string actionId = servicesHub_.identity().
-verify(email, vsdk::dto::VerifiableIdentityType::Email);
+    std::string actionId = servicesHub_.identity().verify(email, vsdk::dto::VerifiableIdentityType::Email);
 
-    // Confirm an identity using code received to email box.
-    servicesHub_.identity().confirm(actionId, confirmationCode);
+    // Confirm an identity using code received to email box.servicesHub_.identity().confirm(actionId, confirmationCode);
 
-    vsdk::models::CardModel card = servicesHub_.card().
-create(validatedIdentity, newKeyPair.publicKey(), credentials);
+    vsdk::models::CardModel card = servicesHub_.card().create(validatedIdentity, newKeyPair.publicKey(), credentials);
 
 Step 2. Encrypt and Sign
 =========
@@ -116,10 +113,8 @@ The app is searching for all channel members' public keys on the Keys Service to
         cipher.addKeyRecipient(recipientCardId, recipientPublicKey);
     }
 
-    vcrypto::VirgilByteArray encryptedMessage = cipher.
-encrypt(vcrypto::str2bytes(message), true);
-    vcrypto::VirgilByteArray signature = signer.
-sign(encryptedMessage, currentMember_.getPrivateKey());
+    vcrypto::VirgilByteArray encryptedMessage = cipher.encrypt(vcrypto::str2bytes(message), true);
+    vcrypto::VirgilByteArray signature = signer.sign(encryptedMessage, currentMember_.getPrivateKey());
 
 Step 3. Send a Message
 =========
@@ -131,8 +126,7 @@ We will be using our custom IP Messaging Server in our examples, you may need to
 
 .. code-block:: cpp
 
-    vipm::models::EncryptedMessageModel 
-encryptedModel(encryptedMessage, signature);
+    vipm::models::EncryptedMessageModel encryptedModel(encryptedMessage, signature);
     std::string encryptedModelJson = vipm::models::toJson(encryptedModel);
 
     channel_.sendMessage(encryptedModelJson);
@@ -170,9 +164,7 @@ The application is making sure the message came from the declared sender by gett
 
     vcrypto::VirgilSigner signer;
     bool isValid =
-        signer.verify(encryptedModel.getMessage(), 
-encryptedModel.getSignature(), 
-senderCard.getPublicKey().getKey());
+        signer.verify(encryptedModel.getMessage(), encryptedModel.getSignature(), senderCard.getPublicKey().getKey());
     if (!isValid) {
         std::cout << "The message signature is not valid." << std::endl;
         logFile_ += sender + " .The message signature is not valid.";
@@ -183,18 +175,14 @@ senderCard.getPublicKey().getKey());
     try {
         vcrypto::VirgilCipher cipher;
         vcrypto::VirgilByteArray decryptedMessage =
-        	cipher.decryptWithKey(encryptedModel.getMessage(), 
-currentMember_.getCardId(),
-                  currentMember_.getPrivateKey(), 
-vcrypto::VirgilByteArray());
+        	cipher.decryptWithKey(encryptedModel.getMessage(), currentMember_.getCardId(), currentMember_.getPrivateKey(), vcrypto::VirgilByteArray());
 
         std::cout << vcrypto::bytes2str(decryptedMessage) << std::endl;
         std::cout << std::endl;
 
     } catch (std::exception& exception) {
         std::cout << std::string("Can't decrypt message.") << std::endl;
-        logFile_ += std::string("Can't decrypt message. Error: ") + 
-exception.what() + "\n";
+        logFile_ += std::string("Can't decrypt message. Error: ") + exception.what() + "\n";
         std::cout << std::endl;
     }
 
