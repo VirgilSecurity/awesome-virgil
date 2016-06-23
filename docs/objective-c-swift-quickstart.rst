@@ -126,7 +126,6 @@ Use Case
 
 Step 0. Initialization
 =========
-
 Objective-C
 ---------
 .. code-block:: objective-c
