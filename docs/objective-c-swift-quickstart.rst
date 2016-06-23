@@ -164,6 +164,7 @@ The following code example creates a new public/private key pair.
 Objective-C
 ---------
 .. code-block:: objective-c
+
     //...
     // The private key's password is optional here.
     VSSKeyPair *keyPair = 
