@@ -112,6 +112,7 @@ You can find more information about using Objective-C and Swift in the same proj
 *********
 Use Case
 *********
+
 **Secure any data end to end**: users need to securely exchange information (text messages, files, audio, video etc) while enabling both in transit and at rest protection. 
 
 - Application generates public and private key pairs using Virgil Crypto Library and uses Virgil Keys Service to enable secure end to end communications:
@@ -126,8 +127,10 @@ Use Case
 
 Step 0. Initialization
 =========
+
 Objective-C
 ---------
+
 .. code-block:: objective-c
 
     @import VirgilFoundation;
