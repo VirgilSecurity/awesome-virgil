@@ -1,5 +1,5 @@
 ============
-Quickstart .NET/C#
+Quickstart Objective-C/Swift
 ============
 
 - `Introduction`_
