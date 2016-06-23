@@ -120,7 +120,7 @@ The app is searching for all channel members' public keys on the Keys Service to
 
 Step 3. Send a Message
 =========
-The app merges the message text and the signature into one [structure](https://github.com/VirgilSecurity/virgil-sdk-net/blob/master/Examples/Virgil.Examples.IPMessaging/EncryptedMessageModel.cs) then serializes it to json string and sends the message to the channel using a simple IP messaging client.
+The app merges the message text and the signature into one `structure <https://github.com/VirgilSecurity/virgil-sdk-net/blob/master/Examples/Virgil.Examples.IPMessaging/EncryptedMessageModel.cs>`_ then serializes it to json string and sends the message to the channel using a simple IP messaging client.
 
 .. note::
 
@@ -177,5 +177,5 @@ The application is making sure the message came from the declared sender by gett
 Source Code
 *********
 
-* [Use Case Example](https://github.com/VirgilSecurity/virgil-sdk-net/tree/master/Examples/Virgil.Examples.IPMessaging)
-* [IP-Messaging Simple Server](https://github.com/VirgilSecurity/virgil-sdk-javascript/tree/master/examples/ip-messaging/server)
+* `Use Case Example <https://github.com/VirgilSecurity/virgil-sdk-net/tree/master/Examples/Virgil.Examples.IPMessaging>`_
+* `IP-Messaging Simple Server <https://github.com/VirgilSecurity/virgil-sdk-javascript/tree/master/examples/ip-messaging/server>`_
