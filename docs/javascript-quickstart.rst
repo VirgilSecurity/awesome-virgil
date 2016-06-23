@@ -46,14 +46,14 @@ You can easily add SDK dependency to your project, just follow the examples belo
 NPM
 ---------
  
-.. code-block::
+.. code-block:: html
 
 	npm install virgil-sdk
 
  
 Bower
 ---------
-.. code-block::
+.. code-block:: html
 
 	bower install virgil-sdk
   
