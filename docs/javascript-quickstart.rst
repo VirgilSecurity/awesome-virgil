@@ -36,7 +36,7 @@ First you must create a free Virgil Security developer's account by signing up `
  
 The access token provides authenticated secure access to Virgil Keys Services and is passed with each API call. The access token also allows the API to associate your app’s requests with your Virgil Security developer's account.
  
-Use this token to initialize the SDK client `here Step 0. Initialization`_.
+Use this token to initialize the SDK client here `Step 0. Initialization`_.
  
 Install
 =========
@@ -46,14 +46,14 @@ You can easily add SDK dependency to your project, just follow the examples belo
 NPM
 ---------
  
-.. code-block::sh
+.. code-block::
 
 	npm install virgil-sdk
 
  
 Bower
 ---------
-.. code-block::sh
+.. code-block::
 
 	bower install virgil-sdk
   
