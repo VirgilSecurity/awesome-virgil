@@ -11,6 +11,7 @@ Developers Docs
 ---------------------
 
 .. toctree::
+   :maxdepth: 1
    
    Virgil-Entities
    quickstart
