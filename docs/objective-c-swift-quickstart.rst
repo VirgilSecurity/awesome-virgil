@@ -130,6 +130,7 @@ Step 0. Initialization
 Objective-C
 ---------
 .. code-block:: objective-c
+
     @import VirgilFoundation;
     @import VirgilSDK;
     
@@ -143,6 +144,7 @@ Objective-C
 Swift
 ---------
 .. code-block:: swift
+
     //...
     private var client: VSSClient! = nil
     //..
@@ -178,6 +180,7 @@ The app is registering a Virgil Card which includes a public key and an email ad
 Objective-C
 ---------
 .. code-block:: objective-c
+
     //...
     // For 'confirmed' Virgil Card you should compose identity information
     // object with correct validation token parameter.
@@ -208,6 +211,7 @@ Objective-C
 Swift
 ---------
 .. code-block:: swift
+
     //...
     // For 'confirmed' Virgil Card you should compose identity information 
     // object with correct validation token parameter.
