@@ -3,7 +3,7 @@ Quickstart
 ======
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    
    dot-net-csharp-quickstart
    c-cpp-quickstart
