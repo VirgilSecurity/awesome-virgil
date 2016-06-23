@@ -3,7 +3,7 @@
 - [Obtaining an Access Token](#obtaining-an-access-token)
 - [Install](#install)
 - [Swift note](#swift-note)
-- [Use case](#use-case)
+- [Use case](#use-case) 
     - [Step 0. Initialization](#step-0-initialization)
     - [Step 1. Create and Publish the Keys](#step-1-create-and-publish-the-keys)
     - [Step 2. Encrypt and Sign](#step-2-encrypt-and-sign)
