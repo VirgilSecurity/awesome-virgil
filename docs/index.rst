@@ -1,3 +1,7 @@
+#########
+Virgil Security. Key Management and Cryptography for Developers
+#########
+
 .. image:: Images/VirgilLogo.png
 
 `Developers Docs`_ | `Virgil Services`_ | `Use cases`_  | `Virgil Demos`_
