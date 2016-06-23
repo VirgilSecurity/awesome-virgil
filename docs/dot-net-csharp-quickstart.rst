@@ -29,7 +29,7 @@ On the diagram below you can see a full picture of how these things interact wit
 Prerequisites
 *********
 
-1. To begin with, you'll need a Virgil Access Token, which you can obtain by passing a few steps described here `Obtaining an Access Token`_
+1. To begin with, you'll need a Virgil Access Token, which you can obtain by passing a few steps described here `Obtaining an Access Token`_.
 2. You will also need to install a NuGet package Install_.
 
 Obtaining an Access Token
