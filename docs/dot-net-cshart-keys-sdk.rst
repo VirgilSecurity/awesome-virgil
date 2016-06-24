@@ -65,7 +65,7 @@ The Virgil Card might be *global* and *private*. The difference is whether Virgi
 Publish a Virgil Card
 =========
 
-Creating a *private* Virgil Card with a newly generated key pair and **ValidationToken**. See how to obtain a **ValidationToken**  here...`Obtaining a private validation token`_
+Creating a *private* Virgil Card with a newly generated key pair and **ValidationToken**. See how to obtain a **ValidationToken**  here...`Obtaining a private ValidationToken`_
 
 .. code-block:: csharp
 
@@ -91,10 +91,10 @@ Creating an unauthorized *private* Virgil Card without **ValidationToken**. Pay 
       Type = "username"
   };
 
-var myCard = await serviceHub.Cards
-    .Create(identity, keyPair.PublicKey(), keyPair.PrivateKey());
+    var myCard = await serviceHub.Cards
+        .Create(identity, keyPair.PublicKey(), keyPair.PrivateKey());
 
-Creating a *global* Virgil Card. See how to obtain a **ValidationToken** here...`Obtaining a global validation token`_
+Creating a *global* Virgil Card. See how to obtain a **ValidationToken** here...`Obtaining a global ValidationToken`_
 
 .. code-block:: csharp
 
@@ -184,7 +184,7 @@ The Private Keys Service stores private keys the original way as they were trans
 Get a Private Key
 =========
 
-This operation is used to get a private key. You must pass a prior verification of the Virgil Card in which your public key is used. And then you must obtain a **ValidationToken** depending on your Virgil Card (global `Obtaining a global validation token`_ or  private `Obtaining a private validation token`_).
+This operation is used to get a private key. You must pass a prior verification of the Virgil Card in which your public key is used. And then you must obtain a **ValidationToken** depending on your Virgil Card (global `Obtaining a global ValidationToken`_ or  private `Obtaining a private ValidationToken`_).
   
 .. code-block:: csharp
 
