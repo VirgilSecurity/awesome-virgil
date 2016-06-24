@@ -139,7 +139,7 @@ The Virgil Card might be *global* and *private*. The difference is whether Virgi
 Publish a Virgil Card
 =========
 
-Creating a *private* Virgil Card with a newly generated key pair and **ValidationToken**. See how to obtain a **ValidationToken** here...`Obtaining a private ValidationToken`_
+Creating a *private* Virgil Card with a newly generated key pair and **ValidationToken**. See how to obtain a **ValidationToken** here... `Obtaining a private ValidationToken`_
 
 Objective-C
 --------------
@@ -283,7 +283,7 @@ Swift
     })
     //...
 
-Creating a *global* Virgil Card. See how to obtain a **ValidationToken** here...`Obtaining a global ValidationToken`_
+Creating a *global* Virgil Card. See how to obtain a **ValidationToken** here... `Obtaining a global ValidationToken`_
 
 Objective-C
 --------------
