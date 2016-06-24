@@ -6,7 +6,7 @@
   - [Revoke a Virgil Card](#revoke-a-virgil-card)
   - [Get a Public Key](#get-a-public-key)
 - [Private Keys](#private-keys)
-  - [Stash a Private Key](#stash-a-private-key)
+  - [Stash a Private Key](#stash-a-private-key) 
   - [Get a Private Key](#get-a-private-key)
   - [Destroy a Private Key](#destroy-a-private-key)
 - [Identities](#identities)
