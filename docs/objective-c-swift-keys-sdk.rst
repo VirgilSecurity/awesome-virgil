@@ -136,6 +136,7 @@ The Virgil Card might be *global* and *private*. The difference is whether Virgi
 
 *Private Cards* are created when a developer is using his own service for verification instead of Virgil Identity Service or avoids verification at all. In this case validation token is generated using app's Private Key created on our `Developer portal <https://developer.virgilsecurity.com/dashboard/>`_.   
 
+
 Publish a Virgil Card
 =========
 
@@ -653,7 +654,7 @@ Virgil Security provides a set of tools and services for storing private keys in
 
 Usage of this service is optional.
 
-Store a Private Key
+Stash a Private Key
 =========
 
 Private key can be added for storage only in case you have already registered a public key on the Public Keys Service.
