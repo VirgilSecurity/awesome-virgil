@@ -1,788 +1,925 @@
+============
+Tutorial Objectice C/Swift Keys SDK
+============
 
-# Vigil Keys Service - iOS SDK
+- `Introduction`_
+- `Install`_ 
+- `Swift note`_ 
+- `Obtaining an Access Token`_
+- `Cards and Public Keys`_
+    - `Publish a Virgil Card`_
+    - `Search for Cards`_
+    - `Revoke a Virgil Card`_
+    - `Get a Public Key`_
+- `Private Keys`_
+    - `Stash a Private Key`_
+    - `Get a Private Key`_
+    - `Destroy a Private Key`_
+- `Identities`_
+    - `Obtaining a global ValidationToken`_
+    - `Obtaining a private ValidationToken`_
 
-- [Obtaining an Application Token](#obtaining-an-application-token)
-- [Register a New User](#register-a-new-user)
-- [Get a User's Public Key](#get-a-users-public-key)
-- [Search a Public Key](#search-a-public-key)
-- [Search a Public Key Signed](#search-a-public-key-signed)
-- [Update a Public Key](#update-a-public-key)
-- [Delete a Public Key](#delete-a-public-key)
-- [Reset a Public Key](#reset-a-public-key)
-- [Confirm a Public Key](#confirm-a-public-key)
-- [Create User Data](#create-user-data)
-- [Delete a User Data](#delete-a-user-data)
-- [Confirm a User Data](#confirm-a-user-data)
-- [Resend a User's Confirmation Code](#resend-a-users-confirmation-code)
+*********
+Introduction
+*********
 
-## Obtaining an Application Token
+This tutorial explains how to use the Virgil Security Services with SDK library in Objective-C/Swift applications. 
 
-The app token provides access to Virgil’s Services and is passed with each API call. The app token also allows the API to associate your app’s requests with your Virgil Security developer account.
+*********
+Install
+*********
 
-1. [Create](https://api.virgilsecurity.com/signup) a free **Virgil Security** account.
-2. [Sign in](https://api.virgilsecurity.com/signin) and generate a token for your application.
-3. Use your app token to access Virgil Services using our iOS frameworks.
+You can easily add SDK dependency to your project using CocoaPods. So, if you are not familiar with this dependency manager it is time to install CocoaPods. Open your terminal window and execute the following line:
+```
+$ sudo gem install cocoapods
+``` 
+It will ask you for the password and then will install the latest release version of CocoaPods. CocoaPods is built with Ruby and it will be installed with the default Ruby available in OS X.
+If you encounter any issues during this installation, please take a look at [cocoapods.org](https://guides.cocoapods.org/using/getting-started.html) for more information.
 
-## Register a New User
+Now it is possible to add VirgilSDK to the particular application. So:
 
-:information_source:
+- Open Xcode and create a new project (in the Xcode menu: File->New->Project), or navigate to an existing Xcode project using:
 
-> A Virgil Account will be created when the first Public Key is uploaded. An application can only get information about Public Keys created for the current application. When the application uploads a new Public Key and there is an Account created for another application with the same UDID, the Public Key will be implicitly attached it to the existing Account instance.
+```
+$ cd <Path to Xcode project folder>
+```
 
-##### Objective-C:
+- In the Xcode project's folder create a new file, give it a name *Podfile* (with a capital *P* and without any extension). The following example shows how to compose the Podfile for an iOS application. If you are planning to use another platform, the process will be quite similar. You only need to change a platform to the correspondent value. [Here](https://guides.cocoapods.org/syntax/podfile.html#platform) you can find more information about the platform values.
+
+```
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '8.0'
+use_frameworks!
+
+target '<Put your Xcode target name here>' do
+    pod 'VirgilSDK'
+end
+```
+
+- Get back to your terminal window and execute the following line:
+
+```
+$ pod install
+```
+ 
+- Close Xcode project (if it is still opened). For any further development purposes you should use Xcode *.xcworkspace* file created for you by CocoaPods.
+ 
+At this point you should be able to use VirgilSDK pod in your code. If you encountered any issues with CocoaPods installations, try to find more information at [cocoapods.org](https://guides.cocoapods.org/using/getting-started.html).
+
+*********
+Swift note
+*********
+
+Although VirgilSDK pod is using Objective-C as its primary language it might be quite easily used in a Swift application.
+After pod is installed as described above it is necessary to perform the following:
+
+- Create a new header file in the Swift project.
+- Name it something like *BridgingHeader.h*
+- Put there the following lines:
+
+Objective-C
+--------------
+
+``` objective-c
+@import VirgilFoundation;
+@import VirgilSDK;
+```
+
+- In the Xcode build settings find the setting called *Objective-C Bridging Header* and set the path to your *BridgingHeader.h* file. Be aware that this path is relative to your Xcode project's folder. After adding bridging header setting you should be able to use the SDK.
+
+You can find more information about using Objective-C and Swift in the same project [here](https://developer.apple.com/library/ios/documentation/Swift/Conceptual/BuildingCocoaApps/MixandMatch.html).
+
+*********
+Obtaining an Access Token
+*********
+
+First you must create a free Virgil Security developer's account by signing up [here](https://developer.virgilsecurity.com/account/signup). Once you have your account you can [sign in](https://developer.virgilsecurity.com/account/signin) and generate an access token for your application.
+
+The access token provides an authenticated secure access to the Virgil Security Services and is passed with each API call. The access token also allows the API to associate your app’s requests with your Virgil Security developer's account.
+
+Simply add your access token to the client constructor as an application token.
+
+Objective-C
+--------------
+
 ```objective-c
 //...
-#import <VirgilKeysiOS/VirgilKeysiOS.h>
+@property (nonatomic, strong) VSSClient * __nonnull client;
 //...
-@property (nonatomic, strong) VSSKeysClient *keysClient;
+self.client = [[VSSClient alloc] 
+                initWithApplicationToken:<# Virgil Access Token #>];
 //...
+```
 
-/// We have a key pair
+Swift
+--------------
+
+```swift
+//...
+private var client: VSSClient! = nil
+//...
+let client = VSSClient(applicationToken: <# Virgil Access Token #>)
+//...
+```
+
+*********
+Cards and Public Keys
+*********
+
+A Virgil Card is the main entity of the Public Keys Service, it includes the information about the user and his public key. The Virgil Card identifies the user by one of his available types, such as an email, a phone number, etc.
+
+The Virgil Card might be *global* and *private*. The difference is whether Virgil Services take part in [the Identity verification](#identities). 
+
+*Global Cards* are created with the validation token received after verification in Virgil Identity Service. Any developer with Virgil account can create a global Virgil Card and you can be sure that the account with a particular email has been verified and the email owner is really the Identity owner.
+
+*Private Cards* are created when a developer is using his own service for verification instead of Virgil Identity Service or avoids verification at all. In this case validation token is generated using app's Private Key created on our [Developer portal](https://developer.virgilsecurity.com/dashboard/).
+
+Publish a Virgil Card
+=========
+
+Creating a *private* Virgil Card with a newly generated key pair and **ValidationToken**. See how to obtain a **ValidationToken** [here...](#obtaining-a-private-validationtoken)
+
+Objective-C
+--------------
+
+```objective-c
+//...
+@import VirgilFoundation;
+@import VirgilSDK;
+//...
+// Generate a new key pair
 VSSKeyPair *keyPair = [[VSSKeyPair alloc] init];
-//...
-/// Create a user data instance
-VSSUserData *userData = [[VSSUserData alloc] initWithDataClass:UDCUserId dataType:UDTEmail value:<#Email address#>];
-/// Create a public key model container
-VSSPublicKey *publicKey = [[VSSPublicKey alloc] initWithKey:keyPair.publicKey userDataList:@[ userData ]];
-/// Create a private key model container
-VSSPrivateKey *privateKey = [[VSSPrivateKey alloc] initWithKey:keyPair.privateKey password:nil];
-/// Create network client instance
-self.keysClient = [[VSSKeysClient alloc] initWithApplicationToken:<#Virgil Application Token#>];
-/// Make the request
-[self.keysClient createPublicKey:publicKey privateKey:privateKey completionHandler:^(VSSPublicKey *pubKey, NSError *error) {
-    if (error != nil) {
-        NSLog(@"Error creating public key instance at the Virgil Keys Service: %@", [error localizedDescription]);
-        return;
-    }
+// Compose identity information object
+VSSIdentityInfo *identity = 
+    [[VSSIdentityInfo alloc] initWithType:<# NSString: custom string #>
+                                    value:<# NSString: Identity value #>
+                          validationToken:<# NSString: Generated validation
+                           token for the custom identity #>];
+// Compose VSSPrivateKey container
+VSSPrivateKey *privateKey = [[VSSPrivateKey alloc]
+initWithKey:keyPair.privateKey password:nil];
+// Send request for the creation of the Virgil Card.
+[self.client 
+    createCardWithPublicKey:keyPair.publicKey 
+               identityInfo:identity 
+                       data:<# Custom NSDictionary or nil #>
+                 privateKey:privateKey 
+          completionHandler:^(VSSCard *card, NSError *error) {
+        if (error != nil) {
+            NSLog(@"Error creating Virgil Card: %@", 
+                [error localizedDescription]);
+            return;
+        }
     
-    /// Public key instance created at the Virgil Keys Service and model object returned as pubKey in the callback.
+    //Virgil Card has been saved at Virgil Keys Service.
+    // Use card object for further references.
+    //...
 }];
+//...
 ```
 
-##### Swift:
+Swift
+--------------
+
 ```swift
 //...
-private var keysClient: VSSKeysClient! = nil
-//...
-/// We have a key pair:
+// Generate a new key pair
 let keyPair = VSSKeyPair()
-//...
-/// Create a user data instance 
-let userData = VSSUserData(dataClass: .UDCUserId, dataType: .UDTEmail, value: <#Email address#>)
-/// Create a public key model container
-let publicKey = VSSPublicKey(key: keyPair.publicKey(), userDataList: [userData])
-/// Create a private key model container
+// Compose identity information object 
+let identity = VSSIdentityInfo(type: <# String: Custom identity type #>, 
+    value: <# String: Identity value #>, 
+    validationToken: <# String: Generated validation token 
+for the custom identity #>)
+// Compose VSSPrivateKey container
 let privateKey = VSSPrivateKey(key: keyPair.privateKey(), password: nil)
-/// Create network client instance for Virgil Keys Service
-self.keysClient = VSSKeysClient(applicationToken: <#Virgil Application Token#>)
-/// Make the request
-self.keysClient.createPublicKey(publicKey, privateKey: privateKey) { pubKey, error in
-    if error != nil {
-        print("Error creating public key at the Virgil Keys Service: \(error!.localizedDescription)")
-        return
-    }
-
-    /// Public key instance created at the Virgil Keys Service and model object returned as pubKey in the callback.
-}
+// Send request for the creation of the Virgil Card.
+self.client.createCardWithPublicKey(keyPair.publicKey(), 
+    identityInfo: identity, 
+    data: nil,  
+    privateKey: privateKey, 
+    completionHandler: { (card, error) -> Void in
+        if error != nil {
+            print("Error creating Virgil Card: 
+                    \(error!.localizedDescription)")
+            return
+        }
+    
+    //Virgil Card has been saved at Virgil Keys Service.
+    // Use card object for further references.
+    //...
+})
 //...
 ```
 
-## Get a User's Public Key
+Creating an unauthorized *private* Virgil Card without **ValidationToken**.
 
-##### Objective-C:
+Objective-C
+--------------
+
 ```objective-c
 //...
-#import <VirgilKeysiOS/VirgilKeysiOS.h>
+@import VirgilFoundation;
+@import VirgilSDK;
 //...
-@property (nonatomic, strong) VSSKeysClient *keysClient;
-//...
-
-/// We have a key pair
+// Generate a new key pair
 VSSKeyPair *keyPair = [[VSSKeyPair alloc] init];
-//...
-/// We have some public key id
-GUID* publicKeyId = <#Public Key UUID#>;
-/// We have a private key container
-VSSPrivateKey *privateKey = [[VSSPrivateKey alloc] initWithKey:keyPair.privateKey password:nil];
-/// Create network client instance
-self.keysClient = [[VSSKeysClient alloc] initWithApplicationToken:<#Virgil Application Token#>];
-/// Make the request
-[self.keysClient getPublicKeyId:publicKeyId completionHandler:^(VSSPublicKey *pubKey, NSError *error) {
-    if (error != nil) {
-        NSLog(@"Error getting the key from the Virgil Keys Service: '%@'", [error localizedDescription]);
-        return;
-    }
+// Compose identity information object
+VSSIdentityInfo *identity = 
+    [[VSSIdentityInfo alloc] initWithType:<# NSString: custom string #> 
+                                    value:<# NSString: Identity value #>];
+// Compose VSSPrivateKey container
+VSSPrivateKey *privateKey = [[VSSPrivateKey alloc] 
+initWithKey:keyPair.privateKey password:nil];                              
+// Send request for the creation of the Virgil Card.
+[self.client 
+    createCardWithPublicKey:keyPair.publicKey 
+               identityInfo:identity 
+                       data:<# Custom NSDictionary or nil #>  
+                 privateKey:privateKey 
+          completionHandler:^(VSSCard *card, NSError *error) {
+        if (error != nil) {
+            NSLog(@"Error creating Virgil Card: %@", 
+                [error localizedDescription]);
+            return;
+        }
     
-    /// Use VSSPublicKey model object returned from the service.
+    //Virgil Card has been saved at Virgil Keys Service.
+    // Use card object for further references.
+    //...
 }];
 //...
 ```
 
-##### Swift:
+Swift
+--------------
+
 ```swift
 //...
-private var keysClient: VSSKeysClient! = nil
-//...
-/// We have a key pair:
+// Generate a new key pair
 let keyPair = VSSKeyPair()
-//...
-/// We have a public key id
-let publicKeyId =  <#Public Key UUID#>;
-/// We have a private key model container
-let privateKey = VSSPrivateKey(key: keyPair.privateKey(), password: nil)
-/// Create network client instance for Virgil Keys Service
-self.keysClient = VSSKeysClient(applicationToken: <#Virgil Application Token#>)
-/// Make the request
-self.keysClient.getPublicKeyId(publicKeyId) { pubKey, error in
-    if error != nil {
-        print("Error getting the public key from the Virgil Keys Service: \(error!.localizedDescription)")
-        return
-    }
-    /// Use VSSPublicKey model object returned from the service.
-}
+// Compose identity information object 
+let identity = VSSIdentityInfo(type: <# String: Custom identity type #>, 
+    value: <# String: Identity value #>)
+// Compose VSSPrivateKey container
+let privateKey = VSSPrivateKey(key: keyPair.privateKey(), password: nil)    
+// Send request for the creation of the Virgil Card.
+self.client.createCardWithPublicKey(keyPair.publicKey(), 
+    identityInfo: identity, 
+    data: <# Custom Dictionary<String, String> or nil #>,  
+    privateKey: privateKey, 
+    completionHandler: { (card, error) -> Void in
+        if error != nil {
+            print("Error creating Virgil Card: 
+                  \(error!.localizedDescription)")
+            return
+        }
+    
+    //Virgil Card has been saved at Virgil Keys Service.
+    // Use card object for further references.
+    //...
+})
 //...
 ```
 
-## Search a Public Key
+Creating a *global* Virgil Card. See how to obtain a **ValidationToken** [here...](#obtaining-a-global-validationtoken)
 
-##### Objective-C:
+Objective-C
+--------------
+
 ```objective-c
 //...
-#import <VirgilKeysiOS/VirgilKeysiOS.h>
+@import VirgilFoundation;
+@import VirgilSDK;
 //...
-@property (nonatomic, strong) VSSKeysClient *keysClient;
-//...
-
-//...
-/// We have some user data value
-NSString* userDataValue = <#User data value#>;
-/// Create network client instance
-self.keysClient = [[VSSKeysClient alloc] initWithApplicationToken:<#Virgil Application Token#>];
-/// Make the request
-[self.keysClient searchPublicKeyUserIdValue:userDataValue completionHandler:^(VSSPublicKey *pubKey, NSError *error) {
-    if (error != nil) {
-        NSLog(@"Error searching the public key: %@", [error localizedDescription]);
-        return;
-    }
-    
-    /// Use VSSPublicKey returned from the service.
-}];
-//...
-```
-
-##### Swift:
-```swift
-//...
-private var keysClient: VSSKeysClient! = nil
-//...
-/// We have some user data value
-let userDataValue =  <#User data value#>;
-/// Create network client instance for Virgil Keys Service
-self.keysClient = VSSKeysClient(applicationToken: <#Virgil Application Token#>)
-/// Make the request
-self.keysClient.searchPublicKeyUserIdValue(userDataValue) { pubKey, error in
-    if error != nil {
-        print("Error searching the public key: \(error!.localizedDescription)")
-        return
-    }
-    
-    /// Use VSSPublicKey returned from the service.
-}
-//...
-```
-
-## Search a Public Key Signed
-
-:information_source:
-
-> If a signed version of the action is used, the Public Key will be returned with all of the user_data items for this Public Key.
-
-##### Objective-C:
-```objective-c
-//...
-#import <VirgilKeysiOS/VirgilKeysiOS.h>
-//...
-@property (nonatomic, strong) VSSKeysClient *keysClient;
-//...
-
-//...
-/// We have our public key id
-GUID* publicKeyId = <#Public Key UUID#>;
-/// We have our private key
-VSSPrivateKey *privateKey = [[VSSPrivateKey alloc] initWithKey:<#VSSKeyPair.privateKey#>];
-/// Create network client instance
-self.keysClient = [[VSSKeysClient alloc] initWithApplicationToken:<#Virgil Application Token#>];
-/// Make the request
-[self.keysClient searchPublicKeyId:publicKeyId privateKey:privateKey completionHandler:^(VSSPublicKey *pubKey, NSError *error) {
-    if (error != nil) {
-        NSLog(@"Error searching the public key: %@", [error localizedDescription]);
-        return;
-    }
-    
-    /// Use VSSPublicKey returned from the service.
-}];
-//...
-```
-
-##### Swift:
-```swift
-//...
-private var keysClient: VSSKeysClient! = nil
-//...
-/// We have our public key id
-let publicKeyId =  <#Public Key UUID#>
-/// We have our private key
-let privateKey = VSSPrivateKey(key: <#VSSKeyPair.privateKey()#>)
-/// Create network client instance for Virgil Keys Service
-self.keysClient = VSSKeysClient(applicationToken: <#Virgil Application Token#>)
-/// Make the request
-self.keysClient.searchPublicKeyId(<#T##publicKeyId: String##String#>, privateKey: <#T##VSSPrivateKey#>) { pubKey, error in
-    if error != nil {
-        print("Error searching the public key: \(error!.localizedDescription)")
-        return
-    }
-    
-    /// Use VSSPublicKey returned from the service.
-}
-//...
-```
-
-## Update a Public Key
-
-:information_source:
-
-> Public Key modification takes place immediately after action invocation.
-
-##### Objective-C:
-```objective-c
-//...
-#import <VirgilKeysiOS/VirgilKeysiOS.h>
-//...
-@property (nonatomic, strong) VSSKeysClient *keysClient;
-//...
-
-//...
-/// We have our public key id
-GUID* publicKeyId = <#Public Key UUID#>;
-/// We have our private key
-VSSPrivateKey *privateKey = [[VSSPrivateKey alloc] initWithKey:<#VSSKeyPair.privateKey#>];
-/// We have a new key pair to update key with
-VSSKeyPair *newKeyPair = [[VSSKeyPair alloc] initWithPassword:<#Key password or nil#>];
-/// Create network client instance
-self.keysClient = [[VSSKeysClient alloc] initWithApplicationToken:<#Virgil Application Token#>];
-/// Make the request
-[self.keysClient updatePublicKeyId:publicKeyId privateKey:privateKey newKeyPair:newKeyPair newKeyPassword:<#Key password or nil#> completionHandler:^(VSSPublicKey *pubKey, NSError *error) {
-    if (error != nil) {
-        NSLog(@"Error updating the public key: %@", [error localizedDescription]);
-        return;
-    }
-    
-    /// Use VSSPublicKey returned from the service.
-}];
-//...
-```
-
-##### Swift:
-```swift
-//...
-private var keysClient: VSSKeysClient! = nil
-//...
-/// We have our public key id
-let publicKeyId =  <#Public Key UUID#>
-/// We have our private key
-let privateKey = VSSPrivateKey(key: <#VSSKeyPair.privateKey()#>)
-/// We have a new key pair to update key with
-let newKeyPair = VSSKeyPair(password: <#Key password or nil#>)
-/// Create network client instance for Virgil Keys Service
-self.keysClient = VSSKeysClient(applicationToken: <#Virgil Application Token#>)
-/// Make the request
-self.keysClient.updatePublicKeyId(publicKeyId, privateKey: privateKey, newKeyPair: newKeyPair, newKeyPassword: <#Key password or nil#>) { pubKey, error in
-    if error != nil {
-        print("Error updating the public key: \(error!.localizedDescription)")
-        return
-    }
-    
-    /// Use VSSPublicKey returned from the service.
-}
-//...
-```
-
-## Delete a Public Key
-
-:information_source:
-
-> This is a signed version of the action. The Public Key will be removed immediately after invocation without any additional actions.
-
-##### Objective-C:
-```objective-c
-//...
-#import <VirgilKeysiOS/VirgilKeysiOS.h>
-//...
-@property (nonatomic, strong) VSSKeysClient *keysClient;
-//...
-
-//...
-/// We have our public key id
-GUID* publicKeyId = <#Public Key UUID#>;
-/// We have our private key
-VSSPrivateKey *privateKey = [[VSSPrivateKey alloc] initWithKey:<#VSSKeyPair.privateKey#>];
-/// Create network client instance
-self.keysClient = [[VSSKeysClient alloc] initWithApplicationToken:<#Virgil Application Token#>];
-/// Make the request
-[self.keysClient deletePublicKeyId:publicKeyId privateKey:privateKey completionHandler:^(NSError *error) {
-    if (error != nil) {
-        NSLog(@"Error deletion of the public key: %@", [error localizedDescription]);
-        return;
-    }
-    
-    /// Public key is deleted.
-}];
-//...
-```
-
-##### Swift:
-```swift
-//...
-private var keysClient: VSSKeysClient! = nil
-//...
-/// We have our public key id
-let publicKeyId =  <#Public Key UUID#>
-/// We have our private key
-let privateKey = VSSPrivateKey(key: <#VSSKeyPair.privateKey()#>)
-/// Create network client instance for Virgil Keys Service
-self.keysClient = VSSKeysClient(applicationToken: <#Virgil Application Token#>)
-/// Make the request
-self.keysClient.deletePublicKeyId(publicKeyId, privateKey: privateKey) { error in
-    if error != nil {
-        print("Error deletion of the public key: \(error!.localizedDescription)")
-        return
-    }
-    
-    /// Public key is deleted.
-}
-//...
-```
-
-## Delete a Public Key
-
-:information_source:
-
-> This is an unsigned version of the action, so confirmation is required. 
-> The action will return an VSSActionToken object and will send confirmation tokens to all of the Public Key’s confirmed UDIDs. 
-> The list of masked UDID’s will be returned in user_ids response object property. 
-> To commit a Public Key deletion it is necessary to call persistPublicKeyId:... method with VSSActionToken object which contains the list of confirmation codes.
-
-##### Objective-C:
-```objective-c
-//...
-#import <VirgilKeysiOS/VirgilKeysiOS.h>
-//...
-@property (nonatomic, strong) VSSKeysClient *keysClient;
-//...
-
-//...
-/// We have our public key id
-GUID* publicKeyId = <#Public Key UUID#>;
-/// Create network client instance
-self.keysClient = [[VSSKeysClient alloc] initWithApplicationToken:<#Virgil Application Token#>];
-/// Make the request
-[self.keysClient deletePublicKeyId:publicKeyId completionHandler:^(VSSActionToken *actionToken, NSError *error) {
-    if (error != nil) {
-        NSLog(@"Error deletion of the public key: %@", [error localizedDescription]);
-        return;
-    }
-    
-    /// Public key deletion should be confirmed using returned VSSActionToken.
-}];
-//...
-```
-
-##### Swift:
-```swift
-//...
-private var keysClient: VSSKeysClient! = nil
-//...
-/// We have our public key id
-let publicKeyId =  <#Public Key UUID#>
-/// Create network client instance for Virgil Keys Service
-self.keysClient = VSSKeysClient(applicationToken: <#Virgil Application Token#>)
-/// Make the request
-self.keysClient.deletePublicKeyId(publicKeyId) { actionToken, error in
-    if error != nil {
-        print("Error deletion of the public key: \(error!.localizedDescription)")
-        return
-    }
-    
-   /// Public key deletion should be confirmed using returned VSSActionToken.
-}
-//...
-```
-
-## Reset a Public Key
-
-:information_source:
-
-> After an invocation the user will receive the confirmation tokens on all his confirmed UDIDs. 
-> The Public Key data won’t be updated until the call persistPublicKeyId:... is made with the token value from this step and confirmation codes sent to UDIDs. 
-
-##### Objective-C:
-```objective-c
-//...
-#import <VirgilKeysiOS/VirgilKeysiOS.h>
-//...
-@property (nonatomic, strong) VSSKeysClient *keysClient;
-//...
-
-//...
-/// We have our public key id
-GUID* publicKeyId = <#Public Key UUID#>;
-/// We have a new key pair to reset key with
-VSSKeyPair *newKeyPair = [[VSSKeyPair alloc] initWithPassword:<#Key password or nil#>];
-/// Create network client instance
-self.keysClient = [[VSSKeysClient alloc] initWithApplicationToken:<#Virgil Application Token#>];
-/// Make the request
-[self.keysClient resetPublicKeyId:publicKeyId keyPair:newKeyPair keyPassword:<#Key password or nil#> completionHandler:^(VSSActionToken *actionToken, NSError *error) {
-    if (error != nil) {
-        NSLog(@"Error resetting public key: %@", [error localizedDescription]);
-        return;
-    }
-    
-    /// Use action token to confirm the process.
-}];
-//...
-```
-
-##### Swift:
-```swift
-//...
-private var keysClient: VSSKeysClient! = nil
-//...
-/// We have our public key id
-let publicKeyId =  <#Public Key UUID#>
-/// We have a new key pair to reset key with
-let newKeyPair = VSSKeyPair(password:<#Key password or nil#>)
-/// Create network client instance for Virgil Keys Service
-self.keysClient = VSSKeysClient(applicationToken: <#Virgil Application Token#>)
-/// Make the request
-self.keysClient.resetPublicKeyId(publicKeyId, keyPair: newKeyPair, keyPassword: <#Key password or nil#>) { actionToken, error in
-    if error != nil {
-        print("Error resetting public key: \(error!.localizedDescription)")
-        return
-    }
-    
-    /// Use action token to confirm the process.
-}
-//...
-```
-
-## Confirm a Public Key
-
-:information_source:
-
-> The confirmation code will be sent to the email/phone etc. Usually the client application should provide opportunities for collecting the appropriate confirmation codes.
-
-##### Objective-C:
-```objective-c
-//...
-#import <VirgilKeysiOS/VirgilKeysiOS.h>
-//...
-@property (nonatomic, strong) VSSKeysClient *keysClient;
-//...
-
-//...
-/// We have our public key id
-GUID* publicKeyId = <#Public Key UUID#>;
-/// When some important action is taking place (e.g. reset of the public key)
-/// Virgil Keys Service will send VSSActionToken instance in response. 
-/// This object will contain action token id and user data values list which should be confirmed with a token.
-/// Virgil Keys Service will send the token code to each of these user data.
-actionToken.confirmationCodeList = <#Array with confirmation tokens for each user data in this action token#>;
-/// Create network client instance
-self.keysClient = [[VSSKeysClient alloc] initWithApplicationToken:<#Virgil Application Token#>];
-/// Make the request
-[self.keysClient persistPublicKeyId:publicKeyId actionToken:actionToken completionHandler:^(VSSPublicKey *pubKey, NSError *error) {
-    if (error != nil) {
-        NSLog(@"Error confirmation the public key: %@", [error localizedDescription]);
-        return;
-    }
-    
-    /// Success. Use new VSSPublicKey.
-}];
-//...
-```
-
-##### Swift:
-```swift
-//...
-private var keysClient: VSSKeysClient! = nil
-//...
-/// We have our public key id
-let publicKeyId =  <#Public Key UUID#>
-/// When some important action is taking place (e.g. reset of the public key)
-/// Virgil Keys Service will send VSSActionToken instance in response. 
-/// This object will contain action token id and user data values list which should be confirmed with a token.
-/// Virgil Keys Service will send the token code to each of these user data.
-actionToken.confirmationCodeList = <#Array with confirmation tokens for each user data in this action token#>;
-/// Create network client instance for Virgil Keys Service
-self.keysClient = VSSKeysClient(applicationToken: <#Virgil Application Token#>)
-/// Make the request
-self.keysClient.persistPublicKeyId(publicKeyId, actionToken: actionToken) { pubKey, error in
-    if error != nil {
-        print("Error confirmation public key: \(error!.localizedDescription)")
-        return
-    }
-    
-    /// Success. Use new VSSPublicKey.
-}
-//...
-```
-
-## Create User Data
-
-##### Objective-C:
-```objective-c
-//...
-#import <VirgilKeysiOS/VirgilKeysiOS.h>
-//...
-@property (nonatomic, strong) VSSKeysClient *keysClient;
-//...
-
-//...
-/// We have our keyPair
+// Generate a new key pair
 VSSKeyPair *keyPair = [[VSSKeyPair alloc] init];
-//...
-/// Create new user data candidate object which we want to add to the public key.
-VSSUserData *userData = [[VSSUserData alloc] initWithDataClass:<#User data class#> dataType:<#User data type#> value:<#User data value#>];
-/// We have our public key id
-GUID *publicKeyId = <#Public key UUID#>;
-/// We have our private key
-VSSPrivateKey *privateKey = [[VSSPrivateKey alloc] initWithKey:keyPair.privateKey password:nil];
-/// Create network client instance
-self.keysClient = [[VSSKeysClient alloc] initWithApplicationToken:<#Virgil Application Token#>];
-/// Make the request
-[self.keysClient createUserData:userData publicKeyId:publicKeyId privateKey:privateKey completionHandler:^(VSSUserDataExtended *uData, NSError *error) {
-    if (error != nil) {
-        NSLog(@"Error adding the user data: %@", [error localizedDescription]);
-        return;
-    }
-    
-    /// Returned object is instance of VSSUserDataExtended class, which contains also id bundle and confirmed/not confirmed flag.
+// Compose VSSPrivateKey container
+VSSPrivateKey *privateKey = [[VSSPrivateKey alloc] 
+                initWithKey:keyPair.privateKey password:nil];
+// Initiate verification procedure with the Identity Service
+[self.client 
+    verifyEmailIdentityWithValue:<# NSString: email address #> 
+                     extraFields:nil 
+               completionHandler:^(GUID * _Nullable actionId, 
+                  NSError * _Nullable error) {
+        if (error != nil) {
+            NSLog(@"Error: %@", 
+                [error localizedDescription]);
+            return;
+        }
+        // Store actionId as it is necessary to complete confirmation 
+        // and get the validation token. 
 }];
 //...
+// Get the confirmation code from the email and 
+// complete the email verification procedure:
+[self.client 
+    confirmEmailIdentityWithActionId:<# NSString: 
+actionId received on the previous call to verify #> 
+                       code:<# NSString: Confirmation code from email #> 
+                            tokenTtl:0 
+                            tokenCtl:0 
+                   completionHandler:^(
+VSSIdentityInfo * _Nullable identityInfo, 
+NSError * _Nullable error) {
+    if (error != nil) {
+        NSLog(@"Error: %@", 
+            [error localizedDescription]);
+        return;
+    }
+    // Use the identityInfo object. It should contain all necessary fields,
+    // including the validation token.
+    // Send request for the creation of the Virgil Card.
+    [self.client 
+        createCardWithPublicKey:keyPair.publicKey 
+                    identityInfo:identityInfo 
+                            data:<# Custom NSDictionary or nil #>
+                        privateKey:privateKey 
+                completionHandler:^(VSSCard *card, NSError *error) {
+        if (error != nil) {
+            NSLog(@"Error creating Virgil Card: %@", 
+                [error localizedDescription]);
+            return;
+        }
+
+        // Virgil Card has been saved at Virgil Keys Service.
+        // Use card object for further references.
+        //...
+    }];
+}]; 
+//...
 ```
-        
-##### Swift:
+
+Swift
+--------------
+
 ```swift
 //...
-private var keysClient: VSSKeysClient! = nil
-//...
-/// We have our keyPair
+// Generate a new key pair
 let keyPair = VSSKeyPair()
-//...
-/// Create new user data candidate object which we want to add to the public key.
-let userData = VSSUserData(dataClass: <#User data class#>, dataType: <#User data type#>, value: <#User data value#>)
-/// We have our public key id
-let publicKeyId = <#Public key UUID#>
-/// We have our private key
+// Compose VSSPrivateKey container
 let privateKey = VSSPrivateKey(key: keyPair.privateKey(), password: nil)
-/// Create network client instance for Virgil Keys Service
-self.keysClient = VSSKeysClient(applicationToken: <#Virgil Application Token#>)
-/// Make the request
-self.keysClient.createUserData(userData, publicKeyId: publicKeyId, privateKey: privateKey) { uDataEx, error in
+// Initiate verification procedure with the Identity Service
+self.client.verifyEmailIdentityWithValue(<# String: email address #>, 
+    extraFields: nil) { (actionId, error) in
     if error != nil {
-        print("Error creating the user data: \(error!.localizedDescription)")
+        print("Error: \(error!.localizedDescription)")
         return
     }
     
-    /// Returned object is instance of VSSUserDataExtended class, which contains also id bundle and confirmed/not confirmed flag.
+    // Store actionId as it is necessary to complete confirmation 
+    // and get the validation token.
+}
+//...
+// Get the confirmation code from the email and 
+// complete the email verification procedure:
+self.client.confirmEmailIdentityWithActionId(<# String: 
+actionId received on the previous call to verify #>, 
+    code: <# Confirmation code from email #>, tokenTtl: 0, tokenCtl: 0) { 
+(identityInfo, error) in
+    if error != nil {
+        print("Error: \(error!.localizedDescription)")
+        return
+    }
+     
+    // Use the identityInfo object. It should contain all necessary fields,
+    // including the validation token.
+    // Send request for the creation of the Virgil Card.
+    self.client.createCardWithPublicKey(keyPair.publicKey(), 
+        identityInfo: identityInfo!, 
+        data: <# Custom Dictionary or nil #>, 
+        privateKey: privateKey) { (card, error) in
+        if error != nil {
+            print("Error creating Virgil Card: 
+                \(error!.localizedDescription)")
+            return
+        }
+    
+    //Virgil Card has been saved at Virgil Keys Service.
+    // Use card object for further references.
+    //...
+    }
 }
 //...
 ```
 
-## Delete a User Data
+Search for Cards
+=========
 
-##### Objective-C:
+Search for a *global* Virgil Card.
+
+Objective-C
+--------------
+
 ```objective-c
 //...
-#import <VirgilKeysiOS/VirgilKeysiOS.h>
-//...
-@property (nonatomic, strong) VSSKeysClient *keysClient;
-//...
-
-//...
-/// We have our keyPair
-VSSKeyPair *keyPair = [[VSSKeyPair alloc] init];
-//...
-/// We have our user data id
-NSString *userDataId = <#User data UUID#>;
-/// We have our public key id
-GUID *publicKeyId = <#Public key UUID#>;
-/// We have our private key
-VSSPrivateKey *privateKey = [[VSSPrivateKey alloc] initWithKey:keyPair.privateKey password:nil];
-/// Create network client instance
-self.keysClient = [[VSSKeysClient alloc] initWithApplicationToken:<#Virgil Application Token#>];
-/// Make the request
-[self.keysClient deleteUserDataId:userDataId publicKeyId:publicKeyId privateKey:privateKey completionHandler:^(NSError *error) {
+// Search for the email cards:
+[self.client 
+    searchEmailCardWithIdentityValue:<# NSString: email address #> 
+                   completionHandler:^(NSArray<VSSCard *> * _Nullable cards, 
+NSError * _Nullable error) {
     if (error != nil) {
-        NSLog(@"Error deletion the user data: %@", [error localizedDescription]);
+        NSLog(@"Error: %@",
+            [error localizedDescription]);
+        return;
+    } 
+    // card contains an array of VSSCard objects which fit given parameters
+    // Quite often it might be only one VSSCard in the array.
+    //... 
+}];
+//...
+// Search for the app cards:
+// Pay attention: identity value for this call might contain wildcard as 
+// the last part of reverse url notation,
+// e.g. 'com.virgilsecurity.*' -> performs search for all the applications 
+// registered by Virgil Security, Inc.
+[self.client 
+    searchAppCardWithIdentityValue:<# NSString: Identity value #> 
+                 completionHandler:^(NSArray<VSSCard *> * _Nullable cards, 
+NSError * _Nullable error) {
+    if (error != nil) {
+        NSLog(@"Error: %@",
+            [error localizedDescription]);
         return;
     }
-    
-    /// User data is successfully deleted.
+    // cards contains an array of VSSCard objects which fit given parameters.
+    // In case identity value contains a particular single value 
+    // without a wildcard,
+    // e.g. 'com.virgilsecurity.keys', the cards array most likely 
+   // contains only one single card. 
+    //... 
 }];
 //...
 ```
 
-##### Swift:
+Swift
+--------------
+
 ```swift
 //...
-private var keysClient: VSSKeysClient! = nil
-//...
-/// We have our keyPair
-let keyPair = VSSKeyPair()
-//...
-/// We have our user data id
-let userDataId = <#User data UUID#>
-/// We have our public key id
-let publicKeyId = <#Public key UUID#>
-/// We have our private key
-let privateKey = VSSPrivateKey(key: keyPair.privateKey(), password: nil)
-/// Create network client instance for Virgil Keys Service
-self.keysClient = VSSKeysClient(applicationToken: <#Virgil Application Token#>)
-/// Make the request
-self.keysClient.deleteUserDataId(userDataId, publicKeyId: publicKeyId, privateKey: privateKey) { error in
+// Search for the email cards:
+self.client.searchEmailCardWithIdentityValue(<# String: email address #>) {
+ (cards, error) in
     if error != nil {
-        print("Error deletion the user data: \(error!.localizedDescription)")
+        print("Error searching for Virgil Cards: 
+            \(error!.localizedDescription)")
         return
     }
-    
-    /// User data is successfully deleted.
+    // card contains an array of VSSCard objects which fit given parameters
+    // Quite often it might be only one VSSCard in the array.
+    //...   
+}
+//...
+// Search for the app cards:
+// Pay attention: identity value for this call might contain wildcard 
+// as the last part of reverse url notation,
+// e.g. 'com.virgilsecurity.*' -> performs search for all the applications 
+// registered by Virgil Security, Inc.
+self.client.searchAppCardWithIdentityValue(<# String: Identity value #>) {
+ (cards, error) in
+    if error != nil {
+        print("Error searching for Virgil Cards: 
+            \(error!.localizedDescription)")
+        return
+    }
+    // card contains an array of VSSCard objects which fit given parameters
+    // In case identity value contains a particular single value 
+    // without a wildcard,
+    // e.g. 'com.virgilsecurity.keys', the cards array most likely contains 
+   // only one single card. 
+    //...    
 }
 //...
 ```
 
-## Confirm a User Data
+Search for a *private* Virgil Card.
 
-##### Objective-C:
+Objective-C
+--------------
+
 ```objective-c
 //...
-#import <VirgilKeysiOS/VirgilKeysiOS.h>
-//...
-@property (nonatomic, strong) VSSKeysClient *keysClient;
-//...
-
-//...
-/// We have our user data id
-NSString *userDataId = <#User data UUID#>;
-/// We have user data confirmation token code
-NSString *code = <#Confirmation code#>;
-/// Create network client instance
-self.keysClient = [[VSSKeysClient alloc] initWithApplicationToken:<#Virgil Application Token#>];
-/// Make the request
-[self.keysClient persistUserDataId:userDataId confirmationCode:code completionHandler:^(NSError *error) {
+// First parameter contains value of the identity associated 
+// with required card.
+// Parameter type is allowed to be nil.
+// In case when unauthorized = NO the array of cards 
+// in callback will NOT contain cards which have been created
+// with identities that haven't provided validation token.
+// If you need to have all cards (authorized or not) you have to
+// set unauthorized to YES.
+[self.client 
+    searchCardWithIdentityValue:<# NSString: Identity value #>
+                           type:<# NSString: Identity type or nil #>
+                   unauthorized:<# YES or NO #> 
+              completionHandler:^(NSArray<VSSCard *> * _Nullable cards,
+ NSError * _Nullable error) {
     if (error != nil) {
-        NSLog(@"Error confirmation the user data: %@", [error localizedDescription]);
+        NSLog(@"Error: %@",
+            [error localizedDescription]);
         return;
     }
-    
-    /// User data is now confirmed and can be used for any activities.
+    // card contains an array of VSSCard objects which fit given parameters
 }];
 //...
 ```
 
-##### Swift:
+Swift
+--------------
+
 ```swift
 //...
-private var keysClient: VSSKeysClient! = nil
-//...
-/// We have our user data id
-let userDataId = <#User data UUID#>
-/// We have user data confirmation token code
-let code = <#Confirmation code#>
-/// Create network client instance for Virgil Keys Service
-self.keysClient = VSSKeysClient(applicationToken: <#Virgil Application Token#>)
-/// Make the request
-self.keysClient.persistUserDataId(userDataId, confirmationCode: code) { error in
+// First parameter contains value of the identity associated 
+// with required card.
+// Parameter type is allowed to be nil.
+// In case when unauthorized = false the array of cards in 
+// callback will NOT contain cards which have been created
+// with identities that haven't provided validation token.
+// If you need to have all cards (authorized or not) you have to
+// set unauthorized to true.
+self.client.searchCardWithIdentityValue(<# String: Identity value #>, 
+    type: <# String: Identity type or nil #>, 
+    unauthorized: false) { (cards, error) in
     if error != nil {
-        print("Error confirmation the user data: \(error!.localizedDescription)")
+        print("Error searching for Virgil Cards: 
+            \(error!.localizedDescription)")
         return
     }
-    
-    /// User data is now confirmed and can be used for any activities.
+    // card contains an array of VSSCard objects which fit given parameters
 }
 //...
 ```
 
-## Resend a User's Confirmation Code
+Revoke a Virgil Card
+=========
 
-##### Objective-C:
+This operation is used to delete the Virgil Card from the search and mark it as deleted. 
+
+Objective-C
+--------------
+
 ```objective-c
 //...
-#import <VirgilKeysiOS/VirgilKeysiOS.h>
-//...
-@property (nonatomic, strong) VSSKeysClient *keysClient;
-//...
-
-//...
-/// We have our keyPair
-VSSKeyPair *keyPair = [[VSSKeyPair alloc] init];
-//...
-/// We have our user data id
-NSString *userDataId = <#User data UUID#>;
-/// We have our public key id
-GUID *publicKeyId = <#Public key UUID#>;
-/// We have our private key
-VSSPrivateKey *privateKey = [[VSSPrivateKey alloc] initWithKey:keyPair.privateKey password:nil];
-/// Create network client instance
-self.keysClient = [[VSSKeysClient alloc] initWithApplicationToken:<#Virgil Application Token#>];
-/// Make the request
-[self.keysClient resendConfirmationUserDataId:userDataId publicKeyId:publicKeyId privateKey:privateKey completionHandler:^(NSError *error) {
+// It is not necessary to compose identity information for the 
+// unauthorized Virgil Cards. Just pass nil.
+VSSIdentityInfo *identity = 
+    [[VSSIdentityInfo alloc] initWithType:<# NSString: Identity type #> 
+                                    value:<# NSString: Identity value #> 
+                          validationToken:<# NSString: Validation token #>];
+[self.client deleteCardWithCardId:<# GUID: Virgil Card id #>
+                identityInfo:identity // Or nil for unauthorized card.
+                    privateKey:<# VSSPrivateKey: private key container #>
+        completionHandler:^(NSError * _Nullable error) {
     if (error != nil) {
-        NSLog(@"Error sending confirmation code: %@", [error localizedDescription]);
+        NSLog(@"Error: %@",
+                [error localizedDescription]);
         return;
     }
-    
-    /// Confirmation code has been sent to the specified user data.
+    //...
 }];
 //...
 ```
 
-##### Swift:
+Swift
+--------------
+
 ```swift
 //...
-private var keysClient: VSSKeysClient! = nil
-//...
-/// We have our keyPair
-let keyPair = VSSKeyPair()
-//...
-/// We have our user data id
-let userDataId = <#User data UUID#>
-/// We have our public key id
-let publicKeyId = <#Public key UUID#>
-/// We have our private key
-let privateKey = VSSPrivateKey(key: keyPair.privateKey(), password: nil)
-/// Create network client instance for Virgil Keys Service
-self.keysClient = VSSKeysClient(applicationToken: <#Virgil Application Token#>)
-/// Make the request
-self.keysClient.resendConfirmationUserDataId(userDataId, publicKeyId:publicKeyId, privateKey: privateKey) { error in
+// It is not necessary to compose identity information for the 
+// unauthorized Virgil Cards. Just pass nil.
+let identity = VSSIdentityInfo(type: <#String: Identity type#>, 
+    value: <# String: Identity value #>, validationToken: 
+<# String: Validation token #>)
+self.client.deleteCardWithCardId(<# GUID: Virgil Card id #>, 
+    identityInfo: identity, // Or nil for unauthorized card.
+    privateKey: <# VSSPrivateKey: private key container #>) { (error) in
     if error != nil {
-        print("Error sending confirmation code: \(error!.localizedDescription)")
+        print("Error: 
+            \(error!.localizedDescription)")
         return
     }
-    
-    /// Confirmation code has been sent to the specified user data.
+    //...
 }
 //...
 ```
-</div>
-</div>
 
-<div class="col-md-12 col-md-offset-2 hidden-md hidden-xs hidden-sm">
-<div class="docs-menu" data-ui="affix-docs">
+Get a Public Key
+=========
 
-<div class="menu-items-wrapper" data-ui="menu-items-wrapper"></div>
-</div>
-</div>
-</div>
-</div>
-</section>
+Gets a public key from the Public Keys Service by the specified ID.
+
+Objective-C
+--------------
+
+```objective-c
+//...
+[self.client getPublicKeyWithId:<# GUID: Public key id #> 
+         completionHandler:^(VSSPublicKey * _Nullable key, 
+NSError * _Nullable error) {
+    if (error != nil) {
+        NSLog(@"Error getting Public key: %@", 
+            [error localizedDescription]);
+        return;
+    }
+    //...
+}];
+//...
+```
+
+Swift
+--------------
+
+```swift
+//...
+self.client.getPublicKeyWithId(<# GUID: Public key id #>) {
+ (publicKey, error) in
+    if error != nil {
+        print("Error: \(error!.localizedDescription)")
+        return
+    }
+    //...
+}
+//...
+```
+
+*********
+Private Keys
+*********
+
+The security of private keys is crucial for the public key cryptosystems. Anyone who can obtain a private key can use it to impersonate the rightful owner during all communications and transactions on intranets or on the internet. Therefore, private keys must be in the possession only of authorized users, and they must be protected from unauthorized use.
+
+Virgil Security provides a set of tools and services for storing private keys in a safe storage which lets you synchronize your private keys between the devices and applications.
+
+Usage of this service is optional.
+
+Store a Private Key
+=========
+
+Private key can be added for storage only in case you have already registered a public key on the Public Keys Service.
+
+Use the public key identifier on the Public Keys Service to save the private keys. 
+
+The Private Keys Service stores private keys the original way as they were transferred. That's why we strongly recommend to transfer the keys which were generated with a password.
+
+Objective-C
+--------------
+
+```objective-c
+//...
+[self.client 
+    storePrivateKey:<# VSSPrivateKey: Private key container #>
+             cardId:<# GUID: Virgil card id #>
+  completionHandler:^(NSError * _Nullable error) {
+    if (error != nil) {
+        NSLog(@"Error: %@",
+                [error localizedDescription]);
+        return;
+    }
+    //...
+}];
+//...
+```
+
+Swift
+--------------
+
+```swift
+//...
+self.client.storePrivateKey(<# VSSPrivateKey: private key container #>, 
+    cardId: <# GUID: Virgil card id #>) { (error) in
+    if error != nil {
+        print("Error: \(error!.localizedDescription)")
+        return;
+    }
+    //...
+}
+//...
+```
+
+Get a Private Key
+=========
+
+To get a private key you need to pass identity information of the  Virgil Card associated with your public key. This identity information object must contain a **ValidationToken**. To obtain the **ValidationToken** you should use either [global way](#obtaining-a-global-validationtoken) or [private way](#obtaining-a-private-validationtoken) depending on your Virgil Card. 
+  
+Objective-C
+--------------
+
+```objective-c
+//...
+VSSIdentityInfo *identity = 
+    [[VSSIdentityInfo alloc] initWithType:<# NSString: Identity type #>
+                                    value:<# NSString: Identity value #>
+                          validationToken:<# NSString: Validation token #>];
+// password parameter represents a password which will be used
+// by Virgil Service to encrypt the response.
+// If this parameter is nil, VSSClient will generate password automatically
+// This password is generated from scratch every time this request
+// takes place. 
+// VSSClient will never use the same password twice.
+[self.client 
+    getPrivateKeyWithCardId:<# GUID: Virgil Card id #> 
+               identityInfo:identity 
+                   password:nil 
+          completionHandler:^(NSData * _Nullable keyData,
+GUID * _Nullable cardId, NSError * _Nullable error) {
+    if (error != nil) {
+        NSLog(@"Error: %@", 
+            [error localizedDescription]);
+        return;
+    }
+    // keyData contains the NSData object with private key in the same form
+    // as it was stored (e.g. it might be in password-protected form).
+    //...
+}];
+//...
+```
+
+Swift
+--------------
+
+```swift
+//...
+let identity = VSSIdentityInfo(type: <# String: Identity type #>, 
+    value: <# Stirng: Identity value #>, 
+    validationToken: <# String: Validation token #>)
+// password parameter represents a password which will be used 
+// by Virgil Service to encrypt the response. 
+// If this parameter is nil, VSSClient will generate password automatically
+// This password is generated from scratch every time this request
+// takes place. 
+// VSSClient will never use the same password twice.    
+self.client.getPrivateKeyWithCardId(<# GUID: Virgil card id #>, 
+    identityInfo: identity, password: nil) { (keyData, cardId, error) in
+    if error != nil {
+        print("Error: \(error!.localizedDescription)")
+        return
+    }
+    // keyData contains the NSData object with private key in the same form
+    // as it was stored (e.g. it might be in password-protected form).
+    //...
+}
+//...
+```
+
+Destroy a Private Key
+=========
+
+This operation deletes the private key from the service without a possibility to be restored. 
+  
+Objective-C
+--------------
+
+```objective-c
+//...
+[self.client 
+    deletePrivateKey:<# VSSPrivateKey: private key container #> 
+              cardId:<# GUID: Virgil Card id #> 
+   completionHandler:^(NSError * _Nullable error) {
+    if (error != nil) {
+        NSLog(@"Error: %@", 
+            [error localizedDescription]);
+        return;
+    }
+    //...
+}];
+//...
+```
+
+Swift
+--------------
+
+```swift
+//...
+self.client.deletePrivateKey(<# VSSPrivateKey: private key container #>, 
+    cardId: <# GUID: Virgil Card id #>) { (error) in
+    if error != nil {
+        print("Error: \(error!.localizedDescription)")
+        return
+    }
+    //...
+}
+//...
+```
+*********
+Identities
+*********
+
+Obtaining a global ValidationToken
+=========
+
+The *global* **ValidationToken** is used for creating *global Cards*. The *global* **ValidationToken** can be obtained only by checking the ownership of the Identity on Virgil Identity Service.
+
+In the example below you can see how to obtain a **ValidationToken** for creating a *global* Virgil Card.
+
+Objective-C
+--------------
+
+```objective-c
+//...
+[self.client 
+    verifyEmailIdentityWithValue:<# NSString: email address #> 
+                     extraFields:nil 
+               completionHandler:^(GUID * _Nullable actionId, 
+NSError * _Nullable error) {
+        if (error != nil) {
+            NSLog(@"Error: %@", 
+                [error localizedDescription]);
+            return;
+        }
+        // Store actionId as it is necessary to complete confirmation 
+        // and get the validation token. 
+}];
+//...
+// Get the confirmation code from the email and 
+// complete the email verification procedure:
+[self.client 
+    confirmEmailIdentityWithActionId:<# NSString: 
+actionId received on the previous call to verify #> 
+               code:<# NSString: Confirmation code from email #> 
+                            tokenTtl:0 
+                            tokenCtl:0 
+              completionHandler:^(VSSIdentityInfo * _Nullable identityInfo, 
+NSError * _Nullable error) {
+    if (error != nil) {
+        NSLog(@"Error: %@", 
+            [error localizedDescription]);
+        return;
+    }
+    // Use the identityInfo object. It should contain all necessary fields,
+    // including the validation token.
+}];
+//...
+```
+
+Swift
+--------------
+```swift
+//...
+self.client.verifyEmailIdentityWithValue(<# String: email address #>, 
+    extraFields: nil) { (actionId, error) in
+    if error != nil {
+        print("Error: \(error!.localizedDescription)")
+        return
+    }
+    
+    // Store actionId as it is necessary to complete confirmation 
+    // and get the validation token.
+}
+//...
+// Get the confirmation code from the email and 
+// complete the email verification procedure:
+self.client.confirmEmailIdentityWithActionId(<# String: 
+actionId received on the previous call to verify #>, 
+    code: <# Confirmation code from email #>, tokenTtl: 0, tokenCtl: 0) { 
+(identityInfo, error) in
+    if error != nil {
+        print("Error: \(error!.localizedDescription)")
+        return
+    }
+     
+    // Use the identityInfo object. It should contain all necessary fields,
+    // including the validation token.
+}
+//...
+```
+
+Obtaining a private ValidationToken
+=========
+
+The *private* **ValidationToken** is used for creating *private cards*. The *private* **ValidationToken** can be generated on developer's side using his own service for verification instead of Virgil Identity Service or to avoid verification at all. In this case validation token is generated using app's Private Key created on our [Developer portal](https://developer.virgilsecurity.com/dashboard/).   
+
+In the example below you can see, how to generate a **ValidationToken** using the SDK library.
+
+###### Objective-C
+```objective-c
+//...
+NSError *error = nil;
+NSString *validationToken = 
+    [VSSValidationTokenGenerator 
+          validationTokenForIdentityType:<# NSString: Identity type #> 
+          value:<# NSString: Identity value #> 
+          privateKey:<# VSSPrivateKey: Container with app private key #> 
+          error:&error];
+if (error != nil) {
+    NSLog(@"Error: %@", [error localizedDescription]);
+    return;
+}
+// Use validation token.
+//...
+```
+
+###### Swift
+```swift
+//...
+var validationToken: String? = nil
+do {
+    validationToken = try VSSValidationTokenGenerator.
+validationTokenForIdentityType(<# String: Identity type#>, 
+        value: <# String: Identity value #>, privateKey: 
+<# VSSPrivateKey: Container with app private key #>)
+}
+catch let error as NSError {
+    print("Error: \(error.localizedDescription)")
+}
+// Use validation token
+//...
+```
