@@ -65,7 +65,7 @@ The Virgil Card might be *global* and *private*. The difference is whether Virgi
 Publish a Virgil Card
 =========
 
-Creating a *private* Virgil Card with a newly generated key pair and **ValidationToken**. See how to obtain a **ValidationToken**  here...`Obtaining a private ValidationToken`_
+Creating a *private* Virgil Card with a newly generated key pair and **ValidationToken**. See how to obtain a **ValidationToken**  here... `Obtaining a private ValidationToken`_
 
 .. code-block:: csharp
 
@@ -94,7 +94,7 @@ Creating an unauthorized *private* Virgil Card without **ValidationToken**. Pay 
     var myCard = await serviceHub.Cards
         .Create(identity, keyPair.PublicKey(), keyPair.PrivateKey());
 
-Creating a *global* Virgil Card. See how to obtain a **ValidationToken** here...`Obtaining a global ValidationToken`_
+Creating a *global* Virgil Card. See how to obtain a **ValidationToken** here... `Obtaining a global ValidationToken`_
 
 .. code-block:: csharp
 
