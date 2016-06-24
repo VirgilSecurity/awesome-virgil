@@ -79,8 +79,7 @@ After pod is installed as described above it is necessary to perform the followi
 - Name it something like *BridgingHeader.h*
 - Put there the following lines:
 
-Objective-C
---------------
+**Objective-C**
 
 .. code-block:: objective-c
 
@@ -101,8 +100,7 @@ The access token provides an authenticated secure access to the Virgil Security 
 
 Simply add your access token to the client constructor as an application token.
 
-Objective-C
---------------
+**Objective-C**
 
 .. code-block:: objective-c
 
@@ -113,8 +111,7 @@ Objective-C
                     initWithApplicationToken:<# Virgil Access Token #>];
     //...
 
-Swift
---------------
+**Swift**
 
 .. code-block:: swift
 
@@ -142,8 +139,7 @@ Publish a Virgil Card
 
 Creating a *private* Virgil Card with a newly generated key pair and **ValidationToken**. See how to obtain a **ValidationToken** here... `Obtaining a private ValidationToken`_
 
-Objective-C
---------------
+**Objective-C**
 
 .. code-block:: objective-c
 
@@ -181,8 +177,7 @@ Objective-C
     }];
     //...
 
-Swift
---------------
+**Swift**
 
 .. code-block:: swift
 
@@ -216,8 +211,7 @@ Swift
 
 Creating an unauthorized *private* Virgil Card without **ValidationToken**.
 
-Objective-C
---------------
+**Objective-C**
 
 .. code-block:: objective-c
 
@@ -253,8 +247,7 @@ Objective-C
     }];
     //...
 
-Swift
---------------
+**Swift**
 
 .. code-block:: swift
 
@@ -286,8 +279,7 @@ Swift
 
 Creating a *global* Virgil Card. See how to obtain a **ValidationToken** here... `Obtaining a global ValidationToken`_
 
-Objective-C
---------------
+**Objective-C**
 
 .. code-block:: objective-c
 
@@ -353,8 +345,7 @@ Objective-C
     }]; 
     //...
 
-Swift
---------------
+**Swift**
 
 .. code-block:: swift
 
@@ -411,8 +402,7 @@ Search for Cards
 
 Search for a *global* Virgil Card.
 
-Objective-C
---------------
+**Objective-C**
 
 .. code-block:: objective-c
 
@@ -455,8 +445,7 @@ Objective-C
     }];
     //...
 
-Swift
---------------
+**Swift**
 
 .. code-block:: swift
 
@@ -497,8 +486,7 @@ Swift
 
 Search for a *private* Virgil Card.
 
-Objective-C
---------------
+**Objective-C**
 
 .. code-block:: objective-c
 
@@ -526,8 +514,7 @@ Objective-C
     }];
     //...
 
-Swift
---------------
+**Swift**
 
 .. code-block:: swift
 
@@ -557,8 +544,7 @@ Revoke a Virgil Card
 
 This operation is used to delete the Virgil Card from the search and mark it as deleted. 
 
-Objective-C
---------------
+**Objective-C**
 
 .. code-block:: objective-c
 
@@ -582,8 +568,7 @@ Objective-C
     }];
     //...
 
-Swift
---------------
+**Swift**
 
 .. code-block:: swift
 
@@ -610,8 +595,7 @@ Get a Public Key
 
 Gets a public key from the Public Keys Service by the specified ID.
 
-Objective-C
---------------
+**Objective-C**
 
 .. code-block:: objective-c
 
@@ -628,8 +612,7 @@ Objective-C
     }];
     //...
 
-Swift
---------------
+**Swift**
 
 .. code-block:: swift
 
@@ -663,8 +646,7 @@ Use the public key identifier on the Public Keys Service to save the private key
 
 The Private Keys Service stores private keys the original way as they were transferred. That's why we strongly recommend to transfer the keys which were generated with a password.
 
-Objective-C
---------------
+**Objective-C**
 
 .. code-block:: objective-c
 
@@ -682,8 +664,7 @@ Objective-C
     }];
     //...
 
-Swift
---------------
+**Swift**
 
 .. code-block:: swift
 
@@ -703,8 +684,7 @@ Get a Private Key
 
 To get a private key you need to pass identity information of the  Virgil Card associated with your public key. This identity information object must contain a **ValidationToken**. To obtain the **ValidationToken** you should use either global way `Obtaining a global ValidationToken`_ or private way `Obtaining a private ValidationToken`_ depending on your Virgil Card. 
   
-Objective-C
---------------
+**Objective-C**
 
 .. code-block:: objective-c
 
@@ -736,8 +716,7 @@ Objective-C
     }];
     //...
 
-Swift
---------------
+**Swift**
 
 .. code-block:: swift
 
@@ -768,8 +747,7 @@ Destroy a Private Key
 
 This operation deletes the private key from the service without a possibility to be restored. 
   
-Objective-C
---------------
+**Objective-C**
 
 .. code-block:: objective-c
 
@@ -787,8 +765,7 @@ Objective-C
     }];
     //...
 
-Swift
---------------
+**Swift**
 
 .. code-block:: swift
 
@@ -814,8 +791,7 @@ The *global* **ValidationToken** is used for creating *global Cards*. The *globa
 
 In the example below you can see how to obtain a **ValidationToken** for creating a *global* Virgil Card.
 
-Objective-C
---------------
+**Objective-C**
 
 .. code-block:: objective-c
 
@@ -854,8 +830,7 @@ Objective-C
     }];
     //...
 
-Swift
---------------
+**Swift**
 
 .. code-block::swift
 
@@ -894,8 +869,7 @@ The *private* **ValidationToken** is used for creating *private cards*. The *pri
 
 In the example below you can see, how to generate a **ValidationToken** using the SDK library.
 
-Objective-C
---------------
+**Objective-C**
 
 .. code-block:: objective-c
 
@@ -914,8 +888,7 @@ Objective-C
     // Use validation token.
     //...
 
-Swift
---------------
+**Swift**
 
 .. code-block:: swift
 
