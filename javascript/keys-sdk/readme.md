@@ -1,4 +1,4 @@
-- [Introduction](#introduction)
+- [Introduction](#introduction) 
 - [Install](#install)
 - [Obtaining an Access Token](#obtaining-an-access-token)
 - [Cards and Public Keys](#cards-and-public-keys)
