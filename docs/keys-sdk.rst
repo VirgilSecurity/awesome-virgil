@@ -5,7 +5,7 @@ Keys SDK
 .. toctree::
    :maxdepth: 1
    
-   dot-net-cshart-keys-sdk
+   dot-net-csharp-keys-sdk
    c-cpp-keys-sdk
    javascript-keys-sdk
    objective-c-swift-keys-sdk
