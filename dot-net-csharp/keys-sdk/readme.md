@@ -1,5 +1,5 @@
 - [Introduction](#introduction)
-- [Install](#install)
+- [Install](#install) 
 - [Obtaining an Access Token](#obtaining-an-access-token)
 - [Cards and Public Keys](#cards-and-public-keys)
   - [Publish a Virgil Card](#publish-a-virgil-card)
