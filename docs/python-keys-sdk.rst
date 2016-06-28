@@ -220,7 +220,7 @@ This operation deletes the private key from the service without a possibility to
     		"%PASSWORD%")
 
 *********
-Identity
+Identities
 *********
 
 Obtaining a global ValidationToken
