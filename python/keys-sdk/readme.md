@@ -1,21 +1,18 @@
 - [Introduction](#introduction)
 - [Install](#installation)
 - [Obtaining an Access Token](#obtaining-an-access-token)
-- [Identity Check](#identity-check)
-      - [Request Verification](#request-verification)
-      - [Confirm and Get an Identity Token](#confirm-and-get-an-identity-token)
 - [Cards and Public Keys](#cards-and-public-keys)
       - [Publish a Virgil Card](#publish-a-virgil-card)
       - [Search for Cards](#search-for-cards)
-      - [Search for Application Cards](#search-for-application-cards)
-      - [Trust a Virgil Card](#trust-a-virgil-card)
-      - [Untrust a Virgil Card](#untrust-a-virgil-card)
       - [Revoke a Virgil Card](#revoke-a-virgil-card)
       - [Get a Public Key](#get-a-public-key)
 - [Private Keys](#private-keys)
       - [Stash a Private Key](#stash-a-private-key)
       - [Get a Private Key](#get-a-private-key)
       - [Destroy a Private Key](#destroy-a-private-key)
+- [Identity](#identity)
+      - [Obtaining a global ValidationToken](#obtaining-a-global-validationtoken)
+      - [Obtaining a private ValidationToken](#obtaining-a-private-validationtoken)
 
 ## Introduction
 
@@ -54,37 +51,19 @@ virgil_hub = virgilhub.VirgilHub('%ACCESS_TOKEN%',
 								private_key_link)
 ```
 
-## Identity Check
-
-All the Virgil Security services are strongly interconnected with the Identity Service. It determines the ownership of the identity being checked using particular mechanisms and as a result it generates a temporary token to be used for the operations which require an identity verification. 
-
-#### Request Verification
-
-Initialize the identity verification process.
-
-```python
-verifyResponse = virgil_hub.identity.verify('email',
-										'example@virgilsecurity.com')
-```
-
-#### Confirm and Get an Identity Token
-
-Confirm the identity and get a temporary token.
-
-```python
-identResponse = virgil_hub.identity.confirm('%CONFIRMATION_CODE%',
-										verifyResponse['action_id'])
-```
 
 ## Cards and Public Keys
-
 A Virgil Card is the main entity of the Public Keys Service, it includes the information about the user and his public key. The Virgil Card identifies the user by one of his available types, such as an email, a phone number, etc.
 
-The Virgil Card might be created with a confirmed or unconfirmed Identity. The difference is whether Virgil Services take part in the [Identity verification.](#identity-check) With confirmed Cards you can be sure that the account with a particular email has been verified and the email owner is really the Identity owner. Be careful using unconfirmed Cards because they could have been created by any user.
+The Virgil Card might be global and private. The difference is whether Virgil Services take part in the [Identity verification.](#identity).
+
+Global Cards are created with the validation token received after verification in Virgil Identity Service. Any developer with Virgil account can create a global Virgil Card and you can be sure that the account with a particular email has been verified and the email owner is really the Identity owner.
+
+Private Cards are created when a developer is using his own service for verification instead of Virgil Identity Service or avoids verification at all. In this case validation token is generated using app's Private Key created on our [Developer portal](https://developer.virgilsecurity.com/dashboard/).
 
 #### Publish a Virgil Card
 
-An identity token which can be received [here](#identity-check) is used during the registration.
+Creating a private Virgil Card with a newly generated key pair and ValidationToken. See how to obtain a ValidationToken [here](#identity).
 
 ```python
 Add_data ={'Field1': 'Data1', 'Field2': 'Data2'}
@@ -114,51 +93,22 @@ new_card = virgil_hub.virgilcard.create_card
 
 #### Search for Cards
 
-Search for the Virgil Card by provided parameters.
+Search for a global Virgil Card.
 
 ```python
+# Search for email card
 search_result = virgil_hub.virgilcard.search_card('example@virgilsecurity.com')
+
+# Search for application card
+my_app = virgil_hub.virgilcard.search_app('My application')
 ```
 
-Search for the Virgil Cards including the cards with unconfirmed Identities.
+Search for a private Virgil Card.
 
 ```python
 search_result = card = virgil_hub.virgilcard.search_card('example@virgilsecurity.com', None, None, True)
 ```
 
-#### Search for Application Cards
-
-Search for the Virgil Cards by a defined pattern. The example below returns a list of applications for Virgil Security company.
-
-```python
-my_app = virgil_hub.virgilcard.search_app('My application')
-```
-
-#### Trust a Virgil Card
-
-Any Virgil Card user can act as a certification center within the Virgil Security ecosystem. Every user can certify another's Virgil Card and build a net of trust based on it.
-
-The example below demonstrates how to certify a user's Virgil Card by signing its hash attribute. 
-
-```python
-virgil_hub.virgilcard.sign_card
-					("%SIGNED_CARD_ID%", 
-					"%SIGNER_CARD_ID%", 
-					"%PRIVATE_KEY%", 
-					"%PASSWORD%")
-```
-
-#### Untrust a Virgil Card
-
-Naturally it is possible to stop trusting the Virgil Card owner as in all relations. This is not an exception in Virgil Security system.
-
-```python
-virgil_hub.virgilcard.unsign_card
-						("%SIGNED_CARD_ID%", 
-						"%SIGNER_CARD_ID%", 
-						"%PRIVATE_KEY%", 
-						"%PASSWORD%")
-```
 #### Revoke a Virgil Card
 
 This operation is used to delete the Virgil Card from the search and mark it as deleted. 
@@ -253,4 +203,31 @@ virgil_hub.privatekey.delete_private_key
 									"%PRIVATE_KEY%", 
 									"%SIGNER_CARD_ID%", 
 									"%PASSWORD%")
+```
+
+## Identity
+
+#### Obtaining a global ValidationToken
+
+The global ValidationToken is used for creating global Cards. The global ValidationToken can be obtained only by checking the ownership of the Identity on Virgil Identity Service.
+
+In the example below you can see how to obtain a ValidationToken for creating a global Virgil Card.
+
+```python
+verifyResponse = virgil_hub.identity.verify('email',
+										'example@virgilsecurity.com')
+identResponse = virgil_hub.identity.confirm('%CONFIRMATION_CODE%',
+										verifyResponse['action_id'])
+validation_token = identResponse['validation_token']
+```
+
+#### Obtaining a private ValidationToken
+
+The private ValidationToken is used for creating Private Cards. The private ValidationToken can be generated on developer's side using his own service for verification instead of Virgil Identity Service or avoids verification at all. In this case validation token is generated using app's Private Key created on our Developer portal.
+
+In the example below you can see, how to generate a ValidationToken using the SDK library.
+
+```python
+validation_token = ValidationTokenGenerator.generate(value, virgilhub.IdentityType.custom, 
+							PRIVATE_KEY, PRIVATE_KEY_PASSWORD)
 ```
