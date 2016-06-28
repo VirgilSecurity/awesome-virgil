@@ -20,6 +20,7 @@ Developers Docs
    Virgil-Entities
    quickstart
    keys-sdk
+   crypto-library
 
 Virgil Services
 ---------------------
