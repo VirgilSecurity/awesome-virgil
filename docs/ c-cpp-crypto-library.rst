@@ -15,6 +15,7 @@ Generate Keys
 The following code example creates a new public/private key pair.
 
 .. code-block:: cpp
+
   VirgilKeyPair newKeyPair;
   VirgilByteArray publicKey = newKeyPair.publicKey();
   VirgilByteArray privateKey = newKeyPair.privateKey();
@@ -194,7 +195,7 @@ Use a password to decrypt the data.
 
   cipher.decryptWithPassword(dataSource, dataSink, recipientPwd);
 
-See a working example [here...](https://github.com/VirgilSecurity/virgil-sdk-cpp/blob/master/examples/src/decrypt_with_pass.cxx)
+See a working example `here... <https://github.com/VirgilSecurity/virgil-sdk-cpp/blob/master/examples/src/decrypt_with_pass.cxx>`_
 
 The following example illustrates decryption of the encrypted data with a recipient's private key.
 
