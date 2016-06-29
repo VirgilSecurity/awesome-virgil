@@ -203,9 +203,7 @@ Using Password
 Async (using web workers) Using Password
 =========
 
-.. note :: 
-
-    Only for browsers.
+.. note :: Only for browsers.
 
 .. code-block:: javascript
 
@@ -279,7 +277,7 @@ Using Key with Password for Multiple Recipients
 Async (using web workers) Using Key with Password
 =========
 
-.. note :: <Only for browsers.>
+.. note :: Only for browsers.
 
 .. code-block:: javascript
 
@@ -307,7 +305,7 @@ Async (using web workers) Using Key with Password
 Async (using web workers) Using Key with Password for Multiple Recipients
 =========
 
-> Only for browsers.
+.. note :: Only for browsers.
 
 .. code-block:: javascript
 
@@ -359,7 +357,7 @@ Using Key without Password
 Async (using web workers) Using Key without Password
 =========
 
-> Only for browsers.
+.. note :: Only for browsers.
 
 .. code-block:: javascript
 
@@ -437,7 +435,7 @@ The following example verifies a digital signature which was signed by the sende
 Async (using web workers) With Password
 =========
 
-> Only for browsers.
+.. note :: Only for browsers.
 
 .. code-block:: javascript
 
