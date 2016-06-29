@@ -16,13 +16,13 @@ Install
 Gradle
 =========
 
-.. code-block:: 
+.. code-block:: html
 
   compile 'com.virgilsecurity.sdk:crypto:3.0'
 
 Or install Virgil SDK with Virgil Crypto (recommended):
 
-.. code-block:: 
+.. code-block:: html
 
   compile 'com.virgilsecurity.sdk:client:3.2.0'
   compile 'com.squareup.retrofit2:retrofit:2.0.0'
@@ -31,7 +31,7 @@ Or install Virgil SDK with Virgil Crypto (recommended):
 Android
 =========
 
-.. code-block:: 
+.. code-block:: html
 
   compile 'com.virgilsecurity.sdk:android:3.2.0@aar'
   compile 'com.squareup.retrofit2:retrofit:2.0.0'
