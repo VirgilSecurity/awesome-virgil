@@ -3,7 +3,7 @@
 - [Encrypt Data](#encrypt-data)
 - [Sign Data](#sign-data)
 - [Verify Data](#verify-data)
-- [Decrypt Data](#decrypt-data)
+- [Decrypt Data](#decrypt-data) 
 
 ##Install
 Use NuGet Package Manager (Tools -> Library Package Manager -> Package Manager Console) to install Virgil.SDK.Keys package, running the command:
@@ -24,7 +24,7 @@ PM> Install-Package Virgil.SDK
 
 [End to End Encrypted IP Messaging with Twilio API + Virgil](http://virgil-twilio-demo.azurewebsites.net/)
 
-Quickstart guide for making your own E2E encrypted IP Messaging is: [here](https://github.com/VirgilSecurity/virgil-demo-twilio/blob/master/Quick%20start%20guide.md)
+Quickstart guide for making your own E2E encrypted IP Messaging is: [here](https://github.com/VirgilSecurity/virgil-demo-twilio/tree/master/ip-messaging)
 
 ## Generate Keys
 
