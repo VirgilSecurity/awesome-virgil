@@ -21,6 +21,7 @@ Developers Docs
    quickstart
    keys-sdk
    crypto-library
+   use-cases
 
 Virgil Services
 ---------------------
