@@ -94,7 +94,7 @@ keys = cryptolib.CryptoWrapper.generate_keys(cryptolib.crypto_helper.VirgilKeyPa
 The app is registering a Virgil Card which includes a public key and an email address identifier. The card will be used for the public key identification and searching for it in the Public Keys Service. You can create a Virgil Card with or without identity verification, see both examples [here](/api-docs/python/keys-sdk#publish-a-virgil-card).
 
 ```python
-data ={'Field1': 'Data1', 'Field2': 'Data2'}
+data = {'Field1': 'Data1', 'Field2': 'Data2'}
 new_card = virgil_hub.virgilcard.create_card(virgilhub.IdentityType.email, 'sender-test@virgilsecurity.com', data, None, keys['private_key'], '%PASSWORD%', keys['public_key'])
 ```
 
@@ -102,11 +102,11 @@ new_card = virgil_hub.virgilcard.create_card(virgilhub.IdentityType.email, 'send
 The app is searching for all channel members' public keys on the Keys Service to encrypt a message for them. The app is signing the encrypted message with sender’s private key so that the recipient can make sure the message had been sent by the declared sender.
 
 ```python
-message = "Encrypt me, Please!!!";
+message = "Encrypt me, Please!!!"
 recipient_cards = virgil_hub.virgilcard.search_card('sender-test@virgilsecurity.com', type=None, include_unconfirmed=False, include_unauthorized=True)
 for card in recipient_cards:
-  encrypted_message = cryptolib.CryptoWrapper.encrypt(message,card['id'], card['public_key']['public_key'])
-  crypto_signature = cryptolib.CryptoWrapper.sign(message, keys['private_key'], '%PASSWORD%')
+    encrypted_message = cryptolib.CryptoWrapper.encrypt(message,card['id'], card['public_key']['public_key'])
+    crypto_signature = cryptolib.CryptoWrapper.sign(message, keys['private_key'], '%PASSWORD%')
 ```
 
 ## Step 3. Send a Message
@@ -129,7 +129,6 @@ In order to decrypt and verify the received data, the app on recipient’s side 
 message = currentChannel.GetMessage()
 encryptedBody = json.loads(message.Body)
 senderCard = virgil_hub.virgilcard.search_card(sender, virgilhub.IdentityType.email)
-...
 ```
 
 ## Step 5. Verify and Decrypt
