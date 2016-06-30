@@ -20,14 +20,6 @@ On the diagram below you can see a full picture of how these things interact wit
 
 ## Prerequisites
 
-Your required Virgil API links:
-
-Identity service API - https://identity.virgilsecurity.com/v1
-
-Cards service API - https://keys.virgilsecurity.com/v3
-
-Private keys API - https://keys-private.virgilsecurity.com/v3
-
 ### Obtaining an Access Token
 
 First you must create a free Virgil Security developer's account by signing up [here](https://developer.virgilsecurity.com/account/signup). Once you have your account you can [sign in](https://developer.virgilsecurity.com/account/signin), create an application and generate an access token for your application.
@@ -74,9 +66,9 @@ import VirgilSDK.virgil_crypto.cryptolib as cryptolib
 ## Step 0. Initialization
 
 ```python
-identity_link = '%IDENTITY_SERVICE_URL%'
-virgil_card_link = '%VIRGIL_CARD_SERVICE_URL%'
-private_key_link = '%PRIVATE_KEY_SERVICE_URL%'
+identity_link = 'https://identity.virgilsecurity.com/v1'
+virgil_card_link = 'https://keys.virgilsecurity.com/v3'
+private_key_link = 'https://keys-private.virgilsecurity.com/v3'
 virgil_hub = virgilhub.VirgilHub('%ACCESS_TOKEN%', identity_link, virgil_card_link, private_key_link)
 ```
 
@@ -95,7 +87,7 @@ The app is registering a Virgil Card which includes a public key and an email ad
 
 ```python
 data = {'Field1': 'Data1', 'Field2': 'Data2'}
-new_card = virgil_hub.virgilcard.create_card(virgilhub.IdentityType.email, 'sender-test@virgilsecurity.com', data, None, keys['private_key'], '%PASSWORD%', keys['public_key'])
+new_card = virgil_hub.virgilcard.create_card(virgilhub.IdentityType.email, 'sender-test@virgilsecurity.com', data, None, keys['private_key'], keys['public_key'])
 ```
 
 ## Step 2. Encrypt and Sign
@@ -106,7 +98,7 @@ message = "Encrypt me, Please!!!"
 recipient_cards = virgil_hub.virgilcard.search_card('sender-test@virgilsecurity.com', type=None, include_unconfirmed=False, include_unauthorized=True)
 for card in recipient_cards:
     encrypted_message = cryptolib.CryptoWrapper.encrypt(message,card['id'], card['public_key']['public_key'])
-    crypto_signature = cryptolib.CryptoWrapper.sign(message, keys['private_key'], '%PASSWORD%')
+    crypto_signature = cryptolib.CryptoWrapper.sign(message, keys['private_key'])
 ```
 
 ## Step 3. Send a Message
@@ -135,15 +127,15 @@ senderCard = virgil_hub.virgilcard.search_card(sender, virgilhub.IdentityType.em
 The application is making sure the message came from the declared sender by getting his card on Virgil Public Keys Service. In case of success, the message is decrypted using the recipient's private key.
 
 ```python
-data = cryptolib.CryptoWrapper.decrypt(bytearray(helper.base64.b64decode(encryptedBody['Content'])), '%RECIPIENT_ID%', recipientKeyPair['private_key'], '%PASSWORD%')
+data = cryptolib.CryptoWrapper.decrypt(bytearray(helper.base64.b64decode(encryptedBody['Content'])), '%RECIPIENTS_CARD_ID%', recipientKeyPair['private_key'])
 									 
 is_valid = cryptolib.CryptoWrapper.verify(''.join((map(chr, data))),encryptedBody['Signature'], senderCard[0]['public_key']['public_key'])
 if not is_valid:
     raise ValueError("Signature is not valid.")
-
 ```
 
 ## Source code
 
 * [Use Case Example](https://github.com/VirgilSecurity/virgil-sdk-python/tree/master/Examples/IPMessaging)
 
+> Run scripts as root
