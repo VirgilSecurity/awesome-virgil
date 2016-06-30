@@ -29,10 +29,18 @@ On the diagram below you can see a full picture of how these things interact wit
 Prerequisites
 *********
 
+Your required Virgil API links:
+
+* Identity service API - https://identity.virgilsecurity.com/v1
+
+* Cards service API - https://keys.virgilsecurity.com/v3
+
+* Private keys API - https://keys-private.virgilsecurity.com/v3
+
 Obtaining an Access Token
 =========
 
-First you must create a free Virgil Security developer's account by signing up `here <https://developer.virgilsecurity.com/account/signup>`_. Once you have your account you can `sign in <https://developer.virgilsecurity.com/account/signin>`_ and generate an access token for your application.
+First you must create a free Virgil Security developer's account by signing up `here <https://developer.virgilsecurity.com/account/signup>`_. Once you have your account you can `sign in <https://developer.virgilsecurity.com/account/signin>`_, create an application and generate an access token for your application.
 
 The access token provides authenticated secure access to Virgil Keys Services and is passed with each API call. The access token also allows the API to associate your app's requests with your Virgil Security developer's account.
 
@@ -41,7 +49,7 @@ Use this token to initialize the SDK client here `Step 0. Initialization`_.
 Install
 =========
 
-To install package use the command below:
+To install `package <https://cdn.virgilsecurity.com/virgil-crypto/python/>`_ use the command below:
 
 .. code-block:: html
 
@@ -93,17 +101,14 @@ The following code example generates a new public/private key pair.
 
 .. code-block:: python
 
-	keys = cryptolib.CryptoWrapper.generate_keys
-			(cryptolib.crypto_helper.VirgilKeyPair.Type_EC_SECP521R1, 
-			'%PASSWORD%') 
+	keys = cryptolib.CryptoWrapper.generate_keys(cryptolib.crypto_helper.VirgilKeyPair.Type_EC_SECP521R1,'%PASSWORD%') 
 
 The app is registering a Virgil Card which includes a public key and an email address identifier. The card will be used for the public key identification and searching for it in the Public Keys Service. You can create a Virgil Card with or without identity verification, see both examples `here <api-docs/python/keys-sdk#publish-a-virgil-card>`_.
 
 .. code-block:: python
 
 	data ={'Field1': 'Data1', 'Field2': 'Data2'}
-	new_card = virgil_hub.virgilcard.create_card
-		('email', 'sender-test@virgilsecurity.com', data, None, keys['private_key'], '%PASSWORD%', keys['public_key'])
+	new_card = virgil_hub.virgilcard.create_card('email', 'sender-test@virgilsecurity.com', data, None, keys['private_key'], '%PASSWORD%', keys['public_key'])
 
 
 Step 2. Encrypt and Sign
@@ -129,8 +134,7 @@ The app merges the message text and the signature into one structure and sends t
 	    'Signature': base64.b64encode(bytearray(crypto_signature))
 	}
 	encryptedBodyJson = json.dumps(encryptedBody)
-	currentChannel.Send("recipient-test@virgilsecurity.com", 
-					encryptedBodyJson)
+	currentChannel.Send("recipient-test@virgilsecurity.com", encryptedBodyJson)
 
 Step 4. Receive a Message
 =========
@@ -150,9 +154,7 @@ The application is making sure the message came from the declared sender by gett
 
 .. code-block:: python
 
-	is_valid = cryptolib.CryptoWrapper.verify(encryptedBody['Content'],
-		encryptedBody['Signature'],
-		senderCard[0]['public_key']['public_key'])
+	is_valid = cryptolib.CryptoWrapper.verify(encryptedBody['Content'], encryptedBody['Signature'], senderCard[0]['public_key']['public_key'])
 	if not is_valid:
 	    raise ValueError("Signature is not valid.")
 	
