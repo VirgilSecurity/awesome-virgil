@@ -114,8 +114,8 @@ The app merges the message text and the signature into one structure and sends t
 
 ```python
 encryptedBody = {
-    'Content': base64.b64encode(bytearray(encrypted_message)).decode(),
-    'Signature': base64.b64encode(bytearray(crypto_signature)).decode()
+    'Content': helper.base64.b64encode(bytearray(encrypted_message)).decode(),
+    'Signature': helper.base64.b64encode(bytearray(crypto_signature)).decode()
 }
 encryptedBodyJson = json.dumps(encryptedBody)
 currentChannel.Send("recipient-test@virgilsecurity.com",encryptedBodyJson)
@@ -135,7 +135,7 @@ senderCard = virgil_hub.virgilcard.search_card(sender, virgilhub.IdentityType.em
 The application is making sure the message came from the declared sender by getting his card on Virgil Public Keys Service. In case of success, the message is decrypted using the recipient's private key.
 
 ```python
-data = cryptolib.CryptoWrapper.decrypt(bytearray(base64.b64decode(encryptedBody['Content'])), '%RECIPIENT_ID%', recipientKeyPair['private_key'], '%PASSWORD%')
+data = cryptolib.CryptoWrapper.decrypt(bytearray(helper.base64.b64decode(encryptedBody['Content'])), '%RECIPIENT_ID%', recipientKeyPair['private_key'], '%PASSWORD%')
 									 
 is_valid = cryptolib.CryptoWrapper.verify(''.join((map(chr, data))),encryptedBody['Signature'], senderCard[0]['public_key']['public_key'])
 if not is_valid:
