@@ -33,11 +33,14 @@ Virgil Services
 Use cases
 ---------------------
 
-* `Passwordless authentication <https://github.com/VirgilSecurity/virgil/wiki/Passwordless-authentication>`_
-* `Verification <https://github.com/VirgilSecurity/virgil/wiki/Verify-data>`_
-* `Secure data at transport <https://github.com/VirgilSecurity/virgil/wiki/Secure-data-at-transport>`_
-* `Secure data at storage <https://github.com/VirgilSecurity/virgil/wiki/Secure-data-at-storage>`_
-* `IP messaging <https://github.com/VirgilSecurity/virgil/wiki/IP-messaging>`_
+.. toctree::
+   :maxdepth: 1
+   
+   passwordless-authentication
+   data-verification
+   secure-data-at-rest
+   ip-messaging
+   secure-data-at-storage
 
 Virgil Demos
 -------------------
