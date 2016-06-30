@@ -127,7 +127,7 @@ In order to decrypt and verify the received data, the app on recipient’s side 
 
 ```python
 message = currentChannel.GetMessage()
-encryptedBody = json.loads(message.Body)
+encryptedBody = helper.Helper.json.loads(message.Body)
 senderCard = virgil_hub.virgilcard.search_card(sender, virgilhub.IdentityType.email)
 ```
 
