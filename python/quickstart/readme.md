@@ -20,6 +20,14 @@ On the diagram below you can see a full picture of how these things interact wit
 
 ## Prerequisites
 
+Your required Virgil API links:
+
+Identity service API - https://identity.virgilsecurity.com/v1
+
+Cards service API - https://keys.virgilsecurity.com/v3
+
+Private keys API - https://keys-private.virgilsecurity.com/v3
+
 ### Obtaining an Access Token
 
 First you must create a free Virgil Security developer's account by signing up [here](https://developer.virgilsecurity.com/account/signup). Once you have your account you can [sign in](https://developer.virgilsecurity.com/account/signin) and generate an access token for your application.
@@ -27,6 +35,7 @@ First you must create a free Virgil Security developer's account by signing up [
 The access token provides authenticated secure access to Virgil Keys Services and is passed with each API call. The access token also allows the API to associate your app's requests with your Virgil Security developer's account.
 
 Use this token to initialize the SDK client [here](#step-0-initialization).
+
 
 ### Install
 
@@ -81,7 +90,7 @@ The following code example generates a new public/private key pair.
 
 ```python
 keys = cryptolib.CryptoWrapper.generate_keys
-		(cryptolib.crypto_helper.VirgilKeyPair.Type_EC_SECP521R1, 
+		(cryptolib.crypto_helper.VirgilKeyPair.Type_Default, 
 		'%PASSWORD%') 
 ```
 
@@ -90,7 +99,7 @@ The app is registering a Virgil Card which includes a public key and an email ad
 ```python
 data ={'Field1': 'Data1', 'Field2': 'Data2'}
 new_card = virgil_hub.virgilcard.create_card
-							('email',
+							(virgilhub.IdentityType.email,
 							'sender-test@virgilsecurity.com',
 							data,
 							None,
@@ -104,8 +113,9 @@ The app is searching for all channel members' public keys on the Keys Service to
 
 ```python
 message = "Encrypt me, Please!!!";
-recipient_cards = virgil_hub.virgilcard.search_card
-							('recipient-test@virgilsecurity.com')
+recipient_cards = virgil_hub.virgilcard.search_card('sender-test@virgilsecurity.com', 
+							type=None, include_unconfirmed=False,
+                                                        include_unauthorized=True)
 for card in recipient_cards:
   encrypted_message = cryptolib.CryptoWrapper.encrypt
   										(message, 
@@ -122,8 +132,8 @@ The app merges the message text and the signature into one structure and sends t
 
 ```python
 encryptedBody = {
-    'Content': bytearray(encrypted_messages),
-    'Signature': base64.b64encode(bytearray(crypto_signature))
+    'Content': base64.b64encode(bytearray(encrypted_message)).decode(),
+    'Signature': base64.b64encode(bytearray(crypto_signature)).decode()
 }
 encryptedBodyJson = json.dumps(encryptedBody)
 currentChannel.Send("recipient-test@virgilsecurity.com", 
@@ -137,7 +147,7 @@ In order to decrypt and verify the received data, the app on recipient’s side 
 ```python
 message = currentChannel.GetMessage()
 encryptedBody = json.loads(message.Body)
-senderCard = virgil_hub.virgilcard.search_card(sender, 'email')
+senderCard = virgil_hub.virgilcard.search_card(sender, virgilhub.IdentityType.email)
 ...
 ```
 
@@ -145,16 +155,17 @@ senderCard = virgil_hub.virgilcard.search_card(sender, 'email')
 The application is making sure the message came from the declared sender by getting his card on Virgil Public Keys Service. In case of success, the message is decrypted using the recipient's private key.
 
 ```python
-is_valid = cryptolib.CryptoWrapper.verify(encryptedBody['Content'],
+data = cryptolib.CryptoWrapper.decrypt(bytearray(base64.b64decode(encryptedBody['Content'])),
+									 '%RECIPIENT_ID%', 
+									 recipientKeyPair['private_key'], 
+									 '%PASSWORD%')
+									 
+is_valid = cryptolib.CryptoWrapper.verify(''.join((map(chr, data))),
 								encryptedBody['Signature'],
 								senderCard[0]['public_key']['public_key'])
 if not is_valid:
     raise ValueError("Signature is not valid.")
 
-data = cryptolib.CryptoWrapper.decrypt(encryptedBody['Content'],
-									 '%RECIPIENT_ID%', 
-									 recipientKeyPair['private_key'], 
-									 '%PASSWORD%')
 ```
 
 ## Source code
