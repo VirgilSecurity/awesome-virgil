@@ -28,7 +28,7 @@ This tutorial explains how to use the Public Keys Service with SDK library in Py
 Installation
 *********
 
-To install package use the command below:
+To install `package <https://cdn.virgilsecurity.com/virgil-crypto/python/>`_ use the command below:
 
 .. code-block:: html
 
@@ -53,13 +53,10 @@ Simply add your access token to the client constructor.
 
 .. code-block:: python
 
-    identity_link = '%IDENTITY_SERVICE_URL%'
-    virgil_card_link = '%VIRGIL_CARD_SERVICE_URL%'
-    private_key_link = '%PRIVATE_KEY_SERVICE_URL%'
-    virgil_hub = virgilhub.VirgilHub('%ACCESS_TOKEN%', 
-    			identity_link, 
-    			virgil_card_link, 
-    			private_key_link)
+    identity_link = 'https://identity.virgilsecurity.com/v1'
+    virgil_card_link = 'https://keys.virgilsecurity.com/v3'
+    private_key_link = 'https://keys-private.virgilsecurity.com/v3'
+    virgil_hub = virgilhub.VirgilHub('%ACCESS_TOKEN%', identity_link, virgil_card_link, private_key_link)
 
 *********
 Cards and Public Keys
@@ -80,29 +77,16 @@ Creating a private Virgil Card with a newly generated key pair and ValidationTok
 
 .. code-block:: python
 
-    Add_data ={'Field1': 'Data1', 'Field2': 'Data2'}
-    new_card = virgil_hub.virgilcard.create_card
-    		('email', 
-    		'example@virgilsecurity.com', 
-    		data, 
-    		identResponse['validation_token'], 
-    		keys['private_key'], 
-    		'%Password%', 
-    		keys['public_key'])
+    Add_data = {'Field1': 'Data1', 'Field2': 'Data2'}
+    new_card = virgil_hub.virgilcard.create_card('email', 'example@virgilsecurity.com', data, identResponse['validation_token'], keys['private_key'], '%Password%', keys['public_key'])
+
 
 Creating a Card without an Identity verification. Pay attention that you will have to set an additional attribute to include the Cards with unconfirmed Identities into your search, see an example `Search for cards`_.
 
 .. code-block:: python
 
-    Add_data ={'Field1': 'Data1', 'Field2': 'Data2'}
-    new_card = virgil_hub.virgilcard.create_card
-    		('email', 
-    		'example@virgilsecurity.com', 
-    		data, 
-    		None, 
-    		keys['private_key'], 
-    		'%Password%', 
-    		keys['public_key'])
+    Add_data = {'Field1': 'Data1', 'Field2': 'Data2'}
+    new_card = virgil_hub.virgilcard.create_card('email', 'example@virgilsecurity.com', data, None, keys['private_key'], '%Password%', keys['public_key'])
 
 Search for Cards
 =========
@@ -130,14 +114,9 @@ This operation is used to delete the Virgil Card from the search and mark it as 
 
 .. code-block:: python
 
-    verifyResponse = virgil_hub.identity.verify('email','example@virgilsecurity.com')
+    verifyResponse = virgil_hub.identity.verify('email', 'example@virgilsecurity.com')
     identResponse = virgil_hub.identity.confirm('%CONFIRMATION_CODE%', verifyResponse['action_id'])
-    virgil_hub.virgilcard.delete_card('email', 
-    		'example@virgilsecurity.com',
-    		identResponse['validation_token'], 
-    		'%CARD_ID%',
-    		'%PRIVATE_KEY%', 
-    		'%PASSWORD%')
+    virgil_hub.virgilcard.delete_card('email', 'example@virgilsecurity.com', identResponse['validation_token'], '%CARD_ID%', '%PRIVATE_KEY%', '%PASSWORD%')
 
 Get a Public Key
 =========
@@ -171,13 +150,10 @@ The Private Keys Service stores private keys the original way as they were trans
 
     recipient_card = virgil_hub.virgilcard.search_app('com.virgilsecurity.private-keys')
     for card in recipient_card:
-      recipient_id = card['id']
-      recipient_pub_key = card['public_key']['public_key']
-    virgil_hub.privatekey.load_private_key(recipient_pub_key, 
-    		recipient_id, 
-    		"%PRIVATE_KEY%", 
-    		"%SIGNER_CARD_ID%", 
-    		"%PASSWORD%")
+        recipient_id = card['id']
+        recipient_pub_key = card['public_key']['public_key']
+    virgil_hub.privatekey.load_private_key(recipient_pub_key, recipient_id, "%PRIVATE_KEY%", "%SIGNER_CARD_ID%", "%PASSWORD%")
+
 
 Get a Private Key
 =========
@@ -190,16 +166,10 @@ To get a private key you need to pass a prior verification of the Virgil Card wh
     identResponse = virgil_hub.identity.confirm("%CONFIRMATION_CODE%", verifyResponse['action_id'])
     recipient_card = virgil_hub.virgilcard.search_app('com.virgilsecurity.private-keys')
     for card in recipient_card:
-      recipient_id = card['id']
-      recipient_pub_key = card['public_key']['public_key']
-    private_key_from_service = virgil_hub.privatekey.grab_private_key
-    							(recipient_pub_key, 
-    							recipient_id, 
-    							'email', 
-    							'example@virgilsecurity.com',
-    							identResponse['validation_token'], 
-    							'%PASSWORD%', 
-    							"%SIGNER_CARD_ID%")
+        recipient_id = card['id']
+        recipient_pub_key = card['public_key']['public_key']
+    private_key_from_service = virgil_hub.privatekey.grab_private_key(recipient_pub_key, recipient_id, 'email', 'example@virgilsecurity.com', identResponse['validation_token'], '%PASSWORD%', "%SIGNER_CARD_ID%")
+
 
 Destroy a Private Key
 =========
@@ -210,14 +180,10 @@ This operation deletes the private key from the service without a possibility to
 
     recipient_card = virgil_hub.virgilcard.search_app('com.virgilsecurity.private-keys')
     for card in recipient_card:
-      recipient_id = card['id']
-      recipient_pub_key = card['public_key']['public_key']
-    virgil_hub.privatekey.delete_private_key
-    		(recipient_pub_key, 
-    		recipient_id,
-    		"%PRIVATE_KEY%", 
-    		"%SIGNER_CARD_ID%", 
-    		"%PASSWORD%")
+        recipient_id = card['id']
+        recipient_pub_key = card['public_key']['public_key']
+    virgil_hub.privatekey.delete_private_key(recipient_pub_key, recipient_id, "%PRIVATE_KEY%", "%SIGNER_CARD_ID%", "%PASSWORD%")
+
 
 *********
 Identities
@@ -232,8 +198,8 @@ In the example below you can see how to obtain a ValidationToken for creating a 
 
 .. code-block:: python
 
-    verifyResponse = virgil_hub.identity.verify('email','example@virgilsecurity.com')
-    identResponse = virgil_hub.identity.confirm('%CONFIRMATION_CODE%',verifyResponse['action_id'])
+    verifyResponse = virgil_hub.identity.verify('email', 'example@virgilsecurity.com')
+    identResponse = virgil_hub.identity.confirm('%CONFIRMATION_CODE%', verifyResponse['action_id'])
     validation_token = identResponse['validation_token']
 
 Obtaining a private ValidationToken
@@ -245,5 +211,4 @@ In the example below you can see, how to generate a ValidationToken using the SD
 
 .. code-block:: python
 
-    validation_token = ValidationTokenGenerator.generate(value, virgilhub.IdentityType.custom, 
-    	PRIVATE_KEY, PRIVATE_KEY_PASSWORD)
+    validation_token = ValidationTokenGenerator.generate(value, virgilhub.IdentityType.custom, PRIVATE_KEY, PRIVATE_KEY_PASSWORD)
