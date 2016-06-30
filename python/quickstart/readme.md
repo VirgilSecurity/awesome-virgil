@@ -72,7 +72,7 @@ private_key_link = 'https://keys-private.virgilsecurity.com/v3'
 virgil_hub = virgilhub.VirgilHub('%ACCESS_TOKEN%', identity_link, virgil_card_link, private_key_link)
 ```
 
-> **ACCESS_TOKEN** - is received for your application in [Developers portal](https://developer.virgilsecurity.com/dashboard/), described in [this step](/api-docs/python/keys-sdk#obtaining-an-access-token).
+> **ACCESS_TOKEN** - is received for your application in [Developers portal](https://developer.virgilsecurity.com/dashboard/), described in [this step](/api-docs/python/quickstart#obtaining-an-access-token).
 
 ## Step 1. Generate and Publish the Keys
 First a simple IP messaging chat is generating the keys and publishing them to the Public Keys Service where they are available in an open access for other users (e.g. recipient) to verify and encrypt the data for the key owner.
