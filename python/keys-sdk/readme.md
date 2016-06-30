@@ -63,14 +63,14 @@ Private Cards are created when a developer is using his own service for verifica
 Creating a private Virgil Card with a newly generated key pair and ValidationToken. See how to obtain a ValidationToken [here](#identity).
 
 ```python
-Add_data ={'Field1': 'Data1', 'Field2': 'Data2'}
+Add_data = {'Field1': 'Data1', 'Field2': 'Data2'}
 new_card = virgil_hub.virgilcard.create_card('email', 'example@virgilsecurity.com', data, identResponse['validation_token'], keys['private_key'], '%Password%', keys['public_key'])
 ```
 
 Creating a Card without an Identity verification. Pay attention that you will have to set an additional attribute to include the Cards with unconfirmed Identities into your search, see an [example](#search-for-cards).
 
 ```python
-Add_data ={'Field1': 'Data1', 'Field2': 'Data2'}
+Add_data = {'Field1': 'Data1', 'Field2': 'Data2'}
 new_card = virgil_hub.virgilcard.create_card('email', 'example@virgilsecurity.com', data, None, keys['private_key'], '%Password%', keys['public_key'])
 ```
 
@@ -89,7 +89,7 @@ my_app = virgil_hub.virgilcard.search_app('My application')
 Search for a private Virgil Card.
 
 ```python
-search_result = card = virgil_hub.virgilcard.search_card('example@virgilsecurity.com', None, None, True)
+search_result = virgil_hub.virgilcard.search_card('example@virgilsecurity.com', None, None, True)
 ```
 
 #### Revoke a Virgil Card
