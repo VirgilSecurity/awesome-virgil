@@ -13,7 +13,7 @@ Tutorial Crypto Library Python
 Install
 *********
 
-Use command line to install Virgil crypto package:
+Use command line to install `Virgil crypto package <https://cdn.virgilsecurity.com/virgil-crypto/python/>`_:
 
 .. code-block:: html
 
@@ -49,9 +49,7 @@ The following code example creates a new public/private key pair with a specific
 
 .. code-block:: python
 
-  keys = cryptolib.CryptoWrapper.generate_keys
-  		(cryptolib.crypto_helper.VirgilKeyPair.Type_EC_SECP224R1, 
-  		"%PASSWORD%")
+  keys = cryptolib.CryptoWrapper.generate_keys(cryptolib.crypto_helper.VirgilKeyPair.Type_EC_SECP224R1, "%PASSWORD%")
 
 In the example below you can see a simply generated public/private keypair.
 
@@ -116,9 +114,7 @@ Encrypt the text with a public key:
 
 .. code-block:: python
 
-  enc = cryptolib.CryptoWrapper.encrypt('%To be encrypted%', 
-    '%Recipient id%',
-    '%Recipient public key%')
+  enc = cryptolib.CryptoWrapper.encrypt('%To be encrypted%', '%Recipient id%', '%Recipient public key%')
 
 *********
 Sign Data
@@ -131,12 +127,8 @@ The following example applies a digital signature to a public key identifier.
 .. code-block:: python
 
   originalText = "Sign me, Please!!!"
-  keys = cryptolib.CryptoWrapper.generate_keys
-    (cryptolib.crypto_helper.VirgilKeyPair.Type_EC_SECP224R1,"%PASSWORD%")
-  sign = cryptolib.CryptoWrapper.sign
-    (originalText,
-    keys['private_key'],
-    '%PASSWORD%')
+  keys = cryptolib.CryptoWrapper.generate_keys(cryptolib.crypto_helper.VirgilKeyPair.Type_EC_SECP224R1, "%PASSWORD%")
+  sign = cryptolib.CryptoWrapper.sign(originalText, keys['private_key'], '%PASSWORD%')
 
 *********
 Verify Data
@@ -162,15 +154,10 @@ The following example illustrates decryption of the encrypted data with a recipi
 
 .. code-block:: python
 
-  data = cryptolib.CryptoWrapper.decrypt
-    ('%ENCRYPTED_TEXT%%', 
-    '%RECIPIENT_ID%', 
-    keys['private_key'])
+  data = cryptolib.CryptoWrapper.decrypt('%ENCRYPTED_TEXT%%', '%RECIPIENT_ID%', keys['private_key'])
 
 Use a password to decrypt the data.
 
 .. code-block:: python
 
-  data = cryptolib.CryptoWrapper.decrypt_with_password
-    ('%ENCRYPTED_DATA%',
-    '%PASSWORD%')
+  data = cryptolib.CryptoWrapper.decrypt_with_password('%ENCRYPTED_DATA%', '%PASSWORD%')
