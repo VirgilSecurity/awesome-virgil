@@ -117,7 +117,7 @@ encryptedBody = {
     'Content': helper.base64.b64encode(bytearray(encrypted_message)).decode(),
     'Signature': helper.base64.b64encode(bytearray(crypto_signature)).decode()
 }
-encryptedBodyJson = json.dumps(encryptedBody)
+encryptedBodyJson = json_dumps(encryptedBody)
 currentChannel.Send("recipient-test@virgilsecurity.com",encryptedBodyJson)
 ```
 
@@ -127,7 +127,7 @@ In order to decrypt and verify the received data, the app on recipient’s side 
 
 ```python
 message = currentChannel.GetMessage()
-encryptedBody = helper.Helper.json.loads(message.Body)
+encryptedBody = helper.Helper.json_loads(message.Body)
 senderCard = virgil_hub.virgilcard.search_card(sender, virgilhub.IdentityType.email)
 ```
 
