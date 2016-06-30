@@ -86,19 +86,21 @@ keys = cryptolib.CryptoWrapper.generate_keys(cryptolib.crypto_helper.VirgilKeyPa
 The app is registering a Virgil Card which includes a public key and an email address identifier. The card will be used for the public key identification and searching for it in the Public Keys Service. You can create a Virgil Card with or without identity verification, see both examples [here](/api-docs/python/keys-sdk#publish-a-virgil-card).
 
 ```python
-data = {'Field1': 'Data1', 'Field2': 'Data2'}
-new_card = virgil_hub.virgilcard.create_card(virgilhub.IdentityType.email, 'sender-test@virgilsecurity.com', data, None, keys['private_key'], keys['public_key'])
+new_card = virgil_hub.virgilcard.create_card(virgilhub.IdentityType.email, 'sender-test@virgilsecurity.com', None, None, keys['private_key'], keys['public_key'])
 ```
 
 ## Step 2. Encrypt and Sign
 The app is searching for all channel members' public keys on the Keys Service to encrypt a message for them. The app is signing the encrypted message with sender’s private key so that the recipient can make sure the message had been sent by the declared sender.
 
 ```python
-message = "Encrypt me, Please!!!"
-recipient_cards = virgil_hub.virgilcard.search_card('sender-test@virgilsecurity.com', type=None, include_unconfirmed=False, include_unauthorized=True)
-for card in recipient_cards:
-    encrypted_message = cryptolib.CryptoWrapper.encrypt(message,card['id'], card['public_key']['public_key'])
-    crypto_signature = cryptolib.CryptoWrapper.sign(message, keys['private_key'])
+def encrypt_message(json_data, recipients):
+    cipher = cryptolib.crypto_helper.VirgilCipher()
+    for recipient in recipients:
+        recipient_id = cryptolib.CryptoWrapper.strtobytes(recipient['id'])
+        recipient_pubkey = cryptolib.CryptoWrapper.strtobytes(
+            cryptolib.base64.b64decode(recipient['public_key']['public_key']).decode())
+        cipher.addKeyRecipient(recipient_id, recipient_pubkey)
+    return cipher.encrypt(cryptolib.CryptoWrapper.strtobytes(json_data), True)
 ```
 
 ## Step 3. Send a Message
