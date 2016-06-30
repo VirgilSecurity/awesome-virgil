@@ -6,8 +6,7 @@ Recipient wants to make sure that received data has been sent from a secure sour
 
 .. image:: Images/VerifyUseCase.png
 
-Sender and recipient create Virgil accounts with a pair of asymmetric keys:
-===========
+**Sender and recipient create Virgil accounts with a pair of asymmetric keys**:
 
 - public key on Virgil cloud in Keys service;
 
@@ -36,8 +35,7 @@ Sender and recipient create Virgil accounts with a pair of asymmetric keys:
 
 - or private key locally.
 
-Sender signs the data with his private key in Virgil crypto library.
-===========
+**Sender signs the data with his private key in Virgil crypto library.**
 
 .. code::
 
@@ -47,11 +45,9 @@ Sender signs the data with his private key in Virgil crypto library.
       sign = signer.Sign(dataToSign, privateKey);
   }
 
-Sender transfers the data, his digital signature and UDID to a recipient.
-===========
+**Sender transfers the data, his digital signature and UDID to a recipient.**
 
-Recipient (or any person) verifies data integrity using the digital signature and sender’s public key in Virgil crypto library.
-===========
+**Recipient (or any person) verifies data integrity using the digital signature and sender’s public key in Virgil crypto library.**
 
 .. code::
 
