@@ -8,7 +8,7 @@ A group of users want to exchange text messages in a secure chat.
 
 **Chat participants create Virgil accounts with a pair of asymmetric keys**:
 
- - public key on Virgil cloud in Keys service;
+- public key on Virgil cloud in Keys service;
 
 .. code::
 
