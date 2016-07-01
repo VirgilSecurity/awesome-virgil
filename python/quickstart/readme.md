@@ -111,7 +111,7 @@ user_card = virgil_hub.virgilcard.create_card('email',
 ```
 
 ## Step 2. Sign then Encrypt
-The app is searching for all channel members' public keys on the Keys Service to encrypt a message for them. The app is signing the encrypted message with sender’s private key so that the recipient can make sure the message had been sent by the declared sender.
+The app is searching for all channel members' public keys on the Keys Service to encrypt a message for them. The app is signing the original message with sender’s private key so that the recipient can make sure the message had been sent by the declared sender.
 
 ```python
 def sign_then_encrypt_message(text, recipients, private_key, private_key_password):
