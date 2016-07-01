@@ -139,5 +139,6 @@ if not is_valid:
 ## Source code
 
 * [Use Case Example](https://github.com/VirgilSecurity/virgil-sdk-python/tree/master/Examples/IPMessaging)
+* [IP-Messaging Simple Server](https://github.com/VirgilSecurity/virgil-sdk-javascript/tree/master/examples/ip-messaging/server)
 
 > Note: Run scripts as root. 
