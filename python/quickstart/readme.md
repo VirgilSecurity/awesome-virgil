@@ -69,6 +69,7 @@ Initialize variables of [configuration file](https://github.com/VirgilSecurity/v
 
 ```python
 VIRGIL_ACCESS_TOKEN = ''
+USER_PRIVATE_KEY_PASSWORD = 'MY_PASSWORD'
 ```
 
 > **VIRGIL_ACCESS_TOKEN** - is received for your application in [Developers portal](https://developer.virgilsecurity.com/dashboard/), described in [this step](/api-docs/python/quickstart#obtaining-an-access-token).
@@ -89,12 +90,12 @@ The app is registering a Virgil Card which includes a public key and an email ad
 
 ```python
 user_card = virgil_hub.virgilcard.create_card('email',
-                                                      USER_IDENTITY,
-                                                      None,
-                                                      None,
-                                                      user_key_pair['private_key'],
-                                                      USER_PRIVATE_KEY_PASSWORD,
-                                                      user_key_pair['public_key'])
+                                              USER_IDENTITY,
+                                              None,
+                                              None,
+                                              user_key_pair['private_key'],
+                                              USER_PRIVATE_KEY_PASSWORD,
+                                              user_key_pair['public_key'])
 ```
 
 ## Step 2. Encrypt and Sign
