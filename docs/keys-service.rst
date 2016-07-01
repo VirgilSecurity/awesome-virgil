@@ -55,7 +55,7 @@ collection will be returned.
 
 **Response body for signed request**
 
-.. code::json
+.. code:: json
 
   {
       "id": "e33898de-6302-4756-8f0c-5f6c5218e02e",
@@ -156,20 +156,21 @@ The endpoint creates a :term:`Virgil Card <Virgil Card>` entity.
 Please be aware that ``X-VIRGIL-REQUEST-SIGN-VIRGIL-CARD-ID`` header is skipped for this endpoint and
 ``X-VIRGIL-REQUEST-SIGN`` header is calculated based on the :term:`Public Keys <Public Key>` passed in request body.
 
-Parameters notes:
- - it's mandatory to specify either *public_key_id* or *public_key* parameter;
- - in order to attach the ``Virgil Card`` to the existing ``Public Key`` you should pass *public_key_id* request parameter that holds the ``Public Key``'s ID;
- - in order to create new ``Public Key`` instance you should pass *public_key* request parameter that contains the base64-encoded string with the public key;
- - the *identity* request parameter stands for the ``Virgil Card`` identity that can be either *global* or *local*;
- - to create a global ``Identity`` it's necessary to pass *validation_token* parameter obtained from the *Virgil Identity* service. This ``Virgil Card`` will become global will be available for all the applications through either *POST /virgil-card/actions/app* or *POST /virgil-card/actions/email* endpoint;
- - to create a confirmed private ``Identity`` it's necessary to pass *validation_token* parameter that is calculated uing formula VALIDATION_TOKEN = BASE64_ENCODE ( UNIQUE_ID + '.' + BASE64_ENCODE( SIGN( CONCATENATE( UNIQUE_ID + IDENTITY_TYPE + IDENTITY_VALUE), APPLICATION_PRIVATE_KEY ) ) );
- - to create an unconfirmed private ``Identity`` you should skip *validation_token* parameter;
- - if created ``Virgil Card`` is unconfirmed it will not appear in the search results by default;
+.. note::
+
+  - it's mandatory to specify either *public_key_id* or *public_key* parameter;
+  - in order to attach the ``Virgil Card`` to the existing ``Public Key`` you should pass *public_key_id* request parameter that holds the ``Public Key``'s ID;
+  - in order to create new ``Public Key`` instance you should pass *public_key* request parameter that contains the base64-encoded string with the public key;
+  - the *identity* request parameter stands for the ``Virgil Card`` identity that can be either *global* or *local*;
+  - to create a global ``Identity`` it's necessary to pass *validation_token* parameter obtained from the *Virgil Identity* service. This ``Virgil Card`` will become global will be available for all the applications through either *POST /virgil-card/actions/app* or *POST /virgil-card/actions/email* endpoint;
+  - to create a confirmed private ``Identity`` it's necessary to pass *validation_token* parameter that is calculated uing formula VALIDATION_TOKEN = BASE64_ENCODE ( UNIQUE_ID + '.' + BASE64_ENCODE( SIGN( CONCATENATE( UNIQUE_ID + IDENTITY_TYPE + IDENTITY_VALUE), APPLICATION_PRIVATE_KEY ) ) );
+  - to create an unconfirmed private ``Identity`` you should skip *validation_token* parameter;
+  - if created ``Virgil Card`` is unconfirmed it will not appear in the search results by default;
 
 **Request info**
 
 .. code::
-  
+
   HTTP Request method    POST
   Request URL            https://keys.virgilsecurity.com/v3/virgil-card
   Authentication         Required
@@ -226,15 +227,15 @@ The endpoint creates an local application's :term:`Virgil Card <Virgil Card>` en
 Please be aware that ``X-VIRGIL-REQUEST-SIGN-VIRGIL-CARD-ID`` header is skipped for this endpoint and
 ``X-VIRGIL-REQUEST-SIGN`` header is calculated based on the :term:`Public Key <Public Key>` passed in request body.
 
-Parameters notes:
- - it's mandatory to specify either *public_key_id* or *public_key* parameter;
- - in order to attach the ``Virgil Card`` to the existing ``Public Key`` you should pass *public_key_id* request parameter that holds the ``Public Key``'s ID;
- - in order to create new ``Public Key`` instance you should pass *public_key* request parameter that contains the base64-encoded string with the public key;
- - the *identity* request parameter stands for the ``Virgil Card`` identity that must be either *local*;
- - to create a confirmed local ``Identity`` it's necessary to pass *validation_token* parameter that is calculated uing formula VALIDATION_TOKEN = BASE64_ENCODE ( UNIQUE_ID + '.' + BASE64_ENCODE( SIGN( CONCATENATE( UNIQUE_ID + IDENTITY_TYPE + IDENTITY_VALUE), APPLICATION_PRIVATE_KEY ) ) );
- - to create an unconfirmed private ``Identity`` you can skip *validation_token* parameter;
- - if created ``Virgil Card`` is unconfirmed it will not appear in the search results by default;
+.. note::
 
+  - it's mandatory to specify either *public_key_id* or *public_key* parameter;
+  - in order to attach the ``Virgil Card`` to the existing ``Public Key`` you should pass *public_key_id* request parameter that holds the ``Public Key``'s ID;
+  - in order to create new ``Public Key`` instance you should pass *public_key* request parameter that contains the base64-encoded string with the public key;
+  - the *identity* request parameter stands for the ``Virgil Card`` identity that must be either *local*;
+  - to create a confirmed local ``Identity`` it's necessary to pass *validation_token* parameter that is calculated uing formula VALIDATION_TOKEN = BASE64_ENCODE ( UNIQUE_ID + '.' + BASE64_ENCODE( SIGN( CONCATENATE( UNIQUE_ID + IDENTITY_TYPE + IDENTITY_VALUE), APPLICATION_PRIVATE_KEY ) ) );
+  - to create an unconfirmed private ``Identity`` you can skip *validation_token* parameter;
+  - if created ``Virgil Card`` is unconfirmed it will not appear in the search results by default;
 
 **Request info**
 
@@ -296,13 +297,13 @@ The endpoint creates a global :term:`Virgil Card <Virgil Card>` entity.
 Please be aware that ``X-VIRGIL-REQUEST-SIGN-VIRGIL-CARD-ID`` header is skipped for this endpoint and
 ``X-VIRGIL-REQUEST-SIGN`` header is calculated based on the :term:`Public Key <Public Key>` passed in request body.
 
-Parameters notes:
- - it's mandatory to specify either *public_key_id* or *public_key* parameter;
- - in order to attach the ``Virgil Card`` to the existing ``Public Key`` you should pass *public_key_id* request parameter that holds the ``Public Key``'s ID;
- - in order to create new ``Public Key`` instance you should pass *public_key* request parameter that contains the base64-encoded string with the public key;
- - the *identity* request parameter stands for the ``Virgil Card`` identity that is *global* and must be confirmed;
- - it's necessary to pass *validation_token* parameter obtained from the *Virgil Identity* service. This ``Virgil Card`` will become global will be available for all the applications through either *POST /virgil-card/actions/app* or *POST /virgil-card/actions/email* endpoint.
+.. note::
 
+  - it's mandatory to specify either *public_key_id* or *public_key* parameter;
+  - in order to attach the ``Virgil Card`` to the existing ``Public Key`` you should pass *public_key_id* request parameter that holds the ``Public Key``'s ID;
+  - in order to create new ``Public Key`` instance you should pass *public_key* request parameter that contains the base64-encoded string with the public key;
+  - the *identity* request parameter stands for the ``Virgil Card`` identity that is *global* and must be confirmed;
+  - it's necessary to pass *validation_token* parameter obtained from the *Virgil Identity* service. This ``Virgil Card`` will become global will be available for all the applications through either *POST /virgil-card/actions/app* or *POST /virgil-card/actions/email* endpoint.
 
 **Request info**
 
@@ -460,6 +461,7 @@ which allows searching for all the applications inside the organization
 **Request body**
 
 .. code::
+
  {
      "value": "com.virgilsecurity.*"
  }
