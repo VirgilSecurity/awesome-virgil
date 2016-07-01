@@ -86,6 +86,8 @@ virgil_hub = virgilhub.VirgilHub(VIRGIL_ACCESS_TOKEN,
 chat_channel = Chat(CHAT_API_URL, 'DEMO', user_pass['identity'])
 ```
 
+See chat class [here](https://github.com/VirgilSecurity/virgil-sdk-python/blob/master/Examples/VirgilIPChat/chat.py).
+
 ## Step 1. Generate and Publish the Keys
 First a simple IP messaging chat is generating the keys and publishing them to the Public Keys Service where they are available in an open access for other users (e.g. recipient) to verify and encrypt the data for the key owner.
 
