@@ -159,5 +159,5 @@ String originalMessage = CryptoHelper.decrypt(encryptedContent,
 
 ## Source Code
 
-* [Use Case Example](https://github.com/VirgilSecurity/virgil-sdk-net/tree/master/Examples/Virgil.Examples.IPMessaging)
+* [Use Case Example](https://github.com/VirgilSecurity/virgil-sdk-java-android/blob/master/samples/client/src/main/java/Quickstart.java)
 * [IP-Messaging Simple Server](https://github.com/VirgilSecurity/virgil-sdk-javascript/tree/master/examples/ip-messaging/server)
