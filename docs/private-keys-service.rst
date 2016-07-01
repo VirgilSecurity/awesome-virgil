@@ -19,11 +19,13 @@ Private Keys Service API
 General statements
 ==========
 
-1. Make sure that you have registered and confirmed your account for the Public Keys Service.
-2. Make sure that you have a public/private key pair and you have already uploaded the public key to the Public Keys Service.
-3. Make sure that you have your private key on local machine.
-4. Make sure that you have registered an application at `Virgil Security, Inc <https://developer.virgilsecurity.com/dashboard/>`_.
-5. Use Virgil Crypto Library to correctly generate a value for `X-VIRGIL-REQUEST-SIGN` header parameter. For more information please check `Appendix B. X-VIRGIL-REQUEST-SIGN`_ section.
+.. warning::
+
+   1. Make sure that you have registered and confirmed your account for the Public Keys Service.
+   2. Make sure that you have a public/private key pair and you have already uploaded the public key to the Public Keys Service.
+   3. Make sure that you have your private key on local machine.
+   4. Make sure that you have registered an application at `Virgil Security, Inc <https://developer.virgilsecurity.com/dashboard/>`_.
+   5. Use Virgil Crypto Library to correctly generate a value for `X-VIRGIL-REQUEST-SIGN` header parameter. For more information please check `Appendix B. X-VIRGIL-REQUEST-SIGN`_ section.
 
 ==========
 Request encryption
@@ -154,7 +156,7 @@ Get an existing private key.
 
   ``response_password`` - Request parameter that holds randomly generated response password. It is used to encrypt the response to prevent any man in the middle attack. Should be less then 32 characters long.
 
-  Endpoint returns an encoded response. Response is encoded with ``response_password`` parameter. Please check `Response Format`_ section to learn how to decode encoded response.
+  Endpoint returns an encoded response. Response is encoded with ``response_password`` parameter. Please check `Response decryption`_ section to learn how to decode encoded response.
 
   To use custom Identity it's necessary to pass validation_token parameter that is calculated using formula VALIDATION_TOKEN = BASE64_ENCODE ( UNIQUE_ID + '.' + BASE64_ENCODE( SIGN( CONCATENATE( UNIQUE_ID + IDENTITY_TYPE + IDENTITY_VALUE), APPLICATION_PRIVATE_KEY ) ) );
 
