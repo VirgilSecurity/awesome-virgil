@@ -148,8 +148,10 @@ Virgil Card
 :term:`Virgil Card <Virgil Card>` is the core entity of Virgil services and contains the information about the :term:`Public Keys <Public Key>` and ``Identity``
 and the list of key/value pairs that can be used based on application needs.
 
-POST /virgil-card. THIS ENDPOINT IS DEPRECATED. USE /virgil-card/actions/create AND /virgil-card/actions/create-global INSTEAD
+POST /virgil-card
 =============
+
+.. warning:: THIS ENDPOINT IS DEPRECATED. USE /virgil-card/actions/create AND /virgil-card/actions/create-global INSTEAD
 
 The endpoint creates a :term:`Virgil Card <Virgil Card>` entity.
 
