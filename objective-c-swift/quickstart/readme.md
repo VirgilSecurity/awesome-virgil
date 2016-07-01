@@ -448,3 +448,9 @@ if let plainData = self.ipmSecurity.decryptData(secureMessage.message),
 // Handle decryption error
 //...
 ```
+
+## Source Code
+
+* [Use Case Example, Objective C](https://github.com/VirgilSecurity/virgil-sdk-x/tree/v3/Docs/IPMExample-objc)
+* [Use Case Example, Swift](https://github.com/VirgilSecurity/virgil-sdk-x/tree/v3/Docs/IPMExample-swift)
+* [IP-Messaging Simple Server](https://github.com/VirgilSecurity/virgil-sdk-javascript/tree/master/examples/ip-messaging/server)
