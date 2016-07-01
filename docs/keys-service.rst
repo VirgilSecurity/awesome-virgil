@@ -3,9 +3,11 @@ Virgil Public Keys API service v3.2
 ##########
 
 * `Public Key`_
+
   * `GET /public-key/{public-key-id}`_
   * `DELETE /public-key/{public-key-id}`_
 * `Virgil Card`_
+
   * `POST /virgil-card/actions/create`_
   * `POST /virgil-card/actions/create-global`_
   * `GET /virgil-card/{virgil-card-id}`_
@@ -458,41 +460,40 @@ which allows searching for all the applications inside the organization
 **Request body**
 
 .. code::
-{
-    "value": "com.virgilsecurity.*"
-}
-
-or
-
-{
-    "value": "com.virgilsecurity.pass"
-}
-```
+ {
+     "value": "com.virgilsecurity.*"
+ }
+ 
+ or
+ 
+ {
+     "value": "com.virgilsecurity.pass"
+ }
 
 **Response body**
 
-```json
-[
-    {
-        "id": "62b6f34f-ffd7-427f-ba88-8c1b098f42dd",
-        "created_at": "2015-12-22T07:03:42+0000",
-        "data": {},
-        "authorized_by": "com.virgilsecurity.identity",
-        "hash": "eyJpZCI6IjQ0NDQ0NDQ0LTQ0NDQtNDQ0NC00NDQ0LTQ0NDQ0NDQ0NDQ0NCIsImNyZWF0ZWRfYXQiOiIyMDE1LTExLTIzIDE1OjMzOjM0IiwiZGF0YSI6W10sImlzX2NvbmZpcm1lZCI6dHJ1ZSwicHVibGljX2tleV9pZCI6IjIyMjIyMjIyLTIyMjItMjIyMi0yMjIyLTIyMjIyMjIyMjIyMiIsImlkZW50aXR5X2lkIjoiMzMzMzMzMzMtMzMzMy0zMzMzLTMzMzMtMzMzMzMzMzMzMzMzIn0=",
-        "public_key": {
-            "id": "7ccd696c-9b59-491d-aa66-afcd91e0ff44'",
-            "public_key": "LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0KTUlHYk1CUUdCeXFHU000OUFnRUdDU3NrQXdNQ0NBRUJEUU9CZ2dBRUNhV3k5VVVVMDFWcjdQLzExWHpubk0vRAowTi9KODhnY0dMV3pYMGFLaGcxSjdib3B6RGV4b0QwaVl3alFXVUpWcVpJQjRLdFVneG9IcS81c2lybUI2cW1OClNFODNxcTZmbitPSm9qeUpGMytKY1AwTUp1WXRVZnpHbjgvUHlHVkp1TEVHais0NTlKWTRWbzdKb1pnS2hBT24KcWJ3UjRlcTY0citlUEpNcUppMD0KLS0tLS1FTkQgUFVCTElDIEtFWS0tLS0t",
-            "created_at": "2015-12-22T07:03:42+0000"
-        },
-        "identity": {
-            "id": "d646ae1b-decc-4ccb-8918-aa4f755a563d",
-            "type": "application",
-            "value": "com.virgilsecurity.pass",
-            "created_at": "2015-12-22T07:03:42+0000"
-        }
-    }
-]
-```
+.. code:: json
+
+ [
+     {
+         "id": "62b6f34f-ffd7-427f-ba88-8c1b098f42dd",
+         "created_at": "2015-12-22T07:03:42+0000",
+         "data": {},
+         "authorized_by": "com.virgilsecurity.identity",
+         "hash": "eyJpZCI6IjQ0NDQ0NDQ0LTQ0NDQtNDQ0NC00NDQ0LTQ0NDQ0NDQ0NDQ0NCIsImNyZWF0ZWRfYXQiOiIyMDE1LTExLTIzIDE1OjMzOjM0IiwiZGF0YSI6W10sImlzX2NvbmZpcm1lZCI6dHJ1ZSwicHVibGljX2tleV9pZCI6IjIyMjIyMjIyLTIyMjItMjIyMi0yMjIyLTIyMjIyMjIyMjIyMiIsImlkZW50aXR5X2lkIjoiMzMzMzMzMzMtMzMzMy0zMzMzLTMzMzMtMzMzMzMzMzMzMzMzIn0=",
+         "public_key": {
+             "id": "7ccd696c-9b59-491d-aa66-afcd91e0ff44'",
+             "public_key": "LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0KTUlHYk1CUUdCeXFHU000OUFnRUdDU3NrQXdNQ0NBRUJEUU9CZ2dBRUNhV3k5VVVVMDFWcjdQLzExWHpubk0vRAowTi9KODhnY0dMV3pYMGFLaGcxSjdib3B6RGV4b0QwaVl3alFXVUpWcVpJQjRLdFVneG9IcS81c2lybUI2cW1OClNFODNxcTZmbitPSm9qeUpGMytKY1AwTUp1WXRVZnpHbjgvUHlHVkp1TEVHais0NTlKWTRWbzdKb1pnS2hBT24KcWJ3UjRlcTY0citlUEpNcUppMD0KLS0tLS1FTkQgUFVCTElDIEtFWS0tLS0t",
+             "created_at": "2015-12-22T07:03:42+0000"
+         },
+         "identity": {
+             "id": "d646ae1b-decc-4ccb-8918-aa4f755a563d",
+             "type": "application",
+             "value": "com.virgilsecurity.pass",
+             "created_at": "2015-12-22T07:03:42+0000"
+         }
+     }
+ ]
 
 POST /virgil-card/actions/search/email
 =============
@@ -502,44 +503,44 @@ Performs the global search for the emails' :term:`Virgil Cards <Virgil Card>`
 
 **Request info**
 
-```
-HTTP Request method    POST
-Request URL            https://keys.virgilsecurity.com/v3/virgil-card/actions/search/email
-Authentication         Not required
-```
+.. code::
+
+ HTTP Request method    POST
+ Request URL            https://keys.virgilsecurity.com/v3/virgil-card/actions/search/email
+ Authentication         Not required
 
 **Request body**
 
-```
-{
-    "value": "user@virgilsecurity.com"
-}
-```
+.. code::
+
+ {
+     "value": "user@virgilsecurity.com"
+ }
 
 **Response body**
 
-```json
-[
-    {
-        "id": "62b6f34f-ffd7-427f-ba88-8c1b098f42dd",
-        "created_at": "2015-12-22T07:03:42+0000",
-        "data": {},
-        "authorized_by": "com.virgilsecurity.identity",
-        "hash": "eyJpZCI6IjQ0NDQ0NDQ0LTQ0NDQtNDQ0NC00NDQ0LTQ0NDQ0NDQ0NDQ0NCIsImNyZWF0ZWRfYXQiOiIyMDE1LTExLTIzIDE1OjMzOjM0IiwiZGF0YSI6W10sImlzX2NvbmZpcm1lZCI6dHJ1ZSwicHVibGljX2tleV9pZCI6IjIyMjIyMjIyLTIyMjItMjIyMi0yMjIyLTIyMjIyMjIyMjIyMiIsImlkZW50aXR5X2lkIjoiMzMzMzMzMzMtMzMzMy0zMzMzLTMzMzMtMzMzMzMzMzMzMzMzIn0=",
-        "public_key": {
-            "id": "7ccd696c-9b59-491d-aa66-afcd91e0ff44'",
-            "public_key": "LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0KTUlHYk1CUUdCeXFHU000OUFnRUdDU3NrQXdNQ0NBRUJEUU9CZ2dBRUNhV3k5VVVVMDFWcjdQLzExWHpubk0vRAowTi9KODhnY0dMV3pYMGFLaGcxSjdib3B6RGV4b0QwaVl3alFXVUpWcVpJQjRLdFVneG9IcS81c2lybUI2cW1OClNFODNxcTZmbitPSm9qeUpGMytKY1AwTUp1WXRVZnpHbjgvUHlHVkp1TEVHais0NTlKWTRWbzdKb1pnS2hBT24KcWJ3UjRlcTY0citlUEpNcUppMD0KLS0tLS1FTkQgUFVCTElDIEtFWS0tLS0t",
-            "created_at": "2015-12-22T07:03:42+0000"
-        },
-        "identity": {
-            "id": "d646ae1b-decc-4ccb-8918-aa4f755a563d",
-            "type": "email",
-            "value": "user@virgilsecurity.com",
-            "created_at": "2015-12-22T07:03:42+0000"
-        }
-    }
-]
-```
+.. code:: json
+
+ [
+     {
+         "id": "62b6f34f-ffd7-427f-ba88-8c1b098f42dd",
+         "created_at": "2015-12-22T07:03:42+0000",
+         "data": {},
+         "authorized_by": "com.virgilsecurity.identity",
+         "hash": "eyJpZCI6IjQ0NDQ0NDQ0LTQ0NDQtNDQ0NC00NDQ0LTQ0NDQ0NDQ0NDQ0NCIsImNyZWF0ZWRfYXQiOiIyMDE1LTExLTIzIDE1OjMzOjM0IiwiZGF0YSI6W10sImlzX2NvbmZpcm1lZCI6dHJ1ZSwicHVibGljX2tleV9pZCI6IjIyMjIyMjIyLTIyMjItMjIyMi0yMjIyLTIyMjIyMjIyMjIyMiIsImlkZW50aXR5X2lkIjoiMzMzMzMzMzMtMzMzMy0zMzMzLTMzMzMtMzMzMzMzMzMzMzMzIn0=",
+         "public_key": {
+             "id": "7ccd696c-9b59-491d-aa66-afcd91e0ff44'",
+             "public_key": "LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0KTUlHYk1CUUdCeXFHU000OUFnRUdDU3NrQXdNQ0NBRUJEUU9CZ2dBRUNhV3k5VVVVMDFWcjdQLzExWHpubk0vRAowTi9KODhnY0dMV3pYMGFLaGcxSjdib3B6RGV4b0QwaVl3alFXVUpWcVpJQjRLdFVneG9IcS81c2lybUI2cW1OClNFODNxcTZmbitPSm9qeUpGMytKY1AwTUp1WXRVZnpHbjgvUHlHVkp1TEVHais0NTlKWTRWbzdKb1pnS2hBT24KcWJ3UjRlcTY0citlUEpNcUppMD0KLS0tLS1FTkQgUFVCTElDIEtFWS0tLS0t",
+             "created_at": "2015-12-22T07:03:42+0000"
+         },
+         "identity": {
+             "id": "d646ae1b-decc-4ccb-8918-aa4f755a563d",
+             "type": "email",
+             "value": "user@virgilsecurity.com",
+             "created_at": "2015-12-22T07:03:42+0000"
+         }
+     }
+ ]
 
 DELETE /virgil-card/{virgil-card-id}
 =============
@@ -548,95 +549,103 @@ Revoke a :term:`Virgil Card <Virgil Card>` endpoint:
 *  **identity** parameter is optional. It must be specified only for confirmed `Virgil Card` instances
 
 **Request info**
-```
-HTTP Request method    DELETE
-Request URL            https://keys.virgilsecurity.com/v3/virgil-card/{virgil-card-id}
-Authentication         Required
-```
+
+.. code::
+
+ HTTP Request method    DELETE
+ Request URL            https://keys.virgilsecurity.com/v3/virgil-card/{virgil-card-id}
+ Authentication         Required
 
 **Request body**
 
-```
-{
-    "identity": {
-        "type": "email",
-        "value": "user@virgilsecurity.com",
-        "validation_token": "0KTUlHYk1CUUdCeXFHU000OUFnRUdDU3NrQXdNQ0NBRUJEUU9CZ2dBRUNhV3k5VVVVMDFWcjdQLzExWHpubk0vRAowTi9KODhnY0dMV3pYMGFLaGcxSjdib3B6RGV4b0QwaVl3alF"
-    }
-}
-```
+.. code::
+
+ {
+     "identity": {
+         "type": "email",
+         "value": "user@virgilsecurity.com",
+         "validation_token": "0KTUlHYk1CUUdCeXFHU000OUFnRUdDU3NrQXdNQ0NBRUJEUU9CZ2dBRUNhV3k5VVVVMDFWcjdQLzExWHpubk0vRAowTi9KODhnY0dMV3pYMGFLaGcxSjdib3B6RGV4b0QwaVl3alF"
+     }
+ }
 
 **Response body**
 
-```json
-[]
-```
+.. code:: json
+
+ []
+
 =============
 Appendix A. Response codes
 =============
 
 **HTTP error codes**
 Application uses standard HTTP response codes:
-```
-200 - Success
-400 - Request error
-401 - Authentication error
-404 - Entity not found
-405 - Method not allowed
-500 - Server error
-```
+
+.. code::
+
+ 200 - Success
+ 400 - Request error
+ 401 - Authentication error
+ 404 - Entity not found
+ 405 - Method not allowed
+ 500 - Server error
 
 Additional information about the error is returned as JSON-object like:
-```
-{
-    "code": "{error-code}"
-}
-```
+
+.. code::
+
+ {
+     "code": "{error-code}"
+ }
 
 **HTTP 500. Server error** status is returned on internal application errors
-```
-10000 - Internal application error
-```
+
+.. code::
+
+ 10000 - Internal application error
 
 **HTTP 401. Auth error** status is returned on authorization errors
-```
-20100 - The request ID header was used already
-20101 - The request ID header is invalid
-20200 - The request sing header not found
-20201 - The Virgil Card ID header not specified or incorrect
-20202 - The request sign header is invalid
-20203 - Public Key value is required in request body
-20204 - Public Key value in request body must be base64 encoded value
-20205 - Public Key IDs in URL part and public key for the Virgil Card retrieved from X-VIRGIL-REQUEST-SIGN-VIRGIL-CARD-ID header must match
-20206 - The public key id in the request body is invalid
-20208 - Virgil card ids in url and authentication header must match
-20300 - The Virgil application token was not specified or invalid
-20301 - The Virgil statistics application error
-```
+
+.. code::
+
+ 20100 - The request ID header was used already
+ 20101 - The request ID header is invalid
+ 20200 - The request sing header not found
+ 20201 - The Virgil Card ID header not specified or incorrect
+ 20202 - The request sign header is invalid
+ 20203 - Public Key value is required in request body
+ 20204 - Public Key value in request body must be base64 encoded value
+ 20205 - Public Key IDs in URL part and public key for the Virgil Card retrieved from X-VIRGIL-REQUEST-SIGN-VIRGIL-CARD-ID header must match
+ 20206 - The public key id in the request body is invalid
+ 20208 - Virgil card ids in url and authentication header must match
+ 20300 - The Virgil application token was not specified or invalid
+ 20301 - The Virgil statistics application error
 
 **HTTP 400. Request error** status is returned on request data validation errors
-```
-30000 - JSON specified as a request body is invalid
-30100 - Public Key ID is invalid
-30101 - Public key length invalid
-30102 - Public key must be base64-encoded string
-30202 - Email value specified for the email identity is invalid
-30204 - Application value specified for the application identity is invalid
-30205 - Custom identity validation failed
-30303 - Virgil Card's data parameters must be strings
-30304 - Virgil Card's data parameter must be a dictionary of strings
-30305 - Virgil Card custom data entry value length validation failed
-31000 - Value search parameter is mandatory
-31010 - Search value parameter is mandatory for the global search
-31030 - Identity validation token is invalid
-31040 - Virgil Card revocation parameters do not match Virgil Card's identity
-31050 - Virgil Identity service error
-31051 - Custom identity's validation token is incorrect
-31052 - Custom identity's unique id was used alreaady
-31053 - Custom identity's validation token is malformed
-31060 - Identities parameter is invalid
-31070 - Identity validation failed
-```
+
+.. code::
+
+ 30000 - JSON specified as a request body is invalid
+ 30100 - Public Key ID is invalid
+ 30101 - Public key length invalid
+ 30102 - Public key must be base64-encoded string
+ 30202 - Email value specified for the email identity is invalid
+ 30204 - Application value specified for the application identity is invalid
+ 30205 - Custom identity validation failed
+ 30303 - Virgil Card's data parameters must be strings
+ 30304 - Virgil Card's data parameter must be a dictionary of strings
+ 30305 - Virgil Card custom data entry value length validation failed
+ 31000 - Value search parameter is mandatory
+ 31010 - Search value parameter is mandatory for the global search
+ 31030 - Identity validation token is invalid
+ 31040 - Virgil Card revocation parameters do not match Virgil Card's identity
+ 31050 - Virgil Identity service error
+ 31051 - Custom identity's validation token is incorrect
+ 31052 - Custom identity's unique id was used alreaady
+ 31053 - Custom identity's validation token is malformed
+ 31060 - Identities parameter is invalid
+ 31070 - Identity validation failed
+
 =============
 Appendix B. Authentication
 =============
@@ -645,13 +654,13 @@ In order to authenticate a user the API expects a valid set of HTTP headers:
 ``X-VIRGIL-REQUEST-ID``, ``X-VIRGIL-REQUEST-SIGN`` and ``X-VIRGIL-REQUEST-SIGN-VIRGIL-CARD-ID``. These headers
 must be set on each request to endpoints with authorization marked as **REQUIRED**:
 
-```
-POST /v3/virgil-card/{virgil-card-id}/actions/unsign
-Host: keys.virgilsecurity.com
-X-VIRGIL-REQUEST-ID: 6cfe1068-4fbc-4921-942b-c92ce0805334
-X-VIRGIL-REQUEST-SIGN-VIRGIL-CARD-ID: 3a768eea-cbda-4926-a82d-831cb89092aa 
-X-VIRGIL-REQUEST-SIGN: MIG5DAZTSEEyNTYEgYgwgYUCQQCJLqIZilQM6MT+UpBbrMkuvIW5Nj0hRwu5kH1PjocYhlBffillHnC/rw+BMsU0qiV0ZXRKKwrMRhbgVoUdVygkAkBm2QCQf88honRdxp5+Vr5HE7XbqAlUYuYlMmSHSsdXtF4M3Q7/oFgwJRxr0Yb4XFllZbm5Qf57YlGJ41KXXt7xDCRmYzAxM2ZmZS0yYjViLTRjMDQtZmQzNC1jMTM5ZThkY2Y3Yjg=
-```
+.. code::
+
+ POST /v3/virgil-card/{virgil-card-id}/actions/unsign
+ Host: keys.virgilsecurity.com
+ X-VIRGIL-REQUEST-ID: 6cfe1068-4fbc-4921-942b-c92ce0805334
+ X-VIRGIL-REQUEST-SIGN-VIRGIL-CARD-ID: 3a768eea-cbda-4926-a82d-831cb89092aa 
+ X-VIRGIL-REQUEST-SIGN: MIG5DAZTSEEyNTYEgYgwgYUCQQCJLqIZilQM6MT+UpBbrMkuvIW5Nj0hRwu5kH1PjocYhlBffillHnC/rw+BMsU0qiV0ZXRKKwrMRhbgVoUdVygkAkBm2QCQf88honRdxp5+Vr5HE7XbqAlUYuYlMmSHSsdXtF4M3Q7/oFgwJRxr0Yb4XFllZbm5Qf57YlGJ41KXXt7xDCRmYzAxM2ZmZS0yYjViLTRjMDQtZmQzNC1jMTM5ZThkY2Y3Yjg=
 
 A request uniqueness header along with a request body gets signed on the client side using user’s private key and this
 digest will be used as a ``X-VIRGIL-REQUEST-SIGN`` header. In order to verify the data fingerprint, additional header
@@ -663,18 +672,20 @@ Client Authentication calculation
 
 The **X-VIRGIL-REQUEST-SIGN** hash is calculated on client side according to these rules:
 
-```
-REQUEST_TEXT = X-VIRGIL-REQUEST-ID + REQUEST_BODY_TEXT
-SIGN = VirgilSigner::sign(REQUEST_TEXT, PRIVATE_KEY, PRIVATE_KEY_PWD)
-SIGNED-DIGEST = base64_encode(SIGN->toAsn1())
-```
+.. code::
+
+ REQUEST_TEXT = X-VIRGIL-REQUEST-ID + REQUEST_BODY_TEXT
+ SIGN = VirgilSigner::sign(REQUEST_TEXT, PRIVATE_KEY, PRIVATE_KEY_PWD)
+ SIGNED-DIGEST = base64_encode(SIGN->toAsn1())
 
 * **REQUEST_TEXT** - the concatenation of the REQUEST_BODY_TEXT and X-VIRGIL-REQUEST-ID header
 * **REQUEST_BODY_TEXT** - the text representation of the request body to be sent to API
 * **VirgilSigner::sign** - Virgil Seсurity Library method to sign the data
 * **PRIVATE_KEY**, **PRIVATE_KEY_PWD** - private key / password pair for the user's certificate
 
-## Authentication hash cardinality
+Authentication hash cardinality
+=============
+
 In order to provide good authentication headers cardinality and to prevent cases when the authorization headers for the
 resource become static, we need to add a special header that holds the request ID. This header's value must be a
 ``uuid`` value and passed as **X-VIRGIL-REQUEST-ID** header.
@@ -688,9 +699,10 @@ Appendix C. Access token
 The access token header **X-VIRGIL-ACCESS-TOKEN** is mandatory for each API call. The access token can be retrieved for
 each application on https://virgilsecurity.com/account/signup.
 
-```
-X-VIRGIL-ACCESS-TOKEN: { YOUR_APPLICATION_TOKEN }
-```
+.. code::
+
+ X-VIRGIL-ACCESS-TOKEN: { YOUR_APPLICATION_TOKEN }
+
 =============
 Appendix D. Response sign
 =============
@@ -700,8 +712,8 @@ Every service response contains two additional headers:
 - ``X-VIRGIL-RESPONSE-ID`` - an ID that is randomly generated for every response
 - ``X-VIRGIL-RESPONSE-SIGN`` - a signature of the response that is calculated as shown below and can be used to make sure that the response comes from a valid ``Virgil Keys`` instance
 
-```
-RESPONSE_TEXT = X-VIRGIL-RESPONSE-ID + RESPONSE_BODY_TEXT
-SIGN = VirgilSigner::sign(RESPONSE_TEXT, PRIVATE_KEY)
-X-VIRGIL-RESPONSE-SIGN = base64_encode(SIGN)
-```
+.. code::
+
+ RESPONSE_TEXT = X-VIRGIL-RESPONSE-ID + RESPONSE_BODY_TEXT
+ SIGN = VirgilSigner::sign(RESPONSE_TEXT, PRIVATE_KEY)
+ X-VIRGIL-RESPONSE-SIGN = base64_encode(SIGN)
