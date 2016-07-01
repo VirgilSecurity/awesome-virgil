@@ -4,8 +4,6 @@ Virgil Security. Key Management and Cryptography for Developers
 
 .. image:: Images/VirgilLogo.png
 
-`Developers Docs`_ | `Virgil Services`_ | `Use cases`_  | `Virgil Demos`_
-
 
 Virgil is a stack of security libraries (ECIES with Crypto Agility wrapped in Virgil Cryptogram) and all the necessary infrastructure to enable seamless, end-to-end encryption for any application, platform or device. See below for currently available languages and platforms. Get in touch with us to get preview access to our key infrastructure.
 
@@ -22,25 +20,10 @@ Developers Docs
    keys-sdk
    crypto-library
    use-cases
+   private-keys-service
+   keys-service
+   identity-service
 
-Virgil Services
----------------------
-
-* `Private Keys Service <https://github.com/VirgilSecurity/virgil/wiki/Virgil-Private-Keys-API>`_
-* `Public Keys Service <https://github.com/VirgilSecurity/virgil/wiki/Virgil-Keys-API>`_
-* `Identity Service <https://github.com/VirgilSecurity/virgil/wiki/Identity-Service>`_
-
-Use cases
----------------------
-
-.. toctree::
-   :maxdepth: 1
-   
-   passwordless-authentication
-   data-verification
-   secure-data-at-rest
-   ip-messaging
-   secure-data-at-storage
 
 Virgil Demos
 -------------------
