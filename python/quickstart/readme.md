@@ -194,7 +194,7 @@ def verify_then_decrypt_message(chat_message_model, card_id, private_key, privat
 
 ## Source code
 
-* [Use Case Example](https://github.com/VirgilSecurity/virgil-sdk-python/tree/master/Examples/IPMessaging)
+* [Use Case Example](https://github.com/VirgilSecurity/virgil-sdk-python/tree/master/Examples/VirgilIPChat)
 * [IP-Messaging Simple Server](https://github.com/VirgilSecurity/virgil-sdk-javascript/tree/master/examples/ip-messaging/server)
 
 > Note: Run scripts as root. 
