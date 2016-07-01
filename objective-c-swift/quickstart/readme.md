@@ -10,6 +10,7 @@
     - [Step 3. Send a Message](#step-3-send-a-message)
     - [Step 4. Receive a Message](#step-4-receive-a-message)
     - [Step 5. Verify and Decrypt](#step-5-verify-and-decrypt)
+- [Source code](#source-code)
 
 ## Introduction
 
@@ -449,7 +450,7 @@ if let plainData = self.ipmSecurity.decryptData(secureMessage.message),
 //...
 ```
 
-## Source Code
+## Source code
 
 * [Use Case Example, Objective C](https://github.com/VirgilSecurity/virgil-sdk-x/tree/v3/Docs/IPMExample-objc)
 * [Use Case Example, Swift](https://github.com/VirgilSecurity/virgil-sdk-x/tree/v3/Docs/IPMExample-swift)
