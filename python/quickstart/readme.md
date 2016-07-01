@@ -76,6 +76,16 @@ USER_PRIVATE_KEY_PASSWORD = 'MY_PASSWORD'
 
 > **USER_PRIVATE_KEY_PASSWORD** - is a password of sender's private key.
 
+Initialize global variables:
+```python
+virgil_hub = virgilhub.VirgilHub(VIRGIL_ACCESS_TOKEN,
+                                 VIRGIL_IDENTITY_SERVER_URL,
+                                 VIRGIL_KEYS_SERVICE_URL,
+                                 VIRGIL_PRIVATE_KEY_SERVICE_URL)
+
+chat_channel = Chat(CHAT_API_URL, 'DEMO', user_pass['identity'])
+```
+
 ## Step 1. Generate and Publish the Keys
 First a simple IP messaging chat is generating the keys and publishing them to the Public Keys Service where they are available in an open access for other users (e.g. recipient) to verify and encrypt the data for the key owner.
 
