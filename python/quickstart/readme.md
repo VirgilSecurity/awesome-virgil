@@ -5,10 +5,10 @@
 - [Use case](#use-case)
     - [Step 0. Initialization](#step-0-initialization) 
     - [Step 1. Generate and Publish the Keys](#step-1-generate-and-publish-the-keys)
-    - [Step 2. Sign, then Decrypt](#step-2-sign-then-decrypt)
+    - [Step 2. Sign then Encrypt](#step-2-sign-then-encrypt)
     - [Step 3. Send a Message](#step-3-send-a-message)
     - [Step 4. Receive a Message](#step-4-receive-a-message)
-    - [Step 5. Decrypt, then Verify](#step-5-decrypt-then-verify)
+    - [Step 5. Decrypt then Verify](#step-5-decrypt-then-verify)
 - [Source code](#source-code)
 
 ## Introduction
@@ -110,7 +110,7 @@ user_card = virgil_hub.virgilcard.create_card('email',
                                               user_key_pair['public_key'])
 ```
 
-## Step 2. Sign, then Decrypt
+## Step 2. Sign then Encrypt
 The app is searching for all channel members' public keys on the Keys Service to encrypt a message for them. The app is signing the encrypted message with sender’s private key so that the recipient can make sure the message had been sent by the declared sender.
 
 ```python
@@ -156,7 +156,7 @@ In order to decrypt and verify the received data, the app on recipient’s side 
 messages = chat_channel.get_messages(None)
 ```
 
-## Step 5. Decrypt, then Verify
+## Step 5. Decrypt then Verify
 The application is making sure the message came from the declared sender by getting his card on Virgil Public Keys Service. In case of success, the message is decrypted using the recipient's private key.
 
 ```python
