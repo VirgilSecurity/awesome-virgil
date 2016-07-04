@@ -40,7 +40,7 @@ python setup.py install
 or you can use pip to download and install package automatically:
 
 ```
-pip install virgil_sdk
+python -m pip install virgil_sdk
 ```
 
 You can easily add an SDK dependency to your project, just add the following code:
