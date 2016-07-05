@@ -41,7 +41,7 @@ You can easily add SDK dependency to your project, just follow the examples belo
   <dependency>
     <groupId>com.virgilsecurity.sdk</groupId>
     <artifactId>client</artifactId>
-    <version>3.2.0</version>
+    <version>3.2.2</version>
   </dependency>
 </dependencies>
 ```
@@ -49,7 +49,7 @@ You can easily add SDK dependency to your project, just follow the examples belo
 ###Gradle
 
 ```
-compile 'com.virgilsecurity.sdk:android:3.2.0@aar'
+compile 'com.virgilsecurity.sdk:android:3.2.2@aar'
 compile 'com.squareup.retrofit2:retrofit:2.0.0'
 compile 'com.squareup.retrofit2:converter-gson:2.0.0'
 ```
@@ -95,7 +95,7 @@ VirgilCardTemplate.Builder vcBuilder = new VirgilCardTemplate.Builder()
     .setIdentity(identity)
     .setPublicKey(keyPair.getPublic());
 VirgilCard card = factory.getPublicKeyClient()
-.createCard(vcBuilder.build(), keyPair.getPrivate());
+    .createCard(vcBuilder.build(), keyPair.getPrivate());
 ```
 
 ### Step 2. Encrypt and Sign
@@ -103,21 +103,22 @@ The app is searching for all channel members' public keys on the Keys Service to
 
 ```java
 String message = "Encrypt me, Please!!!";
+String recipientIdentity = "recipient-test@virgilsecurity.com";
 
 Builder criteriaBuilder = new Builder()
-.setValue("recipient-test@virgilsecurity.com");
+    .setValue(recipientIdentity);
 List<VirgilCard> recipientCards = factory.getPublicKeyClient()
-.search(criteriaBuilder.build());
+    .search(criteriaBuilder.build());
 
 Map<String, PublicKey> recipients = new HashMap<>();
 for (VirgilCard recipientCard : recipientCards) {
     recipients.put(recipientCard.getId(), 
-    new PublicKey(recipientCard.getPublicKey().getKey()));
+    new PublicKey(ConversionUtils.fromBase64String(recipientCard.getPublicKey().getKey())));
 }
 
 String encryptedMessage = CryptoHelper.encrypt(message, recipients);
 String signature = CryptoHelper
-.sign(encryptedMessage, keyPair.getPrivate());
+    .sign(encryptedMessage, keyPair.getPrivate());
 ```
 
 ### Step 3. Send a Message
@@ -143,18 +144,18 @@ PrivateKey recipientPrivateKey = new PrivateKey("{RECIPIENT_KEY}");
 
 String encryptedContent = encryptedBody.get("Content").getAsString();
 String encryptedContentSignature = encryptedBody.get("Signature")
-.getAsString();
+    .getAsString();
 
 boolean isValid = CryptoHelper.verify(encryptedContent, 
     encryptedContentSignature,
-    new PublicKey(card.getPublicKey().getKey()));
+    new PublicKey(ConversionUtils.fromBase64String(card.getPublicKey().getKey())));
     
 if (!isValid) {
     throw new Exception("Signature is not valid.");
 }
 
 String originalMessage = CryptoHelper.decrypt(encryptedContent, 
-"{RECIPIENT_CARD_ID}", recipientPrivateKey);
+    "{RECIPIENT_CARD_ID}", recipientPrivateKey);
 ```
 
 ## Source Code
