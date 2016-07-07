@@ -149,9 +149,10 @@ The same actions are performed for Bob.
 Generate Keys
 --------------------
 
-.. sidebar:: Used commands
+.. seealso::
 
   - `keygen <https://github.com/VirgilSecurity/virgil-cli/wiki/virgil-keygen.1>`_
+  - `key2pub <https://github.com/VirgilSecurity/virgil-cli/wiki/virgil-key2pub.1>`_
 
 1.  A :term:`private key <Private Key>` is generated in the Private Keys Service with a default Elliptic 384-bits NIST Curve scheme.
 You will be asked to enter the :term:`private key password <Private key password>`:
@@ -159,10 +160,6 @@ You will be asked to enter the :term:`private key password <Private key password
 .. code:: 
 
   virgil keygen -o alice/private.key
-
-.. sidebar:: Used commands
-
-  - `key2pub <https://github.com/VirgilSecurity/virgil-cli/wiki/virgil-key2pub.1>`_
 
 2.  A :term:`public key <Public Key>` is generated in the Keys Service using the private key.
 
@@ -173,7 +170,7 @@ You will be asked to enter the :term:`private key password <Private key password
 Create a Global Virgil Card
 --------------------
 
-.. sidebar:: Used commands
+.. seealso::
 
   - `card-create-global <https://github.com/VirgilSecurity/virgil-cli/wiki/virgil-card-create-global.1>`_
 
@@ -189,7 +186,7 @@ A Virgil Card is the main entity of the Keys Service, it includes the informatio
 Encrypt Data
 --------------
 
-.. sidebar:: Used commands
+.. seealso::
 
   - `encrypt <https://github.com/VirgilSecurity/virgil-cli/wiki/virgil-encrypt.1>`_
 
@@ -204,7 +201,7 @@ Encrypt Data
 Decrypt Data
 ----------
 
-.. sidebar:: Used commands
+.. seealso::
 
   - `decrypt <https://github.com/VirgilSecurity/virgil-cli/wiki/virgil-decrypt.1>`_
 
@@ -218,7 +215,7 @@ Decrypt Data
 Sign Data
 ----------
 
-.. sidebar:: Used commands
+.. seealso::
 
   - `sign <https://github.com/VirgilSecurity/virgil-cli/wiki/virgil-sign.1>`_
 
@@ -232,7 +229,7 @@ Sign Data
 Verify Data
 ----------
 
-.. sidebar:: Used commands
+.. seealso::
 
   - `verify <https://github.com/VirgilSecurity/virgil-cli/wiki/virgil-verify.1>`_
 
@@ -255,7 +252,7 @@ Example: Virgil CLI without committing to services
 Encrypt Data
 ----------
 
-.. sidebar:: Used commands
+.. seealso::
 
   - `encrypt <https://github.com/VirgilSecurity/virgil-cli/wiki/virgil-encrypt.1>`_
 
@@ -271,7 +268,7 @@ Encrypt Data
 Decrypt Data
 ----------
 
-.. sidebar:: Used commands
+.. seealso::
 
   - `decrypt <https://github.com/VirgilSecurity/virgil-cli/wiki/virgil-decrypt.1>`_
 
@@ -285,7 +282,7 @@ Decrypt Data
 Sign Data
 ----------
 
-.. sidebar:: Used commands
+.. seealso::
 
   - `sign <https://github.com/VirgilSecurity/virgil-cli/wiki/virgil-sign.1>`_
 
@@ -299,7 +296,7 @@ Sign Data
 Verify Data
 ----------
 
-.. sidebar:: Used commands
+.. seealso::
 
   - `verify <https://github.com/VirgilSecurity/virgil-cli/wiki/virgil-verify.1>`_
 
