@@ -32,7 +32,16 @@ Unix toolchain
   - ``g++`` (version >= 4.8.5), or
   - ``clang++`` (version >= 3.5)
 
-*   `CMake <http://www.cmake.org/>`_ (accessible in command prompt). Minimum version: 3.2.
+*   `CMake <http://www.cmake.org/>`_ (accessible in command prompt). Minimum version: 3.2:
+
+    **For Ubuntu**: `see this link <http://askubuntu.com/questions/610291/how-to-install-cmake-3-2-on-ubuntu-14-04>`_
+    
+    **For Mac OS X** (make sure you have `Homebrew <http://brew.sh/>`_ installed):
+      
+      .. code:: 
+      
+        brew install cmake
+
 *   `Git <http://git-scm.com/>`_ (accessible in command prompt).
 *   `libcurl-devel + SSL <https://curl.haxx.se/download.html>`_:
 
@@ -169,11 +178,13 @@ Create a Global Virgil Card
 --------------------
 
 A Virgil Card is the main entity of the Keys Service, it includes the information about the user and his public key. The Virgil Card identifies the user by one of his available types, such as an email, a phone number, etc.
-:term:`Global Card <Global Virgil Card>` is created with the validation token received after verification in Virgil Identity Service.
+:term:`Global Card <Global Virgil Card>` is automatically verified in Virgil Identity Service, it is globally available to all Virgil users.
 
 .. code:: 
 
-  virgil card-create-global -d alice@domain.com --public-key alice/public.key -k alice/private.key -o alice/alice.vcard
+  virgil card-create-global --public-key alice/public.key -k alice/private.key -o alice/alice.vcard -d alice@domain.com 
+  
+.. note:: ``alice@domain.com`` - is your email
 
 Encrypt Data
 --------------
@@ -214,9 +225,10 @@ Verify Data
 
 .. code:: 
 
-  mkdir alice-domain
-  virgil card-search-global -e alice@domain.com -o alice-domain/
-  virgil verify -i plain.txt -s plain.txt.sign -r vcard:alice-domain/alice.vcard
+  virgil card-search-global -o bob/ -e alice@domain.com
+  virgil verify -i plain.txt -s plain.txt.sign -r vcard:bob/alice.vcard
+  
+.. note:: Pay attention that ``alice.vcard`` is a shortened example of a Virgil Card name.
 
 ============
 Example: Virgil CLI without committing to services
