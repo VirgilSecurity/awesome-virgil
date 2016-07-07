@@ -1,0 +1,274 @@
+#########
+Virgil Security CLI
+#########
+
+- `Description`_
+- `Build: Unix`_
+
+  - `Unix toolchain`_
+  - `Unix build steps`_
+  
+- `Build: Windows MSVC`_
+
+  - `Windows MSVC toolchain`_
+  - `Windows MSVC build steps`_
+  
+- `Using Virgil CLI with committing to services`_
+
+  - `Generate Keys`_
+  - `Create a Global Virgil Card`_
+  - `Encrypt Data`_
+  - `Decrypt Data`_
+  - `Sign Data`_
+  - `Verify Data`_
+  
+- `Using virgil-cli without committing to services`_
+
+  - `Encrypt Data`_
+  - `Decrypt Data`_
+  - `Sign Data`_
+  - `Verify Data`_
+
+============
+Description
+============
+
+The **Virgil Security CLI** program is a command line tool for using Virgil Security stack functionality:
+
+-   encrypt, decrypt, sign and verify data;
+-   interact with Virgil Keys Service;
+-   interact with Virgil Private Keys Service.
+
+============
+Build Unix
+============
+
+Unix toolchain
+-----------------
+
+* Compiler:
+
+  - ``g++`` (version >= 4.8.5), or
+  - ``clang++`` (version >= 3.5)
+
+*   `CMake <http://www.cmake.org/>`_ (accessible in command prompt). Minimum version: 3.2.
+*   `Git <http://git-scm.com/>`_ (accessible in command prompt).
+*   `libcurl-devel + SSL <https://curl.haxx.se/download.html>`_
+ - For Ubuntu (package libcurl4-openssl-dev):
+
+.. code:: 
+
+  apt-get -y install git libcurl4-openssl-dev
+
+  - For Mac OS X:
+
+.. code:: 
+  brew install curl --with-openssl
+
+Unix build steps
+--------------------
+
+1.   Open terminal.
+
+1.   Clone project.
+
+.. code:: 
+
+  git clone https://github.com/VirgilSecurity/virgil-cli.git
+
+1.   Go to the project's folder.
+
+.. code:: 
+
+  cd virgil-cli
+
+1.   Create folder for the build purposes and go to it.
+
+.. code:: 
+
+  mkdir build && cd build
+
+1.   Configure, build and install.
+
+.. code:: 
+
+  cmake .. && make -j4 && make install
+
+1.   Check installation.
+
+.. code::
+
+  virgil --version
+
+============
+Build Windows MSVC
+============
+
+Windows MSVC toolchain
+--------------------
+
+*   `Visual Studio 2015 <https://www.visualstudio.com/>`_
+*   `CMake <http://www.cmake.org/>`_ (accessible in command prompt). Minimum version: 3.2.
+*   `Git <http://git-scm.com/>` (accessible in command prompt).
+*   `NSIS <http://nsis.sourceforge.net/>`_.
+
+Windows MSVC build steps
+--------------------
+
+1.   Open `Visual Studio Command Prompt`.
+
+1.   Clone project.
+
+.. code:: 
+
+  git clone https://github.com/VirgilSecurity/virgil-cli.git
+
+1.   Go to the project's folder.
+
+.. code:: 
+
+  cd virgil-cli
+
+1.   Create folder for the build purposes and go to it.
+
+.. code:: 
+
+  mkdir build
+  cd build
+
+1.   Configure, build and make installer.
+
+.. code:: 
+  
+  cmake -G"NMake Makefiles" -DCMAKE_BUILD_TYPE=Release ..
+  nmake
+  nmake package
+
+1.   Check installer under `build` directory.
+
+.. code:: 
+
+  dir /B | findstr /R /C:"virgil-cli-*"
+
+============
+Using Virgil CLI with committing to services
+============
+
+Let's create two users Alice and Bob and demonstrate the communication between them.
+
+.. code:: 
+
+  mkdir alice
+  mkdir bob
+
+Scenario for Alice is shown below, particularly `Generate Keys`_ and `Create a Global Virgil Card`_.
+The same actions are performed for Bob.
+
+Generate Keys
+--------------------
+
+1.  A :term:`private key <Private Key>` is generated in the Private Keys Service with a default Elliptic 384-bits NIST Curve scheme.
+You will be asked to enter the :term:`private key password <Private key password>`:
+
+.. code:: 
+
+  virgil keygen -o alice/private.key
+
+1.  A :term:`public key <Public Key>` is generated in the Keys Service using the private key.
+
+.. code:: 
+
+  virgil key2pub -i alice/private.key -o alice/public.key
+
+
+Create a Global Virgil Card
+--------------------
+
+A Virgil Card is the main entity of the Keys Service, it includes the information about the user and his public key. The Virgil Card identifies the user by one of his available types, such as an email, a phone number, etc.
+:term:`Global Card <Global Virgil Card>` is created with the validation token received after verification in Virgil Identity Service.
+
+.. code:: 
+
+  virgil card-create-global -d alice@domain.com --public-key alice/public.key -k alice/private.key -o alice/alice.vcard
+
+Encrypt Data
+--------------------
+
+- Bob encrypts *plain.txt* for Alice.
+- Bob needs Alice's Global Card to encrypt some data for her.
+- He can get it from the Keys Service by indicating Alice's email.
+
+.. code:: 
+
+  virgil encrypt -i plain.txt -o plain.txt.enc email:alice@domain.com
+
+Decrypt Data
+--------------------
+
+- Alice decrypts *plain.txt.enc*.
+- Alice uses her private key and her Card.
+
+.. code:: 
+
+  virgil decrypt -i plain.txt.enc -k alice/private.key -r vcard:alice/alice.vcard
+
+Sign Data
+--------------------
+
+- Alice signs *plain.txt* before passing it to Bob.
+- Alice's private key is used to create a signature.
+
+.. code:: 
+
+  virgil sign -i plain.txt -o plain.txt.sign -k alice/private.key
+
+Verify Data
+--------------------
+
+- Bob verifies *plain.txt.sign*.
+- He must have Alice's Virgil Card to verify the signature.
+
+.. code:: 
+
+  mkdir alice-domain
+  virgil card-search-global -e alice@domain.com -o alice-domain/
+  virgil verify -i plain.txt -s plain.txt.sign -r vcard:alice-domain/alice.vcard
+
+============
+Using virgil-cli without committing to services
+============
+
+Encrypt Data
+--------------------
+
+- Alice encrypts *plain.txt* for Bob.
+- Alice needs Bob's public key and his identifier to encrypt some data for him.
+- `pubkey` is an argument, which contains sender's public key and recipient's identifier.
+- Recipient's identifier is a plain text, which is needed for the Public key association.
+
+.. code:: 
+        virgil encrypt -i plain.txt -o plain.txt.enc pubkey:bob/public.key:ForBob
+
+Decrypt Data
+--------------------
+
+- Bob decrypts *plain.txt.enc*.
+- Bob uses his private key and the identifier, which has been provided by Alice.
+
+        virgil decrypt -i plain.txt.enc -k bob/private.key -r id:ForBob
+
+Sign Data
+--------------------
+
+- Alice signs *plain.txt* before passing it to Bob.
+- Alice's private key is used to create a signature.
+
+        virgil sign -i plain.txt -o plain.txt.sign -k alice/private.key
+
+Verify Data
+--------------------
+
+- Bob verifies *plain.txt.sign*.
+- He need's Alice's public key to verify the signature.
+
+        virgil verify -i plain.txt -s plain.txt.sign -r pubkey:alice/public.key
