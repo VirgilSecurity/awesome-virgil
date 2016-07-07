@@ -152,7 +152,6 @@ Generate Keys
 .. sidebar:: Used commands
 
   - `keygen <https://github.com/VirgilSecurity/virgil-cli/wiki/virgil-keygen.1>`_
-  - `key2pub <https://github.com/VirgilSecurity/virgil-cli/wiki/virgil-key2pub.1>`_
 
 1.  A :term:`private key <Private Key>` is generated in the Private Keys Service with a default Elliptic 384-bits NIST Curve scheme.
 You will be asked to enter the :term:`private key password <Private key password>`:
@@ -160,6 +159,10 @@ You will be asked to enter the :term:`private key password <Private key password
 .. code:: 
 
   virgil keygen -o alice/private.key
+
+.. sidebar:: Used commands
+
+  - `key2pub <https://github.com/VirgilSecurity/virgil-cli/wiki/virgil-key2pub.1>`_
 
 2.  A :term:`public key <Public Key>` is generated in the Keys Service using the private key.
 
@@ -169,6 +172,10 @@ You will be asked to enter the :term:`private key password <Private key password
 
 Create a Global Virgil Card
 --------------------
+
+.. sidebar:: Used commands
+
+  - `card-create-global <https://github.com/VirgilSecurity/virgil-cli/wiki/virgil-card-create-global.1>`_
 
 A Virgil Card is the main entity of the Keys Service, it includes the information about the user and his public key. The Virgil Card identifies the user by one of his available types, such as an email, a phone number, etc.
 :term:`Global Card <Global Virgil Card>` is automatically verified in Virgil Identity Service, it is globally available to all Virgil users.
@@ -182,6 +189,10 @@ A Virgil Card is the main entity of the Keys Service, it includes the informatio
 Encrypt Data
 --------------
 
+.. sidebar:: Used commands
+
+  - `encrypt <https://github.com/VirgilSecurity/virgil-cli/wiki/virgil-encrypt.1>`_
+
 - Bob encrypts *plain.txt* for Alice.
 - Bob needs Alice's Global Card to encrypt some data for her.
 - He can get it from the Keys Service by indicating Alice's email.
@@ -193,6 +204,10 @@ Encrypt Data
 Decrypt Data
 ----------
 
+.. sidebar:: Used commands
+
+  - `decrypt <https://github.com/VirgilSecurity/virgil-cli/wiki/virgil-decrypt.1>`_
+
 - Alice decrypts *plain.txt.enc*.
 - Alice uses her private key and her Card.
 
@@ -203,6 +218,10 @@ Decrypt Data
 Sign Data
 ----------
 
+.. sidebar:: Used commands
+
+  - `sign <https://github.com/VirgilSecurity/virgil-cli/wiki/virgil-sign.1>`_
+
 - Alice signs *plain.txt* before passing it to Bob.
 - Alice's private key is used to create a signature.
 
@@ -212,6 +231,10 @@ Sign Data
 
 Verify Data
 ----------
+
+.. sidebar:: Used commands
+
+  - `verify <https://github.com/VirgilSecurity/virgil-cli/wiki/virgil-verify.1>`_
 
 - Bob verifies *plain.txt.sign*.
 - He must have Alice's Virgil Card to verify the signature.
@@ -232,6 +255,10 @@ Example: Virgil CLI without committing to services
 Encrypt Data
 ----------
 
+.. sidebar:: Used commands
+
+  - `encrypt <https://github.com/VirgilSecurity/virgil-cli/wiki/virgil-encrypt.1>`_
+
 - Alice encrypts *plain.txt* for Bob.
 - Alice needs Bob's public key and his identifier to encrypt some data for him.
 - `pubkey` is an argument, which contains sender's public key and recipient's identifier.
@@ -244,6 +271,10 @@ Encrypt Data
 Decrypt Data
 ----------
 
+.. sidebar:: Used commands
+
+  - `decrypt <https://github.com/VirgilSecurity/virgil-cli/wiki/virgil-decrypt.1>`_
+
 - Bob decrypts *plain.txt.enc*.
 - Bob uses his private key and the identifier, which has been provided by Alice.
 
@@ -254,6 +285,10 @@ Decrypt Data
 Sign Data
 ----------
 
+.. sidebar:: Used commands
+
+  - `sign <https://github.com/VirgilSecurity/virgil-cli/wiki/virgil-sign.1>`_
+
 - Alice signs *plain.txt* before passing it to Bob.
 - Alice's private key is used to create a signature.
 
@@ -263,6 +298,10 @@ Sign Data
 
 Verify Data
 ----------
+
+.. sidebar:: Used commands
+
+  - `verify <https://github.com/VirgilSecurity/virgil-cli/wiki/virgil-verify.1>`_
 
 - Bob verifies *plain.txt.sign*.
 - He need's Alice's public key to verify the signature.
