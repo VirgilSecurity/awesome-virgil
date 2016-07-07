@@ -13,7 +13,7 @@ Virgil Security CLI
   - `Windows MSVC toolchain`_
   - `Windows MSVC build steps`_
   
-- `Using Virgil CLI with committing to services`_
+- `Example: Virgil CLI with committing to services`_
 
   - `Generate Keys`_
   - `Create a Global Virgil Card`_
@@ -22,7 +22,7 @@ Virgil Security CLI
   - `Sign Data`_
   - `Verify Data`_
   
-- `Using virgil-cli without committing to services`_
+- `Example: Virgil CLI without committing to services`_
 
   - `Encrypt Data`_
   - `Decrypt Data`_
@@ -33,11 +33,13 @@ Virgil Security CLI
 Description
 ============
 
-The **Virgil Security CLI** program is a command line tool for using Virgil Security stack functionality:
+The **Virgil Security CLI** program is a command line tool for using `Virgil Security <https://virgilsecurity.com/>`_ stack functionality.
+
+**Features**:
 
 -   encrypt, decrypt, sign and verify data;
--   interact with Virgil Keys Service;
--   interact with Virgil Private Keys Service.
+-   interact with `Virgil Keys Service <http://virgil.readthedocs.io/en/latest/keys-service.html>`_;
+-   interact with `Virgil Private Keys Service <http://virgil.readthedocs.io/en/latest/private-keys-service.html>`_.
 
 ============
 Build Unix
@@ -54,15 +56,17 @@ Unix toolchain
 *   `CMake <http://www.cmake.org/>`_ (accessible in command prompt). Minimum version: 3.2.
 *   `Git <http://git-scm.com/>`_ (accessible in command prompt).
 *   `libcurl-devel + SSL <https://curl.haxx.se/download.html>`_
- - For Ubuntu (package libcurl4-openssl-dev):
+
+**For Ubuntu** (package libcurl4-openssl-dev):
 
 .. code:: 
 
   apt-get -y install git libcurl4-openssl-dev
 
-  - For Mac OS X:
+**For Mac OS X**:
 
 .. code:: 
+
   brew install curl --with-openssl
 
 Unix build steps
@@ -151,8 +155,10 @@ Windows MSVC build steps
   dir /B | findstr /R /C:"virgil-cli-*"
 
 ============
-Using Virgil CLI with committing to services
+Example: Virgil CLI with committing to services
 ============
+
+.. note:: Virgil provides all necessary services for managing and performing operations with your keys. We recommend using Virgil Services to store your keys.
 
 Let's create two users Alice and Bob and demonstrate the communication between them.
 
@@ -234,8 +240,10 @@ Verify Data
   virgil verify -i plain.txt -s plain.txt.sign -r vcard:alice-domain/alice.vcard
 
 ============
-Using virgil-cli without committing to services
+Example: Virgil CLI without committing to services
 ============
+
+.. note:: You can choose to take care of keeping your keys securely by yourself. This way you don't save your public key in Virgil Services and have to manage sharing it every time. 
 
 Encrypt Data
 ----------
