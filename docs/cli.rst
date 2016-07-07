@@ -4,30 +4,9 @@ Virgil Security CLI
 
 - `Description`_
 - `Build Unix`_
-
-  - `Unix toolchain`_
-  - `Unix build steps`_
-  
 - `Build Windows MSVC`_
-
-  - `Windows MSVC toolchain`_
-  - `Windows MSVC build steps`_
-  
 - `Example: Virgil CLI with committing to services`_
-
-  - `Generate Keys`_
-  - `Create a Global Virgil Card`_
-  - `Encrypt Data`_
-  - `Decrypt Data`_
-  - `Sign Data`_
-  - `Verify Data`_
-  
 - `Example: Virgil CLI without committing to services`_
-
-  - `Encrypt Data`_
-  - `Decrypt Data`_
-  - `Sign Data`_
-  - `Verify Data`_
 
 ============
 Description
