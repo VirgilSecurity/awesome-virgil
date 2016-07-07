@@ -18,7 +18,8 @@ The **Virgil Security CLI** program is a command line tool for using `Virgil Sec
 
 -   encrypt, decrypt, sign and verify data;
 -   interact with `Virgil Keys Service <http://virgil.readthedocs.io/en/latest/keys-service.html>`_;
--   interact with `Virgil Private Keys Service <http://virgil.readthedocs.io/en/latest/private-keys-service.html>`_.
+-   interact with `Virgil Private Keys Service <http://virgil.readthedocs.io/en/latest/private-keys-service.html>`_;
+-   interact with `Virgil Identity Service <http://virgil.readthedocs.io/en/latest/identity-service.html>`_.
 
 ============
 Build Unix
