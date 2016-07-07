@@ -49,13 +49,13 @@ Unix toolchain
     
     .. code:: 
     
-      apt-get -y install git libcurl4-openssl-dev
+        apt-get -y install git libcurl4-openssl-dev
     
     **For Mac OS X**:
     
     .. code:: 
     
-      brew install curl --with-openssl
+        brew install curl --with-openssl
 
 Unix build steps
 --------------------
@@ -85,12 +85,6 @@ Unix build steps
 .. code:: 
 
   cmake .. && make -j4 && make install
-
-6.   Check installation.
-
-.. code::
-
-  virgil --version
 
 ============
 Build Windows
@@ -136,12 +130,6 @@ Windows MSVC build steps
   nmake
   nmake package
 
-6.   Check installer under `build` directory.
-
-.. code:: 
-
-  dir /B | findstr /R /C:"virgil-cli-*"
-
 ============
 Example: Virgil CLI with committing to services
 ============
@@ -160,6 +148,11 @@ The same actions are performed for Bob.
 
 Generate Keys
 --------------------
+
+.. sidebar:: Used commands
+
+  - `keygen <https://github.com/VirgilSecurity/virgil-cli/wiki/virgil-keygen.1>`_
+  - `key2pub <https://github.com/VirgilSecurity/virgil-cli/wiki/virgil-key2pub.1>`_
 
 1.  A :term:`private key <Private Key>` is generated in the Private Keys Service with a default Elliptic 384-bits NIST Curve scheme.
 You will be asked to enter the :term:`private key password <Private key password>`:
