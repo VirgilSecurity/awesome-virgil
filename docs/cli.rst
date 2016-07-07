@@ -3,12 +3,12 @@ Virgil Security CLI
 #########
 
 - `Description`_
-- `Build: Unix`_
+- `Build Unix`_
 
   - `Unix toolchain`_
   - `Unix build steps`_
   
-- `Build: Windows MSVC`_
+- `Build Windows MSVC`_
 
   - `Windows MSVC toolchain`_
   - `Windows MSVC build steps`_
@@ -70,31 +70,31 @@ Unix build steps
 
 1.   Open terminal.
 
-1.   Clone project.
+2.   Clone project.
 
 .. code:: 
 
   git clone https://github.com/VirgilSecurity/virgil-cli.git
 
-1.   Go to the project's folder.
+3.   Go to the project's folder.
 
 .. code:: 
 
   cd virgil-cli
 
-1.   Create folder for the build purposes and go to it.
+4.   Create folder for the build purposes and go to it.
 
 .. code:: 
 
   mkdir build && cd build
 
-1.   Configure, build and install.
+5.   Configure, build and install.
 
 .. code:: 
 
   cmake .. && make -j4 && make install
 
-1.   Check installation.
+6.   Check installation.
 
 .. code::
 
@@ -117,26 +117,26 @@ Windows MSVC build steps
 
 1.   Open `Visual Studio Command Prompt`.
 
-1.   Clone project.
+2.   Clone project.
 
 .. code:: 
 
   git clone https://github.com/VirgilSecurity/virgil-cli.git
 
-1.   Go to the project's folder.
+3.   Go to the project's folder.
 
 .. code:: 
 
   cd virgil-cli
 
-1.   Create folder for the build purposes and go to it.
+4.   Create folder for the build purposes and go to it.
 
 .. code:: 
 
   mkdir build
   cd build
 
-1.   Configure, build and make installer.
+5.   Configure, build and make installer.
 
 .. code:: 
   
@@ -144,7 +144,7 @@ Windows MSVC build steps
   nmake
   nmake package
 
-1.   Check installer under `build` directory.
+6.   Check installer under `build` directory.
 
 .. code:: 
 
@@ -174,7 +174,7 @@ You will be asked to enter the :term:`private key password <Private key password
 
   virgil keygen -o alice/private.key
 
-1.  A :term:`public key <Public Key>` is generated in the Keys Service using the private key.
+2.  A :term:`public key <Public Key>` is generated in the Keys Service using the private key.
 
 .. code:: 
 
@@ -247,7 +247,8 @@ Encrypt Data
 - Recipient's identifier is a plain text, which is needed for the Public key association.
 
 .. code:: 
-        virgil encrypt -i plain.txt -o plain.txt.enc pubkey:bob/public.key:ForBob
+
+  virgil encrypt -i plain.txt -o plain.txt.enc pubkey:bob/public.key:ForBob
 
 Decrypt Data
 --------------------
@@ -255,7 +256,9 @@ Decrypt Data
 - Bob decrypts *plain.txt.enc*.
 - Bob uses his private key and the identifier, which has been provided by Alice.
 
-        virgil decrypt -i plain.txt.enc -k bob/private.key -r id:ForBob
+.. code:: 
+
+  virgil decrypt -i plain.txt.enc -k bob/private.key -r id:ForBob
 
 Sign Data
 --------------------
@@ -263,7 +266,9 @@ Sign Data
 - Alice signs *plain.txt* before passing it to Bob.
 - Alice's private key is used to create a signature.
 
-        virgil sign -i plain.txt -o plain.txt.sign -k alice/private.key
+.. code:: 
+
+  virgil sign -i plain.txt -o plain.txt.sign -k alice/private.key
 
 Verify Data
 --------------------
@@ -271,4 +276,6 @@ Verify Data
 - Bob verifies *plain.txt.sign*.
 - He need's Alice's public key to verify the signature.
 
-        virgil verify -i plain.txt -s plain.txt.sign -r pubkey:alice/public.key
+.. code:: 
+
+  virgil verify -i plain.txt -s plain.txt.sign -r pubkey:alice/public.key
