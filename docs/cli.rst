@@ -4,7 +4,7 @@ Virgil Security CLI
 
 - `Description`_
 - `Build Unix`_
-- `Build Windows MSVC`_
+- `Build Windows`_
 - `Example: Virgil CLI with committing to services`_
 - `Example: Virgil CLI without committing to services`_
 
@@ -34,19 +34,19 @@ Unix toolchain
 
 *   `CMake <http://www.cmake.org/>`_ (accessible in command prompt). Minimum version: 3.2.
 *   `Git <http://git-scm.com/>`_ (accessible in command prompt).
-*   `libcurl-devel + SSL <https://curl.haxx.se/download.html>`_
+*   `libcurl-devel + SSL <https://curl.haxx.se/download.html>`_:
 
-**For Ubuntu** (package libcurl4-openssl-dev):
-
-.. code:: 
-
-  apt-get -y install git libcurl4-openssl-dev
-
-**For Mac OS X**:
-
-.. code:: 
-
-  brew install curl --with-openssl
+    **For Ubuntu** (package libcurl4-openssl-dev):
+    
+    .. code:: 
+    
+      apt-get -y install git libcurl4-openssl-dev
+    
+    **For Mac OS X**:
+    
+    .. code:: 
+    
+      brew install curl --with-openssl
 
 Unix build steps
 --------------------
@@ -84,7 +84,7 @@ Unix build steps
   virgil --version
 
 ============
-Build Windows MSVC
+Build Windows
 ============
 
 Windows MSVC toolchain
