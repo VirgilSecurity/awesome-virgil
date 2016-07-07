@@ -149,19 +149,17 @@ The same actions are performed for Bob.
 Generate Keys
 --------------------
 
-.. seealso::
-
   - `keygen <https://github.com/VirgilSecurity/virgil-cli/wiki/virgil-keygen.1>`_
   - `key2pub <https://github.com/VirgilSecurity/virgil-cli/wiki/virgil-key2pub.1>`_
 
-1.  A :term:`private key <Private Key>` is generated in the Private Keys Service with a default Elliptic 384-bits NIST Curve scheme.
+1. A :term:`private key <Private Key>` is generated in the Private Keys Service with a default Elliptic 384-bits NIST Curve scheme.
 You will be asked to enter the :term:`private key password <Private key password>`:
 
 .. code:: 
 
   virgil keygen -o alice/private.key
 
-2.  A :term:`public key <Public Key>` is generated in the Keys Service using the private key.
+2. A :term:`public key <Public Key>` is generated in the Keys Service using the private key.
 
 .. code:: 
 
@@ -169,8 +167,6 @@ You will be asked to enter the :term:`private key password <Private key password
 
 Create a Global Virgil Card
 --------------------
-
-.. seealso::
 
   - `card-create-global <https://github.com/VirgilSecurity/virgil-cli/wiki/virgil-card-create-global.1>`_
 
@@ -186,8 +182,6 @@ A Virgil Card is the main entity of the Keys Service, it includes the informatio
 Encrypt Data
 --------------
 
-.. seealso::
-
   - `encrypt <https://github.com/VirgilSecurity/virgil-cli/wiki/virgil-encrypt.1>`_
 
 - Bob encrypts *plain.txt* for Alice.
@@ -201,8 +195,6 @@ Encrypt Data
 Decrypt Data
 ----------
 
-.. seealso::
-
   - `decrypt <https://github.com/VirgilSecurity/virgil-cli/wiki/virgil-decrypt.1>`_
 
 - Alice decrypts *plain.txt.enc*.
@@ -215,8 +207,6 @@ Decrypt Data
 Sign Data
 ----------
 
-.. seealso::
-
   - `sign <https://github.com/VirgilSecurity/virgil-cli/wiki/virgil-sign.1>`_
 
 - Alice signs *plain.txt* before passing it to Bob.
@@ -228,8 +218,6 @@ Sign Data
 
 Verify Data
 ----------
-
-.. seealso::
 
   - `verify <https://github.com/VirgilSecurity/virgil-cli/wiki/virgil-verify.1>`_
 
@@ -252,8 +240,6 @@ Example: Virgil CLI without committing to services
 Encrypt Data
 ----------
 
-.. seealso::
-
   - `encrypt <https://github.com/VirgilSecurity/virgil-cli/wiki/virgil-encrypt.1>`_
 
 - Alice encrypts *plain.txt* for Bob.
@@ -268,8 +254,6 @@ Encrypt Data
 Decrypt Data
 ----------
 
-.. seealso::
-
   - `decrypt <https://github.com/VirgilSecurity/virgil-cli/wiki/virgil-decrypt.1>`_
 
 - Bob decrypts *plain.txt.enc*.
@@ -282,8 +266,6 @@ Decrypt Data
 Sign Data
 ----------
 
-.. seealso::
-
   - `sign <https://github.com/VirgilSecurity/virgil-cli/wiki/virgil-sign.1>`_
 
 - Alice signs *plain.txt* before passing it to Bob.
@@ -295,8 +277,6 @@ Sign Data
 
 Verify Data
 ----------
-
-.. seealso::
 
   - `verify <https://github.com/VirgilSecurity/virgil-cli/wiki/virgil-verify.1>`_
 
