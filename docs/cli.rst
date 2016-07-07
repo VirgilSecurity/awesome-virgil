@@ -34,28 +34,28 @@ Unix toolchain
 
 *   `CMake <http://www.cmake.org/>`_ (accessible in command prompt). Minimum version: 3.2:
 
-    **For Ubuntu**: `see this link <http://askubuntu.com/questions/610291/how-to-install-cmake-3-2-on-ubuntu-14-04>`_
-    
-    **For Mac OS X** (make sure you have `Homebrew <http://brew.sh/>`_ installed):
+      **For Ubuntu**: `see this link <http://askubuntu.com/questions/610291/how-to-install-cmake-3-2-on-ubuntu-14-04>`_
       
-    .. code:: 
-      
-        brew install cmake
+      **For Mac OS X** (make sure you have `Homebrew <http://brew.sh/>`_ installed):
+        
+      .. code:: 
+        
+          brew install cmake
 
 *   `Git <http://git-scm.com/>`_ (accessible in command prompt).
 *   `libcurl-devel + SSL <https://curl.haxx.se/download.html>`_:
 
-    **For Ubuntu** (package libcurl4-openssl-dev):
-    
-    .. code:: 
-    
-        apt-get -y install git libcurl4-openssl-dev
-    
-    **For Mac OS X**:
-    
-    .. code:: 
-    
-        brew install curl --with-openssl
+      **For Ubuntu** (package libcurl4-openssl-dev):
+      
+      .. code:: 
+      
+          apt-get -y install git libcurl4-openssl-dev
+      
+      **For Mac OS X**:
+      
+      .. code:: 
+      
+          brew install curl --with-openssl
 
 Unix build steps
 --------------------
