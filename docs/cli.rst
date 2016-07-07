@@ -38,7 +38,7 @@ Unix toolchain
     
     **For Mac OS X** (make sure you have `Homebrew <http://brew.sh/>`_ installed):
       
-      .. code:: 
+    .. code:: 
       
         brew install cmake
 
