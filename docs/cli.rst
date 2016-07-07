@@ -180,7 +180,6 @@ You will be asked to enter the :term:`private key password <Private key password
 
   virgil key2pub -i alice/private.key -o alice/public.key
 
-
 Create a Global Virgil Card
 --------------------
 
@@ -192,7 +191,7 @@ A Virgil Card is the main entity of the Keys Service, it includes the informatio
   virgil card-create-global -d alice@domain.com --public-key alice/public.key -k alice/private.key -o alice/alice.vcard
 
 Encrypt Data
---------------------
+--------------
 
 - Bob encrypts *plain.txt* for Alice.
 - Bob needs Alice's Global Card to encrypt some data for her.
@@ -203,7 +202,7 @@ Encrypt Data
   virgil encrypt -i plain.txt -o plain.txt.enc email:alice@domain.com
 
 Decrypt Data
---------------------
+----------
 
 - Alice decrypts *plain.txt.enc*.
 - Alice uses her private key and her Card.
@@ -213,7 +212,7 @@ Decrypt Data
   virgil decrypt -i plain.txt.enc -k alice/private.key -r vcard:alice/alice.vcard
 
 Sign Data
---------------------
+----------
 
 - Alice signs *plain.txt* before passing it to Bob.
 - Alice's private key is used to create a signature.
@@ -223,7 +222,7 @@ Sign Data
   virgil sign -i plain.txt -o plain.txt.sign -k alice/private.key
 
 Verify Data
---------------------
+----------
 
 - Bob verifies *plain.txt.sign*.
 - He must have Alice's Virgil Card to verify the signature.
@@ -239,7 +238,7 @@ Using virgil-cli without committing to services
 ============
 
 Encrypt Data
---------------------
+----------
 
 - Alice encrypts *plain.txt* for Bob.
 - Alice needs Bob's public key and his identifier to encrypt some data for him.
@@ -251,7 +250,7 @@ Encrypt Data
   virgil encrypt -i plain.txt -o plain.txt.enc pubkey:bob/public.key:ForBob
 
 Decrypt Data
---------------------
+----------
 
 - Bob decrypts *plain.txt.enc*.
 - Bob uses his private key and the identifier, which has been provided by Alice.
@@ -261,7 +260,7 @@ Decrypt Data
   virgil decrypt -i plain.txt.enc -k bob/private.key -r id:ForBob
 
 Sign Data
---------------------
+----------
 
 - Alice signs *plain.txt* before passing it to Bob.
 - Alice's private key is used to create a signature.
@@ -271,7 +270,7 @@ Sign Data
   virgil sign -i plain.txt -o plain.txt.sign -k alice/private.key
 
 Verify Data
---------------------
+----------
 
 - Bob verifies *plain.txt.sign*.
 - He need's Alice's public key to verify the signature.
