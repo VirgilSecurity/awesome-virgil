@@ -23,6 +23,7 @@ Developers Docs
    private-keys-service
    keys-service
    identity-service
+   cli
 
 
 Virgil Demos
