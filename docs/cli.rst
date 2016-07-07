@@ -92,7 +92,7 @@ Windows MSVC toolchain
 
 *   `Visual Studio 2015 <https://www.visualstudio.com/>`_
 *   `CMake <http://www.cmake.org/>`_ (accessible in command prompt). Minimum version: 3.2.
-*   `Git <http://git-scm.com/>` (accessible in command prompt).
+*   `Git <http://git-scm.com/>`_ (accessible in command prompt).
 *   `NSIS <http://nsis.sourceforge.net/>`_.
 
 Windows MSVC build steps
