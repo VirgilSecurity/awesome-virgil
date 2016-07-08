@@ -7,6 +7,7 @@ Decrypt data with given :term:`password <Private key password>` or given :term:`
 ========
 SYNOPSIS
 ========
+::
 
   virgil decrypt  [-i <file>] [-o <file>] [-c <file>] [-k <file>] [-p <arg>] -r <arg> [-V] [--] [--version] [-h]
 
