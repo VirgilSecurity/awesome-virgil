@@ -7,6 +7,7 @@ Verify data and signature.
 ========
 SYNOPSIS
 ========
+::
 
   virgil verify  [-i <file>] [-o <file>] [--return-status] -s <file> -r <arg> [-V] [--] [--version] [-h]
 
