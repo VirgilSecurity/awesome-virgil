@@ -25,10 +25,10 @@ The utility allows you to generate an Elliptic Curve private key or an RSA priva
 OPTIONS
 =======
 
-  -o <file>,  \--out <file>
+  ``-o`` <file>,  ``--out`` <file>
     Private key. If omitted, stdout is used.
 
-  -a <alg>,  \--algorithm <alg>
+  ``-a`` <alg>,  ``--algorithm`` <alg>
     Generate an Elliptic Curve key or an RSA key with one of the following options:
 
       * bp256r1 - 256-bits Brainpool curve;
@@ -61,22 +61,22 @@ OPTIONS
 
       * rsa8192 - 8192-bits "RSA" key
 
-  -p <arg>,  \--private-key-password <arg>
+  ``-p`` <arg>,  ``--private-key-password`` <arg>
     Password to be used for private key encryption.
 
-  \--no-password-input
+  ``--no-password-input``
     If parameter -p, --private-key-password is omitted and password won’t be requested.
 
-  -V,  \--VERBOSE
+  ``-V``,  ``--VERBOSE``
     Shows detailed information.
 
-  \--,  \--ignore_rest
+  ``--``,  ``--ignore_rest``
     Ignores the rest of the labeled arguments following this flag.
 
-  \--version 
+  ``--version``
     Displays version information and exits.
 
-  -h,  \--help
+  ``-h``,  ``--help``
     Displays usage information and exits.
 
 ========
