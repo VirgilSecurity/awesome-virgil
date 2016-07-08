@@ -9,7 +9,8 @@ SYNOPSIS
 ========
 ::
 
-  virgil verify  [-i <file>] [-o <file>] [--return-status] -s <file> -r <arg> [-V] [--] [--version] [-h]
+  virgil verify  [-i <file>] [-o <file>] [--return-status] -s <file> -r <arg> [-V] [--] 
+                 [--version] [-h]
 
 ========
 DESCRIPTION
