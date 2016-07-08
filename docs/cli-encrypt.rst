@@ -7,6 +7,7 @@ Encrypt data for provided recipients.
 ========
 SYNOPSIS
 ========
+::
 
   virgil encrypt  [-i <file>] [-o <file>] [-c <file>] [-V] [--] [--version] [-h]
                   <recipient> ...
