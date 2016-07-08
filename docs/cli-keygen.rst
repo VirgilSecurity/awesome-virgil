@@ -8,7 +8,7 @@ Generate a :term:`private key <Private Key>` with provided parameters.
 SYNOPSIS
 ========
 
-.. code::
+::
 
         virgil keygen [-o *file*] [-a *bp256r1|bp384r1|bp512r1|secp192r1|secp224r1
                    |secp256r1|secp384r1|secp521r1|secp192k1|secp224k1|secp256k1
@@ -64,7 +64,7 @@ OPTIONS
   -p <arg>,  --private-key-password <arg>
     Password to be used for private key encryption.
 
-  --no-password-input
+  \--no-password-input
     If parameter -p, --private-key-password is omitted and password won’t be requested.
 
   -V,  --VERBOSE
@@ -73,7 +73,7 @@ OPTIONS
   --,  --ignore_rest
     Ignores the rest of the labeled arguments following this flag.
 
-  --version 
+  \--version 
     Displays version information and exits.
 
   -h,  --help
