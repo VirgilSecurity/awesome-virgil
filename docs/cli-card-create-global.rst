@@ -17,14 +17,7 @@ SYNOPSIS
 DESCRIPTION
 ========
 
-Create a global Virgil Card. Connections between Cards can be created, Cards can be with:
-
-1.  one public key and *multiple* Identities;
-2.  one public key and *one* Identity;
-3.  multiple public keys and *multiple* Identities;
-4.  multiple public keys and *one* Identity;
-5.  one public key and *one* Identity connected with `public-key-id`;
-6.  one public key and *multiple* Identities connected with `public-key-id`.
+Create a global Virgil Card.
 
 ========
 OPTIONS
