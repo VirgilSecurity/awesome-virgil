@@ -11,8 +11,7 @@ SYNOPSIS
 ::
 
   virgil card-create-global  {-e <arg>|--public-key <file>} {-d <arg>|-f <file>}
-                           [-o <file>] -k <file> [-p <arg>] [-V] [--]
-                           [--version] [-h]
+                             [-o <file>] -k <file> [-p <arg>] [-V] [--][--version] [-h]
 
 ========
 DESCRIPTION
