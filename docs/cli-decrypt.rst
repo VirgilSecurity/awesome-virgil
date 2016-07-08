@@ -9,7 +9,8 @@ SYNOPSIS
 ========
 ::
 
-  virgil decrypt  [-i <file>] [-o <file>] [-c <file>] [-k <file>] [-p <arg>] -r <arg> [-V] [--] [--version] [-h]
+  virgil decrypt  [-i <file>] [-o <file>] [-c <file>] [-k <file>] [-p <arg>] -r <arg> [-V] [--] 
+                  [--version] [-h]
 
 ========
 DESCRIPTION
