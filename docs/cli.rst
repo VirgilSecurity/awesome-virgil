@@ -7,6 +7,7 @@ Virgil Security CLI
 - `Build Windows`_
 - `Example: Virgil CLI with committing to services`_
 - `Example: Virgil CLI without committing to services`_
+- :doc:`cli-reference`
 
 ============
 Description
