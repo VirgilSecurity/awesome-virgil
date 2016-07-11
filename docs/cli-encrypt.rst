@@ -20,7 +20,7 @@ The utility allows you to encrypt data with a password or a combination of a :te
 
 `recipient-id` is an identifier which will be associated with the public key. If a *sender* has a :term:`Virgil Card <Virgil Card>`, his recipient-id is the Card's id. Public key is saved in the Card.
 
-Please note that you will need a provided password or a provided combination of `private key` + `recipient-id` for decryption.
+Please note that you will need a provided password or a provided combination of ``private key`` + ``recipient-id`` for decryption.
 
 ========
 OPTIONS
@@ -66,7 +66,7 @@ OPTIONS
 
             * if **pubkey**, then <value> - recipient's public key + identifier, for example: pubkey:bob/public.key:ForBob.
 
-            * if **private**, then set type:value for searching Private Virgil Card(s)  with confirmed identity (see 'virgil card-create-private'). For example: private:<obfuscated_type>:<obfuscated_value> ( obfuscator - see 'virgil hash')
+            * if **private**, then set type:value for searching Private Virgil Card(s)  with confirmed identity (see :doc:`cli-card-create-private`). For example: private:<obfuscated_type>:<obfuscated_value> ( obfuscator - see :doc:`cli-exhash`)
 
 ========
 EXAMPLES
@@ -106,6 +106,6 @@ EXAMPLES
 SEE ALSO
 ========
 
-virgil(1)
-virgil-config(1)
-virgil-decrypt(1)
+* :doc:`cli-virgil`
+* :doc:`cli-config`
+* :doc:`cli-decrypt`
