@@ -5,6 +5,8 @@ Reference
 Base:
 -----------
 
+    * :doc:`cli-virgil`
+    
     * :doc:`cli-encrypt`
     
     * :doc:`cli-decrypt`
