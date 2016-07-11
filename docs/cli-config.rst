@@ -7,6 +7,7 @@ Get information about Virgil CLI configuration file.
 ========
 SYNOPSIS
 ========
+::
 
     virgil config  [-o <file>] [-g] [-l] [-t] [--] [--version] [-h]
 
