@@ -25,37 +25,34 @@ The Virgil Access Token is definitely needed for the following utilites.
 
 **Private Virgil Card**:
 
--   `virgil-card-create-private(1)`
--   `virgil-card-revoke-private(1)`
--   `virgil-public-key-revoke-private(1)`
--   `virgil-card-search-private(1)`
+* :doc:`cli-card-create-private`
+* :doc:`cli-card-revoke-private`
+* :doc:`cli-public-key-revoke-private`
+* :doc:`cli-card-search-private`
 
 **Global Virgil Card**:
 
--   `virgil-identity-verify(1)`
--   `virgil-identity-valid(1)`
--   `virgil-identity-confirm-global(1)`
-
--   `virgil-card-create-global(1)`
--   `virgil-card-revoke-global(1)`
--   `virgil-public-key-revoke-global(1)`
--   `virgil-card-search-global(1)`
+* :doc:`cli-identity-verify`
+* :doc:`cli-identity-valid`
+* :doc:`cli-identity-confirm-global`
+* :doc:`cli-card-create-global`
+* :doc:`cli-card-revoke-global`
+* :doc:`cli-public-key-revoke-global`
+* :doc:`cli-card-search-global`
 
 **Common**:
 
--   `virgil-card-get(1)`
-
--   `virgil-public-key-get(1)`
-
--   `virgil-private-key-add(1)`
--   `virgil-private-key-get(1)`
--   `virgil-private-key-del(1)`
+* :doc:`cli-card-get`
+* :doc:`cli-public-key-get`
+* :doc:`cli-private-key-add`
+* :doc:`cli-private-key-get`
+* :doc:`cli-private-key-del`
 
 Part of the functionality, which refers to the **search of Cards in Virgil Keys Service**:
 
--   `virgil-verify(1)`
--   `virgil-encrypt(1)`
--   `virgil-decrypt(1)`
+* :doc:`cli-verify`
+* :doc:`cli-encrypt`
+* :doc:`cli-decrypt`
 
 ========
 OPTIONS
@@ -105,4 +102,4 @@ EXAMPLES
 SEE ALSO
 ========
 
-virgil(1)
+* :doc:`cli-virgil`
