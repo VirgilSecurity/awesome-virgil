@@ -68,9 +68,9 @@ EXAMPLES
 SEE ALSO
 ========
 
-virgil(1)
-virgil-config(1)
-virgil-card-create-global(1)
-virgil-card-create-private(1)
-virgil-card-search-global(1)
-virgil-card-search-private(1)
+* :doc:`cli-virgil`
+* :doc:`cli-config`
+* :doc:`cli-card-create-global`
+* :doc:`cli-card-create-private`
+* :doc:`cli-card-search-global`
+* :doc:`cli-card-search-private`
