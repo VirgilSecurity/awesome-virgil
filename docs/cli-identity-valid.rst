@@ -25,7 +25,7 @@ OPTIONS
     Return status. If omitted, stdout is used.
 
   ``-f`` <file>,  ``--validated-identity`` <file>
-    (required)  Validated identity (see 'virgil identity-confirm-global')
+    (required)  Validated identity (see :doc:`cli-identity-confirm-global`)
 
   ``-V``,  ``--VERBOSE``
     Shows detailed information.
@@ -55,6 +55,6 @@ EXAMPLES
 SEE ALSO
 ========
 
-virgil(1)
-virgil-config(1)
-virgil-identity-confirm-global(1)
+* :doc:`cli-virgil`
+* :doc:`cli-config`
+* :doc:`cli-identity-confirm-global`
