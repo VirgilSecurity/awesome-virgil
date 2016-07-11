@@ -11,7 +11,7 @@ Base:
     
     * :doc:`cli-sign`
     
-    * :doc:`cli-encrypt`
+    * :doc:`cli-verify`
     
     * :doc:`cli-keygen`
     
