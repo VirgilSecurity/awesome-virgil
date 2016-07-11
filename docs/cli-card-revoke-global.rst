@@ -26,7 +26,7 @@ OPTIONS
     (OR required)  Identity: email:alice@domain.com
   -- OR --
   ``-f`` <file>,  ``--validated-identity`` <file>
-    (OR required)  Validated identity (see 'virgil identity-confirm-global')
+    (OR required)  Validated identity (see :doc:`cli-identity-confirm-global`)
 
 
   ``-a`` <arg>,  ``--card-id`` <arg>
@@ -68,7 +68,7 @@ EXAMPLES
 SEE ALSO
 ========
 
-virgil(1)
-virgil-config(1)
-virgil-card-create-global(1)
-virgil-public-key-revoke-global(1)
+* :doc:`cli-virgil`
+* :doc:`cli-config`
+* :doc:`cli-card-create-global`
+* :doc:`cli-public-key-revoke-global`
