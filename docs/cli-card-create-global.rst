@@ -33,7 +33,7 @@ OPTIONS
     (OR required)  Identity: email.
   -- OR --
   ``-f`` <file>, ``--validated-identity`` <file>
-    (OR required)  Validated identity (see 'virgil identity-confirm-global').
+    (OR required)  Validated identity (see :doc:`cli-identity-confirm-global`).
 
   ``-o`` <file>, ``--out`` <file>
     Global Virgil Card. If omitted, stdout is used.
