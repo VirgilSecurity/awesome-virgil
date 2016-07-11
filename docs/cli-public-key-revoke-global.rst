@@ -23,7 +23,7 @@ OPTIONS
 ========
 
   ``-f`` <file>,  ``--validated-identity`` <file>  (accepted multiple times)
-    (OR required)  Validated Identity for Private Virgil Card - see virgil identity-confirm-private
+    (OR required)  Validated Identity for Private Virgil Card - see :doc:`cli-identity-confirm-private`
   -- OR --
   ``-d`` <arg>,  ``--identity`` <arg>  (accepted multiple times)
     (OR required)  User identifier for Private Virgil Card with unconfirmed identity
@@ -70,8 +70,10 @@ EXAMPLES
 SEE ALSO
 ========
 
-virgil(1)
-virgil-config(1)
-virgil-card-create-global(1)
-virgil-card-create-private(1)
-virgil-public-key-revoke(1)
+* :doc:`cli-virgil`
+* :doc:`cli-config`
+* :doc:`cli-card-create-global`
+* :doc:`cli-card-create-private`
+* :doc:`cli-public-key-revoke-global`
+* :doc:`cli-public-key-revoke-private`
+
