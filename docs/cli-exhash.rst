@@ -73,5 +73,5 @@ EXAMPLES
 SEE ALSO
 ========
 
-virgil(1)
-virgil-card-create-private(1)
+* :doc:`cli-virgil`
+* :doc:`cli-card-create-private`
