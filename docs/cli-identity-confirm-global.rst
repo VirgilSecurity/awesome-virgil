@@ -17,11 +17,11 @@ SYNOPSIS
 DESCRIPTION
 ========
 
-It is required to pass ``identity-confirm`` if you want to confirm your Identity so that other people can be sure that a received signature and encrypted data came from you. After entering your email, a :term:`confirmation code <Confirmation code>` will be sent to you, you have to enter it to receive :term:`a confirmed Identity <Confirmed Identity>`. ``validated-identity`` consists of *validation\_token* and your Identity. It is required for the following operations:
+It is required to pass ``identity-confirm`` if you want to confirm your Identity so that other people can be sure that a received signature and encrypted data came from you. After entering your email, a :term:`confirmation code <Confirmation code>` will be sent to you, you have to enter it to receive :term:`a confirmed Identity <Confirmed Identity>`. ``validated-identity`` consists of *validation token* and your Identity. It is required for the following operations:
 
-1.  Create a Global Virgil Card. See `virgil-card-create-global(1)`;
-2.  Revoke a Global Virgil Card, a group of Cards. See `virgil-card-revoke-global(1)`, `virgil-public-key-revoke-global(1)`;
-3.  Get a private key from the Private Keys Service. See `virgil-private-key-get(1)`.
+1.  Create a Global Virgil Card. See :doc:`cli-card-create-global`;
+2.  Revoke a Global Virgil Card, a group of Cards. See :doc:`cli-card-revoke-global`, :doc:`cli-public-key-revoke-global`;
+3.  Get a private key from the Private Keys Service. See :doc:`cli-private-key-get`.
 
 ========
 OPTIONS
@@ -96,8 +96,8 @@ EXAMPLES
 SEE ALSO
 ========
 
-virgil(1)
-virgil-config(1)
-virgil-card-create-global(1)
-virgil-card-revoke-global(1)
-virgil-private-key-get(1)
+* :doc:`cli-virgil`
+* :doc:`cli-config`
+* :doc:`cli-card-create-global`
+* :doc:`cli-card-revoke-global`
+* :doc:`cli-private-key-get`
