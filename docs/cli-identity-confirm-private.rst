@@ -19,9 +19,9 @@ DESCRIPTION
 
 Provides helper methods to generate validation token based on application's private key. It is required for the following operations:
 
-1.  Create a :term:`Private Virgil Card <Private Virgil Card>` with a :term:`confirmed Identity <Confirmed Identity>`. See virgil-card-create-private(1);
-2.  Revoke a Private Virgil Card, a group of Cards. See virgil-card-revoke-private(1), virgil-public-key-revoke-private(1);
-3.  Get a private key from the Private Keys Service. See virgil-private-key-get(1).
+1.  Create a :term:`Private Virgil Card <Private Virgil Card>` with a :term:`confirmed Identity <Confirmed Identity>`. See :doc:`cli-card-create-private`;
+2.  Revoke a Private Virgil Card, a group of Cards. See :doc:`cli-card-revoke-private`, :doc:`cli-public-key-revoke-private`;
+3.  Get a private key from the Private Keys Service. See :doc:`cli-private-key-get`.
 
 ========
 OPTIONS
@@ -71,7 +71,7 @@ On success, *validated identity model*:
             "validation_token": *validation_token*
         }
 
-2.  Obfuscated identity ( see virgil-exhash(1)) value and identity type
+2.  Obfuscated identity (see :doc:`cli-exhash`) value and identity type
 ::
 
         -d, --identity = "xSf79dt6Bl6/WwHmO/KrIlaWrUxX2GLV7l7Jo+SCZSqT48Cq6mMWNDTkUPeMp82r"
@@ -102,8 +102,8 @@ EXAMPLES
 SEE ALSO
 ========
 
-virgil(1)
-virgil-config(1)
-virgil-card-create-private(1)
-virgil-card-revoke-private(1)
-virgil-private-key-get(1)
+* :doc:`cli-virgil`
+* :doc:`cli-config`
+* :doc:`cli-card-create-private`
+* :doc:`cli-card-revoke-private`
+* :doc:`cli-private-key-get`
