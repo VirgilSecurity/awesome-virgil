@@ -59,6 +59,6 @@ EXAMPLES
 SEE ALSO
 ===========
 
-virgil(1)
-virgil-config(1)
-virgil-keygen(1)
+* :doc:`cli-virgil`
+* :doc:`cli-config`
+* :doc:`cli-keygen`
