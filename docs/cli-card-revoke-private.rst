@@ -23,7 +23,7 @@ OPTIONS
     (required)  Private Virgil Card identifier
 
   ``-f`` <file>,  ``--validated-identity`` <file>
-    Private Validated identity. See 'virgil identity-confirm-private'
+    Private Validated identity. See :doc:`cli-identity-confirm-private`
 
   ``-k`` <file>,  ``--key`` <file>
     (required)  Private key
@@ -59,7 +59,7 @@ EXAMPLES
 SEE ALSO
 ========
 
-virgil(1)
-virgil-config(1)
-virgil-card-create-private(1)
-virgil-public-key-revoke-private(1)
+* :doc:`cli-virgil`
+* :doc:`cli-config`
+* :doc:`cli-card-create-private`
+* :doc:`cli-public-key-revoke-private`
