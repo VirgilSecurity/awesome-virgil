@@ -68,7 +68,7 @@ EXAMPLES
 SEE ALSO
 ========
 
-virgil(1)
-virgil-config(1)
-virgil-card-create-global(1)
-virgil-card-get(1)
+* :doc:`cli-virgil`
+* :doc:`cli-config`
+* :doc:`cli-card-create-global`
+* :doc:`cli-card-get`
