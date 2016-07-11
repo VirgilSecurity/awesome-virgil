@@ -9,7 +9,8 @@ SYNOPSIS
 ========
 ::
 
-  virgil exhash  [-i <file>] [-o <file>] -s <file> [-a <alg>] [-c <int>] [-V] [--] [--version] [-h]
+  virgil exhash  [-i <file>] [-o <file>] -s <file> [-a <alg>] [-c <int>] [-V] [--] 
+                 [--version] [-h]
 
 ========
 DESCRIPTION
