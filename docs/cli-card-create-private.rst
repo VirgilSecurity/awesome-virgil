@@ -33,7 +33,7 @@ OPTIONS
     (OR required)  Identity: type:value
   -- OR --
   ``-f`` <file>,  ``--validated-identity`` <file>
-    (OR required)  Validated identity. See 'identity-confirm-private'
+    (OR required)  Validated identity. See :doc:`cli-identity-confirm-private`
 
   ``-o`` <file>,  ``--out`` <file>
     Private Virgil Card. If omitted, stdout is used.
