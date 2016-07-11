@@ -23,10 +23,10 @@ OPTIONS
     Folder where Virgil Cards will be saved.
 
   ``-d`` <arg>,  ``--identity`` <arg>
-    (required)  Identity value or obfuscated identity value (see 'virgil exhash')
+    (required)  Identity value or obfuscated identity value (see :doc:`cli-exhash`)
 
   ``-t`` <arg>,  ``--identity-type`` <arg>
-    (required)  Identity type or obfuscated identity type (see 'virgil exhash')
+    (required)  Identity type or obfuscated identity type (see :doc:`cli-exhash`)
 
   ``-u``,  ``--unconfirmed``
     Includes unconfirmed identities into Cards search.
@@ -69,7 +69,7 @@ EXAMPLES
 SEE ALSO
 ========
 
-virgil(1)
-virgil-config(1)
-virgil-card-create-private(1)
-virgil-card-get(1)
+* :doc:`cli-virgil`
+* :doc:`cli-config`
+* :doc:`cli-card-create-private`
+* :doc:`cli-card-get`
