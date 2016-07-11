@@ -53,7 +53,7 @@ OPTIONS
 
             * if **email**, then <value> - recipient's email;
 
-            * if **private**, then set type:value for searching Private Virgil Card(s). For example: private:email:<obfuscator_email> (obfuscator - see 'virgil hash')
+            * if **private**, then set type:value for searching Private Virgil Card(s). For example: private:email:<obfuscator_email> (obfuscator - see :doc:`cli-exhash`)
 
   ``-V``,  ``--VERBOSE``
     Shows detailed information.
@@ -85,6 +85,6 @@ EXAMPLES
 SEE ALSO
 ========
 
-virgil(1)
-virgil-config(1)
-virgil-encrypt(1)
+* :doc:`cli-virgil`
+* :doc:`cli-config`
+* :doc:`cli-encrypt`
