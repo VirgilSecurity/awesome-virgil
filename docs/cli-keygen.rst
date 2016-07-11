@@ -108,6 +108,6 @@ EXAMPLES
 SEE ALSO
 ========
 
-virgil(1)
-virgil-config(1)
-virgil-key2pub(1)
+* :doc:`cli-virgil`
+* :doc:`cli-config`
+* :doc:`cli-key2pub`
