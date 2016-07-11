@@ -28,8 +28,8 @@ OPTIONS
     (required)  Virgil Card identifier
 
   ``-f`` <file>,  ``--validated-identity`` <file>
-    (required)  Validated Identity for Private Virgil Card - see virgil identity-confirm-private, 
-    for Global Virgil Card - see virgil identity-confirm-global
+    (required)  Validated Identity for Private Virgil Card - see :doc:`cli-identity-confirm-private`, 
+    for Global Virgil Card - see :doc:`cli-identity-confirm-global`
 
   ``-V``,  ``--VERBOSE``
     Shows detailed information.
@@ -56,9 +56,9 @@ EXAMPLES
 SEE ALSO
 ========
 
-virgil(1)
-virgil-config(1)
-virgil-keygen(1)
-virgil-private-key-add(1)
-virgil-identity-confirm-private(1)
-virgil-identity-confirm-global(1)
+* :doc:`cli-virgil`
+* :doc:`cli-config`
+* :doc:`cli-keygen`
+* :doc:`cli-private-key-add`
+* :doc:`cli-identity-confirm-private`
+* :doc:`cli-identity-confirm-global`
