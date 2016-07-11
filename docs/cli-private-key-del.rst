@@ -55,8 +55,8 @@ EXAMPLES
 SEE ALSO
 ========
 
-virgil(1)
-virgil-config(1)
-virgil-keygen(1)
-virgil-identity-confirm-private(1)
-virgil-identity-confirm-global(1)
+* :doc:`cli-virgil`
+* :doc:`cli-config`
+* :doc:`cli-keygen`
+* :doc:`cli-identity-confirm-private`
+* :doc:`cli-identity-confirm-global`
