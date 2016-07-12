@@ -17,8 +17,8 @@ Every app requires a token to interact with Virgil Services. The access token pr
 
 .. note::
 
-  Global Cards are automatically verified in Virgil Identity Service, they are globally available to all Virgil users.
-  Private Cards are verified by a developer himself, they are available only within the current application.
+  * Global Cards are automatically verified in Virgil Identity Service, they are globally available to all Virgil users.
+  * Private Cards are verified by a developer himself, they are available only within the current application.
 
 **Permissions**
 
@@ -28,7 +28,7 @@ Every app requires a token to interact with Virgil Services. The access token pr
 
 ``SEARCH`` – search for Virgil Cards using this token
 
-4. Now the token is created. It can be edited, deleted or deactivated/activated.
+4. Now the token is created. It can be *edited*, *deleted* or *deactivated/activated*.
 Example of a token: 
 ::
 
