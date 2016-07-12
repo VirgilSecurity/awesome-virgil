@@ -2,7 +2,7 @@
 decrypt
 **********
 
-Decrypt data with given :term:`password <Private key password>` or given :term:`private key <Private Key>` + :term:`recipient-id <Recipient’s identifier>`.
+Decrypt data with given password or :term:`private key <Private Key>` + :term:`private key password <Private key password>`(if there is one) + :term:`recipient-id <Recipient’s identifier>`.
 
 ========
 SYNOPSIS
