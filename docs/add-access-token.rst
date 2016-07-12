@@ -13,11 +13,12 @@ Every app requires a token to interact with Virgil Services. The access token pr
 3. Add a name and set permissions for Virgil Cards to use the token, these permissions can be updated at any time.
 
 .. image:: Images/EditAccessToken.png
+  :scale: 50 %
 
 .. note::
 
-Global Cards are automatically verified in Virgil Identity Service, they are globally available to all Virgil users.
-Private Cards are verified by a developer himself, they are available only within the current application.
+  Global Cards are automatically verified in Virgil Identity Service, they are globally available to all Virgil users.
+  Private Cards are verified by a developer himself, they are available only within the current application.
 
 **Permissions**
 
