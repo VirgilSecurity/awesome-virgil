@@ -4,7 +4,7 @@ Add an Access Token to your Application
 
 Every app requires a token to interact with Virgil Services. The access token provides an authenticated secure access to the Public Keys Service and is passed with each API call. The access token also allows the API to associate your app’s requests with your Virgil Security developer’s account.
 
-1. Create an application.
+1. :doc:`create-app`.
 
 2. Add new token in Tokens section:
 
