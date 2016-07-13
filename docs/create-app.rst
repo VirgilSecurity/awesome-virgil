@@ -30,4 +30,4 @@ One more step
 
 .. image:: Images/CompleteKeysGenerate.png
 
-4. Your app is created, it’s time :doc:`add-access-token` to it.
+4. Your app is created, it’s time to :doc:`add-access-token`.
