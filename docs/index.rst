@@ -6,15 +6,15 @@ Developers Docs
 ---------------------
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
    
    services
+   glossary
+   quickstart
    sdks
    crypto-library
-   quickstart
    use-cases
    faq
-   glossary
 
 
 Indices and tables
@@ -22,6 +22,7 @@ Indices and tables
 
 * :ref:`genindex`
 * :ref:`search`
+
 
 License
 --------------------
