@@ -1,5 +1,5 @@
 ###########
-Virgil Identity service
+Virgil Identity Service
 ###########
 
 * `POST /verify`_

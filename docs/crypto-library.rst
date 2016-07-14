@@ -11,4 +11,6 @@ Crypto Library
    objective-c-swift-crypto-library
    java-android-crypto-library
    python-crypto-library
+   php-crypto-library
+   go-crypto-library
 

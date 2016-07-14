@@ -1,5 +1,5 @@
 ##########
-Virgil Public Keys API service v3.2
+Virgil Cards Service v3.2
 ##########
 
 * `Public Key`_

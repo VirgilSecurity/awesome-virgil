@@ -2,6 +2,8 @@
 Quickstart
 ======
 
+One page with IP messaging use case and ability to switch languages in code snippets.
+
 .. toctree::
    :maxdepth: 1
    
