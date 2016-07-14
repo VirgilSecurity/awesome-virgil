@@ -33,3 +33,7 @@ Contacts
 -------------------
 
 Email: support@virgilsecurity.com
+
+.. image:: Images/docs-developer.png
+
+.. image:: Images/Virgil-website.png
