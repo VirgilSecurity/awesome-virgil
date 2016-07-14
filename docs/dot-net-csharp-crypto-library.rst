@@ -9,5 +9,3 @@ Crypto Library .NET/C#
    dot-net-csharp-crypto-library-getting-started
    dot-net-csharp-crypto-library-reference-api
    dot-net-csharp-crypto-library-programming-guide
-
-
