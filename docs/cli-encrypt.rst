@@ -26,29 +26,37 @@ Please note that you will need a provided password or a provided combination of 
 OPTIONS
 ========
 
-  ``-i`` <file>,  ``--in`` <file>
-    Data to be encrypted. If omitted, stdin is used.
++---------------------------------------------+----------------------------------------------------------------+
+| Option                                      | Description                                                    | 
++=============================================+================================================================+
+| ``-i`` <file>,  ``--in`` <file>             | Data to be encrypted. If omitted, stdin is used.               |
++---------------------------------------------+----------------------------------------------------------------+
+| ``-o`` <file>,  ``--out`` <file>            | Encrypted data. If omitted, stdout is used.                    |
++---------------------------------------------+----------------------------------------------------------------+
+| ``-c`` <file>,  ``--content-info`` <file>   | Content info - meta information about encrypted data.          | 
+|                                             | If omitted, becomes a part of the encrypted data.              |
++---------------------------------------------+----------------------------------------------------------------+
+| ``-V``,  ``--VERBOSE``                      | Shows detailed information.                                    |
++---------------------------------------------+----------------------------------------------------------------+
+| ``--``,  ``--ignore_rest``                  | Ignores the rest of the labeled arguments following this flag. |
++---------------------------------------------+----------------------------------------------------------------+
+| ``--version``                               | Displays version information and exits.                        |
++---------------------------------------------+----------------------------------------------------------------+
+| ``-h``,  ``--help``                         | Displays usage information and exits.                          |
++---------------------------------------------+----------------------------------------------------------------+
+| ``<recipient>``  (accepted multiple times)  | Contains information about one recipient.                      |
+|                                             |                                                                |
 
-  ``-o`` <file>,  ``--out`` <file>
-    Encrypted data. If omitted, stdout is used.
+|                                             |                                                                |
 
-  ``-c`` <file>,  ``--content-info`` <file>
-    Content info - meta information about encrypted data. If omitted, 
-    becomes a part of the encrypted data.
+|                                             |                                                                |
 
-  ``-V``,  ``--VERBOSE``
-    Shows detailed information.
+|                                             |                                                                |
+|                                             |                                                                |
++---------------------------------------------+-----------------------------------------------------+
 
-  ``--``,  ``--ignore_rest``
-    Ignores the rest of the labeled arguments following this flag.
-
-  ``--version``
-    Displays version information and exits.
-
-  ``-h``,  ``--help``
-    Displays usage information and exits.
-
-  ``<recipient>``  (accepted multiple times)
+  
+   ``<recipient>``  (accepted multiple times)
     Contains information about one recipient.
     Format:
 
