@@ -46,35 +46,32 @@ OPTIONS
 +---------------------------------------------+----------------------------------------------------------------+
 | ``<recipient>``  (accepted multiple times)  | Contains information about one recipient.                      |
 |                                             |                                                                |
-
+|                                             | Format:                                                        |
 |                                             |                                                                |
-
+|                                             | [password|id|vcard|email|pubkey|private]:<value>               |
 |                                             |                                                                |
-
+|                                             | where:                                                         |
 |                                             |                                                                |
+|                                             | * if **password**, then <value> - recipient's password;        |
 |                                             |                                                                |
-+---------------------------------------------+-----------------------------------------------------+
-
-  
-   ``<recipient>``  (accepted multiple times)
-    Contains information about one recipient.
-    Format:
-
-         [password|id|vcard|email|pubkey|private]:<value>
-
-         where:
-
-            * if **password**, then <value> - recipient's password;
-
-            * if **id**, then <value> - recipient's UUID associated with Virgil Card identifier;
-
-            * if **vcard**, then <value> - recipient's the Virgil Card file stored locally;
-
-            * if **email**, then <value> - recipient's email;
-
-            * if **pubkey**, then <value> - recipient's public key + identifier, for example: pubkey:bob/public.key:ForBob.
-
-            * if **private**, then set type:value for searching Private Virgil Card(s)  with confirmed identity (see :doc:`cli-card-create-private`). For example: private:<obfuscated_type>:<obfuscated_value> ( obfuscator - see :doc:`cli-exhash`)
+|                                             | * if **id**, then <value> - recipient's UUID associated with   |
+|                                             |   Virgil Card identifier;                                      |
+|                                             |                                                                |
+|                                             | * if **vcard**, then <value> - recipient's the Virgil Card file|
+|                                             |   stored locally;                                              |
+|                                             |                                                                |
+|                                             | * if **email**, then <value> - recipient's email;              |
+|                                             |                                                                |
+|                                             | * if **pubkey**, then <value> -                                |
+|                                             |     recipient's public key + identifier,                       | 
+|                                             |     for example: pubkey:bob/public.key:ForBob.                 |
+|                                             |                                                                |
+|                                             | * if **private**, then set type:value for searching Private    |
+|                                             |   Virgil Card(s)  with confirmed identity                      |
+|                                             |   (see :doc:`cli-card-create-private`).                        |
+|                                             |   For example: private:<obfuscated_type>:<obfuscated_value>    |
+|                                             |   ( obfuscator - see :doc:`cli-exhash`)                        |
++---------------------------------------------+----------------------------------------------------------------+
 
 ========
 EXAMPLES
