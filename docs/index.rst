@@ -8,13 +8,13 @@ Developers Docs
 .. toctree::
    :maxdepth: 2
    
-   services
-   glossary
-   quickstart
-   sdks
+   Services/services
+   Glossary/glossary
+   Quickstart/quickstart
+   SDK/sdks
    crypto-library
-   use-cases
-   faq
+   Use cases/use-cases
+   FAQ/faq
 
 
 Indices and tables
