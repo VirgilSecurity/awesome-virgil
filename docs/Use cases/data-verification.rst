@@ -4,7 +4,7 @@ Verify data
 
 Recipient wants to make sure that received data has been sent from a secure source and hasn’t been changed during transport.
 
-.. image:: Images/VerifyUseCase.png
+.. image:: ../Images/VerifyUseCase.png
 
 **Sender and recipient create Virgil accounts with a pair of asymmetric keys**:
 

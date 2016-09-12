@@ -4,7 +4,7 @@ IP messaging
 
 A group of users want to exchange text messages in a secure chat.
 
-.. image:: Images/IPMessagingUseCase.png
+.. image:: ../Images/IPMessagingUseCase.png
 
 **Chat participants create Virgil accounts with a pair of asymmetric keys**:
 
