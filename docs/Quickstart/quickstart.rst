@@ -7,10 +7,10 @@ One page with IP messaging use case and ability to switch languages in code snip
 .. toctree::
    :maxdepth: 1
    
-   dot-net-csharp-quickstart
-   c-cpp-quickstart
-   javascript-quickstart
-   objective-c-swift-quickstart
-   java-android-quickstart
-   python-quickstart
+   ../SDK/net/v3.0(latest)/dot-net-csharp-quickstart
+   ../SDK/cpp/v3.0(latest)/c-cpp-quickstart
+   ../SDK/javascript/v3.0(latest)/javascript-quickstart
+   ../SDK/x/v3.0(latest)/objective-c-swift-quickstart
+   ../SDK/java-android/v3.2(latest)/java-android-quickstart
+   ../SDK/python/v3.0(latest)/python-quickstart
 
