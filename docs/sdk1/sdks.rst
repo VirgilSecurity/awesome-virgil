@@ -5,7 +5,7 @@ Virgil SDKs
 Features
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
    
    net/v3.0(latest)/dot-net-csharp-sdk
    cpp/v3.0(latest)/c-cpp-sdk
