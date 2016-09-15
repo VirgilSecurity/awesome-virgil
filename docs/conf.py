@@ -220,7 +220,7 @@ html_static_path = ['_static']
 # html_use_opensearch = ''
 
 # This is the file name suffix for HTML files (e.g. ".xhtml").
-html_file_suffix = ''
+# html_file_suffix = ''
 
 # Language to be used for generating the HTML full-text search index.
 # Sphinx supports the following languages:
