@@ -2,9 +2,11 @@
 FAQ
 ##########
 
-:doc:`add-access-token`
+.. toctree::
+   :maxdepth: 1
 
-:doc:`create-app`
+   add-access-token
+   create-app
 
 Use Q/A from website https://stg.virgilsecurity.com/about/faq
 
