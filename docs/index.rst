@@ -13,6 +13,7 @@ Developers Docs
    quickstart/quickstart
    sdk/sdks
    crypto-library
+   cli/cli
    use-cases/use-cases
    faq/faq
 

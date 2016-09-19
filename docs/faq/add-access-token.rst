@@ -2,23 +2,24 @@
 Add an Access Token to your Application
 =========
 
-Every app requires a token to interact with Virgil Services. The access token provides an authenticated secure access to the Public Keys Service and is passed with each API call. The access token also allows the API to associate your app’s requests with your Virgil Security developer’s account.
+Every app requires a token to interact with :doc:`services`. The access token provides an authenticated secure access to the :doc:`cards-service` and is passed with each API call. The access token also allows the API to associate your app’s requests with your Virgil Security developer’s account.
 
 1. :doc:`create-app`.
 
 2. Add new token in Tokens section:
 
-.. image:: Images/AddAccessToken.png
+.. image:: ../images/AddAccessToken.png
+	:scale: 50 %
 
-3. Add a name and set permissions for Virgil Cards to use the token, these permissions can be updated at any time.
+3. Add a name and set permissions for :term:`Virgil Cards <Virgil Card>` to use the token, these permissions can be updated at any time.
 
-.. image:: Images/EditAccessToken.png
-  :scale: 50 %
+.. image:: ../images/EditAccessToken.png
+	:scale: 90 %
 
 .. note::
 
-  * Global Cards are automatically verified in Virgil Identity Service, they are globally available to all Virgil users.
-  * Private Cards are verified by a developer himself, they are available only within the current application.
+  * :term:`Global Cards <Global Virgil Card>` are automatically verified in :doc:`identity-service`, they are globally available to all Virgil users.
+  * :term:`Private Cards <Private Virgil Card>` are verified by a developer himself, they are available only within the current application.
 
 **Permissions**
 
