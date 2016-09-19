@@ -35,6 +35,7 @@ Contacts
 Email: support@virgilsecurity.com
 
 .. image:: images/docs-developer.png
-	:width: 50%
+	:width: 75%
 
 .. image:: images/Virgil-website.png
+	:width: 60%
