@@ -9,12 +9,12 @@ Every app requires a token to interact with :doc:`services`. The access token pr
 2. Add new token in Tokens section:
 
 .. image:: ../images/AddAccessToken.png
-	:width: 30 %
+	:width: 60 %
 
 3. Add a name and set permissions for :term:`Virgil Cards <Virgil Card>` to use the token, these permissions can be updated at any time.
 
 .. image:: ../images/EditAccessToken.png
-	:width: 60 %
+	:width: 40 %
 
 .. note::
 
