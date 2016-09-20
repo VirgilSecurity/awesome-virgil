@@ -5,7 +5,7 @@ Secure data at storage
 User wants a secure online data storage.
 
 .. image:: ../images/SecureStorage.png
-	:width: 70%
+	:width: 50%
 
 - User creates a Virgil account with a pair of asymmetric keys:
 

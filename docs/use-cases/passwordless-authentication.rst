@@ -5,7 +5,7 @@ Passwordless authentication
 A developer needs to implement passwordless registration and authentication into a system.
 
 .. image:: ../images/PasswordlessAuth.png
-	:width: 70%
+	:width: 50%
 
 - An app receives permission to authorize users with Virgil account.
 - A public key is generated for new users in Keys service to further access the system without a password.
