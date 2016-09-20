@@ -22,21 +22,16 @@ Virgil Security, Inc., guides software developers into the forthcoming security 
 Supported languages and platforms
 #####################################
 
-+----------+----------------------------+---------------------------------------------------------------------------------------------------------------------+
-| Language | Supported OS               | Usage                                                                                                               |
-|==========|============================|=====================================================================================================================|
-| C++      | ANY                        | `Tutorial <sdk/cpp/v3.0(latest)/c-cpp-crypto>`_,  `Reference API <http://virgilsecurity.github.io/virgil-crypto/>`_ |
-|----------|----------------------------|---------------------------------------------------------------------------------------------------------------------|
-| Python   | Unix, Linux, OS X          | `Tutorial <sdk/python/v3.0(latest)/python-crypto>`_                                                                 |
-|----------|----------------------------|---------------------------------------------------------------------------------------------------------------------|
-| Java     | Unix, Linux, OS X, Windows | `Tutorial <sdk/java-android/v3.2(latest)/java-android-crypto>`_                                                     |
-|----------|----------------------------|---------------------------------------------------------------------------------------------------------------------|
-| .NET     | Unix, Linux, OS X, Windows | `Tutorial <sdk/net/v3.0(latest)/dot-net-csharp-crypto>`_                                                            |
-|----------|----------------------------|---------------------------------------------------------------------------------------------------------------------|
-| AsmJS    | Unix, Linux, OS X, Windows | `Tutorial <sdk/javascript/v3.0(latest)/javascript-crypto>`_                                                         |
-|----------|----------------------------|---------------------------------------------------------------------------------------------------------------------|
-| NodeJS   | Unix, Linux, OS X, Windows | `Tutorial <sdk/javascript/v3.0(latest)/javascript-crypto>`_                                                         | 
-+----------+----------------------------+---------------------------------------------------------------------------------------------------------------------+                  
+=========== ============================ ============================================================
+ Language    Supported OS                 Usage                                                                                                               
+ ========== ============================ ============================================================
+  C++        ANY                          `Tutorial <sdk/cpp/v3.0(latest)/c-cpp-crypto.html>`_,  `Reference API <http://virgilsecurity.github.io/virgil-crypto/>`_ 
+  Python     Unix, Linux, OS X            `Tutorial <sdk/python/v3.0(latest)/python-crypto.html>`_                                                                 
+  Java       Unix, Linux, OS X, Windows   `Tutorial <sdk/java-android/v3.2(latest)/java-android-crypto.html>`_                                                     
+  .NET       Unix, Linux, OS X, Windows   `Tutorial <sdk/net/v3.0(latest)/dot-net-csharp-crypto.html>`_                                                            
+  AsmJS      Unix, Linux, OS X, Windows   `Tutorial <sdk/javascript/v3.0(latest)/javascript-crypto.html>`_                                                         
+  NodeJS     Unix, Linux, OS X, Windows   `Tutorial <sdk/javascript/v3.0(latest)/javascript-crypto.html>`_                                                          
+=========== ============================ ============================================================
 
 Library purposes
 ##################
