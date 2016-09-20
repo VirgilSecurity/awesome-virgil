@@ -1,16 +1,18 @@
-######
+##############
 IP messaging
-######
+##############
 
 A group of users want to exchange text messages in a secure chat.
 
-.. image:: ../Images/IPMessagingUseCase.png
+.. image:: ../../../images/IPMessagingUseCase.png
+  :width: 70 %
 
 **Chat participants create Virgil accounts with a pair of asymmetric keys**:
 
 - public key on Virgil cloud in Keys service;
 
-.. code::
+.. code:: guess
+  :linenos:
 
   byte[] publicKey;
   byte[] privateKey;
@@ -23,7 +25,8 @@ A group of users want to exchange text messages in a secure chat.
 
 - private key on Virgil cloud in Private Keys service;
 
-.. code::
+.. code:: guess
+  :linenos:
 
   var password = Encoding.UTF8.GetBytes("my_password-:)")
   
@@ -38,7 +41,8 @@ A group of users want to exchange text messages in a secure chat.
 
 **Sent message is encrypted with public keys of all chat participants using Keys service.**
 
-.. code::
+.. code:: guess
+  :linenos:
 
   byte[] encryptedData;
   
@@ -55,8 +59,9 @@ A group of users want to exchange text messages in a secure chat.
 
 **The message is decrypted for every chat participant with his private key using Private Keys service.**
 
-.. code::
-
+.. code:: guess
+  :linenos:
+  
   var recepientContainerPassword = "UhFC36DAtrpKjPCE";
   
   var recepientPrivateKeysClient = new KeyringClient(new Connection(Constants.ApplicationToken));

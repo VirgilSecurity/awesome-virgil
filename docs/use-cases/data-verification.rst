@@ -1,16 +1,18 @@
-#######
+#############
 Verify data
-#######
+#############
 
 Recipient wants to make sure that received data has been sent from a secure source and hasn’t been changed during transport.
 
-.. image:: ../Images/VerifyUseCase.png
+.. image:: ../../../images/VerifyUseCase.png
+  :width: 70 %
 
 **Sender and recipient create Virgil accounts with a pair of asymmetric keys**:
 
 - public key on Virgil cloud in Keys service;
 
-.. code::
+.. code:: guess
+  :linenos:
 
   byte[] publicKey;
   byte[] privateKey;
@@ -24,7 +26,8 @@ Recipient wants to make sure that received data has been sent from a secure sour
 
 - private key on Virgil cloud in Private Keys service;
 
-.. code::
+.. code:: guess
+  :linenos:
 
   var password = Encoding.UTF8.GetBytes("my_password-:)")
   
@@ -37,7 +40,8 @@ Recipient wants to make sure that received data has been sent from a secure sour
 
 **Sender signs the data with his private key in Virgil crypto library.**
 
-.. code::
+.. code:: guess
+  :linenos:
 
   byte[] sign;
   using (var signer = new VirgilSigner())
@@ -49,7 +53,8 @@ Recipient wants to make sure that received data has been sent from a secure sour
 
 **Recipient (or any person) verifies data integrity using the digital signature and sender’s public key in Virgil crypto library.**
 
-.. code::
+.. code:: guess
+  :linenos:
 
   bool isValid;
   using (var signer = new VirgilSigner())

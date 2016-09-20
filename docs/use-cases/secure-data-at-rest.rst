@@ -1,10 +1,11 @@
-#######
+#######################
 Secure data at storage
-#######
+#######################
 
 User wants a secure online data storage.
 
-.. image:: ../Images/SecureStorage.png
+.. image:: ../../../images/SecureStorage.png
+	:width: 70%
 
 - User creates a Virgil account with a pair of asymmetric keys:
 

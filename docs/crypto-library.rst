@@ -24,7 +24,7 @@ Supported languages and platforms
 
 =========== ============================ ============================================================
  Language    Supported OS                 Usage                                                                                                               
- ========== ============================ ============================================================
+=========== ============================ ============================================================
   C++        ANY                          `Tutorial <sdk/cpp/v3.0(latest)/c-cpp-crypto.html>`_,  `Reference API <http://virgilsecurity.github.io/virgil-crypto/>`_ 
   Python     Unix, Linux, OS X            `Tutorial <sdk/python/v3.0(latest)/python-crypto.html>`_                                                                 
   Java       Unix, Linux, OS X, Windows   `Tutorial <sdk/java-android/v3.2(latest)/java-android-crypto.html>`_                                                     

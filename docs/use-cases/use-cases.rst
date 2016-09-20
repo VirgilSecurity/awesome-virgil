@@ -9,4 +9,3 @@ Use Cases
    data-verification
    secure-data-at-rest
    ip-messaging
-   secure-data-at-storage
