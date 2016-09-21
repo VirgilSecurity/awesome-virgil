@@ -1,6 +1,6 @@
-#########
+######################
 Virgil Security CLI
-#########
+######################
 
 - `Description`_
 - `Build Unix`_
@@ -18,9 +18,8 @@ The **Virgil Security CLI** program is a command line tool for using `Virgil Sec
 **Features**:
 
 -   encrypt, decrypt, sign and verify data;
--   interact with `Virgil Keys Service <http://virgil.readthedocs.io/en/latest/keys-service.html>`_;
--   interact with `Virgil Private Keys Service <http://virgil.readthedocs.io/en/latest/private-keys-service.html>`_;
--   interact with `Virgil Identity Service <http://virgil.readthedocs.io/en/latest/identity-service.html>`_.
+-   interact with :doc:`cards-service`;
+-   interact with :doc:`identity-service`.
 
 ============
 Build Unix
@@ -93,7 +92,7 @@ Build Windows
 ============
 
 Windows MSVC toolchain
---------------------
+-----------------------
 
 *   `Visual Studio 2015 <https://www.visualstudio.com/>`_
 *   `CMake <http://www.cmake.org/>`_ (accessible in command prompt). Minimum version: 3.2.
@@ -101,7 +100,7 @@ Windows MSVC toolchain
 *   `NSIS <http://nsis.sourceforge.net/>`_.
 
 Windows MSVC build steps
---------------------
+-------------------------
 
 1.   Open `Visual Studio Command Prompt`.
 
@@ -132,9 +131,9 @@ Windows MSVC build steps
   nmake
   nmake package
 
-============
+==================================================
 Example: Virgil CLI with committing to services
-============
+==================================================
 
 .. note:: Virgil provides all necessary services for managing and performing operations with your keys. We recommend using Virgil Services to store your keys.
 
@@ -151,8 +150,8 @@ The same actions are performed for Bob.
 Generate Keys
 --------------------
 
-  - `keygen <http://virgil.readthedocs.io/en/latest/cli-keygen.html>`_
-  - `key2pub <http://virgil.readthedocs.io/en/latest/cli-key2pub.html>`_
+  - :doc:`cli-keygen`
+  - :doc:`cli-key2pub`
 
 1. A :term:`private key <Private Key>` is generated in the Private Keys Service with a default Elliptic 384-bits NIST Curve scheme.
 You will be asked to enter the :term:`private key password <Private key password>`:
@@ -168,9 +167,9 @@ You will be asked to enter the :term:`private key password <Private key password
   virgil key2pub -i alice/private.key -o alice/public.key
 
 Create a Global Virgil Card
---------------------
+------------------------------
 
-  - `card-create-global <http://virgil.readthedocs.io/en/latest/cli-card-create-global.html>`_
+  - :doc:`cli-card-create-global`
 
 A Virgil Card is the main entity of the Keys Service, it includes the information about the user and his public key. The Virgil Card identifies the user by one of his available types, such as an email, a phone number, etc.
 :term:`Global Card <Global Virgil Card>` is automatically verified in Virgil Identity Service, it is globally available to all Virgil users.
@@ -184,7 +183,7 @@ A Virgil Card is the main entity of the Keys Service, it includes the informatio
 Encrypt Data
 --------------
 
-  - `encrypt <http://virgil.readthedocs.io/en/latest/cli-encrypt.html>`_
+  - :doc:`cli-encrypt`
 
 - Bob encrypts *plain.txt* for Alice.
 - Bob needs Alice's Global Card to encrypt some data for her.
@@ -195,9 +194,9 @@ Encrypt Data
   virgil encrypt -i plain.txt -o plain.txt.enc email:alice@domain.com
 
 Decrypt Data
-----------
+--------------
 
-  - `decrypt <http://virgil.readthedocs.io/en/latest/cli-decrypt.html>`_
+  - :doc:`cli-decrypt`
 
 - Alice decrypts *plain.txt.enc*.
 - Alice uses her private key and her Card.
@@ -209,7 +208,7 @@ Decrypt Data
 Sign Data
 ----------
 
-  - `sign <http://virgil.readthedocs.io/en/latest/cli-sign.html>`_
+  - :doc:`cli-sign`
 
 - Alice signs *plain.txt* before passing it to Bob.
 - Alice's private key is used to create a signature.
@@ -219,9 +218,9 @@ Sign Data
   virgil sign -i plain.txt -o plain.txt.sign -k alice/private.key
 
 Verify Data
-----------
+-------------
 
-  - `verify <http://virgil.readthedocs.io/en/latest/cli-verify.html>`_
+  - :doc:`cli-verify`
 
 - Bob verifies *plain.txt.sign*.
 - He must have Alice's Virgil Card to verify the signature.
@@ -233,16 +232,16 @@ Verify Data
   
 .. note:: Pay attention that ``alice.vcard`` is a shortened example of a Virgil Card name.
 
-============
+=====================================================
 Example: Virgil CLI without committing to services
-============
+=====================================================
 
 .. note:: You can choose to take care of keeping your keys securely by yourself. This way you don't save your public key in Virgil Services and have to manage sharing it every time. 
 
 Encrypt Data
-----------
+--------------
 
-  - `encrypt <http://virgil.readthedocs.io/en/latest/cli-encrypt.html>`_
+  - :doc:`cli-encrypt`
 
 - Alice encrypts *plain.txt* for Bob.
 - Alice needs Bob's public key and his identifier to encrypt some data for him.
@@ -254,9 +253,9 @@ Encrypt Data
   virgil encrypt -i plain.txt -o plain.txt.enc pubkey:bob/public.key:ForBob
 
 Decrypt Data
-----------
+---------------
 
-  - `decrypt <http://virgil.readthedocs.io/en/latest/cli-decrypt.html>`_
+  - :doc:`cli-decrypt`
 
 - Bob decrypts *plain.txt.enc*.
 - Bob uses his private key and the identifier, which has been provided by Alice.
@@ -268,7 +267,7 @@ Decrypt Data
 Sign Data
 ----------
 
-  - `sign <http://virgil.readthedocs.io/en/latest/cli-sign.html>`_
+  - :doc:`cli-sign`
 
 - Alice signs *plain.txt* before passing it to Bob.
 - Alice's private key is used to create a signature.
@@ -278,9 +277,9 @@ Sign Data
   virgil sign -i plain.txt -o plain.txt.sign -k alice/private.key
 
 Verify Data
-----------
+-------------
 
-  - `verify <http://virgil.readthedocs.io/en/latest/cli-verify.html>`_
+  - :doc:`cli-verify`
 
 - Bob verifies *plain.txt.sign*.
 - He need's Alice's public key to verify the signature.

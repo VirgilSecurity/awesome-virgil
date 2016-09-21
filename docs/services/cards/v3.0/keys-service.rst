@@ -396,6 +396,7 @@ POST /virgil-card/actions/search
 ---------------------------------
 
 Performs the search of a **private** application's Virgil Cards by search criteria:
+
 - the *value* request parameter is mandatory;
 - the *type* request parameter is optional and specifies the type of ``Virgil Card``'s ``Identity``;
 - the *include_unauthorized* request parameter specifies whether an unconfirmed ``Virgil Cards`` should be returned.
@@ -447,6 +448,7 @@ POST /virgil-card/actions/search/app
 --------------------------------------
 
 Performs the global search for the applications' Virgil Cards
+
 - the *value* request parameter is mandatory. It is possible to specify the wildcard(e.g. "com.virgilsecurity.*") for the last term of the value
 which allows searching for all the applications inside the organization
 
@@ -501,6 +503,7 @@ POST /virgil-card/actions/search/email
 ------------------------------------------
 
 Performs the global search for the emails' :term:`Virgil Cards <Virgil Card>`
+
 - the *value* request parameter is mandatory.
 
 **Request info**
@@ -548,6 +551,7 @@ DELETE /virgil-card/{virgil-card-id}
 ---------------------------------------
 
 Revoke a :term:`Virgil Card <Virgil Card>` endpoint:
+
 *  **identity** parameter is optional. It must be specified only for confirmed `Virgil Card` instances
 
 **Request info**

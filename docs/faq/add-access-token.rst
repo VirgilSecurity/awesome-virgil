@@ -1,6 +1,6 @@
-=========
+==========================================
 Add an Access Token to your Application
-=========
+==========================================
 
 Every app requires a token to interact with :doc:`services`. The access token provides an authenticated secure access to the :doc:`cards-service` and is passed with each API call. The access token also allows the API to associate your app’s requests with your Virgil Security developer’s account.
 

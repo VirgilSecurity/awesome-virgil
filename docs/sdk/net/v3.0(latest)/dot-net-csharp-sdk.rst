@@ -6,17 +6,22 @@ Tutorial .NET/C# Keys SDK
 -  `Install`_
 -  `Obtaining an Access Token`_
 -  `Cards and Public Keys`_
--  `Publish a Virgil Card`_
--  `Search for Cards`_
--  `Revoke a Virgil Card`_
--  `Get a Public Key`_
+
+	-  `Publish a Virgil Card`_
+	-  `Search for Cards`_
+	-  `Revoke a Virgil Card`_
+	-  `Get a Public Key`_
+
 -  `Private Keys`_
--  `Stash a Private Key`_
--  `Get a Private Key`_
--  `Destroy a Private Key`_
+
+	-  `Stash a Private Key`_
+	-  `Get a Private Key`_
+	-  `Destroy a Private Key`_
+
 -  `Identities`_
--  `Obtaining a global ValidationToken`_
--  `Obtaining a private ValidationToken`_
+
+	-  `Obtaining a global ValidationToken`_
+	-  `Obtaining a private ValidationToken`_
 
 Introduction
 ------------
@@ -78,27 +83,216 @@ Publish a Virgil Card
 ^^^^^^^^^^^^^^^^^^^^^
 
 Creating a *private* Virgil Card with a newly generated key pair and
-**ValidationToken**. See how to obtain a **ValidationToken** `here…`_
+**ValidationToken**. See how to obtain a **ValidationToken** `here… <`Obtaining a private ValidationToken`>`_
 
-\`\`\`csharp var keyPair = Virgil
+.. code:: csharp
 
-.. _Introduction: #introduction
-.. _Install: #install
-.. _Obtaining an Access Token: #obtaining-an-access-token
-.. _Cards and Public Keys: #cards-and-public-keys
-.. _Publish a Virgil Card: #publish-a-virgil-card
-.. _Search for Cards: #search-for-cards
-.. _Revoke a Virgil Card: #revoke-a-virgil-card
-.. _Get a Public Key: #get-a-public-key
-.. _Private Keys: #private-keys
-.. _Stash a Private Key: #stash-a-private-key
-.. _Get a Private Key: #get-a-private-key
-.. _Destroy a Private Key: #destroy-a-private-key
-.. _Identities: #identities
-.. _Obtaining a global ValidationToken: #obtaining-a-global-validationtoken
-.. _Obtaining a private ValidationToken: #obtaining-a-private-validationtoken
-.. _here: https://developer.virgilsecurity.com/account/signup
-.. _sign in: https://developer.virgilsecurity.com/account/signin
-.. _the Identity verification: #identities
+    var keyPair = VirgilKeyPair.Generate();
+
+    var identity = new IdentityInfo {
+        Value = "demo_virgil",
+        Type = "username",
+        ValidationToken = "%VALIDATION_TOKEN%"
+    };
+
+    var myCard = await serviceHub.Cards
+        .Create(identity, keyPair.PublicKey(), keyPair.PrivateKey());
+
+​Creating an unauthorized *private* Virgil Card without
+**ValidationToken**. Pay attention that you will have to set an
+additional attribute to include the private Cards without verification
+into your search, see an `example`_.
+
+.. code:: csharp
+
+    var keyPair = VirgilKeyPair.Generate();
+
+    var identity = new IdentityInfo {
+        Value = "demo_virgil",
+        Type = "username"
+    };
+
+    var myCard = await serviceHub.Cards
+        .Create(identity, keyPair.PublicKey(), keyPair.PrivateKey());
+
+Creating a *global* Virgil Card. See how to obtain a **ValidationToken**
+`here…`_
+
+.. code:: csharp
+
+    var keyPair = VirgilKeyPair.Generate();
+
+    var emailVerifier = await serviceHub.Identity
+        .VerifyEmail("demo@virgilsecurity.com");
+
+    // get the confirmation code from received email message.
+
+    var authorizedIdentity = await emailVerifier
+         .Confirm("%CONFIRMATION_CODE%");
+
+    var myCard = await serviceHub.Cards
+        .Create(authorizedIdentity, keyPair.PublicKey(), keyPair.PrivateKey());
+
+Search for Cards
+^^^^^^^^^^^^^^^^
+
+Search for a *global* Virgil Card.
+
+.. code:: csharp
+
+    // search for email card.
+
+    var emailCards = await serviceHub.Cards
+        .Search("demo@virgilsecurity.com", IdentityType.Email);
+
+    // search for application card.
+
+    var appCards = await serviceHub.Cards
+        .Search("com.virgilsecurity.mail", IdentityType.Application);
+
+Search for a *private* Virgil Card.
+
+.. code:: csharp
+
+    var foundCards = await serviceHub.Cards.Search("virgil_demo");
+
+    // or search for Virgil Cards including unauthorized ones.
+
+    foundCards = await serviceHub.Cards
+        .Search("virgil_demo", includeUnauthorized: true);
+
+Revoke a Virgil Card
+^^^^^^^^^^^^^^^^^^^^
+
+This operation is used to delete the Virgil Card from the search and
+mark it as deleted.
+
+.. code:: csharp
+
+    await serviceHub.Cards.Revoke(myCard.Id, keyPair.PrivateKey());
+
+Get a Public Key
+^^^^^^^^^^^^^^^^
+
+This operation gets a public key from the Public Keys Service by the
+specified ID.
+
+.. code:: csharp
+
+    await serviceHub.PublicKeys.Get(myCard.PublicKey.Id);
+
+Private Keys
+------------
+
+The security of private keys is crucial for the public key
+cryptosystems. Anyone who can obtain a private key can use it to
+impersonate the rightful owner during all communications and
+transactions on intranets or on the internet. Therefore, private keys
+must be in the possession only of authorized users, and they must be
+protected from unauthorized use.
+
+Virgil Security provides a set of tools and services for storing private
+keys in a safe storage which lets you synchronize your private keys
+between the devices and applications.
+
+Usage of this service is optional.
+
+Stash a Private Key
+^^^^^^^^^^^^^^^^^^^
+
+Private key can be added for storage only in case you have already
+registered a public key on the Public Keys Service.
+
+Use the public key identifier on the Public Keys Service to save the
+private keys.
+
+The Private Keys Service stores private keys the original way as they
+were transferred. That’s why we strongly recommend transferring the keys
+which were generated with a password.
+
+.. code:: csharp
+
+    await serviceHub.PrivateKeys.Stash(myCard.Id, keyPair.PrivateKey());
+
+Get a Private Key
+^^^^^^^^^^^^^^^^^
+
+This operation is used to get a private key. You must pass a prior
+verification of the Virgil Card in which your public key is used. And
+then you must obtain a **ValidationToken** depending on your Virgil Card
+(`global`_ or `private`_).
+
+.. code:: csharp
+
+    var identityInfo = new IdentityInfo {
+        Value = "demo@virgilsecurity.com",
+        Type = "email",
+        ValidationToken = "%VALIDATION_TOKEN%"
+    }
+
+    var privateKey = await serviceHub.PrivateKeys.Get(myCard.Id, identityInfo);
+
+Destroy a Private Key
+^^^^^^^^^^^^^^^^^^^^^
+
+This operation deletes the private key from the service without a
+possibility to be restored.
+
+.. code:: csharp
+
+    await serviceHub.PrivateKeys.Destroy(myCard.Id, keyPair.PrivateKey());
+
+Identities
+----------
+
+Obtaining a global ValidationToken
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The *global* **ValidationToken** is used for creating *global Cards*.
+The *global* **ValidationToken** can be obtained only by checking the
+ownership of the Identity on Virgil Identity Service.
+
+In the example below you can see how to obtain a **ValidationToken** for
+creating a *global* Virgil Card.
+
+.. code:: csharp
+
+    // send a verification request for specified identity type. 
+
+    var verificationResponse = await serviceHub.Identity
+        .Verify("test1@virgilsecurity.com", IdentityType.Email);
+        
+    // confirm an identity using code received on email address.
+        
+    var validationToken = (await serviceHub.Identity
+        .Confirm(identityRequest.Id, "%CONFIRMATION_CODE%")).ValidationToken;
+
+You can also use the shortcut to verify a specific type.
+
+.. code:: csharp
+
+    var emailVerifier = await 
+           serviceHub.Identity.VerifyEmail("demo@virgilsecurity.com");
+
+    var confirmedIdentity = await emailVerifier.Confirm("%CONFIRMATION_CODE%");
+
+Obtaining a private ValidationToken
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The *private* **ValidationToken** is used for creating *Private Cards*.
+The *private* **ValidationToken** can be generated on developer’s side
+using his own service for verification instead of Virgil Identity
+Service or avoids verification at all. In this case validation token is
+generated using app’s Private Key created on our `Developer portal`_.
+
+In the example below you can see, how to generate a **ValidationToken**
+using the SDK library.
+
+.. code:: csharp 
+
+	var validationToken = ValidationTokenGenerator     
+		.Generate("demo_virgil", "username", %APP_PRIVATE_KEY%);
+
+.. _global: #obtaining-a-global-validationtoken
+.. _private: #obtaining-a-private-validationtoken
 .. _Developer portal: https://developer.virgilsecurity.com/dashboard/
-.. _here…: #obtaining-a-private-validationtoken
