@@ -1,0 +1,18 @@
+PODS:
+  - VirgilFoundation (1.8.0)
+  - VirgilSDK (3.2.0):
+    - VirgilFoundation (~> 1.8)
+  - XAsync (2.0.1)
+
+DEPENDENCIES:
+  - VirgilSDK (~> 3.2)
+  - XAsync (~> 2.0)
+
+SPEC CHECKSUMS:
+  VirgilFoundation: 71ee9e998b2adb87b537bb8ce1493972cb3c6f9c
+  VirgilSDK: f944090fc3e00d8b862af12a44b65a2f603435ad
+  XAsync: 60f85d4be40cffdedd7554a48886ee6f74060e69
+
+PODFILE CHECKSUM: 8a73f4d603e9299dbbcd0ebe0b25e2e4233142e5
+
+COCOAPODS: 1.0.0.beta.3

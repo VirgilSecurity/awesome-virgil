@@ -1,0 +1,6 @@
+framework module XAsync {
+  umbrella header "XAsync-umbrella.h"
+
+  export *
+  module * { export * }
+}

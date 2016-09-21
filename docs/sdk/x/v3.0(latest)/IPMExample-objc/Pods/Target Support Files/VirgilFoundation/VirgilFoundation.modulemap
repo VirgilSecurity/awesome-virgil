@@ -1,0 +1,6 @@
+framework module VirgilFoundation {
+  umbrella header "VirgilFoundation-umbrella.h"
+
+  export *
+  module * { export * }
+}

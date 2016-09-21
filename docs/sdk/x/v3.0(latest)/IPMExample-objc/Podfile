@@ -1,0 +1,9 @@
+source 'https://github.com/CocoaPods/Specs.git'
+
+platform :ios, '9.0'
+use_frameworks!
+
+target 'IPMExample-objc' do
+    pod 'VirgilSDK', '~> 3.2'
+    pod 'XAsync', '~> 2.0'
+end
