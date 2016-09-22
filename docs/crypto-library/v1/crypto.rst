@@ -40,12 +40,19 @@ Supported languages and platforms
 | Language   | Supported OS                 |
 +============+==============================+
 | C++        | ANY                          |
-| PHP        | Unix, Linux, OS X            |                                             
++------------+------------------------------+
+| PHP        | Unix, Linux, OS X            |
++------------+------------------------------+                                             
 | Python     | Unix, Linux, OS X            |
++------------+------------------------------+
 | Ruby       | Unix, Linux, OS X            |
++------------+------------------------------+
 | Java       | Unix, Linux, OS X, Windows   |
++------------+------------------------------+
 | .NET       | Unix, Linux, OS X, Windows   |
++------------+------------------------------+
 | AsmJS      | Unix, Linux, OS X, Windows   |
++------------+------------------------------+
 | NodeJS     | Unix, Linux, OS X, Windows   |                                                                                                     
 +------------+------------------------------+
 
@@ -188,7 +195,7 @@ Step 1 - Choose target language and platform
 +============+==========+=========+===================+=====================+=============+==========================================================================================================================+
 | C++        | OS X     | OS X    |                   | TARGET=osx          |             | `Download <https://cdn.virgilsecurity.com/virgil-crypto/cpp/virgil-crypto-1.6.0-cpp-osx-14.5-universal.tgz>`__           |
 +------------+----------+---------+-------------------+---------------------+-------------+--------------------------------------------------------------------------------------------------------------------------+
-| C++        | iOS      | OS X    |                   | TARGET=ios          |             | `Download <https://cdn.virgilsecurity.com/virgil-crypto/cpp/virgil-crypto-1.6.0-cpp-ios-7.0.tgz >`__                     |
+| C++        | iOS      | OS X    |                   | TARGET=ios          |             | `Download <https://cdn.virgilsecurity.com/virgil-crypto/cpp/virgil-crypto-1.6.0-cpp-ios-7.0.tgz>`__                      |
 +------------+----------+---------+-------------------+---------------------+-------------+--------------------------------------------------------------------------------------------------------------------------+
 | C++        | WatchOS  | OS X    |                   | TARGET=applewatchos |             | `Download <https://cdn.virgilsecurity.com/virgil-crypto/cpp/virgil-crypto-1.6.0-cpp-applewatchos-2.0.tgz>`__             |
 +------------+----------+---------+-------------------+---------------------+-------------+--------------------------------------------------------------------------------------------------------------------------+
@@ -223,7 +230,7 @@ Step 1 - Choose target language and platform
 |            |          |         | vcruntime140.dll* |                     |             |                                                                                                                          |
 +------------+----------+---------+-------------------+---------------------+-------------+--------------------------------------------------------------------------------------------------------------------------+
 
-    These dependencies can be installed as a part of `Visual C++
+    * These dependencies can be installed as a part of `Visual C++
     Redistributable for Visual Studio
     2015 <https://www.microsoft.com/en-us/download/details.aspx?id=48145>`__
 
