@@ -1,6 +1,6 @@
-============
+====================================
 Tutorial Javascript/Node.js Keys SDK
-============
+====================================
 
 - `Introduction`_
 - `Install`_ 
@@ -18,9 +18,9 @@ Tutorial Javascript/Node.js Keys SDK
     - `Obtaining a global ValidationToken`_
     - `Obtaining a private ValidationToken`_
 
-*********
+******************
 Introduction
-*********
+******************
 
 This tutorial explains how to use the Public Keys Service with SDK library in JavaScript applications. 
 
@@ -51,9 +51,9 @@ CDN
 	integrity="sha256-6gsCF73jFoEAcdAmVE8n+LCtUgzQ7j6svoCQxVxvmZ8="
 	crossorigin="anonymous"></script>
 
-*********
+***************************
 Obtaining an Access Token
-*********
+***************************
 
 First you must create a Virgil Security developer's account by signing up `here <https://developer.virgilsecurity.com/account/signup>`_. Once you have your account you can `sign in <https://developer.virgilsecurity.com/account/signin>`_ and generate an access token for your application.
 
@@ -65,9 +65,9 @@ Simply add your access token to the class builder.
 
 	var virgil = new VirgilSDK("%ACCESS_TOKEN%");
 
-*********
+***************************
 Cards and Public Keys
-*********
+***************************
 
 A Virgil Card is the main entity of the Public Keys Service, it includes the information about the user and his public key. The Virgil Card identifies the user by one of his available types, such as an email, a phone number, etc.
 
@@ -78,7 +78,7 @@ The Virgil Card might be *global* and *private*. The difference is whether Virgi
 *Private Cards* are created when a developer is using his own service for verification instead of Virgil Identity Service or avoids verification at all. In this case validation token is generated using app's Private Key created on our `Developer portal <https://developer.virgilsecurity.com/dashboard/>`_.     
 
 Publish a Virgil Card
-=========
+===========================
 
 Creating a *private* Virgil Card with a newly generated key pair and **ValidationToken**. See how to obtain a **ValidationToken** here... `Obtaining a private ValidationToken`_
 
@@ -144,7 +144,7 @@ Creating a *global* Virgil Card. See how to obtain a **ValidationToken** here...
 	});
 
 Search for Cards
-=========
+==================
 
 Search for a *global* Virgil Card.
 
@@ -178,7 +178,7 @@ Search for a *private* Virgil Card.
 	});
 
 Revoke a Virgil Card
-=========
+===========================
 
 This operation is used to delete the Virgil Card from the search and mark it as deleted. 
 
@@ -195,7 +195,7 @@ This operation is used to delete the Virgil Card from the search and mark it as 
 	});
 
 Get a Public Key
-=========
+==================
 
 This operation gets a public key from the Public Keys Service by the specified ID.
 
@@ -203,9 +203,9 @@ This operation gets a public key from the Public Keys Service by the specified I
 
 	virgil.publicKeys.get({ public_key_id: 'some public key id' });
 
-*********
+******************
 Private Keys
-*********
+******************
 
 The security of private keys is crucial for the public key cryptosystems. Anyone who can obtain a private key can use it to impersonate the rightful owner during all communications and transactions on intranets or on the internet. Therefore, private keys must be in the possession only of authorized users, and they must be protected from unauthorized use.
 
@@ -214,7 +214,7 @@ Virgil Security provides a set of tools and services for storing private keys in
 Usage of this service is optional.
 
 Stash a Private Key
-=========
+===========================
 
 Private key can be added for storage only in case you have already registered a public key on the Public Keys Service.
 
@@ -230,7 +230,7 @@ The Private Keys Service stores private keys the original way as they were trans
 	});
 
 Get a Private Key
-=========
+==================
 
 This operation is used to get a private key. You must pass a prior verification of the Virgil Card in which your public key is used. And then you must obtain a **ValidationToken** depending on your Virgil Card (global `Obtaining a global ValidationToken`_ or  private `Obtaining a private ValidationToken`_).
   
@@ -261,7 +261,7 @@ This operation is used to get a private key. You must pass a prior verification 
 	});
 
 Destroy a Private Key
-=========
+===========================
 
 This operation deletes the private key from the service without a possibility to be restored. 
   
@@ -272,12 +272,12 @@ This operation deletes the private key from the service without a possibility to
 	    private_key_password: '<your_private_key_password>'
 	});
 
-*********
+************
 Identities
-*********
+************
 
 Obtaining a global ValidationToken
-=========
+====================================
 
 The *global* **ValidationToken** is used for creating *global Cards*. The *global* **ValidationToken** can be obtained only by checking the ownership of the Identity on Virgil Identity Service.
 
@@ -303,7 +303,7 @@ In the example below you can see how to obtain a **ValidationToken** for creatin
 	});
 
 Obtaining a private ValidationToken
-=========
+====================================
 
 The *private* **ValidationToken** is used for creating *Private Cards*. The *private* **ValidationToken** can be generated on developer's side using his own service for verification instead of Virgil Identity Service or avoids verification at all. In this case validation token is generated using app's Private Key created on our `Developer portal <https://developer.virgilsecurity.com/dashboard/>`_.   
 

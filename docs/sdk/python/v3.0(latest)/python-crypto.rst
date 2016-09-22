@@ -1,6 +1,6 @@
-============
+====================================
 Tutorial Crypto Library Python
-============
+====================================
 
 - `Install`_
 - `Generate Keys`_
@@ -41,9 +41,9 @@ Demos
 
 Quickstart guide for making your own E2E encrypted IP Messaging is: `here <https://github.com/VirgilSecurity/virgil-demo-twilio/tree/master/ip-messaging>`_
 
-*********
+******************
 Generate Keys
-*********
+******************
 
 The following code example creates a new public/private key pair with a specific type.
 
@@ -102,9 +102,9 @@ Type_EC_SECP224K1   224-bits "Koblitz" curve
 Type_EC_SECP256K1   256-bits "Koblitz" curve       
 ================== ===============================
 
-*********
+******************
 Encrypt Data
-*********
+******************
 
 The procedure for encrypting and decrypting the data is simple. For example:
 
@@ -130,9 +130,9 @@ The following example applies a digital signature to a public key identifier.
   keys = cryptolib.CryptoWrapper.generate_keys(cryptolib.crypto_helper.VirgilKeyPair.Type_EC_SECP224R1, "%PASSWORD%")
   sign = cryptolib.CryptoWrapper.sign(originalText, keys['private_key'], '%PASSWORD%')
 
-*********
+************
 Verify Data
-*********
+************
 
 To verify that the data was signed by a particular party, you need the following information:
 
@@ -146,9 +146,9 @@ The following example verifies a digital signature which was signed by the sende
 
   verify = cryptolib.CryptoWrapper.verify(originalText, sign, '%PUBLIC_KEY%')
 
-*********
+************
 Decrypt Data
-*********
+************
 
 The following example illustrates decryption of the encrypted data with a recipient's private key.
 

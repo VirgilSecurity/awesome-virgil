@@ -1,6 +1,6 @@
-============
+================================================
 Tutorial Crypto Library Objective C/Swift
-============
+================================================
 
 - `Introduction`_
 - `Install`_
@@ -9,16 +9,16 @@ Tutorial Crypto Library Objective C/Swift
 - `Creating a new key pair`_
 - `Encrypt and decrypt data`_
 	- `Key-based encryption`_
-        - `Key-based decryption`_
-        - `Password-based encryption`_
-        - `Password-based decryption`_
+    - `Key-based decryption`_
+    - `Password-based encryption`_
+    - `Password-based decryption`_
 - `Compose and verify a signature`_
-        - `Compose a signature`_
-        - `Verify a signature`_
+    - `Compose a signature`_
+    - `Verify a signature`_
 
-*********
+******************
 Introduction
-*********
+******************
 
 Basic low-level framework which allows to perform some most important security operations. This framework is used in the other high-level Virgil frameworks, libraries and applications. Also it might be used as a standalone basic library for any security-concerned applications.
 
@@ -120,9 +120,9 @@ Use case
 
 Below you can find the examples for most common tasks which can be performed using VirgilFoundation framework.
 
-*********
+***************************
 Creating a new key pair
-*********
+***************************
 
 VSSKeyPair instance should be used to generate a pair of keys. It is possible to generate a password-protected private key. In case if password is not given, private key will be generated as a plain data. 
 
@@ -151,9 +151,9 @@ VSSKeyPair instance should be used to generate a pair of keys. It is possible to
 	println(NSString(data: keyPair.privateKey(), encoding: NSUTF8StringEncoding))
 	//...
 
-*********
+***************************
 Encrypt and decrypt data
-*********
+***************************
 
 VSSCryptor objects can perform two ways of encryption/decryption:
 
@@ -161,7 +161,7 @@ VSSCryptor objects can perform two ways of encryption/decryption:
 - Password-based encryption/decryption.
 
 Key-based encryption
-=========
+===========================
 
 **Objective-C**
 
@@ -206,7 +206,7 @@ Key-based encryption
 	//...
 
 Key-based decryption
-=========
+===========================
 
 **Objective-C**
 
@@ -247,7 +247,7 @@ Key-based decryption
 	}//...
 
 Password-based encryption
-=========
+===========================
 
 **Objective-C**
 
@@ -290,7 +290,7 @@ Password-based encryption
 	//...
 
 Password-based decryption
-=========
+===========================
 
 **Objective-C**
 
@@ -327,14 +327,14 @@ Password-based decryption
 	}
 	//...
 
-*********
+************************************
 Compose and verify a signature
-*********
+************************************
 
 VSSSigner instances allow to sign some data with a given private key. This can be used to make sure that some message/data was really composed and sent by the holder of the private key.
 
 Compose a signature
-=========
+===========================
 
 **Objective-C**
 
@@ -377,7 +377,7 @@ Compose a signature
 	//...
 
 Verify a signature
-=========
+==================
 
 To verify some signature it is necessary to have a public key of a user whose signature we want to verify. 
 

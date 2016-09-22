@@ -1,6 +1,6 @@
-============
+================================================
 Tutorial Crypto Library Javascript/Node.js
-============
+================================================
 
 - `Install`_
 - `Generate Keys`_
@@ -76,9 +76,9 @@ Demos
 
 Quickstart guide for making your own E2E encrypted IP Messaging is: `here <https://github.com/VirgilSecurity/virgil-demo-twilio/tree/master/ip-messaging>`_
 
-*********
+******************
 Generate Keys
-*********
+******************
 
 The following code example creates a new public/private key pair.
 
@@ -170,9 +170,9 @@ Here is what an encrypted private key looks like:
     SFMQ8705Y2W1uTexqw==
     -----END ENCRYPTED PRIVATE KEY-----
 
-*********
-Encrypt/Decrypt data
-*********
+***************************
+Encrypt/Decrypt Data
+***************************
 
 The procedure for encrypting and decrypting the data is simple. For example:
 
@@ -181,7 +181,7 @@ If you want to encrypt the data to Bob, you encrypt it using Bob's public key (w
 Crypto Library allows to encrypt the data for several types of recipient's user data like public key and password. This means that you can encrypt the data with some password or with a public key generated with the Crypto Library.
 
 Using Password
-=========
+==================
 
 > Initial data must be passed as a String or `Buffer <https://github.com/feross/buffer>`_.
 
@@ -201,7 +201,7 @@ Using Password
     console.log('Decrypted data: ' + decryptedData.toString());
 
 Async (using web workers) Using Password
-=========
+=============================================
 
 .. note :: Only for browsers.
 
@@ -230,7 +230,7 @@ Using Key
 > The `Buffer <https://github.com/feross/buffer>`_ constructor is available by ```virgilCrypto.Buffer```
 
 Using Key with Password
-=========
+===========================
 
 .. code-block:: javascript
 
@@ -253,7 +253,7 @@ Using Key with Password
     console.log('Decrypted data: ' + decryptedData.toString());
 
 Using Key with Password for Multiple Recipients
-=========
+======================================================
 
 .. code-block:: javascript
 
@@ -275,7 +275,7 @@ Using Key with Password for Multiple Recipients
     console.log('Decrypted data: ' + decryptedData.toString());
 
 Async (using web workers) Using Key with Password
-=========
+======================================================
 
 .. note :: Only for browsers.
 
@@ -303,7 +303,7 @@ Async (using web workers) Using Key with Password
       });
 
 Async (using web workers) Using Key with Password for Multiple Recipients
-=========
+=================================================================================
 
 .. note :: Only for browsers.
 
@@ -334,7 +334,7 @@ Async (using web workers) Using Key with Password for Multiple Recipients
       });
 
 Using Key without Password
-=========
+===========================
 
 .. code-block:: javascript
 
@@ -355,7 +355,7 @@ Using Key without Password
     console.log('Decrypted data: ' + decryptedData.toString());
 
 Async (using web workers) Using Key without Password
-=========
+======================================================
 
 .. note :: Only for browsers.
 
@@ -380,9 +380,9 @@ Async (using web workers) Using Key without Password
           });
       });
 
-*********
+************************************
 Sign and Verify Data Using Key
-*********
+************************************
 
 Cryptographic digital signatures use public key algorithms to provide data integrity. When you sign the data with a digital signature, someone else can verify the signature and can prove that the data originated from you and was not altered after you had signed it.
 
@@ -395,7 +395,7 @@ The following example applies a digital signature to a public key identifier.
 > The `Buffer <https://github.com/feross/buffer>`_ constructor is available by ```virgilCrypto.Buffer```
 
 With Password
-=========
+==================
 
 .. code-block:: javascript
 
@@ -433,7 +433,7 @@ The following example verifies a digital signature which was signed by the sende
     console.log('Is data verified: ' + isDataVerified);
 
 Async (using web workers) With Password
-=========
+=============================================
 
 .. note :: Only for browsers.
 

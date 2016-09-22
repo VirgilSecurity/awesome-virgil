@@ -1,6 +1,6 @@
-============
+====================================
 Tutorial Objective C/Swift Keys SDK
-============
+====================================
 
 - `Introduction`_
 - `Install`_ 
@@ -19,15 +19,15 @@ Tutorial Objective C/Swift Keys SDK
     - `Obtaining a global ValidationToken`_
     - `Obtaining a private ValidationToken`_
 
-*********
+******************
 Introduction
-*********
+******************
 
 This tutorial explains how to use the Virgil Security Services with SDK library in Objective-C/Swift applications. 
 
-*********
+******************
 Install
-*********
+******************
 
 You can easily add SDK dependency to your project using CocoaPods. So, if you are not familiar with this dependency manager it is time to install CocoaPods. Open your terminal window and execute the following line:
 
@@ -68,9 +68,9 @@ Now it is possible to add VirgilSDK to the particular application. So:
  
 At this point you should be able to use VirgilSDK pod in your code. If you encountered any issues with CocoaPods installations, try to find more information at `cocoapods.org <https://guides.cocoapods.org/using/getting-started.html>`_.
 
-*********
+******************
 Swift note
-*********
+******************
 
 Although VirgilSDK pod is using Objective-C as its primary language it might be quite easily used in a Swift application.
 After pod is installed as described above it is necessary to perform the following:
@@ -90,9 +90,9 @@ After pod is installed as described above it is necessary to perform the followi
 
 You can find more information about using Objective-C and Swift in the same project `here <https://developer.apple.com/library/ios/documentation/Swift/Conceptual/BuildingCocoaApps/MixandMatch.html>`_.
 
-*********
+***************************
 Obtaining an Access Token
-*********
+***************************
 
 First you must create a free Virgil Security developer's account by signing up `here <https://developer.virgilsecurity.com/account/signup>`_. Once you have your account you can `sign in <https://developer.virgilsecurity.com/account/signin>`_ and generate an access token for your application.
 
@@ -121,9 +121,9 @@ Simply add your access token to the client constructor as an application token.
     let client = VSSClient(applicationToken: <# Virgil Access Token #>)
     //...
 
-*********
+***************************
 Cards and Public Keys
-*********
+***************************
 
 A Virgil Card is the main entity of the Public Keys Service, it includes the information about the user and his public key. The Virgil Card identifies the user by one of his available types, such as an email, a phone number, etc.
 
@@ -135,7 +135,7 @@ The Virgil Card might be *global* and *private*. The difference is whether Virgi
 
 
 Publish a Virgil Card
-=========
+===========================
 
 Creating a *private* Virgil Card with a newly generated key pair and **ValidationToken**. See how to obtain a **ValidationToken** here... `Obtaining a private ValidationToken`_
 
@@ -398,7 +398,7 @@ Creating a *global* Virgil Card. See how to obtain a **ValidationToken** here...
     //...
 
 Search for Cards
-=========
+==================
 
 Search for a *global* Virgil Card.
 
@@ -540,7 +540,7 @@ Search for a *private* Virgil Card.
     //...
 
 Revoke a Virgil Card
-=========
+===========================
 
 This operation is used to delete the Virgil Card from the search and mark it as deleted. 
 
@@ -591,7 +591,7 @@ This operation is used to delete the Virgil Card from the search and mark it as 
     //...
 
 Get a Public Key
-=========
+==================
 
 Gets a public key from the Public Keys Service by the specified ID.
 
@@ -627,9 +627,9 @@ Gets a public key from the Public Keys Service by the specified ID.
     }
     //...
 
-*********
+******************
 Private Keys
-*********
+******************
 
 The security of private keys is crucial for the public key cryptosystems. Anyone who can obtain a private key can use it to impersonate the rightful owner during all communications and transactions on intranets or on the internet. Therefore, private keys must be in the possession only of authorized users, and they must be protected from unauthorized use.
 
@@ -638,7 +638,7 @@ Virgil Security provides a set of tools and services for storing private keys in
 Usage of this service is optional.
 
 Stash a Private Key
-=========
+===========================
 
 Private key can be added for storage only in case you have already registered a public key on the Public Keys Service.
 
@@ -680,7 +680,7 @@ The Private Keys Service stores private keys the original way as they were trans
     //...
 
 Get a Private Key
-=========
+====================
 
 To get a private key you need to pass identity information of the  Virgil Card associated with your public key. This identity information object must contain a **ValidationToken**. To obtain the **ValidationToken** you should use either global way `Obtaining a global ValidationToken`_ or private way `Obtaining a private ValidationToken`_ depending on your Virgil Card. 
   
@@ -743,7 +743,7 @@ To get a private key you need to pass identity information of the  Virgil Card a
     //...
 
 Destroy a Private Key
-=========
+===========================
 
 This operation deletes the private key from the service without a possibility to be restored. 
   
@@ -780,12 +780,12 @@ This operation deletes the private key from the service without a possibility to
     }
     //...
 
-*********
+***********
 Identities
-*********
+***********
 
 Obtaining a global ValidationToken
-=========
+====================================
 
 The *global* **ValidationToken** is used for creating *global Cards*. The *global* **ValidationToken** can be obtained only by checking the ownership of the Identity on Virgil Identity Service.
 
@@ -832,7 +832,7 @@ In the example below you can see how to obtain a **ValidationToken** for creatin
 
 **Swift**
 
-.. code-block::swift
+.. code-block:: swift
 
     //...
     self.client.verifyEmailIdentityWithValue(<# String: email address #>, 
@@ -863,7 +863,7 @@ In the example below you can see how to obtain a **ValidationToken** for creatin
     //...
 
 Obtaining a private ValidationToken
-=========
+====================================
 
 The *private* **ValidationToken** is used for creating *private cards*. The *private* **ValidationToken** can be generated on developer's side using his own service for verification instead of Virgil Identity Service or to avoid verification at all. In this case validation token is generated using app's Private Key created on our `Developer portal <https://developer.virgilsecurity.com/dashboard/>`_.   
 

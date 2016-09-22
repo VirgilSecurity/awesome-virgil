@@ -1,6 +1,6 @@
-============
+========================
 Tutorial Python SDK
-============
+========================
 
 - `Introduction`_
 - `Installation`_ 
@@ -18,15 +18,15 @@ Tutorial Python SDK
     - `Obtaining a global ValidationToken`_
     - `Obtaining a private ValidationToken`_
 
-*********
+******************
 Introduction
-*********
+******************
 
 This tutorial explains how to use the Public Keys Service with SDK library in Python applications. 
 
-*********
+******************
 Installation
-*********
+******************
 
 To install `package <https://cdn.virgilsecurity.com/virgil-crypto/python/>`_ use the command below:
 
@@ -41,9 +41,9 @@ You can easily add an SDK dependency to your project, just add the following cod
     from VirgilSDK import virgilhub
     import VirgilSDK.virgil_crypto.cryptolib as cryptolib
 
-*********
+***************************
 Obtaining an Access Token
-*********
+***************************
 
 First you must create a free Virgil Security developer's account by signing up `here <https://developer.virgilsecurity.com/account/signup>`_. Once you have your account you can `sign in <https://developer.virgilsecurity.com/account/signin>`_ and generate an access token for your application.
 
@@ -58,9 +58,9 @@ Simply add your access token to the client constructor.
     private_key_link = 'https://keys-private.virgilsecurity.com/v3'
     virgil_hub = virgilhub.VirgilHub('%ACCESS_TOKEN%', identity_link, virgil_card_link, private_key_link)
 
-*********
+***************************
 Cards and Public Keys
-*********
+***************************
 
 A Virgil Card is the main entity of the Public Keys Service, it includes the information about the user and his public key. The Virgil Card identifies the user by one of his available types, such as an email, a phone number, etc.
 
@@ -71,7 +71,7 @@ Global Cards are created with the validation token received after verification i
 Private Cards are created when a developer is using his own service for verification instead of Virgil Identity Service or avoids verification at all. In this case validation token is generated using app's Private Key created on our `Developer portal <https://developer.virgilsecurity.com/dashboard/>`_.
 
 Publish a Virgil Card
-=========
+===========================
 
 Creating a private Virgil Card with a newly generated key pair and ValidationToken. ee how to obtain a **ValidationToken**  here... `Obtaining a private ValidationToken`_
 
@@ -89,7 +89,7 @@ Creating a Card without an Identity verification. Pay attention that you will ha
     new_card = virgil_hub.virgilcard.create_card('email', 'example@virgilsecurity.com', data, None, keys['private_key'], '%Password%', keys['public_key'])
 
 Search for Cards
-=========
+==================
 
 Search for a global Virgil Card.
 
@@ -108,7 +108,7 @@ Search for a private Virgil Card.
     search_result = card = virgil_hub.virgilcard.search_card('example@virgilsecurity.com', None, None, True)
 
 Revoke a Virgil Card
-==============
+=======================
 
 This operation is used to delete the Virgil Card from the search and mark it as deleted. 
 
@@ -119,7 +119,7 @@ This operation is used to delete the Virgil Card from the search and mark it as 
     virgil_hub.virgilcard.delete_card('email', 'example@virgilsecurity.com', identResponse['validation_token'], '%CARD_ID%', '%PRIVATE_KEY%', '%PASSWORD%')
 
 Get a Public Key
-=========
+==================
 
 Gets a public key from the Public Keys Service by the specified ID.
 
@@ -127,9 +127,9 @@ Gets a public key from the Public Keys Service by the specified ID.
 
     pk = virgil_hub.virgilcard.get_public_key('%PUBLIC_KEY_ID%')
 
-*********
+******************
 Private Keys
-*********
+******************
 
 The security of private keys is crucial for the public key cryptosystems. Anyone who can obtain a private key can use it to impersonate the rightful owner during all communications and transactions on intranets or on the internet. Therefore, private keys must be in the possession only of authorized users, and they must be protected from unauthorized use.
 
@@ -138,7 +138,7 @@ Virgil Security provides a set of tools and services for storing private keys in
 Usage of this service is optional.
 
 Stash a Private Key
-=========
+===========================
 
 Private key can be added for storage only in case you have already registered a public key on the Public Keys Service.
 
@@ -156,7 +156,7 @@ The Private Keys Service stores private keys the original way as they were trans
 
 
 Get a Private Key
-=========
+==================
 
 To get a private key you need to pass a prior verification of the Virgil Card where your public key is used.
   
@@ -172,7 +172,7 @@ To get a private key you need to pass a prior verification of the Virgil Card wh
 
 
 Destroy a Private Key
-=========
+===========================
 
 This operation deletes the private key from the service without a possibility to be restored. 
   
@@ -185,12 +185,12 @@ This operation deletes the private key from the service without a possibility to
     virgil_hub.privatekey.delete_private_key(recipient_pub_key, recipient_id, "%PRIVATE_KEY%", "%SIGNER_CARD_ID%", "%PASSWORD%")
 
 
-*********
+***********
 Identities
-*********
+***********
 
 Obtaining a global ValidationToken
-=========
+====================================
 
 The global ValidationToken is used for creating global Cards. The global ValidationToken can be obtained only by checking the ownership of the Identity on Virgil Identity Service.
 
@@ -203,7 +203,7 @@ In the example below you can see how to obtain a ValidationToken for creating a 
     validation_token = identResponse['validation_token']
 
 Obtaining a private ValidationToken
-=========
+====================================
 
 The private ValidationToken is used for creating Private Cards. The private ValidationToken can be generated on developer's side using his own service for verification instead of Virgil Identity Service or avoids verification at all. In this case validation token is generated using app's Private Key created on our `Developer portal <https://developer.virgilsecurity.com/dashboard/>`_.   
 

@@ -1,6 +1,6 @@
-============
+====================================
 Tutorial Crypto Library Java/Android
-============
+====================================
 
 - `Install`_
 - `Generate Keys`_
@@ -46,9 +46,9 @@ Demos
 
 Quickstart guide for making your own E2E encrypted IP Messaging is: `here <https://github.com/VirgilSecurity/virgil-demo-twilio/tree/master/ip-messaging>`_
 
-*********
+******************
 Generate Keys
-*********
+******************
 
 The following code example creates a new public/private key pair.
 
@@ -176,9 +176,9 @@ Type_EC_SECP256K1   256-bits "Koblitz" curve
 
 See a working example `here... <https://github.com/VirgilSecurity/virgil-sdk-java-android/blob/master/samples/crypto/src/main/java/GenerateKeyPairs.java>`_
 
-*********
+******************
 Encrypt Data
-*********
+******************
 
 The procedure for encrypting and decrypting the data is simple. For example:
 
@@ -245,9 +245,9 @@ The following example applies a digital signature to a public key identifier.
 
 See a working example `here... <https://github.com/VirgilSecurity/virgil-sdk-java-android/blob/master/samples/crypto/src/main/java/SignAndVerifyText.java>`_
 
-*********
+************
 Verify Data
-*********
+************
 
 To verify that the data was signed by a particular party, you need the following information:
 
@@ -263,9 +263,9 @@ The following example verifies a digital signature which was signed by the sende
 
 See a working example `here... <https://github.com/VirgilSecurity/virgil-sdk-java-android/blob/master/samples/crypto/src/main/java/SignAndVerifyText.java>`_
 
-*********
+******************
 Decrypt Data
-*********
+******************
 
 The following example illustrates decryption of the encrypted data with a recipient's private key.
 

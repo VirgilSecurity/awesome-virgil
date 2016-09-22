@@ -1,7 +1,0 @@
-GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = $(FRAMEWORK_SEARCH_PATHS)/VirgilCrypto.framework/Headers
-LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'
-OTHER_CFLAGS = $(inherited) -iquote "$CONFIGURATION_BUILD_DIR/VirgilFoundation.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/VirgilSDK.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/XAsync.framework/Headers"
-OTHER_LDFLAGS = $(inherited) -ObjC -framework "VirgilFoundation" -framework "VirgilSDK" -framework "XAsync"
-PODS_FRAMEWORK_BUILD_PATH = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/Pods-IPMExample-swift"
-PODS_ROOT = ${SRCROOT}/Pods
