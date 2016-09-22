@@ -56,18 +56,6 @@ Supported languages and platforms
 | NodeJS     | Unix, Linux, OS X, Windows   |                                                                                                     
 +------------+------------------------------+
 
-**Tutorials**
-
-.. toctree::
-   :maxdepth: 1
-   
-   ../sdk/net/v3.0(latest)/dot-net-csharp-crypto
-   ../sdk/cpp/v3.0(latest)/c-cpp-crypto
-   ../sdk/javascript/v3.0(latest)/javascript-crypto
-   ../sdk/x/v3.0(latest)/objective-c-swift-crypto
-   ../sdk/java-android/v3.2(latest)/java-android-crypto
-   ../sdk/python/v3.0(latest)/python-crypto
-
 Library purposes
 ----------------
 
@@ -90,16 +78,16 @@ the different platforms to be able to configure and to build Virgil
 Crypto Library.
 
 -  Compiler:
--  ``g++``, or
--  ``clang++``, or
--  ``msvc++`` (version >= 12.0)
+  -  ``g++``, or
+  -  ``clang++``, or
+  -  ``msvc++`` (version >= 12.0)
 -  Build tools:
--  ``cmake`` (version >= 3.2)
--  ``make``
+  -  ``cmake`` (version >= 3.2)
+  -  ``make``
 -  Other tools:
--  ``git``
--  ``swig`` (version >= 3.0.7), optional for C++ build
--  ``doxygen`` (optional)
+  -  ``git``
+  -  ``swig`` (version >= 3.0.7), optional for C++ build
+  -  ``doxygen`` (optional)
 
 Simple build
 ------------
@@ -132,20 +120,20 @@ Step 1 - Choose target language
 | NodeJS     | Unix, Linux, OS X, Windows\*   |                         | LANG=nodejs        |               | `CDN <https://cdn.virgilsecurity.com/virgil-crypto/nodejs/>`__   |
 +------------+--------------------------------+-------------------------+--------------------+---------------+------------------------------------------------------------------+
 
-    \* External dependencies for Windows binaries: - msvcp140.dll -
-    vcruntime140.dll
+    \* External dependencies for Windows binaries:
 
-    These dependencies can be installed as a part of `Visual C++
-    Redistributable for Visual Studio
-    2015 <https://www.microsoft.com/en-us/download/details.aspx?id=48145>`__
+    - msvcp140.dll 
+    - vcruntime140.dll
+
+    These dependencies can be installed as a part of `Visual C++ Redistributable for Visual Studio 2015 <https://www.microsoft.com/en-us/download/details.aspx?id=48145>`__
 
 Step 2 - Configure environment
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 1. Open Terminal.
 2. Check that all the tools which are listed in the `build
-   prerequisite <#build-prerequisite>`__ are available there.
-3. Set environment variables according to the `table above <#table1>`__.
+   prerequisite <Build prerequisites>`__ are available there.
+3. Set environment variables according to the `table above <Step 1 - Choose target language>`__.
 
 Step 3 - Get source code
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -178,12 +166,12 @@ Multiarch build
 This section describes how to build Virgil Crypto Library for multi
 architecture targets, which are packed inside the specific package:
 
--  Apple OS X Framework
--  Apple iOS Framework
--  Apple WatchOS Framework
--  Apple TVOS Framework
--  Android Bundle as Jar archive
--  Windows Bundle, as structured
+  -  Apple OS X Framework
+  -  Apple iOS Framework
+  -  Apple WatchOS Framework
+  -  Apple TVOS Framework
+  -  Android Bundle as Jar archive
+  -  Windows Bundle, as structured
 
 Step 1 - Choose target language and platform
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -230,23 +218,20 @@ Step 1 - Choose target language and platform
 |            |          |         | vcruntime140.dll* |                     |             |                                                                                                                          |
 +------------+----------+---------+-------------------+---------------------+-------------+--------------------------------------------------------------------------------------------------------------------------+
 
-    * These dependencies can be installed as a part of `Visual C++
-    Redistributable for Visual Studio
-    2015 <https://www.microsoft.com/en-us/download/details.aspx?id=48145>`__
+    \* These dependencies can be installed as a part of `Visual C++ Redistributable for Visual Studio 2015 <https://www.microsoft.com/en-us/download/details.aspx?id=48145>`__
 
 Step 2 - Configure environment
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 1. Open Terminal.
-2. Check that all tools which are listed in the `build
-   prerequisites <#build-prerequisites>`__ are available there.
+2. Check that all tools which are listed in the `build prerequisites <Build prerequisites>`__ are available there.
 
--  for Windows compiler should be MSVC;
--  for OS X build toolchain should be Xcode Toolchain.
+  -  for Windows compiler should be MSVC;
+  -  for OS X build toolchain should be Xcode Toolchain.
 
-1. Check that all dependencies from the `table above <#table2>`__ are
+3. Check that all dependencies from the `table above <Step 1 - Choose target language and platform>`__ are
    accessible.
-2. Set environment variables according to the `table above <#table2>`__.
+4. Set environment variables according to the `table above <Step 1 - Choose target language and platform>`__.
 
 Step 3 - Get source code
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -259,7 +244,7 @@ Step 4 - Build
 ~~~~~~~~~~~~~~
 
 Replace ``{{TARGET}}`` placeholder to the corresponding value from the
-`table above <#table2>`__.
+`table above <Step 1 - Choose target language and platform>`__.
 
 Unix-like OS:
 
