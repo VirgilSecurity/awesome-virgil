@@ -11,7 +11,6 @@ Developers Docs
    sdk/sdks
    services/services
    crypto-library/crypto-library
-   crypto-library/README
    glossary/glossary
    use-cases/use-cases
    cli/cli
