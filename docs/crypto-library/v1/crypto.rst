@@ -1,8 +1,8 @@
 |Build Status| |GitHub license| |Documentation Developers|
 |Documentation Doxygen| |Coverity Scan Build Status|
 
-Virgil Crypto Library: Overview
-================================
+Library: Virgil Crypto
+======================
 
 -  `Introduction <#introduction>`__
 -  `Supported languages and platforms <#supported-languages-and-platforms>`__
