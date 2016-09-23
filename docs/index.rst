@@ -11,7 +11,7 @@ Developers Docs
    sdk/sdks
    services/services
    crypto-library/crypto-library
-   :ref:`genindex`
+   genindex
    use-cases/use-cases
    cli/cli
    faq/faq
