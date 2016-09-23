@@ -1,6 +1,10 @@
+=============================
+Virgil Entities - Private Key
+=============================
+
 .. glossary::
 
-	Private key
+	**Private key**
 
 		Private key is a required component of asymmetric key algorithms in cryptography. It is used to decrypt and sign data.
 
