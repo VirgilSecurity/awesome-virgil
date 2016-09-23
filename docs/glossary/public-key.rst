@@ -12,5 +12,4 @@ Virgil Entities - Public Key
 
 		Structure (?)
 
-		**Public key id**	
-    	A unique identifier of any public key. It is used for every operation with public keys.	
+		Public key id - A unique identifier of any public key. It is used for every operation with public keys.	
