@@ -11,10 +11,11 @@ Developers Docs
    sdk/sdks
    services/services
    crypto-library/crypto-library
-   glossary/glossary
+   :ref:`genindex`
    use-cases/use-cases
    cli/cli
    faq/faq
+..   glossary/glossary
 ..   quickstart/quickstart
 
 
