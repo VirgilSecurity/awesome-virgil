@@ -32,8 +32,6 @@ Virgil Entities
   PBKDF function	
     A mechanism that produces a set of keys from keying material and some optional parameters. `Read more <https://en.wikipedia.org/wiki/Key_derivation_function>`_
 
-  :doc: `private-key`	
-
   Private key password	
     A password set for a private key adds additional security stage and prevents any data leakage after the private key has been compromised. It is optional but highly recommended to set this password.	
 
