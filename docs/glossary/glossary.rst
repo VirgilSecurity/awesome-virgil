@@ -32,8 +32,7 @@ Virgil Entities
   PBKDF function	
     A mechanism that produces a set of keys from keying material and some optional parameters. `Read more <https://en.wikipedia.org/wiki/Key_derivation_function>`_
 
-  Private Key	
-    Private keys should never be stored verbatim or in plain text on a local computer. If you need to store a private key, you should use a secure key container depending on your platform. You also can use Virgil Keys Service to store and synchronize private keys. This will allow you to easily synchronize private keys between clients’ devices and their applications.	
+  :doc: `private-key`	
 
   Private key password	
     A password set for a private key adds additional security stage and prevents any data leakage after the private key has been compromised. It is optional but highly recommended to set this password.	
