@@ -18,13 +18,7 @@ Developers Docs
 ..   glossary/glossary
 ..   quickstart/quickstart
 
-
-Indices and tables
-==================
-
 * :ref:`genindex`
-* :ref:`search`
-
 
 License
 --------------------
@@ -35,9 +29,3 @@ Contacts
 -------------------
 
 Email: support@virgilsecurity.com
-
-.. image:: images/docs-developer.png
-	:width: 75%
-
-.. image:: images/Virgil-website.png
-	:width: 60%
