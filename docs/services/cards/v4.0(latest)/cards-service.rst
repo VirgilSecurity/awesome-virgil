@@ -1,75 +1,406 @@
-Virgil Cards API service v4.0
+=============================
+Virgil Cards service API v4.0
 =============================
 
 Topics
 ======
 
--  `Virgil Card`_
--  `POST /virgil-card`_
--  `GET /virgil-card/{virgil-card-id}`_
--  `POST /virgil-card/actions/search`_
--  `DELETE /virgil-card/{virgil-card-id}`_
--  `Appendix A. Response codes`_
--  `Appendix B. Access token`_
--  `Appendix C. Request sign`_
--  `Appendix D. Response sign`_
+-  `Overview <#overview>`__
+-  `Endpoints <#endpoints>`__
 
-Virgil Card
-===========
+    -  `Request Authorization <#request-authorization>`__
+    -  `POST /card <#post-card>`__
+    -  `GET /card/{card-id} <#get-cardcard-id>`__
+    -  `POST /card/actions/search <#post-cardactionssearch>`__
+    -  `DELETE /card/{card-id} <#delete-cardcard-id>`__
+-  `Appendix A. Response codes <#appendix-a-response-codes>`__
+-  `Appendix B. Authorization header <#appendix-b-authorization-header>`__
+
+Overview
+========
 
 A ``Virgil Card`` is the core entity of Virgil services. The
 ``Virgil Card`` contains all necessary information to identify a user
-and to obtain his ``Public Key`` fo further operations.
+and to obtain his ``Public Key`` fo further operations. Each
+``Virgil Card`` is created through passing the *card sign request* which
+contains all data related to the ``Virgil Card`` and is represented as a
+JSON.
 
-POST /virgil-card
------------------
-
-The endpoint creates a ``Virgil Card`` entity.
-
-Each ``Virgil Card`` will have it’s fingerprint that can be used to
-identify each ``Virgil Card``. So the pingerprint value will be
-calculated as an ordered concatenation of all the request fields (all
-keys must be ordered in alphabetical order):
+Let's assume that a ``Virgil Card`` to be created has parameters like
 
 ::
 
-    FINGERPRINT = BASE64 (
-        SHA256( ID + PUBLIC_KEY + IDENTITY_TYPE + IDENTITY + SCOPE + IS_CONFIRMED + [DATA_KEY_1 + DATA_VALUE_1 + DATA_KEY_2 + DATA_VALUE_2 + ...] + INFO_DEVICE + INFO_DEVICE_NAME ) 
-    );
+    public_key    = "LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0KTUlHYk1CUUdCeXFHU000OUFnRUdDU3NrQXdNQ0NBRUJEUU9CZ2dBRUNhV3k5VVVVMDFWcjdQLzExWHpubk0vRAowTi9KODhnY0dMV3pYMGFLaGcxSjdib3B6RGV4b0QwaVl3alFXVUpWcVpJQjRLdFVneG9IcS81c2lybUI2cW1OClNFODNxcTZmbitPSm9qeUpGMytKY1AwTUp1WXRVZnpHbjgvUHlHVkp1TEVHais0NTlKWTRWbzdKb1pnS2hBT24KcWJ3UjRlcTY0citlUEpNcUppMD0KLS0tLS1FTkQgUFVCTElDIEtFWS0tLS0t";
+    identity_type = "email";
+    identity      = "user@virgilsecurity.com";
+    scope         = "global";
+    data          = {
+        "custom_key_1": "custom_value_1",
+        "custom_key_2": "custom_value_2"
+    };
+    info = {
+        "device": "iPhone6s",
+        "device_name": "Space grey one"
+    };
 
-Parameters notes: - **public\_key** request parameter must contain a
-base64-encoded public key value; - **id** parameter is mandatory and
-must be a valid `uuid`_; - **scope** parameter determines a
-``Virgil Card`` scope that can be either *‘global’* or *‘application’*.
+In this case the JSON representation will look like:
+
+::
+
+    virgilCardJsonData = {"public_key":"LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0KTUlHYk1CUUdCeXFHU000OUFnRUdDU3NrQXdNQ0NBRUJEUU9CZ2dBRUNhV3k5VVVVMDFWcjdQLzExWHpubk0vRAowTi9KODhnY0dMV3pYMGFLaGcxSjdib3B6RGV4b0QwaVl3alFXVUpWcVpJQjRLdFVneG9IcS81c2lybUI2cW1OClNFODNxcTZmbitPSm9qeUpGMytKY1AwTUp1WXRVZnpHbjgvUHlHVkp1TEVHais0NTlKWTRWbzdKb1pnS2hBT24KcWJ3UjRlcTY0citlUEpNcUppMD0KLS0tLS1FTkQgUFVCTElDIEtFWS0tLS0t","identity_type":"email","identity":"user@virgilsecurity.com","scope":"global","data":{"custom_key_1":"custom_value_1","custom_key_2":"custom_value_2"},"info":{"device":"iPhone6s","device_name":"Space grey one"}}
+
+This byte representation will be used to calculate the ``Virgil Card``
+``Fingerprint`` that is used as an identifier on ``Virgil Card``
+retrieve and revoke endpoints (*GET /card/{card-id}* and *DELETE
+/card/{card-id}* respectively). The byte representation will be
+persisted and is not supposed to be changed during the ``Virgil Card``
+lifetime.
+
+::
+
+    vigrilCardFingerprint = virgilCardId = HEX( SHA256( virgilCardJsonData ) )
+
+Endpoints
+=========
+
+Request authorization
+---------------------
+
+All service endpoints are separated on two categories. Those that
+require an authorizations from the ``Virgil Card`` holder or the
+application application that created the ``Virgil Card`` on behalf of
+the holder and those that do not require any authorization. All
+endpoints that require an authorization are marked with **Authorization:
+required** note.
+
+The authorization is performed via additional parameter **signs** nested
+into the **meta** request parameter. This **signs** parameter must be an
+associative array with signers ``Fingerprint``\ s as keys and a
+base64-encoded sign for the request data.
+
+So the **signs** parameter has the structure like:
+``"meta": {      "signs": {          CARD_HOLDER_FINGERPRINT: VIRGIL_CARD_BASE64_ENCODED_SIGN_OF_THE_FINGERPRINT,          APPLICATION_FINGERPRINT: VIRGIL_CARD_BASE64_ENCODED_SIGN_OF_THE_FINGERPRINT,      }  }``
+
+POST /card
+----------
+
+The endpoint creates a ``Virgil Card`` entity.
+
+The ``Virgil Card`` fingerprint is used as an identifier. Parameters
+notes: - **public\_key** parameter must contain a base64-encoded public
+key value in DER or PEM format; - **scope** parameter determines a
+``Virgil Card`` scope that can be either *'global'* or *'application'*.
 Application ``Virgil Cards`` are accessible only within the application
 they were created within. Global ``Virgil Cards`` are available in all
-the applications. - in order to create a global ``Virgil Card`` it’s
-necessary to pass a *virgil\_card\_validation\_token* parameter obtained
-from the *Virgil Identity* service and to set *scope* request parameter
-to *‘global’*; - in order to create a confirmed segregated
-``Virgil Card`` it’s necessary to pass a
-*virgil\_card\_validation\_token* parameter obtained from the *Virgil
-Identity* service and to set *scope* request parameter to
-*‘application’*; - in order to create an unconfirmed segregated
-``Virgil Card`` it enough just to set *scope* request parameter to
-*‘application’*; - **data** parameter is a key-value storage that
-contains application specific parameters; - **info** parameter is a
-key-value storage with predefined keys that contain information about
-the device on which the keypair was created; - **signs** parameter is
-mandatory to authorize a Virgil Card creation by the Virgil Card
-key-pair itself and by the application; - **signs** parameter must
-contain exactly two items with predefined structure. The
-**signed\_digest** is calculated as base64\_encode(SIGN(FINGERPRINT,
-APPLICATION\_PRIVATE\_KEY \| VIRGIL\_CARD\_PRIVATE\_KEY)); -
-**is\_confirmed** parameter set to *true*
+the applications; - **identity\_type** parameter must be 'email' for a
+confirmed ``Virgil Card`` and can be any value for a segregated one; -
+**identity** must be a valid email for a confirmed ``Virgil Card`` with
+an identity type of 'email' and can be any value for a segregated one; -
+in order to create a confirmed ``Virgil Card`` it's necessary to
+delegate the card creation to the ``Virgil Identity`` service; - in
+order to create an unconfirmed segregated ``Virgil Card`` it enough just
+to set *scope* request parameter to *'application'* and pass valid
+application sign item in signs list; - **data** parameter is an
+associative array that contains application specific parameters. All
+keys must contain only latic characters and digits. The length of keys
+and values must not exceed 256 characters. Please note that you cannot
+persist more than 16 data items; - **info** parameter is an associative
+array with predefined keys that contain information about the device on
+which the keypair was created. The keys are always 'device\_name' and
+'device' and the values must not exceed 256 characters. Both keys are
+optional but at least one of the must be specified if **info** parameter
+is specified; - **signs** parameter is mandatory to authorize a Virgil
+Card creation by the Virgil Card holder itself and by the application; -
+**signs** parameter must always contain ``Virgil Card`` holder sign and
+either application sign or ``Virgil Identity`` sign (or both). The
+**signed\_digest** is calculated as BASE64\_ENCODE(SIGN(FINGERPRINT,
+PRIVATE\_KEY)). Private key must belong to the Virgil Card holder,
+application or ``Virgil Identity`` service; - the ``Virgil Card`` will
+be marked as confirmed if ``Virgil Identity`` sign was passed.
 
-.. _Virgil Card: #virgil-card
-.. _POST /virgil-card: #post-virgil-card
-.. _GET /virgil-card/{virgil-card-id}: #get-virgil-cardvirgil-card-id
-.. _POST /virgil-card/actions/search: #post-virgil-cardactionssearch
-.. _DELETE /virgil-card/{virgil-card-id}: #delete-virgil-cardvirgil-card-id
-.. _Appendix A. Response codes: #appendix-a-response-codes
-.. _Appendix B. Access token: #appendix-b-access-token
-.. _Appendix C. Request sign: #appendix-c-request-sign
-.. _Appendix D. Response sign: #appendix-d-response-sign
-.. _uuid: https://en.wikipedia.org/wiki/Universally_unique_identifier
+These parameters are mandatory: - public\_key - identity\_type -
+identity - scope - signs
+
+**Request info**
+
+::
+
+    HTTP Request method    POST
+    Request URL            https://cards.virgilecurity.com/v4/card
+    Authorization          Required
+
+**Request body**
+
+.. code:: json
+
+    {
+        "create_card_request":"eyJwdWJsaWNfa2V5IjoiTFMwdExTMUNSVWRKVGlCUVZVSk1TVU1nUzBWWkxTMHRMUzBLVFVsSFlrMUNVVWRDZVhGSFUwMDBPVUZuUlVkRFUzTnJRWGROUTBOQlJVSkVVVTlDWjJkQlJVTmhWM2s1VlZWVk1ERldjamRRTHpFeFdIcHViazB2UkFvd1RpOUtPRGhuWTBkTVYzcFlNR0ZMYUdjeFNqZGliM0I2UkdWNGIwUXdhVmwzYWxGWFZVcFdjVnBKUWpSTGRGVm5lRzlJY1M4MWMybHliVUkyY1cxT0NsTkZPRE54Y1RabWJpdFBTbTlxZVVwR015dEtZMUF3VFVwMVdYUlZabnBIYmpndlVIbEhWa3AxVEVWSGFpczBOVGxLV1RSV2J6ZEtiMXBuUzJoQlQyNEtjV0ozVWpSbGNUWTBjaXRsVUVwTmNVcHBNRDBLTFMwdExTMUZUa1FnVUZWQ1RFbERJRXRGV1MwdExTMHQiLCJpZGVudGl0eSI6InVzZXJAdmlyZ2lsc2VjdXJpdHkuY29tIiwiaWRlbnRpdHlfdHlwZSI6ImVtYWlsIiwic2NvcGUiOiJnbG9iYWwiLCJpbmZvIjp7ImRldmljZSI6ImlQaG9uZSIsImRldmljZV9uYW1lIjoiU3BhY2UgZ3JleSBvbmUifX0=",
+        "meta": {
+            "signs": {
+                "af6799a2f26376731abb9abf32b5f2ac0933013f42628498adb6b12702df1a87":"MIGaMA0GCWCGSAFlAwQCAgUABIGIMIGFAkAUkHTx9vEXcUAq9O5bRsfJ0K5s8Bwm55gEXfzbdtAfr6ihJOXA9MAdXOEocqKtH6DuU7zJAdWgqfTrweih7jAkEAgN7CeUXwZwS0lRslWulaIGvpK65czWphRwyuwN++hI6dlHOdPABmhMSqimwoRsLN8xsivhPqQdLow5rDFic7A==",
+                "767b6b12702df1a873f42628498f32b5f31abb9ab12ac09af6799a2f263330ad":"MIGaMA0GCWCGSAFlAwQCAgUABIGIMIGFAkBg9WJPxgq1ObqxPpXdomNIDxlOvyGdI9wrgZYXu+YAibJd+8Vf0uFce9QrB7yiG2U2zTNVqwsg4f7bd1SKVleAkEAplvCmFJ6v3sYQVBXerr8Yb25UllbTDuCw5alWSfBw2j3ueFiXTiyY885y0detX08YFEWYgbAoKtJgModQTEcQ=="
+            }
+        }
+    }
+
+**Response body**
+
+.. code:: json
+
+    {
+        "create_card_request":"eyJwdWJsaWNfa2V5IjoiTFMwdExTMUNSVWRKVGlCUVZVSk1TVU1nUzBWWkxTMHRMUzBLVFVsSFlrMUNVVWRDZVhGSFUwMDBPVUZuUlVkRFUzTnJRWGROUTBOQlJVSkVVVTlDWjJkQlJVTmhWM2s1VlZWVk1ERldjamRRTHpFeFdIcHViazB2UkFvd1RpOUtPRGhuWTBkTVYzcFlNR0ZMYUdjeFNqZGliM0I2UkdWNGIwUXdhVmwzYWxGWFZVcFdjVnBKUWpSTGRGVm5lRzlJY1M4MWMybHliVUkyY1cxT0NsTkZPRE54Y1RabWJpdFBTbTlxZVVwR015dEtZMUF3VFVwMVdYUlZabnBIYmpndlVIbEhWa3AxVEVWSGFpczBOVGxLV1RSV2J6ZEtiMXBuUzJoQlQyNEtjV0ozVWpSbGNUWTBjaXRsVUVwTmNVcHBNRDBLTFMwdExTMUZUa1FnVUZWQ1RFbERJRXRGV1MwdExTMHQiLCJpZGVudGl0eSI6InVzZXJAdmlyZ2lsc2VjdXJpdHkuY29tIiwiaWRlbnRpdHlfdHlwZSI6ImVtYWlsIiwic2NvcGUiOiJnbG9iYWwiLCJpbmZvIjp7ImRldmljZSI6ImlQaG9uZSIsImRldmljZV9uYW1lIjoiU3BhY2UgZ3JleSBvbmUifX0=",
+        "meta": {
+            "created_at": "2015-12-22T07:03:42+0000",
+            "card_version": "4.0",
+            "signs": {
+                "af6799a2f26376731abb9abf32b5f2ac0933013f42628498adb6b12702df1a87":"MIGaMA0GCWCGSAFlAwQCAgUABIGIMIGFAkAUkHTx9vEXcUAq9O5bRsfJ0K5s8Bwm55gEXfzbdtAfr6ihJOXA9MAdXOEocqKtH6DuU7zJAdWgqfTrweih7jAkEAgN7CeUXwZwS0lRslWulaIGvpK65czWphRwyuwN++hI6dlHOdPABmhMSqimwoRsLN8xsivhPqQdLow5rDFic7A==",
+                "767b6b12702df1a873f42628498f32b5f31abb9ab12ac09af6799a2f263330ad":"MIGaMA0GCWCGSAFlAwQCAgUABIGIMIGFAkBg9WJPxgq1ObqxPpXdomNIDxlOvyGdI9wrgZYXu+YAibJd+8Vf0uFce9QrB7yiG2U2zTNVqwsg4f7bd1SKVleAkEAplvCmFJ6v3sYQVBXerr8Yb25UllbTDuCw5alWSfBw2j3ueFiXTiyY885y0detX08YFEWYgbAoKtJgModQTEcQ==",
+                "ab799a2f26333c09af6628496b12702df1a80ad767b73f42b9ab12a8f32b5f31":"MIGaMA0GCWCGSAFlAwQCAgUABf7bd1SKVleAkEAplvCmFJ6v3sYQVBXerr8Yb25UllbTDuCw5alWSfBw2j3ueFiXTiyY88bAoKtJgModQTEc9WJPxgq1Obqx5y0dIGIMIGFAkBgwrgZYXu+YAibJd+8Vf0uFce9QrB7yiG2U2zTNVqwsg4etX08YFEWYgPpXdomNIDxlOvyGdI9Q=="
+            }
+        }
+    }
+
+The create ``Virgil Card`` request contained two signs items: for the
+application holder and for the application. After ``Virgil Cards`` the
+signs list was filled with additional ``Virgil Cards`` service sign.
+
+So all ``Virgil Card`` data is passed in **create\_card\_request**
+parameter and ``Virgil Cards``\ service creates an additional sign item
+with it's own fingerprint used as a key to prove that it really created
+the ``Virgil Card``.
+
+GET /card/{card-id}
+-------------------
+
+Returns the information about the ``Virgil Card`` by the ID (which is
+the ``Fingerprint``).
+
+**Request info**
+
+::
+
+    HTTP Request method    GET
+    Request URL            https://cards-ro.virgilecurity.com/v4/card/{card-id}
+
+**Response body**
+
+.. code:: json
+
+    {
+        "create_card_request":"eyJwdWJsaWNfa2V5IjoiTFMwdExTMUNSVWRKVGlCUVZVSk1TVU1nUzBWWkxTMHRMUzBLVFVsSFlrMUNVVWRDZVhGSFUwMDBPVUZuUlVkRFUzTnJRWGROUTBOQlJVSkVVVTlDWjJkQlJVTmhWM2s1VlZWVk1ERldjamRRTHpFeFdIcHViazB2UkFvd1RpOUtPRGhuWTBkTVYzcFlNR0ZMYUdjeFNqZGliM0I2UkdWNGIwUXdhVmwzYWxGWFZVcFdjVnBKUWpSTGRGVm5lRzlJY1M4MWMybHliVUkyY1cxT0NsTkZPRE54Y1RabWJpdFBTbTlxZVVwR015dEtZMUF3VFVwMVdYUlZabnBIYmpndlVIbEhWa3AxVEVWSGFpczBOVGxLV1RSV2J6ZEtiMXBuUzJoQlQyNEtjV0ozVWpSbGNUWTBjaXRsVUVwTmNVcHBNRDBLTFMwdExTMUZUa1FnVUZWQ1RFbERJRXRGV1MwdExTMHQiLCJpZGVudGl0eSI6InVzZXJAdmlyZ2lsc2VjdXJpdHkuY29tIiwiaWRlbnRpdHlfdHlwZSI6ImVtYWlsIiwic2NvcGUiOiJnbG9iYWwiLCJpbmZvIjp7ImRldmljZSI6ImlQaG9uZSIsImRldmljZV9uYW1lIjoiU3BhY2UgZ3JleSBvbmUifX0=",
+        "meta": {
+            "created_at": "2015-12-22T07:03:42+0000",
+            "card_version": "4.0",
+            "signs": {
+                "af6799a2f26376731abb9abf32b5f2ac0933013f42628498adb6b12702df1a87":"MIGaMA0GCWCGSAFlAwQCAgUABIGIMIGFAkAUkHTx9vEXcUAq9O5bRsfJ0K5s8Bwm55gEXfzbdtAfr6ihJOXA9MAdXOEocqKtH6DuU7zJAdWgqfTrweih7jAkEAgN7CeUXwZwS0lRslWulaIGvpK65czWphRwyuwN++hI6dlHOdPABmhMSqimwoRsLN8xsivhPqQdLow5rDFic7A==",
+                "767b6b12702df1a873f42628498f32b5f31abb9ab12ac09af6799a2f263330ad":"MIGaMA0GCWCGSAFlAwQCAgUABIGIMIGFAkBg9WJPxgq1ObqxPpXdomNIDxlOvyGdI9wrgZYXu+YAibJd+8Vf0uFce9QrB7yiG2U2zTNVqwsg4f7bd1SKVleAkEAplvCmFJ6v3sYQVBXerr8Yb25UllbTDuCw5alWSfBw2j3ueFiXTiyY885y0detX08YFEWYgbAoKtJgModQTEcQ==",
+                "ab799a2f26333c09af6628496b12702df1a80ad767b73f42b9ab12a8f32b5f31":"MIGaMA0GCWCGSAFlAwQCAgUABf7bd1SKVleAkEAplvCmFJ6v3sYQVBXerr8Yb25UllbTDuCw5alWSfBw2j3ueFiXTiyY88bAoKtJgModQTEc9WJPxgq1Obqx5y0dIGIMIGFAkBgwrgZYXu+YAibJd+8Vf0uFce9QrB7yiG2U2zTNVqwsg4etX08YFEWYgPpXdomNIDxlOvyGdI9Q=="
+            }
+        }
+    }
+
+POST /card/actions/search
+-------------------------
+
+Performs the ``Virgil Card``\ s search by criteria: - the *identities*
+request parameter is mandatory; - the *identity\_type* optional request
+parameter is optional and specifies the *identity\_type* of a
+``Virgil Card``\ s to be found; - the *scope* optional request parameter
+specifies the scope to perform search on. Either 'global' or
+'application'. The default value is 'application';
+
+These parameters are mandatory: - identities
+
+**Request info**
+
+::
+
+    HTTP Request method    POST
+    Request URL            https://cards-ro.virgilecurity.com/v4/card/actions/search
+
+**Request body**
+
+::
+
+    {
+        "identities": ["user@virgilsecurity.com", "another.user@virgilsecurity.com"],
+        ["identity_type"]: "email",
+        ["scope"]: "global"
+    }
+
+**Response body**
+
+.. code:: json
+
+    [
+        {
+            "create_card_request":"eyJwdWJsaWNfa2V5IjoiTFMwdExTMUNSVWRKVGlCUVZVSk1TVU1nUzBWWkxTMHRMUzBLVFVsSFlrMUNVVWRDZVhGSFUwMDBPVUZuUlVkRFUzTnJRWGROUTBOQlJVSkVVVTlDWjJkQlJVTmhWM2s1VlZWVk1ERldjamRRTHpFeFdIcHViazB2UkFvd1RpOUtPRGhuWTBkTVYzcFlNR0ZMYUdjeFNqZGliM0I2UkdWNGIwUXdhVmwzYWxGWFZVcFdjVnBKUWpSTGRGVm5lRzlJY1M4MWMybHliVUkyY1cxT0NsTkZPRE54Y1RabWJpdFBTbTlxZVVwR015dEtZMUF3VFVwMVdYUlZabnBIYmpndlVIbEhWa3AxVEVWSGFpczBOVGxLV1RSV2J6ZEtiMXBuUzJoQlQyNEtjV0ozVWpSbGNUWTBjaXRsVUVwTmNVcHBNRDBLTFMwdExTMUZUa1FnVUZWQ1RFbERJRXRGV1MwdExTMHQiLCJpZGVudGl0eSI6InVzZXJAdmlyZ2lsc2VjdXJpdHkuY29tIiwiaWRlbnRpdHlfdHlwZSI6ImVtYWlsIiwic2NvcGUiOiJnbG9iYWwiLCJpbmZvIjp7ImRldmljZSI6ImlQaG9uZSIsImRldmljZV9uYW1lIjoiU3BhY2UgZ3JleSBvbmUifX0=",
+            "meta": {
+                "created_at": "2015-12-22T07:03:42+0000",
+                "card_version": "4.0",
+                "signs": {
+                    "af6799a2f26376731abb9abf32b5f2ac0933013f42628498adb6b12702df1a87":"MIGaMA0GCWCGSAFlAwQCAgUABIGIMIGFAkAUkHTx9vEXcUAq9O5bRsfJ0K5s8Bwm55gEXfzbdtAfr6ihJOXA9MAdXOEocqKtH6DuU7zJAdWgqfTrweih7jAkEAgN7CeUXwZwS0lRslWulaIGvpK65czWphRwyuwN++hI6dlHOdPABmhMSqimwoRsLN8xsivhPqQdLow5rDFic7A==",
+                    "767b6b12702df1a873f42628498f32b5f31abb9ab12ac09af6799a2f263330ad":"MIGaMA0GCWCGSAFlAwQCAgUABIGIMIGFAkBg9WJPxgq1ObqxPpXdomNIDxlOvyGdI9wrgZYXu+YAibJd+8Vf0uFce9QrB7yiG2U2zTNVqwsg4f7bd1SKVleAkEAplvCmFJ6v3sYQVBXerr8Yb25UllbTDuCw5alWSfBw2j3ueFiXTiyY885y0detX08YFEWYgbAoKtJgModQTEcQ==",
+                    "ab799a2f26333c09af6628496b12702df1a80ad767b73f42b9ab12a8f32b5f31":"MIGaMA0GCWCGSAFlAwQCAgUABf7bd1SKVleAkEAplvCmFJ6v3sYQVBXerr8Yb25UllbTDuCw5alWSfBw2j3ueFiXTiyY88bAoKtJgModQTEc9WJPxgq1Obqx5y0dIGIMIGFAkBgwrgZYXu+YAibJd+8Vf0uFce9QrB7yiG2U2zTNVqwsg4etX08YFEWYgPpXdomNIDxlOvyGdI9Q=="
+                }
+            }
+        }
+    ]
+
+DELETE /card/{card-id}
+----------------------
+
+**Request info**
+
+::
+
+    HTTP Request method    DELETE
+    Request URL            https://cards.virgilecurity.com/v4/card/{card-id}
+    Authorization          Required
+
+**Request body**
+
+.. code:: json
+
+    {
+        "revoke_card_request":"eyJwdWJsaWNfa2V5IjoiTFMwdExTMUNSVWRKVGlCUVZVSk1TVU1nUzBWWkxTMHRMUzBLVFVsSFlrMUNVVWRDZVhGSFUwMDBPVUZuUlVkRFUzTnJRWGROUTBOQlJVSkVVVTlDWjJkQlJVTmhWM2s1VlZWVk1ERldjamRRTHpFeFdIcHViazB2UkFvd1RpOUtPRGhuWTBkTVYzcFlNR0ZMYUdjeFNqZGliM0I2UkdWNGIwUXdhVmwzYWxGWFZVcFdjVnBKUWpSTGRGVm5lRzlJY1M4MWMybHliVUkyY1cxT0NsTkZPRE54Y1RabWJpdFBTbTlxZVVwR015dEtZMUF3VFVwMVdYUlZabnBIYmpndlVIbEhWa3AxVEVWSGFpczBOVGxLV1RSV2J6ZEtiMXBuUzJoQlQyNEtjV0ozVWpSbGNUWTBjaXRsVUVwTmNVcHBNRDBLTFMwdExTMUZUa1FnVUZWQ1RFbERJRXRGV1MwdExTMHQiLCJpZGVudGl0eSI6InVzZXJAdmlyZ2lsc2VjdXJpdHkuY29tIiwiaWRlbnRpdHlfdHlwZSI6ImVtYWlsIiwic2NvcGUiOiJnbG9iYWwiLCJpbmZvIjp7ImRldmljZSI6ImlQaG9uZSIsImRldmljZV9uYW1lIjoiU3BhY2UgZ3JleSBvbmUifX0=",
+        "meta": {
+            "signs": {
+                "af6799a2f26376731abb9abf32b5f2ac0933013f42628498adb6b12702df1a87":"MIGaMA0GCWCGSAFlAwQCAgUABIGIMIGFAkAUkHTx9vEXcUAq9O5bRsfJ0K5s8Bwm55gEXfzbdtAfr6ihJOXA9MAdXOEocqKtH6DuU7zJAdWgqfTrweih7jAkEAgN7CeUXwZwS0lRslWulaIGvpK65czWphRwyuwN++hI6dlHOdPABmhMSqimwoRsLN8xsivhPqQdLow5rDFic7A=="
+            }
+        }
+    }
+
+The **card\_remove\_request** parameter is a JSON representation that
+contains these parameters:
+
+::
+
+    {
+        "id": "af6799a2f26376731abb9abf32b5f2ac0933013f42628498adb6b12702df1a87",
+        "revocation_reason": "unspecified"
+    }
+
+The **id** parameter is the id of the card to be removed. And the
+**revocation\_reason** is the code from the list: - unspecified -
+compromised
+
+The **meta.signs** parameter must contain an entry with the application
+sign.
+
+**Response body**
+
+.. code:: json
+
+Appendix A. Response codes
+==========================
+
+HTTP error codes
+~~~~~~~~~~~~~~~~
+
+Application uses standard HTTP response codes:
+
+::
+
+    200 - Success
+    400 - Request error
+    401 - Authentication error
+    403 - Forbidden
+    404 - Entity not found
+    500 - Server error
+
+Additional information about the error is returned as JSON-object like:
+
+::
+
+    {
+        "code": "{error-code}"
+    }
+
+HTTP 500. Server error
+~~~~~~~~~~~~~~~~~~~~~~
+
+This status is returned in extremely rare cases of internal application
+errors
+
+::
+
+    10000 - Internal application error. You know, shit happens, so do internal server errors. Just take a deep breath and try harder.
+
+HTTP 401. Auth error
+~~~~~~~~~~~~~~~~~~~~
+
+This status is returned on authorization errors
+
+::
+
+    20300 - The Virgil access token or token header was not specified or is invalid
+    20301 - The Virgil authenticator service responded with an error
+    20302 - The Virgil access token validation has failed on the Virgil Authenticator service
+    20303 - The application was not found for the access token
+    20400 - Request sign is invalid or missing
+    20401 - Request sign header is missing
+
+HTTP 403. Forbidden
+~~~~~~~~~~~~~~~~~~~
+
+This status is returned when a request is not granted permission to the
+resource
+
+::
+
+    20500 - The Virgil Card is not available in this application
+
+HTTP 400. Request error
+~~~~~~~~~~~~~~~~~~~~~~~
+
+This status is returned on request data errors
+
+::
+
+    30000 - JSON specified as a request is invalid
+    30010 - A data inconsistency error
+    30100 - Global Virgil Card identity type is invalid, because it can be only an 'email'
+    30101 - Virgil Card scope must be either 'global' or 'application'
+    30102 - Virgil Card id validation failed
+    30103 - Virgil Card data parameter cannot contain more than 16 entries
+    30104 - Virgil Card info parameter cannot be empty if specified and must contain 'device' and/or 'device_name' key
+    30105 - Virgil Card info parameters length validation failed. The length cannot exceed 256 characters
+    30106 - Virgil Card data parameter must be an associative array (https://en.wikipedia.org/wiki/Associative_array)
+    30107 - A CSR parameter (create_card_request or revoke_card_request) parameter is missing or is incorrect
+    30107 - A virgil_card object parameter was not found on create Virgil Card endpoint invocation
+    30111 - Virgil Card identities passed to search endpoint must be a list of non-empty strings
+    30113 - Virgil Card identity type is invalid
+    30114 - Segregated Virgil Card custom identity value must be a not empty string
+    30115 - Virgil Card identity email is invalid
+    30116 - Virgil Card identity application is invalid
+    30117 - Public key length is invalid. It goes from 16 to 2048 bytes
+    30118 - Public key must be base64-encoded string
+    30119 - Virgil Card data parameter must be a key/value list of strings
+    30120 - Virgil Card data parameters must be strings
+    30121 - Virgil Card custom data entry value length validation failed. It mustn't exceed 256 characters
+    30122 - Identity validation token is invalid
+    30123 - SCR signs list parameter is missing or is invalid
+    30126 - SCR sign item signer card id is irrelevant and doesn't match Virgil Card id or Application Id
+    30127 - SCR sign item signed digest is invalid for the Virgil Card public key
+    30128 - SCR sign item signed digest is invalid for the application
+    30131 - Virgil Card id specified in the request body must match with the one passed in the URL
+    30134 - Virgil Card data parameters key must be aplphanumerical
+    30135 - Virgil Card validation token must be an object with value parameter
+    30136 - SCR sign item signed digest is invalid for the virgil identity service
+    30137 - Global Virigl Card cannot be created unconfirmed (which means that Virgil Identity service sign is mandatory)
+    30138 - Virigl Card with the same fingerprint exists already
+    30139 - Virigl Card revocation reason isn't specified or is invalid
+
+Appendix B. Authorization header
+================================
+
+The **Authorization** HTTP header is mandatory for each API call. The
+access token can be retrieved for each application on the `Virgil
+Development Portal <https://virgilsecurity.com/account/signup>`__.
+
+::
+
+    GET /v4/card/a6f7b874ea69329372ad75353314d7bcacd8c0be365023dab195bcac015d6009
+    Host: cards.virgilsecurity.com
+    Authorization: VIRGIL { YOUR_APPLICATION_TOKEN }
