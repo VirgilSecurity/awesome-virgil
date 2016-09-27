@@ -24,7 +24,10 @@ Every user is represented with a **Virgil Card** which contains all necessary in
 and to obtain his **Public Key** for further operations. You can create a
 **Virgil Card** by passing the Card's ``content_snapshot`` and ``signs`` to **Virgil Cards service**. 
 
-``content_snapshot`` is a base64-encoded string with JSON representation of a **Virgil Card**.
+``content_snapshot`` 
+---------------------
+
+is a base64-encoded string with JSON representation of a **Virgil Card**.
 
 .. note:: Example
 
@@ -59,7 +62,10 @@ and to obtain his **Public Key** for further operations. You can create a
 
         eyJwdWJsaWNfa2V5IjoiTFMwdExTMUNSVWRKVGlCUVZVSk1TVU1nUzBWWkxTMHRMUzBLVFVsSFlrMUNVVWRDZVhGSFUwMDBPVUZuUlVkRFUzTnJRWGROUTBOQlJVSkVVVTlDWjJkQlJVTmhWM2s1VlZWVk1ERldjamRRTHpFeFdIcHViazB2UkFvd1RpOUtPRGhuWTBkTVYzcFlNR0ZMYUdjeFNqZGliM0I2UkdWNGIwUXdhVmwzYWxGWFZVcFdjVnBKUWpSTGRGVm5lRzlJY1M4MWMybHliVUkyY1cxT0NsTkZPRE54Y1RabWJpdFBTbTlxZVVwR015dEtZMUF3VFVwMVdYUlZabnBIYmpndlVIbEhWa3AxVEVWSGFpczBOVGxLV1RSV2J6ZEtiMXBuUzJoQlQyNEtjV0ozVWpSbGNUWTBjaXRsVUVwTmNVcHBNRDBLTFMwdExTMUZUa1FnVUZWQ1RFbERJRXRGV1MwdExTMHQiLCJpZGVudGl0eSI6InVzZXJAdmlyZ2lsc2VjdXJpdHkuY29tIiwiaWRlbnRpdHlfdHlwZSI6ImVtYWlsIiwic2NvcGUiOiJnbG9iYWwiLCJpbmZvIjp7ImRldmljZSI6ImlQaG9uZSIsImRldmljZV9uYW1lIjoiU3BhY2UgZ3JleSBvbmUifX0=
 
-``signs`` is a parameter nested into the ``meta`` request parameter, an associative array with signer's ``fingerprint`` as keys and base64-encoded signs as values.
+``signs``
+---------
+
+is a parameter nested into the ``meta`` request parameter, an associative array with signer's ``fingerprint`` as keys and base64-encoded signs as values.
 
 Structure of ``signs`` parameter:
 
@@ -76,7 +82,10 @@ Structure of ``signs`` parameter:
 ``signs`` parameter is used for authorization of service endpoints. All endpoints marked with ``Authorization: required`` must be authorized. Authorization is performed either by the **Virgil Card's** holder or by the application that created the **Virgil Card** on behalf of the holder.
 
 
-``fingerprint`` is an identifier of a **Virgil Card**. Virgil Card's JSON representation is used to calculate the ``fingerprint``:
+``fingerprint`` 
+---------------
+
+is an identifier of a **Virgil Card**. Virgil Card's JSON representation is used to calculate the ``fingerprint``:
 
 ::
 
@@ -93,17 +102,17 @@ The endpoint creates a ``Virgil Card`` entity.
 The ``Virgil Card`` fingerprint is used as an identifier. Parameters
 notes: 
 
-- **public\_key** parameter must contain a base64-encoded public key value in DER or PEM format; 
-- **scope** parameter determines a ``Virgil Card`` scope that can be either *'global'* or *'application'*. Application ``Virgil Cards`` are accessible only within the application they were created within. Global ``Virgil Cards`` are available in all the applications; 
-- **identity\_type** parameter must be 'email' for a confirmed ``Virgil Card`` and can be any value for a segregated one; 
-- **identity** must be a valid email for a confirmed ``Virgil Card`` with an identity type of 'email' and can be any value for a segregated one; 
-- in order to create a confirmed ``Virgil Card`` it's necessary to delegate the card creation to the ``Virgil Identity`` service; 
-- in order to create an unconfirmed segregated ``Virgil Card`` it enough just to set *scope* request parameter to *'application'* and pass valid application sign item in signs list; 
-- **data** parameter is an associative array that contains application specific parameters. All keys must contain only latic characters and digits. The length of keys and values must not exceed 256 characters. Please note that you cannot persist more than 16 data items; 
-- **info** parameter is an associative array with predefined keys that contain information about the device on which the keypair was created. The keys are always 'device\_name' and 'device' and the values must not exceed 256 characters. Both keys are optional but at least one of the must be specified if **info** parameter is specified; 
-- **signs** parameter is mandatory to authorize a Virgil Card creation by the Virgil Card holder itself and by the application; 
-- **signs** parameter must always contain ``Virgil Card`` holder sign and either application sign or ``Virgil Identity`` sign (or both). The **signed\_digest** is calculated as BASE64\_ENCODE(SIGN(FINGERPRINT, PRIVATE\_KEY)). Private key must belong to the Virgil Card holder, application or ``Virgil Identity`` service; 
-- the ``Virgil Card`` will be marked as confirmed if ``Virgil Identity`` sign was passed.
+- ``public\_key`` parameter must contain a base64-encoded public key value in DER or PEM format; 
+- ``scope`` parameter determines a **Virgil Card** scope that can be either **global** or **application**. Application **Virgil Cards** are accessible only within the application they were created within. Global **Virgil Cards** are available in all the applications; 
+- ``identity\_type`` parameter must be 'email' for a confirmed **Virgil Card** and can be any value for a segregated one; 
+- ``identity`` must be a valid email for a confirmed **Virgil Card** with an identity type of *email* and can be any value for a segregated one; 
+- in order to create a confirmed **Virgil Card** it's necessary to delegate the card creation to the **Virgil Identity** service; 
+- in order to create an unconfirmed segregated **Virgil Card** it enough just to set *scope* request parameter to *application* and pass valid application sign item in signs list; 
+- ``data`` parameter is an associative array that contains application specific parameters. All keys must contain only latic characters and digits. The length of keys and values must not exceed 256 characters. Please note that you cannot persist more than 16 data items; 
+- ``info`` parameter is an associative array with predefined keys that contain information about the device on which the keypair was created. The keys are always *device\_name* and *device* and the values must not exceed 256 characters. Both keys are optional but at least one of the must be specified if **info** parameter is specified; 
+- ``signs`` parameter is mandatory to authorize a Virgil Card creation by the Virgil Card holder itself and by the application; 
+- ``signs`` parameter must always contain **Virgil Card** holder sign and either application sign or **Virgil Identity** sign (or both). The **signed\_digest** is calculated as BASE64\_ENCODE(SIGN(FINGERPRINT, PRIVATE\_KEY)). Private key must belong to the Virgil Card holder, application or **Virgil Identity** service; 
+- the **Virgil Card** will be marked as confirmed if **Virgil Identity** sign was passed.
 
 These parameters are mandatory: 
 
