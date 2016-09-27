@@ -26,7 +26,7 @@ and to obtain his **Public Key** for further operations. You can create a
 
 ``content_snapshot`` is a base64-encoded string with JSON representation of a **Virgil Card**.
 
-.. topic:: Example
+.. note:: Example
 
     *Original Virgil Card's representation*
 
@@ -46,6 +46,7 @@ and to obtain his **Public Key** for further operations. You can create a
         };
 
     *Virgil Card's JSON representation* 
+
     This byte representation will be persisted and is not supposed to be changed within the **Virgil Card's** lifetime.
 
     ::
@@ -58,7 +59,8 @@ and to obtain his **Public Key** for further operations. You can create a
 
         eyJwdWJsaWNfa2V5IjoiTFMwdExTMUNSVWRKVGlCUVZVSk1TVU1nUzBWWkxTMHRMUzBLVFVsSFlrMUNVVWRDZVhGSFUwMDBPVUZuUlVkRFUzTnJRWGROUTBOQlJVSkVVVTlDWjJkQlJVTmhWM2s1VlZWVk1ERldjamRRTHpFeFdIcHViazB2UkFvd1RpOUtPRGhuWTBkTVYzcFlNR0ZMYUdjeFNqZGliM0I2UkdWNGIwUXdhVmwzYWxGWFZVcFdjVnBKUWpSTGRGVm5lRzlJY1M4MWMybHliVUkyY1cxT0NsTkZPRE54Y1RabWJpdFBTbTlxZVVwR015dEtZMUF3VFVwMVdYUlZabnBIYmpndlVIbEhWa3AxVEVWSGFpczBOVGxLV1RSV2J6ZEtiMXBuUzJoQlQyNEtjV0ozVWpSbGNUWTBjaXRsVUVwTmNVcHBNRDBLTFMwdExTMUZUa1FnVUZWQ1RFbERJRXRGV1MwdExTMHQiLCJpZGVudGl0eSI6InVzZXJAdmlyZ2lsc2VjdXJpdHkuY29tIiwiaWRlbnRpdHlfdHlwZSI6ImVtYWlsIiwic2NvcGUiOiJnbG9iYWwiLCJpbmZvIjp7ImRldmljZSI6ImlQaG9uZSIsImRldmljZV9uYW1lIjoiU3BhY2UgZ3JleSBvbmUifX0=
 
-``signs`` is a parameter nested into the ``meta`` request parameter, an associative array with signer's ``fingerprint``s as keys and base64-encoded signs as values.
+``signs`` is a parameter nested into the ``meta`` request parameter, an associative array with signer's ``fingerprint`` as keys and base64-encoded signs as values.
+
 Structure of ``signs`` parameter:
 
 ::
