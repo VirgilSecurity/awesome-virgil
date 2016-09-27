@@ -8,7 +8,6 @@ Topics
 -  `Overview <#overview>`__
 -  `Endpoints <#endpoints>`__
 
-    -  `Request Authorization <#request-authorization>`__
     -  `POST /card <#post-card>`__
     -  `GET /card/{card-id} <#get-cardcard-id>`__
     -  `POST /card/actions/search <#post-cardactionssearch>`__
@@ -19,15 +18,15 @@ Topics
 Overview
 ========
 
-Virgil Cards service allows you to perform all the operations with public keys to provide a secure system.
+**Virgil Cards service** allows you to perform all the operations with public keys to provide a secure system.
 
 Every user is represented with a **Virgil Card** which contains all necessary information to identify him
 and to obtain his **Public Key** for further operations. You can create a
-**Virgil Card** by passing the Card's ``content_snapshot`` and ``signs`` to Virgil Cards service. 
+**Virgil Card** by passing the Card's ``content_snapshot`` and ``signs`` to **Virgil Cards service**. 
 
-``content_snapshot`` is a base64-encoded string with JSON representation of a Virgil Card.
+``content_snapshot`` is a base64-encoded string with JSON representation of a **Virgil Card**.
 
-.. note:: Example
+.. topic:: Example
 
     *Original Virgil Card's representation*
 
@@ -46,7 +45,8 @@ and to obtain his **Public Key** for further operations. You can create a
             "device_name": "Space grey one"
         };
 
-    *Virgil Card's JSON representation*
+    *Virgil Card's JSON representation* 
+    This byte representation will be persisted and is not supposed to be changed within the **Virgil Card's** lifetime.
 
     ::
 
@@ -58,12 +58,23 @@ and to obtain his **Public Key** for further operations. You can create a
 
         eyJwdWJsaWNfa2V5IjoiTFMwdExTMUNSVWRKVGlCUVZVSk1TVU1nUzBWWkxTMHRMUzBLVFVsSFlrMUNVVWRDZVhGSFUwMDBPVUZuUlVkRFUzTnJRWGROUTBOQlJVSkVVVTlDWjJkQlJVTmhWM2s1VlZWVk1ERldjamRRTHpFeFdIcHViazB2UkFvd1RpOUtPRGhuWTBkTVYzcFlNR0ZMYUdjeFNqZGliM0I2UkdWNGIwUXdhVmwzYWxGWFZVcFdjVnBKUWpSTGRGVm5lRzlJY1M4MWMybHliVUkyY1cxT0NsTkZPRE54Y1RabWJpdFBTbTlxZVVwR015dEtZMUF3VFVwMVdYUlZabnBIYmpndlVIbEhWa3AxVEVWSGFpczBOVGxLV1RSV2J6ZEtiMXBuUzJoQlQyNEtjV0ozVWpSbGNUWTBjaXRsVUVwTmNVcHBNRDBLTFMwdExTMUZUa1FnVUZWQ1RFbERJRXRGV1MwdExTMHQiLCJpZGVudGl0eSI6InVzZXJAdmlyZ2lsc2VjdXJpdHkuY29tIiwiaWRlbnRpdHlfdHlwZSI6ImVtYWlsIiwic2NvcGUiOiJnbG9iYWwiLCJpbmZvIjp7ImRldmljZSI6ImlQaG9uZSIsImRldmljZV9uYW1lIjoiU3BhY2UgZ3JleSBvbmUifX0=
 
-This byte representation will be used to calculate the ``Virgil Card``
-``Fingerprint`` that is used as an identifier on ``Virgil Card``
-retrieve and revoke endpoints (*GET /card/{card-id}* and *DELETE
-/card/{card-id}* respectively). The byte representation will be
-persisted and is not supposed to be changed during the ``Virgil Card``
-lifetime.
+``signs`` is a parameter nested into the ``meta`` request parameter, an associative array with signer's ``fingerprint``s as keys and base64-encoded signs as values.
+Structure of ``signs`` parameter:
+
+::
+
+    "meta": {      
+        "signs": {          
+            CARD_HOLDER_FINGERPRINT: VIRGIL_CARD_BASE64_ENCODED_SIGN_OF_THE_FINGERPRINT,          
+            APPLICATION_FINGERPRINT: VIRGIL_CARD_BASE64_ENCODED_SIGN_OF_THE_FINGERPRINT, 
+            ...     
+        }  
+    }
+
+``signs`` parameter is used for authorization of service endpoints. All endpoints marked with ``Authorization: required`` must be authorized. Authorization is performed either by the **Virgil Card's** holder or by the application that created the **Virgil Card** on behalf of the holder.
+
+
+``fingerprint`` is an identifier of a **Virgil Card**. Virgil Card's JSON representation is used to calculate the ``fingerprint``:
 
 ::
 
@@ -71,32 +82,6 @@ lifetime.
 
 Endpoints
 =========
-
-Request authorization
----------------------
-
-All service endpoints are separated on two categories. Those that
-require an authorizations from the ``Virgil Card`` holder or the
-application application that created the ``Virgil Card`` on behalf of
-the holder and those that do not require any authorization. All
-endpoints that require an authorization are marked with **Authorization:
-required** note.
-
-The authorization is performed via additional parameter **signs** nested
-into the **meta** request parameter. This **signs** parameter must be an
-associative array with signers ``Fingerprint``\ s as keys and a
-base64-encoded sign for the request data.
-
-So the **signs** parameter has the structure like:
-
-::
-
-    "meta": {      
-        "signs": {          
-            CARD_HOLDER_FINGERPRINT: VIRGIL_CARD_BASE64_ENCODED_SIGN_OF_THE_FINGERPRINT,          
-            APPLICATION_FINGERPRINT: VIRGIL_CARD_BASE64_ENCODED_SIGN_OF_THE_FINGERPRINT,      
-        }  
-    }
 
 POST /card
 ----------
