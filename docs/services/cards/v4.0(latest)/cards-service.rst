@@ -290,13 +290,15 @@ sign.
 
 .. code:: json
 
+    {
 
+    }
 
 Appendix A. Response codes
 ==========================
 
 HTTP error codes
-~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^
 
 Application uses standard HTTP response codes:
 
@@ -318,7 +320,7 @@ Additional information about the error is returned as JSON-object like:
     }
 
 HTTP 500. Server error
-~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^
 
 This status is returned in extremely rare cases of internal application
 errors
@@ -328,7 +330,7 @@ errors
     10000 - Internal application error. You know, shit happens, so do internal server errors. Just take a deep breath and try harder.
 
 HTTP 401. Auth error
-~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^
 
 This status is returned on authorization errors
 
@@ -342,7 +344,7 @@ This status is returned on authorization errors
     20401 - Request sign header is missing
 
 HTTP 403. Forbidden
-~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^
 
 This status is returned when a request is not granted permission to the
 resource
@@ -352,7 +354,7 @@ resource
     20500 - The Virgil Card is not available in this application
 
 HTTP 400. Request error
-~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^
 
 This status is returned on request data errors
 
