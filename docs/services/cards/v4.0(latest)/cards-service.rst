@@ -29,6 +29,10 @@ and to obtain his **Public Key** for further operations. You can create a
 
 is a base64-encoded string with JSON representation of a **Virgil Card**.
 
+::
+
+    content_snapshot = BASE64( virgilCardJsonData )
+
 .. note:: Example
 
     *Original Virgil Card's representation*
@@ -97,10 +101,9 @@ Endpoints
 POST /card
 ----------
 
-The endpoint creates a ``Virgil Card`` entity.
+This endpoint creates a **Virgil Card**.
 
-The ``Virgil Card`` fingerprint is used as an identifier. Parameters
-notes: 
+The **Virgil Card's** `fingerprint`_ is used as an identifier. Parameters: 
 
 - ``public\_key`` parameter must contain a base64-encoded public key value in DER or PEM format; 
 - ``scope`` parameter determines a **Virgil Card** scope that can be either **global** or **application**. Application **Virgil Cards** are accessible only within the application they were created within. Global **Virgil Cards** are available in all the applications; 
