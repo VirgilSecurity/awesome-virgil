@@ -41,7 +41,7 @@ POST /card
 
 This endpoint creates a **Virgil Card**. You can create a **Virgil Card** by passing the Card's ``content_snapshot`` and ``signs`` to **Virgil Cards service**.
 
- ``content_snapshot`` 
+``content_snapshot`` 
 ---------------------
 
 is a base64-encoded string with JSON representation of a **Virgil Card**.
@@ -119,7 +119,7 @@ Structure of ``signs`` parameter:
 +--------------------+---------------------------------------------------------------------------------------------------------------------------------------------+
 | ``data``           | (optional) An associative array that contains application specific parameters. All keys must contain only latic characters and digits. The  |
 |                    |                                                                                                                                             |
-|                    |  length of keys and values must not exceed 256 characters. Please note that you cannot persist more than 16 data items                      |
+|                    | length of keys and values must not exceed 256 characters. Please note that you cannot persist more than 16 data items                       |
 +--------------------+---------------------------------------------------------------------------------------------------------------------------------------------+
 | ``info``           | (optional) An associative array with predefined keys that contain information about the device on which the keypair was created. The keys   |
 |                    |                                                                                                                                             | 
@@ -180,7 +180,7 @@ Structure of ``signs`` parameter:
 
     The request to create a **Virgil Card** contained two signs items: for the application holder and for the application. After passing **Virgil Cards service** the signs list was filled with a sign of the service.
 
-    So all **Virgil Card** data is passed in **create\_card\_request** parameter and **Virgil Cards service** creates an additional sign item with its own fingerprint used as a key to prove that it really created this **Virgil Card**.
+    So all **Virgil Card** data is passed in ``content_snapshot`` parameter and **Virgil Cards service** creates an additional sign item with its own fingerprint used as a key to prove that it really created this **Virgil Card**.
 
 GET /card/{card-id}
 -------------------
@@ -389,7 +389,7 @@ This status is returned on request data errors
     30103 - Virgil Card data parameter cannot contain more than 16 entries
     30104 - Virgil Card info parameter cannot be empty if specified and must contain 'device' and/or 'device_name' key
     30105 - Virgil Card info parameters length validation failed. The length cannot exceed 256 characters
-    30106 - Virgil Card data parameter must be `an associative array <https://en.wikipedia.org/wiki/Associative_array>`_
+    30106 - Virgil Card data parameter must be an associative array https://en.wikipedia.org/wiki/Associative_array
     30107 - A CSR parameter (``content_snapshot``) is missing or is incorrect
     30111 - Virgil Card identities passed to search endpoint must be a list of non-empty strings
     30113 - Virgil Card identity type is invalid
