@@ -10,7 +10,9 @@ In this guide you will find code for every task you'll need to implement
 to create an application using Virgil Security. It also includes a
 description of the main classes and methods. The aim of this guide is to
 get you up and running quickly. You should be able to copy and paste the
-code provided into your own apps and use it with the minumum of changes.
+code provided into your own apps and use it with the minimal changes.
+
+Start with one of the sections:
 
 .. toctree::
    :maxdepth: 1

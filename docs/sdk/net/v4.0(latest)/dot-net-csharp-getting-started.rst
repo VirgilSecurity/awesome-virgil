@@ -3,7 +3,7 @@ Getting started
 
 The goal of Virgil .NET/C# Cards SDK Documentation is to give a developer the knowledge and understanding required to implement security into his application using Virgil Security ecosystem.
 
-Virgil Cards SDK is a communication gateway between your application and `Virgil services <https://stg.virgilsecurity.com/docs/services/services>`__. 
+Virgil Cards SDK is a communication gateway between your application and :docs:`services`. 
 
 Setting up your project
 -----------------------
@@ -26,7 +26,8 @@ Installing the package
 ~~~~~~~~~~~~~~~~~~~~~~
 
 1. Use NuGet Package Manager (Tools -> Library Package Manager -> Package Manager Console)
-2. Run 
+2. Run
+
 ::
 
 	PM> Install-Package Virgil.SDK

@@ -28,7 +28,7 @@ A **Virgil Card** is the main entity of the Virgil services, it includes the inf
 Collect an App Credentials
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Collect an ``appID`` and ``appKey`` for your app. These parametes are required to create a **Virgil Card** in your app scope.
+Collect an ``appID`` and ``appKey`` for your app. These parameters are required to create a **Virgil Card** in your app scope.
 
 .. code:: csharp
 
@@ -55,7 +55,7 @@ Prepare Request
     var exportedPublicKey = crypto.ExportPublicKey(aliceKeys.PublicKey);
     var creationRequest = CreateCardRequest.Create("alice", "username", exportedPublicKey);
 
-then, you need to calculate fingerprint of request that will be used in the future as Virgil Card ID.
+then, you need to calculate the fingerprint of request that will be used in the future as Virgil Card ID.
 
 .. code:: csharp
 
@@ -182,7 +182,7 @@ Generate a new Public/Private keypair and ``data`` to be signed.
 Generating a Signature
 ~~~~~~~~~~~~~~~~~~~~~~
 
-Sign the ``SHA-384`` fingerprint of either stream or a byte array using your private key. To generate the signature, simply call one of the sign method:
+Sign the ``SHA-384`` fingerprint of either stream or a byte array using your private key. To generate the signature, simply call one of the sign methods:
 
 *Byte Array*
 
@@ -203,7 +203,7 @@ Sign the ``SHA-384`` fingerprint of either stream or a byte array using your pri
 Verifying a Signature
 ~~~~~~~~~~~~~~~~~~~~~
 
-Verify the signature of the ``SHA-384`` fingerprint of either stream or a byte array using Public key. The signature can now be verified by calling the verify method:
+Verify the signature of the ``SHA-384`` fingerprint of either stream or a byte array using the Public key. The signature can now be verified by calling the verify method:
 
 *Byte Array*
 
