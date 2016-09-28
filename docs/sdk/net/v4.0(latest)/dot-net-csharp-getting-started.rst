@@ -1,9 +1,9 @@
 Getting started
 ===============
 
-The goal of Virgil .NET/C# Cards SDK Documentation is to give a developer the knowledge and understanding required to implement security into his application using Virgil Security ecosystem.
+The goal of Virgil .NET/C# SDK Documentation is to give a developer the knowledge and understanding required to implement security into his application using Virgil Security ecosystem.
 
-Virgil Cards SDK is a communication gateway between your application and :doc:`services`. 
+Virgil SDK is a communication gateway between your application and :doc:`services`. 
 
 Setting up your project
 -----------------------
@@ -35,7 +35,7 @@ Installing the package
 User and App Credentials
 ------------------------
 
-When you register an application on Virgil developer's `dashboard <https://developer.virgilsecurity.com/dashboard>`__, we provide you with an ``appID``, ``appKey`` and ``accessToken``.
+When you register an application on Virgil developer's `dashboard <https://developer.virgilsecurity.com/dashboard>`_, we provide you with an ``appID``, ``appKey`` and ``accessToken``.
 
 -  ``appID`` uniquely identifies your application in our services, it is also used to identify the Public key generated in a pair with ``appKey``, for example:
    ``af6799a2f26376731abb9abf32b5f2ac0933013f42628498adb6b12702df1a87``
