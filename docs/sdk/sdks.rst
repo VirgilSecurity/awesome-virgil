@@ -6,6 +6,10 @@ Features
 
 Version 4
 ----------
+.. toctree::
+   :maxdepth: 1
+
+   net/v4.0(latest)/dot-net-csharp-sdk
 
 Version 3
 ----------
