@@ -112,15 +112,15 @@ This endpoint creates a **Virgil Card**.
 The **Virgil Card's** `fingerprint`_ is used as an identifier. Data Parameters: 
 
 +--------------------+---------------------------------------------------------------------------------------------------------------------------------------------+
-| Data Parameter     | Requirement                                                                                                                                 |     
+| Data Parameter     | Requirement                                                                                                                                 |
 +====================+=============================================================================================================================================+
-| ``public\_key``    | (required) Must contain a base64-encoded public key value in DER or PEM format                                                              |
+| ``public_key``     | (required) Must contain a base64-encoded public key value in DER or PEM format                                                              |
 +--------------------+---------------------------------------------------------------------------------------------------------------------------------------------+
-| ``identity\_type`` | (required) Must be 'email' for a confirmed[#]_ **Virgil Card** and can be any value for a segregated[#]_ one                                |
+| ``identity_type``  | (required) Must be 'email' for a confirmed [#]_ **Virgil Card** and can be any value for a segregated [#]_ one                              |
 +--------------------+---------------------------------------------------------------------------------------------------------------------------------------------+
 | ``identity``       | (required) Must be a valid email for a confirmed **Virgil Card** with an identity type of *email* and can be any value for a segregated one |
 +--------------------+---------------------------------------------------------------------------------------------------------------------------------------------+
-| ``scope``          | (required) Determines a **Virgil Card** scope that can be either **global**[#]_ or **application**[#]_                                      |
+| ``scope``          | (required) Determines a **Virgil Card** scope that can be either **global** [#]_ or **application** [#]_                                    |
 +--------------------+---------------------------------------------------------------------------------------------------------------------------------------------+
 | ``data``           | (optional) An associative array that contains application specific parameters. All keys must contain only latic characters and digits. The  |
 |                    | length of keys and values must not exceed 256 characters. Please note that you cannot persist more than 16 data items                       |
@@ -130,7 +130,7 @@ The **Virgil Card's** `fingerprint`_ is used as an identifier. Data Parameters:
 |                    | be specified if ``info`` parameter is specified                                                                                             |
 +--------------------+---------------------------------------------------------------------------------------------------------------------------------------------+
 | ``signs``          | (required) Must always contain **Virgil Card** holder's sign and either application sign or **Virgil Identity** sign (or both).             |
-|                    | `See more <signs>`_                                                                                                                         |
+|                    | See more `signs`_                                                                                                                           |
 +--------------------+---------------------------------------------------------------------------------------------------------------------------------------------+
 
 .. [#] In order to create a confirmed **Virgil Card** it's necessary to delegate the card creation to the **Virgil Identity** service.
@@ -178,20 +178,16 @@ The **Virgil Card's** `fingerprint`_ is used as an identifier. Data Parameters:
         }
     }
 
-The create ``Virgil Card`` request contained two signs items: for the
-application holder and for the application. After ``Virgil Cards`` the
-signs list was filled with additional ``Virgil Cards`` service sign.
+.. note::
 
-So all ``Virgil Card`` data is passed in **create\_card\_request**
-parameter and ``Virgil Cards``\ service creates an additional sign item
-with it's own fingerprint used as a key to prove that it really created
-the ``Virgil Card``.
+    The request to create a **Virgil Card** contained two signs items: for the application holder and for the application. After passing **Virgil Cards service** the signs list was filled with a sign of the service.
+
+    So all **Virgil Card** data is passed in **create\_card\_request** parameter and **Virgil Cards service** creates an additional sign item with its own fingerprint used as a key to prove that it really created this **Virgil Card**.
 
 GET /card/{card-id}
 -------------------
 
-Returns the information about the ``Virgil Card`` by the ID (which is
-the ``Fingerprint``).
+This endpoint returns the information about the **Virgil Card** by its ID (which is the `fingerprint`_).
 
 **Request info**
 
@@ -220,18 +216,17 @@ the ``Fingerprint``).
 POST /card/actions/search
 -------------------------
 
-Performs the ``Virgil Card``\ s search by criteria: 
+This endpoint performs the **Virgil Cards** search by set criteria.
 
-- the *identities* request parameter is mandatory; 
-- the *identity\_type* optional request
-parameter is optional and specifies the *identity\_type* of a
-``Virgil Card``\ s to be found; 
-- the *scope* optional request parameter specifies the scope to perform search on. Either 'global' or
-'application'. The default value is 'application';
-
-These parameters are mandatory: 
-
-- identities
++--------------------+---------------------------------------------------------------------------------------------------------------------------------------------+
+| Data Parameter     | Requirement                                                                                                                                 |
++====================+=============================================================================================================================================+
+| ``identities``     | (required) Value to search for                                                                                                              |
++--------------------+---------------------------------------------------------------------------------------------------------------------------------------------+
+| ``identity_type``  | (optional) Specifies the ``identity_type`` of a **Virgil Card** to be found                                                                 |
++--------------------+---------------------------------------------------------------------------------------------------------------------------------------------+
+| ``scope``          | (optional) Specifies the scope to perform search on. Either 'global' or 'application'. The default value is 'application'                   |
++--------------------+---------------------------------------------------------------------------------------------------------------------------------------------+
 
 **Request info**
 
