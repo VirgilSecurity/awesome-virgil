@@ -3,7 +3,7 @@ Getting started
 
 The goal of Virgil .NET/C# Cards SDK Documentation is to give a developer the knowledge and understanding required to implement security into his application using Virgil Security ecosystem.
 
-Virgil Cards SDK is a communication gateway between your application and :docs:`services`. 
+Virgil Cards SDK is a communication gateway between your application and :doc:`services`. 
 
 Setting up your project
 -----------------------

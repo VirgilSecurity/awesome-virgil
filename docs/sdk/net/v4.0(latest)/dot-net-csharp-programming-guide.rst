@@ -210,11 +210,11 @@ Verify the signature of the ``SHA-384`` fingerprint of either stream or a byte a
 .. code:: csharp
 
      var isValid = crypto.Verify(data, signature, alice.PublicKey);
-     ```
      
-     *Stream*
+*Stream*
      
-     ```csharp
+.. code:: csharp     
+
     var fileStream = File.Open("[YOUR_FILE_PATH_HERE]", FileMode.Open, FileAccess.Read, FileShare.None);
     using (fileStream)
     {
