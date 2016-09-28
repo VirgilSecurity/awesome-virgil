@@ -23,15 +23,12 @@
 Creating a Virgil Card
 ----------------------
 
-A *Virgil Card* is the main entity of the Virgil services, it includes
-the information about the user and his public key. The *Virgil Card*
-identifies the user/device by one of his types.
+A **Virgil Card** is the main entity of the Virgil services, it includes the information about the user and his public key. The **Virgil Card** identifies the user/device by one of his types.
 
 Collect an App Credentials
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Collect an *appID* and *appKey* for your app. These parametes are
-required to create a Virgil Card in your app scope.
+Collect an ``appID`` and ``appKey`` for your app. These parametes are required to create a **Virgil Card** in your app scope.
 
 .. code:: csharp
 
@@ -44,7 +41,7 @@ required to create a Virgil Card in your app scope.
 Generate a new Keys
 ~~~~~~~~~~~~~~~~~~~
 
-Generate a new Public/Private keypair using *VirgilCrypto* class.
+Generate a new Public/Private keypair using ``VirgilCrypto`` class.
 
 .. code:: csharp
 
@@ -58,14 +55,13 @@ Prepare Request
     var exportedPublicKey = crypto.ExportPublicKey(aliceKeys.PublicKey);
     var creationRequest = CreateCardRequest.Create("alice", "username", exportedPublicKey);
 
-then, you need to calculate fingerprint of request that will be used in
-the future as Virgil Card ID.
+then, you need to calculate fingerprint of request that will be used in the future as Virgil Card ID.
 
 .. code:: csharp
 
     var fingerprint = crypto.CalculateFingerprint(creationRequest.Snapshot);
 
-then, sign the fingerprint request with both owner and app keys.
+then, sign the fingerprint request with both owner's and app's keys.
 
 .. code:: csharp
 
@@ -85,12 +81,11 @@ Publish a Virgil Card
 Search for the Virgil Cards
 ---------------------------
 
-Performs the ``Virgil Card``\ s search by criteria: - the *Identities*
-request parameter is mandatory; - the *IdentityType* optional request
-parameter is optional and specifies the *IdentityType* of a
-``Virgil Card``\ s to be found; - the *Scope* optional request parameter
-specifies the scope to perform search on. Either 'global' or
-'application'. The default value is 'application';
+Performs the **Virgil Cards** search by criteria: 
+
+- ``Identities`` request parameter is mandatory; 
+- ``IdentityType`` request parameter is optional and specifies the ``IdentityType`` of a **Virgil Cards** to be found; 
+- ``Scope`` optional request parameter specifies the scope to perform search on. Either 'global' or 'application'. The default value is 'application'
 
 .. code:: csharp
 
@@ -111,8 +106,7 @@ Operations with Crypto Keys
 Generate Keys
 ~~~~~~~~~~~~~
 
-The following code sample illustrates keypair generation. The default
-algorithm is ed25519
+The following code sample illustrates keypair generation. The default algorithm is ``ed25519``
 
 .. code:: csharp
 
@@ -121,8 +115,7 @@ algorithm is ed25519
 Import/Export Keys
 ~~~~~~~~~~~~~~~~~~
 
-You can export and import your Public/Private keys to/from supported
-wire representation.
+You can export and import your Public/Private keys to/from supported wire representation.
 
 To export Public/Private keys, simply call one of the Export methods:
 
@@ -133,13 +126,15 @@ To export Public/Private keys, simply call one of the Export methods:
 
 To import Public/Private keys, simply call one of the Import methods:
 
-``csharp  var privateKey = crypto.ImportPrivateKey(exportedPrivateKey);  var publicKey = crypto.ImportPublicKey(exportedPublicKey);``
+.. code:: csharp
+
+      var privateKey = crypto.ImportPrivateKey(exportedPrivateKey);  
+      var publicKey = crypto.ImportPublicKey(exportedPublicKey);
 
 Encrypt Data
 ~~~~~~~~~~~~
 
-Data encryption using ECIES scheme with AES-GCM. You can encrypt either
-stream or a byte array There also can be more than one recipient
+Data encryption using ECIES scheme with ``AES-GCM``. You can encrypt either stream or a byte array. There also can be more than one recipient
 
 .. code:: csharp
 
@@ -156,7 +151,7 @@ stream or a byte array There also can be more than one recipient
 Decrypt Data
 ~~~~~~~~~~~~
 
-You can decrypt either stream or a byte array using tour private key
+You can decrypt either stream or a byte array using your private key
 
 .. code:: csharp
 
@@ -173,11 +168,9 @@ You can decrypt either stream or a byte array using tour private key
 Generating and Verifying Signatures
 -----------------------------------
 
-This section walks you through the steps necessary to use the
-*VirgilCrypto* to generate a digital signature for data and to verify
-that a signature is authentic.
+This section walks you through the steps necessary to use the **VirgilCrypto** to generate a digital signature for data and to verify that a signature is authentic.
 
-Generate a new Public/Private keypair and *data* to be signed.
+Generate a new Public/Private keypair and ``data`` to be signed.
 
 .. code:: csharp
 
@@ -189,9 +182,7 @@ Generate a new Public/Private keypair and *data* to be signed.
 Generating a Signature
 ~~~~~~~~~~~~~~~~~~~~~~
 
-Sign the SHA-384 fingerprint of either stream or a byte array using your
-private key. To generate the signature, simply call one of the sign
-method:
+Sign the ``SHA-384`` fingerprint of either stream or a byte array using your private key. To generate the signature, simply call one of the sign method:
 
 *Byte Array*
 
@@ -212,9 +203,7 @@ method:
 Verifying a Signature
 ~~~~~~~~~~~~~~~~~~~~~
 
-Verify the signature of the SHA-384 fingerprint of either stream or a
-byte array using Public key. The signature can now be verified by
-calling the verify method:
+Verify the signature of the ``SHA-384`` fingerprint of either stream or a byte array using Public key. The signature can now be verified by calling the verify method:
 
 *Byte Array*
 
@@ -235,8 +224,7 @@ calling the verify method:
 Fingerprint Generation
 ----------------------
 
-The default Fingerprint algorithm is SHA-256. The hash is then converted
-to HEX
+The default Fingerprint algorithm is ``SHA-256``. The hash is then converted to HEX
 
 .. code:: csharp
 
