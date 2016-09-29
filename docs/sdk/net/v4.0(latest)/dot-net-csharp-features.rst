@@ -8,16 +8,15 @@ Working with Virgil Cards
 Create a Virgil Card
 ----------------------
 
-A **Virgil Card** is the main entity of the Virgil services, it includes the information about the user and his public key. The **Virgil Card** identifies the user/device by one of his types.
+Every user is represented with a **Virgil Card** so creating them for users is a required step. A **Virgil Card** is the central entity of the Virgil services, it includes information about the user for further actions in Virgil Security system. The **Virgil Card** identifies the user/device by one of his types. You can find more information about :term:`Virgil Cards <Virgil Card>`.
 
 Search for the Virgil Cards
 ---------------------------
 
-Performs the **Virgil Cards** search by criteria: 
+You can search for **Virgil Cards** by identity value(s) and optional additional parameters can be set:
 
-	- ``Identities`` request parameter is mandatory; 
-	- ``IdentityType`` request parameter is optional and specifies the ``IdentityType`` of a **Virgil Cards** to be found; 
-	- ``Scope`` optional request parameter specifies the scope to perform search on. Either 'global' or 'application'. The default value is 'application'
+	- identity type ('email' or any type created by user). You can find more information about :term:`confirmed <Confirmed Identity>` and :term:`uncofirmed <Unconfirmed Identity>` **Virgil Cards**.
+	- scope (by default it is 'application', can be 'global'). You can find more information about :term:`global <Global Virgil Card>` and :term:`application <>` **Virgil Cards**.
 
 Working with Crypto Library
 ===========================
@@ -25,23 +24,27 @@ Working with Crypto Library
 Generate Keys
 -------------
 
+You can generate a keypair using ``VirgilCrypto`` class. The default algorithm is ``ed25519``. **Что со старой парой, если она уже есть?**
+
 Import and Export Keys
 ----------------------
+
+If you need to import or export your Public/Private keys you can easily do it. **Какие условия или предостережения? Supported wire representation.**
 
 Encrypt Data
 ------------
 
-Data encryption using ECIES scheme with ``AES-GCM``:
+You can enrypt some data, ECIES scheme with ``AES-GCM`` is used in **Virgil Security**. You have several options for encryption:
 
 	- stream encryption;
 	- byte array encryption;
 	- one recipient;
-	- multiple recipients. 
+	- multiple recipients (public keys of every user are used for encryption).
 
 Decrypt Data
 ------------
 
-You can decrypt data using your private key:
+You can decrypt data using your private key. You have such options for decryption: 
 
 	- stream;
 	- byte array.
@@ -49,14 +52,20 @@ You can decrypt data using your private key:
 Generate a Signature
 --------------------
 
-Sign the ``SHA-384`` fingerprint of either stream or a byte array using your private key.
+You can generate a digital signature for data and sign the ``SHA-384`` fingerprint using your private key. Options for signing data:
+
+	- stream;
+	- byte array.
 
 Verify a Signature
 ------------------
 
-Verify the signature of the ``SHA-384`` fingerprint of either stream or a byte array using the Public key.
+You can verify that a signature is authentic. You will verify the signature of the ``SHA-384`` fingerprint using the public key. Options for verification:
 
-Fingerprint generation
-----------------------
+	- stream;
+	- byte array.
+
+?? Fingerprint generation
+-------------------------
 
 The default Fingerprint algorithm is ``SHA-256``. The hash is then converted to HEX.

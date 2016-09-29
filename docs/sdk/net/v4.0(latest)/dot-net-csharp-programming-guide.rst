@@ -23,7 +23,7 @@
 Creating a Virgil Card
 ----------------------
 
-Collect an App Credentials
+Collect App Credentials
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Collect an ``appID`` and ``appKey`` for your app. These parameters are required to create a **Virgil Card** in your app scope.
@@ -36,7 +36,7 @@ Collect an ``appID`` and ``appKey`` for your app. These parameters are required 
 
     var appKey = crypto.ImportPrivateKey(appKeyData, appKeyPassword);
 
-Generate a new Keys
+Generate new Keys
 ~~~~~~~~~~~~~~~~~~~
 
 Generate a new Public/Private keypair using ``VirgilCrypto`` class.
