@@ -53,7 +53,7 @@ The following code example creates a new public/private key pair with a specific
 
 In the example below you can see a simply generated public/private keypair.
 
-.. code-block:: 
+:: 
 
   -----BEGIN PUBLIC KEY-----
   MIGbMBQGByqGSM49AgEGCSskAwMCCAEBDQOBggAEWIH2SohavmLdRwEJ/VWbFcWr

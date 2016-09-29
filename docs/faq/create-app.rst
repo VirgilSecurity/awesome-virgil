@@ -1,6 +1,6 @@
-============
+========================
 Create an Application
-============
+========================
 
 First you must create a free Virgil Security developer’s account by signing up `here <https://developer.virgilsecurity.com/account/signup>`_. Once you have your account you can `sign in <https://developer.virgilsecurity.com/account/signin>`_ and create an application with an access token.
 

@@ -58,7 +58,7 @@ The following code example creates a new public/private key pair.
   
 In the example below you can see a simply generated public/private keypair without a password.
 
-.. code-block:: 
+:: 
 
   -----BEGIN PUBLIC KEY-----
   MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApbCIt9IiGAloImV/p0b1
@@ -108,7 +108,7 @@ You can also generate a key pair with an encrypted private key just using one of
 
 Here is what an encrypted private key looks like:
 
-.. code-block:: 
+:: 
 
   -----BEGIN RSA PRIVATE KEY-----
   MIIEpQIBAAKCAQEAtFM3l4A3krq+NRMX/65Eau9eKJ/n9ABy9gZ9LalYrpxMGRUF

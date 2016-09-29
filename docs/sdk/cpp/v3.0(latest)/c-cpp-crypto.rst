@@ -22,7 +22,7 @@ The following code example creates a new public/private key pair.
 
 In the example below you can see a simply generated public/private keypair without a password.
 
-.. code-block:: 
+:: 
 
   -----BEGIN PUBLIC KEY-----
   MIGbMBQGByqGSM49AgEGCSskAwMCCAEBDQOBggAEWIH2SohavmLdRwEJ/VWbFcWr
@@ -50,7 +50,7 @@ You can also generate a key pair with an encrypted private key just using one of
 
 Here is what an encrypted private key looks like:
 
-.. code-block:: 
+:: 
 
   -----BEGIN ENCRYPTED PRIVATE KEY-----
   MIIBKTA0BgoqhkiG9w0BDAEDMCYEIJjDIF2KRj7u86Up1ZB4yHHKhqMg5C/OW2+F

@@ -33,7 +33,7 @@ The easiest and recommended way to use VirgilFoundation framework for Objective-
  
 - First of all you need to install CocoaPods to your computer. It might be done by executing the following line in terminal:
 
-.. code-block::
+.. code::
 
 	$ sudo gem install cocoapods
 
@@ -41,13 +41,13 @@ CocoaPods is built with Ruby and it will be installed with the default Ruby avai
 
 - Open Xcode and create a new project (in the Xcode menu: File->New->Project), or navigate to an existing Xcode project using:
 
-.. code-block::
+.. code::
 
 	$ cd <Path to Xcode project folder>
 
 - In the Xcode project's folder create a new file, give it a name *Podfile* (with a capital *P* and without any extension). The following example shows how to compose the Podfile for an iOS application. If you are planning to use another platform the process will be quite similar. You only need to change a platform to the correspondent value. `Here <https://guides.cocoapods.org/syntax/podfile.html#platform>`_ you can find more information about platform values.
 
-.. code-block::
+.. code::
 
 	source 'https://github.com/CocoaPods/Specs.git'
 	platform :ios, '8.0'
@@ -59,7 +59,7 @@ CocoaPods is built with Ruby and it will be installed with the default Ruby avai
 
 Or use Virgil SDK with Virgil Crypto (recommended):
 
-.. code-block::
+.. code::
 
 	source 'https://github.com/CocoaPods/Specs.git'
 	platform :ios, '8.0'
@@ -71,7 +71,7 @@ Or use Virgil SDK with Virgil Crypto (recommended):
 
 - Get back to your terminal window and execute the following line:
 
-.. code-block::
+.. code::
 
 	$ pod install
  
@@ -99,13 +99,13 @@ Although VirgilFoundation is using Objective-C as its primary language it might 
 - Name it something like *BridgingHeader.h*
 - Put there the following line:
 
-.. code-block:: objective-c
+.. code:: objective-c
 
 	@import VirgilFoundation;
 
 Or use Virgil SDK with Virgil Crypto (recommended):
 
-.. code-block::
+.. code::
 
 	@import VirgilFoundation;
 	@import VirgilSDK;
@@ -128,7 +128,7 @@ VSSKeyPair instance should be used to generate a pair of keys. It is possible to
 
 **Objective-C**
 
-.. code-block:: objective-c
+.. code:: objective-c
 
 	//...
 	VSSKeyPair *keyPair = [[VSSKeyPair alloc] 
@@ -143,7 +143,7 @@ VSSKeyPair instance should be used to generate a pair of keys. It is possible to
 
 **Swift**
 
-.. code-block:: swift
+.. code:: swift
 
 	//...
 	let keyPair = VSSKeyPair(password:<#Password or nil#>)
@@ -165,7 +165,7 @@ Key-based encryption
 
 **Objective-C**
 
-.. code-block:: objective-c
+.. code:: objective-c
 
 	//...
 	// Assuming that we have some initial string message.
@@ -186,7 +186,7 @@ Key-based encryption
 
 **Swift**
 
-.. code-block:: swift
+.. code:: swift
 
 	//...
 	// Assuming that we have some initial string message.
@@ -210,7 +210,7 @@ Key-based decryption
 
 **Objective-C**
 
-.. code-block:: objective-c
+.. code:: objective-c
 
 	//...
 	// Assuming that we have received some key-based encrypted data.
@@ -229,7 +229,7 @@ Key-based decryption
 
 **Swift**
 
-.. code-block:: swift
+.. code:: swift
 
 	//...
 	// Assuming that we have received some key-based encrypted data.
@@ -251,7 +251,7 @@ Password-based encryption
 
 **Objective-C**
 
-.. code-block:: objective-c
+.. code:: objective-c
 
 	//...
 	// Assuming that we have some initial string message.
@@ -272,7 +272,7 @@ Password-based encryption
 
 **Swift**
 
-.. code-block:: swift
+.. code:: swift
 
 	//...
 	// Assuming that we have some initial string message.
@@ -294,7 +294,7 @@ Password-based decryption
 
 **Objective-C**
 
-.. code-block:: objective-c
+.. code:: objective-c
 
 	//...
 	// Assuming that we have received some password-based encrypted data.
@@ -311,7 +311,7 @@ Password-based decryption
 
 **Swift**
 
-.. code-block:: swift
+.. code:: swift
 
 	//...
 	// Assuming that we have received some password-based encrypted data.
@@ -338,7 +338,7 @@ Compose a signature
 
 **Objective-C**
 
-.. code-block:: objective-c
+.. code:: objective-c
 
 	//...
 	#import <VirgilFoundation/VirgilFoundation.h>
@@ -359,7 +359,7 @@ Compose a signature
 
 **Swift**
 
-.. code-block:: swift
+.. code:: swift
 
 	//...
 	// Assuming that we have some initial string message.
@@ -383,7 +383,7 @@ To verify some signature it is necessary to have a public key of a user whose si
 
 **Objective-C**
 
-.. code-block:: objective-c
+.. code:: objective-c
 
 	//...
 	// Assuming that we have the public key of a person whose signature 
@@ -402,7 +402,7 @@ To verify some signature it is necessary to have a public key of a user whose si
 
 **Swift**
 
-.. code-block:: swift
+.. code:: swift
 
 	//...
 	// Assuming that we have the public key of a person whose signature 

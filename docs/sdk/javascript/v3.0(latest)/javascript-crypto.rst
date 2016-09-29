@@ -139,7 +139,7 @@ Type_EC_SECP256K1   256-bits "Koblitz" curve
 
 In the example below you can see a simply generated public/private keypair without a password.
 
-.. code-block::
+::
 
     -----BEGIN PUBLIC KEY-----
     MIGbMBQGByqGSM49AgEGCSskAwMCCAEBDQOBggAEWIH2SohavmLdRwEJ/VWbFcWr
@@ -158,7 +158,7 @@ In the example below you can see a simply generated public/private keypair witho
 
 Here is what an encrypted private key looks like:
 
-.. code-block::
+::
 
     -----BEGIN ENCRYPTED PRIVATE KEY-----
     MIIBKTA0BgoqhkiG9w0BDAEDMCYEIJjDIF2KRj7u86Up1ZB4yHHKhqMg5C/OW2+F
