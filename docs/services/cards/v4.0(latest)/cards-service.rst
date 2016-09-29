@@ -166,6 +166,7 @@ Structure of ``signs`` parameter:
     {
         "content_snapshot":"eyJwdWJsaWNfa2V5IjoiTFMwdExTMUNSVWRKVGlCUVZVSk1TVU1nUzBWWkxTMHRMUzBLVFVsSFlrMUNVVWRDZVhGSFUwMDBPVUZuUlVkRFUzTnJRWGROUTBOQlJVSkVVVTlDWjJkQlJVTmhWM2s1VlZWVk1ERldjamRRTHpFeFdIcHViazB2UkFvd1RpOUtPRGhuWTBkTVYzcFlNR0ZMYUdjeFNqZGliM0I2UkdWNGIwUXdhVmwzYWxGWFZVcFdjVnBKUWpSTGRGVm5lRzlJY1M4MWMybHliVUkyY1cxT0NsTkZPRE54Y1RabWJpdFBTbTlxZVVwR015dEtZMUF3VFVwMVdYUlZabnBIYmpndlVIbEhWa3AxVEVWSGFpczBOVGxLV1RSV2J6ZEtiMXBuUzJoQlQyNEtjV0ozVWpSbGNUWTBjaXRsVUVwTmNVcHBNRDBLTFMwdExTMUZUa1FnVUZWQ1RFbERJRXRGV1MwdExTMHQiLCJpZGVudGl0eSI6InVzZXJAdmlyZ2lsc2VjdXJpdHkuY29tIiwiaWRlbnRpdHlfdHlwZSI6ImVtYWlsIiwic2NvcGUiOiJnbG9iYWwiLCJpbmZvIjp7ImRldmljZSI6ImlQaG9uZSIsImRldmljZV9uYW1lIjoiU3BhY2UgZ3JleSBvbmUifX0=",
         "meta": {
+            "fingerprint": "bb5db5084dab511135ec24c2fdc5ce2bca8f7bf6b0b83a7fa4c3cbdcdc740a59",
             "created_at": "2015-12-22T07:03:42+0000",
             "card_version": "4.0",
             "signs": {
@@ -201,6 +202,7 @@ This endpoint returns the information about the **Virgil Card** by its ID (which
     {
         "content_snapshot":"eyJwdWJsaWNfa2V5IjoiTFMwdExTMUNSVWRKVGlCUVZVSk1TVU1nUzBWWkxTMHRMUzBLVFVsSFlrMUNVVWRDZVhGSFUwMDBPVUZuUlVkRFUzTnJRWGROUTBOQlJVSkVVVTlDWjJkQlJVTmhWM2s1VlZWVk1ERldjamRRTHpFeFdIcHViazB2UkFvd1RpOUtPRGhuWTBkTVYzcFlNR0ZMYUdjeFNqZGliM0I2UkdWNGIwUXdhVmwzYWxGWFZVcFdjVnBKUWpSTGRGVm5lRzlJY1M4MWMybHliVUkyY1cxT0NsTkZPRE54Y1RabWJpdFBTbTlxZVVwR015dEtZMUF3VFVwMVdYUlZabnBIYmpndlVIbEhWa3AxVEVWSGFpczBOVGxLV1RSV2J6ZEtiMXBuUzJoQlQyNEtjV0ozVWpSbGNUWTBjaXRsVUVwTmNVcHBNRDBLTFMwdExTMUZUa1FnVUZWQ1RFbERJRXRGV1MwdExTMHQiLCJpZGVudGl0eSI6InVzZXJAdmlyZ2lsc2VjdXJpdHkuY29tIiwiaWRlbnRpdHlfdHlwZSI6ImVtYWlsIiwic2NvcGUiOiJnbG9iYWwiLCJpbmZvIjp7ImRldmljZSI6ImlQaG9uZSIsImRldmljZV9uYW1lIjoiU3BhY2UgZ3JleSBvbmUifX0=",
         "meta": {
+            "fingerprint": "bb5db5084dab511135ec24c2fdc5ce2bca8f7bf6b0b83a7fa4c3cbdcdc740a59",
             "created_at": "2015-12-22T07:03:42+0000",
             "card_version": "4.0",
             "signs": {
@@ -251,6 +253,7 @@ This endpoint performs the **Virgil Cards** search by set criteria.
         {
             "content_snapshot":"eyJwdWJsaWNfa2V5IjoiTFMwdExTMUNSVWRKVGlCUVZVSk1TVU1nUzBWWkxTMHRMUzBLVFVsSFlrMUNVVWRDZVhGSFUwMDBPVUZuUlVkRFUzTnJRWGROUTBOQlJVSkVVVTlDWjJkQlJVTmhWM2s1VlZWVk1ERldjamRRTHpFeFdIcHViazB2UkFvd1RpOUtPRGhuWTBkTVYzcFlNR0ZMYUdjeFNqZGliM0I2UkdWNGIwUXdhVmwzYWxGWFZVcFdjVnBKUWpSTGRGVm5lRzlJY1M4MWMybHliVUkyY1cxT0NsTkZPRE54Y1RabWJpdFBTbTlxZVVwR015dEtZMUF3VFVwMVdYUlZabnBIYmpndlVIbEhWa3AxVEVWSGFpczBOVGxLV1RSV2J6ZEtiMXBuUzJoQlQyNEtjV0ozVWpSbGNUWTBjaXRsVUVwTmNVcHBNRDBLTFMwdExTMUZUa1FnVUZWQ1RFbERJRXRGV1MwdExTMHQiLCJpZGVudGl0eSI6InVzZXJAdmlyZ2lsc2VjdXJpdHkuY29tIiwiaWRlbnRpdHlfdHlwZSI6ImVtYWlsIiwic2NvcGUiOiJnbG9iYWwiLCJpbmZvIjp7ImRldmljZSI6ImlQaG9uZSIsImRldmljZV9uYW1lIjoiU3BhY2UgZ3JleSBvbmUifX0=",
             "meta": {
+                "fingerprint": "bb5db5084dab511135ec24c2fdc5ce2bca8f7bf6b0b83a7fa4c3cbdcdc740a59",
                 "created_at": "2015-12-22T07:03:42+0000",
                 "card_version": "4.0",
                 "signs": {
@@ -332,6 +335,7 @@ Application uses standard HTTP response codes:
     401 - Authentication error
     403 - Forbidden
     404 - Entity not found
+    405 - Method not allowed
     500 - Server error
 
 Additional information about the error is returned as JSON-object like:

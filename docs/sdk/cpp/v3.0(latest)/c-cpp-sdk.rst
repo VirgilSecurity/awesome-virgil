@@ -249,3 +249,10 @@ See full examples:
 1. `A Global Virgil Card <https://github.com/VirgilSecurity/virgil-sdk-cpp/blob/master/examples/src/card_create_global.cxx>`_
 2. `A Private Virgil Card <https://github.com/VirgilSecurity/virgil-sdk-cpp/blob/master/examples/src/card_create_private.cxx>`_
 3. `An unauthorized Private Virgil Card <https://github.com/VirgilSecurity/virgil-sdk-cpp/blob/master/examples/src/card_create_private_unauthorized.cxx>`_
+
+See also
+========
+
+:doc:`c-cpp-quickstart`
+:doc:`../../sdks.rst`
+:doc:`../../sdks`
