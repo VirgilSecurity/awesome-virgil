@@ -316,3 +316,8 @@ In the example below you can see, how to generate a **ValidationToken** using th
 		'username',    // type (any string)
 		applicationPrivateKey
 	);
+
+See also
+========
+
+:doc:`javascript-quickstart`

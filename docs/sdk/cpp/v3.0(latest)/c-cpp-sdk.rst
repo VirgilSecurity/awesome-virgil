@@ -254,5 +254,3 @@ See also
 ========
 
 :doc:`c-cpp-quickstart`
-:doc:`../../sdks.rst`
-:doc:`../../sdks`

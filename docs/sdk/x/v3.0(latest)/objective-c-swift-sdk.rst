@@ -905,3 +905,8 @@ In the example below you can see, how to generate a **ValidationToken** using th
     }
     // Use validation token
     //...
+
+See also
+========
+
+:doc:`objective-c-swift-quickstart`

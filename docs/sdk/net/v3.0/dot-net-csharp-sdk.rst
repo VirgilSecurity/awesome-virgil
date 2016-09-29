@@ -293,6 +293,11 @@ using the SDK library.
 	var validationToken = ValidationTokenGenerator     
 		.Generate("demo_virgil", "username", %APP_PRIVATE_KEY%);
 
+See also
+========
+
+:doc:`dot-net-csharp-quickstart`
+
 .. _global: #obtaining-a-global-validationtoken
 .. _private: #obtaining-a-private-validationtoken
 .. _Developer portal: https://developer.virgilsecurity.com/dashboard/

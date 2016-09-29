@@ -277,3 +277,8 @@ In the example below you can see, how to generate a **ValidationToken** using th
     String validationToken = ValidationTokenGenerator
     .generate(PRIVATE_IDENTITY_TYPE, identityValue,
         	"{APP_PRIVATE_KEY}", "{APP_PRIVATE_KEY_PASSWORD}");
+
+See also
+========
+
+:doc:`java-android-quickstart`

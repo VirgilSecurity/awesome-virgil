@@ -212,3 +212,8 @@ In the example below you can see, how to generate a ValidationToken using the SD
 .. code-block:: python
 
     validation_token = ValidationTokenGenerator.generate(value, virgilhub.IdentityType.custom, PRIVATE_KEY, PRIVATE_KEY_PASSWORD)
+
+See also
+========
+
+:doc:`python-quickstart`
