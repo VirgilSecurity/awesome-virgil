@@ -12,7 +12,7 @@ Version 1
    :maxdepth: 1
    
    v1/crypto
-   ../sdk/net/v3.0(latest)/dot-net-csharp-crypto
+   ../sdk/net/v3.0/dot-net-csharp-crypto
    ../sdk/cpp/v3.0(latest)/c-cpp-crypto
    ../sdk/javascript/v3.0(latest)/javascript-crypto
    ../sdk/x/v3.0(latest)/objective-c-swift-crypto
