@@ -198,6 +198,7 @@ Encrypt the text with a password:
 Encrypt the text with a public key:
 
 .. code-block:: java
+
   String text = "Encrypt me, Please!!!";
   KeyPair keyPair = KeyPairGenerator.generate();
   PublicKey publicKey = keyPair.getPublic();
@@ -258,6 +259,7 @@ To verify that the data was signed by a particular party, you need the following
 The following example verifies a digital signature which was signed by the sender.
 
 .. code-block:: java
+
   var isValid = CryptoHelper.Verify(originalText, signature, 
          keyPair.PublicKey());
 

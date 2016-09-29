@@ -1,6 +1,6 @@
-============
+========================
 Quickstart Python
-============
+========================
 
 - `Introduction`_
 - `Prerequisites`_
@@ -15,9 +15,9 @@ Quickstart Python
     - `Step 5. Verify and Decrypt`_
 - `Source code`_
 
-*********
+**************
 Introduction
-*********
+**************
 
 In this guide we will get you up and running quickly with a simple IP messaging chat application you can build as you learn more about Virgil Crypto Library and Virgil Keys Services. Sounds like a plan? Then let's get cracking!
 
@@ -25,12 +25,12 @@ On the diagram below you can see a full picture of how these things interact wit
 
 .. image:: ../../../images/IPMessaging.png
 
-*********
+**************
 Prerequisites
-*********
+**************
 
 Obtaining an Access Token
-=========
+=================================
 
 First you must create a free Virgil Security developer's account by signing up `here <https://developer.virgilsecurity.com/account/signup>`_. Once you have your account you can `sign in <https://developer.virgilsecurity.com/account/signin>`_, create an application and generate an access token for your application.
 
@@ -76,7 +76,7 @@ Use Case
 - Decrypted data is provided to the recipient.
 
 Step 0. Initialization
-=========
+=================================
 
 .. code-block:: python
 
@@ -90,7 +90,7 @@ Step 0. Initialization
 	**ACCESS_TOKEN** - is received for your application in `Developers portal <https://developer.virgilsecurity.com/dashboard/>`_, described in this step `Obtaining an Access Token`_.
 
 Step 1. Generate and Publish the Keys
-=========
+=============================================
 First a simple IP messaging chat is generating the keys and publishing them to the Public Keys Service where they are available in an open access for other users (e.g. recipient) to verify and encrypt the data for the key owner.
 
 The following code example generates a new public/private key pair.
@@ -109,7 +109,7 @@ The app is registering a Virgil Card which includes a public key and an email ad
 
 
 Step 2. Encrypt and Sign
-=========
+=================================
 The app is searching for all channel members' public keys on the Keys Service to encrypt a message for them. The app is signing the encrypted message with sender’s private key so that the recipient can make sure the message had been sent by the declared sender.
 
 .. code-block:: python
@@ -121,7 +121,7 @@ The app is searching for all channel members' public keys on the Keys Service to
     	    crypto_signature = cryptolib.CryptoWrapper.sign(message, keys['private_key'])
 
 Step 3. Send a Message
-=========
+=================================
 The app merges the message text and the signature into one structure and sends the message to the channel using a simple IP messaging client.
 
 .. code-block:: python
@@ -135,7 +135,7 @@ The app merges the message text and the signature into one structure and sends t
 
 
 Step 4. Receive a Message
-=========
+=================================
 An encrypted message is received on the recipient’s side using an IP messaging client.
 In order to decrypt and verify the received data, the app on recipient’s side needs to get sender’s Virgil Card from the Keys Service.
 
@@ -147,7 +147,7 @@ In order to decrypt and verify the received data, the app on recipient’s side 
 
 
 Step 5. Verify and Decrypt
-=========
+=================================
 The application is making sure the message came from the declared sender by getting his card on Virgil Public Keys Service. In case of success, the message is decrypted using the recipient's private key.
 
 .. code-block:: python
@@ -159,9 +159,9 @@ The application is making sure the message came from the declared sender by gett
     	    raise ValueError("Signature is not valid.")
 
 
-*********
+**************
 Source code
-*********
+**************
 
 * `Use Case Example <https://github.com/VirgilSecurity/virgil-sdk-python/tree/master/Examples/IPMessaging>`_
 

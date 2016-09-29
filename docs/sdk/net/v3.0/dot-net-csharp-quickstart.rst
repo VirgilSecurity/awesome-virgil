@@ -1,6 +1,6 @@
-============
+========================
 Quickstart .NET/C#
-============
+========================
 
 - `Introduction`_
 - `Prerequisites`_
@@ -15,9 +15,9 @@ Quickstart .NET/C#
     - `Step 5. Verify and Decrypt`_
 - `Source code`_
 
-*********
+*************
 Introduction
-*********
+*************
 
 In this guide we will get you up and running quickly with a simple IP messaging chat application you can build as you learn more about Virgil Crypto Library and Virgil Keys Services. Sounds like a plan? Then let's get cracking!
 
@@ -25,15 +25,15 @@ On the diagram below you can see a full picture of how these things interact wit
 
 .. image:: ../../../images/IPMessaging.png
 
-*********
+*************
 Prerequisites
-*********
+*************
 
 1. To begin with, you'll need a Virgil Access Token, which you can obtain by passing a few steps described here `Obtaining an Access Token`_.
 2. You will also need to install a NuGet package Install_.
 
 Obtaining an Access Token
-=========
+=================================
 
 First you must create a free Virgil Security developer's account by signing up `here <https://developer.virgilsecurity.com/account/signup>`_. Once you have your account you can `sign in <https://developer.virgilsecurity.com/account/signin>`_ and generate an access token for your application.
 
@@ -66,7 +66,7 @@ Use Case
 - Decrypted data is provided to the recipient.
 
 Step 0. Initialization
-=========
+=================================
 
 Initialize the service Hub instance using access token obtained here... `Obtaining an Access Token`_
 
@@ -76,7 +76,7 @@ Initialize the service Hub instance using access token obtained here... `Obtaini
 
 
 Step 1. Generate and Publish the Keys
-=========
+=============================================
 First a simple IP messaging chat application is generating the keys and publishing them to the Public Keys Service where they are available in open access for other users (e.g. recipient) to verify and encrypt the data for the key owner.
 
 The following code example generates a new public/private key pair.
@@ -103,7 +103,7 @@ The app is registering a Virgil Card which includes a public key and an email ad
 
 
 Step 2. Encrypt and Sign
-=========
+=================================
 The app is searching for all channel members' public keys on the Keys Service to encrypt a message for them. The app is signing the encrypted message with sender’s private key so that the recipient can make sure the message had been sent by the declared sender.
 
 .. code-block:: csharp
@@ -119,7 +119,7 @@ The app is searching for all channel members' public keys on the Keys Service to
 
 
 Step 3. Send a Message
-=========
+=================================
 The app merges the message text and the signature into one `structure <https://github.com/VirgilSecurity/virgil-sdk-net/blob/master/Examples/Virgil.Examples.IPMessaging/EncryptedMessageModel.cs>`_ then serializes it to json string and sends the message to the channel using a simple IP messaging client.
 
 .. note::
@@ -138,7 +138,7 @@ The app merges the message text and the signature into one `structure <https://g
     await this.channel.SendMessage(encryptedModelJson);
 
 Step 4. Receive a Message
-=========
+=================================
 An encrypted message is received on the recipient’s side using an IP messaging client. 
 In order to decrypt and verify the received data, the app on recipient’s side needs to get sender’s Virgil Card from the Keys Service.
 
@@ -157,7 +157,7 @@ In order to decrypt and verify the received data, the app on recipient’s side 
 
 
 Step 5. Verify and Decrypt
-=========
+=================================
 The application is making sure the message came from the declared sender by getting his card on Virgil Public Keys Service. In case of success, the message is decrypted using the recipient's private key.
 
 .. code-block:: csharp
@@ -173,9 +173,9 @@ The application is making sure the message came from the declared sender by gett
     var decryptedMessage =CryptoHelper.Decrypt(encryptedModel.EncryptedMessage, 
         this.currentMember.CardId.ToString(), this.currentMember.PrivateKey);
 
-*********
+*************
 Source Code
-*********
+*************
 
 * `Use Case Example <https://github.com/VirgilSecurity/virgil-sdk-net/tree/master/Examples/Virgil.Examples.IPMessaging>`_
 * `IP-Messaging Simple Server <https://github.com/VirgilSecurity/virgil-sdk-javascript/tree/master/examples/ip-messaging/server>`_

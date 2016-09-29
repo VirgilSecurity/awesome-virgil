@@ -1,6 +1,6 @@
-============
+====================================
 Quickstart Objective-C/Swift
-============
+====================================
 
 - `Introduction`_
 - `Obtaining an Access Token`_
@@ -14,9 +14,9 @@ Quickstart Objective-C/Swift
     - `Step 4. Receive a Message`_
     - `Step 5. Verify and Decrypt`_
 
-*********
+******************
 Introduction
-*********
+******************
 
 This guide will help you get started using the Crypto Library and Virgil Security Services for the most popular platforms and languages.
 This branch focuses on the Objective-C/Swift library implementation and covers its usage.
@@ -25,9 +25,9 @@ Let's go through an encrypted message exchange steps as one of the possible [use
 
 .. image:: ../../../images/IPMessaging.png
 
-*********
+***************************
 Obtaining an Access Token
-*********
+***************************
 
 First you must create a free Virgil Security developer's account by signing up `here <https://developer.virgilsecurity.com/account/signup>`_. Once you have your account you can `sign in <https://developer.virgilsecurity.com/account/signin>`_ and generate an access token for your application.
 
@@ -86,9 +86,9 @@ At this point you should be able to use VirgilSDK pod in your code.  If you enco
 
     The following code snippets use parts of the IP Messaging example apps for Objective-C and Swift. Some components and calls are not the parts of the VirgilSDK. You can find links to the example apps `here <https://github.com/VirgilSecurity/virgil-sdk-x/tree/v3/Docs>`_.   
 
-*********
+******************
 Swift note
-*********
+******************
 
 Although VirgilSDK pod is using Objective-C as its primary language it might be quite easily used in a Swift application.
 After pod is installed as described above it is necessary to perform the following:
@@ -125,12 +125,12 @@ Use Case
 - Received information is decrypted with the recipient’s private key using Virgil Crypto Library.
 - Decrypted data is provided to the recipient.
 
-*********
+***************************
 Step 0. Initialization
-*********
+***************************
 
 Objective-C
----------
+------------------
 
 .. code-block:: objective-c
 
@@ -154,15 +154,15 @@ Swift
     self.client = VSSClient(applicationToken:<# Virgil App token#>)
     //...
 
-*********
+************************************
 Step 1. Create and Publish the Keys
-*********
+************************************
 First a mail exchange application is generating the keys and publishing them to the Public Keys Service where they are available in an open access for other users (e.g. recipient) to verify and encrypt the data for the key owner.
 
 The following code example creates a new public/private key pair.
 
 Objective-C
----------
+------------------
 .. code-block:: objective-c
 
     //...
@@ -183,7 +183,7 @@ Swift
 The app is registering a Virgil Card which includes a public key and an email address identifier. The Card will be used for the public key identification and searching for it in the Public Keys Service. You can create a Virgil Card with or without identity verification. Example of creating the Virgil Card with identity verification:
 
 Objective-C
----------
+------------------
 .. code-block:: objective-c
 
     //...
@@ -242,7 +242,7 @@ Swift
 The following code snippets show how to create a new Virgil Card without identity verification:
 
 Objective-C
----------
+------------------
 .. code-block:: objective-c
 
     //...
@@ -298,15 +298,15 @@ Swift
     }
     //...
 
-*********
+***************************
 Step 2. Encrypt and Sign
-*********
+***************************
 
 The app is searching for all channel members' public keys on the Keys Service to encrypt a message for them. The app is signing the encrypted message with sender’s private key so that the recipient can make sure the message had been sent by the declared sender.
 The example app we are discussing here uses IPMSecurityManager helper class (`IPMSecurityManager.m <https://github.com/VirgilSecurity/virgil-sdk-x/blob/v3/Docs/IPMExample-objc/IPMExample-objc/IPM/IPMSecurityManager.m>`_ or `IPMSecurityManager.swift <https://github.com/VirgilSecurity/virgil-sdk-x/blob/v3/Docs/IPMExample-swift/IPMExample-swift/IPM/IPMSecurityManager.swift>`_) which manages all security related activities. Also you can find calls to `XAsync <https://github.com/p-orbitum/XAsync>`_, which helps to manage asynchronous calls.
 
 Objective-C
----------
+------------------
 .. code-block:: objective-c
 
     //...
@@ -380,9 +380,9 @@ Swift
     // Handle errors, etc.        
     //...
 
-*********
+***************************
 Step 3. Send a Message
-*********
+***************************
 
 The application uses IPMSecureMessage class (`IPMSecureMessage.m <https://github.com/VirgilSecurity/virgil-sdk-x/blob/v3/Docs/IPMExample-objc/IPMExample-objc/IPM/IPMSecureMessage.m>`_ or `IPMSecureMessage.swift <https://github.com/VirgilSecurity/virgil-sdk-x/blob/v3/Docs/IPMExample-swift/IPMExample-swift/IPM/IPMSecureMessage.swift>`_) as a convenient container for encrypted message data and sender's signature data. Objects of this class also have a functionality to serialize them to proper JSON data, which then can be sent to the channel. 
 
@@ -391,7 +391,7 @@ The application uses IPMSecureMessage class (`IPMSecureMessage.m <https://github
 The example app uses our custom IP Messaging Server, so it will be necessary to adjust the following functionality in a real world project. See details of the IPMChannelClient class (`IPMChannelClient.m <https://github.com/VirgilSecurity/virgil-sdk-x/blob/v3/Docs/IPMExample-objc/IPMExample-objc/IPM/IPMChannelClient.m>`_ or `IPMChannelClient.swift <https://github.com/VirgilSecurity/virgil-sdk-x/blob/v3/Docs/IPMExample-swift/IPMExample-swift/IPM/IPMChannelClient.swift>`_).
 
 Objective-C
----------
+------------------
 .. code-block:: objective-c
 
     //...
@@ -433,7 +433,7 @@ Step 4. Receive a Message
 An encrypted message is received on the recipient’s side using the IPMDataSourceListener handler. This handler is registered during the channel creation and get called every time the channel discovers a new message. You can see its declaration in `IPMDataSource.h <https://github.com/VirgilSecurity/virgil-sdk-x/blob/v3/Docs/IPMExample-objc/IPMExample-objc/IPM/IPMDataSource.h>`_ or `IPMDataSource.swift <https://github.com/VirgilSecurity/virgil-sdk-x/blob/v3/Docs/IPMExample-swift/IPMExample-swift/IPM/IPMDataSource.swift>`_
 
 Objective-C
----------
+------------------
 .. code-block:: objective-c
 
     //...
@@ -455,13 +455,13 @@ Swift
     }
     //...
 
-*********
+***************************
 Step 5. Verify and Decrypt 
-*********
+***************************
 We are making sure the data came from the declared sender by verifying his signature using his Virgil Card from Public Keys Service. In case of success we are decrypting the message using the recipient's private key.
 
 Objective-C
----------
+------------------
 .. code-block:: objective-c
 
     //...

@@ -87,9 +87,9 @@ Unix build steps
 
   cmake .. && make -j4 && make install
 
-============
+=============
 Build Windows
-============
+=============
 
 Windows MSVC toolchain
 -----------------------

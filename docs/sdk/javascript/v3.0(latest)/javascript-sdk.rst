@@ -266,6 +266,7 @@ Destroy a Private Key
 This operation deletes the private key from the service without a possibility to be restored. 
   
 .. code-block:: javascript
+
 	virgil.privateKeys.destroy({
 	    virgil_card_id: 'your virgil card id',
 	    private_key: 'your privateKey',
