@@ -58,13 +58,15 @@ To create an instance of ``VirgilClient`` class, just call its constructor with 
 
 Namespace: ``Virgil.SDK.Client``
 
-.. code:: csharp
+.. code-block:: csharp
+    :linenos:
 
     var client = new VirgilClient("[YOUR_ACCESS_TOKEN_HERE]");
 
 you can also customize initialization using your own parameters
 
-.. code:: csharp
+.. code-block:: csharp
+    :linenos:
 
     var parameters = new VirgilClientParams("[YOUR_ACCESS_TOKEN_HERE]");
 
@@ -81,6 +83,7 @@ Initializing Crypto
 
 Namespace: ``Virgil.SDK.Cryptography``
 
-.. code:: csharp
+.. code-block:: csharp
+    :linenos:
 
     var crypto = new VirgilCrypto();

@@ -42,15 +42,15 @@ Generate New Keys
 
 Generate a new Public/Private keypair using ``VirgilCrypto`` class:
 
-.. code:: csharp
-:linenos:
+.. code-block:: csharp
+    :linenos:
 
     var aliceKeys = crypto.GenerateKeys();
 
 Prepare Request
 ~~~~~~~~~~~~~~~
 
-.. code:: csharp
+.. code-block:: csharp
     :linenos:
 
     var exportedPublicKey = crypto.ExportPublicKey(aliceKeys.PublicKey);
@@ -59,7 +59,7 @@ Prepare Request
 then, use ``RequestSigner`` class to sign request with owner's and app's keys:
 
 .. code-block:: csharp
-:linenos:
+    :linenos:
 
     var requestSigner = new RequestSigner(crypto);
 
@@ -69,7 +69,8 @@ then, use ``RequestSigner`` class to sign request with owner's and app's keys:
 Publish a Virgil Card
 ~~~~~~~~~~~~~~~~~~~~~
 
-.. code:: csharp
+.. code-block:: csharp
+    :linenos:
 
     var aliceCard = await client.CreateCardAsync(createCardRequest);
 
@@ -77,7 +78,8 @@ Publish a Virgil Card
 Search for Virgil Cards
 ---------------------------
 
-.. code:: csharp
+.. code-block:: csharp
+    :linenos:
 
     var client = new VirgilClient("[YOUR_ACCESS_TOKEN_HERE]");
 
@@ -96,7 +98,8 @@ Revoking a Virgil Card
 
 Initialize required components:
 
-.. code:: csharp
+.. code-block:: csharp
+    :linenos:
 
     var client = new VirgilClient("[YOUR_ACCESS_TOKEN_HERE]");
     var crypto = new VirgilCrypto();
@@ -105,7 +108,8 @@ Initialize required components:
   
 Collect an *App* credentials:
 
-.. code:: csharp
+.. code-block:: csharp
+    :linenos:
 
     var appID = "[YOUR_APP_ID_HERE]";
     var appKeyPassword = "[YOUR_APP_KEY_PASSWORD_HERE]";
@@ -115,7 +119,8 @@ Collect an *App* credentials:
 
 Prepare revocation request:
 
-.. code:: csharp
+.. code-block:: csharp
+    :linenos:
 
     var cardId = "[YOUR_CARD_ID_HERE]";
  
@@ -133,7 +138,8 @@ Generate Keys
 
 The following code sample illustrates keypair generation (default algorithm is ``ed25519``):
 
-.. code:: csharp
+.. code-block:: csharp
+    :linenos:
 
      var aliceKeys = crypto.GenerateKeys();
 
@@ -142,14 +148,16 @@ Import and Export Keys
 
 To export Public/Private keys, simply call one of the Export methods:
 
-.. code:: csharp
+.. code-block:: csharp
+    :linenos:
 
      var exportedPrivateKey = crypto.ExportPrivateKey(aliceKeys.PrivateKey);
      var exportedPublicKey = crypto.ExportPublicKey(aliceKeys.PublicKey);
 
 To import Public/Private keys, simply call one of the Import methods:
 
-.. code:: csharp
+.. code-block:: csharp
+    :linenos:
 
       var privateKey = crypto.ImportPrivateKey(exportedPrivateKey);  
       var publicKey = crypto.ImportPublicKey(exportedPublicKey);
@@ -161,7 +169,8 @@ Encryption and Decryption
 Encrypt Data
 ~~~~~~~~~~~~
 
-.. code:: csharp
+.. code-block:: csharp
+    :linenos:
 
      var plaintext = new byte[100]
      var ciphertext = crypto.Encrypt(plaintext, alice.PublicKey, bob.PublicKey)
@@ -176,7 +185,8 @@ Encrypt Data
 Decrypt Data
 ~~~~~~~~~~~~
 
-.. code:: csharp
+.. code-block:: csharp
+    :linenos:
 
      var ciphertext = new byte[100]{...}
      var plaintext = crypto.Decrypt(ciphertext, alice.PrivateKey)
@@ -193,7 +203,8 @@ Generating and Verifying Signatures
 
 Generate a new Public/Private keypair and ``data`` to be signed.
 
-.. code:: csharp
+.. code-block:: csharp
+    :linenos:
 
     var alice = crypto.GenerateKeys();
 
@@ -207,13 +218,15 @@ To generate the signature, simply call one of the sign methods:
 
 *Byte Array*
 
-.. code:: csharp
+.. code-block:: csharp
+    :linenos:
 
     var signature = crypto.Sign(data, alice.PrivateKey);
 
 *Stream*
 
-.. code:: csharp
+.. code-block:: csharp
+    :linenos:
 
     var fileStream = File.Open("[YOUR_FILE_PATH_HERE]", FileMode.Open, FileAccess.Read, FileShare.None);
     using (fileStream)
@@ -228,13 +241,15 @@ The signature can now be verified by calling the verify method:
 
 *Byte Array*
 
-.. code:: csharp
+.. code-block:: csharp
+    :linenos:
 
      var isValid = crypto.Verify(data, signature, alice.PublicKey);
      
 *Stream*
      
-.. code:: csharp     
+.. code-block:: csharp
+    :linenos:    
 
     var fileStream = File.Open("[YOUR_FILE_PATH_HERE]", FileMode.Open, FileAccess.Read, FileShare.None);
     using (fileStream)
@@ -246,7 +261,8 @@ The signature can now be verified by calling the verify method:
 Fingerprint Generation
 ----------------------
 
-.. code:: csharp
+.. code-block:: csharp
+    :linenos:
 
     var fingerprint = crypto.CalculateFingerprint(content);
 

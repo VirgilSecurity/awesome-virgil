@@ -35,7 +35,7 @@ You can delete a **Virgil Card** in case the keys were compromised or lost, or f
 Working with Crypto Library
 ===========================
 
-Generate Keys ()
+Generate Keys
 ----------------
 [`Code sample <dot-net-csharp-programming-guide.html#generate-keys>`__]
 
