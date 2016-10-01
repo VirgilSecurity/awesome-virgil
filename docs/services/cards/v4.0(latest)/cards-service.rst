@@ -30,7 +30,7 @@ is an identifier of a **Virgil Card**. Virgil Card's JSON representation is used
 
 ::
 
-    vigrilCardFingerprint = virgilCardId = HEX( SHA256( virgilCardJsonData ) )
+    vigrilCardFingerprint = SHA256( virgilCardJsonData )
 
 
 Endpoints
@@ -44,11 +44,12 @@ This endpoint creates a **Virgil Card**. You can create a **Virgil Card** by pas
 ``content_snapshot`` 
 ---------------------
 
-is a base64-encoded string with JSON representation of a **Virgil Card**.
+is a base64-encoded string with JSON representation of data required for an operation.
 
 ::
 
     content_snapshot = BASE64_ENCODE( virgilCardJsonData )
+    content_snapshot = BASE64_ENCODE( cardID, revocation_reason)
 
 .. note:: Example
 

@@ -2,18 +2,18 @@
 =============================
 
 -  `Creating a Virgil Card <#creating-a-virgil-card>`__
-    -  `Collect an App Credentials <#collect-an-app-creadentials>`__
-    -  `Generate a new Keys <#generate-a-new-keys>`__
+    -  `Collect App Credentials <#collect-app-creadentials>`__
+    -  `Generate New Keys <#generate-new-keys>`__
     -  `Prepare Request <#prepare-request>`__
     -  `Publish a Virgil Card <#publish-a-virgil-card>`__
--  `Search for the Virgil Cards <#search-for-the-virgil-cards>`__
+-  `Search for Virgil Cards <#search-for-virgil-cards>`__
 -  `Revoking a Virgil Card <#revoking-a-virgil-card>`__
 -  `Operations with Crypto Keys <#operations-with-crypto-keys>`__
-    -  `Keys Generation <#keys_generation>`__
+    -  `Generate Keys <#generate-keys>`__
     -  `Import and Export Keys <#import-and-export-keys>`__
 -  `Encryption and Decryption <#encryption-and-decryption>`__
-    -  `Encryption <#encryption>`__
-    -  `Decryption <#decryption>`__
+    -  `Encrypt Data <#encrypt-data>`__
+    -  `Decrypt Data <#decrypt-data>`__
 -  `Generating and Verifying Signatures <#generating-and-verifying-signatures>`__
     -  `Generating a Signature <#generating-a-signature>`__
     -  `Verifying a Signature <#verifying-a-signature>`__
@@ -26,7 +26,7 @@ Creating a Virgil Card
 Collect App Credentials
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Collect an ``appID`` and ``appKey`` for your app. These parameters are required to create a **Virgil Card** in your app scope.
+Collect an ``appID`` and ``appKey`` for your app:
 
 .. code:: csharp
 
@@ -36,10 +36,10 @@ Collect an ``appID`` and ``appKey`` for your app. These parameters are required 
 
     var appKey = crypto.ImportPrivateKey(appKeyData, appKeyPassword);
 
-Generate new Keys
+Generate New Keys
 ~~~~~~~~~~~~~~~~~~~
 
-Generate a new Public/Private keypair using ``VirgilCrypto`` class.
+Generate a new Public/Private keypair using ``VirgilCrypto`` class:
 
 .. code:: csharp
 
@@ -51,32 +51,25 @@ Prepare Request
 .. code:: csharp
 
     var exportedPublicKey = crypto.ExportPublicKey(aliceKeys.PublicKey);
-    var creationRequest = CreateCardRequest.Create("alice", "username", exportedPublicKey);
+    var createCardRequest = new CreateCardRequest("alice", "username", exportedPublicKey);
 
-then, you need to calculate the fingerprint of request that will be used in the future as Virgil Card ID.
-
-.. code:: csharp
-
-    var fingerprint = crypto.CalculateFingerprint(creationRequest.Snapshot);
-
-then, sign the fingerprint request with both owner's and app's keys.
+then, use ``RequestSigner`` class to sign request with owner's and app's keys:
 
 .. code:: csharp
 
-    var ownerSignature = crypto.Sign(fingerprint, aliceKeys.PrivateKey);
-    var appSignature = crypto.Sign(fingerprint, appKey);
+    var requestSigner = new RequestSigner(crypto);
 
-    request.AppendSignature(fingerprint, ownerSignature);
-    request.AppendSignature(appID, appSignature);
+    requestSigner.SelfSign(createCardRequest, aliceKeys.PrivateKey);
+    requestSigner.AuthoritySign(createCardRequest, appID, appKey);
 
 Publish a Virgil Card
 ~~~~~~~~~~~~~~~~~~~~~
 
 .. code:: csharp
 
-    var aliceCard = await client.RegisterCardAsync(request);
+    var aliceCard = await client.CreateCardAsync(createCardRequest);
 
-Search for the Virgil Cards
+Search for Virgil Cards
 ---------------------------
 
 .. code:: csharp
@@ -92,22 +85,54 @@ Search for the Virgil Cards
 
     var cards = await client.SearchCardsAsync(criteria);
 
+Revoking a Virgil Card
+---------------------------
+
+Initialize required components:
+
+.. code:: csharp
+
+    var client = new VirgilClient("[YOUR_ACCESS_TOKEN_HERE]");
+    var crypto = new VirgilCrypto();
+    
+    var requestSigner = new RequestSigner(crypto);
+  
+Collect an *App* credentials:
+
+.. code:: csharp
+
+    var appID = "[YOUR_APP_ID_HERE]";
+    var appKeyPassword = "[YOUR_APP_KEY_PASSWORD_HERE]";
+    var appKeyData = File.ReadAllBytes("[YOUR_APP_KEY_PATH_HERE]");
+     
+    var appKey = crypto.ImportPrivateKey(appKeyData, appKeyPassword);
+
+Prepare revocation request:
+
+.. code:: csharp
+
+    var cardId = "[YOUR_CARD_ID_HERE]";
+ 
+    var revokeRequest = new RevokeCardRequest(cardId, RevocationReason.Unspecified);
+    requestSigner.AuthoritySign(revokeRequest, appID, appKey);
+     
+    await client.RevokeCardAsync(revokeRequest);
+
+
 Operations with Crypto Keys
 ---------------------------
 
 Generate Keys
 ~~~~~~~~~~~~~
 
-The following code sample illustrates keypair generation. The default algorithm is ``ed25519``
+The following code sample illustrates keypair generation (default algorithm is ``ed25519``):
 
 .. code:: csharp
 
      var aliceKeys = crypto.GenerateKeys();
 
-Import/Export Keys
-~~~~~~~~~~~~~~~~~~
-
-You can export and import your Public/Private keys to/from supported wire representation.
+Import and Export Keys
+~~~~~~~~~~~~~~~~~~~~~~
 
 To export Public/Private keys, simply call one of the Export methods:
 
@@ -123,10 +148,11 @@ To import Public/Private keys, simply call one of the Import methods:
       var privateKey = crypto.ImportPrivateKey(exportedPrivateKey);  
       var publicKey = crypto.ImportPublicKey(exportedPublicKey);
 
+Encryption and Decryption
+---------------------------
+
 Encrypt Data
 ~~~~~~~~~~~~
-
-Data encryption using ECIES scheme with ``AES-GCM``. You can encrypt either stream or a byte array. There also can be more than one recipient
 
 .. code:: csharp
 
@@ -143,8 +169,6 @@ Data encryption using ECIES scheme with ``AES-GCM``. You can encrypt either stre
 Decrypt Data
 ~~~~~~~~~~~~
 
-You can decrypt either stream or a byte array using your private key
-
 .. code:: csharp
 
      var ciphertext = new byte[100]{...}
@@ -160,8 +184,6 @@ You can decrypt either stream or a byte array using your private key
 Generating and Verifying Signatures
 -----------------------------------
 
-This section walks you through the steps necessary to use the **VirgilCrypto** to generate a digital signature for data and to verify that a signature is authentic.
-
 Generate a new Public/Private keypair and ``data`` to be signed.
 
 .. code:: csharp
@@ -174,7 +196,7 @@ Generate a new Public/Private keypair and ``data`` to be signed.
 Generating a Signature
 ~~~~~~~~~~~~~~~~~~~~~~
 
-Sign the ``SHA-384`` fingerprint of either stream or a byte array using your private key. To generate the signature, simply call one of the sign methods:
+To generate the signature, simply call one of the sign methods:
 
 *Byte Array*
 
@@ -195,7 +217,7 @@ Sign the ``SHA-384`` fingerprint of either stream or a byte array using your pri
 Verifying a Signature
 ~~~~~~~~~~~~~~~~~~~~~
 
-Verify the signature of the ``SHA-384`` fingerprint of either stream or a byte array using the Public key. The signature can now be verified by calling the verify method:
+The signature can now be verified by calling the verify method:
 
 *Byte Array*
 
@@ -215,8 +237,6 @@ Verify the signature of the ``SHA-384`` fingerprint of either stream or a byte a
 
 Fingerprint Generation
 ----------------------
-
-The default Fingerprint algorithm is ``SHA-256``. The hash is then converted to HEX
 
 .. code:: csharp
 

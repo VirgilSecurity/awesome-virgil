@@ -2,10 +2,11 @@
 Virgil SDKs
 ###########
 
-Features
+These guides are practical introduction to creating apps for different platforms using Virgil Security features. 
+The aim of these guides is to get you up and running quickly. You should be able to copy and paste the code provided into your own apps and use it with the minimal changes.
 
-Version 4
-----------
+Version 4(latest)
+-----------------
 .. toctree::
    :maxdepth: 1
 
