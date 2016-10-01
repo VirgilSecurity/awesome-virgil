@@ -168,10 +168,10 @@ Additional information about the error is returned as JSON-object like:
 
 **HTTP 400. Request error** status is returned on request data validation errors.
 
-.. code::
+::
 
   40000 - JSON specified as a request body is invalid
-  40100 - Identity _type is invalid
+  40100 - Identity type is invalid
   40110 - Identity_'s ttl is invalid
   40120 - Identity_'s ctl is invalid
   40130 - Identity_'s token parameter is missing
