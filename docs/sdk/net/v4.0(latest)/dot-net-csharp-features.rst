@@ -5,41 +5,37 @@
 Working with Virgil Cards
 =========================
 
-Create a Virgil Card
-----------------------
+Create a Virgil Card [`Code sample <dot-net-csharp-programming-guide.html#creating-a-virgil-card>`__]
+-----------------------------------------------------------------------------------------------------
 
 Every user is represented with a **Virgil Card** so creating them for users is a required step. A **Virgil Card** is the central entity of the Virgil services, it includes information about the user for further actions in Virgil Security system. The **Virgil Card** identifies the user/device by one of his types. You can find more information about :term:`Virgil Cards <Virgil Card>`.
 
 ``appID`` and ``appKey`` parameters are required to create a **Virgil Card** in your app scope.
 
--> `Code sample <dot-net-csharp-programming-guide.html#creating-a-virgil-card>`__
 
-Search for Virgil Cards
----------------------------
+Search for Virgil Cards `Code sample <dot-net-csharp-programming-guide.html#search-for-virgil-cards>`__
+--------------------------------------------------------------------------------------------------------
 
 You can search for **Virgil Cards** by identity value(s) and optional additional parameters can be set:
 
 	- identity type ('email' or any type created by user). You can find more information about :term:`confirmed <Confirmed Identity>` and :term:`uncofirmed <Unconfirmed Identity>` **Virgil Cards**.
 	- scope (by default it is 'application', can be 'global'). You can find more information about :term:`global <Global Virgil Card>` and :term:`application <>` **Virgil Cards**.
 
--> `Code sample <dot-net-csharp-programming-guide.html#search-for-virgil-cards>`__
 
-Revoke a Virgil Card
----------------------------
+Revoke a Virgil Card *`Code sample <dot-net-csharp-programming-guide.html#revoking-a-virgil-card>`__*
+------------------------------------------------------------------------------------------------------------
 
 You can delete a **Virgil Card** in case the keys were compromised or lost, or for any other reason.
 
--> `Code sample <dot-net-csharp-programming-guide.html#revoking-a-virgil-card>`__
 
 Working with Crypto Library
 ===========================
 
-Generate Keys
--------------
+Generate Keys (`Code sample <dot-net-csharp-programming-guide.html#generate-keys>`__)
+-------------------------------------------------------------------------------------------
 
 You can generate a keypair using ``VirgilCrypto`` class. The default algorithm is ``ed25519``. 
 
--> `Code sample <dot-net-csharp-programming-guide.html#generate-keys>`__
 
 Import and Export Keys
 ----------------------
