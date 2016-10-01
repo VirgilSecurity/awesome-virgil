@@ -26,6 +26,9 @@ workflow for an email confirmation contains the following steps:
 4. Identity service returns the ``token`` that can be used to prove that the user is the identity holder.
 5. To verify that the user is identity holder, 3rd-party service invokes the ``/validate`` endpoint with the ``token`` from the previous step.
 
+Endpoints
+=========
+
 POST /verify
 ==============
 
@@ -168,22 +171,22 @@ Additional information about the error is returned as JSON-object like:
 .. code::
 
   40000 - JSON specified as a request body is invalid
-  40100 - Identity type is invalid
-  40110 - Identity/'s ttl is invalid
-  40120 - Identity/'s ctl is invalid
-  40130 - Identity/'s token parameter is missing
-  40140 - Identity/'s token doesn/'t match parameters
-  40150 - Identity/'s token has expired
-  40160 - Identity/'s token cannot be decrypted
-  40170 - Identity/'s token parameter is invalid
+  40100 - Identity _type is invalid
+  40110 - Identity_'s ttl is invalid
+  40120 - Identity_'s ctl is invalid
+  40130 - Identity_'s token parameter is missing
+  40140 - Identity_'s token doesn/'t match parameters
+  40150 - Identity_'s token has expired
+  40160 - Identity_'s token cannot be decrypted
+  40170 - Identity_'s token parameter is invalid
   40180 - Identity is not unconfirmed
   40190 - Hash to be signed parameter is invalid
   40200 - Email identity value validation failed
-  40210 - Identity/'s confirmation code is invalid
+  40210 - Identity_'s confirmation code is invalid
   40300 - Application value is invalid
-  40310 - Application/'s signed message is invalid
+  40310 - Application_'s signed message is invalid
   41000 - Identity entity was not found
-  41010 - Identity/'s confirmation period has expired
+  41010 - Identity_'s confirmation period has expired
 
 Appendix B. Response sign
 ==========================

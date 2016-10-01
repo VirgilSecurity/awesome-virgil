@@ -395,7 +395,7 @@ This status is returned on request data errors
     30104 - Virgil Card info parameter cannot be empty if specified and must contain 'device' and/or 'device_name' key
     30105 - Virgil Card info parameters length validation failed. The length cannot exceed 256 characters
     30106 - Virgil Card data parameter must be an associative array https://en.wikipedia.org/wiki/Associative_array
-    30107 - A CSR parameter (``content_snapshot``) is missing or is incorrect
+    30107 - A CSR parameter (content_snapshot) is missing or is incorrect
     30111 - Virgil Card identities passed to search endpoint must be a list of non-empty strings
     30113 - Virgil Card identity type is invalid
     30114 - Segregated Virgil Card custom identity value must be a not empty string
