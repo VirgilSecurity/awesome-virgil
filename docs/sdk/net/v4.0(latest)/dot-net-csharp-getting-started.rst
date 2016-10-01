@@ -39,7 +39,9 @@ When you register an application on Virgil developer's `dashboard <https://devel
 
 -  ``appID`` uniquely identifies your application in our services, it is also used to identify the Public key generated in a pair with ``appKey``. Example:
    ``af6799a2f26376731abb9abf32b5f2ac0933013f42628498adb6b12702df1a87``
+
 -  ``appKey`` is a Private key that is used to perform creation and revocation of **Virgil Cards** (Public key) in Virgil services. Also the ``appKey`` can be used for cryptographic operations to take part in application logic. The ``appKey`` is generated at the time of application creation and must be saved in secure place.
+
 -  ``accessToken`` is a unique string value that provides an authenticated secure access to the Virgil services and is passed with each API call. The *accessToken* also allows the API to associate your app’s requests with your Virgil developer’s account.
 
 Connecting to Virgil

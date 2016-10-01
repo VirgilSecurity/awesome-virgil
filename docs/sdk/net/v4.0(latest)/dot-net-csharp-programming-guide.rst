@@ -69,6 +69,7 @@ Publish a Virgil Card
 
     var aliceCard = await client.CreateCardAsync(createCardRequest);
 
+
 Search for Virgil Cards
 ---------------------------
 
@@ -84,6 +85,7 @@ Search for Virgil Cards
     };
 
     var cards = await client.SearchCardsAsync(criteria);
+
 
 Revoking a Virgil Card
 ---------------------------
@@ -147,6 +149,7 @@ To import Public/Private keys, simply call one of the Import methods:
 
       var privateKey = crypto.ImportPrivateKey(exportedPrivateKey);  
       var publicKey = crypto.ImportPublicKey(exportedPublicKey);
+
 
 Encryption and Decryption
 ---------------------------
@@ -234,6 +237,7 @@ The signature can now be verified by calling the verify method:
     {
         var isValid = crypto.Verify(fileStream, signature, alice.PublicKey);
     }
+
 
 Fingerprint Generation
 ----------------------

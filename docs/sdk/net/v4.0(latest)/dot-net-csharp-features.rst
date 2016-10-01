@@ -10,7 +10,9 @@ Create a Virgil Card
 
 Every user is represented with a **Virgil Card** so creating them for users is a required step. A **Virgil Card** is the central entity of the Virgil services, it includes information about the user for further actions in Virgil Security system. The **Virgil Card** identifies the user/device by one of his types. You can find more information about :term:`Virgil Cards <Virgil Card>`.
 
-``appID`` and ``appKey`` parameters are required to create a **Virgil Card** in your app scope. [`Source <dot-net-csharp-programming-guide.html#creating-a-virgil-card>`__]
+``appID`` and ``appKey`` parameters are required to create a **Virgil Card** in your app scope.
+
+-> `Code sample <dot-net-csharp-programming-guide.html#creating-a-virgil-card>`__
 
 Search for Virgil Cards
 ---------------------------
@@ -20,10 +22,14 @@ You can search for **Virgil Cards** by identity value(s) and optional additional
 	- identity type ('email' or any type created by user). You can find more information about :term:`confirmed <Confirmed Identity>` and :term:`uncofirmed <Unconfirmed Identity>` **Virgil Cards**.
 	- scope (by default it is 'application', can be 'global'). You can find more information about :term:`global <Global Virgil Card>` and :term:`application <>` **Virgil Cards**.
 
+-> `Code sample <dot-net-csharp-programming-guide.html#search-for-virgil-cards>`__
+
 Revoke a Virgil Card
 ---------------------------
 
 You can delete a **Virgil Card** in case the keys were compromised or lost, or for any other reason.
+
+-> `Code sample <dot-net-csharp-programming-guide.html#revoking-a-virgil-card>`__
 
 Working with Crypto Library
 ===========================
@@ -33,10 +39,14 @@ Generate Keys
 
 You can generate a keypair using ``VirgilCrypto`` class. The default algorithm is ``ed25519``. 
 
+-> `Code sample <dot-net-csharp-programming-guide.html#generate-keys>`__
+
 Import and Export Keys
 ----------------------
 
 If you need to import or export your Public/Private keys you can easily do it. **Какие условия или предостережения? Supported wire representation.**
+
+-> `Code sample <dot-net-csharp-programming-guide.html#import-and-export-keys>`__
 
 Encrypt Data
 ------------
@@ -48,6 +58,8 @@ You can enrypt some data, ECIES scheme with ``AES-GCM`` is used in **Virgil Secu
 	- one recipient;
 	- multiple recipients (public keys of every user are used for encryption).
 
+-> `Code sample <dot-net-csharp-programming-guide.html#encrypt-data>`__
+
 Decrypt Data
 ------------
 
@@ -55,6 +67,8 @@ You can decrypt data using your private key. You have such options for decryptio
 
 	- stream;
 	- byte array.
+
+-> `Code sample <dot-net-csharp-programming-guide.html#decrypt-data>`__
 
 Generate a Signature
 --------------------
@@ -64,6 +78,8 @@ You can generate a digital signature for data and sign the ``SHA-384`` fingerpri
 	- stream;
 	- byte array.
 
+-> `Code sample <dot-net-csharp-programming-guide.html#generating-and-verifying-signatures>`__
+
 Verify a Signature
 ------------------
 
@@ -72,7 +88,11 @@ You can verify that a signature is authentic. You will verify the signature of t
 	- stream;
 	- byte array.
 
+-> `Code sample <dot-net-csharp-programming-guide.html#verifying-a-signature>`__
+
 Fingerprint generation
 -------------------------
 
 The default Fingerprint algorithm is ``SHA-256``. The hash is then converted to HEX.
+
+-> `Code sample <dot-net-csharp-programming-guide.html#fingerprint-generation>`__
