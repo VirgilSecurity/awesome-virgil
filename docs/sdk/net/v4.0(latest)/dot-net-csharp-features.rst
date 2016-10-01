@@ -39,10 +39,9 @@ You can generate a keypair using ``VirgilCrypto`` class. The default algorithm i
 
 Import and Export Keys
 ----------------------
+`Code sample <dot-net-csharp-programming-guide.html#import-and-export-keys>`__
 
-If you need to import or export your Public/Private keys you can easily do it. **Какие условия или предостережения? Supported wire representation.**
-
--> `Code sample <dot-net-csharp-programming-guide.html#import-and-export-keys>`__
+If you need to import or export your Public/Private keys you can easily do it.
 
 Encrypt Data
 ------------
@@ -54,7 +53,7 @@ You can enrypt some data, ECIES scheme with ``AES-GCM`` is used in **Virgil Secu
 	- one recipient;
 	- multiple recipients (public keys of every user are used for encryption).
 
--> `Code sample <dot-net-csharp-programming-guide.html#encrypt-data>`__
+[`Code sample <dot-net-csharp-programming-guide.html#encrypt-data>`__]
 
 Decrypt Data
 ------------
@@ -64,27 +63,26 @@ You can decrypt data using your private key. You have such options for decryptio
 	- stream;
 	- byte array.
 
--> `Code sample <dot-net-csharp-programming-guide.html#decrypt-data>`__
+**`Code sample <dot-net-csharp-programming-guide.html#decrypt-data>`__**
 
 Generate a Signature
 --------------------
+**`Code sample <dot-net-csharp-programming-guide.html#generating-and-verifying-signatures>`__**
 
 You can generate a digital signature for data and sign the ``SHA-384`` fingerprint using your private key. Options for signing data:
 
 	- stream;
 	- byte array.
 
--> `Code sample <dot-net-csharp-programming-guide.html#generating-and-verifying-signatures>`__
-
 Verify a Signature
 ------------------
+[`Code sample <dot-net-csharp-programming-guide.html#verifying-a-signature>`__]
 
 You can verify that a signature is authentic. You will verify the signature of the ``SHA-384`` fingerprint using the public key. Options for verification:
 
 	- stream;
 	- byte array.
 
--> `Code sample <dot-net-csharp-programming-guide.html#verifying-a-signature>`__
 
 Fingerprint generation
 -------------------------
