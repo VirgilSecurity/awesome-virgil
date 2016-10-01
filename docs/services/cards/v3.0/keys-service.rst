@@ -23,15 +23,13 @@ Virgil Keys Service v3.2
 Public Key
 =============
 
-A :term:`Public Key <Public Key>` is an entity that is implicitly created by using *POST /virgil-card/actions/create* or *POST /virgil-card/actions/create-global* (deprecated *POST /virgil-card*) endpoint. A ``Public Key``
-entity contains a list of associated :term:`Virgil Cards <Virgil Card>` entities that are available via signed version of the
-*GET /public-key/{public-key-id}* endpoint.
+A :term:`Public Key <Public Key>` is an entity that is implicitly created by using ``POST /virgil-card/actions/create`` or ``POST /virgil-card/actions/create-global`` (deprecated ``POST /virgil-card``) endpoint. A **Public Key** entity contains a list of associated **Virgil Cards** entities that are available via signed version of the ``GET /public-key/{public-key-id}`` endpoint.
 
 GET /public-key/{public-key-id}
 ---------------------------------
 
-Returns the information about the Public Key by the ID. For :term:`unsigned requests <Unsigned request>` the response will contain only basic
-information without a list of associated Virgil Cards. In case the :term:`request is signed <Signed request>` the associated Virgil Cards
+Returns the information about the **Public Key** by the ID. For unsigned requests the response will contain only basic
+information without a list of associated Virgil Cards. In case the request is signed the associated **Virgil Cards**
 collection will be returned.
 
 **Request info**
@@ -108,8 +106,8 @@ collection will be returned.
 DELETE /public-key/{public-key-id}
 -----------------------------------
 
-Revoke Public Keys endpoint. To revoke the Virgil Cards it's mandatory to pass :term:`validation tokens <Validation token>`obtained on
-``Virgil Identity`` service for all :term:`confirmed <Confirmed Identity>`Virgil Cards for these Public Keys.
+Revoke Public Keys endpoint. To revoke the **Virgil Cards** it's mandatory to pass :term:`validation tokens <Validation token>`obtained on
+**Virgil Identity** service for all :term:`confirmed <Confirmed Identity>`Virgil Cards for these Public Keys.
 
 **Request info**
 
@@ -143,7 +141,7 @@ Revoke Public Keys endpoint. To revoke the Virgil Cards it's mandatory to pass :
 Virgil Card
 =============
 
-:term:`Virgil Card <Virgil Card>` is the core entity of Virgil services and contains the information about the ``Public Key`` and ``Identity``
+Virgil Card is the core entity of Virgil services and contains the information about the **Public Key** and **Identity**
 and the list of key/value pairs that can be used based on application needs.
 
 POST /virgil-card
@@ -153,19 +151,23 @@ POST /virgil-card
 
 The endpoint creates a Virgil Card entity.
 
-Please be aware that **X-VIRGIL-REQUEST-SIGN-VIRGIL-CARD-ID** header is skipped for this endpoint and
+Please be aware that ``X-VIRGIL-REQUEST-SIGN-VIRGIL-CARD-ID`` header is skipped for this endpoint and
 `X-VIRGIL-REQUEST-SIGN`_ header is calculated based on the Public Keys passed in request body.
 
 .. note::
 
-  - it's mandatory to specify either *public_key_id* or *public_key* parameter;
-  - in order to attach the ``Virgil Card`` to the existing ``Public Key`` you should pass *public_key_id* request parameter that holds the ``Public Key``'s ID;
-  - in order to create new ``Public Key`` instance you should pass *public_key* request parameter that contains the base64-encoded string with the public key;
-  - the *identity* request parameter stands for the ``Virgil Card`` identity that can be either :term:`global <Global Virgil Card>` or :term:`local <Local Virgil Card>`;
-  - to create a global ``Identity`` it's necessary to pass *validation_token* parameter obtained from the *Virgil Identity* service. This ``Virgil Card`` will become global will be available for all the applications through either *POST /virgil-card/actions/app* or *POST /virgil-card/actions/email* endpoint;
-  - to create a :term:`confirmed private <Confirmed private Identity>` ``Identity`` it's necessary to pass *validation_token* parameter that is calculated using formula VALIDATION_TOKEN = BASE64_ENCODE ( UNIQUE_ID + '.' + BASE64_ENCODE( SIGN( CONCATENATE( UNIQUE_ID + IDENTITY_TYPE + IDENTITY_VALUE), APPLICATION_PRIVATE_KEY ) ) );
-  - to create an :term:`unconfirmed private <Unconfirmed private Identity>` ``Identity`` you should skip *validation_token* parameter;
-  - if created ``Virgil Card`` is unconfirmed it will not appear in the search results by default;
+  - it's mandatory to specify either ``public_key_id`` or ``public_key`` parameter;
+  - in order to attach the **Virgil Card** to the existing **Public Key** you should pass ``public_key_id`` request parameter that holds the **Public Key**'s ID;
+  - in order to create new **Public Key** instance you should pass ``public_key`` request parameter that contains the base64-encoded string with the public key;
+  - the ``identity`` request parameter stands for the **Virgil Card** identity that can be either :term:`global <Global Virgil Card>` or :term:`local <Local Virgil Card>`;
+  - to create a global **Identity** it's necessary to pass ``validation_token`` parameter obtained from the **Virgil Identity** service. This **Virgil Card** will become global will be available for all the applications through either ``POST /virgil-card/actions/app`` or ``POST /virgil-card/actions/email`` endpoint;
+  - to create a :term:`confirmed private <Confirmed private Identity>` **Identity** it's necessary to pass ``validation_token`` parameter that is calculated using formula
+  ::
+
+    VALIDATION_TOKEN = BASE64_ENCODE ( UNIQUE_ID + '.' + BASE64_ENCODE( SIGN( CONCATENATE( UNIQUE_ID + IDENTITY_TYPE + IDENTITY_VALUE), APPLICATION_PRIVATE_KEY ) ) );
+
+  - to create an :term:`unconfirmed private <Unconfirmed private Identity>` **Identity** you should skip ``validation_token`` parameter;
+  - if created **Virgil Card** is unconfirmed it will not appear in the search results by default.
 
 **Request info**
 
@@ -222,20 +224,24 @@ Please be aware that **X-VIRGIL-REQUEST-SIGN-VIRGIL-CARD-ID** header is skipped 
 POST /virgil-card/actions/create
 ---------------------------------
 
-The endpoint creates a :term:`local <Local Virgil Card>` application's Virgil Card entity.
+The endpoint creates a :term:`local <Local Virgil Card>` application's **Virgil Card** entity.
 
-Please be aware that **X-VIRGIL-REQUEST-SIGN-VIRGIL-CARD-ID** header is skipped for this endpoint and
+Please be aware that ``X-VIRGIL-REQUEST-SIGN-VIRGIL-CARD-ID`` header is skipped for this endpoint and
 `X-VIRGIL-REQUEST-SIGN`_ header is calculated based on the Public Key passed in request body.
 
 .. note::
 
-  - it's mandatory to specify either *public_key_id* or *public_key* parameter;
-  - in order to attach the ``Virgil Card`` to the existing ``Public Key`` you should pass *public_key_id* request parameter that holds the ``Public Key``'s ID;
-  - in order to create new ``Public Key`` instance you should pass *public_key* request parameter that contains the base64-encoded string with the public key;
-  - the *identity* request parameter stands for the ``Virgil Card`` identity that must be either *local*;
-  - to create a confirmed local ``Identity`` it's necessary to pass *validation_token* parameter that is calculated uing formula VALIDATION_TOKEN = BASE64_ENCODE ( UNIQUE_ID + '.' + BASE64_ENCODE( SIGN( CONCATENATE( UNIQUE_ID + IDENTITY_TYPE + IDENTITY_VALUE), APPLICATION_PRIVATE_KEY ) ) );
-  - to create an unconfirmed private ``Identity`` you can skip *validation_token* parameter;
-  - if created ``Virgil Card`` is unconfirmed it will not appear in the search results by default;
+  - it's mandatory to specify either ``public_key_id`` or ``public_key`` parameter;
+  - in order to attach the **Virgil Card** to the existing **Public Key** you should pass ``public_key_id`` request parameter that holds the **Public Key**'s ID;
+  - in order to create new **Public Key** instance you should pass ``public_key`` request parameter that contains the base64-encoded string with the public key;
+  - the ``identity`` request parameter stands for the **Virgil Card** identity that must be :term:`local <Local Virgil Card>`;
+  - to create a confirmed local ``Identity`` it's necessary to pass *validation_token* parameter that is calculated using formula 
+  ::
+
+    VALIDATION_TOKEN = BASE64_ENCODE ( UNIQUE_ID + '.' + BASE64_ENCODE( SIGN( CONCATENATE( UNIQUE_ID + IDENTITY_TYPE + IDENTITY_VALUE), APPLICATION_PRIVATE_KEY ) ) );
+
+  - to create an unconfirmed private **Identity** you can skip ``validation_token`` parameter;
+  - if created **Virgil Card** is unconfirmed it will not appear in the search results by default.
 
 **Request info**
 
@@ -294,16 +300,16 @@ POST /virgil-card/actions/create-global
 
 The endpoint creates a :term:`global Virgil Card <Global Virgil Card>` entity.
 
-Please be aware that **X-VIRGIL-REQUEST-SIGN-VIRGIL-CARD-ID** header is skipped for this endpoint and
+Please be aware that ``X-VIRGIL-REQUEST-SIGN-VIRGIL-CARD-ID`` header is skipped for this endpoint and
 `X-VIRGIL-REQUEST-SIGN`_ header is calculated based on the Public Key passed in request body.
 
 .. note::
 
-  - it's mandatory to specify either *public_key_id* or *public_key* parameter;
-  - in order to attach the ``Virgil Card`` to the existing ``Public Key`` you should pass *public_key_id* request parameter that holds the ``Public Key``'s ID;
-  - in order to create new ``Public Key`` instance you should pass *public_key* request parameter that contains the base64-encoded string with the public key;
-  - the *identity* request parameter stands for the ``Virgil Card`` identity that is *global* and must be confirmed;
-  - it's necessary to pass *validation_token* parameter obtained from the *Virgil Identity* service. This ``Virgil Card`` will become global will be available for all the applications through either *POST /virgil-card/actions/app* or *POST /virgil-card/actions/email* endpoint.
+  - it's mandatory to specify either ``public_key_id`` or ``public_key`` parameter;
+  - in order to attach the **Virgil Card** to the existing **Public Key** you should pass ``public_key_id`` request parameter that holds the **Public Key**'s ID;
+  - in order to create new **Public Key** instance you should pass ``public_key`` request parameter that contains the base64-encoded string with the public key;
+  - the ``identity`` request parameter stands for the **Virgil Card** identity that is *global* and must be confirmed;
+  - it's necessary to pass ``validation_token`` parameter obtained from the **Virgil Identity** service. This **Virgil Card** will become global will be available for all the applications through either ``POST /virgil-card/actions/app`` or ``POST /virgil-card/actions/email`` endpoint.
 
 **Request info**
 
@@ -360,7 +366,7 @@ Please be aware that **X-VIRGIL-REQUEST-SIGN-VIRGIL-CARD-ID** header is skipped 
 GET /virgil-card/{virgil-card-id}
 ---------------------------------
 
-Returns the information about the Virgil Card by the ID.
+Returns the information about the **Virgil Card** by the ID.
 
 **Request info**
 
@@ -395,11 +401,11 @@ Returns the information about the Virgil Card by the ID.
 POST /virgil-card/actions/search
 ---------------------------------
 
-Performs the search of a **private** application's Virgil Cards by search criteria:
+Performs the search of a private application's **Virgil Cards** by search criteria:
 
-- the *value* request parameter is mandatory;
-- the *type* request parameter is optional and specifies the type of ``Virgil Card``'s ``Identity``;
-- the *include_unauthorized* request parameter specifies whether an unconfirmed ``Virgil Cards`` should be returned.
+- the ``value`` request parameter is mandatory;
+- the ``type`` request parameter is optional and specifies the type of **Virgil Card**'s identity;
+- the ``include_unauthorized`` request parameter specifies whether unconfirmed **Virgil Cards** should be returned.
 
 **Request info**
 
@@ -447,9 +453,9 @@ Performs the search of a **private** application's Virgil Cards by search criter
 POST /virgil-card/actions/search/app
 --------------------------------------
 
-Performs the global search for the applications' Virgil Cards
+Performs the global search for the applications' **Virgil Cards**.
 
-- the *value* request parameter is mandatory. It is possible to specify the wildcard(e.g. "com.virgilsecurity.*") for the last term of the value
+- the ``value`` request parameter is mandatory. It is possible to specify the wildcard(e.g. "com.virgilsecurity.*") for the last term of the value
 which allows searching for all the applications inside the organization
 
 **Request info**
@@ -502,9 +508,9 @@ which allows searching for all the applications inside the organization
 POST /virgil-card/actions/search/email
 ------------------------------------------
 
-Performs the global search for the emails' :term:`Virgil Cards <Virgil Card>`
+Performs the global search for the emails' **Virgil Cards**.
 
-- the *value* request parameter is mandatory.
+- the ``value`` request parameter is mandatory.
 
 **Request info**
 
@@ -550,9 +556,9 @@ Performs the global search for the emails' :term:`Virgil Cards <Virgil Card>`
 DELETE /virgil-card/{virgil-card-id}
 ---------------------------------------
 
-Revoke a :term:`Virgil Card <Virgil Card>` endpoint:
+Revoke a **Virgil Card** endpoint:
 
-*  **identity** parameter is optional. It must be specified only for confirmed `Virgil Card` instances
+*  ``identity`` parameter is optional. It must be specified only for confirmed **Virgil Card** instances.
 
 **Request info**
 
@@ -588,124 +594,124 @@ Application uses standard HTTP response codes:
 
 .. code::
 
- 200 - Success
- 400 - Request error
- 401 - Authentication error
- 404 - Entity not found
- 405 - Method not allowed
- 500 - Server error
+   200 - Success
+   400 - Request error
+   401 - Authentication error
+   404 - Entity not found
+   405 - Method not allowed
+   500 - Server error
 
 Additional information about the error is returned as JSON-object like:
 
 .. code::
 
- {
-     "code": "{error-code}"
- }
+   {
+       "code": "{error-code}"
+   }
 
 **HTTP 500. Server error** status is returned on internal application errors
 
 .. code::
 
- 10000 - Internal application error
+  10000 - Internal application error
 
 **HTTP 401. Auth error** status is returned on authorization errors
 
 .. code::
 
- 20100 - The request ID header has already been used
- 20101 - The request ID header is invalid
- 20200 - The request sign header not found
- 20201 - The Virgil Card ID header is not specified or incorrect
- 20202 - The request sign header is invalid
- 20203 - Public Key value is required in request body
- 20204 - Public Key value in request body must be base64 encoded value
- 20205 - Public Key IDs in URL part and public key for the Virgil Card retrieved from **X-VIRGIL-REQUEST-SIGN-VIRGIL-CARD-ID** header must match
- 20206 - The public key id in the request body is invalid
- 20208 - Virgil card ids in URL and authentication header must match
- 20300 - The Virgil application token is not specified or invalid
- 20301 - The Virgil statistics application error
+   20100 - The request ID header has already been used
+   20101 - The request ID header is invalid
+   20200 - The request sign header not found
+   20201 - The Virgil Card ID header is not specified or incorrect
+   20202 - The request sign header is invalid
+   20203 - Public Key value is required in request body
+   20204 - Public Key value in request body must be base64 encoded value
+   20205 - Public Key IDs in URL part and public key for the Virgil Card retrieved from **X-VIRGIL-REQUEST-SIGN-VIRGIL-CARD-ID** header must match
+   20206 - The public key id in the request body is invalid
+   20208 - Virgil card ids in URL and authentication header must match
+   20300 - The Virgil application token is not specified or invalid
+   20301 - The Virgil statistics application error
 
 **HTTP 400. Request error** status is returned on request data validation errors
 
 .. code::
 
- 30000 - JSON specified as a request body is invalid
- 30100 - Public Key ID is invalid
- 30101 - Public key length is invalid
- 30102 - Public key must be base64-encoded string
- 30202 - Email value specified for the email identity is invalid
- 30204 - Application value specified for the application identity is invalid
- 30205 - Custom identity validation failed
- 30303 - Virgil Card's data parameters must be strings
- 30304 - Virgil Card's data parameter must be a dictionary of strings
- 30305 - Virgil Card custom data entry value length validation failed
- 31000 - Value search parameter is mandatory
- 31010 - Search value parameter is mandatory for the global search
- 31030 - Identity validation token is invalid
- 31040 - Virgil Card revocation parameters do not match Virgil Card's identity
- 31050 - Virgil Identity service error
- 31051 - Custom identity's validation token is incorrect
- 31052 - Custom identity's unique id  has already been used
- 31053 - Custom identity's validation token is malformed
- 31060 - Identities parameter is invalid
- 31070 - Identity validation failed
+   30000 - JSON specified as a request body is invalid
+   30100 - Public Key ID is invalid
+   30101 - Public key length is invalid
+   30102 - Public key must be base64-encoded string
+   30202 - Email value specified for the email identity is invalid
+   30204 - Application value specified for the application identity is invalid
+   30205 - Custom identity validation failed
+   30303 - Virgil Card's data parameters must be strings
+   30304 - Virgil Card's data parameter must be a dictionary of strings
+   30305 - Virgil Card custom data entry value length validation failed
+   31000 - Value search parameter is mandatory
+   31010 - Search value parameter is mandatory for the global search
+   31030 - Identity validation token is invalid
+   31040 - Virgil Card revocation parameters do not match Virgil Card's identity
+   31050 - Virgil Identity service error
+   31051 - Custom identity's validation token is incorrect
+   31052 - Custom identity's unique id  has already been used
+   31053 - Custom identity's validation token is malformed
+   31060 - Identities parameter is invalid
+   31070 - Identity validation failed
 
 Appendix B. Authentication
 =============================
 
 In order to authenticate a user the API expects a valid set of HTTP headers:
-**X-VIRGIL-REQUEST-ID**, **X-VIRGIL-REQUEST-SIGN** and **X-VIRGIL-REQUEST-SIGN-VIRGIL-CARD-ID**. These headers
-must be set on each request to endpoints with authorization marked as **REQUIRED**:
+``X-VIRGIL-REQUEST-ID``, ``X-VIRGIL-REQUEST-SIGN`` and ``X-VIRGIL-REQUEST-SIGN-VIRGIL-CARD-ID``. These headers
+must be set on each request to endpoints with authorization marked as ``REQUIRED``:
 
 .. code::
 
- POST /v3/virgil-card/{virgil-card-id}/actions/unsign
- Host: keys.virgilsecurity.com
- X-VIRGIL-REQUEST-ID: 6cfe1068-4fbc-4921-942b-c92ce0805334
- X-VIRGIL-REQUEST-SIGN-VIRGIL-CARD-ID: 3a768eea-cbda-4926-a82d-831cb89092aa 
- X-VIRGIL-REQUEST-SIGN: MIG5DAZTSEEyNTYEgYgwgYUCQQCJLqIZilQM6MT+UpBbrMkuvIW5Nj0hRwu5kH1PjocYhlBffillHnC/rw+BMsU0qiV0ZXRKKwrMRhbgVoUdVygkAkBm2QCQf88honRdxp5+Vr5HE7XbqAlUYuYlMmSHSsdXtF4M3Q7/oFgwJRxr0Yb4XFllZbm5Qf57YlGJ41KXXt7xDCRmYzAxM2ZmZS0yYjViLTRjMDQtZmQzNC1jMTM5ZThkY2Y3Yjg=
+   POST /v3/virgil-card/{virgil-card-id}/actions/unsign
+   Host: keys.virgilsecurity.com
+   X-VIRGIL-REQUEST-ID: 6cfe1068-4fbc-4921-942b-c92ce0805334
+   X-VIRGIL-REQUEST-SIGN-VIRGIL-CARD-ID: 3a768eea-cbda-4926-a82d-831cb89092aa 
+   X-VIRGIL-REQUEST-SIGN: MIG5DAZTSEEyNTYEgYgwgYUCQQCJLqIZilQM6MT+UpBbrMkuvIW5Nj0hRwu5kH1PjocYhlBffillHnC/rw+BMsU0qiV0ZXRKKwrMRhbgVoUdVygkAkBm2QCQf88honRdxp5+Vr5HE7XbqAlUYuYlMmSHSsdXtF4M3Q7/oFgwJRxr0Yb4XFllZbm5Qf57YlGJ41KXXt7xDCRmYzAxM2ZmZS0yYjViLTRjMDQtZmQzNC1jMTM5ZThkY2Y3Yjg=
 
 A request uniqueness header along with a request body gets signed on the client side using user’s private key and this
 digest will be used as a `X-VIRGIL-REQUEST-SIGN`_ header. In order to verify the data fingerprint, additional header
-**X-VIRGIL-REQUEST-SIGN-VIRGIL-CARD-ID** must contain the **ID** of the :term:`Virgil Card <Virgil Card>` used to sign the data.
+``X-VIRGIL-REQUEST-SIGN-VIRGIL-CARD-ID`` must contain the **ID** of the **Virgil Card** used to sign the data.
 Later on, these headers are used to make sure the request body specified is unchanged and came from the valid client.
 
 Client Authentication calculation
 --------------------------------------
 .. _X-VIRGIL-REQUEST-SIGN:
 
-The **X-VIRGIL-REQUEST-SIGN** hash is calculated on client side according to these rules:
+The ``X-VIRGIL-REQUEST-SIGN`` hash is calculated on client side according to these rules:
 
 .. code::
 
- REQUEST_TEXT = X-VIRGIL-REQUEST-ID + REQUEST_BODY_TEXT
- SIGN = VirgilSigner::sign(REQUEST_TEXT, PRIVATE_KEY, PRIVATE_KEY_PWD)
- SIGNED-DIGEST = base64_encode(SIGN->toAsn1())
+   REQUEST_TEXT = X-VIRGIL-REQUEST-ID + REQUEST_BODY_TEXT
+   SIGN = VirgilSigner::sign(REQUEST_TEXT, PRIVATE_KEY, PRIVATE_KEY_PWD)
+   SIGNED-DIGEST = base64_encode(SIGN->toAsn1())
 
-* **REQUEST_TEXT** - the concatenation of the REQUEST_BODY_TEXT and X-VIRGIL-REQUEST-ID header
-* **REQUEST_BODY_TEXT** - the text representation of the request body to be sent to API
-* **VirgilSigner::sign** - Virgil Seсurity Library method to sign the data
-* **PRIVATE_KEY**, **PRIVATE_KEY_PWD** - private key / password pair for the user's certificate
+* ``REQUEST_TEXT`` - the concatenation of the ``REQUEST_BODY_TEXT`` and ``X-VIRGIL-REQUEST-ID`` header
+* ``REQUEST_BODY_TEXT`` - the text representation of the request body to be sent to API
+* ``VirgilSigner::sign`` - **Virgil Seсurity Library** method to sign the data
+* ``PRIVATE_KEY``, ``PRIVATE_KEY_PWD`` - private key / password pair for the user's certificate
 
 Authentication hash cardinality
 --------------------------------------
 
 In order to provide good authentication headers cardinality and to prevent cases when the authorization headers for the
 resource become static, we need to add a special header that holds the request ID. This header's value must be a
-``uuid`` value and passed as **X-VIRGIL-REQUEST-ID** header.
+``uuid`` value and passed as ``X-VIRGIL-REQUEST-ID`` header.
 All IDs used in authorized requests got stored in the database and are valid only once. The request will be returned
 with a **401 Auth Error** HTTP status on each further request with an already used ID.
 
 Appendix C. Access token
 =============================
 
-The access token header **X-VIRGIL-ACCESS-TOKEN** is mandatory for each API call. The access token can be retrieved for
+The access token header ``X-VIRGIL-ACCESS-TOKEN`` is mandatory for each API call. The access token can be retrieved for
 each application on `Virgil Developers portal <https://developer.virgilsecurity.com/account/signin>`_.
 
 .. code::
 
- X-VIRGIL-ACCESS-TOKEN: { YOUR_APPLICATION_TOKEN }
+   X-VIRGIL-ACCESS-TOKEN: { YOUR_APPLICATION_TOKEN }
 
 Appendix D. Response sign
 =============================
@@ -713,10 +719,10 @@ Appendix D. Response sign
 Every service response contains two additional headers:
 
 - ``X-VIRGIL-RESPONSE-ID`` - an ID that is randomly generated for every response
-- ``X-VIRGIL-RESPONSE-SIGN`` - a signature of the response that is calculated as shown below and can be used to make sure that the response comes from a valid ``Virgil Keys`` instance
+- ``X-VIRGIL-RESPONSE-SIGN`` - a signature of the response that is calculated as shown below and can be used to make sure that the response comes from a valid **Virgil Keys** instance
 
 .. code::
 
- RESPONSE_TEXT = X-VIRGIL-RESPONSE-ID + RESPONSE_BODY_TEXT
- SIGN = VirgilSigner::sign(RESPONSE_TEXT, PRIVATE_KEY)
- X-VIRGIL-RESPONSE-SIGN = base64_encode(SIGN)
+   RESPONSE_TEXT = X-VIRGIL-RESPONSE-ID + RESPONSE_BODY_TEXT
+   SIGN = VirgilSigner::sign(RESPONSE_TEXT, PRIVATE_KEY)
+   X-VIRGIL-RESPONSE-SIGN = base64_encode(SIGN)

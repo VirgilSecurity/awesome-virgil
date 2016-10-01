@@ -9,9 +9,9 @@ Topics
 -  `Endpoints <#endpoints>`__
 
     -  `POST /card <#post-card>`__
-    -  `GET /card/{card-id} <#get-cardcard-id>`__
-    -  `POST /card/actions/search <#post-cardactionssearch>`__
-    -  `DELETE /card/{card-id} <#delete-cardcard-id>`__
+    -  `GET /card/{card-id} <#get-card-card-id>`__
+    -  `POST /card/actions/search <#post-card-actions-search>`__
+    -  `DELETE /card/{card-id} <#delete-card-card-id>`__
 -  `Appendix A. Response codes <#appendix-a-response-codes>`__
 -  `Appendix B. Authorization header <#appendix-b-authorization-header>`__
 
@@ -118,13 +118,15 @@ Structure of ``signs`` parameter:
 +--------------------+---------------------------------------------------------------------------------------------------------------------------------------------+
 | ``scope``          | (required) Determines a **Virgil Card** scope that can be either **global** [#]_ or **application** [#]_                                    |
 +--------------------+---------------------------------------------------------------------------------------------------------------------------------------------+
-| ``data``           | (optional) An associative array that contains application specific parameters. All keys must contain only latic characters and digits. The length of keys and values must not exceed 256 characters. Please note that you cannot persist more than 16 data items                                                        |
+| ``data``           | (optional) An associative array that contains application specific parameters. All keys must contain only latic characters and digits. The  |
+|                    | length of keys and values must not exceed 256 characters. Please note that you cannot persist more than 16 data items                       |
 +--------------------+---------------------------------------------------------------------------------------------------------------------------------------------+
-| ``info``           | (optional) An associative array with predefined keys that contain information about the device on which the keypair was created. The keys are always *device\_name* and *device* and the values must not exceed 256 characters. Both keys are optional but at least one of them must be specified if ``info`` parameter is specified 
-|                    |                                                                                                                                             |
+| ``info``           | (optional) An associative array with predefined keys that contain information about the device on which the keypair was created. The keys   |
+|                    | are always *device\_name* and *device* and the values must not exceed 256 characters. Both keys are optional but at least one of them must  |
+|                    | be specified if ``info`` parameter is specified                                                                                             |
 +--------------------+---------------------------------------------------------------------------------------------------------------------------------------------+
-| ``signs``          | (required) Must always contain **Virgil Card** holder's sign and either application sign or **Virgil Identity** sign (or both). More about `signs`_ 
-|                    |                                                                                                                                             |
+| ``signs``          | (required) Must always contain **Virgil Card** holder's sign and either application sign or **Virgil Identity** sign (or both).             |
+|                    |  More about `signs`_                                                                                                                        |
 +--------------------+---------------------------------------------------------------------------------------------------------------------------------------------+
 
 .. [#] In order to create a confirmed **Virgil Card** it's necessary to delegate the card creation to the **Virgil Identity** service.
