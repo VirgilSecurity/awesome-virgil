@@ -14,3 +14,5 @@ Start with one of the sections:
    dot-net-csharp-getting-started
    dot-net-csharp-features
    dot-net-csharp-programming-guide
+
+* `Source code <https://github.com/VirgilSecurity/virgil-sdk-net>`__
