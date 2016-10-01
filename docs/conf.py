@@ -56,9 +56,9 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'Virgil Docs'
-copyright = u'2016, Virgil'
-author = u'Virgil'
+project = u'Virgil Security Docs'
+copyright = u'2016, Virgil Secrity, Inc.'
+author = u'Virgil Security, Inc.'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -203,11 +203,11 @@ html_static_path = ['_static']
 
 # If true, links to the reST sources are added to the pages.
 #
-# html_show_sourcelink = True
+html_show_sourcelink = False
 
 # If true, "Created using Sphinx" is shown in the HTML footer. Default is True.
 #
-# html_show_sphinx = True
+html_show_sphinx = False
 
 # If true, "(C) Copyright ..." is shown in the HTML footer. Default is True.
 #
@@ -309,7 +309,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'virgildocs', u'Virgil Docs Documentation',
+    (master_doc, 'virgildocs', u'Virgil Security Documentation',
      [author], 1)
 ]
 
@@ -324,7 +324,7 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'VirgilDocs', u'Virgil Docs Documentation',
+    (master_doc, 'VirgilDocs', u'Virgil Security Documentation',
      author, 'VirgilDocs', 'One line description of project.',
      'Miscellaneous'),
 ]
