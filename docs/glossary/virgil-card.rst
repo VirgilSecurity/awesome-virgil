@@ -40,11 +40,13 @@ Virgil Entities - Virgil Card
 +====================+=============================================================================================================================================+
 | ``public_key``     | (required) Must contain a base64-encoded public key value in DER or PEM format                                                              |
 +--------------------+---------------------------------------------------------------------------------------------------------------------------------------------+
-| ``identity_type``  | (required) Must be ``email`` for a :term:`confirmed <Confirmed Card>` **Virgil Card** and can be any value for a :term:`segregated <Unconfirmed Card>` one                              |
+| ``identity_type``  | (required) Must be ``email`` for a :term:`confirmed <Confirmed Card>` **Virgil Card** and can be any value for                              |
+|                    |  a :term:`segregated <Unconfirmed Card>` one                                                                                                |
 +--------------------+---------------------------------------------------------------------------------------------------------------------------------------------+
 | ``identity``       | (required) Must be a valid email for a confirmed **Virgil Card** with an identity type of *email* and can be any value for a segregated one |
 +--------------------+---------------------------------------------------------------------------------------------------------------------------------------------+
-| ``scope``          | (required) Determines a **Virgil Card** scope that can be either :term:`global <Global Virgil Card>` or :term:`application <Application Virgil Card>`                    |
+| ``scope``          | (required) Determines a **Virgil Card** scope that can be either :term:`global <Global Virgil Card>` or                                     |
+|                    | :term:`application <Application Virgil Card>`                                                                                               |
 +--------------------+---------------------------------------------------------------------------------------------------------------------------------------------+
 | ``data``           | (optional) An associative array that contains application specific parameters. All keys must contain only latic characters and digits. The  |
 |                    | length of keys and values must not exceed 256 characters. Please note that you cannot persist more than 16 data items                       |

@@ -15,8 +15,7 @@ Developers Docs
    use-cases/use-cases
    cli/cli
    faq/faq
-
-* :ref:`genindex`
+   genindex
 
 License
 --------------------

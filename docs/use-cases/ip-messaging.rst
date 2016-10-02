@@ -2,6 +2,8 @@
 IP messaging
 ##############
 
+.. note:: **Version 3** of SDK is used in the following code samples.
+
 A group of users want to exchange text messages in a secure chat.
 
 .. image:: ../images/IPMessagingUseCase.png
