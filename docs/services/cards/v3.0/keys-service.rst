@@ -106,8 +106,8 @@ collection will be returned.
 DELETE /public-key/{public-key-id}
 -----------------------------------
 
-Revoke Public Keys endpoint. To revoke the **Virgil Cards** it's mandatory to pass :term:`validation tokens <Validation token>`obtained on
-**Virgil Identity** service for all :term:`confirmed <Confirmed Identity>`Virgil Cards for these Public Keys.
+Revoke Public Keys endpoint. To revoke the **Virgil Cards** it's mandatory to pass :term:`validation tokens <Validation token>` obtained on
+**Virgil Identity** service for all confirmed **Virgil Cards** for these **Public Keys**.
 
 **Request info**
 
@@ -159,14 +159,14 @@ Please be aware that ``X-VIRGIL-REQUEST-SIGN-VIRGIL-CARD-ID`` header is skipped 
   - it's mandatory to specify either ``public_key_id`` or ``public_key`` parameter;
   - in order to attach the **Virgil Card** to the existing **Public Key** you should pass ``public_key_id`` request parameter that holds the **Public Key**'s ID;
   - in order to create new **Public Key** instance you should pass ``public_key`` request parameter that contains the base64-encoded string with the public key;
-  - the ``identity`` request parameter stands for the **Virgil Card** identity that can be either :term:`global <Global Virgil Card>` or :term:`local <Local Virgil Card>`;
+  - the ``identity`` request parameter stands for the **Virgil Card** identity that can be either **global** or **local**;
   - to create a global **Identity** it's necessary to pass ``validation_token`` parameter obtained from the **Virgil Identity** service. This **Virgil Card** will become global will be available for all the applications through either ``POST /virgil-card/actions/app`` or ``POST /virgil-card/actions/email`` endpoint;
-  - to create a :term:`confirmed private <Confirmed private Identity>` **Identity** it's necessary to pass ``validation_token`` parameter that is calculated using formula
+  - to create a **confirmed private Identity** it's necessary to pass ``validation_token`` parameter that is calculated using formula
   ::
 
     VALIDATION_TOKEN = BASE64_ENCODE ( UNIQUE_ID + '.' + BASE64_ENCODE( SIGN( CONCATENATE( UNIQUE_ID + IDENTITY_TYPE + IDENTITY_VALUE), APPLICATION_PRIVATE_KEY ) ) );
 
-  - to create an :term:`unconfirmed private <Unconfirmed private Identity>` **Identity** you should skip ``validation_token`` parameter;
+  - to create an **unconfirmed private Identity** you should skip ``validation_token`` parameter;
   - if created **Virgil Card** is unconfirmed it will not appear in the search results by default.
 
 **Request info**
@@ -224,7 +224,7 @@ Please be aware that ``X-VIRGIL-REQUEST-SIGN-VIRGIL-CARD-ID`` header is skipped 
 POST /virgil-card/actions/create
 ---------------------------------
 
-The endpoint creates a :term:`local <Local Virgil Card>` application's **Virgil Card** entity.
+The endpoint creates a **local** application's **Virgil Card** entity.
 
 Please be aware that ``X-VIRGIL-REQUEST-SIGN-VIRGIL-CARD-ID`` header is skipped for this endpoint and
 `X-VIRGIL-REQUEST-SIGN`_ header is calculated based on the Public Key passed in request body.
@@ -234,7 +234,7 @@ Please be aware that ``X-VIRGIL-REQUEST-SIGN-VIRGIL-CARD-ID`` header is skipped 
   - it's mandatory to specify either ``public_key_id`` or ``public_key`` parameter;
   - in order to attach the **Virgil Card** to the existing **Public Key** you should pass ``public_key_id`` request parameter that holds the **Public Key**'s ID;
   - in order to create new **Public Key** instance you should pass ``public_key`` request parameter that contains the base64-encoded string with the public key;
-  - the ``identity`` request parameter stands for the **Virgil Card** identity that must be :term:`local <Local Virgil Card>`;
+  - the ``identity`` request parameter stands for the **Virgil Card** identity that must be **local**;
   - to create a confirmed local ``Identity`` it's necessary to pass *validation_token* parameter that is calculated using formula 
   ::
 
@@ -298,7 +298,7 @@ Please be aware that ``X-VIRGIL-REQUEST-SIGN-VIRGIL-CARD-ID`` header is skipped 
 POST /virgil-card/actions/create-global
 --------------------------------------------
 
-The endpoint creates a :term:`global Virgil Card <Global Virgil Card>` entity.
+The endpoint creates a **global Virgil Card** entity.
 
 Please be aware that ``X-VIRGIL-REQUEST-SIGN-VIRGIL-CARD-ID`` header is skipped for this endpoint and
 `X-VIRGIL-REQUEST-SIGN`_ header is calculated based on the Public Key passed in request body.

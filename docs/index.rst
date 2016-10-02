@@ -15,8 +15,6 @@ Developers Docs
    use-cases/use-cases
    cli/cli
    faq/faq
-..   glossary/glossary
-..   quickstart/quickstart
 
 * :ref:`genindex`
 

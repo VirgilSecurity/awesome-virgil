@@ -83,12 +83,7 @@ Search for Virgil Cards
 
     var client = new VirgilClient("[YOUR_ACCESS_TOKEN_HERE]");
 
-    var criteria = new SearchCardsCriteria
-    {
-        Identities = new[] { "alice", "bob" },
-        IdentityType = "username",
-        Scope = VirgilCardScope.Application
-    };
+    var criteria = SearchCriteria.ByIdentities("alice", "bob");
 
     var cards = await client.SearchCardsAsync(criteria);
 
