@@ -9,6 +9,7 @@ Version 1
 ----------
 
 :doc:`v1/crypto`
+~~~~~~~~~~~~~~~~
 
 .. toctree::
    :maxdepth: 1

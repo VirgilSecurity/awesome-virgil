@@ -16,7 +16,7 @@ Developers Docs
    cli/cli
    faq/faq
 
-:doc:`genindex`
+:ref:`genindex`
 
 License
 --------------------
