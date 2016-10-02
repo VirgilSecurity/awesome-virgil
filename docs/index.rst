@@ -17,6 +17,7 @@ Developers Docs
    faq/faq
 
 :ref:`genindex`
+---------------
 
 License
 --------------------

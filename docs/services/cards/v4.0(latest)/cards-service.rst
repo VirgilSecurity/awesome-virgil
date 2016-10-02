@@ -7,6 +7,7 @@ Topics
 
 -  `Overview <#overview>`__
 -  `Endpoints <#endpoints>`__
+-  `Operation Authorization <#operation-authorization>`__
 
     -  `POST /card <#post-card>`__
     -  `GET /card/{card-id} <#get-card-card-id>`__
@@ -23,6 +24,31 @@ Overview
 Every user is represented with a **Virgil Card** which contains all necessary information to identify him
 and to obtain his **Public Key** for further operations.  
 
+*Original Virgil Card's representation*
+
+::
+
+    public_key    = "LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0KTUlHYk1CUUdCeXFHU000OUFnRUdDU3NrQXdNQ0NBRUJEUU9CZ2dBRUNhV3k5VVVVMDFWcjdQLzExWHpubk0vRAowTi9KODhnY0dMV3pYMGFLaGcxSjdib3B6RGV4b0QwaVl3alFXVUpWcVpJQjRLdFVneG9IcS81c2lybUI2cW1OClNFODNxcTZmbitPSm9qeUpGMytKY1AwTUp1WXRVZnpHbjgvUHlHVkp1TEVHais0NTlKWTRWbzdKb1pnS2hBT24KcWJ3UjRlcTY0citlUEpNcUppMD0KLS0tLS1FTkQgUFVCTElDIEtFWS0tLS0t";
+    identity_type = "email";
+    identity      = "user@virgilsecurity.com";
+    scope         = "global";
+    data          = {
+        "custom_key_1": "custom_value_1",
+        "custom_key_2": "custom_value_2"
+    };
+    info = {
+        "device": "iPhone6s",
+        "device_name": "Space grey one"
+    };
+
+*Virgil Card's JSON representation* 
+
+This byte representation will be persisted and is not supposed to be changed within the **Virgil Card's** lifetime. This JSON representation will be used to calculate the **Virgil Card Fingerprint**.
+
+::
+
+    virgilCardJsonData = {"public_key":"LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0KTUlHYk1CUUdCeXFHU000OUFnRUdDU3NrQXdNQ0NBRUJEUU9CZ2dBRUNhV3k5VVVVMDFWcjdQLzExWHpubk0vRAowTi9KODhnY0dMV3pYMGFLaGcxSjdib3B6RGV4b0QwaVl3alFXVUpWcVpJQjRLdFVneG9IcS81c2lybUI2cW1OClNFODNxcTZmbitPSm9qeUpGMytKY1AwTUp1WXRVZnpHbjgvUHlHVkp1TEVHais0NTlKWTRWbzdKb1pnS2hBT24KcWJ3UjRlcTY0citlUEpNcUppMD0KLS0tLS1FTkQgUFVCTElDIEtFWS0tLS0t","identity_type":"email","identity":"user@virgilsecurity.com","scope":"global","data":{"custom_key_1":"custom_value_1","custom_key_2":"custom_value_2"},"info":{"device":"iPhone6s","device_name":"Space grey one"}}
+
 ``fingerprint`` 
 ---------------
 
@@ -32,68 +58,36 @@ is an identifier of a **Virgil Card**. Virgil Card's JSON representation is used
 
     vigrilCardFingerprint = SHA256( virgilCardJsonData )
 
+If you convert the Fingerprint to the hexademical representation it will be the **Virgil Card id** which can be used on retrieve and revoke endpoints:
 
-Endpoints
-=========
+::
 
-POST /card
-----------
-
-This endpoint creates a **Virgil Card**. You can create a **Virgil Card** by passing the Card's ``content_snapshot`` and ``signs`` to **Virgil Cards service**.
+    virgilCardId = HEX( vigrilCardFingerprint )
 
 ``content_snapshot`` 
 ---------------------
 
-is a base64-encoded string with JSON representation of data required for an operation.
+is a base64-encoded string with JSON representation of data required for an operation. The ``content_snapshot`` will be persisted alongside with the **Virgil Card** and is not supposed to be changed during the **Virgil Card** lifetime. It can be used by the **Virgil Card** owner and the application service to make sure the **Virgil Card** data was not changed by any 3rd-party.
 
 ::
 
     content_snapshot = BASE64_ENCODE( virgilCardJsonData )
-    content_snapshot = BASE64_ENCODE( cardID, revocation_reason)
 
-.. note:: Example
+Operation Authorization
+=======================
 
-    *Original Virgil Card's representation*
-
-    ::
-
-        public_key    = "LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0KTUlHYk1CUUdCeXFHU000OUFnRUdDU3NrQXdNQ0NBRUJEUU9CZ2dBRUNhV3k5VVVVMDFWcjdQLzExWHpubk0vRAowTi9KODhnY0dMV3pYMGFLaGcxSjdib3B6RGV4b0QwaVl3alFXVUpWcVpJQjRLdFVneG9IcS81c2lybUI2cW1OClNFODNxcTZmbitPSm9qeUpGMytKY1AwTUp1WXRVZnpHbjgvUHlHVkp1TEVHais0NTlKWTRWbzdKb1pnS2hBT24KcWJ3UjRlcTY0citlUEpNcUppMD0KLS0tLS1FTkQgUFVCTElDIEtFWS0tLS0t";
-        identity_type = "email";
-        identity      = "user@virgilsecurity.com";
-        scope         = "global";
-        data          = {
-            "custom_key_1": "custom_value_1",
-            "custom_key_2": "custom_value_2"
-        };
-        info = {
-            "device": "iPhone6s",
-            "device_name": "Space grey one"
-        };
-
-    *Virgil Card's JSON representation* 
-
-    This byte representation will be persisted and is not supposed to be changed within the **Virgil Card's** lifetime.
-
-    ::
-
-        virgilCardJsonData = {"public_key":"LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0KTUlHYk1CUUdCeXFHU000OUFnRUdDU3NrQXdNQ0NBRUJEUU9CZ2dBRUNhV3k5VVVVMDFWcjdQLzExWHpubk0vRAowTi9KODhnY0dMV3pYMGFLaGcxSjdib3B6RGV4b0QwaVl3alFXVUpWcVpJQjRLdFVneG9IcS81c2lybUI2cW1OClNFODNxcTZmbitPSm9qeUpGMytKY1AwTUp1WXRVZnpHbjgvUHlHVkp1TEVHais0NTlKWTRWbzdKb1pnS2hBT24KcWJ3UjRlcTY0citlUEpNcUppMD0KLS0tLS1FTkQgUFVCTElDIEtFWS0tLS0t","identity_type":"email","identity":"user@virgilsecurity.com","scope":"global","data":{"custom_key_1":"custom_value_1","custom_key_2":"custom_value_2"},"info":{"device":"iPhone6s","device_name":"Space grey one"}}
-
-    *content_snapshot*
-
-    ::
-
-        eyJwdWJsaWNfa2V5IjoiTFMwdExTMUNSVWRKVGlCUVZVSk1TVU1nUzBWWkxTMHRMUzBLVFVsSFlrMUNVVWRDZVhGSFUwMDBPVUZuUlVkRFUzTnJRWGROUTBOQlJVSkVVVTlDWjJkQlJVTmhWM2s1VlZWVk1ERldjamRRTHpFeFdIcHViazB2UkFvd1RpOUtPRGhuWTBkTVYzcFlNR0ZMYUdjeFNqZGliM0I2UkdWNGIwUXdhVmwzYWxGWFZVcFdjVnBKUWpSTGRGVm5lRzlJY1M4MWMybHliVUkyY1cxT0NsTkZPRE54Y1RabWJpdFBTbTlxZVVwR015dEtZMUF3VFVwMVdYUlZabnBIYmpndlVIbEhWa3AxVEVWSGFpczBOVGxLV1RSV2J6ZEtiMXBuUzJoQlQyNEtjV0ozVWpSbGNUWTBjaXRsVUVwTmNVcHBNRDBLTFMwdExTMUZUa1FnVUZWQ1RFbERJRXRGV1MwdExTMHQiLCJpZGVudGl0eSI6InVzZXJAdmlyZ2lsc2VjdXJpdHkuY29tIiwiaWRlbnRpdHlfdHlwZSI6ImVtYWlsIiwic2NvcGUiOiJnbG9iYWwiLCJpbmZvIjp7ImRldmljZSI6ImlQaG9uZSIsImRldmljZV9uYW1lIjoiU3BhY2UgZ3JleSBvbmUifX0=
+There are **Cards Service** endpoints which require authorization by the **Virgil Card** holder himself or by the application that created the card. These endpoints are marked with ``Authorization: required`` note. The authorization is performed via additional ``signs`` parameter.
 
 ``signs``
 ---------
 
-is mandatory to authorize a **Virgil Card** creation by the Virgil Card holder himself and by the application. It is nested into the ``meta`` request parameter, an associative array with signer's ``fingerprint`` as keys and base64-encoded signs as values. The **signed\_digest** is calculated as
+is nested into the ``meta`` request parameter, an associative array with signer's ``fingerprint`` as keys and base64-encoded signs as values. The **signed\_digest** is calculated as
 
 ::
 
     BASE64_ENCODE(SIGN(FINGERPRINT, PRIVATE_KEY)) 
 
-Private key must belong to the Virgil Card holder, application or **Virgil Identity** service.
+Private key must belong to the **Virgil Card** holder, application or **Virgil Identity** service.
 
 Structure of ``signs`` parameter:
 
@@ -106,6 +100,15 @@ Structure of ``signs`` parameter:
             ...     
         }  
     }
+
+
+Endpoints
+=========
+
+POST /card
+----------
+
+This endpoint creates a **Virgil Card**. You can create a **Virgil Card** by passing the Card's ``content_snapshot`` and ``signs`` to **Virgil Cards service**.
 
 +--------------------+---------------------------------------------------------------------------------------------------------------------------------------------+
 | Data Parameter     | Requirement                                                                                                                                 |
@@ -183,7 +186,7 @@ Structure of ``signs`` parameter:
 GET /card/{card-id}
 -------------------
 
-This endpoint returns the information about the **Virgil Card** by its ID (which is the `fingerprint`_).
+This endpoint returns the information about the **Virgil Card** by its ID.
 
 **Request info**
 
