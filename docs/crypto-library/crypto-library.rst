@@ -2,16 +2,17 @@
 Virgil Crypto Library
 =======================
 
-Version 2
-----------
+..Version 2
+..----------
 
 Version 1
 ----------
 
+:doc:`1/crypto`
+
 .. toctree::
    :maxdepth: 1
    
-   v1/crypto
    ../sdk/net/v3.0/dot-net-csharp-crypto
    ../sdk/cpp/v3.0(latest)/c-cpp-crypto
    ../sdk/javascript/v3.0(latest)/javascript-crypto

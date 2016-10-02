@@ -8,9 +8,7 @@ Virgil Entities - Virgil Card
 
 		A Virgil Card is the main entity of the Public Keys Service, it includes the information about the user and his public key. The Virgil Card identifies the user by one of his available types, such as an email, a phone number, etc. The Virgil Card might be global and private. The difference is whether Virgil Services take part in the Identity verification.
 
-		Card ID	- A unique identifier of any Virgil Card. It is used for every operation with Virgil Cards.
-
-		Virgil Card representation
+**Virgil Card representation**
 
 ::
 
@@ -40,7 +38,7 @@ Virgil Entities - Virgil Card
 +====================+=============================================================================================================================================+
 | ``public_key``     | (required) Must contain a base64-encoded public key value in DER or PEM format                                                              |
 +--------------------+---------------------------------------------------------------------------------------------------------------------------------------------+
-| ``identity_type``  | (required) Must be ``email`` for a :term:`confirmed <Confirmed Card>` **Virgil Card** and can be any value for                              |
+| ``identity_type``  | (required) Must be ``email`` for a :term:`confirmed <Confirmed Card>` Virgil Card and can be any value for                                  |
 |                    |  a :term:`segregated <Unconfirmed Card>` one                                                                                                |
 +--------------------+---------------------------------------------------------------------------------------------------------------------------------------------+
 | ``identity``       | (required) Must be a valid email for a confirmed **Virgil Card** with an identity type of *email* and can be any value for a segregated one |
@@ -56,5 +54,4 @@ Virgil Entities - Virgil Card
 |                    | be specified if ``info`` parameter is specified                                                                                             |
 +--------------------+---------------------------------------------------------------------------------------------------------------------------------------------+
 | ``signs``          | (required) Must always contain **Virgil Card** holder's sign and either application sign or **Virgil Identity** sign (or both).             |
-|                    | More about `signs`_                                                                                                                         |
 +--------------------+---------------------------------------------------------------------------------------------------------------------------------------------+	    

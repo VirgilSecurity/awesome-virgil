@@ -1,6 +1,3 @@
-|Build Status| |GitHub license| |Documentation Developers|
-|Documentation Doxygen| |Coverity Scan Build Status|
-
 Virgil Crypto Library: Overview
 ================================
 
