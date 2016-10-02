@@ -2,13 +2,13 @@
 Virgil Crypto Library
 =======================
 
-..Version 2
-..----------
+.. Version 2
+.. ----------
 
 Version 1
 ----------
 
-:doc:`1/crypto`
+:doc:`v1/crypto`
 
 .. toctree::
    :maxdepth: 1
