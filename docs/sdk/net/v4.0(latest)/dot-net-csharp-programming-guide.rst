@@ -91,7 +91,7 @@ Search for Virgil Cards
 Validating a Virgil Card
 ---------------------------
 
-This sample uses built-in ``CardValidator`` to validate cards. By default ``CardValidator`` validates only Cards Service signature.
+This sample uses built-in ``CardValidator`` to validate **Virgil Cards**. By default ``CardValidator`` validates only Cards Service signature.
 
 .. code-block:: csharp
     :linenos:

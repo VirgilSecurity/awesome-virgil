@@ -23,10 +23,15 @@ You can search for **Virgil Cards** by identity value(s) and optional additional
 	- identity type ('email' or any type created by user). You can find more information about :term:`confirmed <Confirmed Identity>` and :term:`uncofirmed <Unconfirmed Identity>` **Virgil Cards**.
 	- scope (by default it is 'application', can be 'global'). You can find more information about :term:`global <Global Virgil Card>` and :term:`application <>` **Virgil Cards**.
 
+Validate a Virgil Card
+----------------------
+[`Code sample <dot-net-csharp-programming-guide.html#validating-a-virgil-card>`__]
+
+You might want to make sure that a received **Virgil Card** wasn't changed, Public Key is authentic, or validate any other fields. By default ``CardValidator`` validates only Cards Service signature.
 
 Revoke a Virgil Card 
 ---------------------
-[`Code sample <dot-net-csharp-programming-guide.html#search-for-virgil-cards>`__]
+[`Code sample <dot-net-csharp-programming-guide.html#revoking-a-virgil-card>`__]
 
 You can delete a **Virgil Card** in case the keys were compromised or lost, or for any other reason.
 
