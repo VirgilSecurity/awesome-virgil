@@ -46,7 +46,7 @@ See also:
 New functions
 ~~~~~~~~~~~~~
 
-1. ``VirgilKeyPair::``
+``VirgilKeyPair::``
 
    -  ``encryptPrivateKey()`` - encrypt given private key and store it
       in the PKCS#8 format
