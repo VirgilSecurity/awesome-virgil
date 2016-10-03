@@ -1,5 +1,5 @@
 Virgil Crypto Library: Overview
-================================
+===============================
 
 -  `Introduction <#introduction>`__
 -  `Supported languages and platforms <#supported-languages-and-platforms>`__
@@ -8,12 +8,9 @@ Virgil Crypto Library: Overview
 -  `Build prerequisites <#build-prerequisites>`__
 -  `Simple build <#simple-build>`__
 -  `Multiarch build <#multiarch-build>`__
--  `Support <#support>`__
 
 Introduction
 ------------
-
-Welcome to Virgil!
 
 Virgil is a stack of security libraries (ECIES with Crypto Agility
 wrapped in Virgil Cryptogram) and all the necessary infrastructure to
@@ -39,7 +36,7 @@ Supported languages and platforms
 | C++        | ANY                          |
 +------------+------------------------------+
 | PHP        | Unix, Linux, OS X            |
-+------------+------------------------------+                                             
++------------+------------------------------+
 | Python     | Unix, Linux, OS X            |
 +------------+------------------------------+
 | Ruby       | Unix, Linux, OS X            |
@@ -50,7 +47,7 @@ Supported languages and platforms
 +------------+------------------------------+
 | AsmJS      | Unix, Linux, OS X, Windows   |
 +------------+------------------------------+
-| NodeJS     | Unix, Linux, OS X, Windows   |                                                                                                     
+| NodeJS     | Unix, Linux, OS X, Windows   |
 +------------+------------------------------+
 
 Library purposes
@@ -75,16 +72,16 @@ the different platforms to be able to configure and to build Virgil
 Crypto Library.
 
 -  Compiler:
-  -  ``g++``, or
-  -  ``clang++``, or
-  -  ``msvc++`` (version >= 12.0)
+-  ``g++`` (version >= 4.9), or
+-  ``clang++`` (version >= 3.6), or
+-  ``msvc++`` (version >= 14.0)
 -  Build tools:
-  -  ``cmake`` (version >= 3.2)
-  -  ``make``
+-  ``cmake`` (version >= 3.2)
+-  ``make``
 -  Other tools:
-  -  ``git``
-  -  ``swig`` (version >= 3.0.7), optional for C++ build
-  -  ``doxygen`` (optional)
+-  ``git``
+-  ``swig`` (version >= 3.0.7), optional for C++ build
+-  ``doxygen`` (optional)
 
 Simple build
 ------------
@@ -117,10 +114,8 @@ Step 1 - Choose target language
 | NodeJS     | Unix, Linux, OS X, Windows\*   |                         | LANG=nodejs        |               | `CDN <https://cdn.virgilsecurity.com/virgil-crypto/nodejs/>`__   |
 +------------+--------------------------------+-------------------------+--------------------+---------------+------------------------------------------------------------------+
 
-    \* External dependencies for Windows binaries:
-
-    - msvcp140.dll 
-    - vcruntime140.dll
+    \* External dependencies for Windows binaries: - msvcp140.dll -
+    vcruntime140.dll
 
     These dependencies can be installed as a part of `Visual C++ Redistributable for Visual Studio 2015 <https://www.microsoft.com/en-us/download/details.aspx?id=48145>`__
 
@@ -128,8 +123,7 @@ Step 2 - Configure environment
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 1. Open Terminal.
-2. Check that all the tools which are listed in the `build
-   prerequisite <Build prerequisites>`__ are available there.
+2. Check that all the tools which are listed in the `build prerequisite <#build-prerequisite>`__ are available there.
 3. Set environment variables according to the `table above <Step 1 - Choose target language>`__.
 
 Step 3 - Get source code
@@ -143,7 +137,7 @@ Step 4 - Build
 ~~~~~~~~~~~~~~
 
 Replace ``{{LANG}}`` placeholder to the corresponding value from the
-`table above <#table1>`__.
+`table above <Step 1 - Choose target language>`__.
 
 .. code:: shell
 
@@ -151,8 +145,8 @@ Replace ``{{LANG}}`` placeholder to the corresponding value from the
     > cmake -H. -B_build -DCMAKE_INSTALL_PREFIX=_install -DLANG={{LANG}}
     > cmake --build _build --target install
 
-Note, if you are using ``-DLANG=nodejs``, one of the next parameters
-can be appended:
+    Note, if you are using ``-DLANG=nodejs``, one of the next parameters
+    can be appended:
 
     -  ``-DLANG_VERSION=0.12.7``
     -  ``-DLANG_VERSION=4.1.0``
@@ -163,12 +157,12 @@ Multiarch build
 This section describes how to build Virgil Crypto Library for multi
 architecture targets, which are packed inside the specific package:
 
-  -  Apple OS X Framework
-  -  Apple iOS Framework
-  -  Apple WatchOS Framework
-  -  Apple TVOS Framework
-  -  Android Bundle as Jar archive
-  -  Windows Bundle, as structured
+-  Apple OS X Framework
+-  Apple iOS Framework
+-  Apple WatchOS Framework
+-  Apple TVOS Framework
+-  Android Bundle as Jar archive
+-  Windows Bundle, as structured
 
 Step 1 - Choose target language and platform
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -215,20 +209,20 @@ Step 1 - Choose target language and platform
 |            |          |         | vcruntime140.dll* |                     |             |
 +------------+----------+---------+-------------------+---------------------+-------------+
 
-    \* These dependencies can be installed as a part of `Visual C++ Redistributable for Visual Studio 2015 <https://www.microsoft.com/en-us/download/details.aspx?id=48145>`__
+    These dependencies can be installed as a part of `Visual C++ Redistributable for Visual Studio 2015 <https://www.microsoft.com/en-us/download/details.aspx?id=48145>`__
 
 Step 2 - Configure environment
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 1. Open Terminal.
-2. Check that all tools which are listed in the `build prerequisites <Build prerequisites>`__ are available there.
+2. Check that all tools which are listed in the `build prerequisites <#build-prerequisites>`__ are available there.
 
-  -  for Windows compiler should be MSVC;
-  -  for OS X build toolchain should be Xcode Toolchain.
+-  for Windows compiler should be MSVC;
+-  for OS X build toolchain should be Xcode Toolchain.
 
-3. Check that all dependencies from the `table above <Step 1 - Choose target language and platform>`__ are
+1. Check that all dependencies from the `table above <Step 1 - Choose target language and platform>`__ are
    accessible.
-4. Set environment variables according to the `table above <Step 1 - Choose target language and platform>`__.
+2. Set environment variables according to the `table above <Step 1 - Choose target language and platform>`__.
 
 Step 3 - Get source code
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -240,8 +234,7 @@ Step 3 - Get source code
 Step 4 - Build
 ~~~~~~~~~~~~~~
 
-Replace ``{{TARGET}}`` placeholder to the corresponding value from the
-`table above <Step 1 - Choose target language and platform>`__.
+Replace ``{{TARGET}}`` placeholder to the corresponding value from the `table above <#table2>`__.
 
 Unix-like OS:
 
@@ -261,18 +254,3 @@ Windows OS:
     > .\utils\build.bat {{TARGET}}
     > dir .\install\{{TARGET}}
 
-Support
--------
-
-Email to: support@VirgilSecurity.com
-
-.. |Build Status| image:: https://travis-ci.org/VirgilSecurity/virgil-crypto.svg?branch=master
-   :target: https://travis-ci.org/VirgilSecurity/virgil-crypto
-.. |GitHub license| image:: https://img.shields.io/badge/license-BSD%203--Clause-blue.svg
-   :target: https://raw.githubusercontent.com/VirgilSecurity/virgil-crypto/master/LICENSE
-.. |Documentation Developers| image:: https://img.shields.io/badge/docs-developers-green.svg
-   :target: https://virgilsecurity.com/api-docs
-.. |Documentation Doxygen| image:: https://img.shields.io/badge/docs-doxygen-blue.svg
-   :target: http://VirgilSecurity.github.io/virgil-crypto
-.. |Coverity Scan Build Status| image:: https://scan.coverity.com/projects/4943/badge.svg
-   :target: https://scan.coverity.com/projects/virgilsecurity-virgil-crypto
