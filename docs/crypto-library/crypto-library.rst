@@ -7,6 +7,9 @@ Virgil Security℠ provides modern cryptography libraries (ECIES and RSA with Cr
 Version 2
 ----------
 
+.. toctree::
+   :maxdepth: 1
+
 	v2/crypto
 	v2/migration-2.0
 
