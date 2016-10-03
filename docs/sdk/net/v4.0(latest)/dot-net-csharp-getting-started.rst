@@ -8,7 +8,7 @@ Virgil SDK is a communication gateway between your application and :doc:`../../.
 Setting up your project
 -----------------------
 
-The Virgil SDK is provided as a package named **Virgil.SDK**. The package is distributed via NuGet package management system. Select the package to :download:`download <https://www.nuget.org/packages/Virgil.SDK/>`
+The Virgil SDK is provided as a package named **Virgil.SDK**. The package is distributed via NuGet package management system.
 
 Target frameworks
 ~~~~~~~~~~~~~~~~~
