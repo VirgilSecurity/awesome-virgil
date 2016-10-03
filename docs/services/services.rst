@@ -2,11 +2,13 @@
 Virgil Services
 ==================
 
-.. toctree::
-   :maxdepth: 1
+Virgil Cards Service
+--------------------
    
-   cards/v4.0(latest)/cards-service
-   cards/v3.0/keys-service
-   identity/v1.0(latest)/identity-service
-   
-Diagram of communication between the services
+   * `Cards service version 4(latest) <cards/v4.0(latest)/cards-service>`_
+   * `Keys service version 3 <cards/v3.0/keys-service>`_
+
+Virgil Identity Service
+------------------------
+
+	* `Identity service version 1 <identity/v1.0(latest)/identity-service>`_

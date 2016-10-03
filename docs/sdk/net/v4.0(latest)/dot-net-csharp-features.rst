@@ -2,7 +2,7 @@
 .NET/C# SDK Features
 ####################
 
-Working with Virgil Cards
+Working with Virgil Cards:
 --------------------------
 
 -  `Creating a Virgil Card <dot-net-csharp-programming-guide.html#creating-a-virgil-card>`__
@@ -10,7 +10,7 @@ Working with Virgil Cards
 -  `Validating a Virgil Card <dot-net-csharp-programming-guide.html#validating-a-virgil-card>`__
 -  `Revoking a Virgil Card <dot-net-csharp-programming-guide.html#revoking-a-virgil-card>`__
 
-Working with Crypto Library
+Working with Crypto Library:
 ----------------------------
 
 -  `Generate Keys <dot-net-csharp-programming-guide.html#operations-with-crypto-keys>`__
