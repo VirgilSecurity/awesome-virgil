@@ -6,6 +6,7 @@
 ..        -  `Prepare Request <#prepare-request>`__
 ..        -  `Publish a Virgil Card <#publish-a-virgil-card>`__
 ..    -  `Search for Virgil Cards <#search-for-virgil-cards>`__
+..    -  `Validating a Virgil Card <#validating-a-virgil-card>`__
 ..    -  `Revoking a Virgil Card <#revoking-a-virgil-card>`__
 ..    -  `Operations with Crypto Keys <#operations-with-crypto-keys>`__
 ..        -  `Generate Keys <#generate-keys>`__
@@ -87,6 +88,35 @@ Search for Virgil Cards
 
     var cards = await client.SearchCardsAsync(criteria);
 
+Validating a Virgil Card
+---------------------------
+
+This sample uses built-in ``CardValidator`` to validate cards. By default ``CardValidator`` validates only Cards Service signature.
+
+.. code-block:: csharp
+    :linenos:
+
+    // Initialize crypto API
+    var crypto = new VirgilCrypto();
+
+    var validator = new CardValidator(crypto);
+
+    // Your can also add another Public Key for verification.
+    // validator.AddVerifier("[HERE_VERIFIER_CARD_ID]", [HERE_VERIFIER_PUBLIC_KEY]);
+
+    // Initialize service client
+    var client = new VirgilClient("[YOUR_ACCESS_TOKEN_HERE]");
+    client.SetCardValidator(validator);
+
+    try
+    {
+        var criteria = SearchCriteria.ByIdentities("alice", "bob");
+        var cards = await client.SearchCardsAsync(criteria);
+    }
+    catch (CardValidationException ex)
+    {
+        // ex.InvalidCards
+    }
 
 Revoking a Virgil Card
 ---------------------------

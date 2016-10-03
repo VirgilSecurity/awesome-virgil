@@ -1,14 +1,14 @@
 Getting started
 ===============
 
-The goal of Virgil .NET/C# SDK Documentation is to give a developer the knowledge and understanding required to implement security into his application using Virgil Security ecosystem.
+The goal of Virgil .NET/C# SDK Documentation is to give a developer the knowledge and understanding required to implement security into his application using Virgil Security system.
 
 Virgil SDK is a communication gateway between your application and :doc:`../../../services/services`. 
 
 Setting up your project
 -----------------------
 
-The Virgil SDK is provided as a package named **Virgil.SDK**. The package is distributed via NuGet package management system.
+The Virgil SDK is provided as a package named **Virgil.SDK**. The package is distributed via NuGet package management system. Select the package to :download:`download <https://www.nuget.org/packages/Virgil.SDK/>`
 
 Target frameworks
 ~~~~~~~~~~~~~~~~~
