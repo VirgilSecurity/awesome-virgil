@@ -24,6 +24,10 @@
 Creating a Virgil Card
 ----------------------
 
+Every user is represented with a **Virgil Card** so creating them for users is a required step. A **Virgil Card** is the central entity of the Virgil services, it includes information about the user for further actions in Virgil Security system. The **Virgil Card** identifies the user/device by one of his types. You can find more information about :term:`Virgil Cards <Virgil Card>`.
+
+``appID`` and ``appKey`` parameters are required to create a **Virgil Card** in your app scope.
+
 Collect App Credentials
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -79,6 +83,11 @@ Publish a Virgil Card
 Search for Virgil Cards
 ---------------------------
 
+You can search for **Virgil Cards** by identity value(s) and optional additional parameters can be set:
+
+    - identity type ('email' or any type created by user). You can find more information about :term:`confirmed <Confirmed Identity>` and :term:`uncofirmed <Unconfirmed Identity>` **Virgil Cards**.
+    - scope (by default it is 'application', can be 'global'). You can find more information about :term:`global <Global Virgil Card>` and :term:`application <>` **Virgil Cards**.
+
 .. code-block:: csharp
     :linenos:
 
@@ -91,6 +100,7 @@ Search for Virgil Cards
 Validating a Virgil Card
 ---------------------------
 
+You might want to make sure that a received **Virgil Card** wasn't changed, Public Key is authentic, or validate any other fields.
 This sample uses built-in ``CardValidator`` to validate **Virgil Cards**. By default ``CardValidator`` validates only Cards Service signature.
 
 .. code-block:: csharp
@@ -120,6 +130,8 @@ This sample uses built-in ``CardValidator`` to validate **Virgil Cards**. By def
 
 Revoking a Virgil Card
 ---------------------------
+
+You can delete a **Virgil Card** in case the keys were compromised or lost, or for any other reason.
 
 Initialize required components:
 
@@ -161,7 +173,7 @@ Operations with Crypto Keys
 Generate Keys
 ~~~~~~~~~~~~~
 
-The following code sample illustrates keypair generation (default algorithm is ``ed25519``):
+You can generate a keypair using ``VirgilCrypto`` class. The default algorithm is ``ed25519``. 
 
 .. code-block:: csharp
     :linenos:
@@ -171,7 +183,8 @@ The following code sample illustrates keypair generation (default algorithm is `
 Import and Export Keys
 ~~~~~~~~~~~~~~~~~~~~~~
 
-To export Public/Private keys, simply call one of the Export methods:
+If you need to import or export your Public/Private keys you can easily do it.
+Simply call one of the Export methods:
 
 .. code-block:: csharp
     :linenos:
@@ -194,6 +207,13 @@ Encryption and Decryption
 Encrypt Data
 ~~~~~~~~~~~~
 
+You can enrypt some data, ECIES scheme with ``AES-GCM`` is used in **Virgil Security**. You have several options for encryption:
+
+    - stream encryption;
+    - byte array encryption;
+    - one recipient;
+    - multiple recipients (public keys of every user are used for encryption).
+
 .. code-block:: csharp
     :linenos:
 
@@ -209,6 +229,11 @@ Encrypt Data
 
 Decrypt Data
 ~~~~~~~~~~~~
+
+You can decrypt data using your private key. You have such options for decryption: 
+
+    - stream;
+    - byte array.
 
 .. code-block:: csharp
     :linenos:
@@ -239,7 +264,10 @@ Generate a new Public/Private keypair and ``data`` to be signed.
 Generating a Signature
 ~~~~~~~~~~~~~~~~~~~~~~
 
-To generate the signature, simply call one of the sign methods:
+You can generate a digital signature for data. Options for signing data:
+
+    - stream;
+    - byte array.
 
 *Byte Array*
 
@@ -262,7 +290,10 @@ To generate the signature, simply call one of the sign methods:
 Verifying a Signature
 ~~~~~~~~~~~~~~~~~~~~~
 
-The signature can now be verified by calling the verify method:
+You can verify that a signature is authentic. You will verify the signature of the ``SHA-384`` fingerprint using the public key. Options for verification:
+
+    - stream;
+    - byte array.
 
 *Byte Array*
 
@@ -285,6 +316,8 @@ The signature can now be verified by calling the verify method:
 
 Fingerprint Generation
 ----------------------
+
+The default Fingerprint algorithm is ``SHA-256``. The hash is then converted to HEX.
 
 .. code-block:: csharp
     :linenos:
