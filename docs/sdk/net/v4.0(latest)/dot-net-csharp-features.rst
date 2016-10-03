@@ -13,13 +13,10 @@ Working with Virgil Cards
 Working with Crypto Library
 ----------------------------
 
--  `Operations with Crypto Keys <dot-net-csharp-programming-guide.html#operations-with-crypto-keys>`__
-    -  `Generate Keys <dot-net-csharp-programming-guide.html#generate-keys>`__
-    -  `Import and Export Keys <dot-net-csharp-programming-guide.html#import-and-export-keys>`__
--  `Encryption and Decryption <dot-net-csharp-programming-guide.html#encryption-and-decryption>`__
-    -  `Encrypt Data <dot-net-csharp-programming-guide.html#encrypt-data>`__
-    -  `Decrypt Data <dot-net-csharp-programming-guide.html#decrypt-data>`__
--  `Generating and Verifying Signatures <dot-net-csharp-programming-guide.html#generating-and-verifying-signatures>`__
-    -  `Generating a Signature <dot-net-csharp-programming-guide.html#generating-a-signature>`__
-    -  `Verifying a Signature <dot-net-csharp-programming-guide.html#verifying-a-signature>`__
+-  `Generate Keys <dot-net-csharp-programming-guide.html#operations-with-crypto-keys>`__
+-  `Import and Export Keys <dot-net-csharp-programming-guide.html#import-and-export-keys>`__
+-  `Encrypt Data <dot-net-csharp-programming-guide.html#encrypt-data>`__
+-  `Decrypt Data <dot-net-csharp-programming-guide.html#decrypt-data>`__
+-  `Generating a Signature <dot-net-csharp-programming-guide.html#generating-and-verifying-signatures>`__
+-  `Verifying a Signature <dot-net-csharp-programming-guide.html#verifying-a-signature>`__
 -  `Fingerprint Generation <dot-net-csharp-programming-guide.html#fingerprint-generation>`__

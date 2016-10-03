@@ -1,25 +1,5 @@
 .NET/C# SDK Programming Guide
 =============================
-..    -  `Creating a Virgil Card <#creating-a-virgil-card>`__
-..        -  `Collect App Credentials <#collect-app-creadentials>`__
-..        -  `Generate New Keys <#generate-new-keys>`__
-..        -  `Prepare Request <#prepare-request>`__
-..        -  `Publish a Virgil Card <#publish-a-virgil-card>`__
-..    -  `Search for Virgil Cards <#search-for-virgil-cards>`__
-..    -  `Validating a Virgil Card <#validating-a-virgil-card>`__
-..    -  `Revoking a Virgil Card <#revoking-a-virgil-card>`__
-..    -  `Operations with Crypto Keys <#operations-with-crypto-keys>`__
-..        -  `Generate Keys <#generate-keys>`__
-..        -  `Import and Export Keys <#import-and-export-keys>`__
-..    -  `Encryption and Decryption <#encryption-and-decryption>`__
-..        -  `Encrypt Data <#encrypt-data>`__
-..        -  `Decrypt Data <#decrypt-data>`__
-..    -  `Generating and Verifying Signatures <#generating-and-verifying-signatures>`__
-..        -  `Generating a Signature <#generating-a-signature>`__
-..        -  `Verifying a Signature <#verifying-a-signature>`__
-..    -  `Fingerprint Generation <#fingerprint-generation>`__
-..    -  `See Also <#see-also>`__
-
 
 Creating a Virgil Card
 ----------------------
