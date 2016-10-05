@@ -38,8 +38,7 @@ architecture.
 
 See also:
 
--  `Ed25519 and X25519 keys
-   format <https://tools.ietf.org/html/draft-ietf-curdle-pkix-01>`__
+-  `Ed25519 and X25519 keys format <https://tools.ietf.org/html/draft-ietf-curdle-pkix-01>`__
 -  `EdDSA <https://www.ietf.org/id/draft-irtf-cfrg-eddsa-08.txt>`__
 -  `X25519 <https://tools.ietf.org/html/rfc7748>`__
 

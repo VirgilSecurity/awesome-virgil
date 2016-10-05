@@ -8,7 +8,6 @@ Virgil Crypto Library: Overview
 -  `Build prerequisites <#build-prerequisites>`__
 -  `Simple build <#simple-build>`__
 -  `Multiarch build <#multiarch-build>`__
--  `Support <#support>`__
 
 Introduction
 ------------
@@ -142,8 +141,7 @@ Step 3 - Get source code
 Step 4 - Build
 ~~~~~~~~~~~~~~
 
-Replace ``{{LANG}}`` placeholder to the corresponding value from the
-`table above <#table1>`__.
+Replace ``{{LANG}}`` placeholder to the corresponding value from the `table above <Step 1 - Choose target language>`__.
 
 .. code:: shell
 
@@ -151,8 +149,7 @@ Replace ``{{LANG}}`` placeholder to the corresponding value from the
     > cmake -H. -B_build -DCMAKE_INSTALL_PREFIX=_install -DLANG={{LANG}}
     > cmake --build _build --target install
 
-Note, if you are using ``-DLANG=nodejs``, one of the next parameters
-can be appended:
+Note, if you are using ``-DLANG=nodejs``, one of the next parameters can be appended:
 
     -  ``-DLANG_VERSION=0.12.7``
     -  ``-DLANG_VERSION=4.1.0``
@@ -260,19 +257,3 @@ Windows OS:
     > cd virgil-crypto
     > .\utils\build.bat {{TARGET}}
     > dir .\install\{{TARGET}}
-
-Support
--------
-
-Email to: support@VirgilSecurity.com
-
-.. |Build Status| image:: https://travis-ci.org/VirgilSecurity/virgil-crypto.svg?branch=master
-   :target: https://travis-ci.org/VirgilSecurity/virgil-crypto
-.. |GitHub license| image:: https://img.shields.io/badge/license-BSD%203--Clause-blue.svg
-   :target: https://raw.githubusercontent.com/VirgilSecurity/virgil-crypto/master/LICENSE
-.. |Documentation Developers| image:: https://img.shields.io/badge/docs-developers-green.svg
-   :target: https://virgilsecurity.com/api-docs
-.. |Documentation Doxygen| image:: https://img.shields.io/badge/docs-doxygen-blue.svg
-   :target: http://VirgilSecurity.github.io/virgil-crypto
-.. |Coverity Scan Build Status| image:: https://scan.coverity.com/projects/4943/badge.svg
-   :target: https://scan.coverity.com/projects/virgilsecurity-virgil-crypto

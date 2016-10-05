@@ -71,17 +71,22 @@ The page lists the prerequisite packages which need to be installed on
 the different platforms to be able to configure and to build Virgil
 Crypto Library.
 
--  Compiler:
--  ``g++`` (version >= 4.9), or
--  ``clang++`` (version >= 3.6), or
--  ``msvc++`` (version >= 14.0)
--  Build tools:
--  ``cmake`` (version >= 3.2)
--  ``make``
--  Other tools:
--  ``git``
--  ``swig`` (version >= 3.0.7), optional for C++ build
--  ``doxygen`` (optional)
+Compiler:
+
+    -  ``g++`` (version >= 4.9), or
+    -  ``clang++`` (version >= 3.6), or
+    -  ``msvc++`` (version >= 14.0)
+
+Build tools:
+
+    -  ``cmake`` (version >= 3.2)
+    -  ``make``
+
+Other tools:
+
+    -  ``git``
+    -  ``swig`` (version >= 3.0.7), optional for C++ build
+    -  ``doxygen`` (optional)
 
 Simple build
 ------------
@@ -145,8 +150,7 @@ Replace ``{{LANG}}`` placeholder to the corresponding value from the
     > cmake -H. -B_build -DCMAKE_INSTALL_PREFIX=_install -DLANG={{LANG}}
     > cmake --build _build --target install
 
-    Note, if you are using ``-DLANG=nodejs``, one of the next parameters
-    can be appended:
+Note, if you are using ``-DLANG=nodejs``, one of the next parameters can be appended:
 
     -  ``-DLANG_VERSION=0.12.7``
     -  ``-DLANG_VERSION=4.1.0``
@@ -209,7 +213,7 @@ Step 1 - Choose target language and platform
 |            |          |         | vcruntime140.dll* |                     |             |
 +------------+----------+---------+-------------------+---------------------+-------------+
 
-    These dependencies can be installed as a part of `Visual C++ Redistributable for Visual Studio 2015 <https://www.microsoft.com/en-us/download/details.aspx?id=48145>`__
+    \* These dependencies can be installed as a part of `Visual C++ Redistributable for Visual Studio 2015 <https://www.microsoft.com/en-us/download/details.aspx?id=48145>`__
 
 Step 2 - Configure environment
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -234,7 +238,7 @@ Step 3 - Get source code
 Step 4 - Build
 ~~~~~~~~~~~~~~
 
-Replace ``{{TARGET}}`` placeholder to the corresponding value from the `table above <#table2>`__.
+Replace ``{{TARGET}}`` placeholder to the corresponding value from the `table above <<Step 1 - Choose target language and platform>`__.
 
 Unix-like OS:
 

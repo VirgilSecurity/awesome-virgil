@@ -24,7 +24,7 @@ Or install Virgil SDK with Virgil Crypto (recommended):
 
 ::
 
-    PM> Install-Package Virgil.SDK
+    PM> Install-Package Virgil.SDK -Version 3.2.4
 
 Demos
 ~~~~~
