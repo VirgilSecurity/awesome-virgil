@@ -35,7 +35,7 @@ Use this token to initialize the SDK client [here](#step-0-initialization).
 Use NuGet Package Manager (Tools -> Library Package Manager -> Package Manager Console) to install Virgil.SDK package, running the command:
 
 ```
-PM> Install-Package Virgil.SDK
+PM> Install-Package Virgil.SDK -Version 3.2.4
 ```
 
 ## Use Case
