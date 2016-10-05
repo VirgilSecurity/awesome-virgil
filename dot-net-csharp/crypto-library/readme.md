@@ -13,7 +13,7 @@ Tutorial Crypto Library .NET/C#
 Use NuGet Package Manager (Tools -> Library Package Manager -> Package Manager Console) to install Virgil.SDK.Keys package, running the command:
 
 ```
-PM> Install-Package Virgil.Crypto
+PM> Install-Package Virgil.Crypto -Version 1.8.0
 ```
 
 Or install Virgil SDK with Virgil Crypto (recommended):
