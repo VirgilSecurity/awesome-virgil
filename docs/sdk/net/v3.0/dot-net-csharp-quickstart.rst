@@ -35,7 +35,7 @@ Prerequisites
 Obtaining an Access Token
 =================================
 
-First you must create a free Virgil Security developer's account by signing up `here <https://developer.virgilsecurity.com/account/signup>`_. Once you have your account you can `sign in <https://developer.virgilsecurity.com/account/signin>`_ and generate an access token for your application.
+First you must create a free Virgil Security developer's account by signing up `here <https://developer.virgilsecurity.com/account/signup>`__. Once you have your account you can `sign in <https://developer.virgilsecurity.com/account/signin>`__ and generate an access token for your application.
 
 The access token provides authenticated secure access to Virgil Keys Services and is passed with every API call. The access token also allows the API to associate your app’s requests with your Virgil Security developer's account.
 
@@ -48,7 +48,7 @@ Use NuGet Package Manager (Tools -> Library Package Manager -> Package Manager C
 
 .. code-block:: html
 
-    PM> Install-Package Virgil.SDK
+    PM> Install-Package Virgil.SDK -Version 3.2.4
 
 *********
 Use Case
@@ -71,6 +71,7 @@ Step 0. Initialization
 Initialize the service Hub instance using access token obtained here... `Obtaining an Access Token`_
 
 .. code-block:: csharp
+    :linenos:
 
     serviceHub = ServiceHub.Create("%ACCESS_TOKEN%");
 
@@ -82,6 +83,7 @@ First a simple IP messaging chat application is generating the keys and publishi
 The following code example generates a new public/private key pair.
 
 .. code-block:: csharp
+    :linenos:
 
     var keyPair = VirgilKeyPair.Generate();
 
@@ -89,6 +91,7 @@ The following code example generates a new public/private key pair.
 The app is registering a Virgil Card which includes a public key and an email address identifier. The Card will be used for the public key identification and searching for it in the Public Keys Service. 
 
 .. code-block:: csharp
+    :linenos:
 
     var senderEmailAddress = 'sender@virgilsecurity.com';
     var emailVerifier = await serviceHub.Identity.
@@ -107,6 +110,7 @@ Step 2. Encrypt and Sign
 The app is searching for all channel members' public keys on the Keys Service to encrypt a message for them. The app is signing the encrypted message with sender’s private key so that the recipient can make sure the message had been sent by the declared sender.
 
 .. code-block:: csharp
+    :linenos:
 
     var messageBytes = Encoding.UTF8.GetBytes(message);
     
@@ -127,6 +131,7 @@ The app merges the message text and the signature into one `structure <https://g
     We will be using our custom IP Messaging Server in our examples, you may need to adjust the code for your favorite IP Messaging Server.
 
 .. code-block:: csharp
+    :linenos:
 
     var encryptedModel = new EncryptedMessageModel
     {
@@ -143,6 +148,7 @@ An encrypted message is received on the recipient’s side using an IP messaging
 In order to decrypt and verify the received data, the app on recipient’s side needs to get sender’s Virgil Card from the Keys Service.
 
 .. code-block:: csharp
+    :linenos:
 
     private async Task OnMessageRecived(string sender, string message)
     {
@@ -161,6 +167,7 @@ Step 5. Verify and Decrypt
 The application is making sure the message came from the declared sender by getting his card on Virgil Public Keys Service. In case of success, the message is decrypted using the recipient's private key.
 
 .. code-block:: csharp
+    :linenos:
 
     var isValid = CryptoHelper.Verify(encryptedModel.EncryptedMessage, 
         encryptedModel.Signature, senderCard.PublicKey.Value);

@@ -215,11 +215,11 @@ You can enrypt some data, ECIES scheme with ``AES-GCM`` is used in **Virgil Secu
  .. code-block:: csharp
     :linenos:
 
-     using (var inputStream = new FileStream("[YOUR_FILE_PATH_HERE]", FileMode.Open))
-     using (var cipherStream = new FileStream("[YOUR_ENCRYPTED_FILE_PATH_HERE]", FileMode.Create))
-     {
-         crypto.Encrypt(inputStream, cipherStream, aliceKeys.PublicKey);
-     }
+    using (var inputStream = new FileStream("[YOUR_FILE_PATH_HERE]", FileMode.Open))
+    using (var cipherStream = new FileStream("[YOUR_ENCRYPTED_FILE_PATH_HERE]", FileMode.Create))
+    {
+        crypto.Encrypt(inputStream, cipherStream, aliceKeys.PublicKey);
+    }
      
 Decrypt Data
 ~~~~~~~~~~~~
