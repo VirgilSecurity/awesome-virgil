@@ -1,7 +1,3 @@
-============
-Tutorial Crypto Library .NET/C#
-============
-
 - [Install](#install)
 - [Generate Keys](#generate-keys)
 - [Encrypt Data](#encrypt-data)
@@ -19,7 +15,7 @@ PM> Install-Package Virgil.Crypto -Version 1.8.0
 Or install Virgil SDK with Virgil Crypto (recommended):
 
 ```
-PM> Install-Package Virgil.SDK
+PM> Install-Package Virgil.SDK -Version 3.2.4
 ```
 
 ### Demos
