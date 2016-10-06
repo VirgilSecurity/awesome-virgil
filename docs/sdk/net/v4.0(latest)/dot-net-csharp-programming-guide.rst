@@ -184,6 +184,14 @@ To import Public/Private keys, simply call one of the Import methods:
 Encryption and Decryption
 ---------------------------
 
+Initialize Crypto API and generate keypair.
+
+.. code-block:: csharp
+    :linenos:
+
+    var crypto = new VirgilCrypto();
+    var aliceKeys = crypto.GenerateKeys();
+
 Encrypt Data
 ~~~~~~~~~~~~
 
@@ -194,19 +202,25 @@ You can enrypt some data, ECIES scheme with ``AES-GCM`` is used in **Virgil Secu
     - one recipient;
     - multiple recipients (public keys of every user are used for encryption).
 
+*Byte Array*
+
 .. code-block:: csharp
     :linenos:
 
-     var plaintext = new byte[100]
-     var ciphertext = crypto.Encrypt(plaintext, alice.PublicKey, bob.PublicKey)
-     
-      using (FileStream in = File.Open(path, FileMode.Open, FileAccess.Read, FileShare.None))
-      using (FileStream out = File.Open(path, FileMode.Open, FileAccess.Write, FileShare.None)) 
-            {
-             crypto.Encrypt(in, out, alice.PublicKey, bob.PublicKey)
-            }
-     
+    var plaintext = Encoding.UTF8.GetBytes("Hello Bob!");
+    var cipherData = crypto.Encrypt(plaintext, aliceKeys.PublicKey);
 
+ *Stream*
+
+ .. code-block:: csharp
+    :linenos:
+
+     using (var inputStream = new FileStream("[YOUR_FILE_PATH_HERE]", FileMode.Open))
+     using (var cipherStream = new FileStream("[YOUR_ENCRYPTED_FILE_PATH_HERE]", FileMode.Create))
+     {
+         crypto.Encrypt(inputStream, cipherStream, aliceKeys.PublicKey);
+     }
+     
 Decrypt Data
 ~~~~~~~~~~~~
 
@@ -215,18 +229,23 @@ You can decrypt data using your private key. You have such options for decryptio
     - stream;
     - byte array.
 
+*Byte Array*
+
 .. code-block:: csharp
     :linenos:
 
-     var ciphertext = new byte[100]{...}
-     var plaintext = crypto.Decrypt(ciphertext, alice.PrivateKey)
-     
-      using (FileStream in = File.Open(path, FileMode.Open, FileAccess.Read, FileShare.None))
-      using (FileStream out = File.Open(path, FileMode.Open, FileAccess.Write, FileShare.None)) 
-            {
-             crypto.Decrypt(in, out, alice.PrivateKey)
-            }
-     
+    crypto.Decrypt(cipherData, aliceKeys.PrivateKey);
+
+*Stream*
+
+.. code-block:: csharp
+    :linenos:
+
+    using (var cipherStream = new FileStream("[YOUR_ENCRYPTED_FILE_PATH_HERE]", FileMode.Open))
+    using (var resultStream = new FileStream("[YOUR_DECRYPTED_FILE_PATH_HERE]", FileMode.Create))
+    {
+        crypto.Decrypt(cipherStream, resultStream, aliceKeys.PrivateKey);
+    }
 
 Generating and Verifying Signatures
 -----------------------------------
@@ -236,6 +255,7 @@ Generate a new Public/Private keypair and ``data`` to be signed.
 .. code-block:: csharp
     :linenos:
 
+    var crypto = new VirgilCrypto();
     var alice = crypto.GenerateKeys();
 
     // The data to be signed with alice's Private key
@@ -297,10 +317,12 @@ You can verify that a signature is authentic. You will verify the signature of t
 Fingerprint Generation
 ----------------------
 
-The default Fingerprint algorithm is ``SHA-256``. The hash is then converted to HEX.
+The default Fingerprint algorithm is ``SHA-256``.
 
 .. code-block:: csharp
     :linenos:
+
+    var crypto = new VirgilCrypto();
 
     var fingerprint = crypto.CalculateFingerprint(content);
 

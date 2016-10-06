@@ -18,7 +18,7 @@ command:
 
 ::
 
-    PM> Install-Package Virgil.Crypto
+    PM> Install-Package Virgil.Crypto -Version 1.8.0
 
 Or install Virgil SDK with Virgil Crypto (recommended):
 
