@@ -2,26 +2,26 @@
 Tutorial .NET/C# Keys SDK
 ==========================
 
--  `Introduction`_
--  `Install`_
--  `Obtaining an Access Token`_
--  `Cards and Public Keys`_
+-  `Introduction <introduction>`__
+-  `Install <install>`__
+-  `Obtaining an Access Token <obtaining-an-access-token>`__
+-  `Cards and Public Keys <cards-and-public-keys>`__
 
-	-  `Publish a Virgil Card`_
-	-  `Search for Cards`_
-	-  `Revoke a Virgil Card`_
-	-  `Get a Public Key`_
+	-  `Publish a Virgil Card <publish-a-virgil-card>`__
+	-  `Search for Cards <search-for-cards>`__
+	-  `Revoke a Virgil Card <revoke-a-virgil-card>`__
+	-  `Get a Public Key <get-a-public-key>`__
 
--  `Private Keys`_
+-  `Private Keys <private-keys>`__
 
-	-  `Stash a Private Key`_
-	-  `Get a Private Key`_
-	-  `Destroy a Private Key`_
+	-  `Stash a Private Key <stash-a-private-key>`__
+	-  `Get a Private Key <get-a-private-key>`__
+	-  `Destroy a Private Key <destroy-a-private-key>`__
 
--  `Identities`_
+-  `Identities <identities>`__
 
-	-  `Obtaining a global ValidationToken`_
-	-  `Obtaining a private ValidationToken`_
+	-  `Obtaining a global ValidationToken <obtaining-a-global-validationtoken>`__
+	-  `Obtaining a private ValidationToken <obtaining-a-private-validationtoken>`__
 
 Introduction
 ------------
@@ -67,7 +67,7 @@ identifies the user by one of his available types, such as an email, a
 phone number, etc.
 
 The Virgil Card might be *global* and *private*. The difference is
-whether Virgil Services take part in `the Identity verification <Identities>`_.
+whether Virgil Services take part in `the Identity verification <#identities>`_.
 
 *Global Cards* are created with the validation token received after
 verification in Virgil Identity Service. Any developer with Virgil
@@ -84,7 +84,7 @@ Publish a Virgil Card
 ^^^^^^^^^^^^^^^^^^^^^
 
 Creating a *private* Virgil Card with a newly generated key pair and
-**ValidationToken**. See how to obtain a **ValidationToken** `here… <Obtaining a private ValidationToken>`_
+**ValidationToken**. See how to obtain a **ValidationToken** `here… <obtaining-a-private-validationtoken>`__
 
 .. code-block:: csharp
     :linenos:
@@ -103,7 +103,7 @@ Creating a *private* Virgil Card with a newly generated key pair and
 ​Creating an unauthorized *private* Virgil Card without
 **ValidationToken**. Pay attention that you will have to set an
 additional attribute to include the private Cards without verification
-into your search, see an `example <Search for Cards>`_.
+into your search, see an `example <#search-for-cards>`_.
 
 .. code-block:: csharp
     :linenos:
