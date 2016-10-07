@@ -84,7 +84,7 @@ Publish a Virgil Card
 ^^^^^^^^^^^^^^^^^^^^^
 
 Creating a *private* Virgil Card with a newly generated key pair and
-**ValidationToken**. See how to obtain a **ValidationToken** `here… <obtaining-a-private-validationtoken>`__
+**ValidationToken**. See how to obtain a **ValidationToken** `here… <#obtaining-an-access-token>`__
 
 .. code-block:: csharp
     :linenos:
@@ -119,7 +119,7 @@ into your search, see an `example <#search-for-cards>`_.
         .Create(identity, keyPair.PublicKey(), keyPair.PrivateKey());
 
 Creating a *global* Virgil Card. See how to obtain a **ValidationToken**
-`here…`_
+`here… <#obtaining-a-global-validationtoken>`__
 
 .. code-block:: csharp
     :linenos:
