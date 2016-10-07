@@ -212,7 +212,7 @@ You can enrypt some data, ECIES scheme with ``AES-GCM`` is used in **Virgil Secu
 
  *Stream*
 
- .. code-block:: csharp
+.. code-block:: csharp
     :linenos:
 
     using (var inputStream = new FileStream("[YOUR_FILE_PATH_HERE]", FileMode.Open))

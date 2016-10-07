@@ -29,12 +29,10 @@ Or install Virgil SDK with Virgil Crypto (recommended):
 Demos
 ~~~~~
 
-`Virgil and Twilio IP Messaging Demo
-Code <https://github.com/VirgilSecurity/virgil-demo-twilio>`__ and check
+`Virgil and Twilio IP Messaging Demo Code <https://github.com/VirgilSecurity/virgil-demo-twilio>`__ and check
 out working demo:
 
-`End to End Encrypted IP Messaging with Twilio API +
-Virgil <http://virgil-twilio-demo.azurewebsites.net/>`__
+`End to End Encrypted IP Messaging with Twilio API + Virgil <http://virgil-twilio-demo.azurewebsites.net/>`__
 
 Quickstart guide for making your own E2E encrypted IP Messaging is:
 `here <https://github.com/VirgilSecurity/virgil-demo-twilio/tree/master/ip-messaging>`__
@@ -71,7 +69,8 @@ keypair without a password.
 You can also generate a key pair with an encrypted private key just
 using one of the overloaded constructors.
 
-.. code:: csharp
+.. code-block:: csharp
+    :linenos:
 
     var password = "TafaSuf4";
     var keyPair = VirgilKeyPair.Generate(Encoding.UTF8.GetBytes(password));
@@ -148,8 +147,7 @@ In the table below you can see all types.
 | Type\_EC\_SECP256K1   | 256-bits "Koblitz" curve         |
 +-----------------------+----------------------------------+
 
-See a working example
-`here... <https://github.com/VirgilSecurity/virgil-sdk-net/blob/master/Examples/Virgil.Examples/Crypto/GenerateKeyPair.cs>`__
+See a working example `here... <https://github.com/VirgilSecurity/virgil-sdk-net/blob/master/Examples/Virgil.Examples/Crypto/GenerateKeyPair.cs>`__
 
 Encrypt Data
 ------------
@@ -170,7 +168,8 @@ with the Crypto Library.
 
 Encrypt the text with a password:
 
-.. code:: csharp
+.. code-block:: csharp
+    :linenos:
 
     var textToEncrypt = "Encrypt me, Please!!!";
     var password = "TafaSuf4";
@@ -179,17 +178,17 @@ Encrypt the text with a password:
 
 Encrypt the text with a public key:
 
-.. code:: csharp
+.. code-block:: csharp
+    :linenos:
 
     var keyPair = CryptoHelper.GenerateKeyPair();
-    var cipherText = CryptoHelper.Encrypt(textToEncrypt, 
-                                  "RecipientID",
-                                  password);
+    var cipherText = CryptoHelper.Encrypt(textToEncrypt, "RecipientID", password);
 
 And of course you can mix these types as well, see how it works in the
 example below:
 
-.. code:: csharp
+.. code-block:: csharp
+    :linenos:
 
     var textToEncrypt = "Encrypt me, Please!!!";
     byte[] cipherData;
@@ -199,8 +198,7 @@ example below:
         cipher.AddPasswordRecipient(password);
         cipher.AddKeyRecipient(keyRecepinet.Id, keyRecepinet.PublicKey);
 
-        cipherData = cipher.Encrypt(Encoding.UTF8.GetBytes(textToEncrypt), 
-                                true);
+        cipherData = cipher.Encrypt(Encoding.UTF8.GetBytes(textToEncrypt), true);
     }
 
 See a working example
@@ -217,49 +215,41 @@ from you and was not altered after you had signed it.
 The following example applies a digital signature to a public key
 identifier.
 
-.. code:: csharp
+.. code-block:: csharp
+    :linenos:
 
     var originalText = "Sign me, Please!!!";
 
     var keyPair = CryptoHelper.GenerateKeyPair();
     var signature = CryptoHelper.Sign(originalText, keyPair.PrivateKey());
 
-See a working example
-`here... <https://github.com/VirgilSecurity/virgil-sdk-net/blob/master/Examples/Virgil.Examples/Crypto/SingAndVerify.cs>`__
+See a working example `here... <https://github.com/VirgilSecurity/virgil-sdk-net/blob/master/Examples/Virgil.Examples/Crypto/SingAndVerify.cs>`__
 
 Verify Data
 -----------
 
-To verify that the data was signed by a particular party, you need the
-following information:
+To verify that the data was signed by a particular party, you need the following information:
 
 -  the public key of the party that signed the data;
 -  the digital signature;
 -  the data that was signed.
 
-The following example verifies a digital signature which was signed by
-the sender.
+The following example verifies a digital signature which was signed by the sender.
 
 .. code:: csharp
 
-    var isValid = CryptoHelper.Verify(originalText, 
-                           signature, 
-                           keyPair.PublicKey());
+    var isValid = CryptoHelper.Verify(originalText, signature, keyPair.PublicKey());
 
-See a working example
-`here... <https://github.com/VirgilSecurity/virgil-sdk-net/blob/master/Examples/Virgil.Examples/Crypto/SingAndVerify.cs>`__
+See a working example `here... <https://github.com/VirgilSecurity/virgil-sdk-net/blob/master/Examples/Virgil.Examples/Crypto/SingAndVerify.cs>`__
 
 Decrypt Data
 ------------
 
-The following example illustrates decryption of the encrypted data with
-a recipient's private key.
+The following example illustrates decryption of the encrypted data with a recipient's private key.
 
 .. code:: csharp
 
-    var decryptedText = CryptoHelper.Decrypt(cipherText, 
-                                        "RecipientId", 
-                                        keyPair.PrivateKey());
+    var decryptedText = CryptoHelper.Decrypt(cipherText, "RecipientId", keyPair.PrivateKey());
 
 Use a password to decrypt the data.
 
