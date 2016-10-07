@@ -43,7 +43,7 @@ Obtaining an Access Token
 -------------------------
 
 First you must create a Virgil Security developer’s account by signing
-up `here`_. Once you have your account you can `sign in`_ and generate
+up `here <https://developer.virgilsecurity.com/account/signup>`_. Once you have your account you can `sign in <https://developer.virgilsecurity.com/account/signin>`_ and generate
 an access token for your application.
 
 The access token provides an authenticated secure access to the Public
@@ -53,7 +53,8 @@ Security developer’s account.
 
 Simply add your access token to the class builder.
 
-.. code:: csharp
+.. code-block:: csharp
+    :linenos:
 
     var serviceHub = ServiceHub.Create("%ACCESS_TOKEN%");
 
@@ -66,7 +67,7 @@ identifies the user by one of his available types, such as an email, a
 phone number, etc.
 
 The Virgil Card might be *global* and *private*. The difference is
-whether Virgil Services take part in `the Identity verification`_.
+whether Virgil Services take part in `the Identity verification <Identities>`_.
 
 *Global Cards* are created with the validation token received after
 verification in Virgil Identity Service. Any developer with Virgil
@@ -83,9 +84,10 @@ Publish a Virgil Card
 ^^^^^^^^^^^^^^^^^^^^^
 
 Creating a *private* Virgil Card with a newly generated key pair and
-**ValidationToken**. See how to obtain a **ValidationToken** `here… <`Obtaining a private ValidationToken`>`_
+**ValidationToken**. See how to obtain a **ValidationToken** `here… <Obtaining a private ValidationToken>`_
 
-.. code:: csharp
+.. code-block:: csharp
+    :linenos:
 
     var keyPair = VirgilKeyPair.Generate();
 
@@ -101,9 +103,10 @@ Creating a *private* Virgil Card with a newly generated key pair and
 ​Creating an unauthorized *private* Virgil Card without
 **ValidationToken**. Pay attention that you will have to set an
 additional attribute to include the private Cards without verification
-into your search, see an `example`_.
+into your search, see an `example <Search for Cards>`_.
 
-.. code:: csharp
+.. code-block:: csharp
+    :linenos:
 
     var keyPair = VirgilKeyPair.Generate();
 
@@ -118,7 +121,8 @@ into your search, see an `example`_.
 Creating a *global* Virgil Card. See how to obtain a **ValidationToken**
 `here…`_
 
-.. code:: csharp
+.. code-block:: csharp
+    :linenos:
 
     var keyPair = VirgilKeyPair.Generate();
 
@@ -138,7 +142,8 @@ Search for Cards
 
 Search for a *global* Virgil Card.
 
-.. code:: csharp
+.. code-block:: csharp
+    :linenos:
 
     // search for email card.
 
@@ -152,7 +157,8 @@ Search for a *global* Virgil Card.
 
 Search for a *private* Virgil Card.
 
-.. code:: csharp
+.. code-block:: csharp
+    :linenos:
 
     var foundCards = await serviceHub.Cards.Search("virgil_demo");
 
@@ -167,7 +173,8 @@ Revoke a Virgil Card
 This operation is used to delete the Virgil Card from the search and
 mark it as deleted.
 
-.. code:: csharp
+.. code-block:: csharp
+    :linenos:
 
     await serviceHub.Cards.Revoke(myCard.Id, keyPair.PrivateKey());
 
@@ -177,7 +184,8 @@ Get a Public Key
 This operation gets a public key from the Public Keys Service by the
 specified ID.
 
-.. code:: csharp
+.. code-block:: csharp
+    :linenos:
 
     await serviceHub.PublicKeys.Get(myCard.PublicKey.Id);
 
@@ -210,7 +218,8 @@ The Private Keys Service stores private keys the original way as they
 were transferred. That’s why we strongly recommend transferring the keys
 which were generated with a password.
 
-.. code:: csharp
+.. code-block:: csharp
+    :linenos:
 
     await serviceHub.PrivateKeys.Stash(myCard.Id, keyPair.PrivateKey());
 
@@ -220,9 +229,10 @@ Get a Private Key
 This operation is used to get a private key. You must pass a prior
 verification of the Virgil Card in which your public key is used. And
 then you must obtain a **ValidationToken** depending on your Virgil Card
-(`global`_ or `private`_).
+(global or private).
 
-.. code:: csharp
+.. code-block:: csharp
+    :linenos:
 
     var identityInfo = new IdentityInfo {
         Value = "demo@virgilsecurity.com",
@@ -238,7 +248,8 @@ Destroy a Private Key
 This operation deletes the private key from the service without a
 possibility to be restored.
 
-.. code:: csharp
+.. code-block:: csharp
+    :linenos:
 
     await serviceHub.PrivateKeys.Destroy(myCard.Id, keyPair.PrivateKey());
 
@@ -255,7 +266,8 @@ ownership of the Identity on Virgil Identity Service.
 In the example below you can see how to obtain a **ValidationToken** for
 creating a *global* Virgil Card.
 
-.. code:: csharp
+.. code-block:: csharp
+    :linenos:
 
     // send a verification request for specified identity type. 
 
@@ -269,7 +281,8 @@ creating a *global* Virgil Card.
 
 You can also use the shortcut to verify a specific type.
 
-.. code:: csharp
+.. code-block:: csharp
+    :linenos:
 
     var emailVerifier = await 
            serviceHub.Identity.VerifyEmail("demo@virgilsecurity.com");
@@ -288,7 +301,8 @@ generated using app’s Private Key created on our `Developer portal`_.
 In the example below you can see, how to generate a **ValidationToken**
 using the SDK library.
 
-.. code:: csharp 
+.. code-block:: csharp
+    :linenos:
 
 	var validationToken = ValidationTokenGenerator     
 		.Generate("demo_virgil", "username", %APP_PRIVATE_KEY%);
