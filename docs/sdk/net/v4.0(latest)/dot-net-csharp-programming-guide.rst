@@ -210,7 +210,7 @@ You can enrypt some data, ECIES scheme with ``AES-GCM`` is used in **Virgil Secu
     var plaintext = Encoding.UTF8.GetBytes("Hello Bob!");
     var cipherData = crypto.Encrypt(plaintext, aliceKeys.PublicKey);
 
- *Stream*
+*Stream*
 
 .. code-block:: csharp
     :linenos:
