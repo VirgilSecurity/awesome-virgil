@@ -67,7 +67,7 @@ identifies the user by one of his available types, such as an email, a
 phone number, etc.
 
 The Virgil Card might be *global* and *private*. The difference is
-whether Virgil Services take part in `the Identity verification <#identities>`_.
+whether Virgil Services take part in the Identity verification.
 
 *Global Cards* are created with the validation token received after
 verification in Virgil Identity Service. Any developer with Virgil
@@ -84,7 +84,7 @@ Publish a Virgil Card
 ^^^^^^^^^^^^^^^^^^^^^
 
 Creating a *private* Virgil Card with a newly generated key pair and
-**ValidationToken**. See how to obtain a **ValidationToken** `here… <obtaining-a-private-validationtoken>`__
+**ValidationToken**. 
 
 .. code-block:: csharp
     :linenos:
@@ -103,7 +103,7 @@ Creating a *private* Virgil Card with a newly generated key pair and
 ​Creating an unauthorized *private* Virgil Card without
 **ValidationToken**. Pay attention that you will have to set an
 additional attribute to include the private Cards without verification
-into your search, see an `example <#search-for-cards>`_.
+into your search.
 
 .. code-block:: csharp
     :linenos:
