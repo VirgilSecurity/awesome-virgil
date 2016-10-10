@@ -320,4 +320,4 @@ The default Fingerprint algorithm is ``SHA-256``.
 
 See Also: 
 ---------
-`Source code <https://github.com/VirgilSecurity/virgil-sdk-java-android/tree/v4>`__
+`Source code <https://github.com/VirgilSecurity/virgil-sdk-java-android>`__

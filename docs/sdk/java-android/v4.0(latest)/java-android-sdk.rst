@@ -15,5 +15,5 @@ Start with one of the sections:
    java-android-features
    java-android-programming-guide
 
-.. * `Downloads <https://www.nuget.org/packages/Virgil.SDK/>`__
-* `Source code <https://github.com/VirgilSecurity/virgil-sdk-java-android/tree/v4>`__
+* `Downloads <http://mvnrepository.com/artifact/com.virgilsecurity.sdk>`__
+* `Source code <https://github.com/VirgilSecurity/virgil-sdk-java-android>`__
