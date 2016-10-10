@@ -24,5 +24,5 @@ Version 1
 	../sdk/cpp/v3.0(latest)/c-cpp-crypto
 	../sdk/javascript/v3.0(latest)/javascript-crypto
 	../sdk/x/v3.0(latest)/objective-c-swift-crypto
-	../sdk/java-android/v3.2(latest)/java-android-crypto
+	../sdk/java-android/v3.2/java-android-crypto
 	../sdk/python/v3.0(latest)/python-crypto
