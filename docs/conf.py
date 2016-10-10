@@ -57,7 +57,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'Virgil Security Docs'
-copyright = u'2016, Virgil Secrity, Inc'
+copyright = u'2016, Virgil Security, Inc'
 author = u'Virgil Security, Inc.'
 
 # The version info for the project you're documenting, acts as replacement for
