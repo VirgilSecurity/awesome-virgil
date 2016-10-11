@@ -9,13 +9,13 @@
 Use NuGet Package Manager (Tools -> Library Package Manager -> Package Manager Console) to install Virgil.SDK.Keys package, running the command:
 
 ```
-PM> Install-Package Virgil.Crypto -Version 1.8.0
+PM> Install-Package Virgil.Crypto -Version 2.0.0
 ```
 
 Or install Virgil SDK with Virgil Crypto (recommended):
 
 ```
-PM> Install-Package Virgil.SDK -Version 3.2.4
+PM> Install-Package Virgil.SDK -Version 3.3.0
 ```
 
 ### Demos
