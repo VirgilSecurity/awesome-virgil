@@ -48,7 +48,7 @@ Use NuGet Package Manager (Tools -> Library Package Manager -> Package Manager C
 
 .. code-block:: html
 
-    PM> Install-Package Virgil.SDK -Version 3.2.4
+    PM> Install-Package Virgil.SDK -Version 3.3.0
 
 *********
 Use Case

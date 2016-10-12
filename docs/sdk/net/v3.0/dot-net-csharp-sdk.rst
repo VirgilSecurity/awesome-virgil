@@ -37,7 +37,7 @@ Manager Console) to install Virgil.SDK package running the command:
 
 ::
 
-    PM> Install-Package Virgil.SDK -Version 3.2.4
+    PM> Install-Package Virgil.SDK -Version 3.3.0
 
 Obtaining an Access Token
 -------------------------

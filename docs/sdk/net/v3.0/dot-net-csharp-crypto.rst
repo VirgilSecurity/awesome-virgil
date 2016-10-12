@@ -18,13 +18,13 @@ command:
 
 ::
 
-    PM> Install-Package Virgil.Crypto -Version 1.8.0
+    PM> Install-Package Virgil.Crypto -Version 2.0.0
 
 Or install Virgil SDK with Virgil Crypto (recommended):
 
 ::
 
-    PM> Install-Package Virgil.SDK -Version 3.2.4
+    PM> Install-Package Virgil.SDK -Version 3.3.0
 
 Demos
 ~~~~~
@@ -44,7 +44,7 @@ The following code example creates a new public/private key pair.
 
 .. code:: csharp
 
-    var keyPair = VirgilKeyPair.Generate();
+    var keyPair = CryptoHelper.GenerateKeyPair();
 
 In the example below you can see a simply generated public/private
 keypair without a password.
@@ -100,16 +100,6 @@ In the table below you can see all types.
 +-----------------------+----------------------------------+
 | Key Type              | Description                      |
 +=======================+==================================+
-| Type\_Default         | recommended safest type          |
-+-----------------------+----------------------------------+
-| Type\_RSA\_256        | RSA 1024 bit (not recommended)   |
-+-----------------------+----------------------------------+
-| Type\_RSA\_512        | RSA 1024 bit (not recommended)   |
-+-----------------------+----------------------------------+
-| Type\_RSA\_1024       | RSA 1024 bit (not recommended)   |
-+-----------------------+----------------------------------+
-| Type\_RSA\_2048       | RSA 2048 bit (not recommended)   |
-+-----------------------+----------------------------------+
 | Type\_RSA\_3072       | RSA 3072 bit                     |
 +-----------------------+----------------------------------+
 | Type\_RSA\_4096       | RSA 4096 bit                     |
@@ -132,13 +122,7 @@ In the table below you can see all types.
 +-----------------------+----------------------------------+
 | Type\_EC\_BP512R1     | 512-bits Brainpool curve         |
 +-----------------------+----------------------------------+
-| Type\_EC\_M221        | (not implemented yet)            |
-+-----------------------+----------------------------------+
 | Type\_EC\_M255        | Curve25519                       |
-+-----------------------+----------------------------------+
-| Type\_EC\_M383        | (not implemented yet)            |
-+-----------------------+----------------------------------+
-| Type\_EC\_M511        | (not implemented yet)            |
 +-----------------------+----------------------------------+
 | Type\_EC\_SECP192K1   | 192-bits "Koblitz" curve         |
 +-----------------------+----------------------------------+
