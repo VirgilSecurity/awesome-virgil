@@ -27,8 +27,8 @@ Objective-C
 
 Swift
      
-.. code-block:: swift
-    :lineos:
+.. code-block:: objectivec
+    :linenos:
 
     let appId = <#T##String: Your appId#>
     let appKeyPassword = <#T##String: You app key password#>
@@ -52,7 +52,7 @@ Objective-C
 Swift
      
 .. code-block:: swift
-    :lineos:
+    :linenos:
 
     let aliceKeys = self.crypto.generateKeyPair()
 
@@ -70,7 +70,7 @@ Objective-C
 Swift
      
 .. code-block:: swift
-    :lineos:
+    :linenos:
 
     let exportedPublicKey = self.crypto.export(publicKey: aliceKeys.publicKey)
     let card = VSSCard(identity: "alice", identityType: "username", publicKey: exportedPublicKey)
@@ -92,7 +92,7 @@ Objective-C
 Swift
      
 .. code-block:: swift
-    :lineos:
+    :linenos:
 
     let requestSigner = VSSRequestSigner(crypto: self.crypto)
 
@@ -119,7 +119,7 @@ Objective-C
 Swift
      
 .. code-block:: swift
-    :lineos:
+    :linenos:
 
     self.client.createCard(card) { card, error in
         //...
@@ -147,7 +147,7 @@ Objective-C
 Swift
      
 .. code-block:: swift
-    :lineos:
+    :linenos:
 
     let searchCards = VSSSearchCards(scope: .application, identityType: "username", identities: ["alice", "bob"])
     self.client.searchCards(searchCards) { cards, error in
@@ -175,7 +175,7 @@ Objective-C
 Swift
      
 .. code-block:: swift
-    :lineos:
+    :linenos:
 
     let validator = VSSCardValidator(crypto: self.crypto)
 
@@ -207,7 +207,7 @@ Objective-C
 Swift
      
 .. code-block:: swift
-    :lineos:
+    :linenos:
 
     let revokeCard = VSSRevokeCard(id: <#Your cardId#>, reason: .unspecified)
 
@@ -242,7 +242,7 @@ Objective-C
 Swift
      
 .. code-block:: swift
-    :lineos:
+    :linenos:
 
     let aliceKeys = self.crypto.generateKeyPair()
 
@@ -263,7 +263,7 @@ Objective-C
 Swift
      
 .. code-block:: swift
-    :lineos:
+    :linenos:
 
     let exportedPrivateKey = self.crypto.export(aliceKeys.privateKey, password: nil)
     let exportedPublicKey = self.crypto.export(aliceKeys.publicKey)
@@ -281,7 +281,7 @@ Objective-C
 Swift
      
 .. code-block:: swift
-    :lineos:
+    :linenos:
 
     let privateKey = self.crypto.import(exportedPrivateKey, password: nil)
     let publicKey = self.crypto.export(aliceKeys.publicKey)
@@ -303,7 +303,7 @@ Objective-C
 Swift
      
 .. code-block:: swift
-    :lineos:
+    :linenos:
 
     let crypto = VSSCrypto()
     let keyPair = crypto.generateKeyPair()
@@ -332,7 +332,7 @@ Objective-C
 Swift
      
 .. code-block:: swift
-    :lineos:
+    :linenos:
 
     let plainText = "Hello, Bob!".data(using: String.Encoding.utf8)
     let encryptedData = try? crypto.encryptData(plainText, forRecipients: [aliceKeys.publicKey])
@@ -354,7 +354,7 @@ Objective-C
 Swift
      
 .. code-block:: swift
-    :lineos:
+    :linenos:
 
     let fileURL = Bundle.main.url(forResource: <#You data file name#>, withExtension: <#You data file extension#>)!
     let inputStreamForEncryption = InputStream(url: fileURL)!
@@ -388,7 +388,7 @@ Objective-C
 Swift
      
 .. code-block:: swift
-    :lineos:
+    :linenos:
 
     let decrytedData = try? self.crypto.decryptData(encryptedDta, privateKey: aliceKeys.privateKey)
 
@@ -409,7 +409,7 @@ Objective-C
 Swift
      
 .. code-block:: swift
-    :lineos:
+    :linenos:
 
     let fileURL = Bundle.main.url(forResource: <#Your encrypted data file name#>, withExtension: <#Your encrypted data file extension#>)!
     let inputStreamForDecryption = InputStream(url: fileURL)!
@@ -447,7 +447,7 @@ Objective-C
 Swift
      
 .. code-block:: swift
-    :lineos:
+    :linenos:
 
     let plainText = "Hello, Bob!".data(using: String.Encoding.utf8)
     let signature = try? self.crypto.sign(plainText, privateKey: aliceKeys.privateKey)
@@ -466,7 +466,7 @@ Objective-C
 Swift
      
 .. code-block:: swift
-    :lineos:
+    :linenos:
 
     let fileURL = Bundle.main.url(forResource: <#Your data file name#>, withExtension: <#Your data file extension#>)!
     let inputStreamForSignature = InputStream(url: fileURL)!
@@ -493,7 +493,7 @@ Objective-C
 Swift
 
 .. code-block:: swift
-    :lineos:
+    :linenos:
 
     let isVerified = try? self.crypto.verifyData(data, signature: signature, signerPublicKey: aliceKeys.publicKey)
 
@@ -508,7 +508,7 @@ Swift
 Swift
      
 .. code-block:: swift
-    :lineos:
+    :linenos:
 
     let isVerified = try? self.crypto.verifyStream(stream, signature: signature, signerPublicKey: aliceKeys.publicKey)
 
@@ -527,7 +527,7 @@ Objective-C
 Swift    
 
 .. code-block:: swift
-    :lineos:
+    :linenos:
 
     let fingerprint = self.crypto.calculateFingerprint(for: data)
 
