@@ -1,5 +1,5 @@
-.NET/C# SDK Programming Guide
-=============================
+Objective C/Swift SDK Programming Guide
+===============================================
 
 Creating a Virgil Card
 ----------------------
@@ -15,8 +15,8 @@ Collect an ``appID`` and ``appKey`` for your app:
 
 Objective-C
            
-
-.. code:: objectivec
+.. code-block:: objectivec
+    :linenos:
 
     NSString *appId = <#Your appId#>;
     NSString *appKeyPassword = <#Your app key password#>;
@@ -27,8 +27,8 @@ Objective-C
 
 Swift
      
-
-.. code:: swift
+.. code-block:: swift
+    :lineos:
 
     let appId = <#T##String: Your appId#>
     let appKeyPassword = <#T##String: You app key password#>
@@ -42,17 +42,17 @@ Generate New Keys
 
 Generate a new Public/Private keypair using ``VirgilCrypto`` class:
 
-Objective-C
-           
+Objective-C        
 
-.. code:: objectivec
+.. code-block:: objectivec
+    :linenos:
 
     VSSKeyPair *aliceKeys = [self.crypto generateKeyPair];
 
 Swift
      
-
-.. code:: swift
+.. code-block:: swift
+    :lineos:
 
     let aliceKeys = self.crypto.generateKeyPair()
 
@@ -61,15 +61,16 @@ Prepare Request
 
 Objective-C
 
-.. code:: objectivec
+.. code-block:: objectivec
+    :linenos:
 
     NSData *exportedPublicKey = [self.crypto exportPublicKey:aliceKeys.publicKey];
     VSSCard *card = [VSSCard cardWithIdentity:@"alice" identityType:@"username" publicKey:exportedPublicKey];
 
 Swift
      
-
-.. code:: swift
+.. code-block:: swift
+    :lineos:
 
     let exportedPublicKey = self.crypto.export(publicKey: aliceKeys.publicKey)
     let card = VSSCard(identity: "alice", identityType: "username", publicKey: exportedPublicKey)
@@ -78,7 +79,8 @@ then, use *VSSRequestSigner* class to sign request with owner and app keys:
 
 Objective-C
 
-.. code:: objectivec
+.. code-block:: objectivec
+    :linenos:
 
     VSSRequestSigner *requestSigner = [[VSSRequestSigner alloc] initWithCrypto:self.crypto];
 
@@ -89,8 +91,8 @@ Objective-C
 
 Swift
      
-
-.. code:: swift
+.. code-block:: swift
+    :lineos:
 
     let requestSigner = VSSRequestSigner(crypto: self.crypto)
 
@@ -107,7 +109,8 @@ Publish a Virgil Card
 
 Objective-C
 
-.. code:: objectivec
+.. code-block:: objectivec
+    :linenos:
 
     [self.client createCard:card completion:^(VSSCard *card, NSError *error) {
         //...
@@ -115,8 +118,8 @@ Objective-C
 
 Swift
      
-
-.. code:: swift
+.. code-block:: swift
+    :lineos:
 
     self.client.createCard(card) { card, error in
         //...
@@ -129,12 +132,12 @@ Search for Virgil Cards
 You can search for **Virgil Cards** by identity value(s) and optional additional parameters can be set:
 
     - identity type ('email' or any type created by user). You can find more information about :term:`confirmed <Confirmed Identity>` and :term:`uncofirmed <Unconfirmed Identity>` **Virgil Cards**.
-    - scope (by default it is 'application', can be 'global'). You can find more information about :term:`global <Global Virgil Card>` and :term:`application <>` **Virgil Cards**.
+    - scope (by default it is 'application', can be 'global'). You can find more information about :term:`global <Global Virgil Card>` and :term:`application <Application Virgil Card>` **Virgil Cards**.
 
 Objective-C
            
-
-.. code:: objectivec
+.. code-block:: objectivec
+    :linenos:
 
     VSSSearchCards *searchCards = [VSSSearchCards searchCardsWithScope:VSSCardScopeApplication identityType:@"username" identities:@[@"alice", @"bob"]];
     [self.client searchCards:searchCards completion:^(NSArray<VSSCard *>* cards, NSError *error) {
@@ -143,8 +146,8 @@ Objective-C
 
 Swift
      
-
-.. code:: swift
+.. code-block:: swift
+    :lineos:
 
     let searchCards = VSSSearchCards(scope: .application, identityType: "username", identities: ["alice", "bob"])
     self.client.searchCards(searchCards) { cards, error in
@@ -159,8 +162,8 @@ This sample uses built-in ``CardValidator`` to validate **Virgil Cards**. By def
 
 Objective-C
            
-
-.. code:: objectivec
+.. code-block:: objectivec
+    :linenos:
 
     VSSCardValidator *validator = [[VSSCardValidator alloc] initWithCrypto:self.crypto];
 
@@ -171,8 +174,8 @@ Objective-C
 
 Swift
      
-
-.. code:: swift
+.. code-block:: swift
+    :lineos:
 
     let validator = VSSCardValidator(crypto: self.crypto)
 
@@ -188,8 +191,8 @@ You can delete a **Virgil Card** in case the keys were compromised or lost, or f
 
 Objective-C
            
-
-.. code:: objectivec
+.. code-block:: objectivec
+    :linenos:
 
     VSSRevokeCard *revokeCard = [VSSRevokeCard revokeCardWithId:<#Your cardId#> reason:VSSCardRevocationReasonUnspecified];
 
@@ -203,8 +206,8 @@ Objective-C
 
 Swift
      
-
-.. code:: swift
+.. code-block:: swift
+    :lineos:
 
     let revokeCard = VSSRevokeCard(id: <#Your cardId#>, reason: .unspecified)
 
@@ -231,15 +234,15 @@ You can generate a keypair using ``VirgilCrypto`` class. The default algorithm i
 
 Objective-C
            
-
-.. code:: objectivec
+.. code-block:: objectivec
+    :linenos:
 
     VSSKeyPair *aliceKeys = [self.crypto generateKeyPair];
 
 Swift
      
-
-.. code:: swift
+.. code-block:: swift
+    :lineos:
 
     let aliceKeys = self.crypto.generateKeyPair()
 
@@ -251,16 +254,16 @@ Simply call one of the Export methods:
 
 Objective-C
            
-
-.. code:: objectivec
+.. code-block:: objectivec
+    :linenos:
 
     NSData *exportedPrivateKey = [self.crypto exportPrivateKey:aliceKeys.privateKey password:nil];
     NSData *exportedPublicKey = [self.crypto exportPublicKey:aliceKeys.privateKey];
 
 Swift
      
-
-.. code:: swift
+.. code-block:: swift
+    :lineos:
 
     let exportedPrivateKey = self.crypto.export(aliceKeys.privateKey, password: nil)
     let exportedPublicKey = self.crypto.export(aliceKeys.publicKey)
@@ -269,16 +272,16 @@ To import Public/Private keys, simply call one of the Import methods:
 
 Objective-C
            
-
-.. code:: objectivec
+.. code-block:: objectivec
+    :linenos:
 
     VSSPrivateKey *privateKey = [self.crypto importPrivateKey:exportedPrivateKey password:nil];
     VSSPublicKey *publicKey = [self.crypto importPublicKey:exportedPublicKey];
 
 Swift
      
-
-.. code:: swift
+.. code-block:: swift
+    :lineos:
 
     let privateKey = self.crypto.import(exportedPrivateKey, password: nil)
     let publicKey = self.crypto.export(aliceKeys.publicKey)
@@ -291,15 +294,16 @@ Initialize Crypto API and generate keypair.
 
 Objective-C
 
-.. code:: objectivec
+.. code-block:: objectivec
+    :linenos:
 
     VSSCrypto *crypto = [[VSSCrypto alloc] init];
     VSSKeyPair *keyPair = [crypto generateKeyPair];
 
 Swift
      
-
-.. code:: swift
+.. code-block:: swift
+    :lineos:
 
     let crypto = VSSCrypto()
     let keyPair = crypto.generateKeyPair()
@@ -314,11 +318,12 @@ You can enrypt some data, ECIES scheme with ``AES-GCM`` is used in **Virgil Secu
     - one recipient;
     - multiple recipients (public keys of every user are used for encryption).
 
-*Byte Array*
+**Byte Array**
 
 Objective-C
 
-.. code:: objectivec
+.. code-block:: objectivec
+    :linenos:
 
     NSData *plainText = [@"Hello, Bob!" dataUsingEncoding:NSUTF8StringEncoding];
     NSError *error;
@@ -326,15 +331,18 @@ Objective-C
 
 Swift
      
-
-.. code:: swift
+.. code-block:: swift
+    :lineos:
 
     let plainText = "Hello, Bob!".data(using: String.Encoding.utf8)
     let encryptedData = try? crypto.encryptData(plainText, forRecipients: [aliceKeys.publicKey])
 
-*Stream*
+**Stream**
 
-.. code:: objectivec
+Objective-C
+
+.. code-block:: objectivec
+    :linenos:
 
     NSURL *fileURL = [[NSBundle mainBundle] URLForResource:<#Your data file name#> withExtension:<#Your data file extension#>];
     NSInputStream *inputStreamForEncryption = [[NSInputStream alloc] initWithURL:fileURL];
@@ -345,8 +353,8 @@ Swift
 
 Swift
      
-
-.. code:: swift
+.. code-block:: swift
+    :lineos:
 
     let fileURL = Bundle.main.url(forResource: <#You data file name#>, withExtension: <#You data file extension#>)!
     let inputStreamForEncryption = InputStream(url: fileURL)!
@@ -367,23 +375,29 @@ You can decrypt data using your private key. You have such options for decryptio
     - stream;
     - byte array.
 
-*Data*
+**Byte Array**
 
-.. code:: objectivec
+Objective-C
+
+.. code-block:: objectivec
+    :linenos:
 
     NSError *error;
     NSData *decryptedData = [self.crypto decryptData:encryptedData privateKey:aliceKeys.privateKey error:&error];
 
 Swift
      
-
-.. code:: swift
+.. code-block:: swift
+    :lineos:
 
     let decrytedData = try? self.crypto.decryptData(encryptedDta, privateKey: aliceKeys.privateKey)
 
-*Stream*
+**Stream**
 
-.. code:: objectivec
+Objective-C
+
+.. code-block:: objectivec
+    :linenos:
 
     NSURL *fileURL = [[NSBundle mainBundle] URLForResource:<#Your encrypted data file name#> withExtension:<#Your encrypted data file extension#>];
     NSInputStream *inputStreamForDecryption = [[NSInputStream alloc] initWithURL:fileURL];
@@ -394,8 +408,8 @@ Swift
 
 Swift
      
-
-.. code:: swift
+.. code-block:: swift
+    :lineos:
 
     let fileURL = Bundle.main.url(forResource: <#Your encrypted data file name#>, withExtension: <#Your encrypted data file extension#>)!
     let inputStreamForDecryption = InputStream(url: fileURL)!
@@ -419,9 +433,12 @@ You can generate a digital signature for data. Options for signing data:
     - stream;
     - byte array.
 
-*Data*
+**Byte Array**
 
-.. code:: objectivec
+Objective-C
+
+.. code-block:: objectivec
+    :linenos:
 
     NSData *plainText = [@"Hello, Bob!" dataUsingEncoding:NSUTF8StringEncoding];
     NSError *error;
@@ -429,15 +446,18 @@ You can generate a digital signature for data. Options for signing data:
 
 Swift
      
-
-.. code:: swift
+.. code-block:: swift
+    :lineos:
 
     let plainText = "Hello, Bob!".data(using: String.Encoding.utf8)
     let signature = try? self.crypto.sign(plainText, privateKey: aliceKeys.privateKey)
 
-*Stream*
+**Stream**
 
-.. code:: objectivec
+Objective-C
+
+.. code-block:: objectivec
+    :linenos:
 
     NSURL *fileURL = [[NSBundle mainBundle] URLForResource:<#Your data file name#> withExtension:<#Your data file extension#>];
     NSInputStream *inputStreamForEncryption = [[NSInputStream alloc] initWithURL:fileURL];
@@ -445,8 +465,8 @@ Swift
 
 Swift
      
-
-.. code:: swift
+.. code-block:: swift
+    :lineos:
 
     let fileURL = Bundle.main.url(forResource: <#Your data file name#>, withExtension: <#Your data file extension#>)!
     let inputStreamForSignature = InputStream(url: fileURL)!
@@ -460,31 +480,35 @@ You can verify that a signature is authentic. You will verify the signature of t
     - stream;
     - byte array.
 
-*Data*
+**Byte Array**
 
-.. code:: objectivec
+Objective-C
+
+.. code-block:: objectivec
+    :linenos:
 
     NSError *error;
     BOOL isVerified = [self.crypto verifyData:data signature:signature signerPublicKey:aliceKeys.publicKey error:&error];
 
 Swift
-     
 
-.. code:: swift
+.. code-block:: swift
+    :lineos:
 
     let isVerified = try? self.crypto.verifyData(data, signature: signature, signerPublicKey: aliceKeys.publicKey)
 
-*Stream*
+**Stream**
 
-.. code:: objectivec
+.. code-block:: objectivec
+    :linenos:
 
     NSError *error;
     BOOL isVerified = [self.crypto verifyStream:strean signature:signature signerPublicKey:aliceKeys.publicKey error:&error];
 
 Swift
      
-
-.. code:: swift
+.. code-block:: swift
+    :lineos:
 
     let isVerified = try? self.crypto.verifyStream(stream, signature: signature, signerPublicKey: aliceKeys.publicKey)
 
@@ -493,14 +517,17 @@ Fingerprint Generation
 
 The default Fingerprint algorithm is ``SHA-256``.
 
-.. code:: objectivec
+Objective-C
+
+.. code-block:: objectivec
+    :linenos:
 
     VSSFingerprint *fingerprint = [self.crypto calculateFingerprintForData:data];
 
-Swift
-     
+Swift    
 
-.. code:: swift
+.. code-block:: swift
+    :lineos:
 
     let fingerprint = self.crypto.calculateFingerprint(for: data)
 

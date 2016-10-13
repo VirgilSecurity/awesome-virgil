@@ -1,7 +1,7 @@
 Virgil Security Objective C/Swift SDK
 ===========================================
 
-Welcome to the .NET SDK Programming Guide for Objective C and Swift. 
+Welcome to the Objective C/Swift SDK Programming Guide. 
 
 In this guide you will find code for every task you'll need to implement to create an application using Virgil Security. It also includes a
 description of the main classes and methods. The code examples in this guide are written in both Objective C and Swift.

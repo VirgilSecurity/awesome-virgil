@@ -66,7 +66,7 @@ Search for Virgil Cards
 You can search for **Virgil Cards** by identity value(s) and optional additional parameters can be set:
 
     - identity type ('email' or any type created by user). You can find more information about :term:`confirmed <Confirmed Identity>` and :term:`uncofirmed <Unconfirmed Identity>` **Virgil Cards**.
-    - scope (by default it is 'application', can be 'global'). You can find more information about :term:`global <Global Virgil Card>` and :term:`application <>` **Virgil Cards**.
+    - scope (by default it is 'application', can be 'global'). You can find more information about :term:`global <Global Virgil Card>` and :term:`application <Application Virgil Card>` **Virgil Cards**.
 
 .. code-block:: java
     :linenos:
