@@ -18,14 +18,14 @@ CocoaPods
 
 `CocoaPods <http://cocoapods.org>`__ is a dependency manager for Cocoa projects. You can install it with the following command:
 
-.. code:: bash
+.. code-block:: bash
     :linenos:
 
     $ gem install cocoapods
 
 To integrate VirgilSDK into your Xcode project using CocoaPods, specify it in your ``Podfile``:
 
-.. code:: ruby
+.. code-block:: ruby
     :linenos:
 
     source 'https://github.com/CocoaPods/Specs.git'
@@ -38,7 +38,7 @@ To integrate VirgilSDK into your Xcode project using CocoaPods, specify it in yo
 
 Then, run the following command:
 
-.. code:: bash
+.. code-block:: bash
     :linenos:
 
     $ pod install
@@ -58,7 +58,7 @@ installed as described above it is necessary to perform the following:
 
 Objective-C
 
-.. code:: objectivec
+.. code-block:: objectivec
     :linenos:
 
     @import VirgilCrypto;
@@ -94,7 +94,7 @@ To create an instance of ``VirgilClient`` class, just call its constructor with 
 
 Objective-C
 
-.. code:: objectivec
+.. code-block:: objectivec
     :linenos:
 
     @import VirgilCrypto;
@@ -108,7 +108,7 @@ Objective-C
 
 Swift
      
-.. code:: swift
+.. code-block:: swift
     :linenos:
 
     //...
@@ -124,7 +124,7 @@ Initializing Crypto
 
 Objective-C
 
-.. code:: objectivec
+.. code-block:: objectivec
     :linenos:
 
     @import VirgilCrypto;
@@ -138,7 +138,7 @@ Objective-C
 
 Swift
 
-.. code:: swift
+.. code-block:: swift
     :linenos:
 
     //...
