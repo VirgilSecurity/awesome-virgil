@@ -5,6 +5,11 @@ The goal of Virgil Objective C/Swift SDK Documentation is to give a developer th
 
 Virgil SDK is a communication gateway between your application and :doc:`../../../services/services`. 
 
+Requirements
+------------
+
+iOS 7.0+
+
 Installation
 ------------
 
