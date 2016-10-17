@@ -13,6 +13,7 @@ Version 4 (latest)
    net/v4.0(latest)/dot-net-csharp-sdk
    java-android/v4.0(latest)/java-android-sdk
    x/v4.0(latest)/objective-c-swift-sdk
+   go/v4.0(latest)/go-sdk
 
 Version 3
 ----------
