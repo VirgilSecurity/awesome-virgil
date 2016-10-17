@@ -453,6 +453,6 @@ Verifying data signature with High level API
     plaintext := []byte("Hello, Bob!")
     verifyResult, err := bobCard.Verify(plaintext, signature)
 
-.. See Also: 
-.. ---------
-.. `Source code <https://github.com/VirgilSecurity/virgil-sdk-net>`__
+See Also: 
+---------
+`Source code <https://github.com/VirgilSecurity/virgil-sdk-go>`__

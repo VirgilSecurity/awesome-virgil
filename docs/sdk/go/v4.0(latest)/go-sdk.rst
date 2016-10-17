@@ -15,5 +15,5 @@ Start with one of the sections:
    go-features
    go-programming-guide
 
-.. * `Downloads <https://www.nuget.org/packages/Virgil.SDK/>`__
-.. * `Source code <https://github.com/VirgilSecurity/virgil-sdk-net>`__
+* `Downloads <http://gopkg.in/VirgilSecurity/virgil-sdk-go.v4>`__
+* `Source code <https://github.com/VirgilSecurity/virgil-sdk-go>`__
