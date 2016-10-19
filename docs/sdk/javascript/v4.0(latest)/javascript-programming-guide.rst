@@ -335,7 +335,7 @@ key. The signature can now be verified by calling the verify method:
 .. code-block:: javascript
     :linenos:  
 
-    var isValid = crypto.verify(data, signature, alice.publicKey);``
+    var isValid = crypto.verify(data, signature, alice.publicKey);
 
 
 Fingerprint Generation
