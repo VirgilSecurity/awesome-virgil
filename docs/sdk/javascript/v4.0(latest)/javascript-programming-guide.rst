@@ -102,7 +102,7 @@ Search for Virgil Cards
 
 You can search for **Virgil Cards** by identity value(s) and optional additional parameters can be set:
 
-    - identity type ('email' or any type created by user). You can find more information about :term:`confirmed <Confirmed Identity>` and :term:`uncofirmed <Unconfirmed Identity>` **Virgil Cards**.
+    - identity type ('email' or any type created by user). You can find more information about :term:`confirmed <Confirmed Identity>` and :term:`unconfirmed <Unconfirmed Identity>` **Virgil Cards**.
     - scope (by default it is 'application', can be 'global'). You can find more information about :term:`global <Global Virgil Card>` and :term:`application <Application Virgil Card>` **Virgil Cards**.
 
 .. code-block:: javascript
@@ -238,7 +238,7 @@ To specify a different algorithm, pass one of the values of ``virgil.crypto.KeyP
 Import and Export Keys
 ~~~~~~~~~~~~~~~~~~~~~~
 
-All ``virgil.crypto`` api functions accept and return keys in an internal format. To get the raw key data as ``Buffer`` object use ``exportPrivateKey`` and ``exportPublicKey`` methods of ``virgil.crypto`` passing the appropriate internal key representation.
+All ``virgil.crypto`` API functions accept and return keys in an internal format. To get the raw key data as ``Buffer`` object use ``exportPrivateKey`` and ``exportPublicKey`` methods of ``virgil.crypto`` passing the appropriate internal key representation.
 
 To get the internal key representation out of the raw key data use ``importPrivateKey`` and ``importPublicKey`` respectively:
 
@@ -309,7 +309,7 @@ Generate a new Public/Private keypair and *data* to be signed.
     var crypto = virgil.crypto;
     var aliceKeys = crypto.generateKeys();
 
-    // The data to be signed with alice's Private key
+    // The data to be signed with Alice's Private key
     // Browsers
     var data = new virgil.Buffer("Hello Bob, How are you?");
 
