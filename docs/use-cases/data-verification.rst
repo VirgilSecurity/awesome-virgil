@@ -2,6 +2,8 @@
 Verify data
 #############
 
+.. note:: **Version 3** of SDK is used in the following code samples.
+
 Recipient wants to make sure that received data has been sent from a secure source and hasn’t been changed during transport.
 
 .. image:: ../images/VerifyUseCase.png

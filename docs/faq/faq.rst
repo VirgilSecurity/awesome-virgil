@@ -12,7 +12,7 @@ FAQ
 
 	Virgil consists of an open-source encryption library, which implements Cryptographic Message Syntax (CMS) and Elliptic Curve Integrated Encryption Scheme (ECIES) (including RSA schema), a Key Management API, and a cloud-based Key Management Service (Virgil Keys). The Virgil Keys Service consists of a public key service and a private key escrow service.   
 
-	See our Technical Specifications for the up-to-date list of programming languages and platforms supported by our library. Generally all modern platforms and programming languages are supported.
+	See our `Technical Specifications <https://virgilsecurity.com/about/specs>`_ for the up-to-date list of programming languages and platforms supported by our library. Generally all modern platforms and programming languages are supported.
 
 **If I send a message to a channel that contains many recipients does it mean that the message will be encrypted as many times as there are recipients in the channel? How does group chat work?**
 
@@ -24,11 +24,11 @@ FAQ
 
 	Most users are given 3 options:  
 
-	*Easy*: In this mode the Virgil Private Key API is used to store private keys associated with the user/app combo. Virgil stores key in encrypted (not hashed) format; however, we also maintain a hashed “password” that is used to decrypt the private Key Bundle. This mode is the least secure and requires end-users to trust Virgil. It also allows Virgil the ability to reset a user’s Key Bundle password.  
+	- *Easy*: In this mode the Virgil Private Key API is used to store private keys associated with the user/app combo. Virgil stores key in encrypted (not hashed) format; however, we also maintain a hashed “password” that is used to decrypt the private Key Bundle. This mode is the least secure and requires end-users to trust Virgil. It also allows Virgil the ability to reset a user’s Key Bundle password.  
 
-	*Normal*: End users are given an option to store an encrypted private Key Bundle for backup and device synchronization purposes. Virgil cannot reset this password and cannot recover the private key bundle should the user forget the string used to encrypt the bundle.  
+	- *Normal*: End users are given an option to store an encrypted private Key Bundle for backup and device synchronization purposes. Virgil cannot reset this password and cannot recover the private key bundle should the user forget the string used to encrypt the bundle.  
 
-	*Enterprise*: In this mode the developer runs their own Private Key Escrow instance or end-users manage their private keys manually. There is nothing stored by Virgil except the corresponding public key for each private key.
+	- *Enterprise*: In this mode the developer runs their own Private Key Escrow instance or end-users manage their private keys manually. There is nothing stored by Virgil except the corresponding public key for each private key.
 
 **How many public/private key pairs can each user have?**
 
@@ -50,9 +50,11 @@ FAQ
 
 **How is the user recovered after their private key is lost from a device?**
 
-	1. Use case: Web browser with no ability to store private keys between sessions. - The user would generate a new private key “per authenticated session” and re-register public key with Virgil Public Key Service. Old public and private keys would still be maintained using the Virgil Private Key storage API. This is the recommended, default behavior for the IP Messaging use case. - The user would retrieve the previously issued private key using the Virgil Private Key API. The key may be optionally encrypted using a passphrase or a passcode. The passcode can be delivered using two-factor authentication or be a part of a multi-factor authentication process. 
+	1. Use case: Web browser with no ability to store private keys between sessions. 
+	- The user would generate a new private key “per authenticated session” and re-register public key with Virgil Public Key Service. Old public and private keys would still be maintained using the Virgil Private Key storage API. This is the recommended, default behavior for the IP Messaging use case. - The user would retrieve the previously issued private key using the Virgil Private Key API. The key may be optionally encrypted using a passphrase or a passcode. The passcode can be delivered using two-factor authentication or be a part of a multi-factor authentication process. 
 
-	2. Use case: iOS or Android based mobile device. - The Virgil Private Key API allows developers to easily implement private key synchronization across multiple devices and/or provide a simple recovery mechanism for keys. This service can be run “offline” or behind company firewall.
+	2. Use case: iOS or Android based mobile device. 
+	- The Virgil Private Key API allows developers to easily implement private key synchronization across multiple devices and/or provide a simple recovery mechanism for keys. This service can be run “offline” or behind company firewall.
 
 **How are the user keys revoked?**
 

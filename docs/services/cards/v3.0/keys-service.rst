@@ -455,8 +455,7 @@ POST /virgil-card/actions/search/app
 
 Performs the global search for the applications' **Virgil Cards**.
 
-- the ``value`` request parameter is mandatory. It is possible to specify the wildcard(e.g. "com.virgilsecurity.*") for the last term of the value
-which allows searching for all the applications inside the organization
+- the ``value`` request parameter is mandatory. It is possible to specify the wildcard(e.g. "com.virgilsecurity.*") for the last term of the value which allows searching for all the applications inside the organization.
 
 **Request info**
 
@@ -626,7 +625,7 @@ Additional information about the error is returned as JSON-object like:
    20202 - The request sign header is invalid
    20203 - Public Key value is required in request body
    20204 - Public Key value in request body must be base64 encoded value
-   20205 - Public Key IDs in URL part and public key for the Virgil Card retrieved from **X-VIRGIL-REQUEST-SIGN-VIRGIL-CARD-ID** header must match
+   20205 - Public Key IDs in URL part and public key for the Virgil Card retrieved from X-VIRGIL-REQUEST-SIGN-VIRGIL-CARD-ID header must match
    20206 - The public key id in the request body is invalid
    20208 - Virgil card ids in URL and authentication header must match
    20300 - The Virgil application token is not specified or invalid

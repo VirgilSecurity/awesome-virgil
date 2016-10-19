@@ -407,7 +407,7 @@ This status is returned on request data errors
     30121 - Virgil Card custom data entry value length validation failed. It mustn_'t exceed 256 characters
     30122 - Identity validation token is invalid
     30123 - SCR signs list parameter is missing or is invalid
-    30126 - SCR sign item signer card id is irrelevant and doesn_'t match Virgil Card id or Application Id
+    30126 - SCR sign item signer card id is irrelevant and doesn't match Virgil Card id or Application Id
     30127 - SCR sign item signed digest is invalid for the Virgil Card public key
     30128 - SCR sign item signed digest is invalid for the application
     30131 - Virgil Card id specified in the request body must match the one passed in the URL

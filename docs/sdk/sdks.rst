@@ -14,6 +14,7 @@ Version 4 (latest)
    java-android/v4.0(latest)/java-android-sdk
    x/v4.0(latest)/objective-c-swift-sdk
    go/v4.0(latest)/go-sdk
+   javascript/v4.0(latest)/javascript-sdk
 
 Version 3
 ----------
@@ -22,7 +23,7 @@ Version 3
 
    net/v3.0/dot-net-csharp-sdk
    cpp/v3.0(latest)/c-cpp-sdk
-   javascript/v3.0(latest)/javascript-sdk
+   javascript/v3.0/javascript-sdk
    x/v3.0/objective-c-swift-sdk
    java-android/v3.2/java-android-sdk
    python/v3.0(latest)/python-sdk
