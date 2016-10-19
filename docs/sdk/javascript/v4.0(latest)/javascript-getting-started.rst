@@ -81,7 +81,8 @@ overwrite default URLs of Virgil Services
 Using Crypto
 ~~~~~~~~~~~~~~~~~~~
 
-The ``crypto`` object available through ``virgil`` namespace provides implementation of cryptographic operations such as hashing, signature generation and verification as well as encryption and decryption. It is initialized automatically when SDK is loaded. All api functions of ``virgil.crypto`` accept and return byte arrays as Node.js ``Buffer``s. For browsers an implementation of ``Buffer`` module is provided by `this library <https://github.com/feross/buffer>`__ and is available through ``virgil`` namespace ``Buffer`` property.
+The ``crypto`` object available through ``virgil`` namespace provides implementation of cryptographic operations such as hashing, signature generation and verification as well as encryption and decryption. It is initialized automatically when SDK is loaded. All api functions of ``virgil.crypto`` accept and return byte arrays as Node.js ``Buffer``s. 
+For browsers an implementation of ``Buffer`` module is provided by `this library <https://github.com/feross/buffer>`__ and is available through ``virgil`` namespace ``Buffer`` property.
 
 .. code-block:: javascript
     :linenos:
