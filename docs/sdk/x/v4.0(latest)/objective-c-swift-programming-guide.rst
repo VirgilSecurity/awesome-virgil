@@ -224,6 +224,7 @@ Objective-C
     self.client = [[VSSClient alloc] initWithServiceConfig:config];
 
 Swift
+
 .. code-block:: swift
     :linenos:
 
@@ -559,7 +560,7 @@ Objective-C
 
     NSError *error;
     BOOL isVerified = [self.crypto verifyStream:strean withSignature:signature usingSignerPublicKey:aliceKeys.publicKey error:&error];
-    
+
 Swift
      
 .. code-block:: swift
