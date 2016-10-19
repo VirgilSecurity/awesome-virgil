@@ -6,6 +6,7 @@ Working with Virgil Cards:
 --------------------------
 
 -  `Creating a Virgil Card <objective-c-swift-programming-guide.html#creating-a-virgil-card>`__
+-  `Get a Virgil Card <objective-c-swift-programming-guide.html#get-a-virgil-card>`__
 -  `Search for Virgil Cards <objective-c-swift-programming-guide.html#search-for-virgil-cards>`__
 -  `Validating a Virgil Card <objective-c-swift-programming-guide.html#validating-a-virgil-card>`__
 -  `Revoking a Virgil Card <objective-c-swift-programming-guide.html#revoking-a-virgil-card>`__

@@ -97,9 +97,6 @@ Objective-C
 .. code-block:: objectivec
     :linenos:
 
-    @import VirgilCrypto;
-    @import VirgilSDK;
-
     //...
     @property (nonatomic) VSSClient * __nonnull client;
     //...
@@ -126,9 +123,6 @@ Objective-C
 
 .. code-block:: objectivec
     :linenos:
-
-    @import VirgilCrypto;
-    @import VirgilSDK;
 
     //...
     @property (nonatomic) VSSCrypto * __nonnull crypto;
