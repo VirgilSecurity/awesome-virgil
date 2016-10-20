@@ -184,11 +184,9 @@ Crypto Library allows to encrypt the data for several types of recipient's user 
 Using Password
 ==================
 
-> Initial data must be passed as a String or `Buffer <https://github.com/feross/buffer>`_.
-
-> Encrypted data will be returned as a `Buffer <https://github.com/feross/buffer>`_.
-
-> The `Buffer <https://github.com/feross/buffer>`_ constructor is available by ```virgilCrypto.Buffer```
+- Initial data must be passed as a String or `Buffer <https://github.com/feross/buffer>`_.
+- Encrypted data will be returned as a `Buffer <https://github.com/feross/buffer>`_.
+- The `Buffer <https://github.com/feross/buffer>`_ constructor is available by ```virgilCrypto.Buffer```
 
 .. code-block:: javascript
   :linenos:
@@ -226,11 +224,9 @@ Async (using web workers) Using Password
 Using Key
 =========
 
-> Initial data must be passed as a String or `Buffer <https://github.com/feross/buffer>`_.
-
-> Encrypted data will be returned as a `Buffer <https://github.com/feross/buffer>`_.
-
-> The `Buffer <https://github.com/feross/buffer>`_ constructor is available by ```virgilCrypto.Buffer```
+- Initial data must be passed as a String or `Buffer <https://github.com/feross/buffer>`_.
+- Encrypted data will be returned as a `Buffer <https://github.com/feross/buffer>`_.
+- The `Buffer <https://github.com/feross/buffer>`_ constructor is available by ```virgilCrypto.Buffer```
 
 Using Key with Password
 ===========================
@@ -397,11 +393,9 @@ Cryptographic digital signatures use public key algorithms to provide data integ
 
 The following example applies a digital signature to a public key identifier.
 
-> Initial data must be passed as a String or `Buffer <https://github.com/feross/buffer>`_.
-
-> Encrypted data will be returned as a `Buffer <https://github.com/feross/buffer>`_.
-
-> The `Buffer <https://github.com/feross/buffer>`_ constructor is available by ```virgilCrypto.Buffer```
+- Initial data must be passed as a String or `Buffer <https://github.com/feross/buffer>`_.
+- Encrypted data will be returned as a `Buffer <https://github.com/feross/buffer>`_.
+- The `Buffer <https://github.com/feross/buffer>`_ constructor is available by ```virgilCrypto.Buffer```
 
 With Password
 ==================
