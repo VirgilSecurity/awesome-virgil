@@ -119,8 +119,10 @@ Step 1 - Choose target language
 | NodeJS     | Unix, Linux, OS X, Windows\*   |                         | LANG=nodejs        |               | `CDN <https://cdn.virgilsecurity.com/virgil-crypto/nodejs/>`__   |
 +------------+--------------------------------+-------------------------+--------------------+---------------+------------------------------------------------------------------+
 
-    \* External dependencies for Windows binaries: - msvcp140.dll -
-    vcruntime140.dll
+    \* External dependencies for Windows binaries: 
+    
+    - msvcp140.dll 
+    - vcruntime140.dll
 
     These dependencies can be installed as a part of `Visual C++ Redistributable for Visual Studio 2015 <https://www.microsoft.com/en-us/download/details.aspx?id=48145>`__
 
@@ -128,8 +130,8 @@ Step 2 - Configure environment
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 1. Open Terminal.
-2. Check that all the tools which are listed in the `Build prerequisites`__ are available there.
-3. Set environment variables according to the table above in `Step 1 - Choose target language`__.
+2. Check that all the tools which are listed in the `Build prerequisites`_ are available there.
+3. Set environment variables according to the table above in `Step 1 - Choose target language`_.
 
 Step 3 - Get source code
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -141,7 +143,7 @@ Step 3 - Get source code
 Step 4 - Build
 ~~~~~~~~~~~~~~
 
-Replace ``{{LANG}}`` placeholder to the corresponding value from the table above in `Step 1 - Choose target language`__.
+Replace ``{{LANG}}`` placeholder to the corresponding value from the table above in `Step 1 - Choose target language`_.
 
 .. code:: shell
 
@@ -218,14 +220,14 @@ Step 2 - Configure environment
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 1. Open Terminal.
-2. Check that all tools which are listed in the `Build prerequisites`__ are available there.
+2. Check that all tools which are listed in the `Build prerequisites`_ are available there.
 
 -  for Windows compiler should be MSVC;
 -  for OS X build toolchain should be Xcode Toolchain.
 
-1. Check that all dependencies from the table above in `Step 1 - Choose target language and platform`__ are
+1. Check that all dependencies from the table above in `Step 1 - Choose target language and platform`_ are
    accessible.
-2. Set environment variables according to the table above in `Step 1 - Choose target language and platform`__.
+2. Set environment variables according to the table above in `Step 1 - Choose target language and platform`_.
 
 Step 3 - Get source code
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -237,7 +239,7 @@ Step 3 - Get source code
 Step 4 - Build
 ~~~~~~~~~~~~~~
 
-Replace ``{{TARGET}}`` placeholder to the corresponding value from the table above in `Step 1 - Choose target language and platform`__.
+Replace ``{{TARGET}}`` placeholder to the corresponding value from the table above in `Step 1 - Choose target language and platform`_.
 
 Unix-like OS:
 
