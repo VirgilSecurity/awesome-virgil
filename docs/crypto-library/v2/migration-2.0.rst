@@ -5,10 +5,10 @@ Migrating from Virgil Crypto 1.8 to Virgil Crypto 2.0
 -  `X25519 and Ed25519 <#x25519-and-ed25519>`__
 -  `New functions <#new-functions>`__
 -  `Changes <#changes>`__
--  `Migration to C++11 <#migration-to-c11>`__
+-  `Migration to C++11 <#migration-to-c++11>`__
 -  `New error handling model <#new-error-handling-model>`__
 -  `Named constructors gone <#named-constructors-gone>`__
--  `Unimplemented elliptic curves was dropped <#unimplemented-elliptic-curves-was-dropped>`__
+-  `Unimplemented elliptic curves were dropped <#unimplemented-elliptic-curves-were-dropped>`__
 -  `Dropped "Default" key pair type <#dropped-default-key-pair-type>`__
 -  `VirgilChunkCipher class API was totally redesigned <#virgilchunkcipher-class-api-was-totally-redesigned>`__
 -  `ContentInfo is embedded to the cryptogram by default <#contentinfo-is-embedded-to-the-cryptogram-by-default>`__
