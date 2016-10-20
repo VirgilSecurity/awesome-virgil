@@ -127,8 +127,8 @@ Step 2 - Configure environment
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 1. Open Terminal.
-2. Check that all the tools which are listed in the `build prerequisites <#build-prerequisites>`__ are available there.
-3. Set environment variables according to the `table above <Step 1 - Choose target language>`__.
+2. Check that all the tools which are listed in the `Build prerequisites`__ are available there.
+3. Set environment variables according to the table above in `Step 1 - Choose target language`__.
 
 Step 3 - Get source code
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -140,7 +140,7 @@ Step 3 - Get source code
 Step 4 - Build
 ~~~~~~~~~~~~~~
 
-Replace ``{{LANG}}`` placeholder to the corresponding value from the `table above <Step 1 - Choose target language>`__.
+Replace ``{{LANG}}`` placeholder to the corresponding value from the table above in `Step 1 - Choose target language`__.
 
 .. code:: shell
 
@@ -217,14 +217,13 @@ Step 2 - Configure environment
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 1. Open Terminal.
-2. Check that all tools which are listed in the `build prerequisites <#build-prerequisites>`__ are available there.
+2. Check that all tools which are listed in the `Build prerequisites`__ are available there.
 
   -  for Windows compiler should be MSVC;
   -  for OS X build toolchain should be Xcode Toolchain.
 
-3. Check that all dependencies from the `table above <Step 1 - Choose target language and platform>`__ are
-   accessible.
-4. Set environment variables according to the `table above <Step 1 - Choose target language and platform>`__.
+3. Check that all dependencies from the table above in `Step 1 - Choose target language and platform`__ are accessible.
+4. Set environment variables according to the table above in `Step 1 - Choose target language and platform`__.
 
 Step 3 - Get source code
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -236,7 +235,7 @@ Step 3 - Get source code
 Step 4 - Build
 ~~~~~~~~~~~~~~
 
-Replace ``{{TARGET}}`` placeholder to the corresponding value from the `table above <Step 1 - Choose target language and platform>`__.
+Replace ``{{TARGET}}`` placeholder to the corresponding value from the table above in `Step 1 - Choose target language and platform`__.
 
 Unix-like OS:
 
