@@ -99,13 +99,15 @@ Although VirgilFoundation is using Objective-C as its primary language it might 
 - Name it something like *BridgingHeader.h*
 - Put there the following line:
 
-.. code:: objective-c
+.. code-block:: swift
+    :linenos:
 
 	@import VirgilFoundation;
 
 Or use Virgil SDK with Virgil Crypto (recommended):
 
-.. code::
+.. code-block:: swift
+    :linenos:
 
 	@import VirgilFoundation;
 	@import VirgilSDK;
@@ -128,7 +130,8 @@ VSSKeyPair instance should be used to generate a pair of keys. It is possible to
 
 **Objective-C**
 
-.. code:: objective-c
+.. code-block:: objective-c
+    :linenos:
 
 	//...
 	VSSKeyPair *keyPair = [[VSSKeyPair alloc] 
@@ -143,7 +146,8 @@ VSSKeyPair instance should be used to generate a pair of keys. It is possible to
 
 **Swift**
 
-.. code:: swift
+.. code-block:: swift
+    :linenos:
 
 	//...
 	let keyPair = VSSKeyPair(password:<#Password or nil#>)
@@ -165,7 +169,8 @@ Key-based encryption
 
 **Objective-C**
 
-.. code:: objective-c
+.. code-block:: objective-c
+    :linenos:
 
 	//...
 	// Assuming that we have some initial string message.
@@ -186,7 +191,8 @@ Key-based encryption
 
 **Swift**
 
-.. code:: swift
+.. code-block:: swift
+    :linenos:
 
 	//...
 	// Assuming that we have some initial string message.
@@ -210,7 +216,8 @@ Key-based decryption
 
 **Objective-C**
 
-.. code:: objective-c
+.. code-block:: objective-c
+    :linenos:
 
 	//...
 	// Assuming that we have received some key-based encrypted data.
@@ -229,7 +236,8 @@ Key-based decryption
 
 **Swift**
 
-.. code:: swift
+.. code-block:: swift
+    :linenos:
 
 	//...
 	// Assuming that we have received some key-based encrypted data.
@@ -251,7 +259,8 @@ Password-based encryption
 
 **Objective-C**
 
-.. code:: objective-c
+.. code-block:: objective-c
+    :linenos:
 
 	//...
 	// Assuming that we have some initial string message.
@@ -272,7 +281,8 @@ Password-based encryption
 
 **Swift**
 
-.. code:: swift
+.. code-block:: swift
+    :linenos:
 
 	//...
 	// Assuming that we have some initial string message.
@@ -294,7 +304,8 @@ Password-based decryption
 
 **Objective-C**
 
-.. code:: objective-c
+.. code-block:: objective-c
+    :linenos:
 
 	//...
 	// Assuming that we have received some password-based encrypted data.
@@ -311,7 +322,8 @@ Password-based decryption
 
 **Swift**
 
-.. code:: swift
+.. code-block:: swift
+    :linenos:
 
 	//...
 	// Assuming that we have received some password-based encrypted data.
@@ -338,7 +350,8 @@ Compose a signature
 
 **Objective-C**
 
-.. code:: objective-c
+.. code-block:: objective-c
+    :linenos:
 
 	//...
 	#import <VirgilFoundation/VirgilFoundation.h>
@@ -359,7 +372,8 @@ Compose a signature
 
 **Swift**
 
-.. code:: swift
+.. code-block:: swift
+    :linenos:
 
 	//...
 	// Assuming that we have some initial string message.
@@ -383,7 +397,8 @@ To verify some signature it is necessary to have a public key of a user whose si
 
 **Objective-C**
 
-.. code:: objective-c
+.. code-block:: objective-c
+    :linenos:
 
 	//...
 	// Assuming that we have the public key of a person whose signature 
@@ -402,7 +417,8 @@ To verify some signature it is necessary to have a public key of a user whose si
 
 **Swift**
 
-.. code:: swift
+.. code-block:: swift
+    :linenos:
 
 	//...
 	// Assuming that we have the public key of a person whose signature 

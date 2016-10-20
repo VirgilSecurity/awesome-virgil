@@ -53,6 +53,7 @@ Generate Keys
 The following code example creates a new public/private key pair.
 
 .. code-block:: java
+  :linenos:
 
   KeyPair keyPair = KeyPairGenerator.generate();
   
@@ -102,6 +103,7 @@ In the example below you can see a simply generated public/private keypair witho
 You can also generate a key pair with an encrypted private key just using one of the overloaded constructors.
 
 .. code-block:: java
+  :linenos:
 
   String password = "MyPwd";
   KeyPair keyPair = KeyPairGenerator.generate(password);
@@ -141,6 +143,7 @@ Here is what an encrypted private key looks like:
 Generate keys with specific type
 
 .. code-block:: java
+  :linenos:
 
   KeyPair keyPair = KeyPairGenerator.generate(KeyType.EC_SECP521R1);
 
@@ -166,8 +169,6 @@ Type_EC_SECP224K1   224-bits "Koblitz" curve
 Type_EC_SECP256K1   256-bits "Koblitz" curve       
 ================== ===============================
 
-See a working example `here... <https://github.com/VirgilSecurity/virgil-sdk-java-android/blob/master/samples/crypto/src/main/java/GenerateKeyPairs.java>`_
-
 ******************
 Encrypt Data
 ******************
@@ -181,6 +182,7 @@ Crypto Library allows to encrypt the data for several types of recipient's user 
 Encrypt the text with a password:
 
 .. code-block:: java
+  :linenos:
 
   String text = "Encrypt me, Please!!!";
   String password = "TafaSuf4";
@@ -190,6 +192,7 @@ Encrypt the text with a password:
 Encrypt the text with a public key:
 
 .. code-block:: java
+  :linenos:
 
   String text = "Encrypt me, Please!!!";
   KeyPair keyPair = KeyPairGenerator.generate();
@@ -197,11 +200,10 @@ Encrypt the text with a public key:
   
   String encryptedText = CryptoHelper.encrypt(text, "RecipientId", publicKey);
 
-See a working example `here... <https://github.com/VirgilSecurity/virgil-sdk-java-android/blob/master/samples/crypto/src/main/java/EncryptionWithPublicKey.java>`_
-
 And of course you can mix these types as well, see how it works in the example below:
 
 .. code-block:: java
+  :linenos:
 
   String text = "Encrypt me, Please!!!";
   
@@ -220,8 +222,6 @@ And of course you can mix these types as well, see how it works in the example b
     // Log exception
   }
 
-See a working example `here... <https://github.com/VirgilSecurity/virgil-sdk-java-android/blob/master/samples/crypto/src/main/java/Encryption.java>`_
-
 *********
 Sign Data
 *********
@@ -231,12 +231,11 @@ Cryptographic digital signatures use public key algorithms to provide data integ
 The following example applies a digital signature to a public key identifier.
 
 .. code-block:: java
+  :linenos:
 
   String text = "Sign me, Please!!!";
   KeyPair keyPair = KeyPairGenerator.generate();
   String signature = CryptoHelper.sign(text, keyPair.getPrivate());
-
-See a working example `here... <https://github.com/VirgilSecurity/virgil-sdk-java-android/blob/master/samples/crypto/src/main/java/SignAndVerifyText.java>`_
 
 ************
 Verify Data
@@ -251,11 +250,10 @@ To verify that the data was signed by a particular party, you need the following
 The following example verifies a digital signature which was signed by the sender.
 
 .. code-block:: java
+  :linenos:
 
   var isValid = CryptoHelper.Verify(originalText, signature, 
          keyPair.PublicKey());
-
-See a working example `here... <https://github.com/VirgilSecurity/virgil-sdk-java-android/blob/master/samples/crypto/src/main/java/SignAndVerifyText.java>`_
 
 ******************
 Decrypt Data
@@ -264,13 +262,13 @@ Decrypt Data
 The following example illustrates decryption of the encrypted data with a recipient's private key.
 
 .. code-block:: java
+  :linenos:
 
   boolean isValid = CryptoHelper.verify(text, signature, keyPair.getPublic());
 
 Use a password to decrypt the data.
 
 .. code-block:: java
+  :linenos:
 
   String decryptedText = CryptoHelper.decrypt(encryptedText, password);
-
-See a working example `here... <https://github.com/VirgilSecurity/virgil-sdk-java-android/blob/master/samples/crypto/src/main/java/EncryptionWithPassword.java>`_

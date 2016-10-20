@@ -15,6 +15,7 @@ Generate Keys
 The following code example creates a new public/private key pair.
 
 .. code-block:: cpp
+  :linenos:
 
   VirgilKeyPair newKeyPair;
   VirgilByteArray publicKey = newKeyPair.publicKey();
@@ -41,7 +42,8 @@ In the example below you can see a simply generated public/private keypair witho
 
 You can also generate a key pair with an encrypted private key just using one of the overloaded constructors.
 
-.. code-block::  cpp
+.. code-block:: cpp
+  :linenos:
 
   VirgilByteArray privateKeyPassword = str2bytes("TafaSuf4")
   VirgilKeyPair keyPair(privateKeyPassword);
@@ -65,6 +67,7 @@ Here is what an encrypted private key looks like:
 Generate keys with specific type
 
 .. code-block:: cpp
+  :linenos:
 
   VirgilKeyPair keyPair(VirgilKeyPair::Type_EC_SECP256K1);
 
@@ -122,6 +125,7 @@ Crypto Library allows to encrypt the data for several types of recipient's user 
 Encrypt the text with a password:
 
 .. code-block:: cpp
+  :linenos:
 
   VirgilStreamCipher cipher;
   VirgilByteArray recipientPwd = str2bytes("strong password");
@@ -133,6 +137,7 @@ See a working example `here... <https://github.com/VirgilSecurity/virgil-sdk-cpp
 Encrypt the text with a public key:
 
 .. code-block:: cpp
+  :linenos:
 
   cipher.addKeyRecipient(str2bytes(recipientCard.getId()), 
   		recipientCard.getPublicKey().getKey());
@@ -143,6 +148,7 @@ See a working example `here... <https://github.com/VirgilSecurity/virgil-sdk-cpp
 And of course you can mix these types as well, see how it works in the example below:
 
 .. code-block:: cpp
+  :linenos:
 
   cipher.addPasswordRecipient(recipientPwd);
   cipher.addKeyRecipient(str2bytes(recipientCard.getId()), 
@@ -160,6 +166,7 @@ Cryptographic digital signatures use public key algorithms to provide data integ
 The following example applies a digital signature to a public key identifier.
 
 .. code-block:: cpp
+  :linenos:
 
   VirgilStreamSigner streamSigner;
   VirgilByteArray streamSign = streamSigner.sign(dataSource, privateKey, 
@@ -180,6 +187,7 @@ To verify that the data was signed by a particular party, you need the following
 The following example verifies a digital signature which was signed by the sender.
 
 .. code-block:: cpp
+  :linenos:
 
   bool verified = signer.verify(dataSource, sign, recipientPublicKey.getKey());
 
@@ -192,6 +200,7 @@ Decrypt Data
 Use a password to decrypt the data.
 
 .. code-block:: cpp
+  :linenos:
 
   cipher.decryptWithPassword(dataSource, dataSink, recipientPwd);
 
@@ -200,6 +209,7 @@ See a working example `here... <https://github.com/VirgilSecurity/virgil-sdk-cpp
 The following example illustrates decryption of the encrypted data with a recipient's private key.
 
 .. code-block:: cpp
+  :linenos:
 
   cipher.decryptWithKey(dataSource, dataSink, str2bytes(recipientCard.getId()),
   		 privateKey, privateKeyPassword);

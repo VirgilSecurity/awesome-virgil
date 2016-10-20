@@ -83,9 +83,10 @@ Generate Keys
 The following code example creates a new public/private key pair.
 
 .. code-block:: javascript
+  :linenos:
 
-    var keyPair = virgilCrypto.generateKeyPair();
-    console.log('Key pair without password: ', keyPair);
+  var keyPair = virgilCrypto.generateKeyPair();
+  console.log('Key pair without password: ', keyPair);
 
 You can also generate a key pair with an encrypted private key just using one of the overloaded constructors.
 
@@ -120,22 +121,22 @@ Type_EC_SECP256K1   256-bits "Koblitz" curve
 ================== ===============================
 
 .. code-block:: javascript
+  :linenos:
 
-    var keyPairRsa2048 = virgilCrypto.generateKeyPair(
-                        virgilCrypto.KeysTypesEnum.RSA_2048);
-    console.log('Key pair RSA_2048 without password: ', keyPairRsa2048);
+  var keyPairRsa2048 = virgilCrypto.generateKeyPair(
+                      virgilCrypto.KeysTypesEnum.RSA_2048);
+  console.log('Key pair RSA_2048 without password: ', keyPairRsa2048);
     
-    var KEY_PASSWORD = 'password';
-    var keyPairWithPassword = virgilCrypto.generateKeyPair(KEY_PASSWORD);
-    console.log('Key pair with password: ', keyPairWithPassword);
-    
-    
-    var KEY_PASSWORD = 'password';
-    var keyPairWithPasswordAndSpecificType = virgilCrypto.generateKeyPair(
-                                KEY_PASSWORD, 
-                                virgilCrypto.KeysTypesEnum.RSA_2048);
-    console.log('Key pair RSA_2048 with password: ', 
-            keyPairWithPasswordAndSpecificType);
+  var KEY_PASSWORD = 'password';
+  var keyPairWithPassword = virgilCrypto.generateKeyPair(KEY_PASSWORD);
+  console.log('Key pair with password: ', keyPairWithPassword);
+      
+  var KEY_PASSWORD = 'password';
+  var keyPairWithPasswordAndSpecificType = virgilCrypto.generateKeyPair(
+                              KEY_PASSWORD, 
+                              virgilCrypto.KeysTypesEnum.RSA_2048);
+  console.log('Key pair RSA_2048 with password: ', 
+          keyPairWithPasswordAndSpecificType);
 
 In the example below you can see a simply generated public/private keypair without a password.
 
@@ -190,15 +191,16 @@ Using Password
 > The `Buffer <https://github.com/feross/buffer>`_ constructor is available by ```virgilCrypto.Buffer```
 
 .. code-block:: javascript
+  :linenos:
 
-    var INITIAL_DATA = 'data to be encrypted';
-    var PASSWORD = 'password';
+  var INITIAL_DATA = 'data to be encrypted';
+  var PASSWORD = 'password';
     
-    var encryptedData = virgilCrypto.encrypt(INITIAL_DATA, PASSWORD);
-    var decryptedData = virgilCrypto.decrypt(encryptedData, PASSWORD);
+  var encryptedData = virgilCrypto.encrypt(INITIAL_DATA, PASSWORD);
+  var decryptedData = virgilCrypto.decrypt(encryptedData, PASSWORD);
     
-    console.log('Encrypted data: ' + encryptedData);
-    console.log('Decrypted data: ' + decryptedData.toString());
+  console.log('Encrypted data: ' + encryptedData);
+  console.log('Decrypted data: ' + decryptedData.toString());
 
 Async (using web workers) Using Password
 =============================================
@@ -206,19 +208,20 @@ Async (using web workers) Using Password
 .. note :: Only for browsers.
 
 .. code-block:: javascript
+  :linenos:
 
-    var INITIAL_DATA = 'data to be encrypted';
-    var PASSWORD = 'password';
+  var INITIAL_DATA = 'data to be encrypted';
+  var PASSWORD = 'password';
     
-    virgilCrypto.encryptAsync(INITIAL_DATA, PASSWORD)
-      .then(function(encryptedData) {
-        console.log('Encrypted data: ' + encryptedData);
+  virgilCrypto.encryptAsync(INITIAL_DATA, PASSWORD)
+    .then(function(encryptedData) {
+      console.log('Encrypted data: ' + encryptedData);
     
-        virgilCrypto.decryptAsync(encryptedData, PASSWORD)
-          .then(function(decryptedData) {
-            console.log('Decrypted data: ' + decryptedData.toString());
-          });
-      });
+      virgilCrypto.decryptAsync(encryptedData, PASSWORD)
+        .then(function(decryptedData) {
+          console.log('Decrypted data: ' + decryptedData.toString());
+        });
+    });
 
 Using Key
 =========
@@ -233,46 +236,48 @@ Using Key with Password
 ===========================
 
 .. code-block:: javascript
+  :linenos:
 
-    var KEY_PASSWORD = 'password';
-    var INITIAL_DATA = 'data to be encrypted';
-    var RECIPIENT_ID = '<SOME_RECIPIENT_ID>';
+  var KEY_PASSWORD = 'password';
+  var INITIAL_DATA = 'data to be encrypted';
+  var RECIPIENT_ID = '<SOME_RECIPIENT_ID>';
     
-    var keyPair = virgilCrypto.generateKeyPair(KEY_PASSWORD);
-    var encryptedData = virgilCrypto.encrypt(
-                                         INITIAL_DATA, 
-                                         RECIPIENT_ID, 
-                                         keyPair.publicKey);
-    var decryptedData = virgilCrypto.decrypt(
-                                        encryptedData, 
-                                        RECIPIENT_ID, 
-                                        keyPair.privateKey, 
-                                        KEY_PASSWORD);
+  var keyPair = virgilCrypto.generateKeyPair(KEY_PASSWORD);
+  var encryptedData = virgilCrypto.encrypt(
+                                       INITIAL_DATA, 
+                                       RECIPIENT_ID, 
+                                       keyPair.publicKey);
+  var decryptedData = virgilCrypto.decrypt(
+                                      encryptedData, 
+                                      RECIPIENT_ID, 
+                                      keyPair.privateKey, 
+                                      KEY_PASSWORD);
     
-    console.log('Encrypted data: ' + encryptedData);
-    console.log('Decrypted data: ' + decryptedData.toString());
+  console.log('Encrypted data: ' + encryptedData);
+  console.log('Decrypted data: ' + decryptedData.toString());
 
 Using Key with Password for Multiple Recipients
 ======================================================
 
 .. code-block:: javascript
+  :linenos:
 
-    var KEY_PASSWORD = 'password';
-    var INITIAL_DATA = 'data to be encrypted';
-    var RECIPIENT_ID = '<SOME_RECIPIENT_ID>';
+  var KEY_PASSWORD = 'password';
+  var INITIAL_DATA = 'data to be encrypted';
+  var RECIPIENT_ID = '<SOME_RECIPIENT_ID>';
     
-    var keyPair = virgilCrypto.generateKeyPair(KEY_PASSWORD);
-    var recipientsList = [{ recipientId: RECIPIENT_ID, 
-                     publicKey: keyPair.publicKey }];
-    var encryptedData = virgilCrypto.encrypt(INITIAL_DATA, recipientsList);
-    var decryptedData = virgilCrypto.decrypt(
-                                     encryptedData, 
-                                     RECIPIENT_ID, 
-                                     keyPair.privateKey, 
-                                     KEY_PASSWORD);
+  var keyPair = virgilCrypto.generateKeyPair(KEY_PASSWORD);
+  var recipientsList = [{ recipientId: RECIPIENT_ID, 
+                   publicKey: keyPair.publicKey }];
+  var encryptedData = virgilCrypto.encrypt(INITIAL_DATA, recipientsList);
+  var decryptedData = virgilCrypto.decrypt(
+                                   encryptedData, 
+                                   RECIPIENT_ID, 
+                                   keyPair.privateKey, 
+                                   KEY_PASSWORD);
     
-    console.log('Encrypted data: ' + encryptedData);
-    console.log('Decrypted data: ' + decryptedData.toString());
+  console.log('Encrypted data: ' + encryptedData);
+  console.log('Decrypted data: ' + decryptedData.toString());
 
 Async (using web workers) Using Key with Password
 ======================================================
@@ -280,27 +285,28 @@ Async (using web workers) Using Key with Password
 .. note :: Only for browsers.
 
 .. code-block:: javascript
+  :linenos:
 
-    var KEY_PASSWORD = 'password';
-    var INITIAL_DATA = 'data to be encrypted';
-    var RECIPIENT_ID = '<SOME_RECIPIENT_ID>';
-    
-    virgilCrypto.generateKeyPairAsync(KEY_PASSWORD)
-      .then(function(keyPair) {
-        virgilCrypto.encryptAsync(INITIAL_DATA, RECIPIENT_ID, keyPair.publicKey)
-          .then(function(encryptedData) {
-            console.log('Encrypted data: ' + encryptedData);
-    
-            virgilCrypto.decryptAsync(
-                        encryptedData, 
-                        RECIPIENT_ID, 
-                        keyPair.privateKey, 
-                        KEY_PASSWORD)
-              .then(function(decryptedData) {
-                console.log('Decrypted data: ' + decryptedData.toString());
-              });
-          });
-      });
+  var KEY_PASSWORD = 'password';
+  var INITIAL_DATA = 'data to be encrypted';
+  var RECIPIENT_ID = '<SOME_RECIPIENT_ID>';
+  
+  virgilCrypto.generateKeyPairAsync(KEY_PASSWORD)
+    .then(function(keyPair) {
+      virgilCrypto.encryptAsync(INITIAL_DATA, RECIPIENT_ID, keyPair.publicKey)
+        .then(function(encryptedData) {
+          console.log('Encrypted data: ' + encryptedData);
+  
+          virgilCrypto.decryptAsync(
+                      encryptedData, 
+                      RECIPIENT_ID, 
+                      keyPair.privateKey, 
+                      KEY_PASSWORD)
+            .then(function(decryptedData) {
+              console.log('Decrypted data: ' + decryptedData.toString());
+            });
+        });
+    });
 
 Async (using web workers) Using Key with Password for Multiple Recipients
 =================================================================================
@@ -308,51 +314,53 @@ Async (using web workers) Using Key with Password for Multiple Recipients
 .. note :: Only for browsers.
 
 .. code-block:: javascript
+  :linenos:
 
-    var KEY_PASSWORD = 'password';
-    var INITIAL_DATA = 'data to be encrypted';
-    var RECIPIENT_ID = '<SOME_RECIPIENT_ID>';
-    
-    virgilCrypto.generateKeyPairAsync(KEY_PASSWORD)
-      .then(function(keyPair) {
-        var recipientsList = [{ recipientId: RECIPIENT_ID, 
-                                publicKey: keyPair.publicKey }];
-    
-        virgilCrypto.encryptAsync(INITIAL_DATA, recipientsList)
-          .then(function(encryptedData) {
-            console.log('Encrypted data: ' + encryptedData);
-    
-            virgilCrypto.decryptAsync(
-                        encryptedData, 
-                        RECIPIENT_ID, 
-                        keyPair.privateKey, 
-                        KEY_PASSWORD)
-              .then(function(decryptedData) {
-                console.log('Decrypted data: ' + decryptedData.toString());
-              });
-          });
-      });
+  var KEY_PASSWORD = 'password';
+  var INITIAL_DATA = 'data to be encrypted';
+  var RECIPIENT_ID = '<SOME_RECIPIENT_ID>';
+  
+  virgilCrypto.generateKeyPairAsync(KEY_PASSWORD)
+    .then(function(keyPair) {
+      var recipientsList = [{ recipientId: RECIPIENT_ID, 
+                              publicKey: keyPair.publicKey }];
+  
+      virgilCrypto.encryptAsync(INITIAL_DATA, recipientsList)
+        .then(function(encryptedData) {
+          console.log('Encrypted data: ' + encryptedData);
+  
+          virgilCrypto.decryptAsync(
+                      encryptedData, 
+                      RECIPIENT_ID, 
+                      keyPair.privateKey, 
+                      KEY_PASSWORD)
+            .then(function(decryptedData) {
+              console.log('Decrypted data: ' + decryptedData.toString());
+            });
+        });
+    });
 
 Using Key without Password
 ===========================
 
 .. code-block:: javascript
+  :linenos:
 
-    var INITIAL_DATA = 'data to be encrypted';
-    var RECIPIENT_ID = '<SOME_RECIPIENT_ID>';
+  var INITIAL_DATA = 'data to be encrypted';
+  var RECIPIENT_ID = '<SOME_RECIPIENT_ID>';
     
-    var keyPair = virgilCrypto.generateKeyPair();
-    var encryptedData = virgilCrypto.encrypt(
-                                     INITIAL_DATA, 
-                                     RECIPIENT_ID, 
-                                     keyPair.publicKey);
-    var decryptedData = virgilCrypto.decrypt(
-                                     encryptedData, 
-                                     RECIPIENT_ID, 
-                                     keyPair.privateKey);
-    
-    console.log('Encrypted data: ' + encryptedData);
-    console.log('Decrypted data: ' + decryptedData.toString());
+  var keyPair = virgilCrypto.generateKeyPair();
+  var encryptedData = virgilCrypto.encrypt(
+                                   INITIAL_DATA, 
+                                   RECIPIENT_ID, 
+                                   keyPair.publicKey);
+  var decryptedData = virgilCrypto.decrypt(
+                                   encryptedData, 
+                                   RECIPIENT_ID, 
+                                   keyPair.privateKey);
+  
+  console.log('Encrypted data: ' + encryptedData);
+  console.log('Decrypted data: ' + decryptedData.toString());
 
 Async (using web workers) Using Key without Password
 ======================================================
@@ -360,25 +368,26 @@ Async (using web workers) Using Key without Password
 .. note :: Only for browsers.
 
 .. code-block:: javascript
+  :linenos:
 
-    var INITIAL_DATA = 'data to be encrypted';
-    var RECIPIENT_ID = '<SOME_RECIPIENT_ID>';
-    
-    virgilCrypto.generateKeyPairAsync()
-      .then(function(keyPair) {
-        virgilCrypto.encryptAsync(INITIAL_DATA, RECIPIENT_ID, keyPair.publicKey)
-          .then(function(encryptedData) {
-            console.log('Encrypted data: ' + encryptedData);
-    
-            virgilCrypto.decryptAsync(
-                       encryptedData, 
-                       RECIPIENT_ID, 
-                       keyPair.privateKey)
-              .then(function(decryptedData) {
-                console.log('Decrypted data: ' + decryptedData.toString());
-              });
-          });
-      });
+  var INITIAL_DATA = 'data to be encrypted';
+  var RECIPIENT_ID = '<SOME_RECIPIENT_ID>';
+  
+  virgilCrypto.generateKeyPairAsync()
+    .then(function(keyPair) {
+      virgilCrypto.encryptAsync(INITIAL_DATA, RECIPIENT_ID, keyPair.publicKey)
+        .then(function(encryptedData) {
+          console.log('Encrypted data: ' + encryptedData);
+  
+          virgilCrypto.decryptAsync(
+                     encryptedData, 
+                     RECIPIENT_ID, 
+                     keyPair.privateKey)
+            .then(function(decryptedData) {
+              console.log('Decrypted data: ' + decryptedData.toString());
+            });
+        });
+    });
 
 ************************************
 Sign and Verify Data Using Key
@@ -398,20 +407,21 @@ With Password
 ==================
 
 .. code-block:: javascript
+  :linenos:
 
-    var KEY_PASSWORD = 'password';
-    var INITIAL_DATA = 'data to be encrypted';
-    var RECIPIENT_ID = '<SOME_RECIPIENT_ID>';
+  var KEY_PASSWORD = 'password';
+  var INITIAL_DATA = 'data to be encrypted';
+  var RECIPIENT_ID = '<SOME_RECIPIENT_ID>';
     
-    var keyPair = virgilCrypto.generateKeyPair(KEY_PASSWORD);
-    var encryptedData = virgilCrypto.encrypt(
-                                     INITIAL_DATA, 
-                                     RECIPIENT_ID, 
-                                     keyPair.publicKey);
-    var sign = virgilCrypto.sign(
-                   encryptedData, 
-                   keyPair.privateKey, 
-                   KEY_PASSWORD);
+  var keyPair = virgilCrypto.generateKeyPair(KEY_PASSWORD);
+  var encryptedData = virgilCrypto.encrypt(
+                                   INITIAL_DATA, 
+                                   RECIPIENT_ID, 
+                                   keyPair.publicKey);
+  var sign = virgilCrypto.sign(
+                 encryptedData, 
+                 keyPair.privateKey, 
+                 KEY_PASSWORD);
 
 To verify that the data was signed by a particular party, you need the following information:
 
@@ -422,15 +432,16 @@ To verify that the data was signed by a particular party, you need the following
 The following example verifies a digital signature which was signed by the sender.
 
 .. code-block:: javascript
+  :linenos:
 
-    var isDataVerified = virgilCrypto.verify(
-                                   encryptedData, 
-                                   keyPair.publicKey, 
-                                   sign);
-    
-    console.log('Encrypted data: ' + encryptedData);
-    console.log('Sign: ' + sign.toString('base64'));
-    console.log('Is data verified: ' + isDataVerified);
+  var isDataVerified = virgilCrypto.verify(
+                                 encryptedData, 
+                                 keyPair.publicKey, 
+                                 sign);
+  
+  console.log('Encrypted data: ' + encryptedData);
+  console.log('Sign: ' + sign.toString('base64'));
+  console.log('Is data verified: ' + isDataVerified);
 
 Async (using web workers) With Password
 =============================================
@@ -438,28 +449,29 @@ Async (using web workers) With Password
 .. note :: Only for browsers.
 
 .. code-block:: javascript
+  :linenos:
 
-    var KEY_PASSWORD = 'password';
-    var INITIAL_DATA = 'data to be encrypted';
-    var RECIPIENT_ID = '<SOME_RECIPIENT_ID>';
+  var KEY_PASSWORD = 'password';
+  var INITIAL_DATA = 'data to be encrypted';
+  var RECIPIENT_ID = '<SOME_RECIPIENT_ID>';
+  
+  virgilCrypto.generateKeyPairAsync(KEY_PASSWORD)
+    .then(function(keyPair) {
+      virgilCrypto.encryptAsync(INITIAL_DATA, RECIPIENT_ID, keyPair.publicKey)
+        .then(function(encryptedData) {
+          console.log('Encrypted data: ' + encryptedData);
+  
+          virgilCrypto.signAsync(
+                      encryptedData, 
+                      keyPair.privateKey, 
+                      KEY_PASSWORD)
+            .then(function(sign) {
+              console.log('Sign: ' + sign.toString('base64'));
     
-    virgilCrypto.generateKeyPairAsync(KEY_PASSWORD)
-      .then(function(keyPair) {
-        virgilCrypto.encryptAsync(INITIAL_DATA, RECIPIENT_ID, keyPair.publicKey)
-          .then(function(encryptedData) {
-            console.log('Encrypted data: ' + encryptedData);
-    
-            virgilCrypto.signAsync(
-                       encryptedData, 
-                       keyPair.privateKey, 
-                       KEY_PASSWORD)
-              .then(function(sign) {
-                console.log('Sign: ' + sign.toString('base64'));
-    
-                virgilCrypto.verifyAsync(encryptedData, keyPair.publicKey, sign)
-                  .then(function(isDataVerified) {
-                    console.log('Is data verified: ' + isDataVerified);
-                  });
-              });
-          });
-      });
+              virgilCrypto.verifyAsync(encryptedData, keyPair.publicKey, sign)
+                .then(function(isDataVerified) {
+                  console.log('Is data verified: ' + isDataVerified);
+                });
+            });
+        });
+    });

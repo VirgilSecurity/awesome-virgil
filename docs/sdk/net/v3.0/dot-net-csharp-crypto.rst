@@ -42,7 +42,8 @@ Generate Keys
 
 The following code example creates a new public/private key pair.
 
-.. code:: csharp
+.. code-block:: csharp
+    :linenos:
 
     var keyPair = CryptoHelper.GenerateKeyPair();
 
@@ -91,7 +92,8 @@ Here is what an encrypted private key looks like:
 
 Generate keys with specific type
 
-.. code:: csharp
+.. code-block:: csharp
+    :linenos:
 
     var keyPair = VirgilKeyPair.Generate(VirgilKeyPair.Type.EC_SECP256K1);
 
@@ -220,7 +222,8 @@ To verify that the data was signed by a particular party, you need the following
 
 The following example verifies a digital signature which was signed by the sender.
 
-.. code:: csharp
+.. code-block:: csharp
+    :linenos:
 
     var isValid = CryptoHelper.Verify(originalText, signature, keyPair.PublicKey());
 
@@ -231,13 +234,15 @@ Decrypt Data
 
 The following example illustrates decryption of the encrypted data with a recipient's private key.
 
-.. code:: csharp
+.. code-block:: csharp
+    :linenos:
 
     var decryptedText = CryptoHelper.Decrypt(cipherText, "RecipientId", keyPair.PrivateKey());
 
 Use a password to decrypt the data.
 
-.. code:: csharp
+.. code-block:: csharp
+    :linenos:
 
     var decryptedText = CryptoHelper.Decrypt(cipherText, password);
 

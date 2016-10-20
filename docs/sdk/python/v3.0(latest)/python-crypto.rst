@@ -48,6 +48,7 @@ Generate Keys
 The following code example creates a new public/private key pair with a specific type.
 
 .. code-block:: python
+  :linenos:
 
   keys = cryptolib.CryptoWrapper.generate_keys(cryptolib.crypto_helper.VirgilKeyPair.Type_EC_SECP224R1, "%PASSWORD%")
 
@@ -113,6 +114,7 @@ If you want to encrypt the data to Bob, you encrypt it using Bob's public key (w
 Encrypt the text with a public key:
 
 .. code-block:: python
+  :linenos:
 
   enc = cryptolib.CryptoWrapper.encrypt('%To be encrypted%', '%Recipient id%', '%Recipient public key%')
 
@@ -125,6 +127,7 @@ Cryptographic digital signatures use public key algorithms to provide data integ
 The following example applies a digital signature to a public key identifier.
 
 .. code-block:: python
+  :linenos:
 
   originalText = "Sign me, Please!!!"
   keys = cryptolib.CryptoWrapper.generate_keys(cryptolib.crypto_helper.VirgilKeyPair.Type_EC_SECP224R1, "%PASSWORD%")
@@ -143,6 +146,7 @@ To verify that the data was signed by a particular party, you need the following
 The following example verifies a digital signature which was signed by the sender.
 
 .. code-block:: python
+  :linenos:
 
   verify = cryptolib.CryptoWrapper.verify(originalText, sign, '%PUBLIC_KEY%')
 
@@ -153,11 +157,13 @@ Decrypt Data
 The following example illustrates decryption of the encrypted data with a recipient's private key.
 
 .. code-block:: python
+  :linenos:
 
   data = cryptolib.CryptoWrapper.decrypt('%ENCRYPTED_TEXT%%', '%RECIPIENT_ID%', keys['private_key'])
 
 Use a password to decrypt the data.
 
 .. code-block:: python
+  :linenos:
 
   data = cryptolib.CryptoWrapper.decrypt_with_password('%ENCRYPTED_DATA%', '%PASSWORD%')
