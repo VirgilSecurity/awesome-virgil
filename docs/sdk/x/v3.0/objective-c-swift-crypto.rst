@@ -8,16 +8,13 @@ Tutorial Crypto Library Objective C/Swift
 - `Use case`_
 - `Creating a new key pair`_
 - `Encrypt and decrypt data`_
-
 	- `Key-based encryption`_
-    - `Key-based decryption`_
-    - `Password-based encryption`_
-    - `Password-based decryption`_
-    
+	- `Key-based decryption`_
+	- `Password-based encryption`_
+	- `Password-based decryption`_
 - `Compose and verify a signature`_
-
-    - `Compose a signature`_
-    - `Verify a signature`_
+	- `Compose a signature`_
+	- `Verify a signature`_
 
 ******************
 Introduction

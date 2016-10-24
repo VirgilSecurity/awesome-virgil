@@ -30,8 +30,8 @@ Swift
 .. code-block:: objectivec
     :linenos:
 
-    let appId = <#T##String: Your appId#>
-    let appKeyPassword = <#T##String: You app key password#>
+    let appId = <#String: Your appId#>
+    let appKeyPassword = <#String: You app key password#>
     let path = Bundle.main.url(forResource: <#Your app key name#>, withExtension: "virgilkey")
     let keyData = try! Data(contentsOf: path!)
 
@@ -75,7 +75,7 @@ Swift
     let exportedPublicKey = self.crypto.export(publicKey: aliceKeys.publicKey)
     let card = VSSCard(identity: "alice", identityType: "username", publicKey: exportedPublicKey)
 
-then, use *VSSRequestSigner* class to sign request with owner and app keys: 
+then, use *VSSSigner* class to sign request with owner and app keys. 
 
 Objective-C
 
@@ -85,7 +85,7 @@ Objective-C
     VSSSigner *signer = [[VSSSigner alloc] initWithCrypto:self.crypto];
 
     NSError *error1;
-    [signer applicationSign:card withPrivateKey:aliceKeys.privateKey error:&error1];
+    [signer ownerSign:card withPrivateKey:aliceKeys.privateKey error:&error1];
     NSError *error2;
     [signer authoritySign:card forAppId:appId withPrivateKey:appPrivateKey error:&error2];
 
@@ -97,8 +97,8 @@ Swift
     let signer = VSSSigner(crypto: self.crypto)
 
     do {
-        try signer.applicationSign(card, with: keyPair.privateKey)
-        try signer.authoritySign(card, forAppId: kApplicationId, with: appPrivateKey)
+        try signer.ownerSign(card, with: keyPair.privateKey)
+            try signer.authoritySign(card, forAppId: kApplicationId, with: appPrivateKey)
     }
     catch let error as Error {
         //...
