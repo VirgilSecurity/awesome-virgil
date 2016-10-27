@@ -9,9 +9,11 @@ SYNOPSIS
 ========
 ::
 
-virgil encrypt [-i <file>] [-o <file>] [--content-info] [-V] [–-] [-–version] [-h] <recipient-id> …
+  virgil encrypt [-i <file>] [-o <file>] [--content-info] [-V] [–-] [-–version] [-h] <recipient-id> …
 
-======== DESCRIPTION ========
+======== 
+DESCRIPTION 
+========
 
 The utility allows you to encrypt data for a specified recipient(s) and/or with a password.
 
@@ -19,7 +21,9 @@ The utility allows you to encrypt data for a specified recipient(s) and/or with 
 
 Please note that for decryption you will need a provided password or a :term:`Private Key` <Private Key> associated with the `Public Key` used for encryption.
 
-======== OPTIONS ========
+======== 
+OPTIONS 
+========
 
 +---------------------------------------------+----------------------------------------------------------------+
 | Option                                      | Description                                                    | 
@@ -60,7 +64,9 @@ Please note that for decryption you will need a provided password or a :term:`Pr
 |                                             |     Example: pubkey:bob/public.key:ForBob.                     |
 +---------------------------------------------+----------------------------------------------------------------+
 
-======== EXAMPLES ========
+======== 
+EXAMPLES 
+========
 
 1. Alice encrypts *plain.txt* for Bob using his email as a recipient-id. A search of the Virgil Card(s) associated with Bob's email is performed: 
 ::
