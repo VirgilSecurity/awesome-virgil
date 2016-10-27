@@ -84,16 +84,16 @@ EXAMPLES
 4. Alice encrypts *plain.txt* with a combination of a password and recipient-id:
 ::
 
-       virgil encrypt -i plain.txt -o plain.txt.enc email:bob@email.com password:Strong_Password_123
+       virgil encrypt -i plain.txt -o plain.enc email:bob@email.com password:Strong_Password_123
        
 5. Alice encrypts *plain.txt* for Bob using his Virgil Card id:
 ::
-       virgil encrypt -i plain.txt -o plain.txt.enc vcard:bb5db5084dab511135ec24c2fdc5ce2bca8f7bf6b0b83a7fa4c3cbdcdc740a59
+       virgil encrypt -i plain.txt -o plain.enc vcard:bb5db5084dab511135ec24c2fdc5ce2bca8f7bf6b0b83a7fa4c3cbdcdc740a59
        
 6. Alice encrypts *plain.txt* with Bob's Public Key accompanied with the alias ForBob:
 ::
 
-      virgil encrypt -i plain.txt -o plain.txt.enc pubkey:bob/public.key:ForBob
+      virgil encrypt -i plain.txt -o plain.enc pubkey:bob/public.key:ForBob
 
 ======== 
 SEE ALSO 
