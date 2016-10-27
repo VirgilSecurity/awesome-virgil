@@ -40,8 +40,8 @@ Please note that for decryption you will need a provided password or a :term:`Pr
 +---------------------------------------------+----------------------------------------------------------------+
 | ``-h``,  ``--help``                         | Displays usage information and exits.                          |
 +---------------------------------------------+----------------------------------------------------------------+
-| ``<recipient-id>``                          | Contains information about one recipient.                      |
-|  (accepted multiple times)                  |                                                                |
+| ``<recipient-id>`` (accepted multiple times)| Contains information about one recipient.                      |
+|                                             |                                                                |
 |                                             | Format:                                                        |
 |                                             |                                                                |
 |                                             | [password|email|vcard|pubkey]:<value>                          |
