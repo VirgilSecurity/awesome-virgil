@@ -1,12 +1,15 @@
---------------
-
-encrypt \*\*\*\*\*\*\*\*\*
+*********
+encrypt
+*********
 
 Encrypt data for provided recipients.
 
-======== SYNOPSIS ======== ::
+========
+SYNOPSIS
+========
+::
 
-virgil encrypt [-i ] [-o ] [--content-info] [-V] [–-] [-–version] [-h] <recipient-id> …
+virgil encrypt [-i <file>] [-o <file>] [--content-info] [-V] [–-] [-–version] [-h] <recipient-id> …
 
 ======== DESCRIPTION ========
 
