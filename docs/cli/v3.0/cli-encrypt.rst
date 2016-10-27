@@ -61,7 +61,7 @@ OPTIONS
 |                                             |                                                                |
 |                                             | * if **pubkey**, then <value> - Public Key of the recipient.   |
 |                                             |     An alias may also be added.                                | 
-|                                             |     Example: pubkey:bob/public.key:ForBob.                     |
+|                                             |     Example: pubkey:bob/public.key:ForBob                      |
 +---------------------------------------------+----------------------------------------------------------------+
 
 ======== 
