@@ -95,7 +95,9 @@ EXAMPLES
 
       virgil encrypt -i plain.txt -o plain.txt.enc pubkey:bob/public.key:ForBob
 
-======== SEE ALSO ========
+======== 
+SEE ALSO 
+========
 
 * :doc:`cli-virgil`
 * :doc:`cli-decrypt``
