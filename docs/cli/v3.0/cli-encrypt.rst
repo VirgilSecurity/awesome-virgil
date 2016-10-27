@@ -97,5 +97,5 @@ EXAMPLES
 
 ======== SEE ALSO ========
 
-* :doc:``cli-virgil``
-* :doc:``cli-decrypt``
+* :doc:`cli-virgil`
+* :doc:`cli-decrypt``
