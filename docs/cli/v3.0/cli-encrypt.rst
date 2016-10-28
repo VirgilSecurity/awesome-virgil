@@ -9,7 +9,7 @@ SYNOPSIS
 ========
 ::
 
-  virgil encrypt [-i <file>] [-o <file>] [--content-info] [-V] [–-] [-–version] [-h] <recipient-id> …
+  virgil encrypt [-i <file>] [-o <file>] [--content-info] [-V] [-–version] [-h] [–-] <recipient-id> …
 
 ======== 
 DESCRIPTION 
