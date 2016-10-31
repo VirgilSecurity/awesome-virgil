@@ -15,7 +15,7 @@ SYNOPSIS
 DESCRIPTION 
 ========
 
-The utility allows you to encrypt data for a specified recipient(s) and/or with a password.
+The utility allows you to encrypt data with a password and/or for the specified recipient(s) using the :term:`recipient-id <Recipient’s identifier>`.
 
 ``recipient-id`` is an identifier which will be associated with the :term:`public key <Public Key>` used for the encryption. Thus, the email, the Public Key (accompanied by the :term:`alias` <Alias> or not), the :term:`Virgil Card` <Virgil Card> or the :term:`Virgil Card id` <Virgil Card id> can be used as well as any combinations of these recipient identifiers. 
 
