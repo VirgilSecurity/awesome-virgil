@@ -13,7 +13,7 @@ Developers Docs
    crypto-library/crypto-library
    genindex
    use-cases/use-cases
-   cli/cli
+   cli/v2.0/cli
    faq/faq
 
 :ref:`genindex`
