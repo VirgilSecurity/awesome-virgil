@@ -15,7 +15,7 @@ Collect an ``appID`` and ``appKey`` for your app:
 
 Objective-C
            
-.. code-block:: objectivec
+.. code-block:: objective-c
     :linenos:
 
     NSString *appId = <#Your appId#>;
@@ -27,7 +27,7 @@ Objective-C
 
 Swift
      
-.. code-block:: objectivec
+.. code-block:: objective-c
     :linenos:
 
     let appId = <#String: Your appId#>
@@ -44,7 +44,7 @@ Generate a new Public/Private keypair using ``VirgilCrypto`` class:
 
 Objective-C        
 
-.. code-block:: objectivec
+.. code-block:: objective-c
     :linenos:
 
     VSSKeyPair *aliceKeys = [self.crypto generateKeyPair];
@@ -61,7 +61,7 @@ Prepare Request
 
 Objective-C
 
-.. code-block:: objectivec
+.. code-block:: objective-c
     :linenos:
 
     NSData *exportedPublicKey = [self.crypto exportPublicKey:aliceKeys.publicKey];
@@ -79,7 +79,7 @@ then, use ``VSSRequestSigner`` class to sign request with owner and app keys.
 
 Objective-C
 
-.. code-block:: objectivec
+.. code-block:: objective-c
     :linenos:
 
     VSSRequestSigner *signer = [[VSSRequestSigner alloc] initWithCrypto:self.crypto];
@@ -109,7 +109,7 @@ Publish a Virgil Card
 
 Objective-C
 
-.. code-block:: objectivec
+.. code-block:: objective-c
     :linenos:
 
     [self.client createCardWithRequest:request completion:^(VSSCard *card, NSError *error) {
@@ -130,7 +130,7 @@ Get a Virgil Card
 
 Objective-C
 
- .. code-block:: objectivec
+ .. code-block:: objective-c
     :linenos:
 
     [self.client getCardWithId:cardIdentifier completion:^(VSSCard *foundCard, NSError *error) {
@@ -157,7 +157,7 @@ You can search for **Virgil Cards** by identity value(s) and optional additional
 
 Objective-C
            
-.. code-block:: objectivec
+.. code-block:: objective-c
     :linenos:
 
     VSSSearchCardsCritera *critera = [VSSSearchCardsCriteria searchCardsCriteriaWithScope:VSSCardScopeApplication identityType:@"username" identities:@[@"alice", @"bob"]];
@@ -183,7 +183,7 @@ This sample uses *built-in* ```VSSCardValidator``` to validate Virgil Service ca
 
 Objective-C
            
-.. code-block:: objectivec
+.. code-block:: objective-c
     :linenos:
 
     VSSCardValidator *validator = [[VSSCardValidator alloc] initWithCrypto:self.crypto];
@@ -210,7 +210,7 @@ If validation process failes during client queries, error will be generated.
 
 Objective-C
 
-.. code-block:: objectivec
+.. code-block:: objective-с
     :linenos:
 
     self.crypto = [[VSSCrypto alloc] init];
@@ -245,7 +245,7 @@ You can delete a **Virgil Card** in case the keys were compromised or lost, or f
 
 Objective-C
            
-.. code-block:: objectivec
+.. code-block:: objective-c
     :linenos:
 
     VSSRevokeCardRequest *revokeRequest = [VSSRevokeCardRequest revokeCardRequestWithCardId:<#Your cardId#> reason:VSSCardRevocationReasonUnspecified];
@@ -288,7 +288,7 @@ You can generate a keypair using ``VirgilCrypto`` class. The default algorithm i
 
 Objective-C
            
-.. code-block:: objectivec
+.. code-block:: objective-c
     :linenos:
 
     VSSKeyPair *aliceKeys = [self.crypto generateKeyPair];
@@ -308,7 +308,7 @@ Simply call one of the Export methods:
 
 Objective-C
            
-.. code-block:: objectivec
+.. code-block:: objective-c
     :linenos:
 
     NSData *alicePrivateKey = [self.crypto exportPrivateKey:aliceKeys.privateKey withPassword:nil];
@@ -326,7 +326,7 @@ To import Public/Private keys, simply call one of the Import methods:
 
 Objective-C
            
-.. code-block:: objectivec
+.. code-block:: objective-c
     :linenos:
 
     VSSPrivateKey *alicePrivateKey = [self.crypto importPrivateKeyFromData:alicePrivateKeyData withPassword:nil];
@@ -348,7 +348,7 @@ Initialize Crypto API and generate keypair.
 
 Objective-C
 
-.. code-block:: objectivec
+.. code-block:: objective-c
     :linenos:
 
     VSSCrypto *crypto = [[VSSCrypto alloc] init];
@@ -376,7 +376,7 @@ You can enrypt some data, ECIES scheme with ``AES-GCM`` is used in **Virgil Secu
 
 Objective-C
 
-.. code-block:: objectivec
+.. code-block:: objective-c
     :linenos:
 
     NSData *plainText = [@"Hello, Bob!" dataUsingEncoding:NSUTF8StringEncoding];
@@ -395,7 +395,7 @@ Swift
 
 Objective-C
 
-.. code-block:: objectivec
+.. code-block:: objective-c
     :linenos:
 
     NSURL *fileURL = [[NSBundle mainBundle] URLForResource:<#Your data file name#> withExtension:<#Your data file extension#>];
@@ -433,7 +433,7 @@ You can decrypt data using your private key. You have such options for decryptio
 
 Objective-C
 
-.. code-block:: objectivec
+.. code-block:: objective-c
     :linenos:
 
     NSError *error;
@@ -450,7 +450,7 @@ Swift
 
 Objective-C
 
-.. code-block:: objectivec
+.. code-block:: objective-c
     :linenos:
 
     NSURL *fileURL = [[NSBundle mainBundle] URLForResource:<#Your encrypted data file name#> withExtension:<#Your encrypted data file extension#>];
@@ -491,7 +491,7 @@ You can generate a digital signature for data. Options for signing data:
 
 Objective-C
 
-.. code-block:: objectivec
+.. code-block:: objective-c
     :linenos:
 
     NSData *plainTextData = [@"Hello, Bob!" dataUsingEncoding:NSUTF8StringEncoding];
@@ -510,7 +510,7 @@ Swift
 
 Objective-C
 
-.. code-block:: objectivec
+.. code-block:: objective-c
     :linenos:
 
     NSURL *fileURL = [[NSBundle mainBundle] URLForResource:<#Your data file name#> withExtension:<#Your data file extension#>];
@@ -538,7 +538,7 @@ You can verify that a signature is authentic. You will verify the signature of t
 
 Objective-C
 
-.. code-block:: objectivec
+.. code-block:: objective-c
     :linenos:
 
     NSError *error;
@@ -555,7 +555,7 @@ Swift
 
 Objective-C
 
-.. code-block:: objectivec
+.. code-block:: objective-c
     :linenos:
 
     NSError *error;
@@ -575,7 +575,7 @@ The default Fingerprint algorithm is ``SHA-256``.
 
 Objective-C
 
-.. code-block:: objectivec
+.. code-block:: objective-c
     :linenos:
 
     VSSFingerprint *fingerprint = [self.crypto calculateFingerprintForData:data];
