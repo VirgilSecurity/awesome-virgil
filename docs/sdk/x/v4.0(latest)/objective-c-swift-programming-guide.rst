@@ -179,7 +179,7 @@ Validating a Virgil Card
 ---------------------------
 
 You might want to make sure that a received **Virgil Card** wasn't changed, Public Key is authentic, or validate any other fields.
-This sample uses *built-in* ```VSSCardValidator``` to validate Virgil Service card responses. Default ```VSSCardValidator``` validates only *Cards Service* signature.
+This sample uses *built-in* ``VSSCardValidator`` to validate Virgil Service card responses. Default ``VSSCardValidator`` validates only *Cards Service* signature.
 
 Objective-C
            
