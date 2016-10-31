@@ -63,12 +63,12 @@ OPTIONS
 EXAMPLES
 ========
 
-1.  Decrypt *plain.txt.enc* for a user with the password:
+1.  Decrypt *plain.enc* for a user with the password:
 ::
 
         virgil decrypt -i plain.enc -o plain.txt password:strong_password
 
-2.  Decrypt *plain.txt.enc* for Bob with his private key:
+2.  Decrypt *plain.enc* for Bob with his private key:
 ::
 
         virgil decrypt -i plain.enc -o plain.txt privkey:bob/private.key -p myPassForKey
