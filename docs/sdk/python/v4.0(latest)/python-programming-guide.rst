@@ -11,7 +11,7 @@ Every user is represented with a **Virgil Card** so creating them for users is a
 Collect App Credentials
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Collect an ```app_id`` and ``app_key`` for your app:
+Collect an ``app_id`` and ``app_key`` for your app:
 
 .. code-block:: python
     :linenos:

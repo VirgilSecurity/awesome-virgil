@@ -13,7 +13,7 @@ Collect App Credentials
 
 Collect an ``appID`` and ``appKey`` for your app:
 
-Objective-C
+Objective C
            
 .. code-block:: objective-c
     :linenos:
@@ -42,7 +42,7 @@ Generate New Keys
 
 Generate a new Public/Private keypair using ``VirgilCrypto`` class:
 
-Objective-C        
+Objective C        
 
 .. code-block:: objective-c
     :linenos:
@@ -59,7 +59,7 @@ Swift
 Prepare Request
 ~~~~~~~~~~~~~~~
 
-Objective-C
+Objective C
 
 .. code-block:: objective-c
     :linenos:
@@ -77,7 +77,7 @@ Swift
 
 then, use ``VSSRequestSigner`` class to sign request with owner and app keys. 
 
-Objective-C
+Objective C
 
 .. code-block:: objective-c
     :linenos:
@@ -107,7 +107,7 @@ Swift
 Publish a Virgil Card
 ~~~~~~~~~~~~~~~~~~~~~
 
-Objective-C
+Objective C
 
 .. code-block:: objective-c
     :linenos:
@@ -128,7 +128,7 @@ Swift
 Get a Virgil Card
 ---------------------------
 
-Objective-C
+Objective C
 
  .. code-block:: objective-c
     :linenos:
@@ -155,7 +155,7 @@ You can search for **Virgil Cards** by identity value(s) and optional additional
     - identity type ('email' or any type created by user). You can find more information about :term:`confirmed <Confirmed Card>` and :term:`unconfirmed <Unconfirmed Card>` **Virgil Cards**.
     - scope (by default it is 'application', can be 'global'). You can find more information about :term:`global <Global Virgil Card>` and :term:`application <Application Virgil Card>` **Virgil Cards**.
 
-Objective-C
+Objective C
            
 .. code-block:: objective-c
     :linenos:
@@ -181,7 +181,7 @@ Validating a Virgil Card
 You might want to make sure that a received **Virgil Card** wasn't changed, Public Key is authentic, or validate any other fields.
 This sample uses *built-in* ``VSSCardValidator`` to validate Virgil Service card responses. Default ``VSSCardValidator`` validates only *Cards Service* signature.
 
-Objective-C
+Objective C
            
 .. code-block:: objective-c
     :linenos:
@@ -208,7 +208,7 @@ Swift
 For convenience you can embed validator into the client and all cards received from the Virgil service will be automatically validated for you.
 If validation process failes during client queries, error will be generated.
 
-Objective-C
+Objective C
 
 .. code-block:: objective-с
     :linenos:
@@ -243,7 +243,7 @@ Revoking a Virgil Card
 
 You can delete a **Virgil Card** in case the keys were compromised or lost, or for any other reason.
 
-Objective-C
+Objective C
            
 .. code-block:: objective-c
     :linenos:
@@ -286,7 +286,7 @@ Generate Keys
 
 You can generate a keypair using ``VirgilCrypto`` class. The default algorithm is ``ed25519``. 
 
-Objective-C
+Objective C
            
 .. code-block:: objective-c
     :linenos:
@@ -306,7 +306,7 @@ Import and Export Keys
 If you need to import or export your Public/Private keys you can easily do it.
 Simply call one of the Export methods:
 
-Objective-C
+Objective C
            
 .. code-block:: objective-c
     :linenos:
@@ -324,7 +324,7 @@ Swift
 
 To import Public/Private keys, simply call one of the Import methods:
 
-Objective-C
+Objective C
            
 .. code-block:: objective-c
     :linenos:
@@ -346,7 +346,7 @@ Encryption and Decryption
 
 Initialize Crypto API and generate keypair.
 
-Objective-C
+Objective C
 
 .. code-block:: objective-c
     :linenos:
@@ -374,7 +374,7 @@ You can enrypt some data, ECIES scheme with ``AES-GCM`` is used in **Virgil Secu
 
 **Byte Array**
 
-Objective-C
+Objective C
 
 .. code-block:: objective-c
     :linenos:
@@ -393,7 +393,7 @@ Swift
 
 **Stream**
 
-Objective-C
+Objective C
 
 .. code-block:: objective-c
     :linenos:
@@ -431,7 +431,7 @@ You can decrypt data using your private key. You have such options for decryptio
 
 **Byte Array**
 
-Objective-C
+Objective C
 
 .. code-block:: objective-c
     :linenos:
@@ -448,7 +448,7 @@ Swift
 
 **Stream**
 
-Objective-C
+Objective C
 
 .. code-block:: objective-c
     :linenos:
@@ -489,7 +489,7 @@ You can generate a digital signature for data. Options for signing data:
 
 **Byte Array**
 
-Objective-C
+Objective C
 
 .. code-block:: objective-c
     :linenos:
@@ -508,7 +508,7 @@ Swift
 
 **Stream**
 
-Objective-C
+Objective C
 
 .. code-block:: objective-c
     :linenos:
@@ -536,7 +536,7 @@ You can verify that a signature is authentic. You will verify the signature of t
 
 **Byte Array**
 
-Objective-C
+Objective C
 
 .. code-block:: objective-c
     :linenos:
@@ -553,7 +553,7 @@ Swift
 
 **Stream**
 
-Objective-C
+Objective C
 
 .. code-block:: objective-c
     :linenos:
@@ -568,12 +568,53 @@ Swift
 
     let isVerified = try? self.crypto.verifyStream(stream, withSignature: signature, usingSignerPublicKey: aliceKeys.publicKey)
 
+Combining Encryption and Signing procedures
+--------------------------------------------
+
+Virgil SDK contains convenient API for combining encrypt/decrypt and sign/verify procedures.
+
+Sign and Encrypt Data
+~~~~~~~~~~~~~~~~~~~~~
+
+Objective C
+
+.. code-block:: objective-c
+    :linenos:
+
+    NSError *error;
+    NSData *signedAndEcnryptedData = [self.crypto signAndEncryptData:data withPrivateKey:senderPrivateKey forRecipients:@[receiverPublicKey] error:&error];
+
+Swift
+     
+.. code-block:: swift
+    :linenos:
+
+    let signedAndEcryptedData = try? self.crypto.signAndEncrypt(data, with: senderPrivateKey, for: [receiverPublicKey])
+
+Decrypt and Verify Data
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+Objective C
+
+.. code-block:: objective-c
+    :linenos:
+
+    NSError *error;
+    NSData *decryptedAndVerifiedData = [self.crypto decryptAndVerifyData:signedAndEcnryptedData withPrivateKey:receiverPrivateKey usingSignerPublicKey:senderPublicKey error:&error];
+
+Swift
+     
+.. code-block:: swift
+    :linenos:
+
+    let decryptedAndVerifiedData = try? self.crypto.decryptAndVerify(signedAndEcryptedData, with: receiverPrivateKey, using: senderPublicKey)
+
 Fingerprint Generation
 ----------------------
 
 The default Fingerprint algorithm is ``SHA-256``.
 
-Objective-C
+Objective C
 
 .. code-block:: objective-c
     :linenos:

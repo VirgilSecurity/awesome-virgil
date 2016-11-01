@@ -33,7 +33,7 @@ To integrate VirgilSDK into your Xcode project using CocoaPods, specify it in yo
     use_frameworks!
 
     target '<Your Target Name>' do
-        pod 'VirgilSDK', '~> 4.0'
+        pod 'VirgilSDK', '~> 4.0.0'
     end
 
 Then, run the following command:
