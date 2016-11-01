@@ -21,5 +21,5 @@ Working with Crypto Library:
 -  `Generating a Signature <objective-c-swift-programming-guide.html#generating-and-verifying-signatures>`__
 -  `Verifying a Signature <objective-c-swift-programming-guide.html#verifying-a-signature>`__
 -  `Sign and Encrypt Data <objective-c-swift-programming-guide.html#sign-and-encrypt-data>`__
--  `Decrypt and Verify Data <objective-c-swift-programming-guide.html#dencrypt-and-verify-data>`__
+-  `Decrypt and Verify Data <objective-c-swift-programming-guide.html#decrypt-and-verify-data>`__
 -  `Fingerprint Generation <objective-c-swift-programming-guide.html#fingerprint-generation>`__
