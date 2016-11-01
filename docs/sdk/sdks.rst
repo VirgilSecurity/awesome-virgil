@@ -15,6 +15,7 @@ Version 4 (latest)
    x/v4.0(latest)/objective-c-swift-sdk
    go/v4.0(latest)/go-sdk
    javascript/v4.0(latest)/javascript-sdk
+   python/v4.0(latest)/python-sdk
 
 Version 3
 ----------
@@ -26,4 +27,4 @@ Version 3
    javascript/v3.0/javascript-sdk
    x/v3.0/objective-c-swift-sdk
    java-android/v3.2/java-android-sdk
-   python/v3.0(latest)/python-sdk
+   python/v3.0/python-sdk
