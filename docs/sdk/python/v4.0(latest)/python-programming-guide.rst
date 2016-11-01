@@ -6,12 +6,12 @@ Creating a Virgil Card
 
 Every user is represented with a **Virgil Card** so creating them for users is a required step. A **Virgil Card** is the central entity of the Virgil services, it includes information about the user for further actions in Virgil Security system. The **Virgil Card** identifies the user/device by one of his types. You can find more information about :term:`Virgil Cards <Virgil Card>`.
 
-``app\_id``, ``app\_key`` parameters are required to create a **Virgil Card** in your app scope.
+``app_id``, ``app_key`` parameters are required to create a **Virgil Card** in your app scope.
 
 Collect App Credentials
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Collect an ```app\_id`` and ``app\_key`` for your app:
+Collect an ```app_id`` and ``app_key`` for your app:
 
 .. code-block:: python
     :linenos:
