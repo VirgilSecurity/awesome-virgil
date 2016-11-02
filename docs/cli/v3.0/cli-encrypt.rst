@@ -49,18 +49,18 @@ OPTIONS
 **<recipient-id> (accepted multiple times)**
    Contains information about one recipient. Format: [password|email|vcard|pubkey]:<value>
 
-   if **password**
-      then <value> - a password for decrypting;
+      if **password**
+         then <value> - a password for decrypting;
+            
+      if **email**
+         then <value> - the email of the recipient;
 
-   if **email**
-      then <value> - the email of the recipient;
-
-   if **vcard**
-      then <value> - the recipient's Virgil Card id or the Virgil Card itself (the file stored locally); 
+      if **vcard**
+         then <value> - the recipient's Virgil Card id or the Virgil Card itself (the file stored locally); 
       
-   if **pubkey**
-      then <value> - Public Key of the recipient.
-      An alias may also be added. Example: pubkey:bob/public.key:ForBob
+      if **pubkey**
+         then <value> - Public Key of the recipient.
+         An alias may also be added. Example: pubkey:bob/public.key:ForBob
 
 ======== 
 EXAMPLES 
