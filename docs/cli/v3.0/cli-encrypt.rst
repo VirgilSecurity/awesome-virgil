@@ -9,7 +9,7 @@ SYNOPSIS
 ========
 ::
 
-  virgil encrypt [-i <file>] [-o <file>] [--content-info] [-V] [-–version] [-h] [–-] <recipient-id> ...
+  virgil encrypt [-i <file>] [-o <file>] [--content-info] [-V] [-–version] [-h] [–-] (<recipient-id>...)
 
 ======== 
 DESCRIPTION 
@@ -25,38 +25,30 @@ Please note that for decryption you will need a provided password or a :term:`Pr
 OPTIONS 
 ========
 
-.. option:: -i <file>; --in <file>
-
+**-i <file>; --in <file>**
    Data to be encrypted. If omitted, stdin is used.
    
-.. option:: -o <file>; --out <file>
-
+**-o <file>; --out <file>**
    Encrypted data. If omitted, stdout is used.
 
-.. option:: --content-info <file>
-
+**--content-info <file>**
    :term:`Content info` <Content info> - meta information about the encrypted data. If omitted, becomes a part of the encrypted data.
    
-.. option:: -V; --VERBOSE
-
+**-V; --VERBOSE**
    Shows the detailed information.
 
-.. option:: --; --ignore_rest
-
+**--; --ignore_rest**
    Ignores the rest of the labeled arguments following this flag.
    
-.. option:: --version
-
+**--version**
    Displays version information and exits.
    
-.. option:: -h; --help
-
+**-h; --help**
    Displays usage information and exits.
 
-.. option:: <recipient-id> (accepted multiple times)
-
+**<recipient-id> (accepted multiple times)**
    Contains information about one recipient. Format: [password|email|vcard|pubkey]:<value>
-   
+
    if **password**
       then <value> - a password for decrypting;
 
