@@ -15,5 +15,5 @@ Start with one of the sections:
    javascript-features
    javascript-programming-guide
 
-* `Downloads <https://github.com/VirgilSecurity/virgil-sdk-javascript/releases/tag/4.0.0-beta.0>`__
-* `Source code <https://github.com/VirgilSecurity/virgil-sdk-javascript/tree/v4_0>`__
+* `Downloads <https://github.com/VirgilSecurity/virgil-sdk-javascript/releases/tag/4.0.0-beta.1>`__
+* `Source code <https://github.com/VirgilSecurity/virgil-sdk-javascript/tree/v4>`__
