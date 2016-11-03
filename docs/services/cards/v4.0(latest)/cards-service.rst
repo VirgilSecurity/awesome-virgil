@@ -142,7 +142,7 @@ This endpoint creates a **Virgil Card**. You can create a **Virgil Card** by pas
 ::
 
     HTTP Request method    POST
-    Request URL            https://cards.virgilecurity.com/v4/card
+    Request URL            https://cards.virgilsecurity.com/v4/card
     Authorization          Required
 
 **Request body**

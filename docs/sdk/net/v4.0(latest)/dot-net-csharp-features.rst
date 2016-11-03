@@ -19,4 +19,7 @@ Working with Crypto Library:
 -  `Decrypt Data <dot-net-csharp-programming-guide.html#decrypt-data>`__
 -  `Generating a Signature <dot-net-csharp-programming-guide.html#generating-and-verifying-signatures>`__
 -  `Verifying a Signature <dot-net-csharp-programming-guide.html#verifying-a-signature>`__
+-  `Authenticated Encryption <dot-net-csharp-programming-guide.html#authenticated-encryption>`__
+-  `Sign then Encrypt <dot-net-csharp-programming-guide.html#sign-then-encrypt>`__
+-  `Decrypt then Verify <dot-net-csharp-programming-guide.html#decrypt-then-verify>`__
 -  `Fingerprint Generation <dot-net-csharp-programming-guide.html#fingerprint-generation>`__

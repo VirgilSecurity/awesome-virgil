@@ -15,7 +15,7 @@ Version 4 (latest)
    x/v4.0(latest)/objective-c-swift-sdk
    go/v4.0(latest)/go-sdk
    javascript/v4.0(latest)/javascript-sdk
-   python/v4.0(latest)/python-sdk
+..   python/v4.0(latest)/python-sdk
 
 Version 3
 ----------

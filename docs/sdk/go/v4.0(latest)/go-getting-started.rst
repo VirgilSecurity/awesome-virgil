@@ -76,7 +76,7 @@ and encryption and decryption.
 .. code-block:: go
     :linenos:
 
-    crypto := virgil.NewCrypto()
+    crypto := virgil.Crypto()
 
 High level API
 --------------

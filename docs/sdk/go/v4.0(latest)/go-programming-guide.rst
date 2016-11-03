@@ -46,7 +46,7 @@ then, use ``RequestSigner`` class to sign request with owner's and app's keys:
 .. code-block:: go
     :linenos:
 
-    requestSigner := &virgil.RequestSigner{Crypto: crypto}
+    requestSigner := virgil.NewRequestSigner()
 
     err = requestSigner.SelfSign(createCardRequest, aliceKeys.PrivateKey())
     err = requestSigner.AuthoritySign(createCardRequest, appID, appKey)
@@ -84,9 +84,9 @@ This sample uses built-in ``CardValidator`` to validate **Virgil Cards**. By def
     :linenos:
 
     // Initialize crypto API
-    crypto := virgil.NewCrypto()
+    crypto := virgil.Crypto()
 
-    validator := virgil.NewCardsValidator(crypto)
+    validator := virgil.NewCardsValidator()
 
     // Your can also add another Public Key for verification.
     // validator.AddVerifier("[HERE_VERIFIER_CARD_ID]", [HERE_VERIFIER_PUBLIC_KEY])
@@ -109,9 +109,9 @@ Initialize required components:
     :linenos:
 
     client := virgil.NewClient("[YOUR_ACCESS_TOKEN_HERE]")
-    crypto := virgil.NewCrypto()
+    crypto := virgil.Crypto()
 
-    requestSigner := &virgil.RequestSigner{Crypto: crypto}
+    requestSigner := &virgil.RequestSigner{}
   
 Collect an *App* credentials:
 
@@ -178,7 +178,7 @@ Initialize Crypto API and generate keypair.
 .. code-block:: go
     :linenos:
 
-    crypto := virgil.NewCrypto()
+    crypto := virgil.Crypto()
     aliceKeys, err := crypto.GenerateKeypair()
 
 Encrypt Data
@@ -241,7 +241,7 @@ You can decrypt data using your private key. You have such options for decryptio
 .. code-block:: go
     :linenos:
 
-    crypto := virgil.NewCrypto()
+    crypto := virgil.Crypto()
 
     cipherStream, err := os.Open(`[YOUR_FILE_PATH_HERE]`)
 
@@ -268,7 +268,7 @@ Generate a new Public/Private keypair and ``data`` to be signed.
 .. code-block:: go
     :linenos:
 
-    crypto := virgil.NewCrypto()
+    crypto := virgil.Crypto()
     aliceKeys, err := crypto.GenerateKeypair()
 
     // The data to be signed with alice's Private key
@@ -332,6 +332,36 @@ You can verify that a signature is authentic. You will verify the signature of t
         
     isValid, err := crypto.VerifyStream(inputStream, signature, aliceKeys.PublicKey())
 
+Authenticated Encryption
+------------------------
+
+Authenticated encryption provides both data confidentiality and data integrity assurances that the information is protected.
+
+.. code-block:: go
+    :linenos:
+
+    crypto := virgil.Crypto()
+    aliceKeys, err := crypto.GenerateKeypair()
+    bobKeys, err := crypto.GenerateKeypair()
+  
+    // The data to be signed with alice's Private key
+    data = []byte("Hello Bob, How are you?")
+
+Sign then Encrypt
+~~~~~~~~~~~~~~~~~
+
+.. code-block:: go
+    :linenos:
+
+    ciphertext, err := crypto.SignThenEncrypt(data, aliceKeys.PrivateKey(), bobKeys.PublicKey())
+
+Decrypt then Verify
+~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: go
+    :linenos:
+
+    plaintext, err := crypto.DecryptThenVerify(data, bobKeys.PrivateKey(), aliceKeys.PublicKey());
 
 Fingerprint Generation
 ----------------------
@@ -341,7 +371,7 @@ The default Fingerprint algorithm is ``SHA-256``.
 .. code-block:: go
     :linenos:
 
-    crypto := virgil.NewCrypto()
+    crypto := virgil.Crypto()
     fingerprint := crypto.CalculateFingerprint(content)
 
 High level API
@@ -368,7 +398,7 @@ First, generate a new keypair:
 .. code-block:: go
     :linenos:
 
-    crypto := virgil.NewCrypto()
+    crypto := virgil.Crypto()
     aliceKeypair, _ := crypto.GenerateKeypair()
 
 Then, create a new card request and self-sign it:
@@ -377,7 +407,7 @@ Then, create a new card request and self-sign it:
     :linenos:
 
     req, _ := virgil.NewCreateCardRequest("username", "Alice", aliceKeypair.PublicKey(), enums.CardScope.Application, nil)
-    signer := virgil.Config.Signer
+    signer := virgil.NewRequestSigner()
     signer.SelfSign(req, aliceKeypair.PrivateKey())
 
 You will need to also sign the ``card create request`` with your
@@ -452,6 +482,17 @@ Verifying data signature with High level API
 
     plaintext := []byte("Hello, Bob!")
     verifyResult, err := bobCard.Verify(plaintext, signature)
+
+Authenticated encryption with High level API
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Authenticated encryption provides both data confidentiality and data integrity assurances that the information is protected.
+
+.. code-block:: go
+    :linenos:
+
+    plaintext := []byte("Hello, Bob!")
+    encryptedData, err := bobCard.SignThenEncrypt(plaintext, aliceKeypair.PrivateKey())
 
 See Also: 
 ---------

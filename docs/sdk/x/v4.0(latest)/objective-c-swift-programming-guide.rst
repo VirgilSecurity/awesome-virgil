@@ -568,12 +568,12 @@ Swift
 
     let isVerified = try? self.crypto.verifyStream(stream, withSignature: signature, usingSignerPublicKey: aliceKeys.publicKey)
 
-Combining Encryption and Signing procedures
---------------------------------------------
+Authenticated Encryption
+------------------------
 
-Virgil SDK contains convenient API for combining encrypt/decrypt and sign/verify procedures.
+Authenticated Encryption provides both data confidentiality and data integrity assurances that the information is protected.
 
-Sign and Encrypt Data
+Sign then Encrypt
 ~~~~~~~~~~~~~~~~~~~~~
 
 Objective C
@@ -591,7 +591,7 @@ Swift
 
     let signedAndEcryptedData = try? self.crypto.signAndEncrypt(data, with: senderPrivateKey, for: [receiverPublicKey])
 
-Decrypt and Verify Data
+Decrypt then Verify
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 Objective C

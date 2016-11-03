@@ -313,6 +313,37 @@ You can verify that a signature is authentic. You will verify the signature of t
         var isValid = crypto.Verify(fileStream, signature, alice.PublicKey);
     }
 
+Authenticated Encryption
+-------------------------
+
+Authenticated encryption provides both data confidentiality and data integrity assurances that the information is protected.
+
+.. code-block:: csharp
+    :linenos:
+
+    var crypto = new VirgilCrypto();
+     
+    var alice = crypto.GenerateKeys();
+    var bob = crypto.GenerateKeys();
+
+    // The data to be signed with alice's Private key
+    var data = Encoding.UTF8.GetBytes("Hello Bob, How are you?");
+
+Sign then Encrypt
+~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: csharp
+    :linenos:
+
+    var cipherData = crypto.SignThenEncrypt(data, alice.PrivateKey, bob.PublicKey);
+
+Decrypt then Verify
+~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: csharp
+    :linenos:
+
+    var decryptedData = crypto.DecryptThenVerify(data, bob.PrivateKey, alice.PublicKey);
 
 Fingerprint Generation
 ----------------------

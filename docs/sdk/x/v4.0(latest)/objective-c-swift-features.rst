@@ -20,6 +20,6 @@ Working with Crypto Library:
 -  `Decrypt Data <objective-c-swift-programming-guide.html#decrypt-data>`__
 -  `Generating a Signature <objective-c-swift-programming-guide.html#generating-and-verifying-signatures>`__
 -  `Verifying a Signature <objective-c-swift-programming-guide.html#verifying-a-signature>`__
--  `Sign and Encrypt Data <objective-c-swift-programming-guide.html#sign-and-encrypt-data>`__
--  `Decrypt and Verify Data <objective-c-swift-programming-guide.html#decrypt-and-verify-data>`__
+-  `Sign then Encrypt <objective-c-swift-programming-guide.html#sign-then-encrypt>`__
+-  `Decrypt then Verify <objective-c-swift-programming-guide.html#decrypt-then-verify>`__
 -  `Fingerprint Generation <objective-c-swift-programming-guide.html#fingerprint-generation>`__
