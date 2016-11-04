@@ -6,6 +6,7 @@ Working with Virgil Cards:
 --------------------------
 
 -  `Creating a Virgil Card <go-programming-guide.html#creating-a-virgil-card>`__
+-  `Get a Virgil Card <go-programming-guide.html#get-a-virgil-card>`__
 -  `Search for Virgil Cards <go-programming-guide.html#search-for-virgil-cards>`__
 -  `Validating a Virgil Card <go-programming-guide.html#validating-a-virgil-card>`__
 -  `Revoking a Virgil Card <go-programming-guide.html#revoking-a-virgil-card>`__

@@ -108,6 +108,17 @@ This sample uses built-in ``CardValidator`` to validate **Virgil Cards**. By def
         // ex.InvalidCards
     }
 
+Get a Virgil Card
+---------------------------
+
+Gets a Virgil Card by ID.
+
+.. code-block:: csharp
+    :linenos:
+
+    var client = new VirgilClient("[YOUR_ACCESS_TOKEN_HERE]"); 
+    var card = await client.GetСardAsync("[YOUR_CARD_ID_HERE]");
+
 Revoking a Virgil Card
 ---------------------------
 

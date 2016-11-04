@@ -125,6 +125,16 @@ This sample uses built-in ``CardValidator`` to validate **Virgil Cards**. By def
     except CardValidationException as ex:
         # ex.invalid_cards is the list of Card objects that didn't pass validation
 
+Get a Virgil Card
+---------------------------
+
+Gets a Virgil Card by ID.
+
+.. code-block:: python
+
+    virgil_client = VirgilClient("[YOUR_ACCESS_TOKEN_HERE]")
+    card = virgil_client.get_card("[YOUR_CARD_ID_HERE]")
+
 Revoking a Virgil Card
 ---------------------------
 

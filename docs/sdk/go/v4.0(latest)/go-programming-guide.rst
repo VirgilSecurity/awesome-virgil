@@ -98,6 +98,16 @@ This sample uses built-in ``CardValidator`` to validate **Virgil Cards**. By def
         criteria := search.ByIdentities("alice", "bob")
         cards, err := client.SearchCards(criteria)
 
+Get a Virgil Card
+---------------------------
+
+Gets a Virgil Card by ID.
+
+.. code-block:: go
+
+    client := virgil.NewClient("[YOUR_ACCESS_TOKEN_HERE]")
+    card, err := client.GetCard("CARD_ID")
+
 Revoking a Virgil Card
 ---------------------------
 
