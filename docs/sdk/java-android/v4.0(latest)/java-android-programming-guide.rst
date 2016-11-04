@@ -105,6 +105,16 @@ This sample uses built-in ``CardValidator`` to validate **Virgil Cards**. By def
         // ex.getInvalidCards()
     }
 
+Get a Virgil Card
+------------------
+
+Gets a Virgil Card by ID.
+
+.. code-block:: java
+
+    VirgilClient client = new VirgilClient("[YOUR_ACCESS_TOKEN_HERE]");
+    Card card = client.getCard("[YOUR_CARD_ID_HERE]");
+
 Revoking a Virgil Card
 ---------------------------
 

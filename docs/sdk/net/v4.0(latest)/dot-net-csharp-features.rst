@@ -6,6 +6,7 @@ Working with Virgil Cards:
 --------------------------
 
 -  `Creating a Virgil Card <dot-net-csharp-programming-guide.html#creating-a-virgil-card>`__
+-  `Get a Virgil Card <dot-net-csharp-programming-guide.html#get-a-virgil-card>`__
 -  `Search for Virgil Cards <dot-net-csharp-programming-guide.html#search-for-virgil-cards>`__
 -  `Validating a Virgil Card <dot-net-csharp-programming-guide.html#validating-a-virgil-card>`__
 -  `Revoking a Virgil Card <dot-net-csharp-programming-guide.html#revoking-a-virgil-card>`__

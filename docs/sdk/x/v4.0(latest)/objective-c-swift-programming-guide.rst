@@ -126,7 +126,9 @@ Swift
     }
 
 Get a Virgil Card
----------------------------
+------------------
+
+Gets a Virgil Card by ID.
 
 Objective C
 

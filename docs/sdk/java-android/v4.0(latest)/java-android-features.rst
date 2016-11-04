@@ -6,6 +6,7 @@ Working with Virgil Cards:
 --------------------------
 
 -  `Creating a Virgil Card <java-android-programming-guide.html#creating-a-virgil-card>`__
+-  `Get a Virgil Card <java-android-programming-guide.html#get-a-virgil-card>`__
 -  `Search for Virgil Cards <java-android-programming-guide.html#search-for-virgil-cards>`__
 -  `Validating a Virgil Card <java-android-programming-guide.html#validating-a-virgil-card>`__
 -  `Revoking a Virgil Card <java-android-programming-guide.html#revoking-a-virgil-card>`__
