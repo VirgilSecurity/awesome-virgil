@@ -131,6 +131,7 @@ Get a Virgil Card
 Gets a Virgil Card by ID.
 
 .. code-block:: python
+    :linenos:
 
     virgil_client = VirgilClient("[YOUR_ACCESS_TOKEN_HERE]")
     card = virgil_client.get_card("[YOUR_CARD_ID_HERE]")

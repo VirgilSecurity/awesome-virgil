@@ -111,6 +111,7 @@ Get a Virgil Card
 Gets a Virgil Card by ID.
 
 .. code-block:: java
+    :linenos:
 
     VirgilClient client = new VirgilClient("[YOUR_ACCESS_TOKEN_HERE]");
     Card card = client.getCard("[YOUR_CARD_ID_HERE]");

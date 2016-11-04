@@ -104,6 +104,7 @@ Get a Virgil Card
 Gets a Virgil Card by ID.
 
 .. code-block:: go
+    :linenos:
 
     client := virgil.NewClient("[YOUR_ACCESS_TOKEN_HERE]")
     card, err := client.GetCard("CARD_ID")
