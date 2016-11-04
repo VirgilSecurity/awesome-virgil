@@ -9,7 +9,7 @@ SYNOPSIS
 ========
 ::
 
-  virgil decrypt  [-i <file>] [-o <file>] [--content-info <file>] <keypass> [-p <arg>] [-V] [--version] [-h] [--] 
+  virgil decrypt  [-i <file>] [-o <file>] [--content-info <file>] [-p <arg>] [-V] [--version] [-h] [--] (<keypass>)
 
 ========
 DESCRIPTION
@@ -25,50 +25,47 @@ Please note that you will need a password and/or the *recipient-id* for encrypti
 OPTIONS
 ========
 
-  ``-i`` <file>,  ``--in`` <file>
+**-i <file>,  --in <file>**
     Data to be decrypted. If omitted, stdin is used.
 
-  ``-o`` <file>,  ``--out`` <file>
+**-o <file>,  --out <file>**
     Decrypted data. If omitted, stdout is used.
 
-  ``--content-info`` <file>
+**--content-info <file>**
     :term:`Content info` <Content info>. Use this option if content info is not embedded in the encrypted data.
-
-  ``<keypass>``
-    Contains Private Key or password.
-    Format:
-    [privkey|password]:<value>
-    where:        
             
-            * if **privkey**, then <value> - recipient's Private Key;
-            
-            * if **password**, then <value> - recipient's password.
-            
-   ``-p`` <arg>,  ``--private-key-password`` <arg>
+**-p <arg>,  --private-key-password <arg>**
     Private Key Password.
 
-  ``-V``,  ``--VERBOSE``
+**-V,  --VERBOSE**
     Shows detailed information.
 
-  ``--``,  ``--ignore_rest``
+**--,  --ignore_rest**
     Ignores the rest of the labeled arguments following this flag.
 
-  ``--version``
+**--version**
     Displays version information and exits.
 
-  ``-h``,  ``--help``
+**-h,  --help**
     Displays usage information and exits.
 
+**<keypass>**
+    Contains Private Key or password. Format: [privkey|password]:<value>       
+            
+      if **privkey**, then <value> - recipient's Private Key;
+            
+      if **password**, then <value> - recipient's password.
+      
 ========
 EXAMPLES
 ========
 
-1.  Decrypt *plain.enc* for a user with the password:
+1.  Anyone with the password decrypts *plain.enc*:
 ::
 
         virgil decrypt -i plain.enc -o plain.txt password:strong_password
 
-2.  Decrypt *plain.enc* for Bob with his private key:
+2.  Bob decrypts *plain.enc* with his private key:
 ::
 
         virgil decrypt -i plain.enc -o plain.txt privkey:bob/private.key -p myPassForKey
