@@ -19,4 +19,7 @@ Working with Crypto Library:
 -  `Decrypt Data <python-programming-guide.html#decrypt-data>`__
 -  `Generating a Signature <python-programming-guide.html#generating-and-verifying-signatures>`__
 -  `Verifying a Signature <python-programming-guide.html#verifying-a-signature>`__
+-  `Authenticated Encryption <python-programming-guide.html#authenticated-encryption>`__
+-  `Sign then Encrypt <python-programming-guide.html#sign-then-encrypt>`__
+-  `Decrypt then Verify <python-programming-guide.html#decrypt-then-verify>`__
 -  `Fingerprint Generation <python-programming-guide.html#fingerprint-generation>`__

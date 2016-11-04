@@ -307,6 +307,38 @@ You can verify that a signature is authentic. You will verify the signature of t
         boolean isValid = crypto.verify(in, signature, alice.getPublicKey());
     }
 
+Authenticated Encryption
+-------------------------
+
+Authenticated encryption provides both data confidentiality and data integrity assurances that the information is protected.
+
+.. code-block:: java
+    :linenos:  
+
+    Crypto crypto = new VirgilCrypto();
+
+    KeyPair alice = crypto.generateKeys();
+    KeyPair bob = crypto.generateKeys();
+
+    // The data to be signed with alice's Private keypair
+    String dataToSign = "Hello Bob, How are you?";
+    byte[] data = dataToSign.getBytes();
+
+Sign then Encrypt
+~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: java
+    :linenos: 
+
+    byte[] cipherData = crypto.signThenEncrypt(data, alice.getPrivateKey(), bob.getPublicKey());
+
+Decrypt then Verify
+~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: java
+    :linenos: 
+
+    byte[] decryptedData = crypto.decryptThenVerify(cipherData, bob.getPrivateKey(), alice.getPublicKey());
 
 Fingerprint Generation
 ----------------------

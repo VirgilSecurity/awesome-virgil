@@ -20,4 +20,7 @@ Working with Crypto Library:
 -  `Decrypt Data <javascript-programming-guide.html#decrypt-data>`__
 -  `Generating a Signature <javascript-programming-guide.html#generating-and-verifying-signatures>`__
 -  `Verifying a Signature <javascript-programming-guide.html#verifying-a-signature>`__
+-  `Authenticated Encryption <javascript-programming-guide.html#authenticated-encryption>`__
+-  `Sign then Encrypt <javascript-programming-guide.html#sign-then-encrypt>`__
+-  `Decrypt then Verify <javascript-programming-guide.html#decrypt-then-verify>`__
 -  `Fingerprint Generation <javascript-programming-guide.html#fingerprint-generation>`__

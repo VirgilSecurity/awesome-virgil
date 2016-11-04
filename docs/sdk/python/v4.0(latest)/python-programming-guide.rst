@@ -331,6 +331,46 @@ You can verify that a signature is authentic. You will verify the signature of t
     with io.open("[YOUR_FILE_PATH_HERE]", "rb") as input_stream:
         is_valid = crypto.verify_stream(input_stream, signature, alice.public_key)
 
+Authenticated Encryption
+-------------------------
+
+Authenticated encryption provides both data confidentiality and data integrity assurances that the information is protected.
+
+.. code-block:: python
+    :linenos:  
+
+    crypto = VirgilCrypto()
+
+    alice = crypto.generate_keys()
+    bob = crypto.generate_keys()
+
+    # The data to be signed with alice's Private key
+    data = crypto.strtobytes("Hello Bob, How are you?")
+
+Sign then Encrypt
+~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: python
+    :linenos: 
+
+    cipher_data = crypto.sign_then_encrypt(
+    data,
+    alice.private_key,
+    bob.public_key
+    )
+
+Decrypt then Verify
+~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: python
+    :linenos: 
+
+    decrypted_data = crypto.decrypt_then_verify(
+    cipher_data,
+    bob.private_key,
+    alice.public_key
+    )
+
 Fingerprint Generation
 ----------------------
 

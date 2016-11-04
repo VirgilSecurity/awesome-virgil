@@ -19,4 +19,7 @@ Working with Crypto Library:
 -  `Decrypt Data <java-android-programming-guide.html#decrypt-data>`__
 -  `Generating a Signature <java-android-programming-guide.html#generating-and-verifying-signatures>`__
 -  `Verifying a Signature <java-android-programming-guide.html#verifying-a-signature>`__
+-  `Authenticated Encryption <java-android-programming-guide.html#authenticated-encryption>`__
+-  `Sign then Encrypt <java-android-programming-guide.html#sign-then-encrypt>`__
+-  `Decrypt then Verify <java-android-programming-guide.html#decrypt-then-verify>`__
 -  `Fingerprint Generation <java-android-programming-guide.html#fingerprint-generation>`__
