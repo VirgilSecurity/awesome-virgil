@@ -31,7 +31,7 @@ or you can use pip to download and install package automatically:
 
 ::
 
-    python -m pip install virgil_sdk
+    python -m pip install virgil_sdk==4.0.0b0
 
 User and App Credentials
 ------------------------
@@ -62,14 +62,16 @@ Module: ``virgil_sdk.client``
 .. code-block:: python
     :linenos:
 
-    virgil_client = VirgilClient("[YOUR_ACCESS_TOKEN_HERE]")
+    from virgil_sdk.client import VirgilClient
+
+    client = VirgilClient("[YOUR_ACCESS_TOKEN_HERE]")
 
 you can also customize initialization using your own parameters
 
 .. code-block:: python
     :linenos:
 
-    virgil_client = VirgilClient(
+    client = VirgilClient(
         "[YOUR_ACCESS_TOKEN_HERE]",
         cards_service_url="https://cards.virgilsecurity.com",
         cards_read_only_service_url="https://cards-ro.virgilsecurity.com",
@@ -85,4 +87,6 @@ Module: ``virgil_sdk.cryptography``
 .. code-block:: python
     :linenos:
 
-    crypto = new VirgilCrypto()
+    from virgil_sdk.cryptography import VirgilCrypto
+ 
+    crypto = VirgilCrypto()

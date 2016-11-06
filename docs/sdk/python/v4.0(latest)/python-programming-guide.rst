@@ -57,7 +57,7 @@ Publish a Virgil Card
 .. code-block:: python
     :linenos:
 
-    alice_card = virgil_client.create_card_from_signed_request
+    alice_card = client.create_card_from_signed_request
 
 Or you can use the shorthand version which will sign and send the card creation request.
 
@@ -117,11 +117,11 @@ This sample uses built-in ``CardValidator`` to validate **Virgil Cards**. By def
     # validator.add_verifier("[HERE_VERIFIER_CARD_ID]", [HERE_VERIFIER_PUBLIC_KEY]);
 
     # Initialize service client
-    virgil_client = VirgilClient("[YOUR_ACCESS_TOKEN_HERE]")
-    virgil_client.set_card_validator(validator)
+    client = VirgilClient("[YOUR_ACCESS_TOKEN_HERE]")
+    client.set_card_validator(validator)
 
     try:
-        cards = virgil_client.search_cards_by_identities("alice", "bob");
+        cards = client.search_cards_by_identities("alice", "bob");
     except CardValidationException as ex:
         # ex.invalid_cards is the list of Card objects that didn't pass validation
 
@@ -133,8 +133,8 @@ Gets a Virgil Card by ID.
 .. code-block:: python
     :linenos:
 
-    virgil_client = VirgilClient("[YOUR_ACCESS_TOKEN_HERE]")
-    card = virgil_client.get_card("[YOUR_CARD_ID_HERE]")
+    client = VirgilClient("[YOUR_ACCESS_TOKEN_HERE]")
+    card = client.get_card("[YOUR_CARD_ID_HERE]")
 
 Revoking a Virgil Card
 ---------------------------
@@ -146,7 +146,7 @@ Initialize required components.
 .. code-block:: python
     :linenos:
 
-    virgil_client = new VirgilClient("[YOUR_ACCESS_TOKEN_HERE]")
+    client = VirgilClient("[YOUR_ACCESS_TOKEN_HERE]")
     crypto = VirgilCrypto()
     request_signer = RequestSigner(crypto)
 
@@ -178,7 +178,7 @@ The shorthand version is
 .. code-block:: python
     :linenos:
 
-    virgil_client.revoke_card(
+    client.revoke_card(
         card_id="[YOUR_CARD_ID_HERE]",
         reason=RevokeCardRequest.Reasons.Unspecified,
         app_id=app_id,
@@ -290,7 +290,7 @@ Generate a new Public/Private keypair and ``data`` to be signed.
 .. code-block:: python
     :linenos:
 
-    crypto = new VirgilCrypto()
+    crypto = VirgilCrypto()
     alice_keys = crypto.GenerateKeys()
 
     # The data to be signed with alice's Private key
@@ -390,7 +390,7 @@ The default Fingerprint algorithm is ``SHA-256``.
 .. code-block:: python
     :linenos:
 
-    crypto = new VirgilCrypto()
+    crypto = VirgilCrypto()
     fingerprint = crypto.calculate_fingerprint(content_bytes)
 
 See Also: 
