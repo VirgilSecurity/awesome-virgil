@@ -65,7 +65,7 @@ Or you can use the shorthand version which will sign and send the card creation 
     :linenos:
 
     alice_keys = crypto.generate_keys()
-    alice_card = virgil_client.create_card(
+    alice_card = client.create_card(
         identity="alice",
         identity_type="username",
         key_pair=alice_keys,
@@ -84,7 +84,7 @@ You can search for **Virgil Cards** by identity value(s) and optional additional
 .. code-block:: python
     :linenos:
 
-    virgil_client = VirgilClient("[YOUR_ACCESS_TOKEN_HERE]")
+    client = VirgilClient("[YOUR_ACCESS_TOKEN_HERE]")
 
     criteria = SearchCriteria.by_identities("alice", "bob")
     cards = client.search_cards_by_criteria(criteria)
@@ -94,7 +94,7 @@ Or you can use the shorthand version
 .. code-block:: python
     :linenos:
 
-    virgil_client = VirgilClient("[YOUR_ACCESS_TOKEN_HERE]")
+    client = VirgilClient("[YOUR_ACCESS_TOKEN_HERE]")
 
     cards = client.search_cards_by_identities("alice", "bob")
     app_bundle_cards = client.seach_cards_by_app_bundle("[APP_BUNDLE]")
