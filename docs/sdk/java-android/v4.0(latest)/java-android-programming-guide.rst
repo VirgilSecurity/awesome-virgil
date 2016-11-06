@@ -140,7 +140,7 @@ Collect an *App* credentials:
     String appKeyPassword = "[YOUR_APP_KEY_PASSWORD_HERE]";
     String appKeyData = "[YOUR_APP_KEY_PATH_HERE]";
 
-    String appKey = crypto.importPrivateKey(appKeyData.getBytes(), appKeyPassword);
+    PrivateKey appKey = crypto.importPrivateKey(appKeyData.getBytes(), appKeyPassword);
 
 Prepare revocation request:
 

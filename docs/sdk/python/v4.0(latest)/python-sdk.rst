@@ -15,5 +15,5 @@ Start with one of the sections:
    python-features
    python-programming-guide
 
-.. * `Downloads <>`__
+* `Downloads <https://pypi.python.org/pypi/Virgil_SDK>`__
 * `Source code <https://github.com/VirgilSecurity/virgil-sdk-python/tree/v4>`__
