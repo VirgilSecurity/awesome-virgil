@@ -238,8 +238,7 @@ To specify a different algorithm, pass one of the values of ``virgil.crypto.KeyP
 Import and Export Keys
 ~~~~~~~~~~~~~~~~~~~~~~
 
-All ``virgil.crypto`` API functions accept and return keys in an internal format. To get the raw key data as ``Buffer`` object use ``exportPrivateKey`` and ``exportPublicKey`` methods of ``virgil.crypto`` passing the appropriate internal key representation.
-
+All ``virgil.crypto`` api functions accept and return keys in an internal format. To get the raw key data as ``Buffer`` object use ``exportPrivateKey`` and ``exportPublicKey`` methods of ``virgil.crypto`` passing the appropriate internal key representation. To get the internal key representation out of the raw key data use ``importPrivateKey`` and ``importPublicKey`` respectively:
 To get the internal key representation out of the raw key data use ``importPrivateKey`` and ``importPublicKey`` respectively:
 
 .. code-block:: javascript
@@ -251,6 +250,13 @@ To get the internal key representation out of the raw key data use ``importPriva
     var privateKey = crypto.importPrivateKey(exportedPrivateKey);
     var publicKey = crypto.importPublicKey(exportedPublicKey);
 
+If you want to encrypt the private key before exporting it you must provide a password to encrypt the key with as a second parameter to `exportPrivateKey` function. Similarly, if you want to import a private key that has been encrypted - provide a password as a second parameter to `importPrivateKey` function:
+ 
+ .. code-block:: javascript
+    :linenos:
+
+    var exportedEncryptedKey = virgil.crypto.exportPrivateKey(aliceKeys.privateKey, 'pa$$w0rd');
+    var importedEncryptedKey = virgil.crypto.importPublicKey(exportedPublicKey, 'pa$$w0rd');
 
 Encryption and Decryption
 ---------------------------

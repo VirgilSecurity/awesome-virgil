@@ -34,7 +34,7 @@ Or get it from CDN:
 
 .. code:: html
 
-    <script src="https://cdn.virgilsecurity.com/packages/javascript/sdk_beta/4.0.0-beta.4/virgil-sdk.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.virgilsecurity.com/packages/javascript/sdk_beta/4.0.0-beta.5/virgil-sdk.min.js" crossorigin="anonymous"></script>
 
 Or `download the source code <https://github.com/VirgilSecurity/virgil-sdk-javascript/releases>`__
 
