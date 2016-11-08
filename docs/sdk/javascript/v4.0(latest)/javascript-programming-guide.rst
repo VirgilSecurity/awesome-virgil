@@ -250,9 +250,9 @@ To get the internal key representation out of the raw key data use ``importPriva
     var privateKey = crypto.importPrivateKey(exportedPrivateKey);
     var publicKey = crypto.importPublicKey(exportedPublicKey);
 
-If you want to encrypt the private key before exporting it you must provide a password to encrypt the key with as a second parameter to `exportPrivateKey` function. Similarly, if you want to import a private key that has been encrypted - provide a password as a second parameter to `importPrivateKey` function:
+If you want to encrypt the private key before exporting it you must provide a password to encrypt the key with as a second parameter to ``exportPrivateKey`` function. Similarly, if you want to import a private key that has been encrypted - provide a password as a second parameter to ``importPrivateKey`` function:
  
- .. code-block:: javascript
+.. code-block:: javascript
     :linenos:
 
     var exportedEncryptedKey = virgil.crypto.exportPrivateKey(aliceKeys.privateKey, 'pa$$w0rd');
