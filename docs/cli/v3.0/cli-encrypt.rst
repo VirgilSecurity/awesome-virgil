@@ -68,7 +68,6 @@ EXAMPLES
 
 1. Alice encrypts *plain.txt* for Bob using his email as a recipient-id. A search of the Virgil Card(s) associated with Bob's email is performed: 
 ::
-
        virgil encrypt -i plain.txt -o plain.enc email:bob@email.com
 
 2. Alice encrypts *plain.txt* for Bob and Tom using their emails: 
