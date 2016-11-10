@@ -9,9 +9,9 @@ SYNOPSIS
 
   virgil sign  [-i <file>] [-o <file>] -k <file> [-p <arg>] [-V] [–-]
     
-  virgil encrypt (-h | --help)
+  virgil sign (-h | --help)
 
-  virgil encrypt --version
+  virgil sign --version
 
 
 DESCRIPTION 
