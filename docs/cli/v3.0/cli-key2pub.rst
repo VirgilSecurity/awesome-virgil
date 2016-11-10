@@ -9,9 +9,9 @@ SYNOPSIS
 
   virgil key2pub  [-i <file>] [-o <file>] [-p <arg>] [-V] [–-]
   
-  virgil encrypt (-h | --help)
+  virgil key2pub (-h | --help)
 
-  virgil encrypt --version
+  virgil key2pub --version
 
 
 DESCRIPTION 
