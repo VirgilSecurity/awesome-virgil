@@ -1,70 +1,72 @@
-*********
-encrypt
-*********
+:orphan:
 
-Encrypt data for provided recipients.
-
+virgil-encrypt
 ========
+
 SYNOPSIS
-========
-::
+--------
 
-  virgil encrypt [-i <file>] [-o <file>] [--content-info] [-V] [-–version] [-h] [–-] (<recipient-id>...)
+virgil encrypt [-i <file>] [-o <file>] [--content-info] [-V] [–-] (<recipient-id>...)
+virgil encrypt [-–version] 
+virgil encrypt [-h | --help] 
 
-======== 
+
 DESCRIPTION 
-========
+-----------
 
-The utility allows you to encrypt data with a password and/or for the specified recipient(s) using the :term:`recipient-id <Recipient’s identifier>`.
+:program:`virgil encrypt` encrypts any data for the specified recipient(s) and/or with a password using the :term:`recipient-id <Recipient’s identifier>`.
 
 ``recipient-id`` is an identifier which will be associated with the :term:`Public Key <Public Key>` used for the encryption. Thus, the email, the Public Key (accompanied by the :term:`alias` <Alias> or not), the :term:`Virgil Card` <Virgil Card> or the :term:`Virgil Card id` <Virgil Card id> can be used as well as any combinations of these recipient identifiers. 
 
 Please note that for decryption you will need a provided password or a :term:`Private Key` <Private Key> associated with the `Public Key` used for encryption.
 
-======== 
-OPTIONS 
-========
 
-**-i <file>; --in <file>**
+OPTIONS 
+-------
+
+**Basic**
+
+.. option:: -i <file>; --in <file>
    Data to be encrypted. If omitted, stdin is used.
    
-**-o <file>; --out <file>**
+.. option:: -o <file>; --out <file>
    Encrypted data. If omitted, stdout is used.
 
-**--content-info <file>**
+.. option:: --content-info <file>
    :term:`Content info` <Content info> - meta information about the encrypted data. If omitted, becomes a part of the encrypted data.
+ 
+.. option:: <recipient-id> (accepted multiple times)
+   Contains information about one recipient. Format: [password|email|vcard|pubkey]:<value>
    
-**-V; --VERBOSE**
+**Common**
+.. option:: -V; --VERBOSE
    Shows the detailed information.
 
-**--; --ignore_rest**
+.. option:: --; --ignore_rest
    Ignores the rest of the labeled arguments following this flag.
    
-**--version**
+.. option:: --version
    Displays version information and exits.
    
-**-h; --help**
+.. option:: -h; --help
    Displays usage information and exits.
 
-**<recipient-id> (accepted multiple times)**
-   Contains information about one recipient. Format: [password|email|vcard|pubkey]:<value>
-
-      if **password**
+      * if **password**
          then <value> - a password for decrypting;
             
-      if **email**
+      * if **email**
          then <value> - the email of the recipient;
 
-      if **vcard**
+      * if **vcard**
          then <value> - the recipient's Virgil Card id or the Virgil Card itself (the file stored locally); 
       
-      if **pubkey**
+      * if **pubkey**
          then <value> - Public Key of the recipient.
          An alias may also be added. Example: pubkey:bob/public.key:ForBob
 
-======== 
+
 EXAMPLES 
-========
+--------
 
 1. Alice encrypts *plain.txt* for Bob using his email as a recipient-id. A search of the Virgil Card(s) associated with Bob's email is performed: 
 ::
@@ -92,9 +94,9 @@ EXAMPLES
 
       virgil encrypt -i plain.txt -o plain.enc pubkey:bob/public.key:ForBob
 
-======== 
+ 
 SEE ALSO 
-========
+--------
 
-* :doc:`cli-virgil`
-* :doc:`cli-decrypt``
+:cliref:`cli-virgil`
+:cliref:`cli-decrypt`
