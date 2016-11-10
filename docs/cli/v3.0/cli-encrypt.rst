@@ -5,12 +5,13 @@ virgil-encrypt
 
 SYNOPSIS
 --------
+::
 
-virgil encrypt [-i <file>] [-o <file>] [--content-info] [-V] [–-] (<recipient-id>...)
+  virgil encrypt [-i <file>] [-o <file>] [--content-info] [-V] [–-] (<recipient-id>...)
 
-virgil encrypt [-–version] 
+  virgil encrypt [-–version] 
 
-virgil encrypt [-h | --help] 
+  virgil encrypt [-h | --help] 
 
 
 DESCRIPTION 
