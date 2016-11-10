@@ -1,77 +1,81 @@
-***********
-verify
-***********
+:orphan:
 
-Verify data and signature.
+virgil-verify
+==============
 
-========
 SYNOPSIS
-========
+--------
 ::
 
-  virgil verify  [-i <file>] [-o <file>] [--return-status] -S <file> [-V] [-–version] [-h] [–-] <recipient-id>
+  virgil verify  [-i <file>] [-o <file>] [--return-status] -S <file> [-V] [–-] <recipient-id>
+  
+  virgil verify (-h | --help)
 
-========
-DESCRIPTION
-========
+  virgil verify --version
 
-The utility allows you to verify data and signature with a provided user's idenififer - :term:`Public Key <Public Key>` or :term:`Virgil Card` <Virgil Card>.
 
-========
-OPTIONS
-========
+DESCRIPTION 
+-----------
 
-**-i <file>; --in <file>**
+:program:`virgil verify` verifies the data and the signature with a provided user's idenififer - :term:`Public Key <Public Key>` or :term:`Virgil Card` <Virgil Card>.
+
+
+OPTIONS 
+-------
+
+**Basic**
+
+.. option:: -i <file>; --in <file>
    Data to be signed. If omitted, stdin is used.
    
-**-o <file>; --out <file>**
+.. option:: -o <file>; --out <file>
    Digest sign. If omitted, stdout is used.
 
-**--return-status**
+.. option:: --return-status
    Returns status, ignores '-o, --out'.
    
-**-S <file>; --sign <file>**
+.. option:: -S <file>; --sign <file>
    Digest sign.
 
-**-V; --VERBOSE**
+.. option:: -V; --VERBOSE
    Shows the detailed information.
 
-**--; --ignore_rest**
+.. option:: --; --ignore_rest
    Ignores the rest of the labeled arguments following this flag.
    
-**--version**
-   Displays version information and exits.
-   
-**-h; --help**
-   Displays usage information and exits.
-   
-**<recipient-id>**
+.. option:: <recipient-id>
    Contains information about the recipient. Format: [vcard|pubkey]:<value>
 
-      if **vcard**
+      *if **vcard**
          then <value> - the recipient's Virgil Card id or the Virgil Card itself (the file stored locally); 
       
-      if **pubkey**
+      *if **pubkey**
          then <value> - Public Key of the recipient.
+         
+**Common**
 
-========
-EXAMPLES
-========
+.. option:: -h,  --help
+    Displays usage information and exits.
+
+.. option:: --version
+    Displays version information and exits.
+
+
+EXAMPLES 
+--------
 
 1. *plain.txt* is verified with the Bob's Virgil Card.
 ::
-
         virgil verify -i plain.txt -s plain.txt.sign -r vcard:bob/bob.vcard
         
 2. *plain.txt* is verified with the Bob's Public Key.
 ::
-
         virgil verify -i plain.txt -s plain.txt.sign -r pubkey:bob/public.key
 
-========
-SEE ALSO
-========
 
-* :doc:`cli-virgil`
-* :doc:`cli-config`
-* :doc:`cli-sign`
+SEE ALSO 
+--------
+
+:cliref:`cli-virgil`
+:cliref:`cli-config`
+:cliref:`cli-sign`
