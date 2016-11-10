@@ -1,63 +1,69 @@
-******
-sign
-******
+:orphan:
 
-Sign the data.
+virgil-sign
+==============
 
-========
 SYNOPSIS
-========
+--------
 ::
 
-  virgil sign  [-i <file>] [-o <file>] -k <file> [-p <arg>] [-V] [-–version] [-h] [–-]
+  virgil sign  [-i <file>] [-o <file>] -k <file> [-p <arg>] [-V] [–-]
+    
+  virgil encrypt (-h | --help)
 
-========
-DESCRIPTION
-========
+  virgil encrypt --version
 
-The utility allows you to sign data with a provided user's :term:`private key <Private Key>`. 
 
-========
-OPTIONS
-========
+DESCRIPTION 
+-----------
 
-**-i <file>; --in <file>**
+:program:`virgil sign` signs the data with a provided user's :term:`private key <Private Key>`. 
+
+
+OPTIONS 
+-------
+
+**Basic**
+
+.. option:: -i <file>; --in <file>
    Data to be signed. If omitted, stdin is used.
    
-**-o <file>; --out <file>**
+.. option:: -o <file>; --out <file>
    Digest sign. If omitted, stdout is used.
    
-**-k <file>; --private-key <file>**
+.. option:: -k <file>; --private-key <file>
    Signer's Private Key.
    
-**-p <arg>; --private-key-password <arg>**
+.. option:: -p <arg>; --private-key-password <arg>
    Private Key password.
    
-**-V; --VERBOSE**
+.. option:: -V; --VERBOSE
    Shows the detailed information.
 
-**--; --ignore_rest**
+.. option:: --; --ignore_rest
    Ignores the rest of the labeled arguments following this flag.
-   
-**--version**
-   Displays version information and exits.
-   
-**-h; --help**
-   Displays usage information and exits.
 
-========
-EXAMPLES
-========
+**Common**
 
-1. Alice signs *plain.txt* with her Private Key. The Private Key is protected with the password "STRONGPASS".
+.. option:: -h,  --help
+    Displays usage information and exits.
+
+.. option:: --version
+    Displays version information and exits.
+
+
+EXAMPLES 
+--------
+
+Alice signs *plain.txt* with her Private Key. The Private Key is protected with the password "STRONGPASS".
 :: 
 
-        virgil sign -i plain.txt -o plain.signedtxt -k alice/private.key -p STRONGPASS
+        virgil sign -i plain.txt -o plain.signed -k alice/private.key -p STRONGPASS
 
-========
-SEE ALSO
-========
 
-* :doc:`cli-virgil`
-* :doc:`cli-config`
-* :doc:`cli-verify`
+SEE ALSO 
+--------
+
+:cliref:`cli-virgil`
+:cliref:`cli-config`
+:cliref:`cli-verify`
