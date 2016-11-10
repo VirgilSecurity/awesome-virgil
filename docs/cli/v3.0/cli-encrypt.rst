@@ -1,7 +1,7 @@
 :orphan:
 
 virgil-encrypt
-========
+==============
 
 SYNOPSIS
 --------
@@ -18,7 +18,7 @@ DESCRIPTION
 
 ``recipient-id`` is an identifier which will be associated with the :term:`Public Key <Public Key>` used for the encryption. Thus, the email, the Public Key (accompanied by the :term:`alias` <Alias> or not), the :term:`Virgil Card` <Virgil Card> or the :term:`Virgil Card id` <Virgil Card id> can be used as well as any combinations of these recipient identifiers. 
 
-Please note that for decryption you will need a provided password or a :term:`Private Key` <Private Key> associated with the `Public Key` used for encryption.
+Please note that for decryption you will need a provided password or a :term:`Private Key` <Private Key> associated with the Public Key used for encryption.
 
 
 OPTIONS 
@@ -91,7 +91,6 @@ EXAMPLES
        
 6. Alice encrypts *plain.txt* with Bob's Public Key accompanied with the alias ForBob:
 ::
-
       virgil encrypt -i plain.txt -o plain.enc pubkey:bob/public.key:ForBob
 
  
