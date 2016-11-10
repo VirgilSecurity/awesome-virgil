@@ -37,23 +37,16 @@ OPTIONS
 
 .. option:: --content-info <file>
    :term:`Content info` <Content info> - meta information about the encrypted data. If omitted, becomes a part of the encrypted data.
- 
-.. option:: <recipient-id> (accepted multiple times)
-   Contains information about one recipient. Format: [password|email|vcard|pubkey]:<value>
    
-**Common**
 .. option:: -V; --VERBOSE
    Shows the detailed information.
 
 .. option:: --; --ignore_rest
    Ignores the rest of the labeled arguments following this flag.
+ 
+.. option:: <recipient-id> (accepted multiple times)
+   Contains information about one recipient. Format: [password|email|vcard|pubkey]:<value>
    
-.. option:: --version
-   Displays version information and exits.
-   
-.. option:: -h; --help
-   Displays usage information and exits.
-
       * if **password**
          then <value> - a password for decrypting;
             
@@ -66,6 +59,14 @@ OPTIONS
       * if **pubkey**
          then <value> - Public Key of the recipient.
          An alias may also be added. Example: pubkey:bob/public.key:ForBob
+         
+**Common**
+
+.. option:: -h,  --help
+    Displays usage information and exits.
+
+.. option:: --version
+    Displays version information and exits.
 
 
 EXAMPLES 
