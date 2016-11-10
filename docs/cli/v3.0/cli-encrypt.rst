@@ -9,9 +9,9 @@ SYNOPSIS
 
   virgil encrypt [-i <file>] [-o <file>] [--content-info] [-V] [–-] (<recipient-id>...)
 
-  virgil encrypt [-–version] 
+  virgil encrypt (-h | --help)
 
-  virgil encrypt [-h | --help] 
+  virgil encrypt --version
 
 
 DESCRIPTION 
