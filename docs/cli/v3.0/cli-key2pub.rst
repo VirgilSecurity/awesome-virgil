@@ -1,51 +1,56 @@
-*******
-key2pub
-*******
+:orphan:
 
-Extract the :term:`Public Key <Public Key>` from the :term:`Private Key <Private Key>`.
+virgil-key2pub
+==============
 
-========
 SYNOPSIS
-========
-
+--------
 ::
 
-  virgil key2pub  [-i <file>] [-o <file>] [-p <arg>] [-V] [-–version] [-h] [–-]
+  virgil key2pub  [-i <file>] [-o <file>] [-p <arg>] [-V] [–-]
+  
+  virgil encrypt (-h | --help)
 
-===========
-DESCRIPTION
-===========
+  virgil encrypt --version
 
-The utility allows you to extract the Public Key from the Private Key.
 
-===========
-OPTIONS
-===========
+DESCRIPTION 
+-----------
 
-**-i <file>; --in <file>**
+:program:`virgil key2pub` extracts the :term:`Public Key <Public Key>` from the :term:`Private Key <Private Key>`.
+
+
+OPTIONS 
+-------
+
+**Basic**
+
+.. option:: -i <file>; --in <file>
    Private key. If omitted, stdin is used.
    
-**-o <file>; --out <file>**
+.. option:: -o <file>; --out <file>
    Public key. If omitted, stdout is used.
 
-**-p <arg>, --private-key-password <arg>**
+.. option:: -p <arg>, --private-key-password <arg>
     Private Key Password.
 
-**-V; --VERBOSE**
+.. option:: -V; --VERBOSE
    Shows the detailed information.
 
-**--; --ignore_rest**
+.. option:: --; --ignore_rest
    Ignores the rest of the labeled arguments following this flag.
    
-**--version**
-   Displays version information and exits.
-   
-**-h; --help**
-   Displays usage information and exits.
+**Common**
 
-===========
-EXAMPLES
-===========
+.. option:: -h,  --help
+    Displays usage information and exits.
+
+.. option:: --version
+    Displays version information and exits.
+
+
+EXAMPLES 
+--------
 
 1. Extract the Public Key from the Private Key.
 ::
@@ -55,10 +60,10 @@ EXAMPLES
 ::
   virgil key2pub -i private.key -o public.key -p STRONGPASS
 
-===========
-SEE ALSO
-===========
+ 
+SEE ALSO 
+--------
 
-* :doc:`cli-virgil`
-* :doc:`cli-config`
-* :doc:`cli-keygen`
+:cliref:`cli-virgil`
+:cliref:`cli-config`
+:cliref:`cli-keygen`
