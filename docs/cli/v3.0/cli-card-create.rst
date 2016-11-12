@@ -7,7 +7,7 @@ SYNOPSIS
 --------
 ::
 
-  virgil card-create -k <file> [-p <arg>] -s <arg> -t <arg> -d <arg> [--data <arg>] [--info <arg>] [-o <file>] [-V] [--]
+  virgil card-create -k <file> [-p <arg>] [-s <arg>] [-t <arg>] -d <arg> [--data <arg>] [--info <arg>] [-o <file>] [-V] [--]
   
   virgil card-create (-h | --help)
 
@@ -32,13 +32,18 @@ OPTIONS
     The Private Key password (if exists).
     
 .. option:: -s <arg>; --scope <arg>
-    The scope must be ``global`` for :term:`global Virgil Cards <Global Virgil Card>` or ``application`` for :term:`application Virgil Cards <Application Virgil Card>`.
-
-.. option:: -t <arg>; --identity-type <arg>
+    * for :term:`global Virgil Cards <Global Virgil Card>` the :term:`scope <scope>` must be ``global``;
     
-    * for :term:`confirmed Virgil Card <Confirmed Virgil Card>` the :term:`identity-type <identity-type>` must be 'email';
+    * for :term:`application Virgil Cards <Application Virgil Card>` the scope must be ``application``;
+    
+    If omitted, ``application`` is used.
+
+.. option:: -t <arg>; --identity-type <arg>    
+    * for :term:`confirmed Virgil Card <Confirmed Virgil Card>` the :term:`identity-type <identity-type>` must be ``email``;
     
     * for :term:`segregated Virgil Card <Segregated Virgil Card>` the identity-type can be any value.
+    
+    If omitted, ``email`` is used.
 
 .. option:: -d <arg>; --identity <arg>
 
@@ -74,9 +79,10 @@ OPTIONS
 EXAMPLES 
 --------
 
+Alice creates a confirmed Virgil Card for her application.
+:: 
 
-
-
+        virgil card-create -k private.key -d alice@mail.com -o AliceCard.vcard
 
 SEE ALSO 
 --------
