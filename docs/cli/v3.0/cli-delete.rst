@@ -1,6 +1,6 @@
 :orphan:
 
-virgil-delete
+virgil-card-delete
 ==============
 
 SYNOPSIS
@@ -9,15 +9,15 @@ SYNOPSIS
 
   virgil card-delete -k <file> [-p <arg>] -c <file> [--revocation_reason <arg>] [-V] [--]                              
                               
-  virgil delete (-h | --help)
+  virgil card-delete (-h | --help)
 
-  virgil delete --version
+  virgil card-delete --version
 
 
 DESCRIPTION 
 -----------
 
-:program:`virgil delete` revokes a :term:`Virgil Card <Virgil Card>` directly or by the :term:`Virgil Card id <Virgil Card id>`. The :term:`Private Key <Private Key>` that was used for Virgil Card creation is required.
+:program:`virgil card-delete` revokes a :term:`Virgil Card <Virgil Card>` directly or by the :term:`Virgil Card id <Virgil Card id>`. The :term:`Private Key <Private Key>` that was used for Virgil Card creation is required.
 
 
 OPTIONS 
@@ -58,7 +58,7 @@ EXAMPLES
 
 Revoke a Virgil Card:
 ::
-       virgil delete -k private.key -c myCard.vcard
+       virgil card-delete -k private.key -c myCard.vcard
 
 
 SEE ALSO 
