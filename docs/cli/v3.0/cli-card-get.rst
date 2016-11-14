@@ -25,7 +25,6 @@ OPTIONS
 
 **Basic**
 
-
 .. option:: -i <arg>; --in <arg>
     Virgil Card id. If omitted, stdin is used.
    
