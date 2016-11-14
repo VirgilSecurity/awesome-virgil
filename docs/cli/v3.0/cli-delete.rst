@@ -1,0 +1,69 @@
+:orphan:
+
+virgil-delete
+==============
+
+SYNOPSIS
+--------
+::
+
+  virgil card-delete -k <file> [-p <arg>] -c <file> [--revocation_reason <arg>] [-V] [--]                              
+                              
+  virgil delete (-h | --help)
+
+  virgil delete --version
+
+
+DESCRIPTION 
+-----------
+
+:program:`virgil delete` revokes a :term:`Virgil Card <Virgil Card>` directly or by the :term:`Virgil Card id <Virgil Card id>`. The :term:`Private Key <Private Key>` that was used for Virgil Card creation is required.
+
+
+OPTIONS 
+-------
+
+**Basic**
+
+.. option:: -k <file>;  --private-key <file>
+    The Private Key.
+    
+.. option:: -p <arg>;  --private-key-password <arg>
+    The :term:`Private Key password <Private Key password>` (if needed).
+    
+.. option:: -c <file>; --card <file>
+    The Virgil Card id or the Virgil Card itself for revocation.
+    
+.. option:: --revocation_reason <arg>
+    The :term:`revocation reason <revocation reason>` must be ``unspecified`` or ``compromised``. If omitted, ``unspecified`` is used.
+
+.. option:: -V; --VERBOSE
+   Shows the detailed information.
+
+.. option:: --; --ignore_rest
+   Ignores the rest of the labeled arguments following this flag.
+
+
+**Common**
+
+.. option:: -h,  --help
+    Displays usage information and exits.
+
+.. option:: --version
+    Displays version information and exits.
+
+
+EXAMPLES 
+--------
+
+Revoke a Virgil Card:
+::
+       virgil delete -k private.key -c myCard.vcard
+
+
+SEE ALSO 
+--------
+
+:cliref:`cli-virgil`
+:cliref:`cli-config`
+:cliref:`cli-card-create`
