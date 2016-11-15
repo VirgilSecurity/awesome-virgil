@@ -1,7 +1,7 @@
 :orphan:
 
 virgil-card-delete
-==============
+==================
 
 SYNOPSIS
 --------
@@ -38,11 +38,10 @@ OPTIONS
     The :term:`revocation reason <revocation reason>` must be ``unspecified`` or ``compromised``. If omitted, ``unspecified`` is used.
 
 .. option:: -V; --VERBOSE
-   Shows the detailed information.
+    Shows the detailed information.
 
 .. option:: --; --ignore_rest
-   Ignores the rest of the labeled arguments following this flag.
-
+    Ignores the rest of the labeled arguments following this flag.
 
 **Common**
 
@@ -58,6 +57,7 @@ EXAMPLES
 
 Revoke a Virgil Card:
 ::
+
        virgil card-delete -k private.key -c myCard.vcard
 
 
