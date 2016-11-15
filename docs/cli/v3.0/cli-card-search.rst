@@ -13,6 +13,7 @@ SYNOPSIS
 
   virgil card-search --version
 
+
 DESCRIPTION 
 -----------
 
@@ -56,7 +57,8 @@ EXAMPLES
 
 Search for the Virgil Cards by Alice's and Bob's emails:
 ::
-  virgil card-search -o cards/ -d alice@mail.com bob@mail.com
+
+        virgil card-search -o cards/ -d alice@mail.com bob@mail.com
 
 
 SEE ALSO 
