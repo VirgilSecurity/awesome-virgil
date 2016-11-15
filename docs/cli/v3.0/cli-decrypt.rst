@@ -7,7 +7,7 @@ SYNOPSIS
 --------
 ::
 
-  virgil decrypt  [-i <file>] [-o <file>] [--content-info <file>] [-p <arg>] [-V] [--] (<keypass>)
+  virgil decrypt  [-i <file>] [-o <file>] [--content-info <file>] [-p <arg>] [-V] [--] <keypass>...
     
   virgil decrypt (-h | --help)
 
@@ -68,10 +68,12 @@ EXAMPLES
 
 1.  Anyone with the password decrypts *plain.enc*:
 ::
+
         virgil decrypt -i plain.enc -o plain.txt password:strong_password
 
 2.  Bob decrypts *plain.enc* with his private key:
 ::
+
         virgil decrypt -i plain.enc -o plain.txt privkey:bob/private.key -p myPassForKey
 
 
