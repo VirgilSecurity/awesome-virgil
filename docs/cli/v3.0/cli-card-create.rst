@@ -1,7 +1,7 @@
 :orphan:
 
 virgil-card-create
-==============
+==================
 
 SYNOPSIS
 --------
@@ -61,11 +61,10 @@ OPTIONS
     The Virgil Card. If omitted, stdout is used.
 
 .. option:: -V; --VERBOSE
-   Shows the detailed information.
+    Shows the detailed information.
 
 .. option:: --; --ignore_rest
-   Ignores the rest of the labeled arguments following this flag.
-
+    Ignores the rest of the labeled arguments following this flag.
 
 **Common**
 
@@ -83,6 +82,7 @@ Alice creates a confirmed Virgil Card for her application.
 :: 
 
         virgil card-create -k private.key -d alice@mail.com -o AliceCard.vcard
+
 
 SEE ALSO 
 --------
