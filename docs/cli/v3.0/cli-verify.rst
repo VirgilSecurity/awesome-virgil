@@ -1,7 +1,7 @@
 :orphan:
 
 virgil-verify
-==============
+=============
 
 SYNOPSIS
 --------
@@ -26,25 +26,25 @@ OPTIONS
 **Basic**
 
 .. option:: -i <file>; --in <file>
-   Data to be signed. If omitted, stdin is used.
+    Data to be signed. If omitted, stdin is used.
    
 .. option:: -o <file>; --out <file>
-   Digest sign. If omitted, stdout is used.
+    Digest sign. If omitted, stdout is used.
 
 .. option:: --return-status
-   Returns status, ignores '-o, --out'.
+    Returns status, ignores '-o, --out'.
    
 .. option:: -S <file>; --sign <file>
-   Digest sign.
+    Digest sign.
 
 .. option:: -V; --VERBOSE
-   Shows the detailed information.
+    Shows the detailed information.
 
 .. option:: --; --ignore_rest
-   Ignores the rest of the labeled arguments following this flag.
+    Ignores the rest of the labeled arguments following this flag.
    
 .. option:: <recipient-id>
-   Contains information about the recipient. Format: [vcard|pubkey]:<value>
+    Contains information about the recipient. Format: [vcard|pubkey]:<value>
 
       *if **vcard**
          then <value> - the recipient's Virgil Card id or the Virgil Card itself (the file stored locally); 
@@ -66,10 +66,12 @@ EXAMPLES
 
 1. *plain.txt* is verified with the Bob's Virgil Card.
 ::
+
         virgil verify -i plain.txt -s plain.txt.sign -r vcard:bob/bob.vcard
         
 2. *plain.txt* is verified with the Bob's Public Key.
 ::
+
         virgil verify -i plain.txt -s plain.txt.sign -r pubkey:bob/public.key
 
 
