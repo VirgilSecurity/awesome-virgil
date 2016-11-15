@@ -26,19 +26,19 @@ OPTIONS
 **Basic**
 
 .. option:: -i <file>; --in <file>
-   Private key. If omitted, stdin is used.
+    Private key. If omitted, stdin is used.
    
 .. option:: -o <file>; --out <file>
-   Public key. If omitted, stdout is used.
+    Public key. If omitted, stdout is used.
 
 .. option:: -p <arg>, --private-key-password <arg>
     Private Key Password.
 
 .. option:: -V; --VERBOSE
-   Shows the detailed information.
+    Shows the detailed information.
 
 .. option:: --; --ignore_rest
-   Ignores the rest of the labeled arguments following this flag.
+    Ignores the rest of the labeled arguments following this flag.
    
 **Common**
 
@@ -54,11 +54,13 @@ EXAMPLES
 
 1. Extract the Public Key from the Private Key.
 ::
-  virgil key2pub -i private.key -o public.key
+
+        virgil key2pub -i private.key -o public.key
 
 2. Extract the Public Key from the Private Key protected with the password.
 ::
-  virgil key2pub -i private.key -o public.key -p STRONGPASS
+
+        virgil key2pub -i private.key -o public.key -p STRONGPASS
 
  
 SEE ALSO 
