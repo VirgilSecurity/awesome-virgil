@@ -1,7 +1,7 @@
 :orphan:
 
 virgil-card-get
-==============
+===============
 
 SYNOPSIS
 --------
@@ -51,7 +51,8 @@ EXAMPLES
 
 Get a Virgil Card by Virgil Card id:
 ::
-  virgil card-get -i <card_id> -o cards/
+
+        virgil card-get -i <card_id> -o cards/
 
 
 SEE ALSO 
