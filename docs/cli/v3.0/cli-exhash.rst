@@ -7,7 +7,7 @@ SYNOPSIS
 --------
 ::
 
-  virgil exhash  [-i <file>] [-o <file>] -s <file> [-a <alg>] [-c <int>] [-V] [--]
+  virgil exhash  [-i <file>] [-o <file>] -z <file> [-g <alg>] [-x <int>] [-V] [--]
     
   virgil exhash (-h | --help)
 
@@ -43,7 +43,7 @@ OPTIONS
       * sha384 - secure Hash Algorithm 2, that are 384 bits (default);
       * sha512 - secure Hash Algorithm 2, that are 512 bits;
 
-.. option:: --iterations <int>
+.. option:: -x <int>; --iterations <int>
     Iterations count. Default - 2048
    
 .. option:: -V; --VERBOSE
@@ -72,7 +72,7 @@ EXAMPLES
 2.  Underlying hash - SHA512, iterations - 4096:
 ::
 
-        virgil exhash -i data.txt -o obfuscated_data.txt -z data_salt.txt -g sha512 -iterations 4096
+        virgil exhash -i data.txt -o obfuscated_data.txt -z data_salt.txt -g sha512 -x 4096
 
 
 SEE ALSO
