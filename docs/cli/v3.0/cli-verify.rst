@@ -7,7 +7,7 @@ SYNOPSIS
 --------
 ::
 
-  virgil verify  [-i <file>] [-o <file>] [--return-status] -S <file> [-V] [–-] <recipient-id>
+  virgil verify [-i <file>] [-o <file>] [--return-status] -S <file> [-V] [–-] <recipient-id>
   
   virgil verify (-h | --help)
 
@@ -67,12 +67,12 @@ EXAMPLES
 1. *plain.txt* is verified with the Bob's Virgil Card.
 ::
 
-        virgil verify -i plain.txt -s plain.txt.sign -r vcard:bob/bob.vcard
+        virgil verify -i plain.txt -s plain.txt.sign vcard:bob/bob.vcard
         
 2. *plain.txt* is verified with the Bob's Public Key.
 ::
 
-        virgil verify -i plain.txt -s plain.txt.sign -r pubkey:bob/public.key
+        virgil verify -i plain.txt -s plain.txt.sign pubkey:bob/public.key
 
 
 SEE ALSO 
