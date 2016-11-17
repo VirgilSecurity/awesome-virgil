@@ -7,7 +7,7 @@ SYNOPSIS
 --------
 ::
 
-  virgil encrypt [-i <file>] [-o <file>] [--content-info] [-V] [–-] <recipient-id>...
+  virgil encrypt [-i <file>] [-o <file>] [--f <file>] [-V] [–-] <recipient-id>...
 
   virgil encrypt (-h | --help)
 
@@ -35,7 +35,7 @@ OPTIONS
 .. option:: -o <file>; --out <file>
     Encrypted data. If omitted, stdout is used.
 
-.. option:: --content-info <file>
+.. option:: -f <file>; --content-info <file>
     :term:`Content info` <Content info> - meta information about the encrypted data. If omitted, becomes a part of the encrypted data.
    
 .. option:: -V; --VERBOSE
