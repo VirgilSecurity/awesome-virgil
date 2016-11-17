@@ -7,7 +7,7 @@ SYNOPSIS
 --------
 ::
 
-  virgil decrypt  [-i <file>] [-o <file>] [-f <file>] [-p <arg>] [-V] [--] <keypass>...
+  virgil decrypt  [-i <file>] [-o <file>] [-c <file>] [-p <arg>] [-V] [--] <keypass>...
     
   virgil decrypt (-h | --help)
 
@@ -35,7 +35,7 @@ OPTIONS
 .. option:: -o <file>,  --out <file>
     Decrypted data. If omitted, stdout is used.
 
-.. option:: -f <file>; --content-info <file>
+.. option:: -c <file>; --content-info <file>
     :term:`Content info` <Content info>. Use this option if content info is not embedded in the encrypted data.
             
 .. option:: -p <arg>,  --private-key-password <arg>
