@@ -34,7 +34,7 @@ OPTIONS
 .. option:: -t <arg>; --identity-type <arg>
     Specifies the identity type of a Virgil Cards to be found. The identity type must be 'email' for a confirmed Virgil Card and can be any value for a segregated one.
     
-.. option:: -s <arg>; --scope <arg>
+.. option:: -s <global | application>; --scope <global | application>
     Specifies the scope to perform search on. Must be 'global' or 'application'. If omitted, 'application' is used.
 
 .. option:: -V; --VERBOSE
