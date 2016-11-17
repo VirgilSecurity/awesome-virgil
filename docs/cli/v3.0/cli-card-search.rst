@@ -7,7 +7,7 @@ SYNOPSIS
 --------
 ::
 
-  virgil card-search  -o <arg> -d <arg>... [-t <arg>] [-s <arg>] [-V] [--]
+  virgil card-search  [-o <arg>] -d <arg>... [-t <arg>] [-s <arg>] [-V] [--]
   
   virgil card-search (-h | --help)
 
@@ -25,12 +25,12 @@ OPTIONS
 
 **Basic**
 
+.. option:: -o <file>; --out <file>
+    A folder where Virgil Cards will be saved. If omitted, stdout is used.
+
 .. option:: -d <arg>; --identity <arg>
     The identity must be a valid email for a :term:`confirmed Virgil Card <Confirmed Virgil Card>` with an identity type of 'email' and can be any value for a :term:`segregated Virgil Card <Segregated Virgil Card>`. Multiple identitites can be used for the Virgil Cards search.
 
-.. option:: -o <file>; --out <file>
-    A folder where Virgil Cards will be saved. If omitted, stdout is used.
-    
 .. option:: -t <arg>; --identity-type <arg>
     Specifies the identity type of a Virgil Cards to be found. The identity type must be 'email' for a confirmed Virgil Card and can be any value for a segregated one.
     
