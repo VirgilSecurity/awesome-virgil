@@ -7,7 +7,7 @@ SYNOPSIS
 --------
 ::
 
-  virgil card-delete -k <file> [-p <arg>] -c <file> [-r <unspecified | compromised>] [-V] [--]                              
+  virgil card-delete [-i <file>] -k <file> [-p <arg>] [-r <arg>] [-V] [--]                              
                               
   virgil card-delete (-h | --help)
 
@@ -25,16 +25,16 @@ OPTIONS
 
 **Basic**
 
+.. option:: -i <file>; --in <file>
+    The Virgil Card id or the Virgil Card itself for revocation. If omitted, stdin is used.
+
 .. option:: -k <file>;  --private-key <file>
     The Private Key.
     
 .. option:: -p <arg>;  --private-key-password <arg>
     The :term:`Private Key password <Private Key password>` (if needed).
     
-.. option:: -c <file>; --card <file>
-    The Virgil Card id or the Virgil Card itself for revocation.
-    
-.. option:: -r <arg>; --revocation_reason <arg>
+.. option:: -r <unspecified | compromised>; --revocation_reason <unspecified | compromised>
     The :term:`revocation reason <revocation reason>` must be ``unspecified`` or ``compromised``. If omitted, ``unspecified`` is used.
 
 .. option:: -V; --VERBOSE
