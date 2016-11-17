@@ -7,7 +7,7 @@ SYNOPSIS
 --------
 ::
 
-  virgil card-get [-o <arg>] -a <arg> [-e <arg>] [-k <file>] [-p <arg>] [-V] [--]
+  virgil card-get [-i <arg>] [-o <arg>] [-V] [--]
           
   virgil card-get (-h | --help)
 
