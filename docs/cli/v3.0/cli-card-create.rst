@@ -7,7 +7,7 @@ SYNOPSIS
 --------
 ::
 
-  virgil card-create -k <file> [-p <arg>] [-s <arg>] [-t <arg>] -d <arg> [--data key:<value> key:<value>] [--info device_name:<value> device:<value>] [-o <file>] [-V] [--]
+  virgil card-create [-o <file>] -k <file> [-p <arg>] [-s <arg>] [-t <arg>] -d <arg> [--data key:<value>] [--info device_name:<value> device:<value>] [-V] [--]
   
   virgil card-create (-h | --help)
 
@@ -25,13 +25,16 @@ OPTIONS
 
 **Basic**
 
+.. option:: -o <file>; --out <file>
+    The Virgil Card. If omitted, stdout is used.
+
 .. option:: -k <file>; --private-key <file>
     :term:`Private Key <Private Key>`.
     
-.. option:: -p <arg>; --private-key-password <file>
+.. option:: -p <arg>; --private-key-password <arg>
     The Private Key password (if exists).
     
-.. option:: -s <global|application>; --scope <global|application>
+.. option:: -s <global | application>; --scope <global | application>
     * for :term:`global Virgil Cards <Global Virgil Card>` the :term:`scope <scope>` must be ``global``;
     
     * for :term:`application Virgil Cards <Application Virgil Card>` the scope must be ``application``;
@@ -57,9 +60,6 @@ OPTIONS
 .. option:: --info <arg>
     The :term:`info <info>` contain information about the device on which the keypair was created. Format: device_name:<value> device:<value>. Both 'device_name' and 'device' must be used.
     
-.. option:: -o <file>; --out <file>
-    The Virgil Card. If omitted, stdout is used.
-
 .. option:: -V; --VERBOSE
     Shows the detailed information.
 
