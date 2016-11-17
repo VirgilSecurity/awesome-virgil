@@ -7,7 +7,7 @@ SYNOPSIS
 --------
 ::
 
-  virgil keygen [-o <file>] [-g <alg>] [-p <arg> | --no-password-input] [-V] [–-]
+  virgil keygen [-o <file>] [-g <alg>] [-p <arg> | --no-password] [-V] [–-]
 
   virgil keygen (-h | --help)
 
@@ -49,7 +49,7 @@ OPTIONS
 .. option:: -p <arg>; --private-key-password <arg>
     Password to be used for private key encryption.
    
-.. option:: --no-password-input
+.. option:: --no-password
     --private-key-password is omitted and password won’t be requested.
     
 .. option:: -V; --VERBOSE
