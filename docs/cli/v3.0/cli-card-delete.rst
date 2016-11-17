@@ -7,7 +7,7 @@ SYNOPSIS
 --------
 ::
 
-  virgil card-delete -k <file> [-p <arg>] -c <file> [--revocation_reason <arg>] [-V] [--]                              
+  virgil card-delete -k <file> [-p <arg>] -c <file> [-r <unspecified | compromised>] [-V] [--]                              
                               
   virgil card-delete (-h | --help)
 
@@ -34,7 +34,7 @@ OPTIONS
 .. option:: -c <file>; --card <file>
     The Virgil Card id or the Virgil Card itself for revocation.
     
-.. option:: --revocation_reason <arg>
+.. option:: -r <arg>; --revocation_reason <arg>
     The :term:`revocation reason <revocation reason>` must be ``unspecified`` or ``compromised``. If omitted, ``unspecified`` is used.
 
 .. option:: -V; --VERBOSE
