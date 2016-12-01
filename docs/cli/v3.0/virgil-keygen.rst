@@ -5,14 +5,17 @@ virgil-keygen
 
 .. program:: virgil-keygen
 
+
 SYNOPSIS
 --------
 
-  :program:`virgil keygen` [-o <file>] [-g <alg>] [-p <arg> | --no-password] [-V] [–-]
+.. code:: bash
 
-  :program:`virgil keygen` (-h | --help)
+    virgil keygen [-o <file>] [-g <alg>] [-p <arg> | --no-password] [-V] [–-]
 
-  :program:`virgil keygen` --version
+    virgil keygen (-h | --help)
+
+    virgil keygen --version
 
 
 DESCRIPTION 
@@ -50,17 +53,19 @@ OPTIONS
         * `rsa3072` - 3072-bits "RSA" key;
         * `rsa4096` - 4096-bits "RSA" key;
         * `rsa8192` - 8192-bits "RSA" key.
+        
+        .. default-role::
 
-.. option:: -p <arg>, --private-key-password <arg>
+.. option:: -p <arg>, --private-key-password=<arg>
     Password to be used for private key encryption.
    
 .. option:: --no-password
-    If :any:'--private-key-password' is omitted then key password won’t be requested.
+    If :option:'--private-key-password' is omitted then key password won’t be requested.
     
 .. option:: -V, --VERBOSE
     Shows the detailed information.
 
-.. option:: --; --ignore_rest
+.. option:: --
     Ignores the rest of the labeled arguments following this flag.
 
 .. option:: -h,  --help
@@ -68,6 +73,7 @@ OPTIONS
 
 .. option:: --version
     Displays version information and exits.
+
 
 EXAMPLES 
 --------
@@ -100,4 +106,4 @@ EXAMPLES
 SEE ALSO 
 --------
 
-:cliref:`cli-virgil`
+:cli:ref:`cli-virgil`
