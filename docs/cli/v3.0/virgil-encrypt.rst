@@ -47,19 +47,16 @@ OPTIONS
 .. cli:positional:: <recipient-id> (accepted multiple times)
     Contains information about one recipient. Format: [password|email|vcard|pubkey]:<value>
    
-      * if **password**
-         then <value> - a password for decrypting;
-            
-      * if **email**
-         then <value> - the email of the recipient;
-
-      * if **vcard**
-         then <value> - the recipient's Virgil Card id or the Virgil Card itself (the file stored locally); 
+        .. cli:argument:: <recipient-id>
+        .. default-role:: cli:value
       
-      * if **pubkey**
-         then <value> - Public Key of the recipient.
-         An alias may also be added. Example: pubkey:bob/public.key:ForBob
-
+        * if `password`, then <value> - a password for decrypting;            
+        * if `email`, then <value> - the email of the recipient;
+        * if `vcard`, then <value> - the recipient's Virgil Card id or the Virgil Card itself (the file stored locally);       
+        * if `pubkey`, then <value> - Public Key of the recipient. An alias may also be added. Example: pubkey:bob/public.key:ForBob
+        
+        .. default-role:: 
+        
 .. option:: -h,  --help
     Displays usage information and exits.
 
