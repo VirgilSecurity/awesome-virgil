@@ -31,10 +31,10 @@ OPTIONS
 .. option:: -o <file>, --out=<file>
     Hash. If omitted, stdout is used.
 
-.. option:: -z <file>,  --salt=<file>
+.. option:: -z <file>, --salt=<file>
     The hash salt.
 
-.. option:: -g <alg>,  --algorithm=<alg>
+.. option:: -g <alg>, --algorithm=<alg>
 
     The underlying hash algorithm:
         .. cli:argument:: <alg>
