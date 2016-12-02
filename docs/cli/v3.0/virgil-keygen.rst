@@ -11,10 +11,8 @@ SYNOPSIS
 
 .. code:: bash
 
-    virgil keygen [-o <file>] [-g <alg>] [-p <arg> | --no-password] [-V] [–-]
-
+    virgil keygen [-o <file>] [-g <alg>] [-p <arg> | --no-password] [-V...] [–-]
     virgil keygen (-h | --help)
-
     virgil keygen --version
 
 
@@ -106,4 +104,4 @@ EXAMPLES
 SEE ALSO 
 --------
 
-:cli:ref:`cli-virgil`
+:cli:ref:`virgil`
