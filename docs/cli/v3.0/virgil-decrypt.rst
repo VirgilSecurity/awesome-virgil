@@ -50,13 +50,13 @@ OPTIONS
 .. cli:positional:: <keypass>
     Contains Private Key or password. Format: [privkey|password]:<value>       
       
-      .. cli:argument:: <keypass>
-      .. default-role:: cli:value
+        .. cli:argument:: <keypass>
+        .. default-role:: cli:value
       
-      * if `privkey`, then <value> - recipient's Private Key;
-      * if `password`, then <value> - recipient's password.
+        * if `privkey`, then <value> - recipient's Private Key;
+        * if `password`, then <value> - recipient's password.
 
-      .. default-role::
+        .. default-role::
 
 .. option:: -h,  --help
     Displays usage information and exits.
