@@ -3,47 +3,47 @@
 virgil-verify
 =============
 
+.. program:: virgil-verify
+
+
 SYNOPSIS
 --------
-::
 
-  virgil verify [-i <file>] [-o <file>] [--return-status] -S <file> [-V] [–-] <recipient-id>
-  
-  virgil verify (-h | --help)
+.. code:: bash
 
-  virgil verify --version
+    virgil verify [-i <file>] [-o <file>] [--return-status] -S <file> [-V...] [–-] <recipient-id>
+    virgil verify (-h | --help)
+    virgil verify --version
 
 
 DESCRIPTION 
 -----------
 
-:program:`virgil verify` verifies the data and the signature with a provided user's idenififer - :term:`Public Key <Public Key>` or :term:`Virgil Card` <Virgil Card>.
+    :program:`virgil verify` verifies the data and the signature with a provided user's idenififer - :term:`Public Key` or :term:`Virgil Card`.
 
 
 OPTIONS 
 -------
 
-**Basic**
-
-.. option:: -i <file>; --in <file>
+.. option:: -i <file>, --in=<file>
     Data to be signed. If omitted, stdin is used.
    
-.. option:: -o <file>; --out <file>
+.. option:: -o <file>, --out=<file>
     Digest sign. If omitted, stdout is used.
 
 .. option:: --return-status
-    Returns status, ignores '-o, --out'.
+    Returns status, ignores :option:`--out` .
    
-.. option:: -S <file>; --sign <file>
+.. option:: -S <file>, --sign=<file>
     Digest sign.
 
-.. option:: -V; --VERBOSE
+.. option:: -V, --VERBOSE
     Shows the detailed information.
 
-.. option:: --; --ignore_rest
+.. option:: --
     Ignores the rest of the labeled arguments following this flag.
    
-.. option:: <recipient-id>
+.. cli:positional:: <recipient-id>
     Contains information about the recipient. Format: [vcard|pubkey]:<value>
 
       *if **vcard**
@@ -51,8 +51,6 @@ OPTIONS
       
       *if **pubkey**
          then <value> - Public Key of the recipient.
-         
-**Common**
 
 .. option:: -h,  --help
     Displays usage information and exits.
@@ -65,19 +63,19 @@ EXAMPLES
 --------
 
 1. *plain.txt* is verified with the Bob's Virgil Card.
-::
 
-        virgil verify -i plain.txt -s plain.txt.sign vcard:bob/bob.vcard
+.. code:: bash
+
+    virgil verify -i plain.txt -s plain.txt.sign vcard:bob/bob.vcard
         
 2. *plain.txt* is verified with the Bob's Public Key.
-::
 
-        virgil verify -i plain.txt -s plain.txt.sign pubkey:bob/public.key
+.. code:: bash
+
+    virgil verify -i plain.txt -s plain.txt.sign pubkey:bob/public.key
 
 
 SEE ALSO 
 --------
 
-:cliref:`cli-virgil`
-:cliref:`cli-config`
-:cliref:`cli-sign`
+:cli:ref:`virgil`
