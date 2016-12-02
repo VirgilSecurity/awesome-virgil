@@ -45,12 +45,14 @@ OPTIONS
    
 .. cli:positional:: <recipient-id>
     Contains information about the recipient. Format: [vcard|pubkey]:<value>
-
-      *if **vcard**
-         then <value> - the recipient's Virgil Card id or the Virgil Card itself (the file stored locally); 
+    
+        .. cli:argument:: <recipient-id>
+        .. default-role:: cli:value
       
-      *if **pubkey**
-         then <value> - Public Key of the recipient.
+        * if `vcard`, then <value> - the recipient's Virgil Card id or the Virgil Card itself (the file stored locally);
+        * if `pubkey`, then <value> - Public Key of the recipient.
+        
+        .. default-role::
 
 .. option:: -h,  --help
     Displays usage information and exits.
