@@ -34,8 +34,15 @@ OPTIONS
 .. option:: -p <arg>, --private-key-password=<arg>
     The :term:`Private Key password` (if needed).
     
-.. option:: -r <unspecified|compromised>, --revocation_reason=<unspecified|compromised>
-    The :term:`revocation reason` must be ``unspecified`` or ``compromised``. If omitted, ``unspecified`` is used.
+.. option:: -r <reason>, --revocation_reason=<reason>
+    
+    .. cli:argument:: <reason>
+
+    .. default-role:: cli:value
+
+    The :term:`revocation reason` must be `unspecified` or `compromised`. If omitted, `unspecified` is used.
+
+    .. default-role:: cli:value
 
 .. option:: -V, --VERBOSE
     Shows the detailed information.
