@@ -34,12 +34,18 @@ OPTIONS
 .. option:: -p <arg>, --private-key-password=<arg>
     The Private Key password (if exists).
     
-.. option:: -s <global | application>, --scope=<global | application>
-    * for :term:`global Virgil Card` the :term:`scope <scope>` must be ``global``;
+.. option:: -s <arg>, --scope=<arg>
+
+    .. cli:argument:: <scope-arg>
+
+    .. default-role:: cli:value
     
-    * for :term:`application Virgil Card` the scope must be ``application``;
+    * for :term:`global Virgil Card` the :term:`scope <scope>` must be `global`;
+    * for :term:`application Virgil Card` the scope must be `application`;
     
-    If omitted, ``application`` is used.
+    If omitted, `application` is used.
+
+    .. default-role::
 
 .. option:: -t <arg>, --identity-type=<arg>    
     * for :term:`confirmed Virgil Card` the :term:`identity-type` must be ``email``;
