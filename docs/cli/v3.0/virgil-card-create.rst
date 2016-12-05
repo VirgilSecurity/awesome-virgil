@@ -11,7 +11,7 @@ SYNOPSIS
 
 .. code:: bash
 
-    virgil card-create [-o <file>] -k <file> [-p <arg>] [-s <arg>] [-t <arg>] -d <arg> [--data key:<value>] [--info device_name:<value> device:<value>] [-V...] [--]  
+    virgil card-create [-o <file>] -k <file> [-p <arg>] [-s <scope>] [-t <arg>] -d <identity> [--data key:<value>] [--info device_name:<value> device:<value>] [-V...] [--]  
     virgil card-create (-h | --help)
     virgil card-create --version  
                               
@@ -34,9 +34,9 @@ OPTIONS
 .. option:: -p <arg>, --private-key-password=<arg>
     The Private Key password (if exists).
     
-.. option:: -s <arg>, --scope=<arg>
+.. option:: -s <scope>, --scope=<scope>
 
-    .. cli:argument:: <scope-arg>
+    .. cli:argument:: <scope>
 
     .. default-role:: cli:value
     
@@ -47,18 +47,31 @@ OPTIONS
 
     .. default-role::
 
-.. option:: -t <arg>, --identity-type=<arg>    
+.. option:: -t <arg>, --identity-type=<arg>
+
+    .. cli:argument:: <identity-type-arg>
+
+    .. default-role:: cli:value
+
     * for :term:`confirmed Virgil Card` the :term:`identity-type` must be ``email``;
     
     * for :term:`segregated Virgil Card` the identity-type can be any value.
     
     If omitted, ``email`` is used.
+    
+    .. default-role::
 
-.. option:: -d <arg>, --identity=<arg>
+.. option:: -d <identity>, --identity=<identity>
+
+    .. cli:argument:: <identity>
+
+    .. default-role:: cli:value
 
     * for confirmed Virgil Card the :term:`identity` must be a valid email;
     
     * for segregated Virgil Card the identity can be any value.
+    
+    .. default-role::
 
 .. option:: --data=<arg>
     The :term:`data <data>` contains application specific parameters. Format: key:<value> (up to 16 positions).
