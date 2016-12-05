@@ -35,8 +35,8 @@ OPTIONS
     The hash salt.
 
 .. option:: -g <alg>, --algorithm=<alg>
-
     The underlying hash algorithm:
+    
         .. cli:argument:: <alg>
 
         .. default-role:: cli:value
