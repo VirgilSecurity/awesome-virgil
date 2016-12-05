@@ -47,6 +47,7 @@ OPTIONS
     Contains information about the recipient. Format: [vcard|pubkey]:<value>
     
         .. cli:argument:: <recipient-id>
+        
         .. default-role:: cli:value
       
         * if `vcard`, then <value> - the recipient's Virgil Card id or the Virgil Card itself (the file stored locally);
