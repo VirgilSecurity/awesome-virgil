@@ -29,10 +29,10 @@ OPTIONS
     The string value to be hashed. If omitted, stdout is used.
    
 .. option:: -o <file>, --out=<file>
-    Hash. If omitted, stdout is used.
+    :term:`Hash`. If omitted, stdout is used.
 
 .. option:: -z <file>, --salt=<file>
-    The hash salt.
+    The hash :term:`salt`.
 
 .. option:: -g <alg>, --algorithm=<alg>
     The underlying hash algorithm:
