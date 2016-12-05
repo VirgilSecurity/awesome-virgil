@@ -48,6 +48,7 @@ OPTIONS
     Contains information about one recipient. Format: [password|email|vcard|pubkey]:<value>
    
         .. cli:argument:: <recipient-id>
+        
         .. default-role:: cli:value
       
         * if `password`, then <value> - a password for decrypting;            
