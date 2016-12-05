@@ -11,7 +11,7 @@ SYNOPSIS
 
 .. code:: bash
 
-    virgil card-create [-o <file>] -k <file> [-p <arg>] [-s <scope>] [-t <arg>] -d <identity> [--data key:<value>] [--info device_name:<value> device:<value>] [-V...] [--]  
+    virgil card-create [-o <file>] -k <file> [-p <arg>] [-s <scope>] [-t <arg>] -d <identity> [--data <key-value>...] [--info <key-value>...] [-V...] [--]  
     virgil card-create (-h | --help)
     virgil card-create --version  
                               
@@ -73,10 +73,12 @@ OPTIONS
     
     .. default-role::
 
-.. option:: --data=<arg>
+.. option:: --data=<key-value>
     The :term:`data <data>` contains application specific parameters. Format: key:<value> (up to 16 positions).
     
-.. option:: --info=<arg>
+.. option:: --info=<key-value>
+    .. cli:argument:: <info-key>
+    
     The :term:`info <info>` contain information about the device on which the keypair was created. Format: device_name:<value> device:<value>. Both 'device_name' and 'device' must be used.
     
 .. option:: -V, --VERBOSE
