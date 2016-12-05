@@ -51,6 +51,7 @@ OPTIONS
     Contains Private Key or password. Format: [privkey|password]:<value>       
       
         .. cli:argument:: <keypass>
+        
         .. default-role:: cli:value
       
         * if `privkey`, then <value> - recipient's Private Key;
