@@ -74,12 +74,20 @@ OPTIONS
     .. default-role::
 
 .. option:: --data=<key-value>
-    The :term:`data <data>` contains application specific parameters. Format: key:<value> (up to 16 positions).
+    The :term:`data` contains application specific parameters. Format: key:<value> (up to 16 positions).
     
 .. option:: --info=<key-value>
+    The :term:`info` contains the information about the device on which the keypair was created. Format: key:<value> (2 positions must be used).
+    
     .. cli:argument:: <info-key>
     
-    The :term:`info <info>` contain information about the device on which the keypair was created. Format: device_name:<value> device:<value>. Both 'device_name' and 'device' must be used.
+    .. default-role:: cli:value
+    
+    * the first key must be 'device_name' with any value;
+    
+    * the second key must be 'device' with any value.
+    
+    .. default-role::
     
 .. option:: -V, --VERBOSE
     Shows the detailed information.
@@ -96,7 +104,6 @@ OPTIONS
 
 EXAMPLES 
 --------
-
 
 Alice creates a confirmed Virgil Card for her application.
 
