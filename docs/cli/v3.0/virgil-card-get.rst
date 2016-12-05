@@ -19,7 +19,7 @@ SYNOPSIS
 DESCRIPTION 
 -----------
 
-    :program:`virgil card-get` gets the :term:`Virgil Card` by the :term:`Virgil Card id`.
+    :program:`virgil card-get` gets the :term:`Virgil Card` from the :term:`Virgil Keys Service` by the :term:`Virgil Card id`.
 
 
 OPTIONS 
