@@ -11,7 +11,7 @@ SYNOPSIS
 
 .. code:: bash
 
-    virgil card-delete [-i <file>] -k <file> [-p <arg>] [-r <arg>] [-V...] [--]                              
+    virgil card-delete [-i <file>] -k <file> [-p <arg>] [-r <reason>] [-V...] [--]                              
     virgil card-delete (-h | --help)
     virgil card-delete --version
 
