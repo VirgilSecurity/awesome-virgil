@@ -11,7 +11,7 @@ SYNOPSIS
 
 .. code:: bash
 
-    virgil card-search  [-o <arg>] -d <arg>... [-t <arg>] [-s <arg>] [-V...] [--]  
+    virgil card-search  [-o <arg>] -d <identity>... [-t <arg>] [-s <scope>] [-V...] [--]  
     virgil card-search (-h | --help)
     virgil card-search --version
 
@@ -28,26 +28,49 @@ OPTIONS
 .. option:: -o <file>, --out=<file>
     A folder where Virgil Cards will be saved. If omitted, stdout is used.
 
-.. option:: -d <arg>, --identity=<arg>
-    The identity must be a valid email for a :term:`confirmed Virgil Card` with an identity type of 'email' and can be any value for a :term:`segregated Virgil Card`. Multiple identitites can be used for the Virgil Cards search.
+.. option:: -d <identity>, --identity=<identity>
+
+    .. cli:argument:: <identity>
+
+    .. default-role:: cli:value
+
+    * for :term:`confirmed Virgil Card` with an identity type of 'email' the :term:`identity` must be a valid email;
+    
+    * for :term:`segregated Virgil Card` the identity can be any value.
+    
+     Multiple identitites can be used for the Virgil Cards search.
+    
+    .. default-role::
 
 .. option:: -t <arg>, --identity-type=<arg>
-    Specifies the identity type of a Virgil Cards to be found. The identity type must be 'email' for a confirmed Virgil Card and can be any value for a segregated one.
+
+.. cli:argument:: <identity-type-arg>
+    Specifies the :term:`identity-type` of a Virgil Cards to be found. 
+
+    .. default-role:: cli:value
+
+    * for confirmed Virgil Card the identity-type must be `email`;
     
-.. option:: -s <arg>, --scope=<arg>
+    * for segregated Virgil Card the identity-type can be any value.
     
-    .. cli:argument:: <scope-arg>
+    If omitted, `email` is used.
+    
+    .. default-role::
+    
+.. option:: -s <scope>, --scope=<scope>
+    Specifies the :term:`scope` to perform search on.
+    
+    .. cli:argument:: <scope>
 
     .. default-role:: cli:value
     
-    Specifies the scope to perform search on. 
-    * for :term:`global Virgil Card` the :term:`scope <scope>` must be `global`;
+    * for :term:`global Virgil Card` the scope must be `global`;
     * for :term:`application Virgil Card` the scope must be `application`.
     
     If omitted, `application` is used.
     
-    .. default-role:: cli:value
-
+    .. default-role::
+ 
 .. option:: -V, --VERBOSE
     Shows the detailed information.
 
