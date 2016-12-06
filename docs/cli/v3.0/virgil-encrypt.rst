@@ -30,21 +30,27 @@ OPTIONS
 -------
 
 .. option:: -i <file>, --in=<file>
+
     Data to be encrypted. If omitted, stdin is used.
    
 .. option:: -o <file>, --out=<file>
+
     Encrypted data. If omitted, stdout is used.
 
 .. option:: -c <file>, --content-info=<file>
+
     :term:`Content info` <Content info> - meta information about the encrypted data. If omitted, becomes a part of the encrypted data.
    
 .. option:: -V, --VERBOSE
+
     Shows the detailed information.
 
 .. option:: --
+
     Ignores the rest of the labeled arguments following this flag.
  
 .. cli:positional:: <recipient-id> (accepted multiple times)
+
     Contains information about one recipient. Format: [password|email|vcard|pubkey]:<value>
    
         .. cli:argument:: <recipient-id>
@@ -59,9 +65,11 @@ OPTIONS
         .. default-role:: 
         
 .. option:: -h,  --help
+
     Displays usage information and exits.
 
 .. option:: --version
+
     Displays version information and exits.
 
 
