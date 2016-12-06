@@ -26,15 +26,19 @@ OPTIONS
 -------
 
 .. option:: -i <file>, --in=<file>
+
     The string value to be hashed. If omitted, stdout is used.
    
 .. option:: -o <file>, --out=<file>
+
     :term:`Hash`. If omitted, stdout is used.
 
 .. option:: -z <file>, --salt=<file>
+
     The hash :term:`salt`.
 
 .. option:: -g <alg>, --algorithm=<alg>
+
     The underlying hash algorithm:
     
         .. cli:argument:: <alg>
@@ -50,18 +54,23 @@ OPTIONS
         .. default-role::
 
 .. option:: -x <int>, --iterations=<int>
+
     Iterations count. Default - 2048
    
 .. option:: -V, --VERBOSE
+
     Shows the detailed information.
 
 .. option:: --
+
     Ignores the rest of the labeled arguments following this flag.
 
 .. option:: -h,  --help
+
     Displays usage information and exits.
 
 .. option:: --version
+
     Displays version information and exits.
     
 
