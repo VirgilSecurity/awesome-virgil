@@ -26,12 +26,15 @@ OPTIONS
 -------
 
 .. option:: -o <file>, --out=<file>
+
     The Virgil Card. If omitted, stdout is used.
 
 .. option:: -k <file>, --private-key=<file>
+
     :term:`Private Key`.
     
 .. option:: -p <arg>, --private-key-password=<arg>
+
     The Private Key password (if exists).
     
 .. option:: -s <scope>, --scope=<scope>
@@ -74,9 +77,11 @@ OPTIONS
     .. default-role::
 
 .. option:: --data=<key-value>
+
     The :term:`data` contains application specific parameters. Format: key:<value> (up to 16 positions).
     
 .. option:: --info=<key-value>
+
     The :term:`info` contains the information about the device on which the keypair was created. Format: key:<value> (2 positions must be used).
     
     .. cli:argument:: <info-key>
@@ -90,15 +95,19 @@ OPTIONS
     .. default-role::
     
 .. option:: -V, --VERBOSE
+
     Shows the detailed information.
 
 .. option:: --
+
     Ignores the rest of the labeled arguments following this flag.
 
 .. option:: -h,  --help
+
     Displays usage information and exits.
 
 .. option:: --version
+
     Displays version information and exits.
 
 
