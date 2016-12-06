@@ -26,24 +26,31 @@ OPTIONS
 -------
 
 .. option:: -i <file>, --in=<file>
+
     Private key. If omitted, stdin is used.
    
 .. option:: -o <file>, --out=<file>
+
     Public key. If omitted, stdout is used.
 
 .. option:: -p <arg>, --private-key-password=<arg>
+
     Private Key Password.
 
 .. option:: -V, --VERBOSE
+
     Shows the detailed information.
 
 .. option:: --
+
     Ignores the rest of the labeled arguments following this flag.
 
 .. option:: -h,  --help
+
     Displays usage information and exits.
 
 .. option:: --version
+
     Displays version information and exits.
 
 
