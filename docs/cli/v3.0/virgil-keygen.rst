@@ -26,9 +26,11 @@ OPTIONS
 -------
 
 .. option:: -o <file>, --out=<file>
+
     The generated Private Key. If omitted, stdout is used.
    
-.. option:: -g <alg>, --algorithm=<alg>   
+.. option:: -g <alg>, --algorithm=<alg>  
+
     Generate an Elliptic Curve key or an RSA key with one of the following algorithms:
     
         .. cli:argument:: <alg>
@@ -55,21 +57,27 @@ OPTIONS
         .. default-role::
 
 .. option:: -p <arg>, --private-key-password=<arg>
+
     Password to be used for private key encryption.
    
 .. option:: --no-password
+
     If :option:'--private-key-password' is omitted then key password won’t be requested.
     
 .. option:: -V, --VERBOSE
+
     Shows the detailed information.
 
 .. option:: --
+
     Ignores the rest of the labeled arguments following this flag.
 
 .. option:: -h,  --help
+
     Displays usage information and exits.
 
 .. option:: --version
+
     Displays version information and exits.
 
 
