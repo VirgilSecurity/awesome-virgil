@@ -44,7 +44,7 @@ OPTIONS
     Ignores the rest of the labeled arguments following this flag.
    
 .. cli:positional:: <recipient-id>
-    Contains information about the recipient. Format: [vcard|pubkey]:<value>
+    Contains information about the recipient. Format: [vcard | pubkey]:<value>
     
         .. cli:argument:: <recipient-id>
         
