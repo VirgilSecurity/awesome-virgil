@@ -26,6 +26,7 @@ OPTIONS
 -------
 
 .. option:: -o <file>, --out=<file>
+
     A folder where Virgil Cards will be saved. If omitted, stdout is used.
 
 .. option:: -d <identity>, --identity=<identity>
@@ -45,6 +46,7 @@ OPTIONS
 .. option:: -t <arg>, --identity-type=<arg>
 
 .. cli:argument:: <identity-type-arg>
+
     Specifies the :term:`identity-type` of a Virgil Cards to be found. 
 
     .. default-role:: cli:value
@@ -58,6 +60,7 @@ OPTIONS
     .. default-role::
     
 .. option:: -s <scope>, --scope=<scope>
+
     Specifies the :term:`scope` to perform search on.
     
     .. cli:argument:: <scope>
@@ -72,15 +75,19 @@ OPTIONS
     .. default-role::
  
 .. option:: -V, --VERBOSE
+
     Shows the detailed information.
 
 .. option:: --
+
     Ignores the rest of the labeled arguments following this flag.
 
 .. option:: -h,  --help
+
     Displays usage information and exits.
 
 .. option:: --version
+
     Displays version information and exits.
 
 
