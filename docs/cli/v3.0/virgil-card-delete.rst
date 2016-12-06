@@ -26,12 +26,15 @@ OPTIONS
 -------
 
 .. option:: -i <file>, --in=<file>
+
     The Virgil Card id or the Virgil Card itself for revocation. If omitted, stdin is used.
 
 .. option:: -k <file>, --private-key=<file>
+
     The Private Key.
     
 .. option:: -p <arg>, --private-key-password=<arg>
+
     The :term:`Private Key password` (if needed).
     
 .. option:: -r <reason>, --revocation_reason=<reason>
@@ -45,15 +48,19 @@ OPTIONS
     .. default-role:: cli:value
 
 .. option:: -V, --VERBOSE
+
     Shows the detailed information.
 
 .. option:: --
+
     Ignores the rest of the labeled arguments following this flag.
 
 .. option:: -h,  --help
+
     Displays usage information and exits.
 
 .. option:: --version
+
     Displays version information and exits.
 
 
