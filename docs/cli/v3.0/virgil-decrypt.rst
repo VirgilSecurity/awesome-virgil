@@ -30,24 +30,31 @@ OPTIONS
 -------
 
 .. option:: -i <file>,  --in=<file>
+
     Data to be decrypted. If omitted, stdin is used.
 
 .. option:: -o <file>,  --out=<file>
+
     Decrypted data. If omitted, stdout is used.
 
 .. option:: -c <file>, --content-info=<file>
+
     :term:`Content info` <Content info>. Use this option if content info is not embedded in the encrypted data.
             
 .. option:: -p <arg>,  --private-key-password=<arg>
+
     Private Key Password.
 
 .. option:: -V, --VERBOSE
+
     Shows detailed information.
 
 .. option:: --
+
     Ignores the rest of the labeled arguments following this flag.
 
 .. cli:positional:: <keypass>
+
     Contains Private Key or password. Format: [privkey|password]:<value>       
       
         .. cli:argument:: <keypass>
@@ -60,9 +67,11 @@ OPTIONS
         .. default-role::
 
 .. option:: -h,  --help
+
     Displays usage information and exits.
 
 .. option:: --version
+
     Displays version information and exits.
   
 
