@@ -26,27 +26,35 @@ OPTIONS
 -------
 
 .. option:: -i <file>, --in=<file>
+
     Data to be signed. If omitted, stdin is used.
    
 .. option:: -o <file>, --out=<file>
+
     Digest sign. If omitted, stdout is used.
    
 .. option:: -k <file>, --private-key=<file>
+
     Signer's Private Key.
    
 .. option:: -p <arg>, --private-key-password=<arg>
+
     Private Key password.
    
 .. option:: -V, --VERBOSE
+
     Shows the detailed information.
 
 .. option:: --
+
     Ignores the rest of the labeled arguments following this flag.
 
 .. option:: -h,  --help
+
     Displays usage information and exits.
 
 .. option:: --version
+
     Displays version information and exits.
 
 
