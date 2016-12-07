@@ -1,7 +1,10 @@
-
+# OS related
 .DS_Store
 .AppleDouble
 .LSOverride
+
+# Files and directories that used by IDE and development tools
+.idea/
 
 # Icon must end with two \r
 Icon
