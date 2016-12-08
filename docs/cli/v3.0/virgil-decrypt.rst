@@ -39,7 +39,7 @@ OPTIONS
 
 .. option:: -c <file>, --content-info=<file>
 
-    :term:`Content info` <Content info>. Use this option if content info is not embedded in the encrypted data.
+    :term:`Content info`. Use this option if content info is not embedded in the encrypted data.
             
 .. option:: -p <arg>,  --private-key-password=<arg>
 
