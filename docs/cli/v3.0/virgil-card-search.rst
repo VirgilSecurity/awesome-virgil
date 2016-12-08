@@ -19,7 +19,7 @@ SYNOPSIS
 DESCRIPTION 
 -----------
 
-    :program:`virgil card-search` searches for a :term:`Virgil Card(s) <Virgil Card>` by its :term:`identities <identity>` (required), :term:`identity type` and :term:`scope`.
+    :program:`virgil card-search` searches for a :term:`Virgil Card(s) <Virgil Card>` by its :term:`identities <identity>` (required), :term:`identity-type` and :term:`scope`.
 
 
 OPTIONS 
