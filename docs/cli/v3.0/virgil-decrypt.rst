@@ -21,7 +21,7 @@ DESCRIPTION
 
     :program:`virgil decrypt` decrypts the encrypted data with a :term:`keypass`.
 
-    *keypass* consists of the given password used as the :term:`recipient-id <Recipient's identifier>` or the :term:`Private Key` associated with the :term:`Public Key` used for encryption. You also may need the :term:`Private Key password` if there is one.
+    *keypass* consists of the given password used as the :term:`recipient-id` or the :term:`Private Key` associated with the :term:`Public Key` used for encryption. You also may need the :term:`Private Key password` if there is one.
 
     Please note that you will need a password and/or the *recipient-id* for encryption.
 
