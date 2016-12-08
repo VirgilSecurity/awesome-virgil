@@ -45,7 +45,7 @@ OPTIONS
 
 .. option:: -t <arg>, --identity-type=<arg>
 
-.. cli:argument:: <identity-type-arg>
+.. cli:positional:: <identity-type-arg>
 
     Specifies the :term:`identity-type` of a Virgil Cards to be found. 
 
