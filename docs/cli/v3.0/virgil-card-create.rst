@@ -56,11 +56,11 @@ OPTIONS
 
     .. default-role:: cli:value
 
-    * for :term:`confirmed Virgil Card` the :term:`identity-type` must be ``email``;
+    * for :term:`confirmed Virgil Card` the :term:`identity-type` must be `email`;
     
     * for :term:`segregated Virgil Card` the identity-type can be any value.
     
-    If omitted, ``email`` is used.
+    If omitted, `email` is used.
     
     .. default-role::
 
@@ -118,7 +118,7 @@ Alice creates a confirmed Virgil Card for her application.
 
 .. code:: bash
 
-    virgil card-create -k private.key -d alice@mail.com -o AliceCard.vcard
+    virgil card-create -k private.key -d alice\@mail.com -o AliceCard.vcard
 
 
 SEE ALSO 
