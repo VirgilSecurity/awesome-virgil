@@ -1,7 +1,7 @@
 :orphan:
 
 virgil-glossary
-=============
+===============
 
 .. program:: virgil-glossary
 
