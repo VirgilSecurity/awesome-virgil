@@ -22,7 +22,7 @@ DESCRIPTION
     :program:`virgil glossary` shows the list of the terms used in Virgil Services with the accompanying definitions.
     
  
- OPTIONS
+OPTIONS
 -------
 
 .. option:: -o <file>, --out=<file>
@@ -46,7 +46,7 @@ DESCRIPTION
     Displays version information and exits.
 
 
- EXAMPLES
+EXAMPLES
 --------
 
 1. Save the Glossary into the file.
