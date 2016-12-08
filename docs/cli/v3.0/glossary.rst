@@ -109,7 +109,7 @@ GLOSSARY
 
 .. glossary::
 
-    Recipient's identifier : Crypto
+    Recipient-id : Crypto 
     
         Recipient's identifier will be associated with the Public Key used for the encryption. These can be: the Public Key itself, the Virgil Card, the Virgil Card id, the valid email.
         
