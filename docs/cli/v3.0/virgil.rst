@@ -57,7 +57,7 @@ This section contains brief description of the available commands that are avail
 
 .. cli:value:: encrypt
 
-    Encrypt the data for given recipients who can be defined by their Public Keys and by the passwords (:term:`recipient-id <Recipient’s identifier>`).
+    Encrypt the data for given recipients who can be defined by their Public Keys and by the passwords (:term:`Recipient-id`).
 
 .. cli:value:: decrypt
 
