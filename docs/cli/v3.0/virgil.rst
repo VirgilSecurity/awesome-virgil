@@ -83,7 +83,7 @@ This section contains brief description of the available commands that are avail
 
 .. cli:value:: card-create
 
-    Create a :term:`Virgil Card entity.
+    Create a :term:`Virgil Card` entity.
 
 .. cli:value:: card-get
 
