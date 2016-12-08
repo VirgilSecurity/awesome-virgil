@@ -19,7 +19,7 @@ SYNOPSIS
 DESCRIPTION 
 -----------
 
-    :program:`virgil encrypt` encrypts any data for the specified recipient(s) and/or with a password using the :term:`recipient-id>`.
+    :program:`virgil encrypt` encrypts any data for the specified recipient(s) and/or with a password using the :term:`recipient-id`.
 
 `recipient-id` is an identifier which will be associated with the :term:`Public Key` used for the encryption. Thus, the email, the Public Key (accompanied by the :term:`alias` or not), the :term:`Virgil Card` or the :term:`Virgil Card id` can be used as well as any combinations of these recipient identifiers. 
 
