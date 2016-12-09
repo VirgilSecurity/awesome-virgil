@@ -11,12 +11,12 @@ SYNOPSIS
 
 .. code:: bash
 
-    virgil decrypt  [-i <file>] [-o <file>] [-c <file>] [-p <arg>] [-V...] [--] <keypass>...    
+    virgil decrypt  [-i <file>] [-o <file>] [-c <file>] [-p <arg>] [-V...] [--] <keypass>...
     virgil decrypt (-h | --help)
     virgil decrypt --version
 
 
-DESCRIPTION 
+DESCRIPTION
 -----------
 
     :program:`virgil decrypt` decrypts the encrypted data with a :term:`keypass`.
@@ -26,7 +26,7 @@ DESCRIPTION
     Please note that you will need a password and/or the *recipient-id* for encryption.
 
 
-OPTIONS 
+OPTIONS
 -------
 
 .. option:: -i <file>,  --in=<file>
@@ -40,7 +40,7 @@ OPTIONS
 .. option:: -c <file>, --content-info=<file>
 
     :term:`Content info`. Use this option if content info is not embedded in the encrypted data.
-            
+
 .. option:: -p <arg>,  --private-key-password=<arg>
 
     Private Key Password.
@@ -55,12 +55,12 @@ OPTIONS
 
 .. cli:positional:: <keypass>
 
-    Contains Private Key or password. Format: [privkey|password]:<value>       
-      
+    Contains Private Key or password. Format: [privkey|password]:<value>
+
         .. cli:argument:: <keypass>
-        
+
         .. default-role:: cli:value
-      
+
         * if `privkey`, then <value> - recipient's Private Key;
         * if `password`, then <value> - recipient's password.
 
@@ -73,9 +73,9 @@ OPTIONS
 .. option:: --version
 
     Displays version information and exits.
-  
 
-EXAMPLES 
+
+EXAMPLES
 --------
 
 1.  Anyone with the password decrypts *plain.enc*:
@@ -83,7 +83,7 @@ EXAMPLES
 .. code:: bash
 
     virgil decrypt -i plain.enc -o plain.txt password:strong_password
-    
+
 2.  Bob decrypts *plain.enc* with his private key:
 
 .. code:: bash
@@ -91,7 +91,7 @@ EXAMPLES
     virgil decrypt -i plain.enc -o plain.txt privkey:bob/private.key -p myPassForKey
 
 
-SEE ALSO 
+SEE ALSO
 --------
 
 :cli:ref:`virgil`

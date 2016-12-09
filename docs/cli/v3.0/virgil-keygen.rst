@@ -11,32 +11,32 @@ SYNOPSIS
 
 .. code:: bash
 
-    virgil keygen [-o <file>] [-g <alg>] [-p <arg> | --no-password] [-V...] [–-]
+    virgil keygen [-o <file>] [-g <alg>] [-p <arg> | --no-password] [-V...] [--]
     virgil keygen (-h | --help)
     virgil keygen --version
 
 
-DESCRIPTION 
+DESCRIPTION
 -----------
 
     :program:`virgil keygen` generates an Elliptic Curve :term:`Private Key` or an RSA Private Key with the provided parameters.
 
 
-OPTIONS 
+OPTIONS
 -------
 
 .. option:: -o <file>, --out=<file>
 
     The generated Private Key. If omitted, stdout is used.
-   
-.. option:: -g <alg>, --algorithm=<alg>  
 
-    Generate an Elliptic Curve key or an RSA key with one of the following algorithms:
-    
+.. option:: -g <alg>, --algorithm=<alg>
+
+    Generate an Elliptic Curve key or an RSA key with one of the following algorithms [default: ed25519]:
+
         .. cli:argument:: <alg>
-        
+
         .. default-role:: cli:value
-        
+
         * `bp256r1` - 256-bits Brainpool **curve**;
         * `bp256r1` - 256-bits Brainpool curve;
         * `bp384r1` - 384-bits Brainpool curve;
@@ -49,21 +49,21 @@ OPTIONS
         * `secp192k1` - 192-bits "Koblitz" curve;
         * `secp224k1` - 224-bits "Koblitz" curve;
         * `secp256k1` - 256-bits "Koblitz" curve;
-        * `curve25519` - Curve25519 (default);
         * `rsa3072` - 3072-bits "RSA" key;
         * `rsa4096` - 4096-bits "RSA" key;
         * `rsa8192` - 8192-bits "RSA" key.
-        
+        * `ed25519` - Ed25519;
+
         .. default-role::
 
 .. option:: -p <arg>, --private-key-password=<arg>
 
     Password to be used for private key encryption.
-   
+
 .. option:: --no-password
 
-    If :option:'--private-key-password' is omitted then key password won’t be requested.
-    
+    If :option:'--private-key-password' is omitted then key password won't be requested.
+
 .. option:: -V, --VERBOSE
 
     Shows the detailed information.
@@ -81,7 +81,7 @@ OPTIONS
     Displays version information and exits.
 
 
-EXAMPLES 
+EXAMPLES
 --------
 
 1.  Generate a Private Key with the default algorithm. A password will be requested:
@@ -109,7 +109,7 @@ EXAMPLES
    virgil keygen -o private.key -g rsa8192 -p STRONGPASS
 
 
-SEE ALSO 
+SEE ALSO
 --------
 
 :cli:ref:`virgil`

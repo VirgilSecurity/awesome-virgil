@@ -11,28 +11,28 @@ SYNOPSIS
 
 .. code:: bash
 
-    virgil card-get [-i <arg>] [-o <arg>] [-V...] [--]          
+    virgil card-get [-i <arg>] [-o <arg>] [-V...] [--]
     virgil card-get (-h | --help)
     virgil card-get --version
 
 
-DESCRIPTION 
+DESCRIPTION
 -----------
 
     :program:`virgil card-get` gets the :term:`Virgil Card` from the :term:`Virgil Keys Service` by the :term:`Virgil Card id`.
 
 
-OPTIONS 
+OPTIONS
 -------
 
 .. option:: -i <arg>, --in=<arg>
 
     Virgil Card id. If omitted, stdin is used.
-   
+
 .. option:: -o <file>, --out=<file>
 
     A folder where Virgil Cards will be saved. If omitted, stdout is used.
-   
+
 .. option:: -V, --VERBOSE
 
     Shows the detailed information.
@@ -50,7 +50,7 @@ OPTIONS
     Displays version information and exits.
 
 
-EXAMPLES 
+EXAMPLES
 --------
 
 Get a Virgil Card by Virgil Card id:
@@ -60,7 +60,7 @@ Get a Virgil Card by Virgil Card id:
     virgil card-get -i <card_id> -o cards/
 
 
-SEE ALSO 
+SEE ALSO
 --------
 
 :cli:ref:`virgil`

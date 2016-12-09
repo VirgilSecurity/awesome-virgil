@@ -16,7 +16,7 @@ SYNOPSIS
     virgil (-h | --help)
 
 
-DESCRIPTION 
+DESCRIPTION
 -----------
 
 :program:`virgil` is a command line tool for using Virgil Security stack functionality.

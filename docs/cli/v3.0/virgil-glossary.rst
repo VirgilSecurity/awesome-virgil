@@ -6,7 +6,7 @@ virgil-glossary
 .. program:: virgil-glossary
 
 
-SYNOPSYS
+SYNOPSIS
 --------
 
 .. code:: bash
@@ -20,15 +20,15 @@ DESCRIPTION
 -----------
 
     :program:`virgil glossary` shows the list of the terms used in Virgil Services with the accompanying definitions.
-    
- 
+
+
 OPTIONS
 -------
 
 .. option:: -o <file>, --out=<file>
 
     The list of glossary terms. If omitted, stdout is used.
-    
+
 .. option:: -V, --VERBOSE
 
     Shows the detailed information.

@@ -11,24 +11,24 @@ SYNOPSIS
 
 .. code:: bash
 
-    virgil key2pub  [-i <file>] [-o <file>] [-p <arg>] [-V...] [–-]  
+    virgil key2pub  [-i <file>] [-o <file>] [-p <arg>] [-V...] [--]
     virgil key2pub (-h | --help)
     virgil key2pub --version
 
 
-DESCRIPTION 
+DESCRIPTION
 -----------
 
     :program:`virgil key2pub` extracts the :term:`Public Key` from the :term:`Private Key`.
 
 
-OPTIONS 
+OPTIONS
 -------
 
 .. option:: -i <file>, --in=<file>
 
     Private key. If omitted, stdin is used.
-   
+
 .. option:: -o <file>, --out=<file>
 
     Public key. If omitted, stdout is used.
@@ -54,7 +54,7 @@ OPTIONS
     Displays version information and exits.
 
 
-EXAMPLES 
+EXAMPLES
 --------
 
 1. Extract the Public Key from the Private Key.
@@ -69,8 +69,8 @@ EXAMPLES
 
     virgil key2pub -i private.key -o public.key -p STRONGPASS
 
- 
-SEE ALSO 
+
+SEE ALSO
 --------
 
 :cli:ref:`virgil`
