@@ -27,11 +27,11 @@ OPTIONS
 
 .. option:: -i <file>, --in=<file>
 
-    Data to be signed. If omitted, stdin is used.
+    Data to be verified. If omitted, stdin is used.
 
 .. option:: -o <file>, --out=<file>
 
-    Digest sign. If omitted, stdout is used.
+    Verification result: success | failure. If omitted, stdout is used.
 
 .. option:: --return-status
 
