@@ -1,0 +1,31 @@
+<aside class="main-sidebar dimmable">
+    <div class="sidebar-wrapper">
+        <header class="sidebar-controls">
+            <div class="lang-selector">
+                <span class="current-lang">default</span>
+                <a href="#?lang/change" class="change">change</a>
+            </div>
+            <a class="sidebar-toggle" href="#?sidebar/close"><i class="fa fa-remove"></i></a>
+        </header>
+        <nav class="main-navigation" role="navigation">
+            {% block menu %}
+            {% set toctree = toctree(maxdepth=8, includehidden=True, collapse=True) %}
+            {% if toctree %}
+            {{ toctree }}
+            {% else %}
+            <div class="local-toc">{{ toc }}</div>
+            {% endif %}
+            {% endblock %}
+        </nav>
+
+        <address>
+            <dl>
+                <dt>License</dt>
+                <dd>BSD 3-Clause. See <a href="https://github.com/VirgilSecurity/virgil/blob/master/LICENSE">license</a> for details.</dd>
+                <dt>Support</dt>
+                <dd>support@virgilsecurity.com</dd>
+            </dl>
+            <span class="copyright">Copyright 2016, Virgil.</span>
+        </address>
+    </div>
+</aside>

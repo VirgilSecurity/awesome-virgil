@@ -1,0 +1,55 @@
+{% set title = 'Home' %}
+
+{%- extends "layout.html" %}
+
+{% block body %}
+
+    <div class="section" id="virgil-security-documentation">
+        <h1>Virgil Security documentation<a class="headerlink" href="#virgil-security-documentation" title="Permalink to this headline">¶</a></h1>
+        <p>Welcome to the documentation of the Virgil Security — the modern security software developer. This documentation covers everything from getting started to how to start in minutes.</p>
+        <div class="index card-container container">
+            <div class="sdk content-card container">
+                <a class="reference internal" href="sdk/"><span class="doc">Virgil SDK</span></a>
+                <cite>Simplify work with Virgil Security services and Crypto Library for the most modern development languages and platforms.</cite></div>
+            <div class="cli content-card container">
+                <a class="reference internal" href="cli/v2.0/cli.html"><span class="doc">Virgil Security CLI</span></a>
+                <cite>Our own console user interface for using Virgil Security stack functionality.</cite></div>
+            <div class="usecases content-card container">
+                <a class="reference internal" href="use-cases/use-cases.html"><span class="doc">Use Cases</span></a>
+                <cite>Get inspired with our examples of cryptographic features which can be implemented using Virgil Security.</cite></div>
+            <div class="crypto content-card container">
+                <a class="reference internal" href="crypto-library/crypto-library.html"><span class="doc">Virgil Crypto Library</span></a>
+                <cite>All you need to know about Virgil Crypto library usage and features.</cite></div>
+            <div class="services content-card container">
+                <a class="reference internal" href="services/services.html"><span class="doc">Virgil Services</span></a>
+                <cite>APIs for keys maanagement and identities validation.</cite></div>
+            <div class="faq content-card container">
+                <a class="reference internal" href="faq/faq.html"><span class="doc">FAQ</span></a>
+                <cite>Quick answers for Frequently Asked Questions</cite></div>
+        </div>
+        <div class="section" id="browse-alphabetically">
+            <h2>Browse Alphabetically<a class="headerlink" href="#browse-alphabetically" title="Permalink to this headline">¶</a></h2>
+        </div>
+    </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", e => {
+        $.ajax('genindex.html').then(html => {
+            let content  = $('#browse-alphabetically'),
+                    glossary = $('article.content-article', $(html)),
+                    lables, titles;
+
+            content.append(glossary.html());
+            lables = [...document.querySelectorAll('#browse-alphabetically .genindex-jumpbox a')];
+            titles = [...document.querySelectorAll('#browse-alphabetically h3')].map(e => e.textContent);
+
+            lables.forEach(e => {
+                if(titles.indexOf(e.hash.replace('#','')) === -1){
+                    e.classList.add('inactive');
+                }
+            });
+        });
+    });
+</script>
+
+{% endblock %}
