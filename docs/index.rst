@@ -10,7 +10,7 @@ Developers Docs
    
    sdk/sdks
    services/services
-   crypto-library/crypto-library
+   Virgil Crypto Library <crypto-library/v2/crypto>
    genindex
    use-cases/use-cases
    cli/v2.0/cli
