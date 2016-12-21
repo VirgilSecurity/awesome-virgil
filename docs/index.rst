@@ -16,9 +16,6 @@ Developers Docs
    cli/v2.0/cli
    faq/faq
 
-:ref:`genindex`
----------------
-
 License
 --------------------
 

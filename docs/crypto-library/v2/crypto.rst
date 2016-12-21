@@ -260,11 +260,12 @@ Windows OS:
     > .\utils\build.bat {{TARGET}}
     > dir .\install\{{TARGET}}
 
-Migrating from Virgil Crypto 1.8 to Virgil Crypto 2.0
-------------------------------------------------------------------
+
+`Migrating from Virgil Crypto 1.8 to Virgil Crypto 2.0 <migration-2.0.html>`__
+----------------------------------------------------------------------------
 
 Features
---------
+~~~~~~~~
 
 This section describes new features that were added in the version 2.0.
 
@@ -401,3 +402,6 @@ Changes in binaries
 2. Remove support of OS X universal binaries.
 3. Dropped AS3 support.
 
+
+
+.. seealso:: :doc:`Virgil Crypto Library version 1 <../v1/crypto>`
