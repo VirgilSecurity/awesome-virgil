@@ -1,12 +1,12 @@
 <header class="content-header dimmable">
     <div class="header-title">
-        <h3><a href="/"><span>Documentation</span></a></h3>
+        <h3><a href="{{ pathto(master_doc) }}"><span>Documentation</span></a></h3>
         <div class="header-controls">
             <a class="search-toggle" href="#header-search"><i class="fa fa-search"></i></a>
             <a class="sidebar-toggle" href="#main-sidebar"><i class="fa fa-bars"></i></a>
         </div>
     </div>
     <div class="header-searchbox" role="search">
-        {% include "searchbox.html" %}
+        {% include "templates/searchbox.html" %}
     </div>
 </header>

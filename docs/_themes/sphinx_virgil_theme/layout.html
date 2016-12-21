@@ -25,16 +25,19 @@
     {% if use_opensearch %}
     <link rel="search" type="application/opensearchdescription+xml" title="{% trans docstitle=docstitle|e %}Search within {{ docstitle }}{% endtrans %}" href="{{ pathto('_static/opensearch.xml', 1) }}"/>
     {% endif %}
-    <link rel="stylesheet" href="{{ pathto('_static/css/' + style, 1) }}" type="text/css"/>
+
+	<link rel="stylesheet" href="{{ pathto('_static/' + style, 1) }}" type="text/css" />
 
 	<script type="text/javascript">
 		var DOCUMENTATION_OPTIONS = {
-			URL_ROOT:    '{{ url_root }}',
-			VERSION:     '{{ release|e }}',
-			COLLAPSE_INDEX: false,
-			FILE_SUFFIX: '{{ '' if no_search_suffix else file_suffix }}',
-			HAS_SOURCE:  {{ has_source|lower }}
-		};
+				URL_ROOT:    '{{ url_root }}',
+				VERSION:     '{{ release|e }}',
+				COLLAPSE_INDEX: false,
+				FILE_SUFFIX: '{{ '' if no_search_suffix else file_suffix }}',
+				HAS_SOURCE:  {{ has_source|lower }},
+				SOURCELINK_SUFFIX: '{{ sourcelink_suffix }}',
+				SEARCH_INDEX_PATH: '{{ pathto('searchindex.js', 1) }}'
+			};
 	</script>
 
     {%- block linktags %}
@@ -73,19 +76,19 @@
 
 <body>
     <div class="wrapper">
-        {% include "header.html" %}
-        {% include "sidebar.html" %}
+        {% include "templates/header.html" %}
+        {% include "templates/sidebar.html" %}
         <section class="main-content dimmable">
-            {% include "breadcrumbs.html" %}
+            {% include "templates/breadcrumbs.html" %}
             <article class="content-article dimmable">
                 {% block body %}
 
                 {% endblock %}
             </article>
-            {% include "footer.html" %}
+            {% include "templates/footer.html" %}
         </section>
     </div>
-    {% include "modals.html" %}
+    {% include "templates/modals.html" %}
 </body>
 </html>
 
