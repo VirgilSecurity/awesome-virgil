@@ -11,7 +11,7 @@ Developers Docs
    sdk/sdks
    Crypto Library <crypto-library/v2/crypto>
    services/services
-   cli/v2.0/cli
+   CLI <cli/v2.0/cli>
    genindex
    use-cases/use-cases
    faq/faq
