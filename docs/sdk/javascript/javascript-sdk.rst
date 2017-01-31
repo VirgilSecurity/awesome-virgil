@@ -1,4 +1,4 @@
-Virgil Javascript SDK
+Javascript SDK
 ===============================
 
 .. toctree::
