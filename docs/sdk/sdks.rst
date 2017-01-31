@@ -7,6 +7,12 @@ These guides are practical introduction to creating apps for different platforms
 The aim of these guides is to get you up and running quickly. You should be able to copy and paste the code provided into your own apps and use it with the minimal changes.
 
 -  `.NET/C# <net/dot-net-csharp-sdk>`__
+-  `Java/Android <java-android/java-android-sdk>`__
+-  `Objective C/Swift <x/objective-c-swift-sdk>`__
+-  `Go <go/go-sdk>`__
+-  `JavaScript <javascript/javascript-sdk>`__
+-  `Python <python/python-sdk>`__
+-  `Ruby <ruby/ruby-sdk>`__
 
 
 .. toctree::
