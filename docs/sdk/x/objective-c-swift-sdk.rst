@@ -1,4 +1,4 @@
-Virgil Objective C/Swift SDK
+Objective C/Swift SDK
 =====================================
 
 .. toctree::
