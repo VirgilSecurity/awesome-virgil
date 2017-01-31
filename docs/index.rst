@@ -9,11 +9,11 @@ Developers Docs
    :maxdepth: 1
    
    sdk/sdks
+   Crypto Library <crypto-library/v2/crypto>
    services/services
-   Virgil Crypto Library <crypto-library/v2/crypto>
+   cli/v2.0/cli
    genindex
    use-cases/use-cases
-   cli/v2.0/cli
    faq/faq
 
 License
