@@ -15,3 +15,4 @@ The aim of these guides is to get you up and running quickly. You should be able
    Go SDK <go/go-sdk>
    Javascript SDK <javascript/javascript-sdk>
    Python SDK <python/python-sdk>
+   Ruby SDK <ruby/ruby-sdk>
