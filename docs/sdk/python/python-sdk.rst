@@ -1,4 +1,4 @@
-Virgil Python SDK
+Python SDK
 ==========================
 
 .. toctree::
