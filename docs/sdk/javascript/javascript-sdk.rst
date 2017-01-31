@@ -1,4 +1,4 @@
-Virgil Security Javascript SDK
+Virgil Javascript SDK
 ===============================
 
 .. toctree::
