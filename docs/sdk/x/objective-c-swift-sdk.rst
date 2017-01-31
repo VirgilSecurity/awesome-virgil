@@ -1,4 +1,4 @@
-Objective C/Swift SDK
+Objective C/Swift
 =====================================
 
 .. toctree::
