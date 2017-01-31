@@ -1,4 +1,4 @@
-Virgil Security Go SDK
+Go SDK
 ======================
 
 .. toctree::
