@@ -6,6 +6,9 @@ These guides are practical introduction to creating apps for different platforms
 
 The aim of these guides is to get you up and running quickly. You should be able to copy and paste the code provided into your own apps and use it with the minimal changes.
 
+-  `.NET/C# <net/dot-net-csharp-sdk>`__
+
+
 .. toctree::
    :maxdepth: 1
 
