@@ -36,8 +36,8 @@ Start with one of the sections:
 
     .. container:: downloads content-card
 
-        `Downloads <https://www.nuget.org/packages/Virgil.SDK/>`__
-        `You can download Virgil.SDK package.`
+        `Downloads <https://rubygems.org/gems/virgil-sdk/>`__
+        `You can download virgil-sdk gem.`
 
 
     .. container:: source content-card
