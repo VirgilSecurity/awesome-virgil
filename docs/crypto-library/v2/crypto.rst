@@ -1,4 +1,4 @@
-Virgil Crypto Library: Overview
+Crypto Library: Overview
 ===============================
 
 -  `Introduction <#introduction>`__
