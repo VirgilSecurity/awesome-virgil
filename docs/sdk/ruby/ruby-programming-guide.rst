@@ -1,4 +1,4 @@
-.NET/C# SDK Programming Guide
+Ruby SDK Programming Guide
 =============================
 
 Creating a Virgil Card
