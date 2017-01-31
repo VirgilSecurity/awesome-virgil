@@ -1,5 +1,5 @@
-Virgil Security .NET/C# SDK
-===========================
+Virgil Ruby SDK
+========================
 
 .. toctree::
    :maxdepth: 1
