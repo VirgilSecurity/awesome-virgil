@@ -8,4 +8,3 @@ Virgil Security℠ provides modern cryptography libraries (ECIES and RSA with Cr
 	:maxdepth: 1
 
 	version 2 <v2/crypto>
-	version 1 <v1/crypto>
