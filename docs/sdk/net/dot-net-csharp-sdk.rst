@@ -1,4 +1,4 @@
-Virgil .NET/C# SDK
+.NET/C# SDK
 ===========================
 
 .. toctree::
