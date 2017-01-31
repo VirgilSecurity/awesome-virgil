@@ -1,4 +1,4 @@
-Javascript SDK
+JavaScript
 ===============================
 
 .. toctree::
