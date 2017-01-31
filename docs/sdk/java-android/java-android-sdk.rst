@@ -1,4 +1,4 @@
-Virgil Security Java/Android SDK
+Java/Android SDK
 ================================
 
 .. toctree::
