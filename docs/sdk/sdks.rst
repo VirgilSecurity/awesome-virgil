@@ -1,5 +1,5 @@
 ###########
-SDKs
+SDK
 ###########
 
 These guides are practical introduction to creating apps for different platforms using **Virgil Security** features.

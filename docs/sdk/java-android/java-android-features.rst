@@ -1,5 +1,5 @@
 ############################
-Java/Android SDK Features
+Features
 ############################
 
 Working with Virgil Cards:

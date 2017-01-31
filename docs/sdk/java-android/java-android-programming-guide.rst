@@ -1,4 +1,4 @@
-Java/Android SDK Programming Guide
+Programming Guide
 =====================================
 
 Creating a Virgil Card

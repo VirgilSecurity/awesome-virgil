@@ -1,5 +1,5 @@
 ################################
-Objective C/Swift SDK Features
+Features
 ################################
 
 Working with Virgil Cards:

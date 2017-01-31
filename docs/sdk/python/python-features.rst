@@ -1,5 +1,5 @@
 ####################
-Python SDK Features
+Features
 ####################
 
 Working with Virgil Cards:

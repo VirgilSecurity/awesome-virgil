@@ -1,5 +1,5 @@
 ####################
-.NET/C# SDK Features
+Features
 ####################
 
 Working with Virgil Cards:
