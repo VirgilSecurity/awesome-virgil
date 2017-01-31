@@ -1,4 +1,4 @@
-Virgil Security .NET/C# SDK
+Virgil .NET/C# SDK
 ===========================
 
 .. toctree::
