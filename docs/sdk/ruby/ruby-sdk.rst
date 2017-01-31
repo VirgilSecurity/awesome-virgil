@@ -1,4 +1,4 @@
-Virgil Ruby SDK
+Ruby SDK
 ========================
 
 .. toctree::
