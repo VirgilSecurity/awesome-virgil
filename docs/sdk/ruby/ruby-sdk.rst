@@ -11,7 +11,7 @@ Virgil Security .NET/C# SDK
 
 Welcome to the Ruby SDK Programming Guide.
 
-In this guide you will find code for every task you'll need to implement to create an application in Javascript using Virgil Security. It also includes a description of the main classes and methods. The code examples in this guide are written in Ruby.
+In this guide you will find code for every task you'll need to implement to create an application in Ruby using Virgil Security. It also includes a description of the main classes and methods. The code examples in this guide are written in Ruby.
 
 Start with one of the sections:
 
