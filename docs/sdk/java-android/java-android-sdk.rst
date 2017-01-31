@@ -1,4 +1,4 @@
-Java/Android SDK
+Java/Android
 ================================
 
 .. toctree::
