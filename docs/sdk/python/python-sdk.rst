@@ -1,4 +1,4 @@
-Virgil Security Python SDK
+Virgil Python SDK
 ==========================
 
 .. toctree::
