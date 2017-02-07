@@ -7,6 +7,7 @@
    Getting started <dot-net-csharp-getting-started>
    Features <dot-net-csharp-features>
    Programming guide <dot-net-csharp-programming-guide>
+   High-Level <high-level>
 
 
 Welcome to the .NET SDK Programming Guide for C#.
