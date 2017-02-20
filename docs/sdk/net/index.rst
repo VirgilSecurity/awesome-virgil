@@ -5,8 +5,8 @@
    :maxdepth: 1
 
    Getting started <getting-started>
+   Features <features>
    Programming guide <programming-guide>
-   Guides <guides>
 
 
 Welcome to the .NET SDK Programming Guide for C#.
@@ -24,7 +24,7 @@ Start with one of the sections:
 
     .. container:: features content-card
 
-        :doc:`Guides <guides>`
+        :doc:`Features <features>`
         `A list of guides for work with Virgil Services and Cryptography.`
 
 
