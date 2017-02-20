@@ -4,9 +4,9 @@ Java/Android
 .. toctree::
    :maxdepth: 1
 
-   Getting started <java-android-getting-started>
-   Features <java-android-features>
-   Programming guide <java-android-programming-guide>
+   Getting started <getting-started>
+   Features <features>
+   Programming guide <programming-guide>
 
 
 Welcome to the SDK Programming Guide for Java and Android.
@@ -19,18 +19,18 @@ Start with one of the sections:
 
     .. container:: start content-card
 
-        :doc:`Getting started <java-android-getting-started>`
+        :doc:`Getting started <getting-started>`
         `First steps, settings and prerequisites for work with Virgil SDK.`
 
     .. container:: features content-card
 
-        :doc:`Features <java-android-features>`
+        :doc:`Features <features>`
         `A list of features for work with Cards Service and Crypto Library.`
 
 
     .. container:: guide content-card
 
-        :doc:`Programming guide <java-android-programming-guide>`
+        :doc:`Programming guide <programming-guide>`
         `All methods description with code samples.`
 
 

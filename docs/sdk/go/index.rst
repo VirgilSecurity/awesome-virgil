@@ -4,9 +4,9 @@ Go
 .. toctree::
    :maxdepth: 1
 
-    Getting started <go-getting-started>
-    Features <go-features>
-    Programming guide <go-programming-guide>
+    Getting started <getting-started>
+    Features <features>
+    Programming guide <programming-guide>
 
 
 Welcome to the SDK Programming Guide for Go.
@@ -20,17 +20,17 @@ Start with one of the sections:
 
     .. container:: start content-card
 
-        :doc:`Getting started <go-getting-started>`
+        :doc:`Getting started <getting-started>`
         `First steps, settings and prerequisites for work with Virgil SDK.`
 
     .. container:: features content-card
 
-        :doc:`Features <go-features>`
+        :doc:`Features <features>`
         `A list of features for work with Cards Service and Crypto Library.`
 
     .. container:: guide content-card
 
-        :doc:`Programming guide <go-programming-guide>`
+        :doc:`Programming guide <programming-guide>`
         `All methods description with code samples.`
 
     .. container:: downloads content-card

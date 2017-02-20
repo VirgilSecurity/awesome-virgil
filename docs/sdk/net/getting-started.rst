@@ -1,4 +1,4 @@
-Getting started
+Getting Started
 ===============
 
 The goal of Virgil .NET/C# SDK Documentation is to give a developer the knowledge and understanding required to implement security into his application using Virgil Security system.
