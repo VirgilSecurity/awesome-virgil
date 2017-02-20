@@ -5,8 +5,9 @@ PHP
    :maxdepth: 1
 
    Getting started <getting-started>
-   Quickstart <quickstart>
-   Guides <guides>
+   Features <features>
+   Programming guide<programming-guide>
+
 
 
 Welcome to the Quickstart for PHP
@@ -24,7 +25,7 @@ Start with one of the sections:
 
     .. container:: features content-card
 
-        :doc:`Guides <guides>`
+        :doc:`Features <features>`
         `A list of guides for work with Virgil Services and Cryptography.`
 
 
