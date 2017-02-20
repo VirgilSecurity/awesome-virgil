@@ -28,3 +28,14 @@ Digital Signatures
 -----------------------------
 -  `Generating a Signature <programming-guide.html#generating-and-verifying-signatures>`__
 -  `Verifying a Signature <programming-guide.html#verifying-a-signature>`__
+
+High Level
+-----------------------------
+-  `Configuration <programming-guide.html#high-level-api-configuration>`__
+-  `Register Global Virgil Card <programming-guide.html#register-global-virgil-card-using-high-level-api>`__
+-  `Revoke Global Virgil Card <programming-guide.html#revoking-global-virgil-card-using-high-level-api>`__
+-  `Register Virgil Card <programming-guide.html#register-virgil-card-using-high-level-api>`__
+-  `Revoke Virgil Card <programming-guide.html#revoking-virgil-card-using-high-level-api>`__
+-  `Encryption <programming-guide.html#encryption-with-high-level-api>`__
+-  `Authenticated Encryption <programming-guide.html#authenticated-encryption-with-high-level-api>`__
+-  `Generating and Verifying Signatures <programming-guide.html#generating-and-verifying-signatures-with-high-level-api>`__

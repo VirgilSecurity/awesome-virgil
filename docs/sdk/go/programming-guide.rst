@@ -391,120 +391,306 @@ High level API
 This API provides a simple way of managing **Virgil Cards**, encrypting data
 and verifying signatures
 
-Global configuration
+High Level API Configuration
 ~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: go
     :linenos:
 
-    virgil.InitConfig("[YOUR_TOKEN_HERE]")
+    api, err := virgilapi.New("[YOUR_ACCESS_TOKEN_HERE]")
+
+.. code-block:: go
+    :linenos
+
+    api, err := virgilapi.NewWithConfig(virgilapi.Config{
+        Token: "AT.[YOUR_ACCESS_TOKEN_HERE]",
+        Credentials: &virgilapi.AppCredentials{
+            AppId:      appCardID,
+            PrivateKey: virgilapi.BufferFromString(appPrivateKey),
+        },
+        CardVerifiers: map[string]virgilapi.Buffer{
+            cardServiceID: virgilapi.BufferFromString(cardsServicePublicKey),
+        },
+    })
 
 That's it.
 
-Creating a Virgil Card with High level API
+Register Global Virgil Card using High-Level API
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-First, generate a new keypair:
+First, generate a new Key:
 
 .. code-block:: go
     :linenos:
 
-    crypto := virgil.Crypto()
-    aliceKeypair, _ := crypto.GenerateKeypair()
+    // generate a new Alice's Key
+    aliceKey, err := api.Keys.Generate()
 
-Then, create a new card request and self-sign it:
+    // save the Key to default storage
+    err = aliceKey.Save("[KEY_NAME]", "[KEY_PASSWORD]")
 
-.. code-block:: go
-    :linenos:
-
-    req, _ := virgil.NewCreateCardRequest("username", "Alice", aliceKeypair.PublicKey(), enums.CardScope.Application, nil)
-    signer := virgil.NewRequestSigner()
-    signer.SelfSign(req, aliceKeypair.PrivateKey())
-
-You will need to also sign the ``card create request`` with your
-application's private key:
+Then, create a new Virgil Card and self-sign it using `aliceKey`:
 
 .. code-block:: go
     :linenos:
 
-    signer.AuthoritySign(req, appCardID, appPrivateKey)
+    // create Alice's Card using her newly generated Key.
+    aliceCard, err := api.Cards.CreateGlobal("alice@virgilsecurity.com", aliceKey)
 
-After you have yours and application signatures you can push the request
-to server and create a **Virgil Card**.
+Verify an identity using method `VerifyIdentity`
 
 .. code-block:: go
     :linenos:
 
-    card, _ := virgil.CreateCard(req)
+    // initiate an identity verification process.
+    attempt, err := aliceCard.VerifyIdentity()
 
-Searching for a Virgil Card with High level API
+    // confirm a Alice's Card identity using confirmation code retrived on the email.
+    token, err := attempt.Confirm("[CONFIRMATION_CODE]")
+
+Publish Alice's Card to Virgil Services using `VirgilApi`
+
+.. code-block:: go
+    :linenos:
+
+    // publish a Card on the Virgil Security services.
+    aliceCard, err = api.Cards.PublishGlobal(aliceCard, token)
+
+Revoking Global Virgil Card with High level API
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: go
+    :linenos:
+
+    // initialize Virgil SDK high-level
+    api, err := virgilapi.New("[YOUR_ACCESS_TOKEN_HERE]")
+
+    // load alice's Key from secure storage provided by default.
+    aliceKey, err = api.Keys.Load("[KEY_NAME]", "[KEY_PASSWORD]")
+
+    // load alice's Card from Virgil Security services.
+    aliceCard, err = api.Cards.Get("[ALICE_CARD_ID]")
+
+    // initiate Card's identity verification process.
+    attempt, err = aliceCard.VerifyIdentity()
+
+    token, err = attempt.Confirm("[CONFIRMATION_CODE]")
+
+    // revoke Virgil Card from Virgil Security services.
+    err = api.Cards.RevokeGlobal(aliceCard, virgil.RevocationReason.Unspecified, aliceKey, token)
+
+Register Virgil Card using High-Level API
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-You can get a **Virgil Card** by its ID:
+First, generate a new Key:
 
 .. code-block:: go
     :linenos:
 
-    card, err := virgil.GetCard(c.ID)
+    // generate a new Alice's Key
+    aliceKey, err := api.Keys.Generate()
 
-Or search your application cards using identities:
+    // save the Key to default storage
+    err = aliceKey.Save("[KEY_NAME]", "[KEY_PASSWORD]")
 
-.. code-block:: go
-    :linenos:
-
-    cards, err := virgil.FindCards("username", "Alice")
-
-You may also search for other **Global Virgil Cards**, for example other
-Application card:
+Then, create a new Virgil Card and self-sign it using `aliceKey`:
 
 .. code-block:: go
     :linenos:
 
-    cards, err := virgil.FindGlobalCards("application", "com.virgil.security")
+    // create Alice's Card using her newly generated Key.
+    aliceCard, err := api.Cards.Create("alice@virgilsecurity.com", aliceKey)
 
-Revoking a Virgil Card with High level API
+Transmit alice's Card to the server side where it will be signed, validated and published on the Virgil Services.
+
+.. code-block:: go
+    :linenos:
+   
+    // export alice's Card to string
+    exportedAliceCard, err := aliceCard.Export()
+
+Publish Alice's Card on server side:
+
+.. code-block:: go
+    :linenos:
+
+    // initialize Virgil SDK high-level instance.
+    api, err := virgilapi.NewWithConfig(virgilapi.Config{
+            Token: "AT.[YOUR_ACCESS_TOKEN_HERE]",
+            Credentials: &virgilapi.AppCredentials{
+                AppId:      appCardID,
+                PrivateKey: virgilapi.BufferFromString(appPrivateKey),
+            },
+        })
+
+    // import alice's Card from its string representation.
+    aliceCard, err := api.Cards.Import(exportedAliceCard)
+
+    // verify alice's Card information before publishing it on the Virgil services.
+
+    // aliceCard.Identity
+    // aliceCard.IdentityType
+    // aliceCard.Data
+    // aliceCard.Info
+
+    // publish alice's Card on Virgil Services
+    publishedCard, err := api.Cards.Publish(aliceCard)
+
+Revoking Virgil Card with High level API
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-You will need card's ID and Application's signature.
+You will need card's ID and Application's credentials.
 
 .. code-block:: go
     :linenos:
 
-    revreq := virgil.NewRevokeCardRequest(card.ID, enums.RevocationReason.Unspecified)
-    signer.AuthoritySign(revreq, appCard.ID, appPrivateKey)
-    err := virgil.RevokeCard(revreq)
+    // initialize Virgil SDK high-level instance.
+    api, err := virgilapi.NewWithConfig(virgilapi.Config{
+        Token: "AT.[YOUR_ACCESS_TOKEN_HERE]",
+        Credentials: &virgilapi.AppCredentials{
+            AppId:      appCardID,
+            PrivateKey: virgilapi.BufferFromString(appPrivateKey),
+        },
+    })
 
-Encrypting data with High level API
+    // get alice's Card by ID
+    aliceCard, err := api.Cards.Get("[ALICE_CARD_ID]")
+
+    // revoke alice's Card from Virgil Security services.
+    err = api.Cards.Revoke(aliceCard)
+
+Encrypting with High level API
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-All you need is a receiver's Virgil Card.
+Initialize
 
 .. code-block:: go
     :linenos:
 
-    plaintext := []byte("Hello, Bob!")
-    encryptedData, err := bobCard.Encrypt(plaintext)
+    // initialize Virgil SDK
+    api, err := virgilapi.New("[YOUR_ACCESS_TOKEN_HERE]")
 
-Verifying data signature with High level API
+Encrypt Data
+
+.. code-block:: go
+    :linenos:
+
+    api, err := virgilapi.New("[YOUR_ACCESS_TOKEN_HERE]")
+
+    // search for alice's and bob's Cards
+    recipients, err := api.Cards.Find("alice", "bob")
+
+    message := virgilapi.BufferFromString("Hello Guys, let's get outta here.")
+
+    // encrypt message for multiple recipients
+    cipherData, err := recipients.Encrypt(message)
+
+    transferData := cipherData.ToBase64String()
+    // transferData := cipherData.ToHEXString()
+
+Decrypt Data
+
+.. code-block:: go
+    :linenos:
+
+    // load alice's Key from secure storage provided by default.
+    aliceKey, err := api.Keys.Load("[KEY_NAME]", "[KEY_PASSWORD]")
+
+    // get buffer from base64 encoded string
+    encryptedData, err := virgilapi.BufferFromBase64String(transferData)
+
+    // decrypt message using alice's Private key.
+    originalData, err := aliceKey.Decrypt(encryptedData)
+    // originalData = aliceKey.Decrypt(encryptedData)
+
+    originalMessage := originalData.ToString()
+    // originalMessage := originalData.ToHEXString()
+    // originalMessage := originalData.ToBase64String()
+
+Authenticated Encryption with High Level API
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Initialization
+
+.. code-block:: go
+    :linenos:
+    
+    // initialize Virgil SDK
+    api, err := virgilapi.New("[YOUR_ACCESS_TOKEN_HERE]")
+
+Sign then Encrypt
+
+.. code-block:: go
+    :linenos:
+
+    // load alice's key pair from secure storage defined by default
+    aliceKey, err  := api.Keys.Load("[KEY_NAME]", "[KEY_PASSWORD]")
+
+    // search for bob's and chris' Cards
+    recipients, err := api.Cards.Find("bob", "chris")
+
+    message := virgilapi.BufferFromString("Hello Guys, let's get outta here.")
+
+    // encrypt and sign message for multiple recipients
+    cipherData, err := aliceKey.SignThenEncrypt(message, recipients...)
+
+    transferData := cipherData.ToString()
+
+Decrypt then Verify
+
+.. code-block:: go
+    :linenos:
+
+    // load bob's Key from secure storage defined by default
+    bobKey, err := api.Keys.Load("[KEY_NAME]", "[KEY_PASSWORD]")
+
+    // search for alice's Card
+    aliceCards, err := api.Cards.Find("alice")
+    aliceCard := aliceCards[0] //or whatever filter you like
+
+    // get buffer from base64 encoded string
+    encryptedData, err := virgilapi.BufferFromBase64String(transferData)
+
+    // decrypt cipher message bob's key pair and verify it using alice's Card
+    originalData, err := bobKey.DecryptThenVerify(encryptedData, aliceCard)
+
+    originalMessage := originalData.ToString()
+
+Generating and Verifying Signatures with High Level API
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. code-block:: go
-    :linenos:
-
-    plaintext := []byte("Hello, Bob!")
-    verifyResult, err := bobCard.Verify(plaintext, signature)
-
-Authenticated encryption with High level API
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Authenticated encryption provides both data confidentiality and data integrity assurances that the information is protected.
+Initialization
 
 .. code-block:: go
     :linenos:
 
-    plaintext := []byte("Hello, Bob!")
-    encryptedData, err := bobCard.SignThenEncrypt(plaintext, aliceKeypair.PrivateKey())
+    // initialize Virgil SDK high-level instance
+    api, err := virgilapi.New("[YOUR_ACCESS_TOKEN_HERE]")
 
-See Also: 
----------
-`Source code <https://github.com/VirgilSecurity/virgil-sdk-go>`__
+Generate Digital Signature
+
+.. code-block:: go
+    :linenos:
+
+    // load alice's Key from protected storage
+    aliceKey, err := api.Keys.Load("[KEY_NAME]", "[KEY_PASSWORD]")
+
+    message := virgilapi.BufferFromString("Hey Bob, hope you are doing well.")
+
+    // generate signature of message using alice's key pair
+    signature, err := aliceKey.Sign(message)
+    transferData := signature.ToBase64String()
+
+Validate Digital Signature
+
+.. code-block:: go
+    :linenos:
+
+    // search for alice's Card
+    aliceCards, err := api.Cards.Find("alice")
+    aliceCard := aliceCards[0] //or whatever filter you like
+
+    res, err := aliceCard.Verify(message, signature)
+    if !res {
+        ...
+    }
