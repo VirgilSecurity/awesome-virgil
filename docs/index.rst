@@ -8,7 +8,7 @@ Developers Docs
 .. toctree::
    :maxdepth: 1
    
-   sdk/sdks
+   SDKs <sdk/index>
    Crypto Library <crypto-library/v2/crypto>
    services/services
    CLI <cli/v2.0/cli>
