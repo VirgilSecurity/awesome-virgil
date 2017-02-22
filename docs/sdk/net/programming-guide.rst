@@ -40,16 +40,19 @@ This inializes a VirgilApi class without application *token* (works only with gl
 
 .. code-block:: csharp
     :linenos:
+
     var virgil = new VirgilApi();
 
 .. code-block:: csharp
     :linenos:
+
     var virgil = new VirgilApi("[YOUR_ACCESS_TOKEN_HERE]");
 
 Initialize high-level SDK using context class
 
 .. code-block:: csharp
     :linenos:
+
     var context = new VirgilApiContext
     {
         AccessToken = "[YOUR_ACCESS_TOKEN_HERE]",
@@ -91,6 +94,7 @@ Generate user's Key and create a Virgil Card
 
 .. code-block:: csharp
     :linenos:
+
     // initialize Virgil SDK
     var virgil = new VirgilApi("[YOUR_ACCESS_TOKEN_HERE]");
 
@@ -103,7 +107,7 @@ Generate user's Key and create a Virgil Card
 Transmit alice's Card to the server side where it would be signed, validated and published on the Virgil Services. 
 
 .. code-block:: csharp
-    :linenos:
+
     // export alice's Card to string
     var exportedAliceCard = aliceCard.Export();
 
@@ -111,6 +115,7 @@ Publish a Virgil Card on Server-Side
 
 .. code-block:: csharp
     :linenos:
+
     // initialize Virgil SDK high-level instance.
     var virgil = new VirgilApi(new VirgilApiContext
     {
@@ -142,6 +147,7 @@ Revoking Virgil Card
 
 .. code-block:: csharp
     :linenos:
+
     // initialize Virgil SDK high-level instance.
     var virgil = new VirgilApi(new VirgilApiContext
     {
@@ -165,6 +171,7 @@ Registering Global Virgil Card
 
 .. code-block:: csharp
     :linenos:
+
     // initialize Virgil's high-level instance.
     var virgil = new VirgilApi("[YOUR_ACCESS_TOKEN_HERE]");
 
@@ -193,6 +200,7 @@ Revoking Global Virgil Cards
 
 .. code-block:: csharp
     :linenos:
+
     // initialize Virgil SDK high-level
     var virgil = new VirgilApi("[YOUR_ACCESS_TOKEN_HERE]");
 
@@ -215,6 +223,7 @@ Export & Import Virgil Cards
 -------------------------------
 .. code-block:: csharp
     :linenos:
+
     var virgil = new VirgilApi("[YOUR_ACCESS_TOKEN_HERE]");
 
     var aliceKey = virgil.Keys.Generate();
@@ -231,6 +240,7 @@ Search for Virgil Cards
 -------------------------------
 .. code-block:: csharp
     :linenos:
+
     var virgil = new VirgilApi("[YOUR_ACCESS_TOKEN_HERE]");
 
     // search for all Alice's Cards.
@@ -251,13 +261,14 @@ Encryption
 Initialize Virgil High Level API and generate the Virgil Key.
 
 .. code-block:: csharp
-    :linenos:
+
     var virgil = new VirgilApi("[YOUR_ACCESS_TOKEN_HERE]");
 
 Encrypting Data
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 .. code-block:: csharp
     :linenos:
+
     // search for alice's and bob's Cards
     var bobCards = await virgil.Cards.FindAsync("bob");
 
@@ -270,6 +281,7 @@ Decrypting Data
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 .. code-block:: csharp
     :linenos:
+
     // load Bob's Key from secure storage provided by default.
     var bobKey = virgil.Keys.Load("[KEY_NAME]", "[KEY_PASSWORD]");
 
@@ -280,6 +292,7 @@ Encrypting & Signing Data
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 .. code-block:: csharp
     :linenos:
+
     // load Bob's Key from secure storage defined by default
     var aliceKey = virgil.Keys.Load("[KEY_NAME]", "[KEY_PASSWORD]");
 
@@ -295,6 +308,7 @@ Decrypting & Verifying Data
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 .. code-block:: csharp
     :linenos:
+
     // load Bob's Key from secure storage defined by default
     var bobKey = virgil.Keys.Load("[KEY_NAME]", "[KEY_PASSWORD]");
 
@@ -309,7 +323,7 @@ Generating and Verifying Signatures
 -----------------------------------
 This section walks you through the steps necessary to use the VirgilCrypto to generate a digital signature for data and to verify that a signature is authentic.
 .. code-block:: csharp
-    :linenos:
+
     // initialize Virgil SDK high-level API instance
     var virgil = new VirgilApi("[YOUR_ACCESS_TOKEN_HERE]");
 
@@ -318,6 +332,7 @@ Generating a Signature
 To generate the signature, simply call one of the sign methods:
 .. code-block:: csharp
     :linenos:
+
     // load Alice's Key from protected storage
     var aliceKey = virgil.Keys.Load("[KEY_NAME]", "[KEY	_PASSWORD]");
 
@@ -331,6 +346,7 @@ Verifying a Signature
 The signature can now be verified by calling the verify method:
 .. code-block:: csharp
     :linenos:
+
     // search for Alice's Card
     var aliceCards = await virgil.Cards.FindAsync("alice");
     var aliceCard = aliceCards.Single(card => card.Device == "iPhone 7");

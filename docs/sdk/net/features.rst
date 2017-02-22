@@ -5,11 +5,11 @@ Features
 Virgil Cards
 --------------------------
 
--  `Registering Virgil Cards <programming-guide.html#publishing-virgil-cards>`__
--  `Registering Global Virgil Cards <programming-guide.html#publishing-global-virgil-cards>`__
+-  `Registering Virgil Cards <programming-guide.html#registering-virgil-cards>`__
+-  `Registering Global Virgil Cards <programming-guide.html#registering-global-virgil-cards>`__
 -  `Export & Import Virgil Cards <programming-guide.html#export-import-virgil-cards>`__
 -  `Search for Virgil Cards <programming-guide.html#search-for-virgil-cards>`__
--  `Revoking Virgil Cards` <programming-guide.html#revoking-virgil-cards>`__
+-  `Revoking Virgil Cards <programming-guide.html#revoking-virgil-cards>`__
 -  `Revoking Global Virgil Cards <programming-guide.html#revoking-global-virgil-cards>`__
 
 Virgil Keys

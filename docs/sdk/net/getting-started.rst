@@ -60,17 +60,17 @@ your application on [Virgil Developer Portal](https://developer.virgilsecurity.c
 This inializes a VirgilApi class without application *token* (works only with global Virgil Cards)
 
 .. code-block:: csharp
-    :linenos:
+
     var virgil = new VirgilApi();
 
-.. code-block:: csharp
-    :linenos:
+.. code-block:: csharp 
+
     var virgil = new VirgilApi("[YOUR_ACCESS_TOKEN_HERE]");
 
 Initialize high-level SDK using context class
 
-.. code-block:: csharp
-    :linenos:
+.. code-block:: csharp 
+
     var context = new VirgilApiContext
     {
         AccessToken = "[YOUR_ACCESS_TOKEN_HERE]",
