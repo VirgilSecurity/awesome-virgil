@@ -1,6 +1,16 @@
 Programming Guide
 =============================
 
+This guide is a practical introduction to creating Python apps for that make use of Virgil Security services.
+
+In this guide you will find code for every task you need to implement in order to create an application using Virgil Security. It also includes a description of the main objects and methods. The aim of this guide is to get you up and running quickly. You should be able to copy and paste the code provided here into your own apps and use it with minimal changes.
+
+Setting up your project
+----------------------
+
+Follow instructions `here <getting-started>`__ to setup your project environment.
+
+
 Creating a Virgil Card
 ----------------------
 
@@ -392,7 +402,3 @@ The default Fingerprint algorithm is ``SHA-256``.
 
     crypto = VirgilCrypto()
     fingerprint = crypto.calculate_fingerprint(content_bytes)
-
-See Also: 
----------
-`Source code <https://github.com/VirgilSecurity/virgil-sdk-python/tree/v4>`__

@@ -31,7 +31,7 @@ or you can use pip to download and install package automatically:
 
 ::
 
-    python -m pip install virgil_sdk==4.0.0b0
+    python -m pip install virgil-sdk
 
 User and App Credentials
 ------------------------

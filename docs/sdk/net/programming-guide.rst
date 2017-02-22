@@ -1,373 +1,342 @@
-Tutorial
+Programming guide
 =============================
 
-Creating a Virgil Card
+This guide is a practical introduction to creating Python apps for that make use of Virgil Security services.
+
+In this guide you will find code for every task you need to implement in order to create an application using Virgil Security. It also includes a description of the main objects and methods. The aim of this guide is to get you up and running quickly. You should be able to copy and paste the code provided here into your own apps and use it with minimal changes.
+
+Setting up your project
 ----------------------
 
-Every user is represented with a **Virgil Card** so creating them for users is a required step. A **Virgil Card** is the central entity of the Virgil services, it includes information about the user for further actions in Virgil Security system. The **Virgil Card** identifies the user/device by one of his types. You can find more information about :term:`Virgil Cards <Virgil Card>`.
+Follow instructions `here <getting-started>`__ to setup your project environment.
 
-``appID`` and ``appKey`` parameters are required to create a **Virgil Card** in your app scope.
+User and App Credentials
+------------------------
 
-Collect App Credentials
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+To start using Virgil Services you first have to create an account at `Virgil 
+Developer Portal <https://developer.virgilsecurity.com/account/signup>`__.
 
-Collect an ``appID`` and ``appKey`` for your app:
+After you create an account, or if you already have an account, sign in and 
+create a new application. Make sure you save the *appKey* that is 
+generated for your application at this point as you will need it later. 
+After your application is ready, create a *token* that your app will 
+use to make authenticated requests to Virgil Services. One more thing that 
+you're going to need is your application's *appID* which is an identifier 
+of your application's Virgil Card.
 
-.. code-block:: csharp
-    :linenos:
-
-    var appID = "[YOUR_APP_ID_HERE]";
-    var appKeyPassword = "[YOUR_APP_KEY_PASSWORD_HERE]";
-    var appKeyData = File.ReadAllBytes("[YOUR_APP_KEY_PATH_HERE]");
-
-    var appKey = crypto.ImportPrivateKey(appKeyData, appKeyPassword);
-
-Generate New Keys
+Usage
 ~~~~~~~~~~~~~~~~~~~
 
-Generate a new Public/Private keypair using ``VirgilCrypto`` class:
+Now that you have your account and application in place you can start making 
+requests to Virgil Services.
+
+Initializing
+------------------------
+
+To initialize the SDK Api, you need the *token* that you created for 
+your application on [Virgil Developer Portal](https://developer.virgilsecurity.com/)
+
+This inializes a VirgilApi class without application *token* (works only with global Virgil Cards)
 
 .. code-block:: csharp
     :linenos:
-
-    var aliceKeys = crypto.GenerateKeys();
-
-Prepare Request
-~~~~~~~~~~~~~~~
+    var virgil = new VirgilApi();
 
 .. code-block:: csharp
     :linenos:
+    var virgil = new VirgilApi("[YOUR_ACCESS_TOKEN_HERE]");
 
-    var exportedPublicKey = crypto.ExportPublicKey(aliceKeys.PublicKey);
-    var createCardRequest = new CreateCardRequest("alice", "username", exportedPublicKey);
-
-then, use ``RequestSigner`` class to sign request with owner's and app's keys:
+Initialize high-level SDK using context class
 
 .. code-block:: csharp
     :linenos:
+    var context = new VirgilApiContext
+    {
+        AccessToken = "[YOUR_ACCESS_TOKEN_HERE]",
+        // Credentials are required only in case of publish and revoke local Virgil Cards.
+        Credentials = new AppCredentials
+        {
+            AppId = "[YOUR_APP_ID_HERE]",
+            AppKeyData = VirgilBuffer.FromFile("[YOUR_APP_KEY_PATH_HERE]"),
+            AppKeyPassword = "[YOUR_APP_KEY_PASSWORD_HERE]"
+        },
+        CardVerifiers = new [] { 
+            new CardVerifierInfo {
+                CardId = "[YOUR_CARD_ID_HERE]",
+                PublicKeyData = VirgilBuffer.From("[YOUR_PUBLIC_KEY_HERE]", StringEncoding.Base64)
+            }
+        }
+    };
 
-    var requestSigner = new RequestSigner(crypto);
+    var virgil = new VirgilApi(context);
 
-    requestSigner.SelfSign(createCardRequest, aliceKeys.PrivateKey);
-    requestSigner.AuthoritySign(createCardRequest, appID, appKey);
+At this point you can start creating and publishing *Virgil Cards* for your
+users.
 
-Publish a Virgil Card
-~~~~~~~~~~~~~~~~~~~~~
+> *Virgil Card* is the main entity of Virgil Services, it includes the user's 
+> identity and their public key.
+
+There are two ways to create a Virgil Card. 
+
+The first way is to create the Virgil Card in application scope. The cards created this way will only be available to your application (i.e. will only be returned in response to a request presenting your application's *token*). 
+
+The second way is to create the Virgil Card in global scope. The cards created in global scope will be available within all Virgil Services and to find them you doin't need an application *token*.
+
+Every user is represented with a **Virgil Card** so creating them for users is a required step. A **Virgil Card** is the central entity of the Virgil Services, it includes information about the user for further actions in Virgil Security system. The **Virgil Card** identifies the user/device by one of his types. You can find more information about :term:`Virgil Cards <Virgil Card>`.
+
+Registering Virgil Card
+--------------------------
+
+Generate user's Key and create a Virgil Card
 
 .. code-block:: csharp
     :linenos:
+    // initialize Virgil SDK
+    var virgil = new VirgilApi("[YOUR_ACCESS_TOKEN_HERE]");
 
-    var aliceCard = await client.CreateCardAsync(createCardRequest);
+    // generate and save alice's Key
+    var aliceKey = virgil.Keys.Generate().Save("[KEY_NAME]", "[KEY_PASSWORD]");
+
+    // create alice's Card using her Key
+    var aliceCard = virgil.Cards.Create("alice", aliceKey);
+
+Transmit alice's Card to the server side where it would be signed, validated and published on the Virgil Services. 
+
+.. code-block:: csharp
+    :linenos:
+    // export alice's Card to string
+    var exportedAliceCard = aliceCard.Export();
+
+Publish a Virgil Card on Server-Side
+
+.. code-block:: csharp
+    :linenos:
+    // initialize Virgil SDK high-level instance.
+    var virgil = new VirgilApi(new VirgilApiContext
+    {
+        AccessToken = "[YOUR_ACCESS_TOKEN_HERE]",
+        Credentials = new AppCredentials
+        {
+            AppId = "[YOUR_APP_ID_HERE]",
+            AppKey = VirgilBuffer.FromFile("[YOUR_APP_KEY_FILEPATH_HERE]"),
+            AppKeyPassword = "[YOUR_APP_KEY_PASSWORD_HERE]",
+        }
+    });
+
+    // import Alice's Card from its string representation.
+    var aliceCard = virgil.Cards.Import(exportedAliceCard);
+
+    // verify Alice's Card information before publishing it on the Virgil services.
+
+    // aliceCard.Identity
+    // aliceCard.IdentityType
+    // aliceCard.Data
+    // aliceCard.Info
+
+    // publish alice's Card on Virgil Services
+    await virgil.Cards.PublishAsync(aliceCard);
+    // await aliceCard.PublishAsync();
+
+Revoking Virgil Card
+--------------------------
+
+.. code-block:: csharp
+    :linenos:
+    // initialize Virgil SDK high-level instance.
+    var virgil = new VirgilApi(new VirgilApiContext
+    {
+        AccessToken = "[YOUR_ACCESS_TOKEN_HERE]",
+        Credentials = new AppCredentials
+        {
+            AppId = "[YOUR_APP_ID_HERE]",
+            AppKey = VirgilBuffer.FromFile("[YOUR_APP_KEY_PATH_HERE]"),
+            AppKeyPassword = "[YOUR_APP_KEY_PASSWORD_HERE]",
+        },
+    });
+
+    // get Alice's Card by ID
+    var aliceCard = await virgil.Cards.GetAsync("[ALICE_CARD_ID]");
+
+    // revoke Alice's Card from Virgil Services.
+    await virgil.Cards.RevokeAsync(aliceCard);
+
+Registering Global Virgil Card
+--------------------------
+
+.. code-block:: csharp
+    :linenos:
+    // initialize Virgil's high-level instance.
+    var virgil = new VirgilApi("[YOUR_ACCESS_TOKEN_HERE]");
+
+    // generate and save Alice's Key.
+    var aliceKey = virgil.Keys.Generate().Save("[KEY_NAME]", "[KEY_PASSWORD]");
+
+    // create Alice's Card using her newly generated Key.
+    var aliceCard = virgil.Cards.CreateGlobal(
+        identity: "alice@virgilsecurity.com",
+        identityType: IdentityType.Email,
+        ownerKey: aliceKey
+    );
+
+    // initiate an identity verification process.
+    var attempt = await aliceCard.CheckIdentityAsync();
+
+    // confirm a Card's identity using confirmation code retrived on the email.
+    var token = await attempt.ConfirmAsync(new EmailConfirmation("[CONFIRMATION_CODE]"));
+
+    // publish a Card on the Virgil Security services.
+    await virgil.Cards.PublishGlobalAsync(aliceCard, token);
+    // await aliceCard.PublishAsGlobalAsync(token); 
+
+Revoking Global Virgil Cards
+----------------------------
+
+.. code-block:: csharp
+    :linenos:
+    // initialize Virgil SDK high-level
+    var virgil = new VirgilApi("[YOUR_ACCESS_TOKEN_HERE]");
+
+    // load Alice's Key from secure storage provided by default.
+    var aliceKey = virgil.Keys.Load("[KEY_NAME]", "[KEY_PASSWORD]");
+
+    // load Alice's Card from Virgil Security services.
+    var aliceCard = virgil.Cards.GetAsync("[ALICE_CARD_ID]");
+
+    // initiate Card's identity verification process.
+    var attempt = await aliceCard.CheckIdentityAsync();
+
+    // confirm Card's identity using confirmation code and grub validation token.
+    var token = await attempt.ConfirmAsync(new EmailConfirmation("[CONFIRMATION_CODE]"));
+
+    // revoke Virgil Card from Virgil Security services.
+    await virgil.Cards.RevokeGlobalAsync(aliceCard, aliceKey, token); 
+
+Export & Import Virgil Cards
+-------------------------------
+.. code-block:: csharp
+    :linenos:
+    var virgil = new VirgilApi("[YOUR_ACCESS_TOKEN_HERE]");
+
+    var aliceKey = virgil.Keys.Generate();
+    var aliceCard = virgil.Cards.Create("alice", aliceKey);
+
+    // export a Virgil Card to its string representation.
+    var exportedCard = aliceCard.Export();
+
+    // import a Virgil Card to from its string representation
+    var importedCard = virgil.Cards.Import(exportedCard);
 
 
 Search for Virgil Cards
----------------------------
+-------------------------------
+.. code-block:: csharp
+    :linenos:
+    var virgil = new VirgilApi("[YOUR_ACCESS_TOKEN_HERE]");
 
-You can search for **Virgil Cards** by identity value(s) and optional additional parameters can be set:
+    // search for all Alice's Cards.
+    var aliceCards = await virgil.Cards.FindAsync("alice");
 
-    - identity type ('email' or any type created by user). You can find more information about :term:`confirmed <Confirmed Card>` and :term:`unconfirmed <Unconfirmed Card>` **Virgil Cards**.
-    - scope (by default it is 'application', can be 'global'). You can find more information about :term:`global <Global Virgil Card>` and :term:`application <Application Virgil Card>` **Virgil Cards**.
+    // search for all Bob's Cards with type 'member'
+    var bobCards = await virgil.Cards.FindAsync("member", new[] { "bob" });
+
+    // search for all Bob's global Cards
+    var bobGlobalCards = await virgil.Cards.FindGlobalAsync("bob@virgilsecurity.com");
+
+    // search for application Card registered on Dev Portal.
+    var appCards = await virgil.Cards.FindGlobalAsync("com.username.appname");
+
+
+Encryption
+-------------------------------
+Initialize Virgil High Level API and generate the Virgil Key.
 
 .. code-block:: csharp
     :linenos:
+    var virgil = new VirgilApi("[YOUR_ACCESS_TOKEN_HERE]");
 
-    var client = new VirgilClient("[YOUR_ACCESS_TOKEN_HERE]");
-
-    var criteria = SearchCriteria.ByIdentities("alice", "bob");
-
-    var cards = await client.SearchCardsAsync(criteria);
-
-Validating a Virgil Card
----------------------------
-
-You might want to make sure that a received **Virgil Card** wasn't changed, Public Key is authentic, or validate any other fields.
-This sample uses built-in ``CardValidator`` to validate **Virgil Cards**. By default ``CardValidator`` validates only Cards Service signature.
-
+Encrypting Data
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 .. code-block:: csharp
     :linenos:
+    // search for alice's and bob's Cards
+    var bobCards = await virgil.Cards.FindAsync("bob");
 
-    // Initialize crypto API
-    var crypto = new VirgilCrypto();
+    var message = "Hey Bob, are you crazy?";
 
-    var validator = new CardValidator(crypto);
-
-    // Your can also add another Public Key for verification.
-    // validator.AddVerifier("[HERE_VERIFIER_CARD_ID]", [HERE_VERIFIER_PUBLIC_KEY]);
-
-    // Initialize service client
-    var client = new VirgilClient("[YOUR_ACCESS_TOKEN_HERE]");
-    client.SetCardValidator(validator);
-
-    try
-    {
-        var criteria = SearchCriteria.ByIdentities("alice", "bob");
-        var cards = await client.SearchCardsAsync(criteria);
-    }
-    catch (CardValidationException ex)
-    {
-        // ex.InvalidCards
-    }
-
-Get a Virgil Card
----------------------------
-
-Gets a Virgil Card by ID.
-
-.. code-block:: csharp
-    :linenos:
-
-    var client = new VirgilClient("[YOUR_ACCESS_TOKEN_HERE]"); 
-    var card = await client.GetСardAsync("[YOUR_CARD_ID_HERE]");
-
-Revoking a Virgil Card
----------------------------
-
-You can delete a **Virgil Card** in case the keys were compromised or lost, or for any other reason.
-
-Initialize required components:
-
-.. code-block:: csharp
-    :linenos:
-
-    var client = new VirgilClient("[YOUR_ACCESS_TOKEN_HERE]");
-    var crypto = new VirgilCrypto();
+    // encrypt the message for multiple recipients
+    var ciphertext = bobCards.Encrypt(message).ToString(StringEncoding.Base64);
     
-    var requestSigner = new RequestSigner(crypto);
-  
-Collect an *App* credentials:
-
+Decrypting Data
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 .. code-block:: csharp
     :linenos:
+    // load Bob's Key from secure storage provided by default.
+    var bobKey = virgil.Keys.Load("[KEY_NAME]", "[KEY_PASSWORD]");
 
-    var appID = "[YOUR_APP_ID_HERE]";
-    var appKeyPassword = "[YOUR_APP_KEY_PASSWORD_HERE]";
-    var appKeyData = File.ReadAllBytes("[YOUR_APP_KEY_PATH_HERE]");
-     
-    var appKey = crypto.ImportPrivateKey(appKeyData, appKeyPassword);
+    // decrypt message using Bob's Key.
+    var originalMessage = aliceKey.Decrypt(ciphertext).ToString();
 
-Prepare revocation request:
-
+Encrypting & Signing Data
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 .. code-block:: csharp
     :linenos:
+    // load Bob's Key from secure storage defined by default
+    var aliceKey = virgil.Keys.Load("[KEY_NAME]", "[KEY_PASSWORD]");
 
-    var cardId = "[YOUR_CARD_ID_HERE]";
- 
-    var revokeRequest = new RevokeCardRequest(cardId, RevocationReason.Unspecified);
-    requestSigner.AuthoritySign(revokeRequest, appID, appKey);
-     
-    await client.RevokeCardAsync(revokeRequest);
+    // search for Bob's and chris' Cards
+    var bobCards = await virgil.Cards.FindAsync("bob");
 
+    var message = "Hey Bob, are you crazy?";
 
-Operations with Crypto Keys
----------------------------
+    // encrypt and sign message for multiple recipients
+    var ciphertext = aliceKey.SignThenEncrypt(message, bobCards).ToString(StringEncoding.Base64);
 
-Generate Keys
-~~~~~~~~~~~~~
-
-You can generate a keypair using ``VirgilCrypto`` class. The default algorithm is ``ed25519``. 
-
+Decrypting & Verifying Data
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 .. code-block:: csharp
     :linenos:
+    // load Bob's Key from secure storage defined by default
+    var bobKey = virgil.Keys.Load("[KEY_NAME]", "[KEY_PASSWORD]");
 
-     var aliceKeys = crypto.GenerateKeys();
+    // search for Alice's Card
+    var aliceCards = await virgil.Cards.FindAsync("alice");
+    var aliceCard = aliceCards.Single(c => c.Device == "iPhone 7");
 
-Import and Export Keys
-~~~~~~~~~~~~~~~~~~~~~~
-
-If you need to import or export your Public/Private keys you can easily do it.
-Simply call one of the Export methods:
-
-.. code-block:: csharp
-    :linenos:
-
-     var exportedPrivateKey = crypto.ExportPrivateKey(aliceKeys.PrivateKey);
-     var exportedPublicKey = crypto.ExportPublicKey(aliceKeys.PublicKey);
-
-To import Public/Private keys, simply call one of the Import methods:
-
-.. code-block:: csharp
-    :linenos:
-
-      var privateKey = crypto.ImportPrivateKey(exportedPrivateKey);  
-      var publicKey = crypto.ImportPublicKey(exportedPublicKey);
-
-
-Encryption and Decryption
----------------------------
-
-Initialize Crypto API and generate keypair.
-
-.. code-block:: csharp
-    :linenos:
-
-    var crypto = new VirgilCrypto();
-    var aliceKeys = crypto.GenerateKeys();
-
-Encrypt Data
-~~~~~~~~~~~~
-
-You can enrypt some data, ECIES scheme with ``AES-GCM`` is used in **Virgil Security**. You have several options for encryption:
-
-    - stream encryption;
-    - byte array encryption;
-    - one recipient;
-    - multiple recipients (public keys of every user are used for encryption).
-
-*Byte Array*
-
-.. code-block:: csharp
-    :linenos:
-
-    var plaintext = Encoding.UTF8.GetBytes("Hello Bob!");
-    var cipherData = crypto.Encrypt(plaintext, aliceKeys.PublicKey);
-
-*Stream*
-
-.. code-block:: csharp
-    :linenos:
-
-    using (var inputStream = new FileStream("[YOUR_FILE_PATH_HERE]", FileMode.Open))
-    using (var cipherStream = new FileStream("[YOUR_ENCRYPTED_FILE_PATH_HERE]", FileMode.Create))
-    {
-        crypto.Encrypt(inputStream, cipherStream, aliceKeys.PublicKey);
-    }
-     
-Decrypt Data
-~~~~~~~~~~~~
-
-You can decrypt data using your private key. You have such options for decryption: 
-
-    - stream;
-    - byte array.
-
-*Byte Array*
-
-.. code-block:: csharp
-    :linenos:
-
-    crypto.Decrypt(cipherData, aliceKeys.PrivateKey);
-
-*Stream*
-
-.. code-block:: csharp
-    :linenos:
-
-    using (var cipherStream = new FileStream("[YOUR_ENCRYPTED_FILE_PATH_HERE]", FileMode.Open))
-    using (var resultStream = new FileStream("[YOUR_DECRYPTED_FILE_PATH_HERE]", FileMode.Create))
-    {
-        crypto.Decrypt(cipherStream, resultStream, aliceKeys.PrivateKey);
-    }
+    // decrypt cipher message using Bob's Key and verify it using alice's Card
+    var originalMessage = bobKey.DecryptThenVerify(encryptedData, aliceCard).ToString();
 
 Generating and Verifying Signatures
 -----------------------------------
-
-Generate a new Public/Private keypair and ``data`` to be signed.
-
+This section walks you through the steps necessary to use the VirgilCrypto to generate a digital signature for data and to verify that a signature is authentic.
 .. code-block:: csharp
     :linenos:
-
-    var crypto = new VirgilCrypto();
-    var alice = crypto.GenerateKeys();
-
-    // The data to be signed with alice's Private key
-    var data = Encoding.UTF8.GetBytes("Hello Bob, How are you?");
+    // initialize Virgil SDK high-level API instance
+    var virgil = new VirgilApi("[YOUR_ACCESS_TOKEN_HERE]");
 
 Generating a Signature
-~~~~~~~~~~~~~~~~~~~~~~
-
-You can generate a digital signature for data. Options for signing data:
-
-    - stream;
-    - byte array.
-
-*Byte Array*
-
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+To generate the signature, simply call one of the sign methods:
 .. code-block:: csharp
     :linenos:
+    // load Alice's Key from protected storage
+    var aliceKey = virgil.Keys.Load("[KEY_NAME]", "[KEY	_PASSWORD]");
 
-    var signature = crypto.Sign(data, alice.PrivateKey);
+    var message = "Hey Bob, hope you are doing well.";
 
-*Stream*
-
-.. code-block:: csharp
-    :linenos:
-
-    var fileStream = File.Open("[YOUR_FILE_PATH_HERE]", FileMode.Open, FileAccess.Read, FileShare.None);
-    using (fileStream)
-    {
-        var signature = crypto.Sign(inputStream, alice.PrivateKey);
-    }
+    // generate signature of message using alice's key pair
+    var signature = aliceKey.Sign(message);
 
 Verifying a Signature
-~~~~~~~~~~~~~~~~~~~~~
-
-You can verify that a signature is authentic. You will verify the signature of the ``SHA-384`` fingerprint using the public key. Options for verification:
-
-    - stream;
-    - byte array.
-
-*Byte Array*
-
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+The signature can now be verified by calling the verify method:
 .. code-block:: csharp
     :linenos:
+    // search for Alice's Card
+    var aliceCards = await virgil.Cards.FindAsync("alice");
+    var aliceCard = aliceCards.Single(card => card.Device == "iPhone 7");
 
-     var isValid = crypto.Verify(data, signature, alice.PublicKey);
-     
-*Stream*
-     
-.. code-block:: csharp
-    :linenos:    
-
-    var fileStream = File.Open("[YOUR_FILE_PATH_HERE]", FileMode.Open, FileAccess.Read, FileShare.None);
-    using (fileStream)
+    if (!aliceCard.Verify(message, signature))
     {
-        var isValid = crypto.Verify(fileStream, signature, alice.PublicKey);
+        throw new Exception("Damn Alice it's not you.a"); 
     }
 
-Authenticated Encryption
--------------------------
-
-Authenticated encryption provides both data confidentiality and data integrity assurances that the information is protected.
-
-.. code-block:: csharp
-    :linenos:
-
-    var crypto = new VirgilCrypto();
-     
-    var alice = crypto.GenerateKeys();
-    var bob = crypto.GenerateKeys();
-
-    // The data to be signed with alice's Private key
-    var data = Encoding.UTF8.GetBytes("Hello Bob, How are you?");
-
-Sign then Encrypt
-~~~~~~~~~~~~~~~~~~~~~
-
-.. code-block:: csharp
-    :linenos:
-
-    var cipherData = crypto.SignThenEncrypt(data, alice.PrivateKey, bob.PublicKey);
-
-Decrypt then Verify
-~~~~~~~~~~~~~~~~~~~~~
-
-.. code-block:: csharp
-    :linenos:
-
-    var decryptedData = crypto.DecryptThenVerify(data, bob.PrivateKey, alice.PublicKey);
-
-Fingerprint Generation
-----------------------
-
-The default Fingerprint algorithm is ``SHA-256``.
-
-.. code-block:: csharp
-    :linenos:
-
-    var crypto = new VirgilCrypto();
-
-    var fingerprint = crypto.CalculateFingerprint(content);
-
-See Also: 
----------
-`Source code <https://github.com/VirgilSecurity/virgil-sdk-net>`__
