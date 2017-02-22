@@ -306,6 +306,7 @@ Encrypting & Signing Data
 
 Decrypting & Verifying Data
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 .. code-block:: csharp
     :linenos:
 
@@ -322,6 +323,7 @@ Decrypting & Verifying Data
 Generating and Verifying Signatures
 -----------------------------------
 This section walks you through the steps necessary to use the VirgilCrypto to generate a digital signature for data and to verify that a signature is authentic.
+
 .. code-block:: csharp
 
     // initialize Virgil SDK high-level API instance
@@ -330,6 +332,7 @@ This section walks you through the steps necessary to use the VirgilCrypto to ge
 Generating a Signature
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 To generate the signature, simply call one of the sign methods:
+
 .. code-block:: csharp
     :linenos:
 
@@ -344,6 +347,7 @@ To generate the signature, simply call one of the sign methods:
 Verifying a Signature
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 The signature can now be verified by calling the verify method:
+
 .. code-block:: csharp
     :linenos:
 
