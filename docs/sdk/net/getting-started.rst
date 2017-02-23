@@ -44,11 +44,6 @@ use to make authenticated requests to Virgil Services. One more thing that
 you're going to need is your application's *appID* which is an identifier 
 of your application's Virgil Card.
 
-Usage
---------------------
-
-Before you can make use of any Virgil Services features in your app, you must initialize ``VirgilApi`` class. 
-
 Initializing
 ------------------------
 

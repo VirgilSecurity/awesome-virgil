@@ -1,404 +1,466 @@
-Programming Guide
-================================
+Programming guide
+=============================
 
-Creating a Virgil Card
+This guide is a practical introduction to creating JavaScript apps that make use of Virgil Security services.
+
+In this guide you will find code for every task you need to implement in order to create an application using Virgil Security. It also includes a description of the main objects and methods. The aim of this guide is to get you up and running quickly. You should be able to copy and paste the code provided here into your own apps and use it with minimal changes.
+
+Setting up your project
 ----------------------
 
-Every user is represented with a **Virgil Card** so creating them for users is a required step. A **Virgil Card** is the central entity of the Virgil services, it includes information about the user for further actions in Virgil Security system. The **Virgil Card** identifies the user/device by one of his types. You can find more information about :term:`Virgil Cards <Virgil Card>`.
+Follow instructions `here <getting-started>`__ to setup your project environment.
 
-``appID`` and ``appKey`` parameters are required to create a **Virgil Card** in your app scope.
+User and App Credentials
+------------------------
 
-Collect App Credentials
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+To start using Virgil Services you first have to create an account at `Virgil 
+Developer Portal <https://developer.virgilsecurity.com/account/signup>`__.
 
-Collect an ``appID`` and ``appKey`` for your app:
+After you create an account, or if you already have an account, sign in and 
+create a new application. Make sure you save the *appKey* that is 
+generated for your application at this point as you will need it later. 
+After your application is ready, create a *token* that your app will 
+use to make authenticated requests to Virgil Services. One more thing that 
+you're going to need is your application's *appID* which is an identifier 
+of your application's Virgil Card.
 
-.. code-block:: javascript
-    :linenos:
-
-    var appID = "[YOUR_APP_ID_HERE]";
-    var appKeyPassword = "[YOUR_APP_KEY_PASSWORD_HERE]";
-
-    // Browsers
-    var appKeyData = new virgil.Buffer("[YOUR_BASE64_ENCODED_APP_KEY_HERE]", "base64");
-
-    // Node
-    // var appKeyData = new Buffer("[YOUR_BASE64_ENCODED_APP_KEY_HERE]", "base64");
-
-    var appKey = crypto.importPrivateKey(appKeyData, appKeyPassword);
-
-Generate New Keys
+Usage
 ~~~~~~~~~~~~~~~~~~~
 
-Generate a new Public/Private keypair using ``VirgilCrypto`` class:
+Now that you have your account and application in place you can start making 
+requests to Virgil Services.
+
+Initializing
+------------------------
+
+To initialize the SDK API, you need the *token* that you created for 
+your application on [Virgil Developer Portal](https://developer.virgilsecurity.com/)
+
+This inializes a VirgilApi class without application *token* (works only with global Virgil Cards)
+
+.. code-block:: javascript
+    :linenos:
+    
+    // var virgil = require("virgil-sdk");
+    // or just use virgil if you added virgil-sdk via <script> tag
+
+    var virgilAPI = virgil.API();
 
 .. code-block:: javascript
     :linenos:
 
-    var aliceKeys = crypto.generateKeys();
+    // var virgil = require("virgil-sdk");
+    // or just use virgil if you added virgil-sdk via <script> tag
 
-Prepare Request
-~~~~~~~~~~~~~~~
+    var virgilAPI = virgil.API("[YOUR_ACCESS_TOKEN_HERE]");
 
-To make request object to create a Virgil Card use ``virgil.cardCreateRequest`` factory function. It accepts an ``options`` object with the following properties: 
-
-- **public\_key** 
-- Public key associated with the Card as a ``Buffer`` (Required) 
-- **scope** - Determines the *Virgil Card*'s scope that can be either *'global'* or *'application'*. Creating 'global' cards is *not supported* by this SDK currently so you may omit this parameter as it defaults to "application"
-- **identity\_type** - Can be any string value (Required) 
-- **identity** - Can be any string value (Required) 
-- **data** - Associative array that contains application specific parameters. All keys must contain only latin characters and digits. The length of keys and values must not exceed 256 characters. Max number of entries is 16 (Optional) 
-- **info** - Associative array with predefined keys that contain information about the device associated with the Card. The keys are always 'device\_name' and 'device' and the values must not exceed 256 characters. (Optional)
+Initialize high-level SDK using context class
 
 .. code-block:: javascript
     :linenos:
 
-    var exportedPublicKey = crypto.exportPublicKey(aliceKeys.publicKey);
-    var createCardRequest = virgil.cardCreateRequest({
-          public_key: exportedPublicKey,
-          identity: "alice",
-          identity_type: "username"
+    var appKeyData = require("fs").readFileSync("[YOUR_APP_KEY_PATH_HERE]");
+    var config = {
+        accessToken: "[YOUR_ACCESS_TOKEN_HERE]",
+        // Credentials are required only in case of publish and revoke local Virgil Cards.
+        appCredentials: {
+            appId: "[YOUR_APP_ID_HERE]",
+            appKeyData: appKeyData,
+            appKeyPassword: "[YOUR_APP_KEY_PASSWORD_HERE]"
+        },
+        cardVerifiers: [{ 
+            cardId: "[YOUR_CARD_ID_HERE]",
+            publicKeyData: Buffer.from("[YOUR_PUBLIC_KEY_HERE]", "base64")
+        }]
+    };
+
+    var virgilAPI = virgil.API(config);
+
+At this point you can start creating and publishing *Virgil Cards* for your
+users.
+
+> *Virgil Card* is the main entity of Virgil Services, it includes the user's 
+> identity and their public key.
+
+There are two ways to create a Virgil Card. 
+
+The first way is to create the Virgil Card in application scope. The cards created this way will only be available to your application (i.e. will only be returned in response to a request presenting your application's *token*). 
+
+The second way is to create the Virgil Card in global scope. The cards created in global scope will be available within all Virgil Services and to find them you doin't need an application *token*.
+
+Every user is represented with a **Virgil Card** so creating them for users is a required step. A **Virgil Card** is the central entity of the Virgil Services, it includes information about the user for further actions in Virgil Security system. The **Virgil Card** identifies the user/device by one of his types. You can find more information about :term:`Virgil Cards <Virgil Card>`.
+
+Registering Virgil Card
+--------------------------
+
+Generate user's Key and create a Virgil Card
+
+.. code-block:: javascript
+    :linenos:
+
+    // initialize Virgil SDK
+    var virgilAPI = virgil.API("[YOUR_ACCESS_TOKEN_HERE]");
+
+    // generate and save key for Alice
+    var aliceKey = virgilAPI.keys.generate();
+    aliceKey.save("[KEY_NAME]", "[KEY_PASSWORD]")
+        .then(function () {
+            // create Card for Alice using her Key
+            var aliceCard = virgilAPI.cards.create("alice", aliceKey);
         });
 
-Sign request
-~~~~~~~~~~~~
+Transmit Alice's Card to the server side where it would be signed, validated and published on the Virgil Services. 
 
-When you have the request object ready you must sign it with two private keys: the key of the Card being created and your application's key. Use ``virgil.requestSigner`` function to create an object you can use to sign the request
+.. code-block:: javascript
+
+    // export alice's Card to string
+    var exportedAliceCard = aliceCard.export();
+
+Publish a Virgil Card on Server-Side
 
 .. code-block:: javascript
     :linenos:
 
-    var requestSigner = virgil.requestSigner(crypto);
+    // load application's private key from file
+    var appKeyData = require('fs').readFileSync("[YOUR_APP_KEY_FILEPATH_HERE]");
 
-    requestSigner.selfSign(createCardRequest, aliceKeys.privateKey);
-    requestSigner.authoritySign(createCardRequest, appID, appKey);
-
-Publish a Virgil Card
-~~~~~~~~~~~~~~~~~~~~~
-
-.. code-block:: javascript
-    :linenos:
-
-    client.createCard(createCardRequest).then(function (aliceCard) {
-      console.log(aliceCard);
+    // initialize Virgil SDK high-level instance.
+    var virgilAPI = virgil.API({
+        accessToken: "[YOUR_ACCESS_TOKEN_HERE]",
+        appCredentials: {
+            appId: "[YOUR_APP_ID_HERE]",
+            appKeyData: appKeyData,
+            appKeyPassword: "[YOUR_APP_KEY_PASSWORD_HERE]",
+        }
     });
 
-Get Virgil Card by Id
----------------------
+    // import Alice's Card from its string representation.
+    var aliceCard = virgilAPI.cards.import(exportedAliceCard);
 
-To get a single Virgil Card by its Id use ``client.getCard`` method. It accepts a single argument - ``card_id`` as a string
+    // verify Alice's Card information before publishing it on the Virgil services.
+
+    // aliceCard.identity
+    // aliceCard.identityType
+    // aliceCard.customFields
+    // aliceCard.info
+
+    // publish Alice's Card on Virgil Services
+    virgilAPI.cards.publish(aliceCard)
+        .then(function () {
+            // Card is published
+        })
+    // aliceCard.publish().then(...);
+
+Revoking Virgil Card
+--------------------------
 
 .. code-block:: javascript
     :linenos:
 
-    var client = virgil.client("[YOUR_ACCESS_TOKEN_HERE]");
-    var cardId = "[ID_OF_CARD_TO_GET]";
-    client.getCard(cardId).then(function (card) {
-      console.log(card);
+    // load application's private key from file
+    var appKeyData = require('fs').readFileSync("[YOUR_APP_KEY_FILEPATH_HERE]");
+
+    // initialize Virgil SDK high-level instance.
+    var virgilAPI = virgil.API({
+        accessToken: "[YOUR_ACCESS_TOKEN_HERE]",
+        appCredentials: {
+            appId: "[YOUR_APP_ID_HERE]",
+            appKeyData: fs.readFileSync("[YOUR_APP_KEY_FILEPATH_HERE]"),
+            appKeyPassword: "[YOUR_APP_KEY_PASSWORD_HERE]",
+        }
     });
+
+    // get Alice's Card by ID
+    virgilAPI.cards.get("[ALICE_CARD_ID]")
+        .then(function (aliceCard) {
+            // revoke Alice's Card from Virgil Security services.
+            return virgilAPI.cards.revoke(aliceCard);
+        })
+        .then(function () {
+            // Card revoked
+        });
+
+Registering Global Virgil Card
+--------------------------
+
+.. code-block:: javascript
+    :linenos:
+
+    // initialize Virgil API
+    var virgilAPI = virgil.API("[YOUR_ACCESS_TOKEN_HERE]");
+
+    // generate and save the private key for Alice.
+    var aliceKey = virgilAPI.keys.generate();
+    aliceKey.save("[KEY_NAME]", "[KEY_PASSWORD]")
+        .then(function () {
+            // create Card for Alice using her newly generated Key.
+            var aliceCard = virgilAPI.cards.createGlobal(
+                "alice@virgilsecurity.com", 
+                aliceKey
+                virgil.IdentityType.EMAIL
+            );
+
+            // initiate an identity verification process.
+            return aliceCard.checkIdentity();
+        })
+        .then(function (confirmIdentity) {
+            // confirm Card's identity using confirmation code received in email
+            // and get identity validation token
+            return confirmIdentity("[CONFIRMATION_CODE]");
+        })
+        .then(function (token) {
+            // publish the Card on the Virgil Security services.
+            return virgilAPI.cards.publishGlobal(aliceCard, token);
+            // return aliceCard.publishAsGlobalAsync(token); 
+        })
+        .then(function () {
+            // Card is published
+        });
+
+Revoking Global Virgil Cards
+----------------------------
+
+.. code-block:: javascript
+    :linenos:
+
+    // initialize Virgil API
+    var virgilAPI = virgil.API("[YOUR_ACCESS_TOKEN_HERE]");
+
+    // load Alice's Key from storage.
+    virgilAPI.keys.load("[KEY_NAME]", "[KEY_PASSWORD]")
+        .then(function (aliceKey) {
+            // load Alice's Card from Virgil Security services.
+            return virgilAPI.cards.get("[ALICE_CARD_ID]");
+        })
+        .then(function (aliceCard) {
+            // initiate Card's identity verification process.
+            return aliceCard.checkIdentity();
+        })
+        .then(function (confirmIdentity) {
+            // confirm Card's identity using confirmation code received in email
+            // and get identity validation token
+            return confirmIdentity("[CONFIRMATION_CODE]");
+        })
+        .then(function (token) {
+            // revoke Virgil Card from Virgil Security services.
+            return virgilAPI.cards.revokeGlobal(aliceCard, aliceKey, token);
+        })
+        .then(function () {
+            // Card revoked
+        });
+
+Export & Import Virgil Cards
+-------------------------------
+.. code-block:: javascript
+    :linenos:
+
+    var virgilAPI = virgil.API("[YOUR_ACCESS_TOKEN_HERE]");
+
+    // generate a key for Alice
+    var aliceKey = virgilAPI.keys.generate();
+    
+    // create Card for Alice using her Key
+    var aliceCard = virgilAPI.cards.create("alice", aliceKey);
+
+    // export the Card into a string representation.
+    var exportedCard = aliceCard.export();
+
+    // import the Card to from its string representation
+    var importedCard = virgilAPI.cards.import(exportedCard);
+
 
 Search for Virgil Cards
----------------------------
+-------------------------------
+.. code-block:: javascript
+    :linenos:
 
-You can search for **Virgil Cards** by identity value(s) and optional additional parameters can be set:
+    var virgilAPI = virgil.API("[YOUR_ACCESS_TOKEN_HERE]");
 
-    - identity type ('email' or any type created by user). You can find more information about :term:`confirmed <Confirmed Card>` and :term:`unconfirmed <Unconfirmed Card>` **Virgil Cards**.
-    - scope (by default it is 'application', can be 'global'). You can find more information about :term:`global <Global Virgil Card>` and :term:`application <Application Virgil Card>` **Virgil Cards**.
+    // search for all Alice's Cards.
+    virgilAPI.cards.find("alice")
+        .then(function(aliceCards) {
+            // do something with Alice's cards
+        });
+
+    // search for all Bob's Cards with type 'member'
+    virgilAPI.cards.find(["bob"], "member")
+        .then(function(bobCards) {
+            // do something with Bob's cards
+        });
+
+    // search for all Bob's global Cards
+    virgilAPI.cards.findGlobal("bob@virgilsecurity.com")
+        .then(function(bobGlobalCards) {
+            // do something with Bob's global cards
+        });
+
+    // search for Cards of the application registered on Dev Portal.
+    virgilAPI.cards.findGlobal("com.username.appname", virgil.IdentityType.APPLICATION)
+        .then(function(appCards) {
+            // do something with app's cards
+        });
+
+Generating Virgil Keys
+-------------------------------
+
+Generate a new Virgil Key using the algorithm recommended by Virgil.
 
 .. code-block:: javascript
     :linenos:
 
-    var client = virgil.client("[YOUR_ACCESS_TOKEN_HERE]");
-     
-    var criteria = {
-      identities: [ "alice", "bob" ]
-    };
-    client.searchCards(criteria).then(function (cards) {
-      console.log(cards);
+    // initialize a High Level API
+    var virgilAPI = virgil.API();
+
+    // generate a new private key
+    var key = virgilAPI.keys.generate();
+
+Export & Import Virgil Keys
+---------------------------
+
+Export the Virgil Key to base64-encoded string.
+
+.. code-block:: javascript
+    :linenos:
+
+    // initialize the High Level API
+    var virgilAPI = virgil.API();
+    
+    // generate a new Virgil Key
+    var key = virgil.keys.generate();
+
+    // export the Virgil Key to base64-encoded string
+    var exportedKey = key.export("[OPTIONAL_KEY_PASSWORD]").toString("base64");
+
+Import the Virgil Key from Base64 encoded string.
+
+.. code-block:: javascript
+    :linenos:
+
+    // initialize a High Level API class
+    var virgilAPI = virgil.API();
+
+    // import the Virgil Key from base64-encoded string
+    var key = virgilAPI.keys.import("[BASE64_ENCODED_VIRGIL_KEY]", "[OPTIONAL_KEY_PASSWORD]");
+
+    // OR
+    // var keyBuffer = virgil.Buffer.from("[BASE64_ENCODED_VIRGIL_KEY]", "base64"); // Browsers
+    //// var keyBuffer = new Buffer("[BASE64_ENCODED_VIRGIL_KEY]", "base64"); // node.js
+    //// var keyBuffer = Buffer.from("[BASE64_ENCODED_VIRGIL_KEY]", "base64"); // node.js > 5.10.0
+
+    //// import the Virgil Key from Buffer    
+    // var key = virgilAPI.keys.import(keyBuffer, "[OPTIONAL_KEY_PASSWORD]");
+
+Encryption
+-------------------------------
+Initialize Virgil High Level API and generate the Virgil Key.
+
+.. code-block:: javascript
+
+    var virgilAPI = virgil.API("[YOUR_ACCESS_TOKEN_HERE]");
+
+Encrypting Data
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. code-block:: javascript
+    :linenos:
+
+    // search for all Bob's Cards
+    virgilAPI.cards.find(["bob"])
+        .then(function(bobCards) {
+            var message = "Hey Bob, are you alright?";
+
+            // encrypt the message for multiple recipients
+            var ciphertext = virgilAPI.encryptFor(message, bobCards).toString("base64");
+        });
+    
+Decrypting Data
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. code-block:: javascript
+    :linenos:
+
+    // load Bob's Key from storage
+    virgilAPI.keys.load("[KEY_NAME]", "[KEY_PASSWORD]")
+        .then(function (bobsKey) {
+            // decrypt the message using Bob's Key.
+            var message = bobsKey.decrypt(ciphertext).toString();
+        });
+
+Encrypting & Signing Data
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. code-block:: javascript
+    :linenos:
+
+    Promise.all([
+        // load Alice's key from storage
+        virgilAPI.keys.load("[KEY_NAME]", "[KEY_PASSWORD]"),
+        // search for Bob's cards
+        virgilAPI.cards.find("bob")
+    ]).then(function(results) {
+        var alicesKey = results[0];
+        var bobsCards = results[1];
+
+        var message = "Hey Bob, are you alright?";
+
+        // encrypt and sign message for multiple recipients
+        var encryptedData = alicesKey.signThenEncrypt(message, bobsCards).toString("base64");
     });
 
-Validating a Virgil Card
----------------------------
-
-You might want to make sure that a received **Virgil Card** wasn't changed, Public Key is authentic, or validate any other fields.
-This sample uses built-in ``cardValidator`` to validate **Virgil Cards**. By default ``cardValidator`` validates only Cards Service signature.
+Decrypting & Verifying Data
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: javascript
     :linenos:
 
-    // Get the crypto reference
-    var crypto = virgil.crypto;
+    Promise.all([
+        // load Bob's key from storage
+        virgilAPI.keys.load("[KEY_NAME]", "[KEY_PASSWORD]"),
+        // search for Alice's cards
+        virgilAPI.cards.find("alice")
+    ]).then(function(results) {
+        var bobsKey = results[0];
+        var alicesCards = results[1];
+        var alicesPhoneCard = aliceCards.find(function (card) {
+            return card.device === "iPhone7";
+        });
 
-    var validator = virgil.cardValidator(crypto);
-
-    // Your can also add another Public Key for verification.
-    // validator.addVerifier("[VERIFIER_CARD_ID]", [VERIFIER_PUBLIC_KEY_AS_BUFFER]);
-
-    // Initialize service client
-    var client = virgil.client("[YOUR_ACCESS_TOKEN_HERE]");
-    client.setCardValidator(validator);
-
-    var criteria = {
-      identities: [ "alice", "bob" ]
-    };
-    client.searchCards(criteria)
-    .then(function (cards) {
-      console.log(cards);
-    })
-    .catch(function (err) {
-      if (err.invalidCards) {
-        // err.invalidCards contains an array of Card objects that didn't pass validation
-      }
+        // decrypt enciphered message using Bob's Key and verify it using Alice's Card
+        var originalMessage = bobsKey.decryptThenVerify(encryptedData, alicesPhoneCard).toString();
     });
-
-Revoking a Virgil Card
----------------------------
-
-You can delete a **Virgil Card** in case the keys were compromised or lost, or for any other reason.
-
-Initialize required components:
-
-.. code-block:: javascript
-    :linenos:
-
-    var client = virgil.client("[YOUR_ACCESS_TOKEN_HERE]");
-    var crypto = virgil.crypto;
-    var requestSigner = virgil.requestSigner(crypto);
-  
-Collect an *App* credentials:
-
-.. code-block:: javascript
-    :linenos:
-
-    var appID = "[YOUR_APP_ID_HERE]";
-    var appKeyPassword = "[YOUR_APP_KEY_PASSWORD_HERE]";
-
-    // Browsers
-    var appKeyData = new virgil.Buffer("[YOUR_BASE64_ENCODED_APP_KEY_HERE]", "base64");
-
-    // Node
-    // var appKeyData = new Buffer("[YOUR_BASE64_ENCODED_APP_KEY_HERE]", "base64");
-
-    var appKey = crypto.importPrivateKey(appKeyData, appKeyPassword);
-
-Prepare revocation request:
-
-To make a request object to revoke a Virgil Card use ``virgil.cardRevokeRequest`` factory function. It accepts an ``options`` object with the following properties: 
-
-- **card\_id** - Id of card to revoke (Required) 
-- **revocation\_reason** - The reason for revoking the card. Must be either "unspecified" or "compromised". Default is "unspecified"
-
-.. code-block:: javascript
-    :linenos:
-
-    var cardId = "[YOUR_CARD_ID_HERE]";
-
-    var revokeRequest = virgil.cardRevokeRequest({
-      card_id: cardId,
-      revocation_reason: "compromised"
-    });
-
-Sign request
-
-.. code-block:: javascript
-    :linenos:
-
-    requestSigner.authoritySign(revokeRequest, appID, appKey);
-
-Send request
-
-.. code-block:: javascript
-    :linenos:
-
-    client.revokeCard(revokeRequest).then(function () {
-      console.log('Revoked successfully');
-    });
-
-
-Operations with Crypto Keys
----------------------------
-
-Generate Keys
-~~~~~~~~~~~~~
-
-You can generate a keypair using ``VirgilCrypto`` class. The default algorithm is ``ed25519``. 
-
-.. code-block:: javascript
-    :linenos:
-
-    var aliceKeys = crypto.generateKeys();
-
-To specify a different algorithm, pass one of the values of ``virgil.crypto.KeyPairType`` enumeration
-
-.. code-block:: javascript
-    :linenos:
-
-    var aliceKeys = crypto.generateKeys(crypto.KeyPairType.FAST_EC_X25519) // Curve25519
-
-Import and Export Keys
-~~~~~~~~~~~~~~~~~~~~~~
-
-All ``virgil.crypto`` api functions accept and return keys in an internal format. To get the raw key data as ``Buffer`` object use ``exportPrivateKey`` and ``exportPublicKey`` methods of ``virgil.crypto`` passing the appropriate internal key representation. To get the internal key representation out of the raw key data use ``importPrivateKey`` and ``importPublicKey`` respectively:
-To get the internal key representation out of the raw key data use ``importPrivateKey`` and ``importPublicKey`` respectively:
-
-.. code-block:: javascript
-    :linenos:
-
-    var exportedPrivateKey = crypto.exportPrivateKey(aliceKeys.privateKey);
-    var exportedPublicKey = crypto.exportPublicKey(aliceKeys.publicKey);
-
-    var privateKey = crypto.importPrivateKey(exportedPrivateKey);
-    var publicKey = crypto.importPublicKey(exportedPublicKey);
-
-If you want to encrypt the private key before exporting it you must provide a password to encrypt the key with as a second parameter to ``exportPrivateKey`` function. Similarly, if you want to import a private key that has been encrypted - provide a password as a second parameter to ``importPrivateKey`` function:
- 
-.. code-block:: javascript
-    :linenos:
-
-    var exportedEncryptedKey = virgil.crypto.exportPrivateKey(aliceKeys.privateKey, 'pa$$w0rd');
-    var importedEncryptedKey = virgil.crypto.importPublicKey(exportedPublicKey, 'pa$$w0rd');
-
-Encryption and Decryption
----------------------------
-
-Initialize Crypto API and generate keypair.
-
-.. code-block:: javascript
-    :linenos:
-
-    var crypto = virgil.crypto;
-    var aliceKeys = crypto.generateKeys();
-
-Encrypt Data
-~~~~~~~~~~~~
-
-The ``virgil.crypto.encrypt`` method requires two parameters: 
-
-- **data** - The data to be encrypted as a Buffer 
-- **recipients** - Public key or an array of public keys to encrypt the data with
-
-.. code-block:: javascript
-    :linenos:
-
-    // Browsers
-    var plaintext = new virgil.Buffer("Hello Bob!");
-
-    // Node.js
-    // var plaintext = new Buffer("Hello Bob!");
-
-
-    var cipherData = crypto.encrypt(plaintext, aliceKeys.publicKey);
-     
-Decrypt Data
-~~~~~~~~~~~~
-
-The ``virgil.crypto.decrypt`` method requires two parameters: 
-
-- **cipherData** - Encrypted data as a Buffer 
-- **privateKey** - The private key to decrypt with
-
-.. code-block:: javascript
-    :linenos:
-
-    var decryptedData = crypto.decrypt(cipherData, aliceKeys.privateKey);
 
 Generating and Verifying Signatures
 -----------------------------------
 
-This section walks you through the steps necessary to use the ``virgil.crypto`` to generate a digital signature for data and to verify that a signature is authentic.
-
-Generate a new Public/Private keypair and *data* to be signed.
-
 .. code-block:: javascript
-    :linenos:
 
-    var crypto = virgil.crypto;
-    var aliceKeys = crypto.generateKeys();
-
-    // The data to be signed with Alice's Private key
-    // Browsers
-    var data = new virgil.Buffer("Hello Bob, How are you?");
-
-    // Node.js
-    // var data = new Buffer("Hello Bob, How are you?");
+    // initialize Virgil SDK API instance
+    var virgilAPI = virgil.API("[YOUR_ACCESS_TOKEN_HERE]");
 
 Generating a Signature
-~~~~~~~~~~~~~~~~~~~~~~
-
-Sign the SHA-384 fingerprint of data using your private key. To generate the signature, simply call one of the sign methods:
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+To generate the signature, simply call one of the sign methods:
 
 .. code-block:: javascript
     :linenos:
 
-    var signature = crypto.sign(data, aliceKeys.privateKey);
+    // load Alice's Key from storage
+    virgilAPI.keys.load("[KEY_NAME]", "[KEY_PASSWORD]")
+        .then(function (alicesKey) {
+            var message = "Hey Bob, hope you are doing well.";
+
+            // calculate message signature using Alice's key
+            var signature = aliceKey.sign(message).toString("base64");
+        });
 
 Verifying a Signature
-~~~~~~~~~~~~~~~~~~~~~
-
-Verify the signature of the SHA-384 fingerprint of data using Public
-key. The signature can now be verified by calling the verify method:
-
-.. code-block:: javascript
-    :linenos:  
-
-    var isValid = crypto.verify(data, signature, alice.publicKey);
-
-Authenticated Encryption
--------------------------
-
-Authenticated encryption provides both data confidentiality and data integrity assurances that the information is protected.
-
-.. code-block:: javascript
-    :linenos:  
-
-    var alice = virgil.crypto.generateKeys();
-    var bob = virgil.crypto.generateKeys();
-
-    // The data to be signed with alice's Private key
-    // Browsers
-    var data = new virgil.Buffer("Hello Bob, How are you?");
-
-    // Node.js
-    // var data = new Buffer("Hello Bob, How are you?");
-
-Sign then Encrypt
-~~~~~~~~~~~~~~~~~~~~~~
-
-Generates the signature, encrypts the data and attaches the signature to the cipher data. Returns signed cipher data. To encrypt for multiple recipients, pass an array of public keys as third parameter
-
-.. code-block:: javascript
-    :linenos: 
-
-    var cipherData = virgil.crypto.signThenEncrypt(data, alice.privateKey, bob.publicKey);
-
-Decrypt then Verify
-~~~~~~~~~~~~~~~~~~~~~~
-
-Decrypts the data and verifies attached signature. Returns decrypted data if verification succeeded or throws ``VirgilCryptoError`` if it failed.
-
-.. code-block:: javascript
-    :linenos: 
-
-    var decryptedData = virgil.crypto.decryptThenVerify(cipherData, bob.privateKey, alice.publicKey);
-
-Fingerprint Generation
-----------------------
-
-The default Fingerprint algorithm is ``SHA-256``.
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+The signature can now be verified by calling the verify method:
 
 .. code-block:: javascript
     :linenos:
 
-    var crypto = virgil.crypto;
-
-    // Browsers
-    var content = new virgil.Buffer("CONTENT_TO_CALCULATE_FINGERPRINT_OF");
-
-    // Node.js
-    // var content = new Buffer("CONTENT_TO_CALCULATE_FINGERPRINT_OF");
-
-    var fingerprint = crypto.calculateFingerprint(content);
-
-See Also: 
----------
-`Source code <https://github.com/VirgilSecurity/virgil-sdk-javascript/releases/tag/4.0.0-beta.0>`__
+    // get for Alice's Card by id
+    virgilAPI.cards.get("ALICE_CARD_ID")
+        .then(function(alicesCard) {
+            if (!alicesCard.verify(message, signature)) {
+                throw new Error("The message is not from Alice."); 
+            }
+        })

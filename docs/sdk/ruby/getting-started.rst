@@ -1,90 +1,99 @@
-Getting started
+Getting Started
 ===============
 
-The goal of Virgil Ruby SDK Documentation is to give a developer the knowledge and understanding required to implement security into his application using Virgil Security system.
+The goal of Virgil .NET/C# SDK Documentation is to give a developer the knowledge and understanding required to implement security into his application using Virgil Security system.
 
 Virgil SDK is a communication gateway between your application and :doc:`../../../services/services`. 
 
 Setting up your project
 -----------------------
 
-The Virgil SDK is provided as a gem named **virgil-sdk**. The gem is distributed via Gems package management system.
+The Virgil SDK is provided as a gem named *virgil-sdk*. The package is distributed via *bundler* package manager.
 
-Target frameworks
+Target platform
 ~~~~~~~~~~~~~~~~~
 
--  Ruby 2.0+
+-  Ruby 2.1 and newer.
 
-Installation
+Prerequisites
+~~~~~~~~~~~~~
+
+- 
+
+Installing the package
 ~~~~~~~~~~~~~~~~~~~~~~
 
 To install package use the command below:
 
-::
+.. code-block::
 
-	gem install virgil-sdk --pre
-  
-  
+    gem install virgil-sdk
+
+
 or add the following line to your Gemfile:
-  
-::
 
-  gem 'virgil-sdk', '~> 4.0.0b'
-  
+.. code-block::
+
+    gem 'virgil-sdk', '~> 4.2.0'
+
+
 
 User and App Credentials
 ------------------------
 
-When you register an application on Virgil developer's `dashboard <https://developer.virgilsecurity.com/dashboard>`_, we provide you with an ``appID``, ``appKey`` and ``accessToken``.
+To start using Virgil Services you first have to create an account at `Virgil 
+Developer Portal <https://developer.virgilsecurity.com/account/signup>`__.
 
--  ``appID`` uniquely identifies your application in our services, it is also used to identify the Public key generated in a pair with ``appKey``. Example:
-   ``af6799a2f26376731abb9abf32b5f2ac0933013f42628498adb6b12702df1a87``
+After you create an account, or if you already have an account, sign in and 
+create a new application. Make sure you save the *appKey* that is 
+generated for your application at this point as you will need it later. 
+After your application is ready, create a *token* that your app will 
+use to make authenticated requests to Virgil Services. One more thing that 
+you're going to need is your application's *appID* which is an identifier 
+of your application's Virgil Card.
 
--  ``appKey`` is a Private key that is used to perform creation and revocation of **Virgil Cards** (Public key) in Virgil services. Also the ``appKey`` can be used for cryptographic operations to take part in application logic. The ``appKey`` is generated at the time of application creation and must be saved in secure place.
-
--  ``accessToken`` is a unique string value that provides an authenticated secure access to the Virgil services and is passed with each API call. The *accessToken* also allows the API to associate your app’s requests with your Virgil developer’s account.
-
-Connecting to Virgil
+Usage
 --------------------
 
-Before you can use any Virgil services features in your app, you must first initialize ``VirgilClient`` class from ``Virgil::SDK::Client`` module. 
-You use the ``VirgilClient`` object to get access to Create, Revoke and Search for Virgil Cards (Public keys).
+Before you can make use of any Virgil Services features in your app, you must initialize ``VirgilApi`` class. 
 
-Initializing an API Client
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+Initializing
+------------------------
 
-To create an instance of ``VirgilClient`` class, just call its constructor with your application's **access_token** which you generated on developer's deshboard.
+.. code-block:: ruby
 
-Module: ``Virgil::SDK::Client``
+    require "virgil/sdk"
+    include Virgil::SDK::HighLevel
 
-.. code-block:: csharp
-    :linenos:
+To initialize the SDK Api, you need the *token* that you created for 
+your application on [Virgil Developer Portal](https://developer.virgilsecurity.com/)
 
-    require 'virgil/sdk'
+This inializes a VirgilApi class without application *token* (works only with global Virgil Cards)
 
-    client = Virgil::SDK::Client::VirgilClient.new("[YOUR_ACCESS_TOKEN_HERE]")
+.. code-block:: ruby
 
-you can also customize initialization using your own parameters
+    var virgil = new VirgilApi()
 
-.. code-block:: csharp
-    :linenos:
+.. code-block:: ruby 
 
-    client = Virgil::SDK::Client::VirgilClient.new(
-        "[YOUR_ACCESS_TOKEN_HERE]",
-        https://cards.virgilsecurity.com",
-        https://cards-ro.virgilsecurity.com"
+    virgil = VirgilApi.new(access_token: "[YOUR_ACCESS_TOKEN_HERE]")
+
+Initialize high-level SDK using context class
+
+.. code-block:: ruby 
+
+    context = VirgilContext.new(
+        access_token: "[YOUR_ACCESS_TOKEN_HERE]",
+        # Credentials are required only in case of publish and revoke local Virgil Cards.
+        credentials: VirgilAppCredentials.new(app_id: "[YOUR_APP_ID_HERE]",
+                                            app_key_data: VirgilBuffer.from_file("[YOUR_APP_KEY_PATH_HERE]"),
+                                            app_key_password: "[YOUR_APP_KEY_PASSWORD_HERE]"),
+        card_verifiers: [ VirgilCardVerifierInfo.new("[YOUR_CARD_ID_HERE]", 
+                                                    VirgilBuffer.from_base64("[YOUR_PUBLIC_KEY_HERE]"))]
     )
 
-Initializing Crypto
-~~~~~~~~~~~~~~~~~~~
+    virgil = VirgilApi.new(context: context)
 
-``VirgilCrypto`` class provides cryptographic operations in applications, such as hashing, signature generation and verification, and encryption and decryption.
+At this point you can start creating and publishing *Virgil Cards* for your
+users.
 
-Module: ``Virgil::SDK::Cryptography``
-
-.. code-block:: csharp
-    :linenos:
-
-    require 'virgil/sdk'
-
-    crypto = Virgil::SDK::Cryptography::VirgilCrypto.new

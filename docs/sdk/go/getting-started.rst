@@ -23,73 +23,43 @@ Installing the package
 
     go get -u github.com/VirgilSecurity/virgil-sdk-go
 
-
 User and App Credentials
 ------------------------
 
-When you register an application on Virgil developer's `dashboard <https://developer.virgilsecurity.com/dashboard>`_, we provide you with an ``appID``, ``appKey`` and ``accessToken``.
+To start using Virgil Services you first have to create an account at `Virgil 
+Developer Portal <https://developer.virgilsecurity.com/account/signup>`__.
 
--  ``appID`` uniquely identifies your application in our services, it is also used to identify the Public key generated in a pair with ``appKey``. Example:
-   ``af6799a2f26376731abb9abf32b5f2ac0933013f42628498adb6b12702df1a87``
+After you create an account, or if you already have an account, sign in and 
+create a new application. Make sure you save the *appKey* that is 
+generated for your application at this point as you will need it later. 
+After your application is ready, create a *token* that your app will 
+use to make authenticated requests to Virgil Services. One more thing that 
+you're going to need is your application's *appID* which is an identifier 
+of your application's Virgil Card.
 
--  ``appKey`` is a Private key that is used to perform creation and revocation of **Virgil Cards** (Public key) in Virgil services. Also the ``appKey`` can be used for cryptographic operations to take part in application logic. The ``appKey`` is generated at the time of application creation and must be saved in secure place.
+Initializing
+------------------------
 
--  ``accessToken`` is a unique string value that provides an authenticated secure access to the Virgil services and is passed with each API call. The *accessToken* also allows the API to associate your app’s requests with your Virgil developer’s account.
+To use this SDK you need to [sign up for an account](https://developer.virgilsecurity.com/account/signup) and create your first __application__. Make sure to save the __app id__, __private key__ and it's __password__. After this, create an __application token__ for your application to make authenticated requests from your clients.
 
-Connecting to Virgil
---------------------
-
-Before you can use any Virgil services features in your app, you must
-first initialize ``virgil.Client`` class. You use the ``virgil.Client``
-object to get access to Create, Revoke and Search for **Virgil Cards**
-(Public keys).
-
-Initializing an API Client
-~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-To create an instance of ``virgil.Client`` class, just call
-virgil.NewClient() with your application's ``accessToken`` which you
-generated on developer's dashboard.
+To initialize the SDK on the client side you will only need the __access token__ you created.
 
 .. code-block:: go
-    :linenos:
 
-    client := virgil.NewClient("[YOUR_ACCESS_TOKEN_HERE]")
+    api, err := virgilapi.New("[YOUR_ACCESS_TOKEN_HERE]")
 
-you can also customize initialization using your own parameters
+To initialize the SDK on the server side we will need the __access token__, __app id__ and the __App Key__ you created on the [Developer Dashboard](https://developer.virgilsecurity.com/).
 
 .. code-block:: go
-    :linenos:
 
-    virgil.DefaultClientParams = &virgil.VirgilClientParams{
-            CardsServiceAddress:         "https://cards.virgilsecurity.com",
-            ReadonlyCardsServiceAddress: "https://cards-ro.virgilsecurity.com",
+    api, err := virgilapi.NewWithConfig(virgilapi.Config{
+        Token: "[YOUR_ACCESS_TOKEN_HERE]",
+        Credentials: &virgilapi.AppCredentials{
+            AppId:      appCardID,
+            PrivateKey: virgilapi.BufferFromString("[YOUR_APP_KEY]")
+            PrivateKeyPassword: "[YOUR_APP_KEY_PASSWORD_HERE]"
         }
+    })
 
-Initializing Crypto
-~~~~~~~~~~~~~~~~~~~
-
-The ``VirgilCrypto`` class provides cryptographic operations in
-applications, such as hashing, signature generation and verification,
-and encryption and decryption.
-
-.. code-block:: go
-    :linenos:
-
-    crypto := virgil.Crypto()
-
-High level API
---------------
-
-This API provides a simple way of managing :term:`Virgil Cards <Virgil Card>`, encrypting data
-and verifying signatures.
-
-Global configuration
-~~~~~~~~~~~~~~~~~~~~
-
-.. code-block:: go
-    :linenos:
-
-    virgil.InitConfig("[YOUR_TOKEN_HERE]")
-
-That's it.
+At this point you can start creating and publishing *Virgil Cards* for your
+users.
