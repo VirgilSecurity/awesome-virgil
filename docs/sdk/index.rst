@@ -13,7 +13,6 @@ The aim of these guides is to get you up and running quickly. You should be able
 -  `JavaScript <javascript/index>`__
 -  `Python <python/index>`__
 -  `Ruby <ruby/index>`__
--  `PHP <php/index>`__
 
 
 .. toctree::
@@ -26,4 +25,3 @@ The aim of these guides is to get you up and running quickly. You should be able
    Javascript SDK <javascript/index>
    Python SDK <python/index>
    Ruby SDK <ruby/index>
-   PHP SDK <php/index>
