@@ -89,6 +89,8 @@ Initialize high-level SDK using context class
         }
     };
 
+    context.SetCrypto
+
     var virgil = new VirgilApi(context);
 
 At this point you can start creating and publishing *Virgil Cards* for your

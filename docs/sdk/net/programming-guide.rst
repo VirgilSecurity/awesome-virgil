@@ -1,7 +1,7 @@
 Programming guide
 =============================
 
-This guide is a practical introduction to creating Python apps for that make use of Virgil Security services.
+This guide is a practical introduction to creating .NET/C# apps for that make use of Virgil Security services.
 
 In this guide you will find code for every task you need to implement in order to create an application using Virgil Security. It also includes a description of the main objects and methods. The aim of this guide is to get you up and running quickly. You should be able to copy and paste the code provided here into your own apps and use it with minimal changes.
 
@@ -87,7 +87,7 @@ The second way is to create the Virgil Card in global scope. The cards created i
 
 Every user is represented with a **Virgil Card** so creating them for users is a required step. A **Virgil Card** is the central entity of the Virgil Services, it includes information about the user for further actions in Virgil Security system. The **Virgil Card** identifies the user/device by one of his types. You can find more information about :term:`Virgil Cards <Virgil Card>`.
 
-Registering Virgil Card
+Registering Virgil Cards
 --------------------------
 
 Generate user's Key and create a Virgil Card
@@ -142,7 +142,7 @@ Publish a Virgil Card on Server-Side
     await virgil.Cards.PublishAsync(aliceCard);
     // await aliceCard.PublishAsync();
 
-Revoking Virgil Card
+Revoking Virgil Cards
 --------------------------
 
 .. code-block:: csharp
@@ -166,7 +166,7 @@ Revoking Virgil Card
     // revoke Alice's Card from Virgil Services.
     await virgil.Cards.RevokeAsync(aliceCard);
 
-Registering Global Virgil Card
+Registering Global Virgil Cards
 --------------------------
 
 .. code-block:: csharp
@@ -255,6 +255,67 @@ Search for Virgil Cards
     // search for application Card registered on Dev Portal.
     var appCards = await virgil.Cards.FindGlobalAsync("com.username.appname");
 
+
+Generating Virgil Keys
+-------------------------------
+
+Generate a new Virgil Key recommended by Virgil.
+
+.. code-block:: csharp
+    :linenos:
+
+    // initialize a High Level API class
+    var virgil = new VirgilApi();
+
+    // generate a new private key
+    var aliceKey = virgil.Keys.Generate();
+
+Generate a new Virgil Key with specified type.
+
+.. code-block:: csharp
+    :linenos:
+
+    // initialize the Crypto with specified key pair type.
+    var crypto = new VirgilCrypto(KeyPairType.EC_BP512R1);
+
+    // initialize a High Level API class with custom Crypto instance.
+    var context = new VirgilApiContext();
+    context.SetCrypto(crypto);
+    
+    var virgil = new VirgilApi(context);
+
+    // generate a new private key
+    var aliceKey = virgil.Keys.Generate();
+
+Export & Import Virgil Keys
+-------------------------------
+
+Export the Virgil Key to Base64 encoded string.
+
+.. code-block:: csharp
+    :linenos:
+
+    // initialize a High Level API class
+    var virgil = new VirgilApi();
+    
+    // generate a new Virgil Key
+    var aliceKey = virgil.Keys.Generate();
+
+    // export the Virgil Key to Base64 encoded string
+    var exportedKey = aliceKey.Export("[OPTIONAL_KEY_PASSWORD]").ToString(StringEncoding.Base64);
+
+Import the Virgil Key from Base64 encoded string.
+
+.. code-block:: csharp
+    :linenos:
+
+    // initialize a High Level API class
+    var virgil = new VirgilApi();
+
+    var keyBuffer = VirgilBuffer.From("[BASE64_ENCODED_VIRGIL_KEY]", StringEncoding.Base64);
+
+    // import the Virgil Key from Base64 encoded string
+    var aliceKey = virgil.Keys.Import(keyBuffer, "[OPTIONAL_KEY_PASSWORD]");
 
 Encryption
 -------------------------------

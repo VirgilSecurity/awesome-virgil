@@ -15,7 +15,7 @@ Virgil Cards
 Virgil Keys
 ----------------------------
 
--  `Generate Virgil Keys <programming-guide.html#generate-virgil-keys>`__
+-  `Generating Virgil Keys <programming-guide.html#generating-virgil-keys>`__
 -  `Export & Import Virgil Keys <programming-guide.html#export-import-virgil-keys>`__
 -  `Storing Virgil Keys <programming-guide.html#storing-virgil-keys>`__
 -  `Destroying Virgil Keys <programming-guide.html#destroying-virgil-keys>`__
