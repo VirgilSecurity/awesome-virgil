@@ -88,7 +88,6 @@ Registering Virgil Card
 Generate user's Key and create a Virgil Card
 
 .. code-block:: ruby
-    :linenos:
 
     // initialize Virgil SDK
     virgil = VirgilApi.new(access_token: "[YOUR_ACCESS_TOKEN_HERE]")
@@ -112,7 +111,6 @@ Transmit alice's Card to the server side where it would be signed, validated and
 Publish a Virgil Card on Server-Side
 
 .. code-block:: ruby
-    :linenos:
 
     // initialize Virgil SDK high-level instance.
     virgil = VirgilApi.new(context: VirgilContext.new(
@@ -141,7 +139,6 @@ Revoking Virgil Card
 --------------------------
 
 .. code-block:: ruby
-    :linenos:
 
     // initialize Virgil SDK high-level instance.
     virgil = VirgilApi.new(context: VirgilContext.new(
@@ -162,7 +159,6 @@ Registering Global Virgil Card
 --------------------------
 
 .. code-block:: ruby
-    :linenos:
 
     // initialize Virgil's high-level instance.
     virgil = VirgilApi.new(access_token: "[YOUR_ACCESS_TOKEN_HERE]")
@@ -191,7 +187,6 @@ Revoking Global Virgil Cards
 ----------------------------
 
 .. code-block:: ruby
-    :linenos:
 
     // initialize Virgil SDK high-level
     virgil = VirgilApi.new(access_token: "[YOUR_ACCESS_TOKEN_HERE]")
@@ -214,7 +209,6 @@ Revoking Global Virgil Cards
 Export & Import Virgil Cards
 -------------------------------
 .. code-block:: ruby
-    :linenos:
 
     virgil = VirgilApi.new(access_token: "[YOUR_ACCESS_TOKEN_HERE]")
 
@@ -231,7 +225,6 @@ Export & Import Virgil Cards
 Search for Virgil Cards
 -------------------------------
 .. code-block:: ruby
-    :linenos:
 
     virgil = VirgilApi.new(access_token: "[YOUR_ACCESS_TOKEN_HERE]")
 
@@ -256,7 +249,6 @@ Initialize Virgil High Level API and generate the Virgil Key.
 Encrypting Data
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 .. code-block:: ruby
-    :linenos:
 
     // search for Alice's and bob's Cards
     recipients = virgil.cards.find("bob", "alice")
@@ -269,7 +261,6 @@ Encrypting Data
 Decrypting Data
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 .. code-block:: ruby
-    :linenos:
 
     // load Bob's Key from secure storage provided by default.
     bob_key = virgil.keys.load("[KEY_NAME]", "[KEY_PASSWORD]")
@@ -280,7 +271,6 @@ Decrypting Data
 Encrypting & Signing Data
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 .. code-block:: ruby
-    :linenos:
 
     // load Alice's Key from secure storage defined by default
     alice_key = virgil.keys.load("[KEY_NAME]", "[KEY_PASSWORD]")
@@ -297,7 +287,6 @@ Decrypting & Verifying Data
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: ruby
-    :linenos:
 
     // load Bob's Key from secure storage defined by default
     bob_key = virgil.keys.load("[KEY_NAME]", "[KEY_PASSWORD]")
@@ -324,7 +313,6 @@ Generating a Signature
 To generate the signature, simply call one of the sign methods:
 
 .. code-block:: ruby
-    :linenos:
 
     // load Alice's Key from protected storage
     alice_key = virgil.keys.load("[KEY_NAME]", "[KEY_PASSWORD]")
@@ -339,7 +327,6 @@ Verifying a Signature
 The signature can now be verified by calling the verify method:
 
 .. code-block:: ruby
-    :linenos:
 
     // search for Alice's Card
     alice_cards = virgil.cards.find("alice")
@@ -347,5 +334,5 @@ The signature can now be verified by calling the verify method:
 
     unless alice_key.verify(message, signature)
     
-        raise "Damn Alice it's not you.a" 
+        raise "Damn Alice it's not you." 
     end
