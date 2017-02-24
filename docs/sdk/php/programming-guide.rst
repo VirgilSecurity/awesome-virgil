@@ -40,6 +40,7 @@ To create an instance of *VirgilClient* class, just call its static method with 
 
 .. code-block:: php
     :linenos:
+
         use Virgil\Sdk\Client\VirgilClient;
 
 
@@ -49,6 +50,7 @@ note that application's *AccessToken* is not necessary parameter if you are goin
 
 .. code-block:: php
     :linenos:
+
         use Virgil\Sdk\Client\VirgilClient;
 
 
@@ -58,6 +60,7 @@ you can also customize initialization using your own parameters
 
 .. code-block:: php
     :linenos:
+
         use Virgil\Sdk\Client\VirgilClient;
         use Virgil\Sdk\Client\VirgilClientParams;
 
@@ -93,6 +96,7 @@ The *VirgilCrypto* class provides cryptographic operations in applications, such
 
 .. code-block:: php
     :linenos:
+
         use Virgil\Sdk\Cryptography\VirgilCrypto;
 
 
@@ -105,6 +109,7 @@ just sign by card owner signature and by any authority signatures like card serv
 
 .. code-block:: php
     :linenos:
+
         use Virgil\Sdk\Client\Requests\RequestSigner;
 
 
@@ -117,6 +122,7 @@ Generate user's Key and create a Virgil Card
 
 .. code-block:: php
     :linenos:
+
         use Virgil\Sdk\Buffer;
 
 
@@ -138,6 +144,7 @@ Prepare request
 
 .. code-block:: php
     :linenos:
+
         use Virgil\Sdk\Client\Requests\PublishCardRequest;
 
 
@@ -149,6 +156,7 @@ then, use *RequestSigner* class to sign request with owner and app keys.
 
 .. code-block:: php
     :linenos:
+
         $requestSigner->selfSign($createCardRequest, $aliceKeys->getPrivateKey())
                       ->authoritySign($createCardRequest, $appID, $appKey);
 
@@ -156,6 +164,7 @@ Publish a Virgil Card on Server-Side
 
 .. code-block:: php
     :linenos:
+
         $aliceCard = $client->createCard($createCardRequest);
 
 Revoking Virgil Cards
@@ -165,6 +174,7 @@ Prepare revoke request and to perform application card revocation
 
 .. code-block:: php
     :linenos:
+
         use Virgil\Sdk\Buffer;
 
         use Virgil\Sdk\Client\Requests\RevokeCardRequest;
@@ -194,6 +204,7 @@ Prepare request
 
 .. code-block:: php
     :linenos:
+
         use Virgil\Sdk\Client\Requests\Constants\IdentityTypes;
 
         use Virgil\Sdk\Client\VirgilServices\Model\ValidationModel;
@@ -209,12 +220,14 @@ then, use *RequestSigner* class to sign request with owner signature.
 
 .. code-block:: php
     :linenos:
+
         $requestSigner->selfSign($createGlobalCardRequest, $aliceKeys->getPrivateKey());
 
 Publish a Global Virgil Card
 
 .. code-block:: php
     :linenos:
+
         $aliceCard = $client->publishGlobalCard($createGlobalCardRequest);
 
 
@@ -249,6 +262,7 @@ Perform the *Virgil Card* search by criteria request:
 
 .. code-block:: php
     :linenos:
+
         use Virgil\Sdk\Client\Requests\SearchCardRequest;
 
 
@@ -265,6 +279,7 @@ Generate a new Virgil Key recommended by Virgil.
 
 .. code-block:: php
     :linenos:
+
         use Virgil\Sdk\Cryptography\VirgilCrypto;
 
 
@@ -279,6 +294,7 @@ Export the Virgil Key to Base64 encoded string.
 
 .. code-block:: php
     :linenos:
+
         use Virgil\Sdk\Cryptography\VirgilCrypto;
 
 
@@ -293,6 +309,7 @@ Import the Virgil Key from Base64 encoded string.
 
 .. code-block:: php
     :linenos:
+
         use Virgil\Sdk\Buffer;
 
         use Virgil\Sdk\Cryptography\VirgilCrypto;
@@ -326,6 +343,7 @@ There also can be more than one recipient
 
 .. code-block:: php
     :linenos:
+
         $plaintext = "Hello Alice!";
 
         $encryptedDataBase64Encoded = $crypto->encrypt($plaintext, [$aliceKeys->getPublicKey()])
@@ -334,6 +352,7 @@ Decrypting Data
 ~~~~~~~~~~~~~~~
 .. code-block:: php
     :linenos:
+
         use Virgil\Sdk\Buffer;
 
         $encryptedData = Buffer::fromBase64($encryptedDataBase64Encoded);
@@ -344,6 +363,7 @@ Encrypting & Signing Data
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 .. code-block:: php
     :linenos:
+
         $data = "Hello Bob, How are you?";
 
         $encryptedDataBase64Encoded = $crypto->signThenEncrypt($data, $aliceKeys->getPrivateKey(), [$bobKeys->getPublicKey()])
@@ -354,6 +374,7 @@ Decrypting & Verifying Data
 
 .. code-block:: php
     :linenos:
+
         use Virgil\Sdk\Buffer;
 
         $encryptedData = Buffer::fromBase64($encryptedDataBase64Encoded);
@@ -365,6 +386,7 @@ Generating and Verifying Signatures
 This section walks you through the steps necessary to use the *VirgilCrypto* to generate a digital signature for data and to verify that a signature is authentic.
 
 .. code-block:: php
+
     use Virgil\Sdk\Cryptography\VirgilCrypto;
 
 
@@ -378,6 +400,7 @@ To generate the signature, simply call the sign method:
 
 .. code-block:: php
     :linenos:
+
         $message = "Hey Bob, hope you are doing well.";
 
         // generate signature of message using Alice's key pair
@@ -389,6 +412,7 @@ The signature can now be verified by calling the verify method:
 
 .. code-block:: php
     :linenos:
+    
         // verify if message was signed by Alice.
         $isValid = $crypto->verify($message, $signature, $aliceKeys->getPublicKey());
 
