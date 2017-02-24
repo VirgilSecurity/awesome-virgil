@@ -84,7 +84,9 @@ Initialize high-level SDK using context class
         }
     };
 
-    context.SetCrypto
+    context.SetCrypto(new VirgilCrypto());
+    context.SetDeviceManager(new DefaultDeviceManager()):
+    context.SetKeyStorage(new KeyStorage());
 
     var virgil = new VirgilApi(context);
 
