@@ -1,92 +1,99 @@
-Getting started
+Getting Started
 ===============
 
-The goal of Virgil Python SDK Documentation is to give a developer the knowledge and understanding required to implement security into his application using Virgil Security system.
+The goal of Virgil Ruby SDK Documentation is to give a developer the knowledge and understanding required to implement security into his application using Virgil Security system.
 
 Virgil SDK is a communication gateway between your application and :doc:`../../../services/services`. 
 
 Setting up your project
 -----------------------
 
-The Virgil SDK is provided as a package named **virgil-sdk**. The package
-is distributed via pip package manager.
+The Virgil SDK is provided as a gem named *virgil-sdk*. The package is distributed via *bundler* package manager.
 
-Target frameworks
+Target platform
 ~~~~~~~~~~~~~~~~~
 
--  Python 2.7+
--  Python 3.3+
+-  Ruby 2.1 and newer.
 
+Prerequisites
+~~~~~~~~~~~~~
+
+- 
 
 Installing the package
 ~~~~~~~~~~~~~~~~~~~~~~
 
-To install package use the command below:
+To install the gem use the command below:
 
-::
+.. code-block:: ruby
 
-    python setup.py install
+    gem install virgil-sdk
 
-or you can use pip to download and install package automatically:
 
-::
+or add the following line to your Gemfile:
 
-    python -m pip install virgil-sdk
+.. code-block:: ruby
+
+    gem 'virgil-sdk', '~> 4.2.0'
+
+
 
 User and App Credentials
 ------------------------
 
-When you register an application on Virgil developer's `dashboard <https://developer.virgilsecurity.com/dashboard>`_, we provide you with an ``app_id``, ``app_key`` and ``access_token``.
+To start using Virgil Services you first have to create an account at `Virgil 
+Developer Portal <https://developer.virgilsecurity.com/account/signup>`__.
 
--  ``app_id`` uniquely identifies your application in our services, it is also used to identify the Public key generated in a pair with ``app_key``. Example:
-   ``af6799a2f26376731abb9abf32b5f2ac0933013f42628498adb6b12702df1a87``
+After you create an account, or if you already have an account, sign in and 
+create a new application. Make sure you save the *appKey* that is 
+generated for your application at this point as you will need it later. 
+After your application is ready, create a *token* that your app will 
+use to make authenticated requests to Virgil Services. One more thing that 
+you're going to need is your application's *appID* which is an identifier 
+of your application's Virgil Card.
 
--  ``app_key`` is a Private key that is used to perform creation and revocation of **Virgil Cards** (Public key) in Virgil services. Also the ``app_key`` can be used for cryptographic operations to take part in application logic. The ``app_key`` is generated at the time of application creation and must be saved in secure place.
-
--  ``access_token`` is a unique string value that provides an authenticated secure access to the Virgil services and is passed with each API call. The ``access_token`` also allows the API to associate your app’s requests with your Virgil developer’s account.
-
-Connecting to Virgil
+Usage
 --------------------
 
-Before you can use any Virgil services features in your app, you must first initialize ``VirgilClient`` class from ``virgil_sdk.client`` module. 
+Before you can make use of any Virgil Services features in your app, you must initialize ``VirgilApi`` class. 
 
-You will use the ``VirgilClient`` object to get access to Create, Revoke and Search for *Virgil Cards* (Public keys).
+Initializing
+------------------------
 
-Initializing an API Client
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. code-block:: ruby
 
-To create an instance of ``VirgilClient`` class, just call its constructor with your application's **access\_token** which you generated on developer's dashboard.
+    require "virgil/sdk"
+    include Virgil::SDK::HighLevel
 
-Module: ``virgil_sdk.client``
+To initialize the SDK Api, you need the *token* that you created for 
+your application on [Virgil Developer Portal](https://developer.virgilsecurity.com/)
 
-.. code-block:: python
-    :linenos:
+This inializes a VirgilApi class without application *token* (works only with global Virgil Cards)
 
-    from virgil_sdk.client import VirgilClient
+.. code-block:: ruby
 
-    client = VirgilClient("[YOUR_ACCESS_TOKEN_HERE]")
+    virgil = VirgilApi.new
 
-you can also customize initialization using your own parameters
+.. code-block:: ruby 
 
-.. code-block:: python
-    :linenos:
+    virgil = VirgilApi.new(access_token: "[YOUR_ACCESS_TOKEN_HERE]")
 
-    client = VirgilClient(
-        "[YOUR_ACCESS_TOKEN_HERE]",
-        cards_service_url="https://cards.virgilsecurity.com",
-        cards_read_only_service_url="https://cards-ro.virgilsecurity.com",
+Initialize high-level SDK using context class
+
+.. code-block:: ruby 
+
+    context = VirgilContext.new(
+        access_token: "[YOUR_ACCESS_TOKEN_HERE]",
+        # Credentials are required only in case of publish and revoke local Virgil Cards.
+        credentials: VirgilAppCredentials.new(app_id: "[YOUR_APP_ID_HERE]",
+                                            app_key_data: VirgilBuffer.from_file("[YOUR_APP_KEY_PATH_HERE]"),
+                                            app_key_password: "[YOUR_APP_KEY_PASSWORD_HERE]"),
+        card_verifiers: [ VirgilCardVerifierInfo.new("[YOUR_CARD_ID_HERE]", 
+                                                    VirgilBuffer.from_base64("[YOUR_PUBLIC_KEY_HERE]"))]
     )
 
-Initializing Crypto
-~~~~~~~~~~~~~~~~~~~
+    virgil = VirgilApi.new(context: context)
 
-The ``VirgilCrypto`` class provides cryptographic operations in applications, such as hashing, signature generation and verification, encryption and decryption.
+At this point you can start creating and publishing *Virgil Cards* for your
+users.
 
-Module: ``virgil_sdk.cryptography``
-
-.. code-block:: python
-    :linenos:
-
-    from virgil_sdk.cryptography import VirgilCrypto
- 
-    crypto = VirgilCrypto()

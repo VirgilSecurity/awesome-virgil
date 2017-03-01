@@ -1,7 +1,7 @@
-Programming Guide
+Programming guide
 =============================
 
-This guide is a practical introduction to creating Python apps for that make use of Virgil Security services.
+This guide is a practical introduction to creating Ruby(Ruby on Rails) apps for that make use of Virgil Security services.
 
 In this guide you will find code for every task you need to implement in order to create an application using Virgil Security. It also includes a description of the main objects and methods. The aim of this guide is to get you up and running quickly. You should be able to copy and paste the code provided here into your own apps and use it with minimal changes.
 
@@ -10,395 +10,344 @@ Setting up your project
 
 Follow instructions `here <getting-started>`__ to setup your project environment.
 
+User and App Credentials
+------------------------
 
-Creating a Virgil Card
-----------------------
+To start using Virgil Services you first have to create an account at `Virgil 
+Developer Portal <https://developer.virgilsecurity.com/account/signup>`__.
 
-Every user is represented with a **Virgil Card** so creating them for users is a required step. A **Virgil Card** is the central entity of the Virgil services, it includes information about the user for further actions in Virgil Security system. The **Virgil Card** identifies the user/device by one of his types. You can find more information about :term:`Virgil Cards <Virgil Card>`.
+After you create an account, or if you already have an account, sign in and 
+create a new application. Make sure you save the *appKey* that is 
+generated for your application at this point as you will need it later. 
+After your application is ready, create a *token* that your app will 
+use to make authenticated requests to Virgil Services. One more thing that 
+you're going to need is your application's *appID* which is an identifier 
+of your application's Virgil Card.
 
-``app_id``, ``app_key`` parameters are required to create a **Virgil Card** in your app scope.
-
-Collect App Credentials
-~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Collect an ``app_id`` and ``app_key`` for your app:
-
-.. code-block:: python
-    :linenos:
-
-    app_id = "[YOUR_APP_ID_HERE]"
-    app_key_password = "[YOUR_APP_KEY_PASSWORD_HERE]"
-    app_key_data = crypto.strtobytes(open("[YOUR_APP_KEY_PATH_HERE]", "r").read())
-
-    app_key = crypto.import_private_key(app_key_data, app_key_password)
-
-Generate New Keys
+Usage
 ~~~~~~~~~~~~~~~~~~~
 
-Generate a new Public/Private keypair using ``VirgilCrypto`` class:
+Now that you have your account and application in place you can start making 
+requests to Virgil Services.
 
-.. code-block:: python
-    :linenos:
+Initializing
+------------------------
 
-    alice_keys = crypto.generate_keys()
 
-Prepare Request
-~~~~~~~~~~~~~~~
+.. code-block:: ruby
 
-.. code-block:: python
-    :linenos:
+    require "virgil/sdk"
+    include Virgil::SDK::HighLevel
 
-    exported_public_key = crypto.export_public_key(alice_keys.public_key)
-    create_card_request = client.requests.CreateCardRequest("alice", "username", exported_public_key)
+To initialize the SDK Api, you need the *token* that you created for 
+your application on [Virgil Developer Portal](https://developer.virgilsecurity.com/)
 
-then, use ``RequestSigner`` class to sign request with owner's and app's keys:
+This inializes a VirgilApi class without application *token* (works only with global Virgil Cards)
 
-.. code-block:: python
-    :linenos:
+.. code-block:: ruby
 
-    request_signer = client.RequestSigner(crypto)
+    virgil = VirgilApi.new
 
-    request_signer.self_sign(create_card_request, alice_keys.private_key)
-    requestSigner.authority_sign(create_card_request, app_id, app_key)
+.. code-block:: ruby 
 
-Publish a Virgil Card
-~~~~~~~~~~~~~~~~~~~~~
+    virgil = VirgilApi.new(access_token: "[YOUR_ACCESS_TOKEN_HERE]")
 
-.. code-block:: python
-    :linenos:
+Initialize high-level SDK using context class
 
-    alice_card = client.create_card_from_signed_request
+.. code-block:: ruby 
 
-Or you can use the shorthand version which will sign and send the card creation request.
-
-.. code-block:: python
-    :linenos:
-
-    alice_keys = crypto.generate_keys()
-    alice_card = client.create_card(
-        identity="alice",
-        identity_type="username",
-        key_pair=alice_keys,
-        app_id=app_id,
-        app_key=app_key
+    context = VirgilContext.new(
+        access_token: "[YOUR_ACCESS_TOKEN_HERE]",
+        # Credentials are required only in case of publish and revoke local Virgil Cards.
+        credentials: VirgilAppCredentials.new(app_id: "[YOUR_APP_ID_HERE]",
+                                            app_key_data: VirgilBuffer.from_file("[YOUR_APP_KEY_PATH_HERE]"),
+                                            app_key_password: "[YOUR_APP_KEY_PASSWORD_HERE]"),
+        card_verifiers: [ VirgilCardVerifierInfo.new("[YOUR_CARD_ID_HERE]", 
+                                                    VirgilBuffer.from_base64("[YOUR_PUBLIC_KEY_HERE]"))]
     )
+
+    virgil = VirgilApi.new(context: context)
+
+At this point you can start creating and publishing *Virgil Cards* for your
+users.
+
+> *Virgil Card* is the main entity of Virgil Services, it includes the user's 
+> identity and their public key.
+
+There are two ways to create a Virgil Card. 
+
+The first way is to create the Virgil Card in application scope. The cards created this way will only be available to your application (i.e. will only be returned in response to a request presenting your application's *token*). 
+
+The second way is to create the Virgil Card in global scope. The cards created in global scope will be available within all Virgil Services and to find them you doin't need an application *token*.
+
+Every user is represented with a **Virgil Card** so creating them for users is a required step. A **Virgil Card** is the central entity of the Virgil Services, it includes information about the user for further actions in Virgil Security system. The **Virgil Card** identifies the user/device by one of his types. You can find more information about :term:`Virgil Cards <Virgil Card>`.
+
+Registering Virgil Card
+--------------------------
+
+Generate user's Key and create a Virgil Card
+
+.. code-block:: ruby
+    :linenos:
+
+    # initialize Virgil SDK
+    virgil = VirgilApi.new(access_token: "[YOUR_ACCESS_TOKEN_HERE]")
+
+    # generate and save alice's Key
+    alice_key = virgil.keys.generate.save("[KEY_NAME]", "[KEY_PASSWORD]")
+
+    # create alice's Card using her Key
+    alice_card = virgil.cards.create("alice", alice_key)
+
+    # You can create alice's Card with information about her device and some another data. 
+    alice_card = virgil.cards.create("alice", alice_key, {device: "iPhone", device_name: "Space grey one", data: {some_key1: "some value 1", some_key2: "some value 2"}})
+    
+
+Transmit Alice's Card to the server side where it would be signed, validated and published on the Virgil Services. 
+
+.. code-block:: ruby
+
+    # export Alice's Card to string
+    exported_alice_card = alice_card.export
+    
+Publish a Virgil Card on Server-Side
+
+.. code-block:: ruby
+    :linenos:
+
+    # initialize Virgil SDK high-level instance.
+    virgil = VirgilApi.new(context: VirgilContext.new(
+    access_token: "[YOUR_ACCESS_TOKEN_HERE]",
+    credentials: VirgilAppCredentials.new(app_id: "[YOUR_APP_ID_HERE]",
+                                          app_key_data: VirgilBuffer.from_file("[YOUR_APP_KEY_PATH_HERE]"),
+                                          app_key_password: "[YOUR_APP_KEY_PASSWORD_HERE]"))
+    )   
+
+
+    # import Alice's Card from its string representation.
+    alice_card = virgil.cards.import(exported_alice_card)
+
+    # verify Alice's Card information before publishing it on the Virgil services.
+
+    # alice_card.identity
+    # alice_card.identity_type
+    # alice_card.data
+    # alice_card.info
+
+    # publish Alice's Card on Virgil Services
+    virgil.cards.publish(alice_card)
+    # alice_card.publish
+
+Revoking Virgil Card
+--------------------------
+
+.. code-block:: ruby
+    :linenos:
+
+    # initialize Virgil SDK high-level instance.
+    virgil = VirgilApi.new(context: VirgilContext.new(
+    access_token: "[YOUR_ACCESS_TOKEN_HERE]",
+    credentials: VirgilAppCredentials.new(app_id: "[YOUR_APP_ID_HERE]",
+                                          app_key_data: VirgilBuffer.from_file("[YOUR_APP_KEY_PATH_HERE]"),
+                                          app_key_password: "[YOUR_APP_KEY_PASSWORD_HERE]"))
+    )   
+
+
+    # get Alice's Card by ID
+    alice_card = virgil.cards.get("[ALICE_CARD_ID]")
+
+    # revoke Alice's Card from Virgil Services.
+    virgil.cards.revoke(alice_card)
+
+Registering Global Virgil Card
+--------------------------
+
+.. code-block:: ruby
+    :linenos:
+
+    # initialize Virgil's high-level instance.
+    virgil = VirgilApi.new(access_token: "[YOUR_ACCESS_TOKEN_HERE]")
+
+    # generate and save Alice's Key.
+    alice_key = virgil.keys.generate.save("[KEY_NAME]", "[KEY_PASSWORD]")
+
+    # create Alice's Card using her newly generated Key.
+    alice_card = virgil.cards.create_global(
+        identity: "alice@virgilsecurity.com",
+        identity_type: VirgilIdentity::EMAIL,
+        owner_key: alice_key
+    )
+
+    # initiate an identity verification process.
+    attempt = alice_card.check_identity
+
+    # confirm a Card's identity using confirmation code retrived on the email.
+    token = attempt.confirm(VirgilIdentity::EmailConfirmation.new("[CONFIRMATION_CODE]"))
+
+    # publish a Card on the Virgil Security services.
+    virgil.cards.publish_global(alice_card, token)
+    # alice_card.publish_as_global(token) 
+
+Revoking Global Virgil Cards
+----------------------------
+
+.. code-block:: ruby
+    :linenos:
+
+    # initialize Virgil SDK high-level
+    virgil = VirgilApi.new(access_token: "[YOUR_ACCESS_TOKEN_HERE]")
+
+    # load Alice's Key from secure storage provided by default.
+    alice_key = virgil.keys.load("[KEY_NAME]", "[KEY_PASSWORD]")
+
+    # load Alice's Card from Virgil Security services.
+    alice_card = virgil.cards.get("[ALICE_CARD_ID]")
+
+    # initiate Card's identity verification process.
+    attempt = alice_card.check_identity()
+
+    # confirm Card's identity using confirmation code and grub validation token.
+    token = attempt.confirm(VirgilIdentity::EmailConfirmation.new("[CONFIRMATION_CODE]"))
+
+    # revoke Virgil Card from Virgil Security services.
+    virgil.cards.revoke_global(alice_card, alice_key, token); 
+
+Export & Import Virgil Cards
+-------------------------------
+.. code-block:: ruby
+    :linenos:
+
+    virgil = VirgilApi.new(access_token: "[YOUR_ACCESS_TOKEN_HERE]")
+
+    alice_key = virgil.keys.generate
+    alice_card = virgil.cards.create("alice", alice_key)
+
+    # export a Virgil Card to its string representation.
+    exported_card = alice_card.export
+
+    # import a Virgil Card to from its string representation
+    imported_card = virgil.cards.import(exported_card)
+
 
 Search for Virgil Cards
----------------------------
-
-You can search for **Virgil Cards** by identity value(s) and optional additional parameters can be set:
-
-    - identity type ('email' or any type created by user). You can find more information about :term:`confirmed <Confirmed Card>` and :term:`unconfirmed <Unconfirmed Card>` **Virgil Cards**.
-    - scope (by default it is 'application', can be 'global'). You can find more information about :term:`global <Global Virgil Card>` and :term:`application <Application Virgil Card>` **Virgil Cards**.
-
-.. code-block:: python
+-------------------------------
+.. code-block:: ruby
     :linenos:
 
-    client = VirgilClient("[YOUR_ACCESS_TOKEN_HERE]")
+    virgil = VirgilApi.new(access_token: "[YOUR_ACCESS_TOKEN_HERE]")
 
-    criteria = SearchCriteria.by_identities("alice", "bob")
-    cards = client.search_cards_by_criteria(criteria)
+    # search for all Alice's Cards.
+    alice_cards = virgil.cards.find("alice")
 
-Or you can use the shorthand version
+    # search for all Bob's Cards with type 'member'
+    bob_cards = virgil.cards.find("bob")
 
-.. code-block:: python
+    # search for all Bob's global Cards with identity type 'email'
+    bo_global_cards = virgil.cards.find_global(VirgilIdentity::EMAIL, "bob@virgilsecurity.com")
+
+
+Encryption
+-------------------------------
+Initialize Virgil High Level API and generate the Virgil Key.
+
+.. code-block:: ruby
+
+    virgil = VirgilApi.new(access_token: "[YOUR_ACCESS_TOKEN_HERE]")
+
+Encrypting Data
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. code-block:: ruby
     :linenos:
 
-    client = VirgilClient("[YOUR_ACCESS_TOKEN_HERE]")
+    # search for Alice's and bob's Cards
+    recipients = virgil.cards.find("bob", "alice")
 
-    cards = client.search_cards_by_identities("alice", "bob")
-    app_bundle_cards = client.seach_cards_by_app_bundle("[APP_BUNDLE]")
+    message = "Hey, are you crazy?"
 
-Validating a Virgil Card
----------------------------
-
-You might want to make sure that a received **Virgil Card** wasn't changed, Public Key is authentic, or validate any other fields.
-This sample uses built-in ``CardValidator`` to validate **Virgil Cards**. By default ``CardValidator`` validates only Cards Service signature.
-
-.. code-block:: python
+    # encrypt the message for multiple recipients
+    ciphertext = recipients.encrypt(message).to_base64
+    
+Decrypting Data
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. code-block:: ruby
     :linenos:
 
-    # Initialize crypto API
-    crypto = VirgilCrypto()
+    # load Bob's Key from secure storage provided by default.
+    bob_key = virgil.keys.load("[KEY_NAME]", "[KEY_PASSWORD]")
 
-    validator = CardValidator(crypto)
+    # decrypt message using Bob's Key.
+    original_message = bob_key.decrypt(ciphertext).to_s
 
-    # You can also add another Public Key for verification.
-    # validator.add_verifier("[HERE_VERIFIER_CARD_ID]", [HERE_VERIFIER_PUBLIC_KEY]);
-
-    # Initialize service client
-    client = VirgilClient("[YOUR_ACCESS_TOKEN_HERE]")
-    client.set_card_validator(validator)
-
-    try:
-        cards = client.search_cards_by_identities("alice", "bob");
-    except CardValidationException as ex:
-        # ex.invalid_cards is the list of Card objects that didn't pass validation
-
-Get a Virgil Card
----------------------------
-
-Gets a Virgil Card by ID.
-
-.. code-block:: python
+Encrypting & Signing Data
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. code-block:: ruby
     :linenos:
 
-    client = VirgilClient("[YOUR_ACCESS_TOKEN_HERE]")
-    card = client.get_card("[YOUR_CARD_ID_HERE]")
+    # load Alice's Key from secure storage defined by default
+    alice_key = virgil.keys.load("[KEY_NAME]", "[KEY_PASSWORD]")
 
-Revoking a Virgil Card
----------------------------
+    # search for Bob's Cards
+    bob_cards = await virgil.cards.find("bob")
 
-You can delete a **Virgil Card** in case the keys were compromised or lost, or for any other reason.
+    message = "Hey Bob, are you crazy?"
 
-Initialize required components.
+    # encrypt and sign message for multiple recipients
+    ciphertext = alice_key.sign_then_encrypt(message, bob_cards).to_base64
 
-.. code-block:: python
+Decrypting & Verifying Data
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: ruby
     :linenos:
 
-    client = VirgilClient("[YOUR_ACCESS_TOKEN_HERE]")
-    crypto = VirgilCrypto()
-    request_signer = RequestSigner(crypto)
+    # load Bob's Key from secure storage defined by default
+    bob_key = virgil.keys.load("[KEY_NAME]", "[KEY_PASSWORD]")
 
-Collect **App** credentials
+    # search for Alice's Card
+    alice_cards = virgil.cards.find("alice")
+    alice_card = alice_cards.find{|v| v.device == "iPhone 7"}
+    
 
-.. code-block:: python
-    :linenos:
-
-    app_id = "[YOUR_APP_ID_HERE]"
-    app_key_password = "[YOUR_APP_KEY_PASSWORD_HERE]"
-    app_key_data = crypto.strtobytes(open("[YOUR_APP_KEY_PATH_HERE]", "r").read())
-
-    app_key = crypto.import_private_key(app_key_data, app_key_password)
-
-Prepare revocation request
-
-.. code-block:: python
-    :linenos:
-
-    card_id = "[YOUR_CARD_ID_HERE]"
-
-    revoke_request = RevokeCardRequest(card_id, RevokeCardRequest.Reasons.Unspecified)
-    request_signer.authority_sign(revoke_request, app_id, app_key)
-
-    client.revoke_card_from_signed_request(revoke_request);
-
-The shorthand version is
-
-.. code-block:: python
-    :linenos:
-
-    client.revoke_card(
-        card_id="[YOUR_CARD_ID_HERE]",
-        reason=RevokeCardRequest.Reasons.Unspecified,
-        app_id=app_id,
-        app_key=app_key
-    )
-
-
-Operations with Crypto Keys
----------------------------
-
-Generate Keys
-~~~~~~~~~~~~~
-
-You can generate a keypair using ``VirgilCrypto`` class. The default algorithm is ``ed25519``. 
-
-.. code-block:: python
-    :linenos:
-
-    alice_keys = crypto.generate_keys()
-
-Import and Export Keys
-~~~~~~~~~~~~~~~~~~~~~~
-
-If you need to import or export your Public/Private keys you can easily do it.
-Simply call one of the Export methods:
-
-.. code-block:: python
-    :linenos:
-
-    exported_private_key = crypto.export_private_key(alice_keys.private_key)
-    exported_public_key = crypto.export_public_key(alice_keys.public_key)
-
-To import Public/Private keys, simply call one of the Import methods:
-
-.. code-block:: python
-    :linenos:
-
-    private_key = crypto.import_private_key(exported_private_key)
-    public_key = crypto.import_public_key(exported_public_key)
-
-
-Encryption and Decryption
----------------------------
-
-Initialize Crypto API and generate keypair.
-
-.. code-block:: python
-    :linenos:
-
-    crypto = VirgilCrypto()
-    alice_keys = crypto.generate_keys()
-
-Encrypt Data
-~~~~~~~~~~~~
-
-You can enrypt some data, ECIES scheme with ``AES-GCM`` is used in **Virgil Security**. You have several options for encryption:
-
-    - stream encryption;
-    - byte array encryption;
-    - one recipient;
-    - multiple recipients (public keys of every user are used for encryption).
-
-*Byte Array*
-
-.. code-block:: python
-    :linenos:
-
-    plain_data = crypto.strtobytes("Hello Bob!")
-    cipher_data = crypto.encrypt(plain_data, alice_keys.public_key)
-
-*Stream*
-
-.. code-block:: python
-    :linenos:
-
-    with io.open("[YOUR_FILE_PATH_HERE]", "rb") as input_stream:
-        with io.open("[YOUR_ENCRYPTED_FILE_PATH_HERE]", "wb") as output_stream:
-            c.encrypt_stream(input_stream, output_stream, [alice_keys.public_key])
-     
-Decrypt Data
-~~~~~~~~~~~~
-
-You can decrypt data using your private key. You have such options for decryption: 
-
-    - stream;
-    - byte array.
-
-*Byte Array*
-
-.. code-block:: python
-    :linenos:
-
-    crypto.decrypt(cipher_data, alice_keys.private_key);
-
-*Stream*
-
-.. code-block:: python
-    :linenos:
-
-    with io.open("[YOUR_ENCRYPTED_FILE_PATH_HERE]", "rb") as cipher_stream:
-        with io.open("[YOUR_DECRYPTED_FILE_PATH_HERE]", "wb") as result_stream:
-            c.decrypt_stream(cipher_stream, result_stream, alice_keys.private_key)
+    # decrypt cipher message using Bob's Key and verify it using alice's Card
+    original_message = bob_key.decrypt_then_verify(ciphertext, alice_card).to_s
 
 Generating and Verifying Signatures
 -----------------------------------
+This section walks you through the steps necessary to use the VirgilCrypto to generate a digital signature for data and to verify that a signature is authentic.
 
-Generate a new Public/Private keypair and ``data`` to be signed.
+.. code-block:: ruby
 
-.. code-block:: python
-    :linenos:
-
-    crypto = VirgilCrypto()
-    alice_keys = crypto.GenerateKeys()
-
-    # The data to be signed with alice's Private key
-    data = crypto.strtobytes("Hello Bob, How are you?")
+    # initialize Virgil SDK high-level API instance
+    virgil = VirgilApi.new(access_token: "[YOUR_ACCESS_TOKEN_HERE]")
 
 Generating a Signature
-~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+To generate the signature, simply call one of the sign methods:
 
-You can generate a digital signature for data. Options for signing data:
-
-    - stream;
-    - byte array.
-
-*Byte Array*
-
-.. code-block:: python
+.. code-block:: ruby
     :linenos:
 
-    signature = crypto.sign(data, alice.private_key)
+    # load Alice's Key from protected storage
+    alice_key = virgil.keys.load("[KEY_NAME]", "[KEY_PASSWORD]")
 
-*Stream*
+    message = "Hey Bob, hope you are doing well."
 
-.. code-block:: python
-    :linenos:
-
-    with io.open("[YOUR_FILE_PATH_HERE]", "rb") as input_stream:
-        signature = crypto.sign_stream(input_stream, alice.private_key)
+    # generate signature of message using alice's key pair
+    signature = alice_key.sign(message)
 
 Verifying a Signature
-~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+The signature can now be verified by calling the verify method:
 
-You can verify that a signature is authentic. You will verify the signature of the ``SHA-384`` fingerprint using the public key. Options for verification:
-
-    - stream;
-    - byte array.
-
-*Byte Array*
-
-.. code-block:: python
+.. code-block:: ruby
     :linenos:
 
-    is_valid = crypto.verify(data, signature, alice.public_key)
-     
-*Stream*
-     
-.. code-block:: python
-    :linenos:    
+    # search for Alice's Card
+    alice_cards = virgil.cards.find("alice")
 
-    with io.open("[YOUR_FILE_PATH_HERE]", "rb") as input_stream:
-        is_valid = crypto.verify_stream(input_stream, signature, alice.public_key)
+    alice_card = alice_cards.find{|v| v.device == "iPhone 7"}
 
-Authenticated Encryption
--------------------------
-
-Authenticated encryption provides both data confidentiality and data integrity assurances that the information is protected.
-
-.. code-block:: python
-    :linenos:  
-
-    crypto = VirgilCrypto()
-
-    alice = crypto.generate_keys()
-    bob = crypto.generate_keys()
-
-    # The data to be signed with alice's Private key
-    data = crypto.strtobytes("Hello Bob, How are you?")
-
-Sign then Encrypt
-~~~~~~~~~~~~~~~~~~~~~~
-
-.. code-block:: python
-    :linenos: 
-
-    cipher_data = crypto.sign_then_encrypt(
-    data,
-    alice.private_key,
-    bob.public_key
-    )
-
-Decrypt then Verify
-~~~~~~~~~~~~~~~~~~~~~~
-
-.. code-block:: python
-    :linenos: 
-
-    decrypted_data = crypto.decrypt_then_verify(
-    cipher_data,
-    bob.private_key,
-    alice.public_key
-    )
-
-Fingerprint Generation
-----------------------
-
-The default Fingerprint algorithm is ``SHA-256``.
-
-.. code-block:: python
-    :linenos:
-
-    crypto = VirgilCrypto()
-    fingerprint = crypto.calculate_fingerprint(content_bytes)
+    unless alice_key.verify(message, signature)
+    
+        raise "Damn Alice it's not you.a" 
+    end
