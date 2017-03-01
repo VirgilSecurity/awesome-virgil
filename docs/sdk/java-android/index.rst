@@ -25,12 +25,12 @@ Start with one of the sections:
     .. container:: features content-card
 
         :doc:`Features <features>`
-        `A list of features for work with Cards Service and Crypto Library.`
+        `A list of guides for work with Virgil Services and Cryptography.`
 
 
     .. container:: guide content-card
 
-        :doc:`Programming guide <programming-guide>`
+        :doc:`Programming Guide <programming-guide>`
         `All methods description with code samples.`
 
 
@@ -42,5 +42,6 @@ Start with one of the sections:
 
     .. container:: source content-card
 
-        `Source code <https://github.com/VirgilSecurity/virgil-sdk-java-android>`__
+        `Source Code <https://github.com/VirgilSecurity/virgil-sdk-java-android>`__
         `Full source code on Github.`
+

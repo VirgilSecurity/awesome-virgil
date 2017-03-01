@@ -1,4 +1,4 @@
-Getting started
+Getting Started
 ===============
 
 The goal of Virgil Java/Android SDK Documentation is to give a developer the knowledge and understanding required to implement security into his application using Virgil Security system.
@@ -35,16 +35,16 @@ Use this packages for Java projects.
 ::
 
     <dependencies>
-      <dependency>
-        <groupId>com.virgilsecurity.sdk</groupId>
-        <artifactId>crypto</artifactId>
-        <version>4.1.0</version>
-      </dependency>
-      <dependency>
-        <groupId>com.virgilsecurity.sdk</groupId>
-        <artifactId>client</artifactId>
-        <version>4.1.0</version>
-      </dependency>
+        <dependency>
+            <groupId>com.virgilsecurity.sdk</groupId>
+            <artifactId>crypto</artifactId>
+            <version>4.3.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.virgilsecurity.sdk</groupId>
+            <artifactId>sdk</artifactId>
+            <version>4.3.0</version>
+        </dependency>
     </dependencies>
 
 Gradle
@@ -54,59 +54,61 @@ Use this packages for Android projects.
 
 ::
 
-    compile 'com.virgilsecurity.sdk:android:4.1.0@aar'
+    compile 'com.virgilsecurity.sdk:crypto-android:4.3.0@aar'
+    compile 'com.virgilsecurity.sdk:sdk-android:4.3.0@aar'
     compile 'com.google.code.gson:gson:2.7'
-    compile 'org.apache.httpcomponents:httpclient-android:4.3.5.1'
 
 User and App Credentials
 ------------------------
 
-When you register an application on Virgil developer's `dashboard <https://developer.virgilsecurity.com/dashboard>`_, we provide you with an ``appID``, ``appKey`` and ``accessToken``.
+To start using Virgil Services you first have to create an account at `Virgil 
+Developer Portal <https://developer.virgilsecurity.com/account/signup>`__.
 
--  ``appID`` uniquely identifies your application in our services, it is also used to identify the Public key generated in a pair with ``appKey``. Example:
-   ``af6799a2f26376731abb9abf32b5f2ac0933013f42628498adb6b12702df1a87``
+After you create an account, or if you already have an account, sign in and 
+create a new application. Make sure you save the *appKey* that is 
+generated for your application at this point as you will need it later. 
+After your application is ready, create a *token* that your app will 
+use to make authenticated requests to Virgil Services. One more thing that 
+you're going to need is your application's *appID* which is an identifier 
+of your application's Virgil Card.
 
--  ``appKey`` is a Private key that is used to perform creation and revocation of **Virgil Cards** (Public key) in Virgil services. Also the ``appKey`` can be used for cryptographic operations to take part in application logic. The ``appKey`` is generated at the time of application creation and must be saved in secure place.
+Initializing
+------------------------
 
--  ``accessToken`` is a unique string value that provides an authenticated secure access to the Virgil services and is passed with each API call. The *accessToken* also allows the API to associate your app’s requests with your Virgil developer’s account.
+To initialize the SDK Api, you need the *token* that you created for 
+your application on [Virgil Developer Portal](https://developer.virgilsecurity.com/)
 
-Connecting to Virgil
---------------------
-
-Before you can make use of any Virgil services features in your app, you must initialize ``VirgilClient`` class. 
-
-You use the ``VirgilClient`` object to get access to create, revoke and search for **Virgil Cards** (Public keys).
-
-Initializing an API Client
-~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-To create an instance of ``VirgilClient`` class, just call its constructor
-with your application's **accessToken** which you generated on developer's
-dashboard.
+This inializes a VirgilApi class without application *token* (works only with global Virgil Cards)
 
 .. code-block:: java
-    :linenos:
 
-    VirgilClient client = new VirgilClient("[YOUR_ACCESS_TOKEN_HERE]");
+    VirgilApi virgil = new VirgilApiImpl();
 
-you can also customize initialization using your own context
+.. code-block:: java 
 
-.. code-block:: java
-    :linenos:
+    VirgilApi virgil = new VirgilApiImpl("[YOUR_ACCESS_TOKEN_HERE]");
 
-    VirgilClientContext ctx = new VirgilClientContext("[YOUR_ACCESS_TOKEN_HERE]");
-    ctx.setCardsServiceAddress("https://cards.virgilsecurity.com");
-    ctx.setReadOnlyCardsServiceAddress("https://cards-ro.virgilsecurity.com");
-    ctx.setIdentityServiceAddress("https://identity.virgilsecurity.com");
+Initialize high-level SDK using context class
 
-    VirgilClient client = new VirgilClient(ctx);
+.. code-block:: java 
 
-Initializing Crypto
-~~~~~~~~~~~~~~~~~~~
+    AppCredentials credentials = new AppCredentials();
+    credentials.setAppId("[YOUR_APP_ID_HERE]");
+    credentials.setAppKey(VirgilBuffer.from("[YOUR_APP_KEY_HERE]"));
+    credentials.setAppKeyPassword("[YOUR_APP_KEY_PASSWORD_HERE]");
 
-``VirgilCrypto`` class provides cryptographic operations in applications, such as hashing, signature generation and verification, and encryption and decryption.
+    VirgilApiContext context = new VirgilApiContext("[YOUR_ACCESS_TOKEN_HERE]");
+    context.setCredentials(credentials);
 
-.. code-block:: java
-    :linenos:
+    VirgilApi virgil = new VirgilApiImpl(context);
 
-    Crypto crypto = new VirgilCrypto();
+    context.setCrypto(new VirgilCrypto());
+    context.setDeviceManager(new DefaultDeviceManager()):
+    context.setKeyStorage(new VirgilKeyStorage());
+
+    var virgil = new VirgilApi(context);
+
+At this point you can start creating and publishing *Virgil Cards* for your
+users.
+
+
