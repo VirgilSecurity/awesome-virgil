@@ -2,29 +2,32 @@
 Features
 ####################
 
-Virgil Cards:
+Virgil Cards
 --------------------------
 
--  `Creating a Virgil Card <programming-guide.html#creating-a-virgil-card>`__
--  `Creating a Virgil Global Card <programming-guide.html#creating-a-virgil-global-card>`__
--  `Get a Virgil Card <programming-guide.html#get-a-virgil-card>`__
+-  `Registering Virgil Cards <programming-guide.html#registering-virgil-cards>`__
+-  `Registering Global Virgil Cards <programming-guide.html#registering-global-virgil-cards>`__
+-  `Export & Import Virgil Cards <programming-guide.html#export-import-virgil-cards>`__
 -  `Search for Virgil Cards <programming-guide.html#search-for-virgil-cards>`__
--  `Validating a Virgil Card <programming-guide.html#validating-a-virgil-card>`__
--  `Revoking a Virgil Card <programming-guide.html#revoking-a-virgil-card>`__
+-  `Revoking Virgil Cards <programming-guide.html#revoking-virgil-cards>`__
+-  `Revoking Global Virgil Cards <programming-guide.html#revoking-global-virgil-cards>`__
 
-Encryption:
+Virgil Keys
 ----------------------------
 
--  `Generate Keys <programming-guide.html#operations-with-crypto-keys>`__
--  `Import and Export Keys <programming-guide.html#import-and-export-keys>`__
--  `Encrypt Data <programming-guide.html#encrypt-data>`__
--  `Decrypt Data <programming-guide.html#decrypt-data>`__
--  `Authenticated Encryption <programming-guide.html#authenticated-encryption>`__
--  `Sign then Encrypt <programming-guide.html#sign-then-encrypt>`__
--  `Decrypt then Verify <programming-guide.html#decrypt-then-verify>`__
--  `Fingerprint Generation <dot-net-csharp-programming-guide.html#fingerprint-generation>`__
+-  `Generating Virgil Keys <programming-guide.html#generating-virgil-keys>`__
+-  `Export & Import Virgil Keys <programming-guide.html#export-import-virgil-keys>`__
+-  `Storing Virgil Keys <programming-guide.html#storing-virgil-keys>`__
+-  `Destroying Virgil Keys <programming-guide.html#destroying-virgil-keys>`__
+
+Encryption
+----------------------------
+-  `Encrypting Data <programming-guide.html#encrypting-data>`__
+-  `Decrypting Data <programming-guide.html#decrypting-data>`__
+-  `Encrypting & Signing Data <programming-guide.html#encrypting-signing-data>`__
+-  `Decrypting & Verifying Data <programming-guide.html#decrypting-verifying-data>`__
 
 Digital Signatures
 -----------------------------
--  `Generating a Signature <programming-guide.html#generating-and-verifying-signatures>`__
+-  `Generating a Signature <programming-guide.html#generating-a-signature>`__
 -  `Verifying a Signature <programming-guide.html#verifying-a-signature>`__
