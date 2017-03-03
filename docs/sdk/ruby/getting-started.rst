@@ -1,7 +1,7 @@
 Getting Started
 ===============
 
-The goal of Virgil .NET/C# SDK Documentation is to give a developer the knowledge and understanding required to implement security into his application using Virgil Security system.
+The goal of Virgil Ruby SDK Documentation is to give a developer the knowledge and understanding required to implement security into his application using Virgil Security system.
 
 Virgil SDK is a communication gateway between your application and :doc:`../../../services/services`. 
 
@@ -23,16 +23,16 @@ Prerequisites
 Installing the package
 ~~~~~~~~~~~~~~~~~~~~~~
 
-To install package use the command below:
+To install the gem use the command below:
 
-.. code-block::
+.. code-block:: ruby
 
     gem install virgil-sdk
 
 
 or add the following line to your Gemfile:
 
-.. code-block::
+.. code-block:: ruby
 
     gem 'virgil-sdk', '~> 4.2.0'
 
@@ -72,7 +72,7 @@ This inializes a VirgilApi class without application *token* (works only with gl
 
 .. code-block:: ruby
 
-    var virgil = new VirgilApi()
+    virgil = VirgilApi.new
 
 .. code-block:: ruby 
 
