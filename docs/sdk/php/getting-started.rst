@@ -66,43 +66,60 @@ Initializing
 To initialize the SDK Client, you need the *token* that you created for
 your application on [Virgil Developer Portal](https://developer.virgilsecurity.com/)
 
-To create an instance of *VirgilClient* class, just call its static method with your application's *accessToken* which you generated on developer's dashboard.
+This inializes a VirgilApi class without application *token* (works only with global Virgil Cards)
 
 .. code-block:: php
     :linenos:
 
-        use Virgil\Sdk\Client\VirgilClient;
+        use Virgil\Sdk\Api\VirgilApi;
 
-        $client = VirgilClient::create("[ACCESS_TOKEN_HERE]");
+        $virgilApi = new VirgilApi();
 
-note that application's *AccessToken* is not necessary parameter if you are going to work only with global cards:
 
 .. code-block:: php
     :linenos:
 
-        use Virgil\Sdk\Client\VirgilClient;
+        use Virgil\Sdk\Api\VirgilApi;
 
-        $client = VirgilClient::create();
+        $virgilApi = VirgilApi::create('[YOUR_ACCESS_TOKEN_HERE]')
 
-you can also customize initialization using your own parameters
+Initialize high-level SDK using context class
 
 .. code-block:: php
     :linenos:
 
-        use Virgil\Sdk\Client\VirgilClient;
-        use Virgil\Sdk\Client\VirgilClientParams;
+        use Virgil\Sdk\Buffer;
 
-        $parameters = new VirgilClientParams("[ACCESS_TOKEN_HERE]");
+        use Virgil\Sdk\Api\AppCredentials;
+        use Virgil\Sdk\Api\VirgilApi;
+        use Virgil\Sdk\Api\VirgilApiContext;
 
-        $parameters->setCardsServiceAddress("https://cards.virgilsecurity.com");
-        $parameters->setReadCardsServiceAddress("https://cards-ro.virgilsecurity.com");
-        $parameters->setIdentityServiceAddress("https://identity.virgilsecurity.com");
-        $parameters->setRegistrationAuthorityService("https://ra.virgilsecurity.com");
+        use Virgil\Sdk\Client\Validator\CardVerifier;
 
-        $client = new VirgilClient($parameters);
+        use Virgil\Sdk\Cryptography\VirgilCrypto;
 
+        use Virgil\Sdk\Cryptography\Constants\KeyPairTypes;
 
-At this point you can start creating and publishing *Virgil Cards* for your
-users.
+        $virgilApiContext = VirgilApiContext::create(
+            [
+                VirgilApiContext::Credentials         => new AppCredentials(        //sets a credentials to work with application virgil cards
+                    '[YOUR_APP_ID_HERE]', Buffer::fromBase64('[YOUR_APP_PRIVATE_KEY_HERE]'), '[YOUR_APP_PRIVATE_KEY_PASS_HERE]'
+                ),
+                VirgilApiContext::UseBuiltInVerifiers => false,                      //disable built in verifiers. By default it's enabled.
+                VirgilApiContext::KeyPairType         => KeyPairTypes::RSA1024,      //sets custom key pair type for key generation
+                VirgilApiContext::KeysPath            => '[PATH_TO_KEYS_STORE]',     //sets custom virgil keystore path
+                VirgilApiContext::AccessToken         => '[YOUR_ACCESS_TOKEN_HERE]', //sets application access token
+                VirgilApiContext::CardVerifiers       => [                           //sets a list of additional card verifiers
+                    new CardVerifier('[YOUR_CARD_ID_HERE]', Buffer::fromBase64('[YOUR_PUBLIC_KEY_HERE]')),
+                ],
+            ]
+        );
+
+        $virgilApiContext->setCrypto(new VirgilCrypto());
+        $virgilApiContext->setKeyStorage(new MemoryKeyStorage());
+
+        $virgilApi = new VirgilApi($virgilApiContext);
+
+At this point you can start creating and publishing *Virgil Cards* for your users.
 
 

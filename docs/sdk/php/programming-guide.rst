@@ -36,46 +36,61 @@ Initializing
 To initialize the SDK Client, you need the *token* that you created for
 your application on [Virgil Developer Portal](https://developer.virgilsecurity.com/)
 
-To create an instance of *VirgilClient* class, just call its static method with your application's *accessToken* which you generated on developer's dashboard.
+This inializes a VirgilApi class without application *token* (works only with global Virgil Cards)
 
 .. code-block:: php
     :linenos:
 
-        use Virgil\Sdk\Client\VirgilClient;
+        use Virgil\Sdk\Api\VirgilApi;
 
+        $virgilApi = new VirgilApi();
 
-        $client = VirgilClient::create("[ACCESS_TOKEN_HERE]");
-
-note that application's *AccessToken* is not necessary parameter if you are going to work only with global cards:
 
 .. code-block:: php
     :linenos:
 
-        use Virgil\Sdk\Client\VirgilClient;
+        use Virgil\Sdk\Api\VirgilApi;
 
+        $virgilApi = VirgilApi::create('[YOUR_ACCESS_TOKEN_HERE]');
 
-        $client = VirgilClient::create();
-
-you can also customize initialization using your own parameters
+    Initialize high-level SDK using context class
 
 .. code-block:: php
     :linenos:
 
-        use Virgil\Sdk\Client\VirgilClient;
-        use Virgil\Sdk\Client\VirgilClientParams;
+        use Virgil\Sdk\Buffer;
 
+        use Virgil\Sdk\Api\AppCredentials;
+        use Virgil\Sdk\Api\VirgilApi;
+        use Virgil\Sdk\Api\VirgilApiContext;
 
-        $parameters = new VirgilClientParams("[ACCESS_TOKEN_HERE]");
+        use Virgil\Sdk\Client\Validator\CardVerifier;
 
-        $parameters->setCardsServiceAddress("https://cards.virgilsecurity.com");
-        $parameters->setReadCardsServiceAddress("https://cards-ro.virgilsecurity.com");
-        $parameters->setIdentityServiceAddress("https://identity.virgilsecurity.com");
-        $parameters->setRegistrationAuthorityService("https://ra.virgilsecurity.com");
+        use Virgil\Sdk\Cryptography\VirgilCrypto;
 
-        $client = new VirgilClient($parameters);
+        use Virgil\Sdk\Cryptography\Constants\KeyPairTypes;
 
-At this point you can start creating and publishing *Virgil Cards* for your
-users.
+        $virgilApiContext = VirgilApiContext::create(
+            [
+                VirgilApiContext::Credentials         => new AppCredentials(        //sets a credentials to work with application virgil cards
+                    '[YOUR_APP_ID_HERE]', Buffer::fromBase64('[YOUR_APP_PRIVATE_KEY_HERE]'), '[YOUR_APP_PRIVATE_KEY_PASS_HERE]'
+                ),
+                VirgilApiContext::UseBuiltInVerifiers => false,                      //disable built in verifiers. By default it's enabled.
+                VirgilApiContext::KeyPairType         => KeyPairTypes::RSA1024,      //sets custom key pair type for key generation
+                VirgilApiContext::KeysPath            => '[PATH_TO_KEYS_STORE]',     //sets custom virgil keystore path
+                VirgilApiContext::AccessToken         => '[YOUR_ACCESS_TOKEN_HERE]', //sets application access token
+                VirgilApiContext::CardVerifiers       => [                           //sets a list of additional card verifiers
+                    new CardVerifier('[YOUR_CARD_ID_HERE]', Buffer::fromBase64('[YOUR_PUBLIC_KEY_HERE]')),
+                ],
+            ]
+        );
+
+        $virgilApiContext->setCrypto(new VirgilCrypto());
+        $virgilApiContext->setKeyStorage(new MemoryKeyStorage());
+
+        $virgilApi = new VirgilApi($virgilApiContext);
+
+At this point you can start creating and publishing *Virgil Cards* for your users.
 
 > *Virgil Card* is the main entity of Virgil Services, it includes the user's
 > identity and their public key.
@@ -88,190 +103,165 @@ The second way is to create the Virgil Card in global scope. The cards created i
 
 Every user is represented with a **Virgil Card** so creating them for users is a required step. A **Virgil Card** is the central entity of the Virgil Services, it includes information about the user for further actions in Virgil Security system. The **Virgil Card** identifies the user/device by one of his types. You can find more information about :term:`Virgil Cards <Virgil Card>`.
 
-Initializing Crypto
-~~~~~~~~~~~~~~~~~~~
-
-The *VirgilCrypto* class provides cryptographic operations in applications, such as hashing, signature generation and verification, and encryption and decryption.
-
-
-.. code-block:: php
-    :linenos:
-
-        use Virgil\Sdk\Cryptography\VirgilCrypto;
-
-
-        $crypto = new VirgilCrypto();
-
-Initializing Request Signer
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
-The *RequestSigner* class provides methods for signing card requests. There a two ways how card can be signed:
-just sign by card owner signature and by any authority signatures like card service signature.
-
-.. code-block:: php
-    :linenos:
-
-        use Virgil\Sdk\Client\Requests\RequestSigner;
-
-
-        $requestSigner = new RequestSigner($crypto);
-
 Registering Virgil Cards
 ------------------------
-Collect an *appID* and *appKey* for your app. These parameters are required to create a Virgil Card in your app scope.
 Generate user's Key and create a Virgil Card
 
 .. code-block:: php
     :linenos:
 
-        use Virgil\Sdk\Buffer;
+        use Virgil\Sdk\Api\VirgilApi;
 
+        // initialize Virgil SDK
+        $virgilApi = VirgilApi::create('[YOUR_ACCESS_TOKEN_HERE]');
 
-        //collect application related parameters
-        $appID = "[APP_ID_HERE]";
-        $appKeyPassword = "[APP_KEY_PASSWORD_HERE]";
-        $appKeyData = new Buffer(file_get_contents("[APP_KEY_PATH_HERE]"));
-
-        // import application Key
-        $appKey = $crypto->importPrivateKey($appKeyData, $appKeyPassword);
-
-        // generate alice's Key
-        $aliceKeys = $crypto->generateKeys();
+        // generate and save alice's Key
+        $aliceKey = $virgilApi->Keys->generate()->save('[KEY_NAME]', '[KEY_PASSWORD]');
 
         // create alice's Card using her Key
-        var aliceCard = virgil.Cards.Create("alice", aliceKey);
+        $aliceCard = $virgilApi->Cards->create('alice', 'alice_member', $aliceKey);
 
-Prepare request
-
-.. code-block:: php
-    :linenos:
-
-        use Virgil\Sdk\Client\Requests\PublishCardRequest;
-
-
-        $exportedPublicKey = $crypto->exportPublicKey($aliceKeys->getPublicKey());
-
-        $createCardRequest = new PublishCardRequest("alice", "username", $exportedPublicKey);
-
-then, use *RequestSigner* class to sign request with owner and app keys.
+Transmit alice's Card to the server side where it would be signed, validated and published on the Virgil Services.
 
 .. code-block:: php
-    :linenos:
 
-        $requestSigner->selfSign($createCardRequest, $aliceKeys->getPrivateKey())
-                      ->authoritySign($createCardRequest, $appID, $appKey);
+    // export alice's Card to string
+    $exportedAliceCard = $aliceCard->export();
 
 Publish a Virgil Card on Server-Side
 
 .. code-block:: php
     :linenos:
 
-        $aliceCard = $client->createCard($createCardRequest);
+        $virgilApiContext = VirgilApiContext::create(
+            [
+                VirgilApiContext::AccessToken => '[YOUR_ACCESS_TOKEN_HERE]', //sets application access token
+                VirgilApiContext::Credentials => new AppCredentials(         //sets a credentials to work with application virgil cards
+                    '[YOUR_APP_ID_HERE]', Buffer::fromBase64('[YOUR_APP_PRIVATE_KEY_HERE]'), '[YOUR_APP_PRIVATE_KEY_PASS_HERE]'
+                ),
+            ]
+        );
+
+        $virgilApi = new VirgilApi($virgilApiContext);
+
+        // import Alice's Card from its string representation.
+        $aliceCard = $virgilApi->Cards->import($exportedAliceCard);
+
+        // publish alice's Card on Virgil Services
+        $virgilApi->Cards->publish($aliceCard);
 
 Revoking Virgil Cards
 ---------------------
 
-Prepare revoke request and to perform application card revocation
-
 .. code-block:: php
     :linenos:
 
-        use Virgil\Sdk\Buffer;
+        // initialize Virgil SDK high-level instance.
+        $virgilApiContext = VirgilApiContext::create(
+            [
+                VirgilApiContext::AccessToken => '[YOUR_ACCESS_TOKEN_HERE]', //sets application access token
+                VirgilApiContext::Credentials => new AppCredentials(         //sets a credentials to work with application virgil cards
+                    '[YOUR_APP_ID_HERE]', Buffer::fromBase64('[YOUR_APP_PRIVATE_KEY_HERE]'), '[YOUR_APP_PRIVATE_KEY_PASS_HERE]'
+                ),
+            ]
+        );
 
-        use Virgil\Sdk\Client\Requests\RevokeCardRequest;
+        $virgilApi = new VirgilApi($virgilApiContext);
 
-        use Virgil\Sdk\Client\Requests\Constants\RevocationReasons;
+        // get Alice's Card by ID
+        $aliceCard = $virgilApi->Cards->get('[ALICE_CARD_ID]');
 
-
-        //collect application related parameters
-        $appID = "[APP_ID_HERE]";
-        $appKeyPassword = "[APP_KEY_PASSWORD_HERE]";
-        $appKeyData = new Buffer(file_get_contents("[APP_KEY_PATH_HERE]"));
-
-        // import application Key
-        $appKey = $crypto->importPrivateKey($appKeyData, $appKeyPassword);
-
-        $cardId = "[CARD_ID_HERE]";
-
-        $revokeRequest = new RevokeCardRequest($cardId, RevocationReasons::TYPE_UNSPECIFIED);
-
-        $requestSigner->authoritySign($revokeRequest, $appID, $appKey);
-
-        $client->revokeCard($revokeRequest);
+        // revoke Alice's Card from Virgil Services.
+        $virgilApi->Cards->revoke($aliceCard);
 
 Registering Global Virgil Cards
 -------------------------------
-Prepare request
 
 .. code-block:: php
     :linenos:
 
-        use Virgil\Sdk\Client\Requests\Constants\IdentityTypes;
+        // initialize Virgil's high-level instance.
+        $virgilApi = VirgilApi::create('[YOUR_ACCESS_TOKEN_HERE]');
 
-        use Virgil\Sdk\Client\VirgilServices\Model\ValidationModel;
+        // generate and save Alice's Key.
+        $aliceKey = $virgilApi->Keys->generate()
+                                    ->save('[KEY_NAME]', '[KEY_PASSWORD]')
+        ;
 
-        use Virgil\Sdk\Client\Requests\PublishGlobalCardRequest;
+        // create Alice's Card using her newly generated Key.
+        $aliceCard = $virgilApi->Cards->createGlobal('alice@virgilsecurity.com', IdentityTypes::TYPE_EMAIL, $aliceKey);
 
+        // initiate an identity verification process.
+        $attempt = $aliceCard->checkIdentity();
 
-        $exportedPublicKey = $crypto->exportPublicKey($aliceKeys->getPublicKey());
+        // confirm a Card's identity using confirmation code retrived on the email.
+        $token = $attempt->confirm(new EmailConfirmation('[CONFIRMATION_CODE]'));
 
-        $createGlobalCardRequest = new PublishGlobalCardRequest("alice@gmail.com", IdentityTypes::TYPE_EMAIL, $exportedPublicKey, new ValidationModel("[VALIDATION_TOKEN_HERE]"));
-
-then, use *RequestSigner* class to sign request with owner signature.
-
-.. code-block:: php
-    :linenos:
-
-        $requestSigner->selfSign($createGlobalCardRequest, $aliceKeys->getPrivateKey());
-
-Publish a Global Virgil Card
-
-.. code-block:: php
-    :linenos:
-
-        $aliceCard = $client->publishGlobalCard($createGlobalCardRequest);
+        // publish a Card on the Virgil Security services.
+        $virgilApi->Cards->publish($aliceCard);
 
 
 Revoking Global Virgil Cards
 ----------------------------
-Prepare revoke request and to perform global card revocation
 
 .. code-block:: php
     :linenos:
 
-        use Virgil\Sdk\Client\Requests\Constants\RevocationReasons;
+        // initialize Virgil SDK high-level
+        $virgilApi = VirgilApi::create('[YOUR_ACCESS_TOKEN_HERE]');
 
-        use Virgil\Sdk\Client\Requests\RevokeGlobalCardRequest;
+        // load Alice's Key from secure storage provided by default.
+        $aliceKey = $virgilApi->Keys->load('[KEY_NAME]', '[KEY_PASSWORD]');
 
-        use Virgil\Sdk\Client\VirgilServices\Model\ValidationModel;
+        // load Alice's Card from Virgil Security services.
+        $aliceCard = $virgilApi->Cards->get('[ALICE_CARD_ID]');
 
+        // initiate Card's identity verification process.
+        $attempt = $aliceCard->checkIdentity();
 
-        $cardId = "[CARD_ID_HERE]";
+        // confirm Card's identity using confirmation code and grub validation token.
+        $token = $attempt->confirm(new EmailConfirmation('[CONFIRMATION_CODE]'));
 
-        $globalRevokeRequest = new RevokeGlobalCardRequest($cardId, RevocationReasons::TYPE_UNSPECIFIED, new ValidationModel("[VALIDATION_TOKEN_HERE]"));
+        // revoke Virgil Card from Virgil Security services.
+        $virgilApi->Cards->revokeGlobal($aliceCard, $aliceKey, $token);
 
-        $requestSigner->authoritySign($globalRevokeRequest, $cardId, $privateKeyReference);
+Export & Import Virgil Cards
+----------------------------
 
-        $client->revokeGlobalCard($globalRevokeRequest);
+.. code-block:: php
+    :linenos:
+
+        // initialize Virgil's high-level instance.
+        $virgilApi = VirgilApi::create('[YOUR_ACCESS_TOKEN_HERE]');
+
+        $aliceKey = $virgilApi->Keys->generate();
+        $aliceCard = $virgilApi->Cards->create('alice', 'alice_member', $aliceKey);
+
+        // export a Virgil Card to its string representation.
+        $exportedAliceCard = $aliceCard->export();
+
+        // import a Virgil Card to from its string representation
+        $importedCard = $virgilApi->Cards->import($exportedAliceCard);
 
 Search for Virgil Cards
 -----------------------
-Perform the *Virgil Card* search by criteria request:
-- the *IdentityType* is optional and specifies the *IdentityType* of a *Virgil Cards* to be found. Supports any value to describe identity type e.g. *email* etc;
-- the *Scope* optional request parameter specifies the scope to perform search on. Either 'global' or 'application'. The default value is 'application';
-- There is need append one *Identity* at least or set all of them.
 
 .. code-block:: php
     :linenos:
 
-        use Virgil\Sdk\Client\Requests\SearchCardRequest;
+        $virgilApi = VirgilApi::create('[YOUR_ACCESS_TOKEN_HERE]');
 
+        // search for all Alice's Cards.
+        $aliceCards = $virgilApi->Cards->find(['alice']);
 
-        $searchCardRequest = new SearchCardRequest();
+        // search for all Bob's Cards with type 'member'
+        $bobCards = $virgilApi->Cards->find(['bob']);
 
-        $searchCardRequest->appendIdentity("alice")
-                          ->appendIdentity("bob");
+        // search for all Bob's global Cards
+        $bobGlobalCards = $virgilApi->Cards->findGlobal(['bob@virgilsecurity.com'], IdentityTypes::TYPE_EMAIL);
 
-        $cards = $client->searchCards($searchCardRequest);
+        // search for application Card registered on Dev Portal.
+        $appCards = $virgilApi->Cards->findGlobal(['com.username.appname'], IdentityTypes::TYPE_APPLICATION);
 
 Generating Virgil Keys
 ----------------------
@@ -280,12 +270,30 @@ Generate a new Virgil Key recommended by Virgil.
 .. code-block:: php
     :linenos:
 
-        use Virgil\Sdk\Cryptography\VirgilCrypto;
+        // initialize a High Level API class
+        $virgilApi = VirgilApi::create();
 
+        // generate a new private key
+        $aliceKey = $virgilApi->Keys->generate();
 
-        $crypto = new VirgilCrypto();
+Generate a new Virgil Key with specified type.
 
-        $aliceKeys = $crypto->generateKeys();
+.. code-block:: php
+    :linenos:
+
+        // create context with specified key pair type.
+        $virgilApiContext = VirgilApiContext::create(
+            [
+                VirgilApiContext::KeyPairType => KeyPairTypes::EC_BP512R1,
+            ]
+        );
+
+        // initialize a High Level API class with specified context.
+        $virgilApi = new VirgilApi($virgilApiContext);
+
+        // generate alice key with KeyPairTypes::EC_BP512R1 key pair type.
+        $aliceKey = $virgilApi->Keys->generate();
+
 
 Export & Import Virgil Keys
 ---------------------------
@@ -295,79 +303,82 @@ Export the Virgil Key to Base64 encoded string.
 .. code-block:: php
     :linenos:
 
-        use Virgil\Sdk\Cryptography\VirgilCrypto;
+        // initialize a High Level API class
+        $virgilApi = VirgilApi::create();
 
+        // generate a new private key
+        $aliceKey = $virgilApi->Keys->generate();
 
-        $crypto = new VirgilCrypto();
-
-        $aliceKeys = $crypto->generateKeys();
-
-        $exportedBase64EncodedAliceKey = $virgilCrypto->exportPrivateKey($aliceKeys->getPrivateKey(), "[OPTIONAL_KEY_PASSWORD]")
-                                                      ->toBase64();
+        // exports alice key to base64 encoded string presentation.
+        $exportedAliceKey = $aliceKey->export('[OPTIONAL_KEY_PASSWORD]')
+                                     ->toBase64()
+        ;
 
 Import the Virgil Key from Base64 encoded string.
 
 .. code-block:: php
     :linenos:
 
-        use Virgil\Sdk\Buffer;
+        // initialize a High Level API class
+        $virgilApi = VirgilApi::create();
 
-        use Virgil\Sdk\Cryptography\VirgilCrypto;
-
-
-        $crypto = new VirgilCrypto();
-
-        $exportedAliceKey = Buffer::fromBase64($exportedBase64EncodedAliceKey);
-        $aliceKey = $crypto->importPrivateKey($exportedAliceKey, "[OPTIONAL_KEY_PASSWORD]");
-
-Same import\export operations are available for public keys.
+        // import the Virgil Key from Base64 encoded string
+        $aliceKey = $virgilApi->Keys->import(Buffer::fromBase64($exportedAliceKey), '[OPTIONAL_KEY_PASSWORD]');
 
 Encryption
 ----------
-Initialize Crypto API and generate keypairs.
+Initialize Virgil High Level API and generate the Virgil Key.
 
 .. code-block:: php
 
-    use Virgil\Sdk\Cryptography\VirgilCrypto;
-
-
-    $crypto = new VirgilCrypto();
-
-    $aliceKeys = $crypto->generateKeys();
-    $bobKeys = $crypto->generateKeys();
+    $virgilApi = VirgilApi::create('[YOUR_ACCESS_TOKEN_HERE]');
 
 Encrypting Data
 ~~~~~~~~~~~~~~~
-Data encryption using ECIES scheme with AES-GCM. You can encrypt either data string or stream.
-There also can be more than one recipient
-
 .. code-block:: php
     :linenos:
 
-        $plaintext = "Hello Alice!";
+        // search for bob's and alice's Cards
+        $bobAndAliceCards = $virgilApi->Cards->find(['bob', 'alice']);
 
-        $encryptedDataBase64Encoded = $crypto->encrypt($plaintext, [$aliceKeys->getPublicKey()])
-                                             ->toBase64();
+        $message = "Hey Bob and Alice, are you crazy?";
+
+        // encrypt the message for multiple recipients
+        $cipherText = $bobAndAliceCards->encrypt($message)
+                                       ->toBase64()
+        ;
+
 Decrypting Data
 ~~~~~~~~~~~~~~~
 .. code-block:: php
     :linenos:
 
-        use Virgil\Sdk\Buffer;
+        // load Bob's Key from storage.
+        $bobKey = $virgilApi->Keys->load('[KEY_NAME]', '[KEY_PASSWORD]');
 
-        $encryptedData = Buffer::fromBase64($encryptedDataBase64Encoded);
-        $originalMessage = $crypto->decrypt($encryptedData, $aliceKeys->getPrivateKey())
-                                  ->toString();
+        // decrypt message using Bob's Key.
+        $originalMessage = $bobKey->decrypt($cipherText)
+                                  ->toString()
+        ;
 
 Encrypting & Signing Data
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 .. code-block:: php
     :linenos:
 
-        $data = "Hello Bob, How are you?";
+        // load Alice's Key from storage.
+        $aliceKey = $virgilApi->Keys->load('[KEY_NAME]', '[KEY_PASSWORD]');
 
-        $encryptedDataBase64Encoded = $crypto->signThenEncrypt($data, $aliceKeys->getPrivateKey(), [$bobKeys->getPublicKey()])
-                                             ->toBase64();
+        // search for Bob's Cards.
+        $bobCards = $virgilApi->Cards->find(['bob']);
+
+        $message = 'Hey Bob, are you crazy?';
+
+        // sign by Alice's key and then encrypt message for found Bob's Cards.
+        $cipherText = $aliceKey->signThenEncrypt($message, $bobCards)
+                               ->toBase64()
+        ;
+
 
 Decrypting & Verifying Data
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -375,36 +386,48 @@ Decrypting & Verifying Data
 .. code-block:: php
     :linenos:
 
-        use Virgil\Sdk\Buffer;
+        // load Bob's Key from storage.
+        $bobKey = $virgilApi->Keys->load('[KEY_NAME]', '[KEY_PASSWORD]');
 
-        $encryptedData = Buffer::fromBase64($encryptedDataBase64Encoded);
-        $originalMessage = $crypto->decryptThenVerify($encryptedData, $bobKeys->getPrivateKey(), $aliceKeys->getPublicKey())
-                                  ->toString();
+        // search for Alice's Cards
+        $aliceCards = $virgilApi->Cards->find(['alice']);
+
+        /** @var VirgilCardInterface $aliceCard */
+        foreach ($aliceCards as $aliceCard) {
+            if ($aliceCard->getCard()
+                          ->getDevice() == 'iPhone 7'
+            ) {
+                // decrypt cipher message using Bob's Key and verify it using alice's Card
+                $originalMessage = $bobKey->decryptThenVerify($cipherText, $aliceCard)
+                                          ->toString()
+                ;
+            }
+        }
+
 
 Generating and Verifying Signatures
 -----------------------------------
-This section walks you through the steps necessary to use the *VirgilCrypto* to generate a digital signature for data and to verify that a signature is authentic.
+This section walks you through the steps to generate a digital signature for data and to verify that a signature is authentic.
 
 .. code-block:: php
 
-    use Virgil\Sdk\Cryptography\VirgilCrypto;
-
-
-    $crypto = new VirgilCrypto();
-
-    $aliceKeys = $crypto->generateKeys();
+    // initialize Virgil SDK high-level API instance
+    $virgilApi = VirgilApi::create('[YOUR_ACCESS_TOKEN_HERE]');
 
 Generating a Signature
 ~~~~~~~~~~~~~~~~~~~~~~
-To generate the signature, simply call the sign method:
+To generate the signature, simply call sign method:
 
 .. code-block:: php
     :linenos:
 
-        $message = "Hey Bob, hope you are doing well.";
+        // load Alice's Key from storage.
+        $aliceKey = $virgilApi->Keys->load('[KEY_NAME]', '[KEY_PASSWORD]');
 
-        // generate signature of message using Alice's key pair
-        $signature = $crypto->sign($message, $aliceKeys->getPrivateKey());
+        $message = 'Hey Bob, hope you are doing well.';
+
+        // generate signature of message using alice's key
+        $aliceSignature = $aliceKey->sign($message);
 
 Verifying a Signature
 ~~~~~~~~~~~~~~~~~~~~~
@@ -412,12 +435,20 @@ The signature can now be verified by calling the verify method:
 
 .. code-block:: php
     :linenos:
-    
-        // verify if message was signed by Alice.
-        $isValid = $crypto->verify($message, $signature, $aliceKeys->getPublicKey());
 
-        if(!$isValid)
-        {
-            throw new Exception("Damn Alice it's not your message.");
+        // search for Alice's Card
+        $aliceCards = $virgilApi->Cards->find(['alice']);
+
+        /** @var VirgilCardInterface $aliceCard */
+        foreach ($aliceCards as $aliceCard) {
+            if ($aliceCard->getCard()
+                          ->getDevice() == 'iPhone 7'
+            ) {
+                // verifies that given signature belongs to Alice
+                if (!$aliceCard->verify($message, $aliceSignature)) {
+                    throw new Exception("Damn Alice it's not you.");
+                }
+            }
         }
+
 

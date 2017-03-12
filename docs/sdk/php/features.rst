@@ -7,6 +7,7 @@ Virgil Cards
 
 -  `Registering Virgil Cards <programming-guide.html#registering-virgil-cards>`__
 -  `Registering Global Virgil Cards <programming-guide.html#registering-global-virgil-cards>`__
+-  `Export & Import Virgil Cards <programming-guide.html#export-import-virgil-cards>`__
 -  `Search for Virgil Cards <programming-guide.html#search-for-virgil-cards>`__
 -  `Revoking Virgil Cards <programming-guide.html#revoking-virgil-cards>`__
 -  `Revoking Global Virgil Cards <programming-guide.html#revoking-global-virgil-cards>`__
@@ -16,6 +17,8 @@ Virgil Keys
 
 -  `Generating Virgil Keys <programming-guide.html#generating-virgil-keys>`__
 -  `Export & Import Virgil Keys <programming-guide.html#export-import-virgil-keys>`__
+-  `Storing Virgil Keys <programming-guide.html#storing-virgil-keys>`__
+-  `Destroying Virgil Keys <programming-guide.html#destroying-virgil-keys>`__
 
 Encryption
 ----------------------------
