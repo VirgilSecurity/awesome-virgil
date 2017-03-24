@@ -1,6 +1,6 @@
 ![Logo](https://github.com/VirgilSecurity/virgil/blob/master/images/VirgilLogo.png)
 
-### [Glossary](#head6) | [and Developers Docs](#head3) | [Virgil Services](#head7) | [Use cases](#head4) | [Virgil Demos](#head2)
+### [Glossary](#head6) | [Developers Docs](#head3) | [Virgil Services](#head7) | [Use cases](#head4)
 
 
 Virgil is a stack of security libraries (ECIES with Crypto Agility wrapped in Virgil Cryptogram) and all the necessary infrastructure to enable seamless, end-to-end encryption for any application, platform or device. See below for currently available languages and platforms. Get in touch with us to get preview access to our key infrastructure.
