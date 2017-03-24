@@ -1,6 +1,6 @@
 ![Logo](https://github.com/VirgilSecurity/virgil/blob/master/images/VirgilLogo.png)
 
-### [Developers Docs](#head3) | [Virgil Services](#head7) | [Use cases](#head4) | [License](#head5) | [Contacts](#head6)
+### [Developers Docs](#head3) | [Virgil Crypto](#head2) | [Virgil Services](#head7) | [Use cases](#head4) | [License](#head5) | [Contacts](#head6)
 
 
 Virgil is a stack of security libraries (ECIES with Crypto Agility wrapped in Virgil Cryptogram) and all the necessary infrastructure to enable seamless, end-to-end encryption for any application, platform or device. See below for currently available languages and platforms. Get in touch with us to get preview access to our key infrastructure.
@@ -18,6 +18,9 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 - [Python](https://github.com/VirgilSecurity/virgil-sdk-python)
 - [Ruby](https://github.com/VirgilSecurity/virgil-sdk-ruby)
 - [GO](https://github.com/VirgilSecurity/virgil-crypto-go)
+
+# <a name="head2"></a>Virgil Crypto
+- [Virgil Crypto](https://github.com/VirgilSecurity/virgil-crypto)
 
 # <a name="head7"></a>Virgil Services
 - [Virgil Card Service](https://developer.virgilsecurity.com/docs/cs/references/card-service)
