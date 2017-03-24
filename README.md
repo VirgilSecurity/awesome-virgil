@@ -9,11 +9,11 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 ***
 
 # <a name="head6"></a>Glossary
-- [Virgil Glossary](https://github.com/VirgilSecurity/virgil/wiki/Virgil-Glossary)
+- [Virgil Glossary](https://developer.virgilsecurity.com/docs/cs/references)
 
 # <a name="head3"></a>Developers Docs
 
-- [.NET/C#] (https://github.com/VirgilSecurity/virgil-sdk-net)
+- [.NET/C#](https://github.com/VirgilSecurity/virgil-sdk-net)
 
 - [Javascript/Node.js](https://github.com/VirgilSecurity/virgil-sdk-javascript)
 
@@ -30,26 +30,15 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 - [Ruby](https://github.com/VirgilSecurity/virgil-sdk-ruby)
 
 # <a name="head7"></a>Virgil Services
-- [Virgil Card Service] (https://github.com/VirgilSecurity/virgil/wiki/Virgil-Private-Keys-API)
-- [Virgil RA Service](https://github.com/VirgilSecurity/virgil/wiki/Virgil-Keys-API)
-- [Virgil Identity Service](https://github.com/VirgilSecurity/virgil/wiki/Identity-Service)
+- [Virgil Card Service](https://developer.virgilsecurity.com/docs/cs/references/card-service)
+- [Virgil RA Service](https://developer.virgilsecurity.com/docs/cs/references/ra-service)
+- [Virgil Identity Service](https://developer.virgilsecurity.com/docs/cs/references/identity-service)
 
 # <a name="head4"></a>Use cases
-- [Passwordless authentication](https://github.com/VirgilSecurity/virgil/wiki/Passwordless-authentication)
-- [Encrypted communication](https://github.com/VirgilSecurity/virgil/wiki/Verify-data)
-- [Encrypted storage](https://github.com/VirgilSecurity/virgil/wiki/Secure-data-at-transport)
-- [Data integrity](https://github.com/VirgilSecurity/virgil/wiki/Secure-data-at-storage)
-
-# <a name="head2"></a>Virgil Demos
-- [Virgil Mail](https://github.com/VirgilSecurity/virgil-mail)
-- [Virgil Pass](https://github.com/VirgilSecurity/express-virgil-passwordless)
-- [Virgil Sync](https://github.com/VirgilSecurity/virgil-sync)
-
-# <a name="head5"></a>License
-BSD 3-Clause. See [LICENSE](https://github.com/VirgilSecurity/virgil/blob/master/LICENSE) for details.
-
-# <a name="head6"></a>Contacts
-Email: support@virgilsecurity.com
+- [Passwordless authentication](https://developer.virgilsecurity.com/docs/cs/get-started/passwordless-authentication)
+- [Encrypted communication](https://developer.virgilsecurity.com/docs/cs/get-started/encrypted-communication)
+- [Encrypted storage](https://developer.virgilsecurity.com/docs/cs/get-started/encrypted-storage)
+- [Data integrity](https://developer.virgilsecurity.com/docs/cs/get-started/data-integrity)
 
 # <a name="head5"></a>License
 BSD 3-Clause. See [LICENSE](https://github.com/VirgilSecurity/virgil/blob/master/LICENSE) for details.
