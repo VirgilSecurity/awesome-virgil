@@ -1,4 +1,5 @@
-### [https://github.com/VirgilSecurity/virgil/wiki](https://github.com/VirgilSecurity/virgil/wiki)
+# Virgil Security
+All information about Virgil Security see [here](https://github.com/VirgilSecurity/virgil/wiki)
 
 # <a name="head5"></a>License
 BSD 3-Clause. See [LICENSE](https://github.com/VirgilSecurity/virgil/blob/master/LICENSE) for details.
