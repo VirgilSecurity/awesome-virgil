@@ -1,4 +1,4 @@
-![Logo](https://virgilsecurity.com)
+![Logo](https://github.com/VirgilSecurity/virgil/blob/master/images/VirgilLogo.png)
 
 ### [Developers Docs](#head3) | [Virgil Services](#head7) | [Use cases](#head4) | [License](#head5) | [Contacts](#head6)
 
