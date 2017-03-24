@@ -17,6 +17,7 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 - [Java/Android](https://github.com/VirgilSecurity/virgil-foundation-x)
 - [Python](https://github.com/VirgilSecurity/virgil-sdk-python)
 - [Ruby](https://github.com/VirgilSecurity/virgil-sdk-ruby)
+- [GO](https://github.com/VirgilSecurity/virgil-crypto-go)
 
 # <a name="head7"></a>Virgil Services
 - [Virgil Card Service](https://developer.virgilsecurity.com/docs/cs/references/card-service)
