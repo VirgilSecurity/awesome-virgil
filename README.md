@@ -14,19 +14,12 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 # <a name="head3"></a>Developers Docs
 
 - [.NET/C#](https://github.com/VirgilSecurity/virgil-sdk-net)
-
 - [Javascript/Node.js](https://github.com/VirgilSecurity/virgil-sdk-javascript)
-
 - [C/C++](https://github.com/VirgilSecurity/virgil-sdk-cpp)
-
 - [PHP](https://github.com/VirgilSecurity/virgil-sdk-php)
-
 - [Objective-C/Swift](https://github.com/VirgilSecurity/virgil/tree/master/objective-c-swift)
-
 - [Java/Android](https://github.com/VirgilSecurity/virgil-foundation-x)
-
 - [Python](https://github.com/VirgilSecurity/virgil-sdk-python)
-
 - [Ruby](https://github.com/VirgilSecurity/virgil-sdk-ruby)
 
 # <a name="head7"></a>Virgil Services
