@@ -34,7 +34,7 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 - [Data integrity](https://developer.virgilsecurity.com/docs/cs/get-started/data-integrity)
 
 # <a name="head8"></a>Glossary
-- [Virgil Glossry](https://developer.virgilsecurity.com/docs/cs/references/glossary)
+- [Virgil Glossary](https://developer.virgilsecurity.com/docs/cs/references/glossary)
 
 # <a name="head5"></a>License
 BSD 3-Clause. See [LICENSE](https://github.com/VirgilSecurity/virgil/blob/master/LICENSE) for details.
