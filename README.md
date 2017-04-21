@@ -1,6 +1,6 @@
 ![Logo](https://github.com/VirgilSecurity/virgil/blob/master/images/VirgilLogo.png)
 
-### [Developers Docs](#head3) | [Virgil Crypto](#head2) | [Virgil Services](#head7) | [Use cases](#head4) | [License](#head5) | [Contacts](#head6)
+### [Developers Docs](#head3) | [Virgil Crypto](#head2) | [Virgil Services](#head7) | [Use cases](#head4) | [Glossary](#head8) | [License](#head5) | [Contacts](#head6)
 
 
 Virgil is a stack of security libraries and all the necessary infrastructure to enable seamless, end-to-end encryption for any application, platform or device. See below for currently available languages and platforms. Get in touch with us to get preview access to our key infrastructure.
@@ -32,6 +32,9 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 - [Encrypted communication](https://developer.virgilsecurity.com/docs/cs/get-started/encrypted-communication)
 - [Encrypted storage](https://developer.virgilsecurity.com/docs/cs/get-started/encrypted-storage)
 - [Data integrity](https://developer.virgilsecurity.com/docs/cs/get-started/data-integrity)
+
+# <a name="head8"></a>Glossary
+- [Virgil Glossry](https://developer.virgilsecurity.com/docs/cs/references/glossary)
 
 # <a name="head5"></a>License
 BSD 3-Clause. See [LICENSE](https://github.com/VirgilSecurity/virgil/blob/master/LICENSE) for details.
