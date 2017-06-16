@@ -88,15 +88,15 @@ Alice then sends Bob an initial message containing:
 
 ```json
 {
-    id:"230948203482",
-    eph: "woecwecWEcwec==",
-    sign: "23fFF23cswf==",
-    ic_id: "239ff0239809faadd",
-    ltc_id: "234234abc",
-    otc_id: "2394823049820349bcd",
-    salt_s: "4rqervQERVqrevwed==",
-    salt_w: "ddqervQERVqrevwed==",
-    ciphertext_s: "qervQERVqrevqERVqERVSfgvbwf=="
-    ciphertext_w: "qervQERVqrevqERVqERVSfgvbwf=="
+    "id":"230948203482",
+    "eph": "woecwecWEcwec==",
+    "sign": "23fFF23cswf==",
+    "ic_id": "239ff0239809faadd",
+    "ltc_id": "234234abc",
+    "otc_id": "2394823049820349bcd",
+    "salt_s": "4rqervQERVqrevwed==",
+    "salt_w": "ddqervQERVqrevwed==",
+    "ciphertext_s": "qervQERVqrevqERVqERVSfgvbwf=="
+    "ciphertext_w": "qervQERVqrevqERVqERVSfgvbwf=="
 }
 ```
