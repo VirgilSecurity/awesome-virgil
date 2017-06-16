@@ -59,13 +59,21 @@ Weak shared secret **SKw** = 128 bytes of KDF ( DH1 || DH2 || DH3)
 Following statements are common for both session types:
 
 First 64 bytes is Alice's send/Bob's receive secret **SK-A**, second 64 bytes is Alice's receive/Bob's send secret **SK-B**
+
 After calculating **SK-A**, **SK-B**, Alice deletes her ephemeral private key and the DH outputs.
+
 Alice then calculates an "additional  data" byte sequence AD that contains identity card IDs for both parties: 
+
 Strong session additional data= Card IDs of (**IC-A** || **IC-B** || **LTC-B**  || **OTC-B** || "Virgil")
+
 Weak session additional data = Card IDs of (**IC-A** || **IC-B** || **LTC-B** ||"Virgil")
+
 Alice may optionally append additional information to AD, such as Alice and Bob's usernames, certificates, or other identifying information (app decides).
+
 To avoid situations when Bob does not have OTC key, either weak or both sessions are calculated during initial phase.
+
 Alice must store both strong & weak sessions until Bob replies with one of them meaning he chose one.
+
 Alice must encrypt messages with both strong & weak sessions until she receives a response from Bob.
 
 Alice then sends Bob an initial message containing:
