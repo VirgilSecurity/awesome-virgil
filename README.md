@@ -32,6 +32,7 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 - [Encrypted communication](https://developer.virgilsecurity.com/docs/cs/get-started/encrypted-communication)
 - [Encrypted storage](https://developer.virgilsecurity.com/docs/cs/get-started/encrypted-storage)
 - [Data integrity](https://developer.virgilsecurity.com/docs/cs/get-started/data-integrity)
+- [Perfect Forward Secrecy](/PFS.md)
 
 # <a name="head8"></a>Glossary
 - [Virgil Glossary](https://developer.virgilsecurity.com/docs/cs/references/glossary)
