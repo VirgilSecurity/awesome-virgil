@@ -86,6 +86,7 @@ Alice then sends Bob an initial message containing:
 - Ciphertext, encrypted with strong session symmetric key
 - Ciphertext, encrypted with weak session symmetric key
 
+Sample message structure
 ```js
 {
     "id":"230948203482",
