@@ -14,9 +14,9 @@ To provide PFS, we need to be able to store ephemeral public keys (cards) on ser
 
 ### Suggested primitives:
 
-**KDF** - HKDF
-**ENCRYPT/DECRYPT** - AES-GCM or Chaha20-poly1305
-**HASH** - SHA256/SHA512//Blake2b
+- **KDF** - HKDF
+- **ENCRYPT/DECRYPT** - AES-GCM or Chaha20-poly1305
+- **HASH** - SHA256/SHA512//Blake2b
 
 ### Bob side (receiver)
 Before Bob can use PFS he must do the following:
