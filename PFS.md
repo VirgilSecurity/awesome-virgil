@@ -50,4 +50,30 @@ Alice calculates the following DHs:
 3. DH3 = DH(**EK-A**, **LTC-B**)
 4. DH4 = DH(**EK-A**, **OTC-B**)
 
+### Strong and Weak Sessions
 
+Strong session is formed when DH4 is present.
+Strong shared secret **SKs** = 128 bytes of KDF ( DH1 || DH2 || DH3 || DH4) 
+Weak shared secret **SKw** = 128 bytes of KDF ( DH1 || DH2 || DH3)
+
+Following statements are common for both session types:
+
+First 64 bytes is Alice's send/Bob's receive secret **SK-A**, second 64 bytes is Alice's receive/Bob's send secret **SK-B**
+After calculating **SK-A**, **SK-B**, Alice deletes her ephemeral private key and the DH outputs.
+Alice then calculates an "additional  data" byte sequence AD that contains identity card IDs for both parties: 
+Strong session additional data= Card IDs of (**IC-A** || **IC-B** || **LTC-B**  || **OTC-B** || "Virgil")
+Weak session additional data = Card IDs of (**IC-A** || **IC-B** || **LTC-B** ||"Virgil")
+Alice may optionally append additional information to AD, such as Alice and Bob's usernames, certificates, or other identifying information (app decides).
+To avoid situations when Bob does not have OTC key, either weak or both sessions are calculated during initial phase.
+Alice must store both strong & weak sessions until Bob replies with one of them meaning he chose one.
+Alice must encrypt messages with both strong & weak sessions until she receives a response from Bob.
+
+Alice then sends Bob an initial message containing:
+- Alice's identity CardID
+- Alice's ephemeral public key **EK-A**
+- The signature of **EK-A**
+- Card IDs of **IC-B**, **LTC-B** and **OTC-B**  (if present)
+- 16 bytes of random salt for **strong** session
+- 16 bytes of random salt for **weak** session
+- Ciphertext, encrypted with strong session symmetric key
+- Ciphertext, encrypted with weak session symmetric key
