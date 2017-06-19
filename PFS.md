@@ -10,14 +10,6 @@ In PFS you use Diffie-Hellman's algorithms, where the master key is not used. In
 
 
 
-
-### Functions needed:
-
-- KDF - generates key material based on shared secret and optional values.
-- ENCRYPT - encrypts plaintext using the cipher key and and nonce which must be unique for the key. Optional additional data can be supplied
-- DECRYPT - decrypts ciphertext using a cipher key, a nonce and associated data. Returns the plaintext, unless authentication fails, in which case an error is signaled to the caller.
-
-
 ### Bob side
 Before Bob can use PFS he must do the following:
 
