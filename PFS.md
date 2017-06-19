@@ -13,20 +13,25 @@ In PFS you use Diffie-Hellman's algorithms, where the master key is not used. In
 
 ### Functions needed:
 
-- KDF(SK, salt, info) - generates key material based on shared secret **SK** and optional **salt** and **info** values.
-- ENCRYPT(k, n, ad, plaintext): Encrypts plaintext using the cipher key k and and nonce n which must be unique for the key k. Optional additional data **ad** can be supplied
-- DECRYPT(k, n, ad, ciphertext): Decrypts ciphertext using a cipher key k, a nonce n, and associated data **ad**. Returns the **plaintext**, unless authentication fails, in which case an error is signaled to the caller.
+- KDF - generates key material based on shared secret and optional values.
+- ENCRYPT - encrypts plaintext using the cipher key and and nonce which must be unique for the key. Optional additional data can be supplied
+- DECRYPT - decrypts ciphertext using a cipher key, a nonce and associated data. Returns the plaintext, unless authentication fails, in which case an error is signaled to the caller.
 
 
-### Bob side (receiver)
+### Bob side
 Before Bob can use PFS he must do the following:
 
-1. Have a main (identity) Virgil card **IC-B** registered at Virgil cloud
-2. Generate a long-term ephemeral card **LTC-B**, sign it with the main card and post it on server
-3. Generate a set of one-time ephemeral cards **OTC-B** (100 by default), sign them with the main card and post them on server
+1. Have a main key pair (identity)
+2. Generate an ephemeral key pair, sign it with the main key
+3. Get Alice's identity, ephemeral public key
 
-### Alice side (sender)
-1. Have a main (identity) Virgil card **IC-A** in the cloud
-2. Get Bob's identity card, long-term ephemeral card and (if exists) one-time ephemeral card
+
+
+### Alice side
+Before Alice can use PFS she must do the following:
+
+1. Have a main key pair (her identity)
+2. Generate an ephemeral key pair, sign it with the main key
+3. Get Bob's identity, ephemeral public key
 
 
