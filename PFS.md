@@ -10,17 +10,14 @@ In PFS you use Diffie-Hellman's algorithms, where the master key is not used. In
 
 
 
-### Bob side
+### Bob side (receiver)
 Before Bob can use PFS he must do the following:
 
 1. Have a main key pair (identity)
 2. Generate an ephemeral key pair, sign it with the main key
-3. Get Alice's identity, ephemeral public key
 
 
-
-### Alice side
-Before Alice can use PFS she must do the following:
+### Alice side (sender)
 
 1. Have a main key pair (her identity)
 2. Generate an ephemeral key pair, sign it with the main key
