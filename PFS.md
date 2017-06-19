@@ -9,7 +9,7 @@ In PFS you use Diffie-Hellman's algorithms, where the master key is not used. In
 
 
 
-## Prerequisites
+
 
 ### Functions needed:
 
@@ -30,10 +30,3 @@ Before Bob can use PFS he must do the following:
 2. Get Bob's identity card, long-term ephemeral card and (if exists) one-time ephemeral card
 
 
-
-
-### Maintaining state
-
-Bob must upload new one time ephemeral cards as soon as they get used, maintain their amount periodically.
-
-Also, Bob must renew his long-term ephemeral card every several days.
