@@ -6,7 +6,7 @@ Perfect Forward Secrecy (PFS) Is a technique, that protects previously intercept
 
 In PFS you use Diffie-Hellman's algorithms, where the master key is not used. In such connection the master key is used to authenticate the parameters for the algorithm. After the parameters are agreed on, the key exchange takes place using those parameters, and a secret of both parties. The parameters are not secret, and the secrets the parties used are discarded after the session key is established (ephemeral). This way if you discover the master key you can't discover the session key.
 
-
+![PFS](https://github.com/VirgilSecurity/virgil/blob/master/images/pfs.png)
 
 
 
