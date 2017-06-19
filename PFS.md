@@ -6,7 +6,6 @@ Perfect Forward Secrecy (PFS) Is a technique, that protects previously intercept
 
 In PFS you use Diffie-Hellman's algorithms, where the master key is not used. In such connection the master key is used to authenticate the parameters for the algorithm. After the parameters are agreed on, the key exchange takes place using those parameters, and a secret of both parties. The parameters are not secret, and the secrets the parties used are discarded after the session key is established (ephemeral). This way if you discover the master key you can't discover the session key.
 
-In [simple Encrypted Communication](https://developer.virgilsecurity.com/docs/cs/get-started/encrypted-communication) users use their Virgil Cards to communicate securely, which contains all the necessary information to identify them and to obtain their Public Key, for further operations. All Virgil Cards are stored at [Virgil Cards Service](https://developer.virgilsecurity.com/docs/references/card-service), where an owner can find their Virgil Cards at any time.  But to provide PFS Encrypted Communication, we need also to use additional Virgil Cards -  Ephemeral Virgil Cards, wich will be stored on special Virgil Ephemeral Cards Service.
 
 
 ## Prerequisites
@@ -17,11 +16,6 @@ In [simple Encrypted Communication](https://developer.virgilsecurity.com/docs/cs
 - ENCRYPT(k, n, ad, plaintext): Encrypts plaintext using the cipher key k and and nonce n which must be unique for the key k. Optional additional data **ad** can be supplied
 - DECRYPT(k, n, ad, ciphertext): Decrypts ciphertext using a cipher key k, a nonce n, and associated data **ad**. Returns the **plaintext**, unless authentication fails, in which case an error is signaled to the caller.
 
-### Suggested primitives:
-
-- **KDF** - HKDF
-- **ENCRYPT/DECRYPT** - AES-GCM or Chaha20-poly1305
-- **HASH** - SHA256/SHA512//Blake2b
 
 ### Bob side (receiver)
 Before Bob can use PFS he must do the following:
@@ -34,26 +28,7 @@ Before Bob can use PFS he must do the following:
 1. Have a main (identity) Virgil card **IC-A** in the cloud
 2. Get Bob's identity card, long-term ephemeral card and (if exists) one-time ephemeral card
 
-## Protocol
 
-The set of keys used:
-
-- Bob's Identity card **IC-B**
-- Bob's long-term ephemeral card **LTC-B**
-- Bob's one-time ephemeral card **OTC-B**
-- Alice's Identity card **IC-A**
-- Alice's ephemeral key **EK-A**
-
-All public keys have a corresponding private key, but to simplify description we will focus on the public keys.
-
-### Initial Phase
-
-Alice calculates the following DHs:
-
-1. DH1 = DH(**IC-A**, **LTC-B**)
-2. DH2 = DH(**EK-A**, **IC-B**)
-3. DH3 = DH(**EK-A**, **LTC-B**)
-4. DH4 = DH(**EK-A**, **OTC-B**)
 
 ### Strong and Weak Sessions
 
