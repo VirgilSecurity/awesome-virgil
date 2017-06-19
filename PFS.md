@@ -26,4 +26,4 @@ Before Alice can use PFS she must do the following:
 2. Generate an ephemeral key pair, sign it with the main key
 3. Get Bob's identity, ephemeral public key
 
-
+PFS is important while dealing with sensitive data because it adds an extra layer of security. With PFS, the session key is derived from input of both parties and not transmitted through the Internet. Furthermore, it is freshly generated for each session.
