@@ -1,8 +1,10 @@
 # Perfect Forward Secrecy Protocol
 
-Perfect Forward Secrecy (PFS) Is a technique, that protects previously intercepted traffic from being decrypted even if the main private key is compromised. 
+Perfect Forward Secrecy (PFS) is a technique, that protects previously intercepted traffic from being decrypted even if the main private key is compromised. 
 
-To provide PFS, we need to be able to store ephemeral public keys (cards) on server.
+To provide PFS, Virgil enables the storage of ephemeral public keys (cards) which allows apps and Iot devicesto create temporary end to end encrypted sessions that are not based on the main device private key.
+
+Default Cipher primitives used are: ed25519/curve25519 HKDF AES-GCM SHA256
 
 ## Prerequisites
 
@@ -149,7 +151,7 @@ Multiple messages can be sent at once, for different sessions
 ]
 ```
 
-##### Decripting Message
+##### Decrypting Message
 
 1. read 16 byte salt
 2. If Initiator == true then SK = **SK-B** else **SK-A**
