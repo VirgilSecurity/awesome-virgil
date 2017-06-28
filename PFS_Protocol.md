@@ -73,35 +73,27 @@ Weak session additional data = Card IDs of (**IC-A** || **IC-B** || **LTC-B** ||
 
 Alice may optionally append additional information to AD, such as Alice and Bob's usernames, certificates, or other identifying information (app decides).
 
-To avoid situations when Bob does not have OTC key, either weak or both sessions are calculated during initial phase.
-
-Alice must store both strong & weak sessions until Bob replies with one of them meaning he chose one.
-
-Alice must encrypt messages with both strong & weak sessions until she receives a response from Bob.
+If no OTC is present, Alice calculates **only** weak session, else **only** the strong one
 
 Alice then sends Bob an initial message containing:
 - Alice's identity CardID
 - Alice's ephemeral public key **EK-A**
 - The signature of **EK-A**
 - Card IDs of **IC-B**, **LTC-B** and **OTC-B**  (if present)
-- 16 bytes of random salt for **strong** session
-- 16 bytes of random salt for **weak** session
-- Ciphertext, encrypted with strong session symmetric key
-- Ciphertext, encrypted with weak session symmetric key
+- 16 bytes of random salt
+- Ciphertext
 
 Sample message structure
 ```js
 {
-    "id":"230948203482",
-    "eph": "woecwecWEcwec==",
-    "sign": "23fFF23cswf==",
-    "ic_id": "239ff0239809faadd",
-    "ltc_id": "234234abc",
-    "otc_id": "2394823049820349bcd",
-    "salt_s": "4rqervQERVqrevwed==",
-    "salt_w": "ddqervQERVqrevwed==",
-    "ciphertext_s": "qervQERVqrevqERVqERVSfgvbwf=="
-    "ciphertext_w": "qervQERVqrevqERVqERVSfgvbwf=="
+    initiator_ic_id: "66b1132a0173910b01ee3a15ef4e69583bbf2f7f1e4462c99efbe1b9ab5bf808",
+    responder_ic_id: "cee24f45f19fae05c538c90778145867019ef06f1668e956f5ee1bca30b85b3c",
+    responder_ltc_id: "e451a4189f3e1d1df8f87cb6023d3b2fc7d3c266042f4945532c25f9dfe34e8c",
+    responder_otc_id: "5f8569f6458f2928e06e48953b3f11f76a8de0657ec616b5481b9b2343a62863",
+    eph: "woecwecWEcwec==",
+    sign: "23fFF23cswf==",
+    salt: "ddqervQERVqrevwed==",
+    ciphertext: "qervQERVqrevqERVqERVSfgvbwf=="
 }
 ```
 
