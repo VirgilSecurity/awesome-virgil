@@ -105,11 +105,6 @@ Bob then constructs the AD byte sequence the same way same as Alice, as describe
 
 **Bob must use strong session if he is able to calculate it.**
 
-### Getting Response from Bob
-
-Upon getting response from Bob,  Alice must drop either weak or strong session( if she had two), depending which one Bob choose
-
-**Till that time Alice must send messages to Bob using both sessions**
 
 ### Session
 
