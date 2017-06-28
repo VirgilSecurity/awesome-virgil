@@ -103,8 +103,6 @@ Upon receiving Alice's initial message, Bob retrieves Alice's identity card and 
 Using these keys, Bob repeats the DH and KDF calculations from the previous section to derive SK, and then deletes the DH values.
 Bob then constructs the AD byte sequence the same way same as Alice, as described in the previous section. 
 
-**Bob must use strong session if he is able to calculate it.**
-
 
 ### Session
 
