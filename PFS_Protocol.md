@@ -2,10 +2,14 @@
 
 Perfect Forward Secrecy (PFS) is a technique, that protects previously intercepted traffic from being decrypted even if the main private key is compromised. 
 
-To provide PFS, Virgil enables the storage of ephemeral public keys (cards) which allows apps and Iot devices to create temporary end to end encrypted sessions that are not based on the main device private key.
+To provide PFS, Virgil enables the storage of ephemeral public keys (cards) which allows apps and IoT devices to create temporary end to end encrypted sessions that are not based on the main device's private key.
 
 
 ## Prerequisites
+
+Message delivery function such Twilio Programmable Chat, Google Firebase, AWS DynamoDB or similar.
+Most message delivery services are suitable to enable end to end encryption with perfect forward secrecy.
+Secure transport layer protocols such as NoiseLink and HTTPS are highly recommended.
 
 ### Functions needed:
 
