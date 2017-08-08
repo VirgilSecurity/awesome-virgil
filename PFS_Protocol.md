@@ -109,7 +109,7 @@ Bob then constructs the AD byte sequence the same way same as Alice, as describe
 
 Session consists of **SK-A**, **SK-B**, **AD**, **SessionID**
 
-SessionID is calculated as: 32 bytes of HKDF(SK || AD || "Virgil") and sent along the encrypted message to identify messages from different sessions
+SessionID is calculated as: 32 bytes of HKDF(SK, AD, "Virgil") and sent along the encrypted message to identify messages from different sessions
 
 #### Encrypting & Decrypting actual Messages
 
