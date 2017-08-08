@@ -69,8 +69,8 @@ After calculating **SK-A**, **SK-B**, Alice deletes her ephemeral private key an
 
 Alice then calculates an "additional  data" which is a HKDF function of the following data: 
 
-- Strong session additional data= Card IDs of (**IC-A** || **IC-B** || **LTC-B**  || **OTC-B** || "Virgil")
-- Weak session additional data = Card IDs of (**IC-A** || **IC-B** || **LTC-B** ||"Virgil")
+- Strong session additional data **AD**= 32 bytes of KDF(**adKey**, **IC-A** || **IC-B** || **LTC-B**  || **OTC-B**, "Virgil")
+- Weak session additional data **AD**= 32 bytes of KDF(**adKey**, **IC-A** || **IC-B** || **LTC-B**, "Virgil")
 
 Alice may optionally append additional information to AD, such as Alice and Bob's usernames, certificates, or other identifying information (app decides).
 
