@@ -60,20 +60,17 @@ Alice calculates the following DHs:
 ### Strong and Weak Sessions
 
 Strong session is formed when DH4 is present.
-Strong shared secret **SKs** = 128 bytes of KDF ( DH1 || DH2 || DH3 || DH4) 
-Weak shared secret **SKw** = 128 bytes of KDF ( DH1 || DH2 || DH3)
+- Strong shared secret **SKs** = 128 bytes of KDF ( DH1 || DH2 || DH3 || DH4) 
+- Weak shared secret **SKw** = 128 bytes of KDF ( DH1 || DH2 || DH3)
 
 Following statements are common for both session types:
 
-First 64 bytes is Alice's send/Bob's receive secret **SK-A**, second 64 bytes is Alice's receive/Bob's send secret **SK-B**
-
 After calculating **SK-A**, **SK-B**, Alice deletes her ephemeral private key and the DH outputs.
 
-Alice then calculates an "additional  data" byte sequence AD that contains identity card IDs for both parties: 
+Alice then calculates an "additional  data" which is a HKDF function of the following data: 
 
-Strong session additional data= Card IDs of (**IC-A** || **IC-B** || **LTC-B**  || **OTC-B** || "Virgil")
-
-Weak session additional data = Card IDs of (**IC-A** || **IC-B** || **LTC-B** ||"Virgil")
+- Strong session additional data= Card IDs of (**IC-A** || **IC-B** || **LTC-B**  || **OTC-B** || "Virgil")
+- Weak session additional data = Card IDs of (**IC-A** || **IC-B** || **LTC-B** ||"Virgil")
 
 Alice may optionally append additional information to AD, such as Alice and Bob's usernames, certificates, or other identifying information (app decides).
 
@@ -110,19 +107,19 @@ Bob then constructs the AD byte sequence the same way same as Alice, as describe
 
 ### Session
 
-Session consists of **SK-A**, **SK-B**, **AD**
+Session consists of **SK-A**, **SK-B**, **AD**, **SessionID**
 
-SessionID is calculated as HASH (SK || AD || "Virgil") and sent along the encrypted message to identify messages from different sessions
+SessionID is calculated as: 32 bytes of HKDF(SK || AD || "Virgil") and sent along the encrypted message to identify messages from different sessions
 
 #### Encrypting & Decrypting actual Messages
 
 ##### Encrypting Message
 
-1. Generate 16 byte random salt
-2. If Initiator == true then SK = **SK-A** else **SK-B**
-3. message_key, nonce = KDF (SK, salt, "Virgil")
+1. Generate 16 byte random **salt**
+2. If Initiator == true then **SK** = **SK-A** else **SK-B**
+3. message_key, nonce = KDF(SK, salt, "Virgil")
 4. ciphertext = ENCRYPT (message_key, nonce, AD, plaintext)
-5. Send SessionID , salt, ciphertext
+5. Send **SessionID**, **salt**, **ciphertext**
 
 Multiple messages can be sent at once, for different sessions
 
@@ -143,7 +140,7 @@ Multiple messages can be sent at once, for different sessions
 
 ##### Decrypting Message
 
-1. read 16 byte salt
+1. read 16 byte **salt**
 2. If Initiator == true then SK = **SK-B** else **SK-A**
 3. message_key, nonce = KDF (SK, salt, "Virgil")
 4. plaintext= DECRYPT (message_key, nonce, AD, ciphertext)
