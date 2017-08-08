@@ -65,6 +65,12 @@ Strong session is formed when DH4 is present.
 
 Following statements are common for both session types:
 
+128 bytes of Shared secret is divided into 4 parts, 32 bytes each:
+- Alice's send/Bob's receive secret **SKa**
+- Alice's receive/Bob's send secret **SKb** 
+- Session ID key **sidKey**
+- Additional data key **adKey**
+
 After calculating **SK-A**, **SK-B**, Alice deletes her ephemeral private key and the DH outputs.
 
 Alice then calculates an "additional  data" which is a HKDF function of the following data: 
