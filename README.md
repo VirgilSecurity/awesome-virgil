@@ -1,4 +1,4 @@
-<a href="https://virgilsecurity.com"><img width="230px" src="images/VirgilLogo.png"></a>
+<a href="https://virgilsecurity.com"><img src="images/VirgilLogo.png"></a>
 
 ### [Developers Docs](#head3) | [Virgil Crypto](#head2) | [Virgil Services](#head7) | [Use cases](#head4) | [Glossary](#head8) | [License](#head5) | [Contacts](#head6)
 
