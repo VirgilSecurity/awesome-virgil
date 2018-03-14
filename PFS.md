@@ -1,8 +1,8 @@
 # Perfect Forward Secrecy
 
-The security of communications transmitted across the Internet can be improved by using public key cryptography. However if the public and private keys used in those communications are compromised it can reveal the data exchanged in that session as well as the data exchanged in previous sessions.
+The security of communications transmitted across the Internet can be improved by using public key cryptography. However, if the public and private keys used in those communications are compromised, it can reveal the data exchanged in that session as well as the data exchanged in previous sessions.
 
-Perfect Forward Secrecy (PFS) Is a technique, that protects previously intercepted traffic from being decrypted even if the main private key is compromised. With PFS enabled communication, a hacker could only access information that is actively transmitted because PFS forces a system to create different keys per session. In other words, PFS makes sure there is no master key to decrypt all the traffic.
+Perfect Forward Secrecy (PFS) is a technique that protects previously intercepted traffic from being decrypted even if the main private key is compromised. With PFS enabled communication, a hacker can only access information that is actively being transmitted because PFS forces a system to create different keys for each new session. In other words, PFS makes sure there is no master key to decrypt all the traffic.
 
 In PFS you use Diffie-Hellman's algorithms, where the master key is used. After the parameters for the algorithm are agreed on, the key exchange takes place using those parameters, and a secret of both parties. The parameters are not secret, and the secrets the parties used are discarded after the session key is established. This way if you discover the master key you can't discover the session key.
 
