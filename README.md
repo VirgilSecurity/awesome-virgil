@@ -1,14 +1,14 @@
 ![Logo](https://github.com/VirgilSecurity/virgil/blob/master/images/VirgilLogo.png)
 
-### [Developers Docs](#head3) | [Virgil Crypto](#head2) | [Virgil Services](#head7) | [Use cases](#head4) | [Glossary](#head8) | [License](#head5) | [Contacts](#head6)
+### [Developer Docs](#head3) | [Virgil Crypto](#head2) | [Virgil Services](#head7) | [Use cases](#head4) | [Glossary](#head8) | [License](#head5) | [Contacts](#head6)
 
 
 Virgil is a stack of security libraries and all the necessary infrastructure to enable seamless, end-to-end encryption for any application, platform or device. See below for currently available languages and platforms. Get in touch with us to get preview access to our key infrastructure.
 
-Virgil Security, Inc. guides software developers into the forthcoming security world in which everything will be encrypted (and passwords will be eliminated). In this world, the days of developers having to raise millions of dollars to build a secure chat, secure email, secure file-sharing, or a secure anything have come to an end. Now developers can instead focus on building features that give them a competitive market advantage while end-users can enjoy the privacy and security they increasingly demand.
+Virgil Security, Inc. guides software developers into the forthcoming security world in which everything will be encrypted (and passwords will be eliminated). In this world, the days of developers having to raise millions of dollars to build secure chat, secure email, secure file-sharing, or a secure anything have come to an end. Now developers can instead focus on building features that give them a competitive market advantage while end-users can enjoy the privacy and security they increasingly demand.
 ***
 
-# <a name="head3"></a>Developers Docs
+# <a name="head3"></a>Developer Docs
 - [.NET/C#](https://github.com/VirgilSecurity/virgil-sdk-net)
 - [Javascript/Node.js](https://github.com/VirgilSecurity/virgil-sdk-javascript)
 - [C/C++](https://github.com/VirgilSecurity/virgil-sdk-cpp)
@@ -27,7 +27,7 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 - [Virgil RA Service](https://developer.virgilsecurity.com/docs/cs/references/ra-service)
 - [Virgil Identity Service](https://developer.virgilsecurity.com/docs/cs/references/identity-service)
 
-# <a name="head4"></a>Use cases
+# <a name="head4"></a>Use Cases
 - [Passwordless authentication](https://developer.virgilsecurity.com/docs/cs/get-started/passwordless-authentication)
 - [Encrypted communication](https://developer.virgilsecurity.com/docs/cs/get-started/encrypted-communication)
 - [Encrypted storage](https://developer.virgilsecurity.com/docs/cs/get-started/encrypted-storage)
