@@ -15,7 +15,7 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 - [C/C++](https://github.com/VirgilSecurity/virgil-sdk-cpp)
 - [PHP](https://github.com/VirgilSecurity/virgil-sdk-php)
 - [Objective-C/Swift](https://github.com/VirgilSecurity/virgil-sdk-x)
-- [Java/Android](https://github.com/VirgilSecurity/virgil-foundation-x)
+- [Java/Android](https://github.com/VirgilSecurity/virgil-sdk-java-android)
 - [Python](https://github.com/VirgilSecurity/virgil-sdk-python)
 - [Ruby](https://github.com/VirgilSecurity/virgil-sdk-ruby)
 - [GO](https://github.com/VirgilSecurity/virgil-crypto-go)
