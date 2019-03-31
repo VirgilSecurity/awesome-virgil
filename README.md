@@ -9,8 +9,8 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 ## Content
 - [Community](#community)
 - [Products](#products)
- - [Tools](#tools)
- - [SDK](#sdk)
+  - [Tools](#tools)
+  - [SDK](#sdk)
 - [License](#license)
 
 # Community
@@ -19,13 +19,13 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 * [Developers Documentation](https://developer.virgilsecurity.com/docs)
 * [Virgil Developer Dashboard](https://dashboard.VirgilSecurity.com)
 * [Help Center](https://help.VirgilSecurity.com)
+* [PasswOrd Community](https://passw0rd.io/)
 
 ### 2. Social media
 * [Facebook](https://www.facebook.com/VirgilSec)
 * [Twitter](https://twitter.com/VirgilSecurity)
 * [LinkedIn](https://www.linkedin.com/company/virgil-security-inc-/)
 * [DOU](https://jobs.dou.ua/companies/virgil-security-inc/)
-* [PasswOrd Community](https://passw0rd.io/)
 
 ### 3. Blogs
 * [Medium Blog](https://medium.com/@VirgilSecurity)
