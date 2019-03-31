@@ -19,7 +19,7 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 * [Developers Documentation](https://developer.virgilsecurity.com/docs)
 * [Virgil Developer Dashboard](https://dashboard.VirgilSecurity.com)
 * [Help Center](https://help.VirgilSecurity.com)
-* [PasswOrd Community](https://passw0rd.io/)
+* [Passw0rd Community](https://passw0rd.io/)
 
 ### 2. Social media
 * [Facebook](https://www.facebook.com/VirgilSec)
@@ -85,6 +85,7 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 
 * **Double Ratchet Service SDK** - allows developers to communicate with PFS service and implements the Double Ratchet algorithm, which is used by parties to exchange encrypted messages based on a shared secret key.
   * https://github.com/VirgilSecurity/virgil-ratchet-x
+
 
 * **PFS Service SDK** - interacts with Virgil PFS Service and allows developers to add Virgil Perfect Forward Secrecy (PFS) to their end-to-end chat to prevent a possibly compromised long-term secret key from affecting the confidentiality of past communications.
   * https://github.com/VirgilSecurity/virgil-sdk-pfs-x
