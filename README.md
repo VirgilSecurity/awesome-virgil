@@ -12,28 +12,28 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 
 
 # Community
-## 1. Web resources
-* Main Website https://VirgilSecurity.com/
-* Developers Documentation https://developer.virgilsecurity.com/docs
-* Developer Dashboard
-* Help https://help.virgilsecurity.com/
+### 1. Web resources
+* [Main Website](https://VirgilSecurity.com)
+* [Developers Documentation](https://developer.virgilsecurity.com/docs)
+* [Virgil Developer Dashboard](https://dashboard.VirgilSecurity.com)
+* [Help Center](https://help.VirgilSecurity.com)
 
-## 2. Social media
-* Facebook https://www.facebook.com/VirgilSec
-* Twitter https://twitter.com/VirgilSecurity
-* LinkedIn https://www.linkedin.com/company/virgil-security-inc-/
-* DOU https://jobs.dou.ua/companies/virgil-security-inc/
+### 2. Social media
+* [Facebook](https://www.facebook.com/VirgilSec)
+* [Twitter](https://twitter.com/VirgilSecurity)
+* [LinkedIn](https://www.linkedin.com/company/virgil-security-inc-/)
+* [DOU](https://jobs.dou.ua/companies/virgil-security-inc/)
 
-## 3. Blogs
-* Medium Blog https://medium.com/@VirgilSecurity
-* Habr https://habr.com/company/VirgilSecurity/
+### 3. Blogs
+* [Medium Blog](https://medium.com/@VirgilSecurity)
+* [Habr](https://habr.com/company/VirgilSecurity)
 
-## 4. Support
+### 4. Support
 * Slack https://VirgilSecurity.slack.com/
-* Email Support@VirgilSecurity.com
+* [Email](mailto:support@VirgilSecurity.com)
 
 # Products
-## SDK and Tools
+### SDK and Tools
 
 * **E3Kit SDK** - Client-side SDK that simplifies work with Virgil services and presents the easiest way to add full end-to-end encryption (E2EE) security to your digital solutions. E3Kit interacts with Cards Service, Keyknox Service and Pythia Service and supports multi-device access and group chat features.
   * [Javascript](https://github.com/VirgilSecurity/virgil-e3kit-js) [![npm](https://img.shields.io/npm/v/@virgilsecurity/e3kit.svg)](https://www.npmjs.com/package/@virgilsecurity/e3kit)
