@@ -1,15 +1,17 @@
 <a href="https://virgilsecurity.com"><img src="images/VirgilLogo.png"></a>
 
-### [Developer Docs](#head3) | [Virgil Crypto](#head2) | [Virgil Services](#head7) | [Use cases](#head4) | [Glossary](#head8) | [License](#head5) | [Contacts](#head6)
-
 [Virgil Security](https://virgilsecurity.com) is a stack of security libraries and all the necessary infrastructure to enable seamless, end-to-end encryption for any application, platform or device. In a few simple steps you can encrypt communication, securely store data, provide passwordless login, and ensure data integrity.
 
 Our libraries allow developers to get up and running with Virgil API quickly and add full end-to-end security to their existing digital solutions to become HIPAA and GDPR compliant and more.
 
 Virgil Security, Inc. guides software developers into the forthcoming security world in which everything will be encrypted (and passwords will be eliminated). In this world, the days of developers having to raise millions of dollars to build secure chat, secure email, secure file-sharing, or a secure anything have come to an end. Now developers can instead focus on building features that give them a competitive market advantage while end-users can enjoy the privacy and security they increasingly demand.
-***
 
-
+## Content
+- [Community](#community)
+- [Products](#products)
+ - [Tools](#tools)
+ - [SDK](#sdk)
+- [License](#license)
 
 # Community
 ### 1. Web resources
@@ -23,6 +25,7 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 * [Twitter](https://twitter.com/VirgilSecurity)
 * [LinkedIn](https://www.linkedin.com/company/virgil-security-inc-/)
 * [DOU](https://jobs.dou.ua/companies/virgil-security-inc/)
+* [PasswOrd Community](https://passw0rd.io/)
 
 ### 3. Blogs
 * [Medium Blog](https://medium.com/@VirgilSecurity)
@@ -33,7 +36,13 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 * [Email](mailto:support@VirgilSecurity.com)
 
 # Products
-### SDK and Tools
+
+### Tools
+
+* [Virgil CLI](https://github.com/VirgilSecurity/virgil-cli) - a tool to manage your Virgil account and applications.
+* [Passw0rd CLI](https://github.com/passw0rd/cli) - an tool for interacting with the [Passw0rd Service](https://passw0rd.io/)
+
+### SDK
 
 * **E3Kit SDK** - Client-side SDK that simplifies work with Virgil services and presents the easiest way to add full end-to-end encryption (E2EE) security to your digital solutions. E3Kit interacts with Cards Service, Keyknox Service and Pythia Service and supports multi-device access and group chat features.
   * [Javascript](https://github.com/VirgilSecurity/virgil-e3kit-js) [![npm](https://img.shields.io/npm/v/@virgilsecurity/e3kit.svg)](https://www.npmjs.com/package/@virgilsecurity/e3kit)
@@ -83,10 +92,10 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
   * https://github.com/VirgilSecurity/virgil-pfs-java
 
 
-# <a name="head5"></a>License
+# License
 BSD 3-Clause. See [LICENSE](https://github.com/VirgilSecurity/virgil/blob/master/LICENSE) for details.
 
-# <a name="head6"></a>Contacts
+# Contacts
 Our developer support team is here to help you. Find out more information on our [Help Center](https://help.virgilsecurity.com/).
 
 You can find us on [Twitter](https://twitter.com/VirgilSecurity) or send us email support@VirgilSecurity.com.
