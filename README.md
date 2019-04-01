@@ -50,45 +50,45 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 
 * **PureKit SDK** - Server-side SDK allows developers to communicate with the Virgil PHE service and perform necessary operation to protect users' passwords and personal identifiable information in a database from data breaches and both online and offline attacks.
   * [PHP](https://github.com/VirgilSecurity/virgil-purekit-php) [![Latest Version on Packagist](https://img.shields.io/packagist/v/virgil/purekit.svg?style=flat-square)](https://packagist.org/packages/virgil/purekit)
-  * [.NET/C#](https://github.com/VirgilSecurity/virgil-purekit-net) [![Nuget package](https://img.shields.io/nuget/v/virgil.purekit.svg)](https://www.nuget.org/packages/Virgil.PureKit/)
+  * [C#.NET](https://github.com/VirgilSecurity/virgil-purekit-net) [![Nuget package](https://img.shields.io/nuget/v/virgil.purekit.svg)](https://www.nuget.org/packages/Virgil.PureKit/)
   * [Golang](https://github.com/VirgilSecurity/virgil-purekit-go)
   * [Kotlin/Java](https://github.com/VirgilSecurity/virgil-purekit-kotlin)  [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.virgilsecurity/purekit/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.virgilsecurity/purekit)
 
 
 * **Cards Service SDK** - interacts with Virgil Cards Service and allows developers to add end-to-end encryption (E2EE) security to their new and existing digital products. SDK can be used on both client-side and server-side.
   * [Javascript](https://github.com/VirgilSecurity/virgil-sdk-javascript)  [![npm](https://img.shields.io/npm/v/virgil-sdk.svg)](https://www.npmjs.com/package/virgil-sdk)
-  * [.NET/C#](https://github.com/VirgilSecurity/virgil-sdk-net) [![Nuget package](https://img.shields.io/nuget/v/Virgil.SDK.svg)](https://www.nuget.org/packages/Virgil.SDK/)
+  * [C#/.NET](https://github.com/VirgilSecurity/virgil-sdk-net) [![Nuget package](https://img.shields.io/nuget/v/Virgil.SDK.svg)](https://www.nuget.org/packages/Virgil.SDK/)
   * [C++](https://github.com/VirgilSecurity/virgil-sdk-cpp)
-  * https://github.com/VirgilSecurity/virgil-sdk-x
-  * https://github.com/VirgilSecurity/virgil-sdk-php
-  * https://github.com/VirgilSecurity/virgil-sdk-java-android
-  * https://github.com/VirgilSecurity/virgil-sdk-python
-  * https://github.com/VirgilSecurity/virgil-sdk-go
-  * https://github.com/VirgilSecurity/virgil-sdk-ruby
+  * [Swift/Objective-C](https://github.com/VirgilSecurity/virgil-sdk-x) [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/VirgilSDK.svg)](https://cocoapods.org/pods/VirgilSDK)
+  * [PHP](https://github.com/VirgilSecurity/virgil-sdk-php) [![Latest Version on Packagist](https://img.shields.io/packagist/v/virgil/sdk.svg?style=flat-square)](https://packagist.org/packages/virgil/sdk)
+  * [Java/Android](https://github.com/VirgilSecurity/virgil-sdk-java-android) [![Maven](https://img.shields.io/maven-central/v/com.virgilsecurity.sdk/sdk.svg)](https://mvnrepository.com/artifact/com.virgilsecurity.sdk/sdk)
+  * [Python](https://github.com/VirgilSecurity/virgil-sdk-python) [![PyPI](https://img.shields.io/pypi/v/virgil-sdk.svg)](https://pypi.python.org/pypi/virgil-sdk)
+  * [Golang](https://github.com/VirgilSecurity/virgil-sdk-go)
+  * [Ruby](https://github.com/VirgilSecurity/virgil-sdk-ruby) [![Gem](https://img.shields.io/gem/v/virgil-sdk.svg)](https://rubygems.org/gems/virgil-sdk)
 
 
 * **Pythia Service SDK** - allows developers to communicate with Virgil Pythia Service to generate a Brainkey (private Key which is based on a password) and protect user passwords in a database.
-  * https://github.com/VirgilSecurity/virgil-pythia-go
-  * https://github.com/VirgilSecurity/virgil-pythia-node
-  * https://github.com/VirgilSecurity/virgil-pythia-x
-  * https://github.com/VirgilSecurity/pythia-net
-  * https://github.com/VirgilSecurity/virgil-pythia-java
+  * [Golang](https://github.com/VirgilSecurity/virgil-pythia-go)
+  * [Node.js](https://github.com/VirgilSecurity/virgil-pythia-node) [![npm](https://img.shields.io/npm/v/virgil-pythia.svg)](https://www.npmjs.com/package/virgil-pythia)
+  * [Swift](https://github.com/VirgilSecurity/virgil-pythia-x) [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/VirgilSDKPythia.svg)](https://cocoapods.org/pods/VirgilSDKPythia)
+  * [C#/.NET](https://github.com/VirgilSecurity/pythia-net) [![Nuget package](https://img.shields.io/nuget/v/Virgil.Pythia.svg)](https://www.nuget.org/packages/Virgil.Pythia/)
+  * [Java](https://github.com/VirgilSecurity/virgil-pythia-java) [![Maven](https://img.shields.io/maven-central/v/com.virgilsecurity/pythia.svg)](https://maven-badges.herokuapp.com/maven-central/com.virgilsecurity/pythia)
 
 
 * **Keyknox Service SDK** - allows developers to communicate with the Virgil Keyknox Service to upload, download, and synchronize encrypted sensitive data (private keys) between user's devices.
-  * https://github.com/VirgilSecurity/virgil-keyknox-kotlin
-  * https://github.com/VirgilSecurity/virgil-keyknox-x
-  * https://github.com/VirgilSecurity/virgil-keyknox-javascript
+  * [Kotlin/Java](https://github.com/VirgilSecurity/virgil-keyknox-kotlin) [![Maven](https://img.shields.io/maven-central/v/com.virgilsecurity/keyknox.svg)](https://maven-badges.herokuapp.com/maven-central/com.virgilsecurity/keyknox)
+  * [Swift](https://github.com/VirgilSecurity/virgil-keyknox-x) [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/VirgilSDKKeyknox.svg)](https://cocoapods.org/pods/VirgilSDKKeyknox)
+  * [Javascript](https://github.com/VirgilSecurity/virgil-keyknox-javascript) [![npm](https://img.shields.io/npm/v/@virgilsecurity/keyknox.svg)](https://www.npmjs.com/package/@virgilsecurity/keyknox)
 
 
 * **Double Ratchet Service SDK** - allows developers to communicate with PFS service and implements the Double Ratchet algorithm, which is used by parties to exchange encrypted messages based on a shared secret key.
-  * https://github.com/VirgilSecurity/virgil-ratchet-x
+  * [Swift](https://github.com/VirgilSecurity/virgil-ratchet-x) 
 
 
 * **PFS Service SDK** - interacts with Virgil PFS Service and allows developers to add Virgil Perfect Forward Secrecy (PFS) to their end-to-end chat to prevent a possibly compromised long-term secret key from affecting the confidentiality of past communications.
-  * https://github.com/VirgilSecurity/virgil-sdk-pfs-x
-  * https://github.com/VirgilSecurity/virgil-pfs-net
-  * https://github.com/VirgilSecurity/virgil-pfs-java
+  * [Swift](https://github.com/VirgilSecurity/virgil-sdk-pfs-x) [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/VirgilSDKPFS.svg)](https://img.shields.io/cocoapods/v/VirgilSDKPFS.svg)
+  * [C#/.NET](https://github.com/VirgilSecurity/virgil-pfs-net) [![Nuget package](https://img.shields.io/nuget/v/Virgil.PFS.svg)](https://www.nuget.org/packages/Virgil.PFS/)
+  * [Java](https://github.com/VirgilSecurity/virgil-pfs-java) [![Maven](https://img.shields.io/maven-central/v/com.virgilsecurity.pfs/pfs.svg)](https://mvnrepository.com/artifact/com.virgilsecurity.pfs/pfs) 
 
 
 # License
