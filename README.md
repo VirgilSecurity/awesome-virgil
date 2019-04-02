@@ -11,6 +11,17 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 - [Products](#products)
   - [Tools](#tools)
   - [SDK](#sdk)
+  - [Services](#services)
+  - [Cryptographic Libraries](#cryptographic-libraries)
+- [Integrations](#integrations)
+  - [Custom](#custom)
+  - [Firebase](#firebase)
+  - [Twilio](#twilio)
+  - [PubNub](#pubnub)
+  - [Back4App](#back4app)
+  - [Nexmo](#nexmo)
+- [Blog Posts](#blog-posts)
+- [Videos](#videos)
 - [License](#license)
 
 # Community
@@ -97,7 +108,7 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 * [Keyknox Service](https://developer.virgilsecurity.com/docs/api-reference/keyknox-service/v1) - Allows developers to securely store private keys and secrets in the Virgil Cloud and share them between their devices.
 * [PFS Service](https://developer.virgilsecurity.com/docs/api-reference/pfs-service/v4) - Service dedicated to managing one-time and long-time keys used to solve a Perfect Forward Secrecy scenario.
 
-### Cryptographic Library
+### Cryptographic Libraries
 
 [Virgil Crypto](https://github.com/VirgilSecurity/virgil-crypto) is an open-source high-level cryptographic library that allows you to perform all necessary operations for secure storing and transferring data in your digital solutions. Crypto Library is written in C++, suitable for mobile and server platforms and supports bindings with the following programming languages: Swift, Obj-C, Java (Android), С#/.NET, JS, Python, Ruby, PHP, Go.
 
@@ -112,34 +123,73 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
   * [Kotlin](https://github.com/VirgilSecurity/virgil-crypto-kotlin)
   * [Swift](https://github.com/VirgilSecurity/virgil-crypto-x) [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/VirgilCrypto.svg)](https://img.shields.io/cocoapods/v/VirgilCrypto.svg)
 
-#### Other:
-* [C#/.NET Crypto Library](https://github.com/VirgilSecurity/virgil-sdk-crypto-net) [![Nuget package](https://img.shields.io/nuget/v/Virgil.Crypto.svg)](https://www.nuget.org/packages/Virgil.Crypto/)
-* [Swift/Objective-C Crypto API](https://github.com/VirgilSecurity/virgil-cryptoapi-x) [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/VirgilCryptoAPI.svg)](https://cocoapods.org/pods/VirgilCryptoAPI)
-* [PHP Crypto API](https://github.com/VirgilSecurity/virgil-cryptoapi-php)
-* [Kotlin Crypto API](https://github.com/VirgilSecurity/virgil-cryptoapi-kotlin)
-* [Swift Crypto Library Wrapper](https://github.com/VirgilSecurity/virgil-cryptowrapper-x) [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/VirgilCryptoFoundation.svg)](https://cocoapods.org/pods/VirgilCryptoFoundation)
 
 # Production Applications
-* Virgil Messenger iOS
-* VIrgil Messanger Android
+* [Virgil Messenger iOS](https://itunes.apple.com/us/app/virgil-messenger/id1374223472)
+* [Virgil Messanger Android](https://play.google.com/store/apps/details?id=com.virgilsecurity.android.virgilmessenger)
 * [Virgil Pure Wordpress Plugin](https://github.com/VirgilSecurity/virgil-pure-wordpress) - Free Wordpress Plugin based on a powerful and revolutionary cryptographic technology that protects user passwords from data breaches and both online and offline attacks.
 * Virgil PasspostJS
 
-# Integration
+# Integrations
+
+### Custom
+* Tutorials
+  * [Add end-to-end encryption to your application to secure communication](https://developer.virgilsecurity.com/docs/use-cases/v5/encrypted-communication) - In this tutorial, we will help you add end-to-end encryption to your product to secure your messages and user data.
+  * [Protect user passwords and data in your database from data breaches](https://developer.virgilsecurity.com/docs/use-cases/v1/passwords-and-data-protection) - Virgil Security’s Password-Hardened Encryption (PHE) service replaces password hashing with a more cryptographic solution that prevents brute-force attacks on passwords and sensitive data stored in the database, and allows developers to instantly render a stolen database useless without any inconvenience to the end users.
+  * [Generate a resotrable key pair based on a user's password](https://developer.virgilsecurity.com/docs/use-cases/v1/brainkey) - Create strong cryptographic keys based on a user's password using Virgil Pythia. 
+  * [Protect user messages from being decrypted even if the main private key is compromised](https://developer.virgilsecurity.com/docs/use-cases/v4/perfect-forward-secrecy) - In this tutorial, we will help two people or IoT devices to communicate with end-to-end encryption with PFS enabled.
+* Demos
+  * [Encryption Demo JS](https://github.com/VirgilSecurity/demo-encryption-js) - A single page React application with Node.js backend demonstrating the use of Virgil Javascript SDK.
+  * [Virgil Demo Chat](https://github.com/VirgilSecurity/virgil-demo-chat) A basic chat application that uses Virgil technologies stack for end-to-end encryption.
+  * [Demo Android](https://github.com/VirgilSecurity/demo-e2ee-android) A simple Android application that demonstrates how the end-to-end encryption (E2EE) works.
+
 
 ### Firebase 
 * Tutorials
-  * [Add end-to-end encryption to your Twilio Programable Chat](https://developer.virgilsecurity.com/docs/use-cases/v5/encrypted-communication-for-twilio) - In this tutorial, we will help you add end-to-end encryption to your product to secure your messages and user data
+  * [Add end-to-end encryption to your Firebase application](https://developer.virgilsecurity.com/docs/use-cases/v5/encrypted-communication-for-firebase) - In this tutorial, we will help you add end-to-end encryption to your product to secure your messages and user data.
 * Demos
   * [Demo iOS](https://github.com/VirgilSecurity/demo-firebase-ios) - A simple iOS application that demonstrates how the end-to-end encryption works. The application uses firebase as a backend service for authentication and chat messaging.
   * [Demo Android](https://github.com/VirgilSecurity/demo-firebase-android) - A simple Android application that demonstrates how the end-to-end encryption works. The application uses firebase as a backend service for authentication and chat messaging.
   * [Demo Javascript](https://github.com/VirgilSecurity/demo-firebase-js) - A simple Web application that demonstrates how the end-to-end encryption works. The application uses firebase as a backend service for authentication and chat messaging, and Virgil E3Kit SDK for end-to-end encryption.
+  
 ### Twilio
+* Tutorials
+  * [Add end-to-end encryption to your Twilio Programable Chat](https://developer.virgilsecurity.com/docs/use-cases/v5/encrypted-communication-for-twilio) - In this tutorial, we will help you add end-to-end encryption to your product to secure your messages and user data that you deliver using Twilio Programmable Chat.
+* Demos
+  * [Demo Android](https://github.com/VirgilSecurity/demo-twilio-chat-android) - A simple Android application that demonstrates how the end-to-end encryption (E2EE) works in chat messaging use case. The application uses Twilio as a messaging provider.
+  * [Demo IOS chat](https://github.com/VirgilSecurity/chat-twilio-ios) - A simple E2EE chat for iOS which uses Twilio API and Virgil Security services.
+  * [Twilio Sample Backend for Node.js](https://github.com/VirgilSecurity/twilio-sample-backend-nodejs) - A sample backend that demonstrates how to generate a Virgil JWT and Twilio token used for authentication with the Virgil and Twilio services
+  * [Sending Encrypted SMS Messages using Twilio API](https://github.com/VirgilSecurity/demo-twilio-sms-net) - A simple .NET Console application that demonstrates how to send encrypted message via SMS.
+  
 ### Pubnub
+* Tutorials
+  * [Add end-to-end encryption to your PubNub IoT Smart Lock Door](https://developer.virgilsecurity.com/docs/use-cases/v5/smart-door-lock) - In this tutorial we'll apply the concept of verifying that the data being sent to and from an IoT device has not been manipulated or altered by another party to the following real-world scenarios involving a smart door lock: building a cloud-connected smart door lock in a way that prevents it from being opened by the manufacturer or by anyone with access to the manufacturer’s cloud account and preventing thefts of opportunity by preventing the manufacturer’s cloud backend from revealing which doors are open and closed.
+  
 ### Back4app
-### Nexmo
+* Tutorials
+  * [How to make a HIPAA compliant chat app](https://www.back4app.com/docs/guest/hipaa-chat-app) - A tutorial which will walk you through the steps to make Back4app’s Android Simple Messenger app End-to-End Encrypted.
 
-# Virgil Blog Posts (by tags)
+### Nexmo
+* Demos
+  * [Demo E3Kit Android chat](https://github.com/VirgilSecurity/demo-nexmo-chat-e3kit-android) - Demo Android chat that uses Virgil E3Kit and Nexmo.
+  * [Demo Java/Android backend](https://github.com/VirgilSecurity/demo-nexmo-chat-backend-java) - This repository contains a sample backend code that demonstrates how to generate a Nexmo and Virgil JWTs using the Java/Android SDK.
+  * [Demo Android chat](https://github.com/VirgilSecurity/demo-nexmo-chat-android) - A simple Web application that demonstrates how the end-to-end encryption works in chat messaging use case. The application uses Nexmo as a messaging provider.
+
+# Blog Posts
+
+* Twilio Blog: [Introducing End-to-end Encryption for Twilio IP Messaging with Virgil Security℠](https://www.twilio.com/blog/2016/05/introducing-end-to-end-encryption-for-twilio-ip-messaging-with-virgil-security.html)
+* Medium: [Salting + Hashing and Storing the Encryption Key in the Database is No Longer Compliant — With Anything](https://medium.com/@VirgilSecurity/salting-hashing-and-storing-the-encryption-key-in-the-database-is-no-longer-compliant-with-7c359077309c)
+
+# Videos
+
+**Our Youtube channel:** [Virgil Security Academy](https://www.youtube.com/channel/UCU8BhA1nVzKKRiU5P4N3D6A)
+
+**Featuring videos:**
+* [MacVoices #18140: WWDC/AltConf - Virgil Security Provides End-To-End Encryption SDK's For Developers](https://www.youtube.com/watch?v=MSnKQXvXe-g)
+* [TiE50 Room 212 - Virgil Security, Inc](https://www.youtube.com/watch?v=avYpSTfbb14)
+* [REAL-TIME COMMS TRACK | Add Encryption to Chat - Dmitry Dain (Virgil Security)](https://www.youtube.com/watch?v=wITDSt9RgUE)
+* [Как защитить 1 триллион IoT-устройств / Алексей Ермишкин (Virgil Security)](https://www.youtube.com/watch?v=qLidSKPJCiQ)
+* [Key transparency: Blockchain meets NoiseSocket / Алексей Ермишкин (Virgil Security)](https://www.youtube.com/watch?v=hQZ9tSF6g1Y)
 
 # License
 BSD 3-Clause. See [LICENSE](https://github.com/VirgilSecurity/virgil/blob/master/LICENSE) for details.
