@@ -120,13 +120,20 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 * [Swift Crypto Library Wrapper](https://github.com/VirgilSecurity/virgil-cryptowrapper-x) [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/VirgilCryptoFoundation.svg)](https://cocoapods.org/pods/VirgilCryptoFoundation)
 
 # Production Applications
-  * Virgil Messenger iOS
-  * VIrgil Messanger Android
-  * Virgil Pure Wordpress Plugin
-  * Virgil PasspostJS
+* Virgil Messenger iOS
+* VIrgil Messanger Android
+* [Virgil Pure Wordpress Plugin](https://github.com/VirgilSecurity/virgil-pure-wordpress) - Free Wordpress Plugin based on a powerful and revolutionary cryptographic technology that protects user passwords from data breaches and both online and offline attacks.
+* Virgil PasspostJS
 
 # Integration
+
 ### Firebase 
+* Tutorials
+  * [Add end-to-end encryption to your Twilio Programable Chat](https://developer.virgilsecurity.com/docs/use-cases/v5/encrypted-communication-for-twilio) - In this tutorial, we will help you add end-to-end encryption to your product to secure your messages and user data
+* Demos
+  * [Demo iOS](https://github.com/VirgilSecurity/demo-firebase-ios) - A simple iOS application that demonstrates how the end-to-end encryption works. The application uses firebase as a backend service for authentication and chat messaging.
+  * [Demo Android](https://github.com/VirgilSecurity/demo-firebase-android) - A simple Android application that demonstrates how the end-to-end encryption works. The application uses firebase as a backend service for authentication and chat messaging.
+  * [Demo iOS](https://github.com/VirgilSecurity/demo-firebase-js) - A simple Web application that demonstrates how the end-to-end encryption works. The application uses firebase as a backend service for authentication and chat messaging, and Virgil E3Kit SDK for end-to-end encryption.
 ### Twilio
 ### Pubnub
 ### Back4app
