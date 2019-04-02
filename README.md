@@ -89,8 +89,7 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
   * [Swift](https://github.com/VirgilSecurity/virgil-sdk-pfs-x) [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/VirgilSDKPFS.svg)](https://img.shields.io/cocoapods/v/VirgilSDKPFS.svg)
   * [C#/.NET](https://github.com/VirgilSecurity/virgil-pfs-net) [![Nuget package](https://img.shields.io/nuget/v/Virgil.PFS.svg)](https://www.nuget.org/packages/Virgil.PFS/)
   * [Java](https://github.com/VirgilSecurity/virgil-pfs-java) [![Maven](https://img.shields.io/maven-central/v/com.virgilsecurity.pfs/pfs.svg)](https://mvnrepository.com/artifact/com.virgilsecurity.pfs/pfs) 
-
-
+  
 ### Services
 
 * [Cards Service](https://developer.virgilsecurity.com/docs/api-reference/card-service/v5) - Stores and manages users' Virgil Cards with Public Keys and associated information.
@@ -120,6 +119,20 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 * [Kotlin Crypto API](https://github.com/VirgilSecurity/virgil-cryptoapi-kotlin)
 * [Swift Crypto Library Wrapper](https://github.com/VirgilSecurity/virgil-cryptowrapper-x) [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/VirgilCryptoFoundation.svg)](https://cocoapods.org/pods/VirgilCryptoFoundation)
 
+# Production Applications
+  * Virgil Messenger iOS
+  * VIrgil Messanger Android
+  * Virgil Pure Wordpress Plugin
+  * Virgil PasspostJS
+
+# Integration
+### Firebase 
+### Twilio
+### Pubnub
+### Back4app
+### Nexmo
+
+# Virgil Blog Posts (by tags)
 
 # License
 BSD 3-Clause. See [LICENSE](https://github.com/VirgilSecurity/virgil/blob/master/LICENSE) for details.
