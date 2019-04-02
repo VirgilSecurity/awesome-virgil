@@ -89,6 +89,35 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
   * [Swift](https://github.com/VirgilSecurity/virgil-sdk-pfs-x) [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/VirgilSDKPFS.svg)](https://img.shields.io/cocoapods/v/VirgilSDKPFS.svg)
   * [C#/.NET](https://github.com/VirgilSecurity/virgil-pfs-net) [![Nuget package](https://img.shields.io/nuget/v/Virgil.PFS.svg)](https://www.nuget.org/packages/Virgil.PFS/)
   * [Java](https://github.com/VirgilSecurity/virgil-pfs-java) [![Maven](https://img.shields.io/maven-central/v/com.virgilsecurity.pfs/pfs.svg)](https://mvnrepository.com/artifact/com.virgilsecurity.pfs/pfs) 
+  
+### Services
+
+* [Cards Service](https://developer.virgilsecurity.com/docs/api-reference/card-service/v5)
+* [Pythia Service](https://developer.virgilsecurity.com/docs/api-reference/pythia-service/v1)
+* [Keyknox Service](https://developer.virgilsecurity.com/docs/api-reference/keyknox-service/v1)
+* [PFS Service](https://developer.virgilsecurity.com/docs/api-reference/pfs-service/v4)
+
+### Cryptographic Libraries
+
+[Virgil Crypto](https://github.com/VirgilSecurity/virgil-crypto) is an open-source high-level cryptographic library that allows you to perform all necessary operations for secure storing and transferring data in your digital solutions. Crypto Library is written in C++, suitable for mobile and server platforms and supports bindings with the following programming languages: Swift, Obj-C, Java (Android), С#/.NET, JS, Python, Ruby, PHP, Go.
+
+#### Wrappers:
+* [Javasript](https://github.com/VirgilSecurity/virgil-crypto-javascript) [![npm](https://img.shields.io/npm/v/virgil-crypto.svg)](https://www.npmjs.com/package/virgil-crypto)
+* [PHP](https://github.com/VirgilSecurity/virgil-crypto-php)
+* [C#/.NET](https://github.com/VirgilSecurity/virgil-crypto-net)
+* [Ruby](https://github.com/VirgilSecurity/virgil-crypto-ruby) [![Gem](https://img.shields.io/gem/v/virgil-crypto.svg)](https://rubygems.org/gems/virgil-crypto)
+* [C](https://github.com/VirgilSecurity/virgil-crypto-c) 
+* [Python](https://github.com/VirgilSecurity/virgil-crypto-python) [![PyPI](https://img.shields.io/pypi/v/virgil-crypto.svg)](https://pypi.python.org/pypi/virgil-crypto)
+* [Golang](https://github.com/VirgilSecurity/virgil-crypto-go) 
+* [Kotlin](https://github.com/VirgilSecurity/virgil-crypto-kotlin)
+* [Swift](https://github.com/VirgilSecurity/virgil-crypto-x) [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/VirgilCrypto.svg)](https://img.shields.io/cocoapods/v/VirgilCrypto.svg)
+
+#### Other:
+* [C#/.NET Crypto Library](https://github.com/VirgilSecurity/virgil-sdk-crypto-net) [![Nuget package](https://img.shields.io/nuget/v/Virgil.Crypto.svg)](https://www.nuget.org/packages/Virgil.Crypto/)
+* [Swift/Objective-C Crypto API](https://github.com/VirgilSecurity/virgil-cryptoapi-x) [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/VirgilCryptoAPI.svg)](https://cocoapods.org/pods/VirgilCryptoAPI)
+* [PHP Crypto API](https://github.com/VirgilSecurity/virgil-cryptoapi-php)
+* [Kotlin Crypto API](https://github.com/VirgilSecurity/virgil-cryptoapi-kotlin)
+* [Swift Crypto Library Wrapper](https://github.com/VirgilSecurity/virgil-cryptowrapper-x) [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/VirgilCryptoFoundation.svg)](https://cocoapods.org/pods/VirgilCryptoFoundation)
 
 
 # License
