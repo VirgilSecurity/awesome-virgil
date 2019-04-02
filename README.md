@@ -6,7 +6,7 @@ Our libraries allow developers to get up and running with Virgil API quickly and
 
 Virgil Security, Inc. guides software developers into the forthcoming security world in which everything will be encrypted (and passwords will be eliminated). In this world, the days of developers having to raise millions of dollars to build secure chat, secure email, secure file-sharing, or a secure anything have come to an end. Now developers can instead focus on building features that give them a competitive market advantage while end-users can enjoy the privacy and security they increasingly demand.
 
-## Content
+# Content
 - [Community](#community)
 - [Products](#products)
   - [Tools](#tools)
@@ -89,28 +89,29 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
   * [Swift](https://github.com/VirgilSecurity/virgil-sdk-pfs-x) [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/VirgilSDKPFS.svg)](https://img.shields.io/cocoapods/v/VirgilSDKPFS.svg)
   * [C#/.NET](https://github.com/VirgilSecurity/virgil-pfs-net) [![Nuget package](https://img.shields.io/nuget/v/Virgil.PFS.svg)](https://www.nuget.org/packages/Virgil.PFS/)
   * [Java](https://github.com/VirgilSecurity/virgil-pfs-java) [![Maven](https://img.shields.io/maven-central/v/com.virgilsecurity.pfs/pfs.svg)](https://mvnrepository.com/artifact/com.virgilsecurity.pfs/pfs) 
-  
+
+
 ### Services
 
-* [Cards Service](https://developer.virgilsecurity.com/docs/api-reference/card-service/v5)
-* [Pythia Service](https://developer.virgilsecurity.com/docs/api-reference/pythia-service/v1)
-* [Keyknox Service](https://developer.virgilsecurity.com/docs/api-reference/keyknox-service/v1)
-* [PFS Service](https://developer.virgilsecurity.com/docs/api-reference/pfs-service/v4)
+* [Cards Service](https://developer.virgilsecurity.com/docs/api-reference/card-service/v5) - Stores and manages users' Virgil Cards with Public Keys and associated information.
+* [Pythia Service](https://developer.virgilsecurity.com/docs/api-reference/pythia-service/v1) - Service provides developers with an ability to generate a user's restorable keypair based on a password.
+* [Keyknox Service](https://developer.virgilsecurity.com/docs/api-reference/keyknox-service/v1) - Allows developers to securely store private keys and secrets in the Virgil Cloud and share them between their devices.
+* [PFS Service](https://developer.virgilsecurity.com/docs/api-reference/pfs-service/v4) - Service dedicated to managing one-time and long-time keys used to solve a Perfect Forward Secrecy scenario.
 
-### Cryptographic Libraries
+### Cryptographic Library
 
 [Virgil Crypto](https://github.com/VirgilSecurity/virgil-crypto) is an open-source high-level cryptographic library that allows you to perform all necessary operations for secure storing and transferring data in your digital solutions. Crypto Library is written in C++, suitable for mobile and server platforms and supports bindings with the following programming languages: Swift, Obj-C, Java (Android), С#/.NET, JS, Python, Ruby, PHP, Go.
 
-#### Wrappers:
-* [Javasript](https://github.com/VirgilSecurity/virgil-crypto-javascript) [![npm](https://img.shields.io/npm/v/virgil-crypto.svg)](https://www.npmjs.com/package/virgil-crypto)
-* [PHP](https://github.com/VirgilSecurity/virgil-crypto-php)
-* [C#/.NET](https://github.com/VirgilSecurity/virgil-crypto-net)
-* [Ruby](https://github.com/VirgilSecurity/virgil-crypto-ruby) [![Gem](https://img.shields.io/gem/v/virgil-crypto.svg)](https://rubygems.org/gems/virgil-crypto)
-* [C](https://github.com/VirgilSecurity/virgil-crypto-c) 
-* [Python](https://github.com/VirgilSecurity/virgil-crypto-python) [![PyPI](https://img.shields.io/pypi/v/virgil-crypto.svg)](https://pypi.python.org/pypi/virgil-crypto)
-* [Golang](https://github.com/VirgilSecurity/virgil-crypto-go) 
-* [Kotlin](https://github.com/VirgilSecurity/virgil-crypto-kotlin)
-* [Swift](https://github.com/VirgilSecurity/virgil-crypto-x) [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/VirgilCrypto.svg)](https://img.shields.io/cocoapods/v/VirgilCrypto.svg)
+* **Wrappers**
+  * [Javasript](https://github.com/VirgilSecurity/virgil-crypto-javascript) [![npm](https://img.shields.io/npm/v/virgil-crypto.svg)](https://www.npmjs.com/package/virgil-crypto)
+  * [PHP](https://github.com/VirgilSecurity/virgil-crypto-php)
+  * [C#/.NET](https://github.com/VirgilSecurity/virgil-crypto-net)
+  * [Ruby](https://github.com/VirgilSecurity/virgil-crypto-ruby) [![Gem](https://img.shields.io/gem/v/virgil-crypto.svg)](https://rubygems.org/gems/virgil-crypto)
+  * [C](https://github.com/VirgilSecurity/virgil-crypto-c) 
+  * [Python](https://github.com/VirgilSecurity/virgil-crypto-python) [![PyPI](https://img.shields.io/pypi/v/virgil-crypto.svg)](https://pypi.python.org/pypi/virgil-crypto)
+  * [Golang](https://github.com/VirgilSecurity/virgil-crypto-go) 
+  * [Kotlin](https://github.com/VirgilSecurity/virgil-crypto-kotlin)
+  * [Swift](https://github.com/VirgilSecurity/virgil-crypto-x) [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/VirgilCrypto.svg)](https://img.shields.io/cocoapods/v/VirgilCrypto.svg)
 
 #### Other:
 * [C#/.NET Crypto Library](https://github.com/VirgilSecurity/virgil-sdk-crypto-net) [![Nuget package](https://img.shields.io/nuget/v/Virgil.Crypto.svg)](https://www.nuget.org/packages/Virgil.Crypto/)
