@@ -14,12 +14,12 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
   - [Services](#services)
   - [Cryptographic Libraries](#cryptographic-libraries)
 - [Integrations](#integrations)
-  - [Custom](#custom)
-  - [Firebase](#firebase)
-  - [Twilio](#twilio)
-  - [PubNub](#pubnub)
-  - [Back4App](#back4app)
-  - [Nexmo](#nexmo)
+  - [Any platform](#with-any-platform)
+  - [Firebase](#with-firebase)
+  - [Twilio](#with-twilio)
+  - [PubNub](#with-pubnub)
+  - [Back4App](#with-back4app)
+  - [Nexmo](#with-nexmo)
 - [Blog Posts](#blog-posts)
 - [Videos](#videos)
 - [License](#license)
@@ -127,7 +127,7 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 
 # Integrations
 
-### Custom
+### With any platform
 * Tutorials
   * [Add end-to-end encryption to your application to secure communication](https://developer.virgilsecurity.com/docs/use-cases/v5/encrypted-communication) - In this tutorial, we will help you add end-to-end encryption to your product to secure your messages and user data.
   * [Protect user passwords and data in your database from data breaches](https://developer.virgilsecurity.com/docs/use-cases/v1/passwords-and-data-protection) - Virgil Security’s Password-Hardened Encryption (PHE) service replaces password hashing with a more cryptographic solution that prevents brute-force attacks on passwords and sensitive data stored in the database, and allows developers to instantly render a stolen database useless without any inconvenience to the end users.
@@ -139,7 +139,7 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
   * [Demo Android](https://github.com/VirgilSecurity/demo-e2ee-android) A simple Android application that demonstrates how the end-to-end encryption (E2EE) works.
 
 
-### Firebase 
+### With Firebase 
 * Tutorials
   * [Add end-to-end encryption to your Firebase application](https://developer.virgilsecurity.com/docs/use-cases/v5/encrypted-communication-for-firebase) - In this tutorial, we will help you add end-to-end encryption to your product to secure your messages and user data.
 * Demos
@@ -147,7 +147,7 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
   * [Demo Android](https://github.com/VirgilSecurity/demo-firebase-android) - A simple Android application that demonstrates how the end-to-end encryption works. The application uses firebase as a backend service for authentication and chat messaging.
   * [Demo Javascript](https://github.com/VirgilSecurity/demo-firebase-js) - A simple Web application that demonstrates how the end-to-end encryption works. The application uses firebase as a backend service for authentication and chat messaging, and Virgil E3Kit SDK for end-to-end encryption.
   
-### Twilio
+### With Twilio
 * Tutorials
   * [Add end-to-end encryption to your Twilio Programable Chat](https://developer.virgilsecurity.com/docs/use-cases/v5/encrypted-communication-for-twilio) - In this tutorial, we will help you add end-to-end encryption to your product to secure your messages and user data that you deliver using Twilio Programmable Chat.
 * Demos
@@ -156,15 +156,15 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
   * [Twilio Sample Backend for Node.js](https://github.com/VirgilSecurity/twilio-sample-backend-nodejs) - A sample backend that demonstrates how to generate a Virgil JWT and Twilio token used for authentication with the Virgil and Twilio services
   * [Sending Encrypted SMS Messages using Twilio API](https://github.com/VirgilSecurity/demo-twilio-sms-net) - A simple .NET Console application that demonstrates how to send encrypted message via SMS.
   
-### Pubnub
+### With Pubnub
 * Tutorials
   * [Add end-to-end encryption to your PubNub IoT Smart Lock Door](https://developer.virgilsecurity.com/docs/use-cases/v5/smart-door-lock) - In this tutorial we'll apply the concept of verifying that the data being sent to and from an IoT device has not been manipulated or altered by another party to the following real-world scenarios involving a smart door lock: building a cloud-connected smart door lock in a way that prevents it from being opened by the manufacturer or by anyone with access to the manufacturer’s cloud account and preventing thefts of opportunity by preventing the manufacturer’s cloud backend from revealing which doors are open and closed.
   
-### Back4app
+### With Back4app
 * Tutorials
   * [How to make a HIPAA compliant chat app](https://www.back4app.com/docs/guest/hipaa-chat-app) - A tutorial which will walk you through the steps to make Back4app’s Android Simple Messenger app End-to-End Encrypted.
 
-### Nexmo
+### With Nexmo
 * Demos
   * [Demo E3Kit Android chat](https://github.com/VirgilSecurity/demo-nexmo-chat-e3kit-android) - Demo Android chat that uses Virgil E3Kit and Nexmo.
   * [Demo Java/Android backend](https://github.com/VirgilSecurity/demo-nexmo-chat-backend-java) - This repository contains a sample backend code that demonstrates how to generate a Nexmo and Virgil JWTs using the Java/Android SDK.
