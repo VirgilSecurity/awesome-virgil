@@ -1,6 +1,6 @@
 <a href="https://virgilsecurity.com"><img src="images/VirgilLogo.png"></a>
 
-[Virgil Security](https://virgilsecurity.com) is a stack of security libraries and all the necessary infrastructure to enable seamless, end-to-end encryption for any application, platform or device. In a few simple steps you can encrypt communication, securely store data, provide passwordless login, and ensure data integrity.
+[Virgil Security](https://virgilsecurity.com) is a stack of security libraries and all the necessary infrastructure to enable seamless, end-to-end encryption for any application, platform or device. 
 
 Our libraries allow developers to get up and running with Virgil API quickly and add full end-to-end security to their existing digital solutions to become HIPAA and GDPR compliant and more.
 
@@ -120,10 +120,10 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 
 
 # Production Applications
-* [Virgil Messenger iOS](https://itunes.apple.com/us/app/virgil-messenger/id1374223472)
-* [Virgil Messanger Android](https://play.google.com/store/apps/details?id=com.virgilsecurity.android.virgilmessenger)
+* [Virgil Messenger iOS](https://itunes.apple.com/us/app/virgil-messenger/id1374223472) - End-to-end encrypted messenger with passwordless authentication.  It is a perfect solution for those who care about their privacy. 
+* [Virgil Messanger Android](https://play.google.com/store/apps/details?id=com.virgilsecurity.android.virgilmessenger) - End-to-end encrypted messenger with passwordless authentication.  It is a perfect solution for those who care about their privacy.
 * [Virgil Pure Wordpress Plugin](https://github.com/VirgilSecurity/virgil-pure-wordpress) - Free Wordpress Plugin based on a powerful and revolutionary cryptographic technology that protects user passwords from data breaches and both online and offline attacks.
-* Virgil PasspostJS
+* [Virgil PasspostJS](https://github.com/VirgilSecurity/virgil-passport-pythia) - This module lets you authenticate using a username and password while protecting the passwords cryptographically using the Pythia PRF service. We'll refer to passwords protected with the Pythia PRF service as Breach-Proof Password.
 
 # Integrations
 
