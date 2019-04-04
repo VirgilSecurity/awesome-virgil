@@ -20,6 +20,8 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
   - [PubNub](#with-pubnub)
   - [Back4App](#with-back4app)
   - [Nexmo](#with-nexmo)
+  - [WordPress](#with-wordpress)
+  - [Passport.js](#with-passportjs)
 - [Blog Posts](#blog-posts)
 - [Videos](#videos)
 - [License](#license)
@@ -90,7 +92,6 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 * **Double Ratchet Service SDK** - allows developers to communicate with PFS service and implements the Double Ratchet algorithm, which is used by parties to exchange encrypted messages based on a shared secret key.
   * [Swift](https://github.com/VirgilSecurity/virgil-ratchet-x) 
 
-
 * **PFS Service SDK** - interacts with Virgil PFS Service and allows developers to add Virgil Perfect Forward Secrecy (PFS) to their end-to-end chat to prevent a possibly compromised long-term secret key from affecting the confidentiality of past communications.
   * [Swift](https://github.com/VirgilSecurity/virgil-sdk-pfs-x) 
   * [C#/.NET](https://github.com/VirgilSecurity/virgil-pfs-net) 
@@ -122,8 +123,6 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 # Production Applications
 * [Virgil Messenger iOS](https://itunes.apple.com/us/app/virgil-messenger/id1374223472) - End-to-end encrypted messenger with passwordless authentication.  It is a perfect solution for those who care about their privacy. 
 * [Virgil Messanger Android](https://play.google.com/store/apps/details?id=com.virgilsecurity.android.virgilmessenger) - End-to-end encrypted messenger with passwordless authentication.  It is a perfect solution for those who care about their privacy.
-* [Virgil Pure Wordpress Plugin](https://github.com/VirgilSecurity/virgil-pure-wordpress) - Free Wordpress Plugin based on a powerful and revolutionary cryptographic technology that protects user passwords from data breaches and both online and offline attacks.
-* [Virgil PasspostJS](https://github.com/VirgilSecurity/virgil-passport-pythia) - This module lets you authenticate using a username and password while protecting the passwords cryptographically using the Pythia PRF service. We'll refer to passwords protected with the Pythia PRF service as Breach-Proof Password.
 
 # Integrations
 
@@ -169,6 +168,12 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
   * [Demo E3Kit Android chat](https://github.com/VirgilSecurity/demo-nexmo-chat-e3kit-android) - Demo Android chat that uses Virgil E3Kit and Nexmo.
   * [Demo Java/Android backend](https://github.com/VirgilSecurity/demo-nexmo-chat-backend-java) - This repository contains a sample backend code that demonstrates how to generate a Nexmo and Virgil JWTs using the Java/Android SDK.
   * [Demo Android chat](https://github.com/VirgilSecurity/demo-nexmo-chat-android) - A simple Web application that demonstrates how the end-to-end encryption works in chat messaging use case. The application uses Nexmo as a messaging provider.
+  
+### With WordPress
+* [Virgil Pure Wordpress Plugin](https://github.com/VirgilSecurity/virgil-pure-wordpress) - Free Wordpress Plugin based on a powerful and revolutionary cryptographic technology that protects user passwords from data breaches and both online and offline attacks.
+
+### With Passport.js
+* [Virgil PasspostJS](https://github.com/VirgilSecurity/virgil-passport-pythia) - This module lets you authenticate using a username and password while protecting the passwords cryptographically using the Pythia PRF service. We'll refer to passwords protected with the Pythia PRF service as Breach-Proof Password.
 
 # Blog Posts
 
