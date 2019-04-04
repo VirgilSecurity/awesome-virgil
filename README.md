@@ -58,13 +58,13 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 * **E3Kit SDK** - Client-side SDK that simplifies work with Virgil services and presents the easiest way to add full end-to-end encryption (E2EE) security to your digital solutions. E3Kit interacts with Cards Service, Keyknox Service and Pythia Service and supports multi-device access and group chat features.
   * [Javascript](https://github.com/VirgilSecurity/virgil-e3kit-js) 
   * [Swift](https://github.com/VirgilSecurity/virgil-e3kit-x)
-  * [Kotlin](https://github.com/VirgilSecurity/virgil-e3kit-kotlin) 
+  * [Java/Kotlin](https://github.com/VirgilSecurity/virgil-e3kit-kotlin) 
 
 * **PureKit SDK** - Server-side SDK allows developers to communicate with the Virgil PHE service and perform necessary operation to protect users' passwords and personal identifiable information in a database from data breaches and both online and offline attacks.
   * [PHP](https://github.com/VirgilSecurity/virgil-purekit-php) 
   * [C#.NET](https://github.com/VirgilSecurity/virgil-purekit-net)
   * [Golang](https://github.com/VirgilSecurity/virgil-purekit-go)
-  * [Kotlin/Java](https://github.com/VirgilSecurity/virgil-purekit-kotlin) 
+  * [Java/Kotlin](https://github.com/VirgilSecurity/virgil-purekit-kotlin) 
 
 * **Cards Service SDK** - interacts with Virgil Cards Service and allows developers to add end-to-end encryption (E2EE) security to their new and existing digital products. SDK can be used on both client-side and server-side.
   * [Javascript](https://github.com/VirgilSecurity/virgil-sdk-javascript)  
@@ -82,10 +82,10 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
   * [Node.js](https://github.com/VirgilSecurity/virgil-pythia-node) 
   * [Swift](https://github.com/VirgilSecurity/virgil-pythia-x) 
   * [C#/.NET](https://github.com/VirgilSecurity/pythia-net) 
-  * [Java](https://github.com/VirgilSecurity/virgil-pythia-java) 
+  * [Java/Kotlin](https://github.com/VirgilSecurity/virgil-pythia-java) 
 
 * **Keyknox Service SDK** - allows developers to communicate with the Virgil Keyknox Service to upload, download, and synchronize encrypted sensitive data (private keys) between user's devices.
-  * [Kotlin/Java](https://github.com/VirgilSecurity/virgil-keyknox-kotlin) 
+  * [Java/Kotlin](https://github.com/VirgilSecurity/virgil-keyknox-kotlin) 
   * [Swift](https://github.com/VirgilSecurity/virgil-keyknox-x) 
   * [Javascript](https://github.com/VirgilSecurity/virgil-keyknox-javascript)
 
@@ -116,7 +116,7 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
   * [C](https://github.com/VirgilSecurity/virgil-crypto-c) 
   * [Python](https://github.com/VirgilSecurity/virgil-crypto-python) 
   * [Golang](https://github.com/VirgilSecurity/virgil-crypto-go) 
-  * [Kotlin](https://github.com/VirgilSecurity/virgil-crypto-kotlin)
+  * [Java/Kotlin](https://github.com/VirgilSecurity/virgil-crypto-kotlin)
   * [Swift](https://github.com/VirgilSecurity/virgil-crypto-x)
 
 
