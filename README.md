@@ -188,8 +188,8 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 * [MacVoices #18140: WWDC/AltConf - Virgil Security Provides End-To-End Encryption SDK's For Developers](https://www.youtube.com/watch?v=MSnKQXvXe-g)
 * [TiE50 Room 212 - Virgil Security, Inc](https://www.youtube.com/watch?v=avYpSTfbb14)
 * [REAL-TIME COMMS TRACK | Add Encryption to Chat - Dmitry Dain (Virgil Security)](https://www.youtube.com/watch?v=wITDSt9RgUE)
-* [Как защитить 1 триллион IoT-устройств / Алексей Ермишкин (Virgil Security)](https://www.youtube.com/watch?v=qLidSKPJCiQ)
-* [Key transparency: Blockchain meets NoiseSocket / Алексей Ермишкин (Virgil Security)](https://www.youtube.com/watch?v=hQZ9tSF6g1Y)
+* [How to protect 1 trillion IoT devices / Alexey Ermishkin (Virgil Security)](https://www.youtube.com/watch?v=qLidSKPJCiQ)
+* [Key transparency: Blockchain meets NoiseSocket / Alexey Ermishkin (Virgil Security)](https://www.youtube.com/watch?v=hQZ9tSF6g1Y)
 
 # License
 BSD 3-Clause. See [LICENSE](https://github.com/VirgilSecurity/virgil/blob/master/LICENSE) for details.
