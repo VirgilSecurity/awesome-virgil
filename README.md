@@ -122,7 +122,7 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 
 # Production Applications
 * [Virgil Messenger iOS](https://itunes.apple.com/us/app/virgil-messenger/id1374223472) - End-to-end encrypted messenger with passwordless authentication.  It is a perfect solution for those who care about their privacy. 
-* [Virgil Messanger Android](https://play.google.com/store/apps/details?id=com.virgilsecurity.android.virgilmessenger) - End-to-end encrypted messenger with passwordless authentication.  It is a perfect solution for those who care about their privacy.
+* [Virgil Messenger Android](https://play.google.com/store/apps/details?id=com.virgilsecurity.android.virgilmessenger) - End-to-end encrypted messenger with passwordless authentication.  It is a perfect solution for those who care about their privacy.
 
 # Integrations
 
@@ -130,7 +130,7 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 * Tutorials
   * [Add end-to-end encryption to your application to secure communication](https://developer.virgilsecurity.com/docs/use-cases/v5/encrypted-communication) - In this tutorial, we will help you add end-to-end encryption to your product to secure your messages and user data.
   * [Protect user passwords and data in your database from data breaches](https://developer.virgilsecurity.com/docs/use-cases/v1/passwords-and-data-protection) - Virgil Security’s Password-Hardened Encryption (PHE) service replaces password hashing with a more cryptographic solution that prevents brute-force attacks on passwords and sensitive data stored in the database, and allows developers to instantly render a stolen database useless without any inconvenience to the end users.
-  * [Generate a resotrable key pair based on a user's password](https://developer.virgilsecurity.com/docs/use-cases/v1/brainkey) - Create strong cryptographic keys based on a user's password using Virgil Pythia. 
+  * [Generate a restorable key pair based on a user's password](https://developer.virgilsecurity.com/docs/use-cases/v1/brainkey) - Create strong cryptographic keys based on a user's password using Virgil Pythia. 
   * [Protect user messages from being decrypted even if the main private key is compromised](https://developer.virgilsecurity.com/docs/use-cases/v4/perfect-forward-secrecy) - In this tutorial, we will help two people or IoT devices to communicate with end-to-end encryption with PFS enabled.
 * Demos
   * [Encryption Demo JS](https://github.com/VirgilSecurity/demo-encryption-js) - A single page React application with Node.js backend demonstrating the use of Virgil Javascript SDK.
@@ -148,10 +148,10 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
   
 ### With Twilio
 * Tutorials
-  * [Add end-to-end encryption to your Twilio Programable Chat](https://developer.virgilsecurity.com/docs/use-cases/v5/encrypted-communication-for-twilio) - In this tutorial, we will help you add end-to-end encryption to your product to secure your messages and user data that you deliver using Twilio Programmable Chat.
+  * [Add end-to-end encryption to your Twilio Programmable Chat](https://developer.virgilsecurity.com/docs/use-cases/v5/encrypted-communication-for-twilio) - In this tutorial, we will help you add end-to-end encryption to your product to secure your messages and user data that you deliver using Twilio Programmable Chat.
 * Demos
   * [Demo Android](https://github.com/VirgilSecurity/demo-twilio-chat-android) - A simple Android application that demonstrates how the end-to-end encryption (E2EE) works in chat messaging use case. The application uses Twilio as a messaging provider.
-  * [Demo IOS chat](https://github.com/VirgilSecurity/chat-twilio-ios) - A simple E2EE chat for iOS which uses Twilio API and Virgil Security services.
+  * [Demo iOS chat](https://github.com/VirgilSecurity/chat-twilio-ios) - A simple E2EE chat for iOS which uses Twilio API and Virgil Security services.
   * [Twilio Sample Backend for Node.js](https://github.com/VirgilSecurity/twilio-sample-backend-nodejs) - A sample backend that demonstrates how to generate a Virgil JWT and Twilio token used for authentication with the Virgil and Twilio services
   * [Sending Encrypted SMS Messages using Twilio API](https://github.com/VirgilSecurity/demo-twilio-sms-net) - A simple .NET Console application that demonstrates how to send encrypted message via SMS.
   
