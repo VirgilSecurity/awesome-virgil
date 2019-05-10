@@ -32,7 +32,7 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 * [Developers Documentation](https://developer.virgilsecurity.com/docs)
 * [Virgil Developer Dashboard](https://dashboard.VirgilSecurity.com)
 * [Help Center](https://help.VirgilSecurity.com)
-* [Passw0rd Community Edition](https://passw0rd.io/)
+* [Passw0rd (Pure Community Edition)](https://passw0rd.io/)
 
 ### Social media
 * [Facebook](https://www.facebook.com/VirgilSec)
@@ -123,7 +123,9 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 # Production Applications
 * **Virgil Messenger** - End-to-end encrypted messenger with passwordless authentication. Perfect solution for those who care about their privacy. 
   * [Virgil Messenger iOS](https://itunes.apple.com/us/app/virgil-messenger/id1374223472)
+    * [Source code](https://github.com/VirgilSecurity/chat-twilio-ios/)
   * [Virgil Messenger Android](https://play.google.com/store/apps/details?id=com.virgilsecurity.android.virgilmessenger)
+    * [Source code](https://github.com/VirgilSecurity/demo-twilio-chat-android/tree/extended_e2ee)
 
 # Integrations
 
@@ -134,9 +136,9 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
   * [Generate a restorable key pair based on a user's password](https://developer.virgilsecurity.com/docs/use-cases/v1/brainkey) - Create strong cryptographic keys based on a user's password using Virgil Pythia. 
   * [Protect user messages from being decrypted even if the main private key is compromised](https://developer.virgilsecurity.com/docs/use-cases/v4/perfect-forward-secrecy) - In this tutorial, we will help two people or IoT devices to communicate with end-to-end encryption with PFS enabled.
 * Demos
-  * [Encryption Demo JS](https://github.com/VirgilSecurity/demo-encryption-js) - A simple html+javascript (or just javascript) application with Node.js backend demonstrating the use of Virgil Javascript SDK and Virgil Crypto.
-  * [Virgil Demo Chat](https://github.com/VirgilSecurity/virgil-demo-chat) A basic chat application that uses Virgil technologies stack for end-to-end encryption.
-  * [Demo Android](https://github.com/VirgilSecurity/demo-e2ee-android) A simple Android application that demonstrates how the end-to-end encryption (E2EE) works.
+  * [Encryption Demo JS](https://github.com/VirgilSecurity/demo-encryption-js) - A simple javascript application with Node.js backend demonstrating the use of Virgil Javascript SDK and Virgil Crypto.
+  * [Virgil Demo Chat](https://github.com/VirgilSecurity/virgil-demo-chat) - A basic chat application that uses Virgil technologies stack for end-to-end encryption.
+  * [Demo Android](https://github.com/VirgilSecurity/demo-e2ee-android) - A simple Android application that demonstrates how the end-to-end encryption (E2EE) works.
 
 ### With Firebase 
 * Tutorials
