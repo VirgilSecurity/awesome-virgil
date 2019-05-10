@@ -156,7 +156,7 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 * Demos
   * Applications
     * [Demo Android](https://github.com/VirgilSecurity/demo-twilio-chat-android) - A simple Android application that demonstrates how the end-to-end encryption (E2EE) works in chat messaging use case. The application uses Twilio as a messaging provider.
-    * [Demo iOS chat](https://github.com/VirgilSecurity/chat-twilio-ios) - A simple E2EE chat for iOS which uses Twilio API and Virgil Security services.
+    * [Demo iOS chat](https://github.com/VirgilSecurity/chat-twilio-ios/tree/sample-v5) - A simple E2EE chat for iOS which uses Twilio API and Virgil Security services.
     * [Sending Encrypted SMS Messages using Twilio API](https://github.com/VirgilSecurity/demo-twilio-sms-net) - A simple .NET Console application that demonstrates how to send encrypted message via SMS.
   * Backend
     * [Twilio Sample Backend for Node.js](https://github.com/VirgilSecurity/twilio-sample-backend-nodejs) - A sample backend that demonstrates how to generate a Virgil JWT and Twilio token used for authentication with the Virgil and Twilio services
