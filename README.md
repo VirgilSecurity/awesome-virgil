@@ -91,11 +91,6 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 
 * **Double Ratchet Service SDK** - allows developers to communicate with PFS service and implements the Double Ratchet algorithm, which is used by parties to exchange encrypted messages based on a shared secret key.
   * [Swift](https://github.com/VirgilSecurity/virgil-ratchet-x) 
-
-* **PFS Service SDK** - interacts with Virgil PFS Service and allows developers to add Virgil Perfect Forward Secrecy (PFS) to their end-to-end chat to prevent a possibly compromised long-term secret key from affecting the confidentiality of past communications.
-  * [Swift](https://github.com/VirgilSecurity/virgil-sdk-pfs-x) 
-  * [C#/.NET](https://github.com/VirgilSecurity/virgil-pfs-net) 
-  * [Java](https://github.com/VirgilSecurity/virgil-pfs-java) 
   
 ### Services
 
@@ -136,9 +131,7 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
   * [Generate a restorable key pair based on a user's password](https://developer.virgilsecurity.com/docs/use-cases/v1/brainkey) - Create strong cryptographic keys based on a user's password using Virgil Pythia. 
   * [Protect user messages from being decrypted even if the main private key is compromised](https://developer.virgilsecurity.com/docs/use-cases/v4/perfect-forward-secrecy) - In this tutorial, we will help two people or IoT devices to communicate with end-to-end encryption with PFS enabled.
 * Demos
-  * [Encryption Demo JS](https://github.com/VirgilSecurity/demo-encryption-js) - A simple javascript application with Node.js backend demonstrating the use of Virgil Javascript SDK and Virgil Crypto.
   * [Virgil Demo Chat](https://github.com/VirgilSecurity/virgil-demo-chat) - A basic chat application that uses Virgil technologies stack for end-to-end encryption.
-  * [Demo Android](https://github.com/VirgilSecurity/demo-e2ee-android) - A simple Android application that demonstrates how the end-to-end encryption (E2EE) works.
 
 ### With Firebase 
 * Tutorials
@@ -157,7 +150,6 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
   * Applications
     * [Demo Android](https://github.com/VirgilSecurity/demo-twilio-chat-android) - A simple Android application that demonstrates how the end-to-end encryption (E2EE) works in chat messaging use case. The application uses Twilio as a messaging provider.
     * [Demo iOS chat](https://github.com/VirgilSecurity/chat-twilio-ios/tree/sample-v5) - A simple E2EE chat for iOS which uses Twilio API and Virgil Security services.
-    * [Sending Encrypted SMS Messages using Twilio API](https://github.com/VirgilSecurity/demo-twilio-sms-net) - A simple .NET Console application that demonstrates how to send encrypted message via SMS.
   * Backend
     * [Twilio Sample Backend for Node.js](https://github.com/VirgilSecurity/twilio-sample-backend-nodejs) - A sample backend that demonstrates how to generate a Virgil JWT and Twilio token used for authentication with the Virgil and Twilio services
   
