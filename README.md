@@ -131,7 +131,7 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
   * [Generate a restorable key pair based on a user's password](https://developer.virgilsecurity.com/docs/use-cases/v1/brainkey) - Create strong cryptographic keys based on a user's password using Virgil Pythia. 
   * [Protect user messages from being decrypted even if the main private key is compromised](https://developer.virgilsecurity.com/docs/use-cases/v4/perfect-forward-secrecy) - In this tutorial, we will help two people or IoT devices to communicate with end-to-end encryption with PFS enabled.
 * Demos
-  * [Virgil Demo Chat](https://github.com/VirgilSecurity/virgil-demo-chat) - A basic chat application that uses Virgil technologies stack for end-to-end encryption.
+  * [Encryption Demo JS](https://github.com/VirgilSecurity/demo-encryption-js) - A simple javascript application with Node.js backend demonstrating the use of Virgil Javascript SDK and Virgil Crypto.
 
 ### With Firebase 
 * Tutorials
