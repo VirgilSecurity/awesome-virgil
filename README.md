@@ -88,16 +88,12 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
   * [Java/Kotlin](https://github.com/VirgilSecurity/virgil-keyknox-kotlin) 
   * [Swift](https://github.com/VirgilSecurity/virgil-keyknox-x) 
   * [JavaScript/TypeScript](https://github.com/VirgilSecurity/virgil-keyknox-javascript)
-
-* **Double Ratchet Service SDK** - allows developers to communicate with PFS service and implements the Double Ratchet algorithm, which is used by parties to exchange encrypted messages based on a shared secret key.
-  * [Swift](https://github.com/VirgilSecurity/virgil-ratchet-x) 
   
 ### Services
 
 * [Cards Service](https://developer.virgilsecurity.com/docs/api-reference/card-service/v5) - Stores and manages users' Virgil Cards with Public Keys and associated information.
 * [Pythia Service](https://developer.virgilsecurity.com/docs/api-reference/pythia-service/v1) - Service provides developers with an ability to generate a user's restorable keypair based on a password.
 * [Keyknox Service](https://developer.virgilsecurity.com/docs/api-reference/keyknox-service/v1) - Allows developers to securely store private keys and secrets in the Virgil Cloud and share them between their devices.
-* [PFS Service](https://developer.virgilsecurity.com/docs/api-reference/pfs-service/v4) - Service dedicated to managing one-time and long-time keys used to solve a Perfect Forward Secrecy scenario.
 
 ### Cryptographic Libraries
 
@@ -156,10 +152,6 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 ### With Pubnub
 * Tutorials
   * [Add end-to-end encryption to your PubNub IoT Smart Lock Door](https://developer.virgilsecurity.com/docs/use-cases/v5/smart-door-lock) - In this tutorial we'll apply the concept of verifying that the data being sent to and from an IoT device has not been manipulated or altered by another party to the following real-world scenarios involving a smart door lock: building a cloud-connected smart door lock in a way that prevents it from being opened by the manufacturer or by anyone with access to the manufacturer’s cloud account and preventing thefts of opportunity by preventing the manufacturer’s cloud backend from revealing which doors are open and closed.
-  
-### With Back4app
-* Tutorials
-  * [How to make a HIPAA compliant chat app](https://www.back4app.com/docs/guest/hipaa-chat-app) - A tutorial which will walk you through the steps to make Back4app’s Android Simple Messenger app End-to-End Encrypted.
 
 ### With Nexmo
 * Demos
@@ -171,9 +163,6 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
   
 ### With WordPress
 * [Virgil Pure Wordpress Plugin](https://github.com/VirgilSecurity/virgil-pure-wordpress) - Free Wordpress Plugin based on a powerful and revolutionary cryptographic technology that protects user passwords from data breaches and both online and offline attacks.
-
-### With Passport.js
-* [Virgil PasspostJS](https://github.com/VirgilSecurity/virgil-passport-pythia) - This module lets you authenticate using a username and password while protecting the passwords cryptographically using the Pythia PRF service. We'll refer to passwords protected with the Pythia PRF service as Breach-Proof Password.
 
 # Blog Posts
 
