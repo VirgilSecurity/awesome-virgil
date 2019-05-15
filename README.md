@@ -151,7 +151,9 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
   
 ### With Pubnub
 * Tutorials
+  * [Build HIPAA Compliant End-to-End Encrypted Chat Apps Using PubNub and Virgil Security](https://www.pubnub.com/blog/build-hipaa-compliant-end-to-end-encrypted-chat-apps-using-pubnub-and-virgil-security/) - In this tutorial, we’ll show you how to make PubNub’s ChatEngine live JavaScript app end-to-end encrypted with the Virgil Security SDK.
   * [Add end-to-end encryption to your PubNub IoT Smart Lock Door](https://developer.virgilsecurity.com/docs/use-cases/v5/smart-door-lock) - In this tutorial we'll apply the concept of verifying that the data being sent to and from an IoT device has not been manipulated or altered by another party to the following real-world scenarios involving a smart door lock: building a cloud-connected smart door lock in a way that prevents it from being opened by the manufacturer or by anyone with access to the manufacturer’s cloud account and preventing thefts of opportunity by preventing the manufacturer’s cloud backend from revealing which doors are open and closed.
+
 
 ### With Nexmo
 * Demos
@@ -166,8 +168,14 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 
 # Blog Posts
 
-* Twilio Blog: [Introducing End-to-end Encryption for Twilio IP Messaging with Virgil Security℠](https://www.twilio.com/blog/2016/05/introducing-end-to-end-encryption-for-twilio-ip-messaging-with-virgil-security.html)
-* Medium: [Salting + Hashing and Storing the Encryption Key in the Database is No Longer Compliant — With Anything](https://medium.com/@VirgilSecurity/salting-hashing-and-storing-the-encryption-key-in-the-database-is-no-longer-compliant-with-7c359077309c)
+* TechCrunch: [Adding end-to-end encrypted messaging to your app just got a lot easier](https://techcrunch.com/2016/05/03/adding-end-to-end-encrypted-messaging-to-your-app-just-got-a-lot-easier/)
+* eWeek: [Virgil Security Raises $4M for Application Security](https://www.eweek.com/security/virgil-security-raises-4m-for-application-security)
+* Atomicorp: [Adding Elliptic Curve Noise Socket Crypto to Your OSSEC Deployment](https://www.atomicorp.com/adding-elliptic-curve-noise-socket-crypto-ossec-deployment/)
+* Cointelegraph: [Research: Telegram Passport Is Vulnerable to Brute Force Attacks](https://cointelegraph.com/news/research-telegram-passport-is-vulnerable-to-brute-force-attacks)
+* Medium: [Implement Virgil Security’s End-to-End Encryption in your Firebase App — Why and How?](https://medium.com/@geekyants/implement-virgil-securitys-end-to-end-encryption-in-your-firebase-app-why-and-how-dc5286920a32)
+* The IOT Magazine: [Shaken and Stirred - The challenge of IoT cyber security and privacy](https://theiotmagazine.com/shaken-and-stirred-5f96ff135bf9)
+* Firebase Blog: [The Latest Firebase Tutorials - Fall 2018](https://firebase.googleblog.com/2018/09/the-latest-firebase-tutorials-fall-2018.html)
+
 
 # Videos
 
