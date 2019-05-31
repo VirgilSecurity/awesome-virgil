@@ -32,7 +32,6 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 * [Developers Documentation](https://developer.virgilsecurity.com/docs)
 * [Virgil Developer Dashboard](https://dashboard.VirgilSecurity.com)
 * [Help Center](https://help.VirgilSecurity.com)
-* [Passw0rd (Pure Community Edition)](https://passw0rd.io/)
 
 ### Social media
 * [Facebook](https://www.facebook.com/VirgilSec)
