@@ -13,18 +13,18 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
   - [SDK](#sdk)
   - [Services](#services)
   - [Cryptographic Libraries](#cryptographic-libraries)
+- [Production Applications](#production-applications)
 - [Integrations](#integrations)
   - [Any platform](#with-any-platform)
   - [Firebase](#with-firebase)
   - [Twilio](#with-twilio)
   - [PubNub](#with-pubnub)
-  - [Back4App](#with-back4app)
   - [Nexmo](#with-nexmo)
   - [WordPress](#with-wordpress)
-  - [Passport.js](#with-passportjs)
 - [Blog Posts](#blog-posts)
 - [Videos](#videos)
 - [License](#license)
+- [Contacts](#contacts)
 
 # Community
 ### Web resources
