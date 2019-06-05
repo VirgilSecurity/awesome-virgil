@@ -153,7 +153,6 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
   * [Build HIPAA Compliant End-to-End Encrypted Chat Apps Using PubNub and Virgil Security](https://www.pubnub.com/blog/build-hipaa-compliant-end-to-end-encrypted-chat-apps-using-pubnub-and-virgil-security/) - In this tutorial, we’ll show you how to make PubNub’s ChatEngine live JavaScript app end-to-end encrypted with the Virgil Security SDK.
   * [Add end-to-end encryption to your PubNub IoT Smart Lock Door](https://developer.virgilsecurity.com/docs/use-cases/v5/smart-door-lock) - In this tutorial we'll apply the concept of verifying that the data being sent to and from an IoT device has not been manipulated or altered by another party to the following real-world scenarios involving a smart door lock: building a cloud-connected smart door lock in a way that prevents it from being opened by the manufacturer or by anyone with access to the manufacturer’s cloud account and preventing thefts of opportunity by preventing the manufacturer’s cloud backend from revealing which doors are open and closed.
 
-
 ### With Nexmo
 * Demos
   * Applications
