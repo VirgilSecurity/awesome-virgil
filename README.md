@@ -51,7 +51,6 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 
 ### Tools
 * [Virgil CLI](https://github.com/VirgilSecurity/virgil-cli) - a tool to manage your Virgil account and applications.
-* [Passw0rd CLI](https://github.com/passw0rd/cli) - a tool for interacting with the [Passw0rd Service](https://passw0rd.io/)
 
 ### SDK
 * **E3Kit SDK** - Client-side SDK that simplifies work with Virgil services and presents the easiest way to add full end-to-end encryption (E2EE) security to your digital solutions. E3Kit interacts with Cards Service, Keyknox Service and Pythia Service and supports multi-device access and group chat features.
