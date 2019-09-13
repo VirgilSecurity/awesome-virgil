@@ -13,20 +13,21 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
   - [SDK](#sdk)
   - [Services](#services)
   - [Cryptographic Libraries](#cryptographic-libraries)
-- [E3kit](#E3Kit)
+- [E3kit Integration](#E3Kit)
   - [With any platform](#with-any-platform)
   - [With Firebase](#with-firebase)
   - [With Twilio](#with-twilio)
   - [With PubNub](#with-pubnub)
   - [With Nexmo](#with-nexmo)
-- [PureKit](#PureKit)
+- [PureKit Integration](#PureKit)
+  - [With backend language](#with-backend-language)
   - [With WordPress](#with-wordpress)
-- [Core SDK Integrations](#other-integrations)
-	- [With JavaScript](#virgil-sdk-with-javascript)
-	- [With Firebase](#virgil-sdk-with-firebase)
-	- [With Twilio](#virgil-sdk-with-twilio)
-	- [With PubNub](#virgil-sdk-with-pubnub)
-	- [With Nexmo](#virgil-sdk-with-nexmo)
+- [Other SDK Integration](#other-integrations)
+	- [Virgil SDK with JavaScript](#virgil-sdk-with-javascript)
+	- [Virgil SDK with Firebase](#virgil-sdk-with-firebase)
+	- [Virgil SDK with Twilio](#virgil-sdk-with-twilio)
+	- [Virgil SDK with PubNub](#virgil-sdk-with-pubnub)
+	- [Virgil SDK with Nexmo](#virgil-sdk-with-nexmo)
 - [Production Applications](#production-applications)
 - [Blog Posts](#blog-posts)
 - [Videos](#videos)
@@ -154,7 +155,8 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 # PureKit
 
 ### With backend language
-* [Protect user passwords and data in your database from data breaches](https://developer.virgilsecurity.com/docs/use-cases/v1/passwords-and-data-protection) - 
+* [Protect user passwords and data in your database from data breaches](https://developer.virgilsecurity.com/docs/use-cases/v1/passwords-and-data-protection)
+
 ### With WordPress
 * [Virgil Pure Wordpress Plugin](https://github.com/VirgilSecurity/virgil-pure-wordpress) - Free Wordpress Plugin based on a powerful and revolutionary cryptographic technology that protects user passwords from data breaches and both online and offline attacks.
 
