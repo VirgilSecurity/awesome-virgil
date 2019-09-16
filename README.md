@@ -10,7 +10,8 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 - [Community](#community)
 - [Products](#products)
   - [Tools](#tools)
-  - [SDK](#sdk)
+  - [High Level SDK](#high-level-sdk)
+  - [Low Level SDK](#low-level-sdk)
   - [Services](#services)
   - [Cryptographic Libraries](#cryptographic-libraries)
 - [E3kit Integration](#E3Kit)
@@ -60,7 +61,8 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 ### Tools
 * [Virgil CLI](https://github.com/VirgilSecurity/virgil-cli) - a tool to manage your Virgil account and applications.
 
-### SDK
+### High Level SDK
+
 * **E3Kit SDK** - Client-side SDK that simplifies work with Virgil services and presents the easiest way to add full end-to-end encryption (E2EE) security to your digital solutions. E3Kit interacts with Cards Service, Keyknox Service and Pythia Service and supports multi-device access and group chat features.
   * [JavaScript/TypeScript](https://github.com/VirgilSecurity/virgil-e3kit-js) 
   * [Swift](https://github.com/VirgilSecurity/virgil-e3kit-x)
@@ -71,6 +73,8 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
   * [C#.NET](https://github.com/VirgilSecurity/virgil-purekit-net)
   * [Golang](https://github.com/VirgilSecurity/virgil-purekit-go)
   * [Java/Kotlin](https://github.com/VirgilSecurity/virgil-purekit-kotlin) 
+
+### Low Level SDK
 
 * **Cards Service SDK** - interacts with Virgil Cards Service and allows developers to add end-to-end encryption (E2EE) security to their new and existing digital products. SDK can be used on both client-side and server-side.
   * [JavaScript/TypeScript](https://github.com/VirgilSecurity/virgil-sdk-javascript)  
@@ -116,12 +120,12 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
   * [Java/Kotlin](https://github.com/VirgilSecurity/virgil-crypto-kotlin)
   * [Swift](https://github.com/VirgilSecurity/virgil-crypto-x)
 
-# E3kit
+# E3kit Integrations
 
 ### With any platform
 
 * [Add end-to-end encryption to your application to secure communication](https://developer.virgilsecurity.com/docs/use-cases/v5/encrypted-communication) - In this tutorial, we will help you add end-to-end encryption to your product to secure your messages and user data.
-* Sample backends:
+* Demo backends:
   * [NodeJS](https://github.com/VirgilSecurity/sample-backend-nodejs)
   * [Java](https://github.com/VirgilSecurity/sample-backend-java)
   * [Python](https://github.com/VirgilSecurity/virgil-sdk-python/tree/master#sample-backend-for-jwt-generation)
@@ -152,7 +156,7 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
   * [Demo E3Kit Android chat](https://github.com/VirgilSecurity/demo-nexmo-chat-e3kit-android) - Demo Android chat that uses Virgil E3Kit and Nexmo.
   * [Demo Java/Android backend](https://github.com/VirgilSecurity/demo-nexmo-chat-backend-java) - This repository contains a sample backend code that demonstrates how to generate a Nexmo and Virgil JWTs using the Java/Android SDK.
   
-# PureKit
+# PureKit Integrations
 
 ### With backend language
 * [Protect user passwords and data in your database from data breaches](https://developer.virgilsecurity.com/docs/use-cases/v1/passwords-and-data-protection)
@@ -160,7 +164,7 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 ### With WordPress
 * [Virgil Pure Wordpress Plugin](https://github.com/VirgilSecurity/virgil-pure-wordpress) - Free Wordpress Plugin based on a powerful and revolutionary cryptographic technology that protects user passwords from data breaches and both online and offline attacks.
 
-# Other Integrations
+# Other SDK Integrations
 
 ### Virgil SDK with JavaScript
   * [Encryption Demo JS](https://github.com/VirgilSecurity/demo-encryption-js) - A simple javascript application with Node.js backend demonstrating the use of Virgil Javascript SDK and Virgil Crypto.
