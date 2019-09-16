@@ -23,12 +23,6 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 - [PureKit Integration](#PureKit)
   - [With backend language](#with-backend-language)
   - [With WordPress](#with-wordpress)
-- [Other SDK Integration](#other-integrations)
-	- [Virgil SDK with JavaScript](#virgil-sdk-with-javascript)
-	- [Virgil SDK with Firebase](#virgil-sdk-with-firebase)
-	- [Virgil SDK with Twilio](#virgil-sdk-with-twilio)
-	- [Virgil SDK with PubNub](#virgil-sdk-with-pubnub)
-	- [Virgil SDK with Nexmo](#virgil-sdk-with-nexmo)
 - [Production Applications](#production-applications)
 - [Blog Posts](#blog-posts)
 - [Videos](#videos)
@@ -163,23 +157,6 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 
 ### With WordPress
 * [Virgil Pure Wordpress Plugin](https://github.com/VirgilSecurity/virgil-pure-wordpress) - Free Wordpress Plugin based on a powerful and revolutionary cryptographic technology that protects user passwords from data breaches and both online and offline attacks.
-
-# Other SDK Integrations
-
-### Virgil SDK with JavaScript
-  * [Encryption Demo JS](https://github.com/VirgilSecurity/demo-encryption-js) - A simple javascript application with Node.js backend demonstrating the use of Virgil Javascript SDK and Virgil Crypto.
-
-### Virgil SDK with Firebase
-  * [Demo iOS](https://github.com/VirgilSecurity/demo-firebase-ios)
-  * [Demo Android](https://github.com/VirgilSecurity/demo-firebase-android)
-
-### Virgil SDK with Twilio
-  * [Demo Android](https://github.com/VirgilSecurity/demo-twilio-chat-android) - A simple Android application that demonstrates how the end-to-end encryption (E2EE) works in chat messaging use case. The application uses Twilio as a messaging provider.
-  * [Demo iOS](https://github.com/VirgilSecurity/chat-twilio-ios/tree/sample-v5) - A simple E2EE chat for iOS which uses Twilio API and Virgil Security services.
-
-### Virgil SDK with PubNub
-  * [Build HIPAA Compliant End-to-End Encrypted Chat Apps Using PubNub and Virgil Security](https://developer.virgilsecurity.com/docs/use-cases/v5/encrypted-communication-for-pubnub) - In this tutorial, we’ll show you how to make PubNub’s ChatEngine live JavaScript app end-to-end encrypted with the Virgil Security SDK.
-  * [Add end-to-end encryption to your PubNub IoT Smart Lock Door](https://developer.virgilsecurity.com/docs/use-cases/v5/smart-door-lock) - In this tutorial we'll apply the concept of verifying that the data being sent to and from an IoT device has not been manipulated or altered by another party to the following real-world scenarios involving a smart door lock: building a cloud-connected smart door lock in a way that prevents it from being opened by the manufacturer or by anyone with access to the manufacturer’s cloud account and preventing thefts of opportunity by preventing the manufacturer’s cloud backend from revealing which doors are open and closed.
 
 ### Virgil SDK with Nexmo
   * [Demo Android chat](https://github.com/VirgilSecurity/demo-nexmo-chat-android) - A simple Web application that demonstrates how the end-to-end encryption works in chat messaging use case. The application uses Nexmo as a messaging provider.
