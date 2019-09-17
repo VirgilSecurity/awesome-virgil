@@ -14,13 +14,13 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
   - [Core SDK](#core-sdk)
   - [Services](#services)
   - [Cryptographic Libraries](#cryptographic-libraries)
-- [E3kit Integration](#E3Kit)
+- [E3kit](#E3Kit)
   - [With any platform](#with-any-platform)
   - [With Firebase](#with-firebase)
   - [With Twilio](#with-twilio)
   - [With PubNub](#with-pubnub)
   - [With Nexmo](#with-nexmo)
-- [PureKit Integration](#PureKit)
+- [PureKit](#PureKit)
   - [With backend language](#with-backend-language)
   - [With WordPress](#with-wordpress)
 - [Production Applications](#production-applications)
@@ -114,7 +114,7 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
   * [Java/Kotlin](https://github.com/VirgilSecurity/virgil-crypto-kotlin)
   * [Swift](https://github.com/VirgilSecurity/virgil-crypto-x)
 
-# E3kit Integrations
+# E3kit
 
 ### With any platform
 
@@ -128,7 +128,7 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 * Demo applications:
   * [Demo iOS](https://github.com/VirgilSecurity/virgil-e3kit-x)
   * [Demo Android](https://github.com/cardoso/demo-e3kit-android)
-  * [Demo Web](https://github.com/cardoso/demo-e3kit-web)
+  * [Demo Web](https://github.com/VirgilSecurity/demo-e3kit-web)
 
 ### With Firebase 
 
@@ -150,7 +150,7 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
   * [Demo E3Kit Android chat](https://github.com/VirgilSecurity/demo-nexmo-chat-e3kit-android) - Demo Android chat that uses Virgil E3Kit and Nexmo.
   * [Demo Java/Android backend](https://github.com/VirgilSecurity/demo-nexmo-chat-backend-java) - This repository contains a sample backend code that demonstrates how to generate a Nexmo and Virgil JWTs using the Java/Android SDK.
   
-# PureKit Integrations
+# PureKit
 
 ### With backend language
 * [Protect user passwords and data in your database from data breaches](https://developer.virgilsecurity.com/docs/use-cases/v1/passwords-and-data-protection)
