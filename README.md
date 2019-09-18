@@ -138,7 +138,7 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 ### With Twilio
 
 * [Add end-to-end encryption to your Twilio Programmable Chat](https://developer.virgilsecurity.com/docs/use-cases/v5/encrypted-communication-for-twilio) - In this tutorial, we will help you add end-to-end encryption to your product to secure your messages and user data that you deliver using Twilio Programmable Chat.
-* [Demo iOS](https://github.com/cardoso/demo-e3kit-ios-twilio) - A simple iOS application that demonstrates how the end-to-end encryption works with Twilio.
+* [Demo iOS](https://github.com/VirgilSecurity/demo-e3kit-ios-twilio) - A simple iOS application that demonstrates how the end-to-end encryption works with Twilio.
 * [Twilio Sample Backend for Node.js](https://github.com/VirgilSecurity/twilio-sample-backend-nodejs) - A sample backend that demonstrates how to generate a Virgil JWT and Twilio token used for authentication with the Virgil and Twilio services
   
 ### With Pubnub
