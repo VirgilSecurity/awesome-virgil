@@ -62,7 +62,7 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
   * [Swift](https://github.com/VirgilSecurity/virgil-e3kit-x)
   * [Java/Kotlin](https://github.com/VirgilSecurity/virgil-e3kit-kotlin) 
 
-* **PureKit** - Server-side framework allows developers to communicate with the Virgil PHE service and perform necessary operation to protect users' passwords and personal identifiable information in a database from data breaches and both online and offline attacks.
+* **PureKit** - Server-side framework that allows developers to communicate with the Virgil PHE service and to perform necessary operation to protect users' passwords and personal identifiable information in a database from data breaches and both online and offline attacks.
   * [PHP](https://github.com/VirgilSecurity/virgil-purekit-php) 
   * [C#.NET](https://github.com/VirgilSecurity/virgil-purekit-net)
   * [Golang](https://github.com/VirgilSecurity/virgil-purekit-go)
@@ -81,7 +81,7 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
   * [Golang](https://github.com/VirgilSecurity/virgil-sdk-go)
   * [Ruby](https://github.com/VirgilSecurity/virgil-sdk-ruby)
 
-* **Pythia Service SDK** - allows developers to communicate with Virgil Pythia Service to generate a Brainkey (private Key which is based on a password) and protect user passwords in a database.
+* **Pythia Service SDK** - allows developers to communicate with Virgil Pythia Service to generate a Brainkey (private Key that is based on a password) and protect user passwords in a database.
   * [Golang](https://github.com/VirgilSecurity/virgil-pythia-go)
   * [Node.js](https://github.com/VirgilSecurity/virgil-pythia-node) 
   * [Swift](https://github.com/VirgilSecurity/virgil-pythia-x) 
@@ -96,7 +96,7 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 ### Services
 
 * [Cards Service](https://developer.virgilsecurity.com/docs/api-reference/card-service/v5) - Stores and manages users' Virgil Cards with Public Keys and associated information.
-* [Pythia Service](https://developer.virgilsecurity.com/docs/api-reference/pythia-service/v1) - Service provides developers with an ability to generate a user's restorable keypair based on a password.
+* [Pythia Service](https://developer.virgilsecurity.com/docs/api-reference/pythia-service/v1) - Provides developers with an ability to generate a user's restorable keypair based on a password.
 * [Keyknox Service](https://developer.virgilsecurity.com/docs/api-reference/keyknox-service/v1) - Allows developers to securely store private keys and secrets in the Virgil Cloud and share them between their devices.
 
 ### Cryptographic Libraries
@@ -132,7 +132,7 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 ### With Firebase 
 
 * [Add end-to-end encryption to your Firebase application](https://developer.virgilsecurity.com/docs/use-cases/v5/encrypted-communication-for-firebase) - In this tutorial, we will help you add end-to-end encryption to your Firebase application to secure your messages and user data.
-* [Demo Web](https://github.com/VirgilSecurity/demo-firebase-js) - A simple Web application that demonstrates how the end-to-end encryption works. The application uses firebase as a backend service for authentication and chat messaging.
+* [Demo Web](https://github.com/VirgilSecurity/demo-firebase-js) - A simple Web application that demonstrates how the end-to-end encryption works. The application uses Firebase as a backend service for authentication and chat messaging.
 * [Virgil Cloud Function for Firebase](https://github.com/VirgilSecurity/virgil-e3kit-firebase-func) use Firebase as a backend service for authentication and chat messaging and Virgil E3kit.
   
 ### With Twilio
