@@ -14,7 +14,7 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
   - [Core SDK](#core-sdk)
   - [Services](#services)
   - [Cryptographic Libraries](#cryptographic-libraries)
-- [E3kit](#E3Kit)
+- [E3Kit](#E3Kit)
   - [With any platform](#with-any-platform)
   - [With Firebase](#with-firebase)
   - [With Twilio](#with-twilio)
@@ -114,7 +114,7 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
   * [Java/Kotlin](https://github.com/VirgilSecurity/virgil-crypto-kotlin)
   * [Swift](https://github.com/VirgilSecurity/virgil-crypto-x)
 
-# E3kit
+# E3Kit
 
 ### With any platform
 
