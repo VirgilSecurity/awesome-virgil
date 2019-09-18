@@ -127,7 +127,6 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
   * [Other Languages](https://developer.virgilsecurity.com/docs/how-to/setup/v5/setup-authentication)
 * Demo applications:
   * [Demo iOS](https://github.com/VirgilSecurity/virgil-e3kit-x)
-  * [Demo Android](https://github.com/cardoso/demo-e3kit-android)
   * [Demo Web](https://github.com/VirgilSecurity/demo-e3kit-web)
 
 ### With Firebase 
