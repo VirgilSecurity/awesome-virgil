@@ -124,6 +124,7 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
   * [Java](https://github.com/VirgilSecurity/sample-backend-java)
   * [Python](https://github.com/VirgilSecurity/virgil-sdk-python/tree/master#sample-backend-for-jwt-generation)
   * [PHP](https://github.com/VirgilSecurity/sample-backend-php)
+  * [Golang](https://github.com/VirgilSecurity/sample-backend-go)
   * [Other Languages](https://developer.virgilsecurity.com/docs/how-to/setup/v5/setup-authentication)
 * Demo applications:
   * [Demo iOS](https://github.com/VirgilSecurity/virgil-e3kit-x)
