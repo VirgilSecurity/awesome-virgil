@@ -53,7 +53,9 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 # Products
 
 ### Tools
-* [Virgil CLI](https://github.com/VirgilSecurity/virgil-cli) - a tool to manage your Virgil account and applications.
+* [Virgil CLI](https://github.com/VirgilSecurity/virgil-cli) - a tool to manage your Virgil account and applications, and perform cryptographic operations.
+* [Virgil IoT Trust Provisioner](https://github.com/VirgilSecurity/virgil-iotkit/tree/master/tools/virgil-trust-provisioner) - a command-line interface (CLI) used to manage your distributed trust between all parties, including IoT devices, in your IoT solutions.
+* [Virgil IoT Firmware Signer](https://github.com/VirgilSecurity/virgil-iotkit/tree/master/tools/virgil-firmware-signer) - a CLI that allows you to sign a firmware in order to provide integrity before distributing it.
 
 ### Security Frameworks 
 
@@ -67,6 +69,9 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
   * [C#.NET](https://github.com/VirgilSecurity/virgil-purekit-net)
   * [Golang](https://github.com/VirgilSecurity/virgil-purekit-go)
   * [Java/Kotlin](https://github.com/VirgilSecurity/virgil-purekit-kotlin) 
+  
+* **IoTKit** - A framework for connecting IoT devices to Virgil IoT Security PaaS. IoTKit helps you easily add security to your IoT devices at any lifecycle stage for secure provisioning and authenticating devices, secure updating firmware and trustlists, and for secure exchanging messages using any transport protocols.
+  * [C](https://github.com/VirgilSecurity/virgil-iotkit/)
 
 ### Core SDK
 
@@ -147,8 +152,8 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 * [Add end-to-end encryption to your PubNub Chat](https://developer.virgilsecurity.com/docs/use-cases/v5/encrypted-communication-for-pubnub) - In this tutorial, we will help you add end-to-end encryption to your product to secure your messages and user data that you deliver using PubNub Chat.
  
 ### With Nexmo
-  * [Demo E3Kit Android chat](https://github.com/VirgilSecurity/demo-nexmo-chat-e3kit-android) - Demo Android chat that uses Virgil E3Kit and Nexmo.
-  * [Demo Java/Android backend](https://github.com/VirgilSecurity/demo-nexmo-chat-backend-java) - This repository contains a sample backend code that demonstrates how to generate a Nexmo and Virgil JWTs using the Java/Android SDK.
+* [Demo E3Kit Android chat](https://github.com/VirgilSecurity/demo-nexmo-chat-e3kit-android) - Demo Android chat that uses Virgil E3Kit and Nexmo.
+* [Demo Java/Android backend](https://github.com/VirgilSecurity/demo-nexmo-chat-backend-java) - This repository contains a sample backend code that demonstrates how to generate a Nexmo and Virgil JWTs using the Java/Android SDK.
   
 # PureKit
 
@@ -157,6 +162,10 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 
 ### With WordPress
 * [Virgil Pure Wordpress Plugin](https://github.com/VirgilSecurity/virgil-pure-wordpress) - Free Wordpress Plugin based on a powerful and revolutionary cryptographic technology that protects user passwords from data breaches and both online and offline attacks.
+
+# IoTKit
+* [Virgil IoTKit Sandbox](https://github.com/VirgilSecurity/virgil-iotkit/tree/master/scripts) - A demo IoT sandbox is based on Virgil IoTKit and its dev tools. It allows you to emulate IoT devices, manage Firmware, TrustList and see the security for IoT devices in action. The Sandbox is conditionally divided into 3 actors (Vendor, Factory, and End-User) to easily understand the whole development process.
+* [IoTKit Demo Samples for UNIX-like OS](https://github.com/VirgilSecurity/demo-iotkit-nix) - The demo samples contain key elements that are necessary for implementation of the secure IoT lifecycle, and tests for all the provided features.
 
 # Production Applications
 * **Virgil Messenger** - End-to-end encrypted messenger with passwordless authentication. Perfect solution for those who care about their privacy. 
