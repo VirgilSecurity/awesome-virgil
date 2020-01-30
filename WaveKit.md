@@ -4,8 +4,6 @@ As more technology enters the roadways, the advent of wireless communication bet
 
 In this tutorial, we will help you add a security level to vehicle-to-everything (V2X) communication in onboard (OBU) and RSU units using Virgil WaveKit framework and Virgil Security Credential Management System (SCMS).
 
-<Collapse title="### Click here to read more about what Virgil provides">
-
 Virgil Security provides a developer-convenient complete IEEE 1609.2 security integration for protecting vehicle-to-everything (V2X) communication.
 
 ### We Offer
@@ -70,12 +68,12 @@ To start sending authentication requests to the Virgil SCMS services, you will n
 # use the same App ID you used to initialize the Virgil SCMS services.
 $ virgil app token create --app-id <App ID> --name <App Name>
 ```
-<Warning> Store the App Token in a secure place and use it to initialize the V2X Communication Simulator.</Warning>
+>Note! Store the App Token in a secure place and use it to initialize the V2X Communication Simulator.</Warning>
 
 
 Here is a step-by-step gif to visually explain the first 3 steps listed above:
 
-![screenshot1](/img/virgil_cli.gif "virgil CLI")
+![screenshot1](https://developer.virgilsecurity.com/docs/1576840024900/img/virgil_cli.gif)
 
 ### Step 4. Download V2X Dev Tools
 
