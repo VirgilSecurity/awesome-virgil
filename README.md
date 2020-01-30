@@ -170,7 +170,7 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 * [IoTKit Demo Samples for UNIX-like OS](https://github.com/VirgilSecurity/demo-iotkit-nix) - The demo samples contain key elements that are necessary for implementation of the secure IoT lifecycle, and tests for all the provided features.
 
 # WaveKit
-* [Virgil WaveKit](https://github.com/VirgilSecurity/awesome-virgil/blob/wave-update/WaveKit.md) - an easy-to-use client-side framework that provides developers with full security functionality to implement and manage secure V2X communication according to the architecture and operations of a WAVE system based on IEEE 1609 family standards.
+* [Virgil WaveKit](/WaveKit.md) - an easy-to-use client-side framework that provides developers with full security functionality to implement and manage secure V2X communication according to the architecture and operations of a WAVE system based on IEEE 1609 family standards.
 
 # Production Applications
 * **Virgil Messenger** - End-to-end encrypted messenger with passwordless authentication. Perfect solution for those who care about their privacy.
