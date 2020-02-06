@@ -34,7 +34,7 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 # Community
 ### Web resources
 * [Main Website](https://VirgilSecurity.com)
-* [Developers Documentation](https://developer.virgilsecurity.com/docs)
+* [Developer Documentation](https://developer.virgilsecurity.com/docs)
 * [Virgil Developer Dashboard](https://dashboard.VirgilSecurity.com)
 * [Help Center](https://help.VirgilSecurity.com)
 
@@ -102,9 +102,9 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 
 ### Services
 
-* [Cards Service](https://developer.virgilsecurity.com/docs/api-reference/card-service/v5) - Stores and manages users' Virgil Cards with Public Keys and associated information.
-* [Pythia Service](https://developer.virgilsecurity.com/docs/api-reference/pythia-service/v1) - Provides developers with an ability to generate a user's restorable keypair based on a password.
-* [Keyknox Service](https://developer.virgilsecurity.com/docs/api-reference/keyknox-service/v1) - Allows developers to securely store private keys and secrets in the Virgil Cloud and share them between their devices.
+* [Cards Service](https://developer.virgilsecurity.com/docs/platform/api-reference/cards-service/) - Stores and manages users' Virgil Cards with Public Keys and associated information.
+* [Pythia Service](https://developer.virgilsecurity.com/docs/platform/api-reference/pythia-service/) - Provides developers with an ability to generate a user's restorable keypair based on a password.
+* [Keyknox Service](https://developer.virgilsecurity.com/docs/platform/api-reference/keyknox-service/) - Allows developers to securely store private keys and secrets in the Virgil Cloud and share them between their devices.
 
 ### Cryptographic Libraries
 
@@ -125,54 +125,60 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 
 ### With any platform
 
-* [Add end-to-end encryption to your application to secure communication](https://developer.virgilsecurity.com/docs/use-cases/v5/encrypted-communication) - In this tutorial, we will help you add end-to-end encryption to your product to secure your messages and user data.
+* [Add end-to-end encryption to your application to secure communication](https://developer.virgilsecurity.com/docs/e3kit/get-started/) - In this tutorial, we will help you add end-to-end encryption to your product to secure your messages and user data.
 * Demo backends:
   * [NodeJS](https://github.com/VirgilSecurity/sample-backend-nodejs)
   * [Java](https://github.com/VirgilSecurity/sample-backend-java)
   * [Python](https://github.com/VirgilSecurity/virgil-sdk-python/tree/master#sample-backend-for-jwt-generation)
   * [PHP](https://github.com/VirgilSecurity/sample-backend-php)
   * [Golang](https://github.com/VirgilSecurity/sample-backend-go)
-  * [Other Languages](https://developer.virgilsecurity.com/docs/how-to/setup/v5/setup-authentication)
+  * [Other Languages](https://developer.virgilsecurity.com/docs/e3kit/get-started/generate-client-tokens/)
 * Demo applications:
   * [Demo iOS](https://github.com/VirgilSecurity/virgil-e3kit-x)
   * [Demo Web](https://github.com/VirgilSecurity/demo-e3kit-web)
 
 ### With Firebase
 
-* [Add end-to-end encryption to your Firebase application](https://developer.virgilsecurity.com/docs/use-cases/v5/encrypted-communication-for-firebase) - In this tutorial, we will help you add end-to-end encryption to your Firebase application to secure your messages and user data.
+* [Add end-to-end encryption to your Firebase application](https://developer.virgilsecurity.com/docs/e3kit/integrations/firebase/) - In this tutorial, we will help you add end-to-end encryption to your Firebase application to secure your messages and user data.
 * [Demo Web](https://github.com/VirgilSecurity/demo-firebase-js) - A simple Web application that demonstrates how the end-to-end encryption works. The application uses Firebase as a backend service for authentication and chat messaging.
 * [Virgil Cloud Function for Firebase](https://github.com/VirgilSecurity/virgil-e3kit-firebase-func) use Firebase as a backend service for authentication and chat messaging and Virgil E3kit.
 
 ### With Twilio
 
-* [Add end-to-end encryption to your Twilio Programmable Chat](https://developer.virgilsecurity.com/docs/use-cases/v5/encrypted-communication-for-twilio) - In this tutorial, we will help you add end-to-end encryption to your product to secure your messages and user data that you deliver using Twilio Programmable Chat.
+* [Add end-to-end encryption to your Twilio Programmable Chat](https://developer.virgilsecurity.com/docs/e3kit/integrations/twilio/) - In this tutorial, we will help you add end-to-end encryption to your product to secure your messages and user data that you deliver using Twilio Programmable Chat.
 * [Demo iOS](https://github.com/VirgilSecurity/demo-e3kit-ios-twilio) - A simple iOS application that demonstrates how the end-to-end encryption works with Twilio.
 * [Twilio Sample Backend for Node.js](https://github.com/VirgilSecurity/twilio-sample-backend-nodejs) - A sample backend that demonstrates how to generate a Virgil JWT and Twilio token used for authentication with the Virgil and Twilio services
 
 ### With Pubnub
 
-* [Add end-to-end encryption to your PubNub Chat](https://developer.virgilsecurity.com/docs/use-cases/v5/encrypted-communication-for-pubnub) - In this tutorial, we will help you add end-to-end encryption to your product to secure your messages and user data that you deliver using PubNub Chat.
+* [Add end-to-end encryption to your PubNub Chat](https://developer.virgilsecurity.com/docs/e3kit/integrations/pubnub/) - In this tutorial, we will help you add end-to-end encryption to your product to secure your messages and user data that you deliver using PubNub Chat.
 
 ### With Nexmo
+
 * [Demo E3Kit Android chat](https://github.com/VirgilSecurity/demo-nexmo-chat-e3kit-android) - Demo Android chat that uses Virgil E3Kit and Nexmo.
 * [Demo Java/Android backend](https://github.com/VirgilSecurity/demo-nexmo-chat-backend-java) - This repository contains a sample backend code that demonstrates how to generate a Nexmo and Virgil JWTs using the Java/Android SDK.
 
 # PureKit
 
 ### With backend language
-* [Protect user passwords and data in your database from data breaches](https://developer.virgilsecurity.com/docs/use-cases/v1/passwords-and-data-protection)
+
+* [Protect user passwords and data in your database from data breaches](https://developer.virgilsecurity.com/docs/purekit/get-started/) - In this tutorial, we will help you to set up PureKit on your backend to secure data and passwords in your database.
 
 ### With WordPress
+
 * [Virgil Pure Wordpress Plugin](https://github.com/VirgilSecurity/virgil-pure-wordpress) - Free Wordpress Plugin based on a powerful and revolutionary cryptographic technology that protects user passwords from data breaches and both online and offline attacks.
 
 # IoTKit
+
 * [Virgil IoTKit Sandbox](https://github.com/VirgilSecurity/virgil-iotkit/tree/master/scripts) - A demo IoT sandbox is based on Virgil IoTKit and its dev tools. It allows you to emulate IoT devices, manage Firmware, TrustList and see the security for IoT devices in action. The Sandbox is conditionally divided into 3 actors (Vendor, Factory, and End-User) to easily understand the whole development process.
 * [IoTKit Demo Samples for UNIX-like OS](https://github.com/VirgilSecurity/demo-iotkit-nix) - The demo samples contain key elements that are necessary for implementation of the secure IoT lifecycle, and tests for all the provided features.
 
 # WaveKit
+
 * [Virgil WaveKit](/WaveKit.md) - an easy-to-use client-side framework that provides developers with full security functionality to implement and manage secure V2X communication according to the architecture and operations of a WAVE system based on IEEE 1609 family standards.
 
 # Production Applications
+
 * **Virgil Messenger** - End-to-end encrypted messenger with passwordless authentication. Perfect solution for those who care about their privacy.
   * [Virgil Messenger iOS](https://itunes.apple.com/us/app/virgil-messenger/id1374223472)
     * [Source code](https://github.com/VirgilSecurity/chat-twilio-ios/)
