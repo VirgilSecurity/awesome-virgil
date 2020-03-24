@@ -28,8 +28,8 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 - [Production Applications](#production-applications)
 - [Blog Posts](#blog-posts)
 - [Videos](#videos)
-- [License](#license)
 - [HashTags](#hashtags)
+- [License](#license)
 - [Contacts](#contacts)
 
 # Community
@@ -209,11 +209,11 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 * [How to protect 1 trillion IoT devices / Alexey Ermishkin (Virgil Security)](https://www.youtube.com/watch?v=qLidSKPJCiQ)
 * [Key transparency: Blockchain meets NoiseSocket / Alexey Ermishkin (Virgil Security)](https://www.youtube.com/watch?v=hQZ9tSF6g1Y)
 
-# License
-BSD 3-Clause. See [LICENSE](https://github.com/VirgilSecurity/virgil/blob/master/LICENSE) for details.
-
 # HashTags
 You can use the following hashtags while tagging Virgil Security Inc.: [#SecuredByVirgil](https://virgilsecurity.com/), [#SecureTheFuture](https://virgilsecurity.com/), [#VirgilSecurity](https://virgilsecurity.com/).
+
+# License
+BSD 3-Clause. See [LICENSE](https://github.com/VirgilSecurity/virgil/blob/master/LICENSE) for details.
 
 # Contacts
 Our developer support team is here to help you. Find out more information on our [Help Center](https://help.virgilsecurity.com/).
