@@ -29,6 +29,7 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 - [Blog Posts](#blog-posts)
 - [Videos](#videos)
 - [License](#license)
+- [HashTags](#hashtags)
 - [Contacts](#contacts)
 
 # Community
@@ -51,6 +52,7 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 ### Support
 * [Slack](https://VirgilSecurity.slack.com/)
 * [Email](mailto:support@VirgilSecurity.com)
+
 
 # Products
 
@@ -209,6 +211,9 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 
 # License
 BSD 3-Clause. See [LICENSE](https://github.com/VirgilSecurity/virgil/blob/master/LICENSE) for details.
+
+# HashTags
+You can use the following hashtags while tagging Virgil Security Inc.: [#SecuredByVirgil](https://virgilsecurity.com/), [#SecureTheFuture](https://virgilsecurity.com/), [#VirgilSecurity](https://virgilsecurity.com/).
 
 # Contacts
 Our developer support team is here to help you. Find out more information on our [Help Center](https://help.virgilsecurity.com/).
