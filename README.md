@@ -186,7 +186,7 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
     * [Source code](https://github.com/VirgilSecurity/demo-twilio-chat-android/tree/extended_e2ee)
 
 # Blog Posts
-
+* MariaDB: [Enable post-compromise data protection with MariaDB and Virgil Security’s PureKit](https://mariadb.org/enable-post-compromise-data-protection-with-mariadb-and-virgil-securitys-purekit/)
 * TechCrunch: [Adding end-to-end encrypted messaging to your app just got a lot easier](https://techcrunch.com/2016/05/03/adding-end-to-end-encrypted-messaging-to-your-app-just-got-a-lot-easier/)
 * eWeek: [Virgil Security Raises $4M for Application Security](https://www.eweek.com/security/virgil-security-raises-4m-for-application-security)
 * Atomicorp: [Adding Elliptic Curve Noise Socket Crypto to Your OSSEC Deployment](https://www.atomicorp.com/adding-elliptic-curve-noise-socket-crypto-ossec-deployment/)
