@@ -28,6 +28,7 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 - [Production Applications](#production-applications)
 - [Blog Posts](#blog-posts)
 - [Videos](#videos)
+- [HashTags](#hashtags)
 - [License](#license)
 - [Contacts](#contacts)
 
@@ -51,6 +52,7 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 ### Support
 * [Slack](https://VirgilSecurity.slack.com/)
 * [Email](mailto:support@VirgilSecurity.com)
+
 
 # Products
 
@@ -206,6 +208,9 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 * [REAL-TIME COMMS TRACK | Add Encryption to Chat - Dmitry Dain (Virgil Security)](https://www.youtube.com/watch?v=wITDSt9RgUE)
 * [How to protect 1 trillion IoT devices / Alexey Ermishkin (Virgil Security)](https://www.youtube.com/watch?v=qLidSKPJCiQ)
 * [Key transparency: Blockchain meets NoiseSocket / Alexey Ermishkin (Virgil Security)](https://www.youtube.com/watch?v=hQZ9tSF6g1Y)
+
+# HashTags
+You can use the following hashtags while tagging Virgil Security Inc.: [#SecuredByVirgil](https://virgilsecurity.com/), [#SecureTheFuture](https://virgilsecurity.com/), [#VirgilSecurity](https://virgilsecurity.com/).
 
 # License
 BSD 3-Clause. See [LICENSE](https://github.com/VirgilSecurity/virgil/blob/master/LICENSE) for details.
