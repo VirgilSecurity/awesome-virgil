@@ -73,7 +73,7 @@ $ virgil app token create --app-id <App ID> --name <App Name>
 
 Here is a step-by-step gif to visually explain the first 3 steps listed above:
 
-![screenshot1](https://developer.virgilsecurity.com/docs/1576840024900/img/virgil_cli.gif)
+![Virgil V2X simulator](https://cdn.virgilsecurity.com/assets/images/github/wavekit_demo/virgil_cli.gif)
 
 ### Step 4. Download V2X Dev Tools
 
