@@ -65,7 +65,7 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 
 ### Security Frameworks
 
-* **[Secure Communications Platform](https://virgilsecurity.com/secure-communications-platform/)** - Virgil Security introduces the most secure programmable communications platform that allows protecting your company communications, intellectual property and privacy. Now, you can build your own communications application with secure voice and video calls and other communications features faster, secure and cheaper.
+* **[Secure Communications Platform](https://virgilsecurity.com/secure-communications-platform/)** - Virgil Security introduces the most secure programmable communications platform that allows protecting your company communications, intellectual property and privacy. Now, you can build your own communication applications with secure voice & video calls and other communications features faster, secure and cheaper.  
 
 * **[E3Kit](https://virgilsecurity.com/e3kit/)** - Client-side framework that simplifies work with Virgil services and presents the easiest way to add full end-to-end encryption (E2EE) security to your digital solutions. E3Kit interacts with Cards Service, Keyknox Service and Pythia Service and supports multi-device access and group chat features.
   * [JavaScript/TypeScript](https://github.com/VirgilSecurity/virgil-e3kit-js)
