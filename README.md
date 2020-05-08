@@ -64,9 +64,11 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 * [Virgil IoT Trust Provisioner](https://github.com/VirgilSecurity/virgil-iotkit/tree/master/tools/virgil-trust-provisioner) - a command-line interface (CLI) used to manage your distributed trust between all parties, including IoT devices, in your IoT solutions.
 * [Virgil IoT Firmware Signer](https://github.com/VirgilSecurity/virgil-iotkit/tree/master/tools/virgil-firmware-signer) - a CLI that allows you to sign a firmware in order to provide integrity before distributing it.
 
-### Security Frameworks
+### Secure Communications Platform (coming)
 
-* **[Secure Communications Platform](https://virgilsecurity.com/secure-communications-platform/)** - Virgil Security introduces the most secure programmable communications platform that allows protecting your company communications, intellectual property and privacy. Now, you can build your own communication applications with secure voice & video calls and other communications features faster, secure and cheaper.  
+* **[Secure Communications Platform](https://virgilsecurity.com/secure-communications-platform/)** - Virgil Security introduces the most secure programmable communications platform that allows protecting your company communications, intellectual property and privacy. Now, you can build your own communication applications with secure voice & video calls and other communications features faster, secure and cheaper. 
+
+### Security Frameworks 
 
 * **[E3Kit](https://virgilsecurity.com/e3kit/)** -  an open-source client-side framework that allows developers to add end-to-end encryption to their messaging applications, file sharing programs, and other digital communication products in just a few simple steps to become HIPAA and GDPR compliant and more. E3Kit interacts with Cards Service, Keyknox Service and Pythia Service and supports multi-device access and group chat features.
   * [JavaScript/TypeScript](https://github.com/VirgilSecurity/virgil-e3kit-js)
