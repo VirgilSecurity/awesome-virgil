@@ -10,10 +10,12 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 - [Community](#community)
 - [Products](#products)
   - [Tools](#tools)
+  - [Secure Communications Platform (coming)](#secure-communications-platform-coming)
   - [Security Frameworks](#security-frameworks)
   - [Core SDK](#core-sdk)
   - [Services](#services)
   - [Cryptographic Libraries](#cryptographic-libraries)
+
 - [E3Kit](#E3Kit)
   - [With any platform](#with-any-platform)
   - [With Firebase](#with-firebase)
@@ -63,12 +65,14 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 
 ### Security Frameworks
 
-* **E3Kit** - Client-side framework that simplifies work with Virgil services and presents the easiest way to add full end-to-end encryption (E2EE) security to your digital solutions. E3Kit interacts with Cards Service, Keyknox Service and Pythia Service and supports multi-device access and group chat features.
+* **[Secure Communications Platform](https://virgilsecurity.com/secure-communications-platform/)** - Virgil Security introduces the most secure programmable communications platform that allows protecting your company communications, intellectual property and privacy. Now, you can build your own communications application with secure voice and video calls and other communications features faster, secure and cheaper.
+
+* **[E3Kit](https://virgilsecurity.com/e3kit/)** - Client-side framework that simplifies work with Virgil services and presents the easiest way to add full end-to-end encryption (E2EE) security to your digital solutions. E3Kit interacts with Cards Service, Keyknox Service and Pythia Service and supports multi-device access and group chat features.
   * [JavaScript/TypeScript](https://github.com/VirgilSecurity/virgil-e3kit-js)
   * [Swift](https://github.com/VirgilSecurity/virgil-e3kit-x)
   * [Java/Kotlin](https://github.com/VirgilSecurity/virgil-e3kit-kotlin)
 
-* **PureKit** - Server-side framework that allows developers to communicate with the Virgil PHE service and to perform necessary operation to protect users' passwords and personal identifiable information in a database from data breaches and both online and offline attacks.
+* **[PureKit](https://virgilsecurity.com/purekit/)** - Server-side framework that allows developers to communicate with the Virgil PHE service and to perform necessary operation to protect users' passwords and personal identifiable information in a database from data breaches and both online and offline attacks.
   * [PHP](https://github.com/VirgilSecurity/virgil-purekit-php)
   * [C#.NET](https://github.com/VirgilSecurity/virgil-purekit-net)
   * [Golang](https://github.com/VirgilSecurity/virgil-purekit-go)
