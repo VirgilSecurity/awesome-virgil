@@ -67,12 +67,12 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 
 * **[Secure Communications Platform](https://virgilsecurity.com/secure-communications-platform/)** - Virgil Security introduces the most secure programmable communications platform that allows protecting your company communications, intellectual property and privacy. Now, you can build your own communication applications with secure voice & video calls and other communications features faster, secure and cheaper.  
 
-* **[E3Kit](https://virgilsecurity.com/e3kit/)** - Client-side framework that simplifies work with Virgil services and presents the easiest way to add full end-to-end encryption (E2EE) security to your digital solutions. E3Kit interacts with Cards Service, Keyknox Service and Pythia Service and supports multi-device access and group chat features.
+* **[E3Kit](https://virgilsecurity.com/e3kit/)** -  an open-source client-side framework that allows developers to add end-to-end encryption to their messaging applications, file sharing programs, and other digital communication products in just a few simple steps to become HIPAA and GDPR compliant and more. E3Kit interacts with Cards Service, Keyknox Service and Pythia Service and supports multi-device access and group chat features.
   * [JavaScript/TypeScript](https://github.com/VirgilSecurity/virgil-e3kit-js)
   * [Swift](https://github.com/VirgilSecurity/virgil-e3kit-x)
   * [Java/Kotlin](https://github.com/VirgilSecurity/virgil-e3kit-kotlin)
 
-* **[PureKit](https://virgilsecurity.com/purekit/)** - Server-side framework that allows developers to communicate with the Virgil PHE service and to perform necessary operation to protect users' passwords and personal identifiable information in a database from data breaches and both online and offline attacks.
+* **[PureKit](https://virgilsecurity.com/purekit/)** - an open-source security framework for enabling post-compromise protection for stored data. PureKit allows developers to protect users' passwords and personal data from hacking and securely share data. The framework can be used within any database or login system that uses a password, so it’s applicable for a company of any industry or size.
   * [PHP](https://github.com/VirgilSecurity/virgil-purekit-php)
   * [C#.NET](https://github.com/VirgilSecurity/virgil-purekit-net)
   * [Golang](https://github.com/VirgilSecurity/virgil-purekit-go)
@@ -166,9 +166,13 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 
 # PureKit
 
-### With backend language
+### With any backend language
 
 * [Protect user passwords and data in your database from data breaches](https://developer.virgilsecurity.com/docs/purekit/get-started/) - In this tutorial, we will help you to set up PureKit on your backend to secure data and passwords in your database.
+
+### With MariaDB
+
+* [Virgil PureKit MariaDB Demo](https://github.com/VirgilSecurity/virgil-mariadb-demo) - The Demo App is a simple web application that illustrates how Virgil PureKit can be used with MariaDB to store and share data in the most secure way. The Demo App is based on use case involving a hypothetical business scenario involving a patient, physician and laboratory, and shows how distinct roles within a customer's application can be defined and used to restrict ePHI access in a HIPAA-compliant manner.
 
 ### With WordPress
 
