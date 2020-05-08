@@ -10,10 +10,12 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 - [Community](#community)
 - [Products](#products)
   - [Tools](#tools)
+  - [Secure Communications Platform (coming)](#secure-communications-platform-coming)
   - [Security Frameworks](#security-frameworks)
   - [Core SDK](#core-sdk)
   - [Services](#services)
   - [Cryptographic Libraries](#cryptographic-libraries)
+
 - [E3Kit](#E3Kit)
   - [With any platform](#with-any-platform)
   - [With Firebase](#with-firebase)
@@ -21,7 +23,8 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
   - [With PubNub](#with-pubnub)
   - [With Nexmo](#with-nexmo)
 - [PureKit](#PureKit)
-  - [With backend language](#with-backend-language)
+  - [With any backend language](#with-any-backend-language)
+  - [With MariaDB](with-mariadb)
   - [With WordPress](#with-wordpress)
 - [IoTKit](#iotkit)
 - [WaveKit](#wavekit)
@@ -48,6 +51,7 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 ### Blogs
 * [Medium Blog](https://medium.com/@VirgilSecurity)
 * [Habr](https://habr.com/company/VirgilSecurity)
+* [Website blogs](https://virgilsecurity.com/blog/)
 
 ### Support
 * [Slack](https://VirgilSecurity.slack.com/)
@@ -56,19 +60,18 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 
 # Products
 
-### Tools
-* [Virgil CLI](https://github.com/VirgilSecurity/virgil-cli) - a tool to manage your Virgil account and applications, and perform cryptographic operations.
-* [Virgil IoT Trust Provisioner](https://github.com/VirgilSecurity/virgil-iotkit/tree/master/tools/virgil-trust-provisioner) - a command-line interface (CLI) used to manage your distributed trust between all parties, including IoT devices, in your IoT solutions.
-* [Virgil IoT Firmware Signer](https://github.com/VirgilSecurity/virgil-iotkit/tree/master/tools/virgil-firmware-signer) - a CLI that allows you to sign a firmware in order to provide integrity before distributing it.
+### Secure Communications Platform (coming)
 
-### Security Frameworks
+* **[Secure Communications Platform](https://virgilsecurity.com/secure-communications-platform/)** - Virgil Security introduces the most secure programmable communications platform that allows protecting your company communications, intellectual property and privacy. Now, you can build your own communication applications with secure voice & video calls and other communications features faster, secure and cheaper. 
 
-* **E3Kit** - Client-side framework that simplifies work with Virgil services and presents the easiest way to add full end-to-end encryption (E2EE) security to your digital solutions. E3Kit interacts with Cards Service, Keyknox Service and Pythia Service and supports multi-device access and group chat features.
+### Security Frameworks 
+
+* **[E3Kit](https://virgilsecurity.com/e3kit/)** -  an open-source client-side framework that allows developers to add end-to-end encryption to their messaging applications, file sharing programs, and other digital communication products in just a few simple steps to become HIPAA and GDPR compliant and more. E3Kit interacts with Cards Service, Keyknox Service and Pythia Service and supports multi-device access and group chat features.
   * [JavaScript/TypeScript](https://github.com/VirgilSecurity/virgil-e3kit-js)
   * [Swift](https://github.com/VirgilSecurity/virgil-e3kit-x)
   * [Java/Kotlin](https://github.com/VirgilSecurity/virgil-e3kit-kotlin)
 
-* **PureKit** - Server-side framework that allows developers to communicate with the Virgil PHE service and to perform necessary operation to protect users' passwords and personal identifiable information in a database from data breaches and both online and offline attacks.
+* **[PureKit](https://virgilsecurity.com/purekit/)** - an open-source security framework for enabling post-compromise protection for stored data. PureKit allows developers to protect users' passwords and personal data from hacking and securely share data. The framework can be used within any database or login system that uses a password, so it’s applicable for a company of any industry or size.
   * [PHP](https://github.com/VirgilSecurity/virgil-purekit-php)
   * [C#.NET](https://github.com/VirgilSecurity/virgil-purekit-net)
   * [Golang](https://github.com/VirgilSecurity/virgil-purekit-go)
@@ -76,6 +79,15 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 
 * **IoTKit** - A framework for connecting IoT devices to Virgil IoT Security PaaS. IoTKit helps you easily add security to your IoT devices at any lifecycle stage for secure provisioning and authenticating devices, secure updating firmware and trustlists, and for secure exchanging messages using any transport protocols.
   * [C](https://github.com/VirgilSecurity/virgil-iotkit/)
+  
+### Tools
+* [Virgil CLI](https://github.com/VirgilSecurity/virgil-cli) - a tool to manage your Virgil account and applications, and perform cryptographic operations.
+* [IoT Dev Tools](https://github.com/VirgilSecurity/virgil-iotkit#iot-dev-tools). Virgil Security also provides a set of tools for secure device lifecycle:
+  - **Virgil Trust Provisioner**. The Virgil Trust Provisioner is a CLI used to manage your distributed trust between all parties, including IoT devices, in your IoT solutions. The CLI is aimed at key pairs and TrustList generation and management, which together make each IoT device identifiable, verifiable and trusted by each party of IoT solution. To start working with the tool, read more [here](https://github.com/VirgilSecurity/virgil-iotkit/tree/master/tools/virgil-trust-provisioner).
+  - **Virgil Device Initializer**. In order to make each IoT device identifiable, verifiable and trusted by each party of IoT solution, you have to provide it with specific provision files, generate private keys and create the digital cards for further device registration on the Virgil Cloud. Virgil Device Initializer allows you to make IoT device provisioning and prepare your IoT device (create digital cards) for its further registration on the Virgil Cloud. To start working with the tool, read more [here](https://github.com/VirgilSecurity/virgil-iotkit/tree/master/tools/virgil-device-initializer).
+  - **Virgil Device Registrar**. Virgil IoT Device Registrar is used to register IoT devices and their digital cards with the Virgil Security Cloud. To start working with the tool, read more [here](https://github.com/VirgilSecurity/virgil-iotkit/tree/master/tools/virgil-device-registrar).
+  - **Virgil Firmware Signer**. Virgil Firmware Signer is a CLI that allows you to sign firmware in order to provide integrity before distributing it. To start working with the tool, read more [here](https://github.com/VirgilSecurity/virgil-iotkit/tree/master/tools/virgil-firmware-signer).
+  - **Virgil SnapD**. Virgil SnapD is a local web utility which allows you to obtain information and statistics about your IoT devices. In order to get such device information, SnapD interacts with Virgil SNAP protocol, which operates directly with your IoT devices. As far as Virgil SnapD is a local service, the obtained information can be displayed in browser under http://localhost:8080/ (by default). If you're working with the Virgil IoT Simulator, you can run SnapD under http://localhost:8081/. To start working with the tool, read more [here](https://github.com/VirgilSecurity/virgil-iotkit/tree/master/tools/virgil-snapd).
 
 ### Core SDK
 
@@ -122,12 +134,13 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
   * [Golang](https://github.com/VirgilSecurity/virgil-crypto-go)
   * [Java/Kotlin](https://github.com/VirgilSecurity/virgil-crypto-kotlin)
   * [Swift](https://github.com/VirgilSecurity/virgil-crypto-x)
+  
 
 # E3Kit
 
 ### With any platform
 
-* [Add end-to-end encryption to your application to secure communication](https://developer.virgilsecurity.com/docs/e3kit/get-started/) - In this tutorial, we will help you add end-to-end encryption to your product to secure your messages and user data.
+* [Add end-to-end encryption to your application to secure communication](https://developer.virgilsecurity.com/docs/e3kit/get-started/quickstart/) - In this tutorial, we will help you add end-to-end encryption to your product to secure your messages and user data.
 * Demo backends:
   * [NodeJS](https://github.com/VirgilSecurity/sample-backend-nodejs)
   * [Java](https://github.com/VirgilSecurity/sample-backend-java)
@@ -162,9 +175,13 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 
 # PureKit
 
-### With backend language
+### With any backend language
 
 * [Protect user passwords and data in your database from data breaches](https://developer.virgilsecurity.com/docs/purekit/get-started/) - In this tutorial, we will help you to set up PureKit on your backend to secure data and passwords in your database.
+
+### With MariaDB
+
+* [Virgil PureKit MariaDB Demo](https://github.com/VirgilSecurity/virgil-mariadb-demo) - The Demo App is a simple web application that illustrates how Virgil PureKit can be used with MariaDB to store and share data in the most secure way. The Demo App is based on use case involving a hypothetical business scenario involving a patient, physician and laboratory, and shows how distinct roles within a customer's application can be defined and used to restrict ePHI access in a HIPAA-compliant manner.
 
 ### With WordPress
 
@@ -208,6 +225,7 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 * [REAL-TIME COMMS TRACK | Add Encryption to Chat - Dmitry Dain (Virgil Security)](https://www.youtube.com/watch?v=wITDSt9RgUE)
 * [How to protect 1 trillion IoT devices / Alexey Ermishkin (Virgil Security)](https://www.youtube.com/watch?v=qLidSKPJCiQ)
 * [Key transparency: Blockchain meets NoiseSocket / Alexey Ermishkin (Virgil Security)](https://www.youtube.com/watch?v=hQZ9tSF6g1Y)
+* [Introduction to IoT Sandbox](https://youtu.be/18DqlNoou4M)
 
 # HashTags
 You can use the following hashtags while tagging Virgil Security Inc.: [#SecuredByVirgil](https://virgilsecurity.com/), [#SecureTheFuture](https://virgilsecurity.com/), [#VirgilSecurity](https://virgilsecurity.com/).
