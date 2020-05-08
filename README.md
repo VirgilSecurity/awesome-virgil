@@ -51,6 +51,7 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 ### Blogs
 * [Medium Blog](https://medium.com/@VirgilSecurity)
 * [Habr](https://habr.com/company/VirgilSecurity)
+* [Website blogs](https://virgilsecurity.com/blog/)
 
 ### Support
 * [Slack](https://VirgilSecurity.slack.com/)
@@ -58,16 +59,6 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 
 
 # Products
-
-### Tools
-* [Virgil CLI](https://github.com/VirgilSecurity/virgil-cli) - a tool to manage your Virgil account and applications, and perform cryptographic operations.
-* [IoT Dev Tools](https://github.com/VirgilSecurity/virgil-iotkit#iot-dev-tools). Virgil Security also provides a set of tools for secure device lifecycle:
-  - **Virgil Trust Provisioner**. The Virgil Trust Provisioner is a CLI used to manage your distributed trust between all parties, including IoT devices, in your IoT solutions. The CLI is aimed at key pairs and TrustList generation and management, which together make each IoT device identifiable, verifiable and trusted by each party of IoT solution. To start working with the tool, read more [here](https://github.com/VirgilSecurity/virgil-iotkit/tree/master/tools/virgil-trust-provisioner).
-  - **Virgil Device Initializer**. In order to make each IoT device identifiable, verifiable and trusted by each party of IoT solution, you have to provide it with specific provision files, generate private keys and create the digital cards for further device registration on the Virgil Cloud. Virgil Device Initializer allows you to make IoT device provisioning and prepare your IoT device (create digital cards) for its further registration on the Virgil Cloud. To start working with the tool, read more [here](https://github.com/VirgilSecurity/virgil-iotkit/tree/master/tools/virgil-device-initializer).
-  - **Virgil Device Registrar**. Virgil IoT Device Registrar is used to register IoT devices and their digital cards with the Virgil Security Cloud. To start working with the tool, read more [here](https://github.com/VirgilSecurity/virgil-iotkit/tree/master/tools/virgil-device-registrar).
-  - **Virgil Firmware Signer**. Virgil Firmware Signer is a CLI that allows you to sign firmware in order to provide integrity before distributing it. To start working with the tool, read more [here](https://github.com/VirgilSecurity/virgil-iotkit/tree/master/tools/virgil-firmware-signer).
-  - **Virgil SnapD**. Virgil SnapD is a local web utility which allows you to obtain information and statistics about your IoT devices. In order to get such device information, SnapD interacts with Virgil SNAP protocol, which operates directly with your IoT devices. As far as Virgil SnapD is a local service, the obtained information can be displayed in browser under http://localhost:8080/ (by default). If you're working with the Virgil IoT Simulator, you can run SnapD under http://localhost:8081/. To start working with the tool, read more [here](https://github.com/VirgilSecurity/virgil-iotkit/tree/master/tools/virgil-snapd).
-
 
 ### Secure Communications Platform (coming)
 
@@ -88,6 +79,15 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 
 * **IoTKit** - A framework for connecting IoT devices to Virgil IoT Security PaaS. IoTKit helps you easily add security to your IoT devices at any lifecycle stage for secure provisioning and authenticating devices, secure updating firmware and trustlists, and for secure exchanging messages using any transport protocols.
   * [C](https://github.com/VirgilSecurity/virgil-iotkit/)
+  
+### Tools
+* [Virgil CLI](https://github.com/VirgilSecurity/virgil-cli) - a tool to manage your Virgil account and applications, and perform cryptographic operations.
+* [IoT Dev Tools](https://github.com/VirgilSecurity/virgil-iotkit#iot-dev-tools). Virgil Security also provides a set of tools for secure device lifecycle:
+  - **Virgil Trust Provisioner**. The Virgil Trust Provisioner is a CLI used to manage your distributed trust between all parties, including IoT devices, in your IoT solutions. The CLI is aimed at key pairs and TrustList generation and management, which together make each IoT device identifiable, verifiable and trusted by each party of IoT solution. To start working with the tool, read more [here](https://github.com/VirgilSecurity/virgil-iotkit/tree/master/tools/virgil-trust-provisioner).
+  - **Virgil Device Initializer**. In order to make each IoT device identifiable, verifiable and trusted by each party of IoT solution, you have to provide it with specific provision files, generate private keys and create the digital cards for further device registration on the Virgil Cloud. Virgil Device Initializer allows you to make IoT device provisioning and prepare your IoT device (create digital cards) for its further registration on the Virgil Cloud. To start working with the tool, read more [here](https://github.com/VirgilSecurity/virgil-iotkit/tree/master/tools/virgil-device-initializer).
+  - **Virgil Device Registrar**. Virgil IoT Device Registrar is used to register IoT devices and their digital cards with the Virgil Security Cloud. To start working with the tool, read more [here](https://github.com/VirgilSecurity/virgil-iotkit/tree/master/tools/virgil-device-registrar).
+  - **Virgil Firmware Signer**. Virgil Firmware Signer is a CLI that allows you to sign firmware in order to provide integrity before distributing it. To start working with the tool, read more [here](https://github.com/VirgilSecurity/virgil-iotkit/tree/master/tools/virgil-firmware-signer).
+  - **Virgil SnapD**. Virgil SnapD is a local web utility which allows you to obtain information and statistics about your IoT devices. In order to get such device information, SnapD interacts with Virgil SNAP protocol, which operates directly with your IoT devices. As far as Virgil SnapD is a local service, the obtained information can be displayed in browser under http://localhost:8080/ (by default). If you're working with the Virgil IoT Simulator, you can run SnapD under http://localhost:8081/. To start working with the tool, read more [here](https://github.com/VirgilSecurity/virgil-iotkit/tree/master/tools/virgil-snapd).
 
 ### Core SDK
 
@@ -225,6 +225,7 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
 * [REAL-TIME COMMS TRACK | Add Encryption to Chat - Dmitry Dain (Virgil Security)](https://www.youtube.com/watch?v=wITDSt9RgUE)
 * [How to protect 1 trillion IoT devices / Alexey Ermishkin (Virgil Security)](https://www.youtube.com/watch?v=qLidSKPJCiQ)
 * [Key transparency: Blockchain meets NoiseSocket / Alexey Ermishkin (Virgil Security)](https://www.youtube.com/watch?v=hQZ9tSF6g1Y)
+* [Introduction to IoT Sandbox](https://youtu.be/18DqlNoou4M)
 
 # HashTags
 You can use the following hashtags while tagging Virgil Security Inc.: [#SecuredByVirgil](https://virgilsecurity.com/), [#SecureTheFuture](https://virgilsecurity.com/), [#VirgilSecurity](https://virgilsecurity.com/).
