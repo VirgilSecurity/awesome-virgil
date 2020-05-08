@@ -23,7 +23,8 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
   - [With PubNub](#with-pubnub)
   - [With Nexmo](#with-nexmo)
 - [PureKit](#PureKit)
-  - [With backend language](#with-backend-language)
+  - [With any backend language](#with-any-backend-language)
+  - [With MariaDB](with-mariadb)
   - [With WordPress](#with-wordpress)
 - [IoTKit](#iotkit)
 - [WaveKit](#wavekit)
@@ -126,12 +127,13 @@ Virgil Security, Inc. guides software developers into the forthcoming security w
   * [Golang](https://github.com/VirgilSecurity/virgil-crypto-go)
   * [Java/Kotlin](https://github.com/VirgilSecurity/virgil-crypto-kotlin)
   * [Swift](https://github.com/VirgilSecurity/virgil-crypto-x)
+  
 
 # E3Kit
 
 ### With any platform
 
-* [Add end-to-end encryption to your application to secure communication](https://developer.virgilsecurity.com/docs/e3kit/get-started/) - In this tutorial, we will help you add end-to-end encryption to your product to secure your messages and user data.
+* [Add end-to-end encryption to your application to secure communication](https://developer.virgilsecurity.com/docs/e3kit/get-started/quickstart/) - In this tutorial, we will help you add end-to-end encryption to your product to secure your messages and user data.
 * Demo backends:
   * [NodeJS](https://github.com/VirgilSecurity/sample-backend-nodejs)
   * [Java](https://github.com/VirgilSecurity/sample-backend-java)
